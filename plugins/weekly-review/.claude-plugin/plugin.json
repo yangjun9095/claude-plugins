@@ -1,0 +1,7 @@
+{
+  "name": "weekly-review",
+  "version": "1.0.0",
+  "description": "Weekly development review across all git worktrees — merged PRs, active branches, and next-week priorities",
+  "author": "Yang Joon Kim",
+  "commands": ["weekly-review"]
+}

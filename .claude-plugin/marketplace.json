@@ -1,0 +1,15 @@
+{
+  "name": "yangjun9095-plugins",
+  "owner": {
+    "name": "Yang Joon Kim",
+    "github": "yangjun9095"
+  },
+  "plugins": [
+    {
+      "name": "weekly-review",
+      "source": "./plugins/weekly-review",
+      "description": "Weekly development review across all git worktrees — merged PRs, active branches, and next-week priorities",
+      "version": "1.0.0"
+    }
+  ]
+}
