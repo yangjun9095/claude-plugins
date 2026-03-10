@@ -1,0 +1,12 @@
+{
+  "name": "prep-report",
+  "version": "1.0.0",
+  "description": "Convert analysis session artifacts (figures, notebooks, findings) into a structured report or slide deck outline",
+  "author": {
+    "name": "Yang Joon Kim",
+    "url": "https://github.com/yangjun9095"
+  },
+  "repository": "https://github.com/yangjun9095/claude-plugins",
+  "license": "MIT",
+  "keywords": ["report", "slides", "presentation", "data-analysis", "figures", "productivity"]
+}

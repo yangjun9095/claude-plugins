@@ -10,6 +10,12 @@
       "source": "./plugins/weekly-review",
       "description": "Weekly development review across all git worktrees — merged PRs, active branches, and next-week priorities",
       "version": "1.0.0"
+    },
+    {
+      "name": "prep-report",
+      "source": "./plugins/prep-report",
+      "description": "Convert analysis session artifacts (figures, notebooks, findings) into a structured report or slide deck outline",
+      "version": "1.0.0"
     }
   ]
 }
