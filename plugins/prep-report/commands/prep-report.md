@@ -20,14 +20,15 @@ Convert the current analysis session's figures, notebooks, and findings into a s
 
 **Arguments:** `$ARGUMENTS`
 
-Format: `[time_or_slides] [format] [-- path/to/report-style.md]`
+Format: `[time_or_slides] [format] [-- path/to/report-style-*.md or audience name]`
 
 Examples:
 - `/prep-report 15min` → ~15-slide deck outline
 - `/prep-report 8 slides` → 8-slide deck
 - `/prep-report 30min doc` → long-form document outline
-- `/prep-report 10min -- ./report-style.md` → 10-min deck with audience preferences
-- `/prep-report` → default: 10-min slide deck, auto-detect report-style.md
+- `/prep-report 10min -- loic` → 10-min deck using report-style-loic-royer.md
+- `/prep-report 10min -- ./report-style-loic-royer.md` → explicit path to style file
+- `/prep-report` → default: 10-min slide deck, auto-detect report-style*.md
 
 ## Pre-fetched Context
 
@@ -51,9 +52,9 @@ All Jupyter/jupytext notebooks:
 !`find . -maxdepth 5 \( -name "*.ipynb" -o -name "*.py" \) -not -path "./.git/*" -not -path "./.claude/*" -not -path "*/node_modules/*" -not -path "*/__pycache__/*" -not -path "*/site-packages/*" -not -name "setup.py" -not -name "conftest.py" -printf "%T@ %p\n" 2>/dev/null | sort -n | awk '{print $2}' | tail -50`
 ```
 
-Report style file (if exists):
+Available report style files:
 ```
-!`cat report-style.md 2>/dev/null || cat docs/report-style.md 2>/dev/null || cat .claude/report-style.md 2>/dev/null || echo "NO_REPORT_STYLE_FILE"`
+!`ls -1 report-style*.md docs/report-style*.md .claude/report-style*.md 2>/dev/null || echo "NO_REPORT_STYLE_FILES"`
 ```
 
 Directory structure (top 2 levels):
@@ -70,9 +71,12 @@ Follow these steps to generate the report outline.
 Parse `$ARGUMENTS` to determine:
 - **Duration/slide count**: Number of minutes or slides. Default: 10 minutes (~10 slides at 1 slide/min).
 - **Format**: "slides" (default), "doc", or "confluence".
-- **Report style path**: If `--` separator is present, the path after it points to a report-style.md file. Otherwise, use the auto-detected one from pre-fetched context.
+- **Report style**: If `--` separator is present, the value after it is either:
+  - A full path to a style file (e.g., `./report-style-loic-royer.md`)
+  - A short name to fuzzy-match against available `report-style-*.md` files (e.g., `loic` matches `report-style-loic-royer.md`)
+  - If not provided, check the pre-fetched list of available style files. If exactly one exists, use it. If multiple exist, list them and ask the user which audience to target.
 
-If a report-style.md was found, read it carefully. It defines audience preferences:
+If a report-style file was found, read it carefully. It defines audience preferences:
 - Narrative vs. technical depth preference
 - Key stakeholders and their focus areas
 - Preferred structure/template
