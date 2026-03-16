@@ -16,6 +16,12 @@
       "source": "./plugins/prep-report",
       "description": "Convert analysis session artifacts (figures, notebooks, findings) into a structured report or slide deck outline",
       "version": "1.0.0"
+    },
+    {
+      "name": "analyze-project",
+      "source": "./plugins/analyze-project",
+      "description": "Comprehensive project status analysis — scan docs, code, git history to map achievements, gaps, and priorities",
+      "version": "1.0.0"
     }
   ]
 }

@@ -1,0 +1,12 @@
+{
+  "name": "analyze-project",
+  "version": "1.0.0",
+  "description": "Comprehensive project status analysis — scan docs, code, git history to map achievements, gaps, and priorities",
+  "author": {
+    "name": "Yang Joon Kim",
+    "url": "https://github.com/yangjun9095"
+  },
+  "repository": "https://github.com/yangjun9095/claude-plugins",
+  "license": "MIT",
+  "keywords": ["project-analysis", "status", "roadmap", "gap-analysis", "planning"]
+}
