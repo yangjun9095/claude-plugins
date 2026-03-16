@@ -1,0 +1,12 @@
+{
+  "name": "build-kg",
+  "version": "1.0.0",
+  "description": "Build an interactive knowledge graph from a folder of markdown documentation files. Extracts wikilinks, standard links, tags, and headings to generate an HTML graph visualization and summary index.",
+  "author": {
+    "name": "Yang Joon Kim",
+    "url": "https://github.com/yangjun9095"
+  },
+  "repository": "https://github.com/yangjun9095/claude-plugins",
+  "license": "MIT",
+  "keywords": ["knowledge-graph", "documentation", "markdown", "visualization", "pyvis", "networkx"]
+}
