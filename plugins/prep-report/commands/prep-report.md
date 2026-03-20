@@ -30,45 +30,34 @@ Examples:
 - `/prep-report 10min -- ./report-style-loic-royer.md` → explicit path to style file
 - `/prep-report` → default: 10-min slide deck, auto-detect report-style*.md
 
-## Pre-fetched Context
-
-Current date:
-```
-!`date '+%Y-%m-%d %A'`
-```
-
-Current working directory:
-```
-!`pwd`
-```
-
-All figure/image files (png, jpg, svg, pdf, html) in this tree:
-```
-!`find . -maxdepth 5 \( -name "*.png" -o -name "*.jpg" -o -name "*.jpeg" -o -name "*.svg" -o -name "*.pdf" -o -name "*.html" \) -not -path "./.git/*" -not -path "./.claude/*" -not -path "*/node_modules/*" -not -path "*/__pycache__/*" -printf "%T@ %p\n" 2>/dev/null | sort -n | awk '{print $2}' | tail -200`
-```
-
-All Jupyter/jupytext notebooks:
-```
-!`find . -maxdepth 5 \( -name "*.ipynb" -o -name "*.py" \) -not -path "./.git/*" -not -path "./.claude/*" -not -path "*/node_modules/*" -not -path "*/__pycache__/*" -not -path "*/site-packages/*" -not -name "setup.py" -not -name "conftest.py" -printf "%T@ %p\n" 2>/dev/null | sort -n | awk '{print $2}' | tail -50`
-```
-
-Available report style files:
-```
-!`ls -1 report-style*.md docs/report-style*.md .claude/report-style*.md 2>/dev/null || echo "NO_REPORT_STYLE_FILES"`
-```
-
-Directory structure (top 2 levels):
-```
-!`find . -maxdepth 2 -type d -not -path "./.git*" -not -path "./.claude*" -not -path "*/__pycache__*" 2>/dev/null | head -40`
-```
-
 ## Instructions
 
 Follow these steps to generate the report outline.
 
-### Step 0: Parse Arguments
+### Step 0: Gather Context and Parse Arguments
 
-Parse `$ARGUMENTS` to determine:
+First, run these Bash commands to collect context:
+
+```bash
+date '+%Y-%m-%d %A'
+```
+```bash
+pwd
+```
+```bash
+find . -maxdepth 5 \( -name "*.png" -o -name "*.jpg" -o -name "*.jpeg" -o -name "*.svg" -o -name "*.pdf" -o -name "*.html" \) -not -path "./.git/*" -not -path "./.claude/*" -not -path "*/node_modules/*" -not -path "*/__pycache__/*" -printf "%T@ %p\n" 2>/dev/null | sort -n | awk '{print $2}' | tail -200
+```
+```bash
+find . -maxdepth 5 \( -name "*.ipynb" -o -name "*.py" \) -not -path "./.git/*" -not -path "./.claude/*" -not -path "*/node_modules/*" -not -path "*/__pycache__/*" -not -path "*/site-packages/*" -not -name "setup.py" -not -name "conftest.py" -printf "%T@ %p\n" 2>/dev/null | sort -n | awk '{print $2}' | tail -50
+```
+```bash
+ls -1 report-style*.md docs/report-style*.md .claude/report-style*.md 2>/dev/null || echo "NO_REPORT_STYLE_FILES"
+```
+```bash
+find . -maxdepth 2 -type d -not -path "./.git*" -not -path "./.claude*" -not -path "*/__pycache__*" 2>/dev/null | head -40
+```
+
+Then parse `$ARGUMENTS` to determine:
 - **Duration/slide count**: Number of minutes or slides. Default: 10 minutes (~10 slides at 1 slide/min).
 - **Format**: "slides" (default), "doc", or "confluence".
 - **Report style**: If `--` separator is present, the value after it is either:

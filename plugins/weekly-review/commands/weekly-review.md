@@ -23,49 +23,34 @@ Modes:
 - `/weekly-review --day` → today only (daily standup format)
 - `/weekly-review --day 2` → last 2 days (e.g., Monday morning catch-up)
 
-## Pre-fetched Context
-
-Current date:
-```
-!`date '+%Y-%m-%d %A'`
-```
-
-Git worktree list:
-```
-!`git worktree list 2>/dev/null || echo 'NOT_IN_GIT_REPO'`
-```
-
-Main branch recent log:
-```
-!`git log --oneline -20 --since="4 weeks ago" 2>/dev/null || echo 'NO_GIT_LOG'`
-```
-
-Open PRs (if gh available):
-```
-!`gh pr list --state open --limit 50 --json number,title,headRefName,updatedAt,url,isDraft,reviewDecision 2>/dev/null || echo 'GH_CLI_UNAVAILABLE'`
-```
-
-Recently merged PRs (last 50):
-```
-!`gh pr list --state merged --limit 50 --json number,title,headRefName,mergedAt,url 2>/dev/null || echo 'GH_CLI_UNAVAILABLE'`
-```
-
-Files modified today (for --day mode):
-```
-!`find . -maxdepth 4 \( -name "*.py" -o -name "*.ipynb" -o -name "*.md" -o -name "*.png" -o -name "*.csv" -o -name "*.tsv" -o -name "*.json" \) -not -path "./.git/*" -not -path "./.claude/*" -not -path "*/__pycache__/*" -not -path "*/site-packages/*" -daystart -mtime 0 -printf "%T@ %p\n" 2>/dev/null | sort -rn | awk '{print $2}' | head -50`
-```
-
-Claude Code sessions today (for --day mode):
-```
-!`ls -lt ~/.claude/projects/*/sessions/ 2>/dev/null | head -20`
-```
-
 ## Instructions
 
 Follow these steps carefully to generate the weekly review report.
 
-### Step 0: Parse Arguments and Compute Date Range
+### Step 0: Gather Context and Parse Arguments
 
+First, run these Bash commands to collect context:
+
+```bash
+date '+%Y-%m-%d %A'
+```
+```bash
+git worktree list 2>/dev/null || echo 'NOT_IN_GIT_REPO'
+```
+```bash
+git log --oneline -20 --since="4 weeks ago" 2>/dev/null || echo 'NO_GIT_LOG'
+```
+```bash
+gh pr list --state open --limit 50 --json number,title,headRefName,updatedAt,url,isDraft,reviewDecision 2>/dev/null || echo 'GH_CLI_UNAVAILABLE'
+```
+```bash
+gh pr list --state merged --limit 50 --json number,title,headRefName,mergedAt,url 2>/dev/null || echo 'GH_CLI_UNAVAILABLE'
+```
+```bash
+find . -maxdepth 4 \( -name "*.py" -o -name "*.ipynb" -o -name "*.md" -o -name "*.png" -o -name "*.csv" -o -name "*.tsv" -o -name "*.json" \) -not -path "./.git/*" -not -path "./.claude/*" -not -path "*/__pycache__/*" -not -path "*/site-packages/*" -daystart -mtime 0 -printf "%T@ %p\n" 2>/dev/null | sort -rn | awk '{print $2}' | head -50
+```
+
+Then parse arguments:
 - Read `$ARGUMENTS`. Determine the mode:
   - If `--day` is present: **daily mode**. Extract optional number after `--day` as `days_back` (default `1`).
   - Otherwise: **weekly mode**. Extract optional number as `weeks_back` (default `1`).
