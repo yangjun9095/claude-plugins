@@ -22,6 +22,12 @@
       "source": "./plugins/analyze-project",
       "description": "Comprehensive project status analysis — scan docs, code, git history to map achievements, gaps, and priorities",
       "version": "1.0.0"
+    },
+    {
+      "name": "project-manager",
+      "source": "./plugins/project-manager",
+      "description": "Sprint planning, session kickoff, status snapshot, and handoff using GitHub Issues as source of truth",
+      "version": "1.0.0"
     }
   ]
 }

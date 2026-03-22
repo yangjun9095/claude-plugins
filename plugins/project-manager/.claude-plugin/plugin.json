@@ -1,0 +1,12 @@
+{
+  "name": "project-manager",
+  "version": "1.0.0",
+  "description": "Sprint planning, session kickoff, status snapshot, and handoff using GitHub Issues as source of truth",
+  "author": {
+    "name": "Yang Joon Kim",
+    "url": "https://github.com/yangjun9095"
+  },
+  "repository": "https://github.com/yangjun9095/claude-plugins",
+  "license": "MIT",
+  "keywords": ["project-management", "sprint", "github-issues", "git", "worktree", "productivity"]
+}
