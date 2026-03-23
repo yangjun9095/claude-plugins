@@ -28,6 +28,12 @@
       "source": "./plugins/project-manager",
       "description": "Sprint planning, session kickoff, status snapshot, and handoff using GitHub Issues as source of truth",
       "version": "1.0.0"
+    },
+    {
+      "name": "paperbanana",
+      "source": "./plugins/paperbanana",
+      "description": "Generate publication-quality diagrams and plots from text descriptions — turn ideas into visuals",
+      "version": "1.0.0"
     }
   ]
 }

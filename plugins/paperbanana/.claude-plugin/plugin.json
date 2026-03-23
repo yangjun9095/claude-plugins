@@ -1,0 +1,12 @@
+{
+  "name": "paperbanana",
+  "version": "1.0.0",
+  "description": "Generate publication-quality diagrams and plots from text descriptions using the PaperBanana multi-agent pipeline",
+  "author": {
+    "name": "Yang Joon Kim",
+    "url": "https://github.com/yangjun9095"
+  },
+  "repository": "https://github.com/yangjun9095/claude-plugins",
+  "license": "MIT",
+  "keywords": ["visualization", "diagrams", "academic", "figures", "illustration", "plots", "paperbanana"]
+}
