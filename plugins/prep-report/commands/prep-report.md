@@ -2,16 +2,21 @@
 allowed-tools:
   - Read
   - Write
+  - Edit
   - Glob
   - Grep
+  - AskUserQuestion
   - Bash(ls *)
   - Bash(find * -name)
+  - Bash(find * -maxdepth)
   - Bash(file *)
   - Bash(identify *)
   - Bash(wc *)
   - Bash(date *)
   - Bash(mkdir *)
-description: Convert analysis session artifacts into a structured report/slide deck outline
+  - Bash(cp *)
+  - Bash(git *)
+description: Convert analysis session artifacts into a structured report/slide deck outline, with optional archive to reports/
 ---
 
 # Prep Report
@@ -280,6 +285,56 @@ END TEMPLATE
 - **Mixed projects in directory**: If figures seem to belong to different analyses, ask the user which project/analysis to focus on.
 - **Conversation context fully compressed**: Be transparent about this. Rely on filesystem artifacts and note that the outline may miss nuances from the discussion.
 - **User asks for Google Slides / PowerPoint**: Explain that you can generate the outline and Markdown, but cannot directly create .pptx/.gslides files. Suggest using the outline to build slides manually, or using a tool like Marp or reveal.js for markdown-to-slides conversion.
+
+### Step 7: Archive Report (Structured Save)
+
+After writing the draft outline and displaying the summary, offer to archive the report to a permanent location.
+
+1. **Detect the project's main repo root**. Check if the current directory is a git worktree or the main repo:
+   ```bash
+   git rev-parse --show-toplevel
+   ```
+   ```bash
+   git worktree list
+   ```
+   If in a worktree, identify the main worktree path (first line of `git worktree list`).
+
+2. **Derive a topic name** from the report title or the current branch name. Sanitize it (lowercase, hyphens, no spaces):
+   - From branch: `cross-locus-comparison` → topic `cross-locus-comparison`
+   - From title: "Cross-Locus ISM Comparison" → topic `cross-locus-ism-comparison`
+
+3. **Derive the audience name** from the `--` argument or report-style file:
+   - `-- loic` → `loic-royer`
+   - `-- ./report-style-loic-royer.md` → `loic-royer`
+   - No audience specified → `general`
+
+4. **Construct the archive path**:
+   ```
+   {main_repo_root}/reports/{topic}/{YYYY-MM-DD}_{audience}.md
+   ```
+   Example: `reports/cross-locus-comparison/2026-03-24_loic-royer.md`
+
+5. **Ask the user** using AskUserQuestion:
+   - "Archive this report outline to `reports/{topic}/{date}_{audience}.md` in the main repo?"
+   - Options: "Yes, archive it", "No, keep only the local draft", "Yes, but change the topic/path"
+   - If "change the topic/path", ask for the corrected topic name
+
+6. **If yes**, execute:
+   ```bash
+   mkdir -p {main_repo_root}/reports/{topic}
+   cp {draft_path} {main_repo_root}/reports/{topic}/{YYYY-MM-DD}_{audience}.md
+   ```
+
+7. **Check if `reports/` is gitignored**. If it is, inform the user:
+   > "Note: `reports/` is currently gitignored. The archive is saved on disk but won't be tracked by git. To track report outlines, remove `reports/` from `.gitignore`."
+
+   If it is NOT gitignored, inform the user:
+   > "Report archived and will be tracked by git. Commit when ready."
+
+8. **Update the draft file** with a header noting where the archive copy lives:
+   ```markdown
+   <!-- Archived to: {archive_path} -->
+   ```
 
 ### Tips for report-style.md
 

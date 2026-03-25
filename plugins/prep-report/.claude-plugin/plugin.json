@@ -1,7 +1,7 @@
 {
   "name": "prep-report",
-  "version": "1.0.0",
-  "description": "Convert analysis session artifacts (figures, notebooks, findings) into a structured report or slide deck outline",
+  "version": "1.1.0",
+  "description": "Convert analysis session artifacts into a structured report/slide deck outline, with optional archive to reports/",
   "author": {
     "name": "Yang Joon Kim",
     "url": "https://github.com/yangjun9095"
