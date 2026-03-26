@@ -72,3 +72,28 @@ Turn ideas into publication-quality diagrams and plots. Powered by [PaperBanana]
 ```
 
 **Setup:** Requires a Google API key (free). Run `paperbanana setup` after installing, or set `GOOGLE_API_KEY` in your `.env`.
+
+### `generate-slides`
+
+Generates a polished `.pptx` slide deck from session artifacts. Builds on `prep-report` by adding **interactive outline brainstorming** (via AskUserQuestion) and **programmatic PPTX generation** using `python-pptx`.
+
+- Scans for figures (png, jpg, svg) and reads docs/notebooks for context
+- Asks the user to choose a narrative style (Journey, Results-First, Technical)
+- Proposes a slide outline with figure assignments — iterates until approved
+- Generates a self-contained Python script using a bundled `pptx_helpers.py` library
+- Produces a clean, academic-style PPTX (16:9, Calibri, white bg, blue accents)
+- Handles tables, code/ASCII boxes, callout boxes, embedded figures
+
+**Usage:**
+
+```
+/generate-slides                              # default: 15-min deck
+/generate-slides 20min                        # 20-slide deck
+/generate-slides 10 slides                    # exactly 10 slides
+/generate-slides 15min -- loic                # with audience style
+/generate-slides 8 slides -- ./report-style.md  # explicit style file
+```
+
+**Requires:** `pip install python-pptx` (auto-installed if missing)
+
+**Relationship to `prep-report`:** Use `/prep-report` when you want a markdown outline only. Use `/generate-slides` when you want a ready-to-present PPTX file with embedded figures.

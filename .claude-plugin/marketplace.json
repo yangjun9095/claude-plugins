@@ -34,6 +34,12 @@
       "source": "./plugins/paperbanana",
       "description": "Generate publication-quality diagrams and plots from text descriptions — turn ideas into visuals",
       "version": "1.0.0"
+    },
+    {
+      "name": "generate-slides",
+      "source": "./plugins/generate-slides",
+      "description": "Generate PPTX slide decks from session artifacts with interactive outline brainstorming and programmatic generation via python-pptx",
+      "version": "1.0.0"
     }
   ]
 }
