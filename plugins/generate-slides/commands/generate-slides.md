@@ -198,15 +198,19 @@ from pptx_helpers import *
 
 **3b. Styling rules for the generated script:**
 
-- **Title slide**: Dark background (#111111), white text, blue accent line
-- **Content slides**: White background, dark text, blue accent line under title
-- **Tables**: Light grey header (#F5F5F5), centered data columns, left-aligned label column
+- **Title slide**: White background, black text, blue accent line — clean and consistent with content slides
+- **Content slides**: White background, black text, blue accent line under title
+- **No bold anywhere**: Hierarchy is conveyed through font size and spacing only. Never set `bold=True`.
+- **Font**: Avenir Light (`FONT_NAME`) for all text, PT Mono (`CODE_FONT`) for code blocks
+- **Font sizes**: 40pt titles, 28pt subtitles, 22pt body, 16pt tables, 14pt footnotes, 12pt code
+- **Title position**: Top-aligned (~0.15" from top) to maximize content area
+- **Colors**: Use color very sparingly. Black text (#000000), single blue accent (#036DEA). No colored text boxes.
+- **Bullet emphasis**: Use blue accent color on key-term prefixes instead of bold (tuples render the first element in blue)
+- **Callout boxes**: White background with thin grey border, NOT colored backgrounds
+- **Tables**: Light grey header (#F5F5F5), no bold in any cells
 - **Figures**: Centered, scaled to ~80% of slide width (or half-width for side-by-side)
-- **Code boxes**: Light grey (#F8FAFC) background, Consolas font, thin border
-- **Callout boxes**: Light blue (#DBEAFE) background, rounded corners
-- **Font**: Calibri, 32pt titles, 22pt body, 16-18pt table text, 12-15pt code
-- **Accent color**: Blue (#2563EB) for highlights
-- **Positive values**: Green (#059669), Negative: Red (#DC2626)
+- **Code boxes**: Light grey (#F8FAFC) background, PT Mono font, thin border
+- **Positive values**: Green (#059669), Negative: Red (#DC2626) — only for data values, not decorative
 
 **3c. Figure handling:**
 
@@ -214,12 +218,12 @@ from pptx_helpers import *
 - Use `add_figure(slide, fig_path, left, top, width=Inches(X))` — scale width to fit
 - For side-by-side figures: width ~5.5-6.0 inches each
 - For full-width figures: width ~10.0-11.0 inches
-- Place figures below the title area (top >= Inches(1.4))
+- Place figures below the title area (top >= Inches(1.2))
 
 **3d. Content guidelines per slide type:**
 
-- **Title slide**: Use `make_title_slide()` — title, author, affiliation, date
-- **Content slides**: Use `make_content_slide()` then `add_bullets()` — 3-5 bullets max
+- **Title slide**: Use `make_title_slide()` — white bg, title, author, affiliation, date
+- **Content slides**: Use `make_content_slide()` then `add_bullets()` — 3-5 bullets max, no bold
 - **Results slides**: Table or figure + 2-3 interpretation bullets below/beside
 - **Comparison slides**: Side-by-side layout (figure left + text right, or two figures)
 - **Summary slide**: 3-4 numbered takeaways, 1 line each
@@ -292,17 +296,20 @@ The reusable helper library is bundled at `pptx_helpers.py` (same directory as t
 | `add_code_box(slide, l, t, w, h, text)` | Monospace code/ASCII box |
 | `add_callout_box(slide, l, t, w, h, label, text)` | Highlighted takeaway |
 | `add_table(slide, l, t, w, h, rows, cols, data)` | Styled table |
-| `add_bullets(slide, l, t, w, h, items)` | Bulleted list (str or (bold, rest) tuples) |
+| `add_bullets(slide, l, t, w, h, items)` | Bulleted list (str or (emphasis, rest) tuples) |
 | `make_bullet_paragraphs(items)` | Convert items to paragraphs data |
-| `make_title_slide(slide, title, author, affil, date)` | Full dark title slide |
+| `make_title_slide(slide, title, author, affil, date)` | White-background title slide |
 | `make_content_slide(slide, title, subtitle)` | Content slide with title + accent line |
 | `make_section_slide(slide, title)` | Section divider |
 
 ### Color constants:
-`WHITE`, `BLACK`, `DARK_BG`, `BLUE`, `LIGHT_BLUE`, `GREEN`, `RED`, `GREY`, `LIGHT_GREY`, `MEDIUM_GREY`
+`WHITE`, `BLACK`, `BLUE`, `GREEN`, `RED`, `GREY`, `LIGHT_GREY`, `TABLE_BORDER`
 
 ### Layout constants:
-`SLIDE_W`, `SLIDE_H`, `LEFT_MARGIN` (0.8"), `TOP_MARGIN` (1.4"), `CONTENT_W` (11.7")
+`SLIDE_W`, `SLIDE_H`, `LEFT_MARGIN` (0.8"), `TOP_MARGIN` (1.2"), `CONTENT_W` (11.7")
+
+### Typography constants:
+`FONT_NAME` ("Avenir Light"), `CODE_FONT` ("PT Mono"), `TITLE_SIZE` (40), `SUBTITLE_SIZE` (28), `BODY_SIZE` (22), `FOOTNOTE_SIZE` (14), `TABLE_SIZE` (16), `CODE_SIZE` (12)
 
 ---
 
@@ -325,5 +332,6 @@ The reusable helper library is bundled at `pptx_helpers.py` (same directory as t
 - **Key message per slide**: Every slide should have exactly ONE takeaway.
 - **Figure-to-text ratio**: ~50% of content slides should have a figure.
 - **Supplementary slides**: Put QC, detailed methods, and backup figures here for Q&A.
-- **Bold prefixes on bullets** dramatically improve scannability.
-- **Tables**: Keep to 5-7 rows max. Highlight the most important cells with color.
+- **Blue-accent prefixes on bullets** improve scannability without using bold — pass `("Key term: ", "explanation")` tuples.
+- **Tables**: Keep to 5-7 rows max. Use GREEN/RED only for data values, not decoration.
+- **No bold**: Resist the urge. Size and spacing provide enough hierarchy with Avenir Light.

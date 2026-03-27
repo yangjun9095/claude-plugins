@@ -1,8 +1,15 @@
 """Reusable PPTX generation helpers for Claude Code generate-slides skill.
 
-Provides a clean, academic slide style (16:9 widescreen, Calibri font,
-white background with blue accents). All functions operate on a
+Provides a clean, minimal slide style (16:9 widescreen, Avenir Light font,
+white backgrounds with sparing blue accents). All functions operate on a
 python-pptx Presentation object.
+
+Style profile extracted from Y.J. Kim's exemplar decks (2024-2025):
+- Font: Avenir Light (body/titles), PT Mono (code)
+- Colors: Black text, single blue (#036DEA) accent, no colored boxes
+- Bold: Never — hierarchy through font size and spacing only
+- Title position: top-aligned (~0.15")
+- Font sizes: title 40pt, subtitle 28pt, body 22pt, footnote 14pt
 
 Usage from a generated script:
 
@@ -12,7 +19,7 @@ Usage from a generated script:
     slide = add_blank_slide(prs)
     add_slide_title(slide, "My Title", subtitle="Optional subtitle")
     add_bullets(slide, LEFT_MARGIN, Inches(1.5), CONTENT_W, Inches(4.0), [
-        ("Bold prefix: ", "rest of the bullet"),
+        ("Key term: ", "rest of the bullet"),
         "Simple bullet text",
     ])
     prs.save("output.pptx")
@@ -27,29 +34,39 @@ from pptx.enum.text import PP_ALIGN, MSO_ANCHOR
 from pptx.enum.shapes import MSO_SHAPE
 
 # ============================================================================
-# Color Palette
+# Color Palette — intentionally minimal
 # ============================================================================
 WHITE = RGBColor(0xFF, 0xFF, 0xFF)
-BLACK = RGBColor(0x11, 0x11, 0x11)
-DARK_BG = RGBColor(0x11, 0x11, 0x11)
-BLUE = RGBColor(0x25, 0x63, 0xEB)
-LIGHT_BLUE = RGBColor(0xDB, 0xEA, 0xFE)
-GREEN = RGBColor(0x05, 0x96, 0x69)
-RED = RGBColor(0xDC, 0x26, 0x26)
-GREY = RGBColor(0x6B, 0x72, 0x80)
-LIGHT_GREY = RGBColor(0xF5, 0xF5, 0xF5)
-MEDIUM_GREY = RGBColor(0x9C, 0xA3, 0xAF)
+BLACK = RGBColor(0x00, 0x00, 0x00)
+BLUE = RGBColor(0x03, 0x6D, 0xEA)          # primary accent (#036DEA)
+GREEN = RGBColor(0x05, 0x96, 0x69)          # positive values
+RED = RGBColor(0xDC, 0x26, 0x26)            # negative values
+GREY = RGBColor(0x6B, 0x72, 0x80)           # secondary text / footnotes
+LIGHT_GREY = RGBColor(0xF5, 0xF5, 0xF5)    # table header bg
 TABLE_BORDER = RGBColor(0xD1, 0xD5, 0xDB)
 
 # ============================================================================
-# Layout Constants (16:9 widescreen)
+# Layout Constants (16:9 widescreen, standard PPTX)
 # ============================================================================
 SLIDE_W = Inches(13.333)
 SLIDE_H = Inches(7.5)
 LEFT_MARGIN = Inches(0.8)
-TOP_MARGIN = Inches(1.4)
+TOP_MARGIN = Inches(1.2)           # content starts below title + accent
 CONTENT_W = Inches(11.7)
-FONT_NAME = "Calibri"
+
+# ============================================================================
+# Typography
+# ============================================================================
+FONT_NAME = "Avenir Light"
+CODE_FONT = "PT Mono"
+
+# Font sizes (scaled for 13.333" wide canvas)
+TITLE_SIZE = 40
+SUBTITLE_SIZE = 28
+BODY_SIZE = 22
+FOOTNOTE_SIZE = 14
+TABLE_SIZE = 16
+CODE_SIZE = 12
 
 
 # ============================================================================
@@ -81,7 +98,7 @@ def set_slide_bg(slide, color):
 # Text Primitives
 # ============================================================================
 
-def add_textbox(slide, left, top, width, height, text, font_size=18,
+def add_textbox(slide, left, top, width, height, text, font_size=BODY_SIZE,
                 bold=False, color=BLACK, alignment=PP_ALIGN.LEFT,
                 font_name=FONT_NAME, line_spacing=1.15):
     """Add a simple single-run text box."""
@@ -134,14 +151,14 @@ def add_rich_textbox(slide, left, top, width, height, paragraphs_data,
         for rdata in runs_data:
             run = p.add_run()
             run.text = rdata.get("text", "")
-            run.font.size = Pt(rdata.get("font_size", 18))
+            run.font.size = Pt(rdata.get("font_size", BODY_SIZE))
             run.font.bold = rdata.get("bold", False)
             run.font.italic = rdata.get("italic", False)
             run.font.color.rgb = rdata.get("color", BLACK)
             run.font.name = font_name
 
         if line_spacing != 1.0:
-            fs = runs_data[0].get("font_size", 18) if runs_data else 18
+            fs = runs_data[0].get("font_size", BODY_SIZE) if runs_data else BODY_SIZE
             p.line_spacing = Pt(fs * line_spacing)
 
     return txBox
@@ -152,15 +169,18 @@ def add_rich_textbox(slide, left, top, width, height, paragraphs_data,
 # ============================================================================
 
 def add_slide_title(slide, title, subtitle=None, color=BLACK):
-    """Add a title bar (and optional subtitle) to a content slide."""
-    add_textbox(slide, LEFT_MARGIN, Inches(0.4), CONTENT_W, Inches(0.6),
-                title, font_size=32, bold=True, color=color)
+    """Add a title (and optional subtitle) to a content slide.
+
+    Title sits flush near the top (~0.15") for maximum content area.
+    """
+    add_textbox(slide, LEFT_MARGIN, Inches(0.15), CONTENT_W, Inches(0.65),
+                title, font_size=TITLE_SIZE, bold=False, color=color)
     if subtitle:
-        add_textbox(slide, LEFT_MARGIN, Inches(0.95), CONTENT_W, Inches(0.4),
-                    subtitle, font_size=18, color=GREY, bold=False)
+        add_textbox(slide, LEFT_MARGIN, Inches(0.75), CONTENT_W, Inches(0.4),
+                    subtitle, font_size=SUBTITLE_SIZE, color=GREY, bold=False)
 
 
-def add_accent_line(slide, left=None, top=Inches(1.25), width=Inches(4.0),
+def add_accent_line(slide, left=None, top=Inches(1.05), width=Inches(4.0),
                     color=BLUE):
     """Add a thin horizontal accent line (default: blue, below title)."""
     left = left or LEFT_MARGIN
@@ -185,7 +205,7 @@ def add_figure(slide, fig_path, left, top, width=None, height=None):
     return slide.shapes.add_picture(str(fig_path), left, top, **kwargs)
 
 
-def add_code_box(slide, left, top, width, height, text, font_size=12):
+def add_code_box(slide, left, top, width, height, text, font_size=CODE_SIZE):
     """Add a monospace text box with light grey background."""
     shape = slide.shapes.add_shape(MSO_SHAPE.RECTANGLE, left, top, width, height)
     shape.fill.solid()
@@ -204,7 +224,7 @@ def add_code_box(slide, left, top, width, height, text, font_size=12):
         p = tf.paragraphs[0] if i == 0 else tf.add_paragraph()
         p.text = line
         p.font.size = Pt(font_size)
-        p.font.name = "Consolas"
+        p.font.name = CODE_FONT
         p.font.color.rgb = RGBColor(0x37, 0x41, 0x51)
         p.space_after = Pt(0)
         p.space_before = Pt(0)
@@ -213,41 +233,49 @@ def add_code_box(slide, left, top, width, height, text, font_size=12):
     return shape
 
 
-def add_callout_box(slide, left, top, width, height, bold_label, text,
-                    bg_color=LIGHT_BLUE, label_color=BLUE, text_color=BLACK,
-                    font_size=20):
-    """Add a highlighted callout/takeaway box with rounded corners."""
+def add_callout_box(slide, left, top, width, height, label, text,
+                    label_color=BLUE, text_color=BLACK, font_size=20):
+    """Add a callout/takeaway box with subtle styling.
+
+    Uses a thin left border (blue accent line) instead of a colored
+    background, keeping the slide clean and readable.
+    """
+    # White box with thin grey border
     shape = slide.shapes.add_shape(
         MSO_SHAPE.ROUNDED_RECTANGLE, left, top, width, height)
     shape.fill.solid()
-    shape.fill.fore_color.rgb = bg_color
-    shape.line.fill.background()
+    shape.fill.fore_color.rgb = WHITE
+    shape.line.color.rgb = RGBColor(0xE5, 0xE7, 0xEB)
+    shape.line.width = Pt(1)
 
     tf = shape.text_frame
     tf.word_wrap = True
     tf.margin_left = Inches(0.3)
     p = tf.paragraphs[0]
     run = p.add_run()
-    run.text = bold_label
-    run.font.bold = True
+    run.text = label
     run.font.size = Pt(font_size)
     run.font.color.rgb = label_color
+    run.font.name = FONT_NAME
+    run.font.bold = False
     run = p.add_run()
     run.text = text
     run.font.size = Pt(font_size)
     run.font.color.rgb = text_color
+    run.font.name = FONT_NAME
+    run.font.bold = False
     return shape
 
 
 def add_table(slide, left, top, width, height, rows, cols, data,
-              col_widths=None, header_color=LIGHT_GREY, font_size=16,
+              col_widths=None, header_color=LIGHT_GREY, font_size=TABLE_SIZE,
               bold_rows=None, highlight_cells=None):
     """Add a styled table.
 
     Args:
         data: list of lists (row-major), first row is header.
         col_widths: list of Inches/Emu per column.
-        bold_rows: set of row indices to bold (header row 0 is always bold).
+        bold_rows: set of row indices to render in medium weight (not true bold).
         highlight_cells: dict of (row, col) -> RGBColor for text color.
     """
     table_shape = slide.shapes.add_table(rows, cols, left, top, width, height)
@@ -268,7 +296,7 @@ def add_table(slide, left, top, width, height, rows, cols, data,
             for paragraph in cell.text_frame.paragraphs:
                 paragraph.font.size = Pt(font_size)
                 paragraph.font.name = FONT_NAME
-                paragraph.font.bold = (r == 0) or (r in bold_rows)
+                paragraph.font.bold = False
                 if (r, c) in highlight_cells:
                     paragraph.font.color.rgb = highlight_cells[(r, c)]
                 elif r == 0:
@@ -288,12 +316,13 @@ def add_table(slide, left, top, width, height, rows, cols, data,
 # Bullet Helpers
 # ============================================================================
 
-def make_bullet_paragraphs(items, font_size=22, color=BLACK):
+def make_bullet_paragraphs(items, font_size=BODY_SIZE, color=BLACK):
     """Convert a list of items into paragraphs_data for add_rich_textbox.
 
     Items can be:
         - str: simple bullet
-        - (bold_part, rest): tuple with bold prefix
+        - (emphasis_part, rest): tuple with emphasis prefix (rendered in blue,
+          not bold — consistent with the no-bold style)
     """
     paragraphs = []
     for item in items:
@@ -306,7 +335,7 @@ def make_bullet_paragraphs(items, font_size=22, color=BLACK):
         elif isinstance(item, tuple) and len(item) == 2:
             paragraphs.append({
                 "runs": [
-                    {"text": item[0], "font_size": font_size, "color": color, "bold": True},
+                    {"text": item[0], "font_size": font_size, "color": BLUE},
                     {"text": item[1], "font_size": font_size, "color": color},
                 ],
                 "bullet": True,
@@ -317,11 +346,12 @@ def make_bullet_paragraphs(items, font_size=22, color=BLACK):
     return paragraphs
 
 
-def add_bullets(slide, left, top, width, height, items, font_size=22,
+def add_bullets(slide, left, top, width, height, items, font_size=BODY_SIZE,
                 color=BLACK):
     """Convenience: add a bulleted list to a slide.
 
-    Items can be str or (bold_prefix, rest) tuples.
+    Items can be str or (emphasis_prefix, rest) tuples.
+    Emphasis prefix is rendered in blue accent color (no bold).
     """
     paras = make_bullet_paragraphs(items, font_size=font_size, color=color)
     return add_rich_textbox(slide, left, top, width, height, paras)
@@ -331,20 +361,22 @@ def add_bullets(slide, left, top, width, height, items, font_size=22,
 # Composite Slide Templates
 # ============================================================================
 
-def make_title_slide(slide, title, author, affiliation, date,
-                     bg_color=DARK_BG):
-    """Build a dark-background title slide."""
-    set_slide_bg(slide, bg_color)
+def make_title_slide(slide, title, author, affiliation, date):
+    """Build a white-background title slide.
+
+    Clean layout: title at top, accent line, then author/affiliation/date.
+    """
+    set_slide_bg(slide, WHITE)
     add_textbox(slide, Inches(1.0), Inches(1.8), Inches(11.3), Inches(1.6),
-                title, font_size=38, bold=True, color=WHITE,
+                title, font_size=TITLE_SIZE, bold=False, color=BLACK,
                 line_spacing=1.25)
     add_accent_line(slide, Inches(1.0), Inches(4.3), Inches(2.0))
     add_textbox(slide, Inches(1.0), Inches(4.6), Inches(11.0), Inches(0.4),
-                author, font_size=24, color=WHITE)
+                author, font_size=SUBTITLE_SIZE, color=BLACK)
     add_textbox(slide, Inches(1.0), Inches(5.15), Inches(11.0), Inches(0.4),
-                affiliation, font_size=18, color=MEDIUM_GREY)
+                affiliation, font_size=FOOTNOTE_SIZE + 4, color=GREY)
     add_textbox(slide, Inches(1.0), Inches(5.6), Inches(11.0), Inches(0.4),
-                date, font_size=18, color=MEDIUM_GREY)
+                date, font_size=FOOTNOTE_SIZE + 4, color=GREY)
 
 
 def make_content_slide(slide, title, subtitle=None):
@@ -357,7 +389,7 @@ def make_section_slide(slide, section_title, bg_color=None):
     """Build a section divider slide (large centered text)."""
     if bg_color:
         set_slide_bg(slide, bg_color)
-    text_color = WHITE if bg_color == DARK_BG else BLACK
+    text_color = WHITE if bg_color else BLACK
     add_textbox(slide, Inches(1.0), Inches(2.5), Inches(11.3), Inches(2.0),
-                section_title, font_size=44, bold=True, color=text_color,
-                alignment=PP_ALIGN.CENTER)
+                section_title, font_size=TITLE_SIZE + 4, bold=False,
+                color=text_color, alignment=PP_ALIGN.CENTER)
