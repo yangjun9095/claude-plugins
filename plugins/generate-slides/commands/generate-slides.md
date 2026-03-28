@@ -62,6 +62,15 @@ ls -1 ~/.claude/skills/generate-slides/pptx_helpers.py ~/.claude/plugins/marketp
 
 Store the directory containing `pptx_helpers.py` — it will be added to `sys.path` in the generated script. If not found, the helpers will be defined inline in the generated script.
 
+**0b2. Locate slide style config.** Search for a project-specific style override:
+
+```bash
+ls -1 ./slide-style.yaml ./docs/slide-style.yaml ./.claude/slide-style.yaml 2>/dev/null | head -1
+```
+
+If found, the generated script should call `load_style("path")` after importing pptx_helpers.
+If not found, the bundled default (YJK minimal) is used automatically.
+
 **0c. Gather context — run these commands in parallel:**
 
 ```bash
@@ -190,6 +199,13 @@ for d in _helpers_dirs:
         break
 
 from pptx_helpers import *
+
+# Override style if project has a custom slide-style.yaml
+for p in [Path("slide-style.yaml"), Path("docs/slide-style.yaml"), Path(".claude/slide-style.yaml")]:
+    if p.exists():
+        load_style(p)
+        from pptx_helpers import *  # re-import updated constants
+        break
 ```
 
 2. Define one function per slide (`slide_01_title`, `slide_02_motivation`, etc.)
@@ -301,6 +317,7 @@ The reusable helper library is bundled at `pptx_helpers.py` (same directory as t
 | `make_title_slide(slide, title, author, affil, date)` | White-background title slide |
 | `make_content_slide(slide, title, subtitle)` | Content slide with title + accent line |
 | `make_section_slide(slide, title)` | Section divider |
+| `load_style(path)` | Load style from YAML, override module defaults. Partial YAML OK. |
 
 ### Color constants:
 `WHITE`, `BLACK`, `BLUE`, `GREEN`, `RED`, `GREY`, `LIGHT_GREY`, `TABLE_BORDER`
@@ -310,6 +327,9 @@ The reusable helper library is bundled at `pptx_helpers.py` (same directory as t
 
 ### Typography constants:
 `FONT_NAME` ("Avenir Light"), `CODE_FONT` ("PT Mono"), `TITLE_SIZE` (40), `SUBTITLE_SIZE` (28), `BODY_SIZE` (22), `FOOTNOTE_SIZE` (14), `TABLE_SIZE` (16), `CODE_SIZE` (12)
+
+### Style flags (set by `load_style()`):
+`USE_BOLD` (false), `TITLE_SLIDE_BG` ("white" or "dark"), `BULLET_EMPHASIS` ("accent" or "bold"), `CALLOUT_BG` ("white" or "accent")
 
 ---
 
@@ -323,6 +343,61 @@ The reusable helper library is bundled at `pptx_helpers.py` (same directory as t
 - **Script already exists**: Use a timestamped name like `scripts/generate_slides_YYYYMMDD.py` to avoid overwriting.
 - **User provides very specific slide content**: Honor their exact wording — don't paraphrase or "improve" their text.
 - **Mixed content in directory**: Ask user which project/analysis to focus on.
+- **Custom slide-style.yaml**: Partial overrides OK — only specified keys are overridden. The rest use the bundled default.
+
+---
+
+## Customizing the Style
+
+The slide style (fonts, colors, layout, emphasis) is configurable via a `slide-style.yaml` file. The bundled default is Y.J. Kim's minimal style. To override, place a `slide-style.yaml` in your project:
+
+**Search order:** `./slide-style.yaml` > `./docs/slide-style.yaml` > `./.claude/slide-style.yaml`
+
+Partial YAML is fine — only the keys you specify are overridden:
+
+```yaml
+# Example: just change the font and accent color
+typography:
+  body_font: "Calibri"
+colors:
+  accent: "#7C3AED"
+```
+
+**Full YAML schema:**
+
+```yaml
+typography:
+  body_font: "Avenir Light"    # Main font for all text
+  code_font: "PT Mono"         # Monospace font for code boxes
+  title_size: 40               # Title font size (pt)
+  subtitle_size: 28            # Subtitle font size (pt)
+  body_size: 22                # Body text font size (pt)
+  footnote_size: 14            # Footnote font size (pt)
+  table_size: 16               # Table cell font size (pt)
+  code_size: 12                # Code block font size (pt)
+
+colors:
+  accent: "#036DEA"            # Primary accent color (hex)
+  positive: "#059669"          # Positive/good values
+  negative: "#DC2626"          # Negative/bad values
+  grey: "#6B7280"              # Secondary text, footnotes
+  table_header: "#F5F5F5"     # Table header background
+
+layout:
+  left_margin: 0.8             # Left margin (inches)
+  top_margin: 1.2              # Content top margin (inches)
+  content_width: 11.7          # Content area width (inches)
+  title_top: 0.15              # Title Y position (inches)
+  accent_line_top: 1.05        # Accent line Y position (inches)
+
+style:
+  use_bold: false              # Allow bold text in titles
+  title_slide_bg: "white"     # "white" or "dark" (dark navy)
+  bullet_emphasis: "accent"   # "accent" (colored prefix) or "bold"
+  callout_bg: "white"         # "white" (border only) or "accent" (tinted fill)
+```
+
+Requires PyYAML (`pip install pyyaml`). If PyYAML is not installed, the hardcoded defaults are used with a warning.
 
 ---
 

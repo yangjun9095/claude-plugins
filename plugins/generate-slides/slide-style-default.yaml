@@ -1,0 +1,32 @@
+# Default slide style — Y.J. Kim minimal (2024-2025)
+# Override by placing a slide-style.yaml in your project root.
+
+typography:
+  body_font: "Avenir Light"
+  code_font: "PT Mono"
+  title_size: 40
+  subtitle_size: 28
+  body_size: 22
+  footnote_size: 14
+  table_size: 16
+  code_size: 12
+
+colors:
+  accent: "#036DEA"
+  positive: "#059669"
+  negative: "#DC2626"
+  grey: "#6B7280"
+  table_header: "#F5F5F5"
+
+layout:
+  left_margin: 0.8
+  top_margin: 1.2
+  content_width: 11.7
+  title_top: 0.15
+  accent_line_top: 1.05
+
+style:
+  use_bold: false
+  title_slide_bg: "white"       # "white" or "dark"
+  bullet_emphasis: "accent"     # "accent" (blue prefix) or "bold"
+  callout_bg: "white"           # "white" (thin border) or "accent" (colored fill)
