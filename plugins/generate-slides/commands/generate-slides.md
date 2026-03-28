@@ -146,7 +146,7 @@ Based on artifacts, session context, and the chosen narrative style, draft a sli
 > "Here's my proposed {N}-slide outline. What would you like to change?"
 
 When presenting the outline, be specific about:
-- Slide number, title, and key message (1 sentence each)
+- Slide number and **action title** (see Action Title Rule below)
 - Which figures go on which slides (use full paths)
 - Which slides are text-only vs figure-heavy
 - Backup/supplementary slides at the end
@@ -159,6 +159,17 @@ Options:
 
 If the user wants changes, iterate: apply feedback -> present revised outline -> repeat until approved.
 
+**Action Title Rule (MANDATORY):**
+
+Every slide title MUST be a **complete sentence stating the takeaway**, not a topic label. This is the single most important rule for effective scientific/technical presentations.
+
+- BAD: "Results", "Model Performance", "ATAC-seq Analysis"
+- GOOD: "LoRA fine-tuning improves RNA prediction by 67% over heads-only baseline"
+- GOOD: "GradNorm automatically rebalances loss, outperforming hand-tuned weights"
+- GOOD: "ATAC generalizes poorly across replicates while RNA transfers robustly"
+
+**Ghost Deck Test:** After drafting the outline, read all action titles in sequence. They alone — without any bullet text or figures — should tell the complete story. If the narrative has gaps when reading only titles, revise until it flows as a coherent argument.
+
 **Outline structure should follow this pattern** (adjust based on narrative style):
 
 | Slide | Purpose | Typical Allocation |
@@ -167,19 +178,51 @@ If the user wants changes, iterate: apply feedback -> present revised outline ->
 | 2 | Motivation / Big Picture | Always |
 | 3-4 | Background / Methods | Optional per audience |
 | 5-(N-3) | Key Results (bulk) | ~60% of slides |
-| N-2 | Summary / Conclusions | Always |
+| N-2 | Conclusions (key takeaways) | Always — stays on screen during Q&A |
 | N-1 | Next Steps | Always |
 | N+ | Supplementary / Backup | 2-4 slides |
 
+**IMPORTANT:** End the main deck with a **Conclusions** slide (not "Thank You" or "Questions?"). The conclusions slide stays visible during Q&A, keeping the audience focused on your key findings.
+
 ---
 
-### Step 3: Generate the PPTX
+### Step 3: Early Preview (2-3 Slides)
 
-Once the user approves the outline, generate the slide deck programmatically.
+Before generating the full deck, create a **quick preview** of 2-3 representative slides so the user can give early feedback on design, layout, and aesthetics. This avoids generating 15+ slides only to discover the style needs adjusting.
 
-**3a. Write the generation script.**
+**3a. Pick preview slides.** Select 2-3 slides that cover different types:
+- 1 content slide with bullets (tests typography, spacing, emphasis style)
+- 1 figure/results slide (tests figure sizing, placement, annotation style)
+- Optionally: 1 table or comparison slide (if the deck has one)
 
-Create a self-contained Python script at `scripts/generate_slides.py` (or a timestamped variant if one already exists, e.g., `scripts/generate_slides_YYYYMMDD.py`). The script should:
+Do NOT include the title slide in the preview — it's a special layout that doesn't represent the bulk of the deck.
+
+**3b. Generate the preview script.** Write a small script (e.g., `scripts/generate_slides_preview.py`) that generates only these 2-3 slides using the same helpers and style as the full deck. Run it:
+
+```bash
+python scripts/generate_slides_preview.py
+```
+
+**3c. Present to user for feedback.** Use AskUserQuestion:
+
+> "I've generated a 2-3 slide preview at `{preview_path}`. Please open it and let me know how the design looks."
+
+Options:
+- **Looks great, generate the full deck**: Proceed to Step 4
+- **Adjust styling**: User will describe what to change (font size, spacing, figure placement, etc.)
+- **Adjust content/layout**: User will describe structural changes
+
+If the user wants changes, apply them to the preview script, regenerate, and ask again. **Iterate on these 2-3 slides until the user approves the style.** Only then proceed to the full deck.
+
+---
+
+### Step 4: Generate the Full PPTX
+
+Once the user approves the preview style, generate the complete slide deck.
+
+**4a. Write the generation script.**
+
+Create a self-contained Python script at `scripts/generate_slides.py` (or a timestamped variant if one already exists, e.g., `scripts/generate_slides_YYYYMMDD.py`). Carry over any styling adjustments from the preview iteration. The script should:
 
 1. Import the helper library. Resolve the path found in Step 0b:
 
@@ -212,10 +255,11 @@ for p in [Path("slide-style.yaml"), Path("docs/slide-style.yaml"), Path(".claude
 3. Each function creates slide content using the helpers
 4. A `main()` that calls all slide functions and saves the PPTX
 
-**3b. Styling rules for the generated script:**
+**4b. Styling rules for the generated script:**
 
+- **Action titles**: Every slide title is a complete sentence stating the takeaway (not a topic label). See the Action Title Rule in Step 2.
 - **Title slide**: White background, black text — clean and minimal
-- **Content slides**: White background, black text, title at top
+- **Content slides**: White background, black text, action title at top
 - **No bold anywhere**: Hierarchy is conveyed through font size and spacing only. Never set `bold=True`.
 - **Font**: Avenir Light (`FONT_NAME`) for all text, PT Mono (`CODE_FONT`) for code blocks
 - **Font sizes**: 40pt titles, 28pt subtitles, 22pt body, 16pt tables, 14pt footnotes, 12pt code
@@ -228,7 +272,7 @@ for p in [Path("slide-style.yaml"), Path("docs/slide-style.yaml"), Path(".claude
 - **Code boxes**: Light grey (#F8FAFC) background, PT Mono font, thin border
 - **Positive values**: Green (#059669), Negative: Red (#DC2626) — only for data values, not decorative
 
-**3c. Figure handling:**
+**4c. Figure handling:**
 
 - For each figure referenced in the outline, verify the file exists before embedding
 - Use `add_figure(slide, fig_path, left, top, width=Inches(X))` — scale width to fit
@@ -238,17 +282,17 @@ for p in [Path("slide-style.yaml"), Path("docs/slide-style.yaml"), Path(".claude
 - Place figures below the title area (top >= Inches(1.2))
 - **Never place figures that extend past the right edge** (`left + width <= Inches(13.0)`) **or bottom edge** (`top + height <= Inches(7.2)`)
 
-**3d. Content guidelines per slide type:**
+**4d. Content guidelines per slide type:**
 
 - **Title slide**: Use `make_title_slide()` — white bg, title, author, affiliation, date
 - **Content slides**: Use `make_content_slide()` then `add_bullets()` — 3-5 bullets max, no bold
 - **Results slides**: Table or figure + 2-3 interpretation bullets below/beside
 - **Comparison slides**: Side-by-side layout (figure left + text right, or two figures)
-- **Summary slide**: 3-4 numbered takeaways, 1 line each
+- **Conclusions slide**: 3-4 numbered takeaways, 1 line each. This is the last main slide (stays visible during Q&A).
 - **ASCII diagrams**: Use `add_code_box()` for architecture, pipelines, etc.
 - **Takeaway boxes**: Use `add_callout_box()` for key messages
 
-**3e. Run the script:**
+**4e. Run the script:**
 
 ```bash
 python scripts/generate_slides.py
@@ -267,7 +311,7 @@ print(f'Embedded {total_img} images')
 
 ---
 
-### Step 4: Report to User
+### Step 5: Report to User
 
 Display a concise summary:
 
@@ -405,8 +449,11 @@ Requires PyYAML (`pip install pyyaml`). If PyYAML is not installed, the hardcode
 
 ## Tips
 
+- **Action titles are mandatory**: "LoRA improves RNA R by 67%" beats "Results" every time. The ghost deck test catches weak titles.
 - **1 slide per minute** is a good default for scientific talks.
-- **Key message per slide**: Every slide should have exactly ONE takeaway.
+- **Key message per slide**: Every slide should have exactly ONE takeaway — the title IS that takeaway.
+- **Preview first**: Always generate 2-3 slides for early feedback. Iterating on style with 2 slides is 10x faster than with 15.
+- **End with Conclusions, not "Thank You"**: The conclusions slide stays visible during Q&A, keeping the audience engaged with your findings.
 - **Figure-to-text ratio**: ~50% of content slides should have a figure.
 - **Supplementary slides**: Put QC, detailed methods, and backup figures here for Q&A.
 - **Blue-accent prefixes on bullets** improve scannability without using bold — pass `("Key term: ", "explanation")` tuples.
