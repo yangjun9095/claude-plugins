@@ -357,17 +357,43 @@ def add_accent_line(slide, left=None, top=None, width=Inches(4.0),
 
 
 def add_figure(slide, fig_path, left, top, width=None, height=None):
-    """Add an image. Returns the picture shape, or None if file missing."""
+    """Add an image, clamping to slide bounds so it never overflows.
+
+    Returns the picture shape, or None if the file is missing.  If the
+    requested (or native) size would extend past the right or bottom edge
+    of the slide, the image is proportionally scaled down to fit.
+    """
     fig_path = Path(fig_path)
     if not fig_path.exists():
         print(f"WARNING: Figure not found: {fig_path}")
         return None
+
     kwargs = {}
     if width:
         kwargs["width"] = width
     if height:
         kwargs["height"] = height
-    return slide.shapes.add_picture(str(fig_path), left, top, **kwargs)
+
+    pic = slide.shapes.add_picture(str(fig_path), left, top, **kwargs)
+
+    # --- Clamp to slide bounds --------------------------------------------
+    max_w = SLIDE_W - left
+    max_h = SLIDE_H - top
+    need_scale = False
+    scale = 1.0
+
+    if pic.width > max_w:
+        scale = min(scale, max_w / pic.width)
+        need_scale = True
+    if pic.height > max_h:
+        scale = min(scale, max_h / pic.height)
+        need_scale = True
+
+    if need_scale:
+        pic.width = int(pic.width * scale)
+        pic.height = int(pic.height * scale)
+
+    return pic
 
 
 def add_code_box(slide, left, top, width, height, text, font_size=None):
@@ -581,7 +607,6 @@ def make_title_slide(slide, title, author, affiliation, date):
     add_textbox(slide, Inches(1.0), Inches(1.8), Inches(11.3), Inches(1.6),
                 title, font_size=TITLE_SIZE, bold=USE_BOLD, color=text_color,
                 line_spacing=1.25)
-    add_accent_line(slide, Inches(1.0), Inches(4.3), Inches(2.0))
     add_textbox(slide, Inches(1.0), Inches(4.6), Inches(11.0), Inches(0.4),
                 author, font_size=SUBTITLE_SIZE, color=text_color)
     add_textbox(slide, Inches(1.0), Inches(5.15), Inches(11.0), Inches(0.4),
@@ -591,9 +616,8 @@ def make_title_slide(slide, title, author, affiliation, date):
 
 
 def make_content_slide(slide, title, subtitle=None):
-    """Set up a standard content slide with title + accent line."""
+    """Set up a standard content slide with title."""
     add_slide_title(slide, title, subtitle=subtitle)
-    add_accent_line(slide)
 
 
 def make_section_slide(slide, section_title, bg_color=None):

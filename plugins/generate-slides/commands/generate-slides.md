@@ -214,8 +214,8 @@ for p in [Path("slide-style.yaml"), Path("docs/slide-style.yaml"), Path(".claude
 
 **3b. Styling rules for the generated script:**
 
-- **Title slide**: White background, black text, blue accent line — clean and consistent with content slides
-- **Content slides**: White background, black text, blue accent line under title
+- **Title slide**: White background, black text — clean and minimal
+- **Content slides**: White background, black text, title at top
 - **No bold anywhere**: Hierarchy is conveyed through font size and spacing only. Never set `bold=True`.
 - **Font**: Avenir Light (`FONT_NAME`) for all text, PT Mono (`CODE_FONT`) for code blocks
 - **Font sizes**: 40pt titles, 28pt subtitles, 22pt body, 16pt tables, 14pt footnotes, 12pt code
@@ -232,9 +232,11 @@ for p in [Path("slide-style.yaml"), Path("docs/slide-style.yaml"), Path(".claude
 
 - For each figure referenced in the outline, verify the file exists before embedding
 - Use `add_figure(slide, fig_path, left, top, width=Inches(X))` — scale width to fit
+- `add_figure` automatically clamps images to slide bounds (no overflow), but prefer explicit sizing
 - For side-by-side figures: width ~5.5-6.0 inches each
 - For full-width figures: width ~10.0-11.0 inches
 - Place figures below the title area (top >= Inches(1.2))
+- **Never place figures that extend past the right edge** (`left + width <= Inches(13.0)`) **or bottom edge** (`top + height <= Inches(7.2)`)
 
 **3d. Content guidelines per slide type:**
 
@@ -315,7 +317,7 @@ The reusable helper library is bundled at `pptx_helpers.py` (same directory as t
 | `add_bullets(slide, l, t, w, h, items)` | Bulleted list (str or (emphasis, rest) tuples) |
 | `make_bullet_paragraphs(items)` | Convert items to paragraphs data |
 | `make_title_slide(slide, title, author, affil, date)` | White-background title slide |
-| `make_content_slide(slide, title, subtitle)` | Content slide with title + accent line |
+| `make_content_slide(slide, title, subtitle)` | Content slide with title |
 | `make_section_slide(slide, title)` | Section divider |
 | `load_style(path)` | Load style from YAML, override module defaults. Partial YAML OK. |
 
