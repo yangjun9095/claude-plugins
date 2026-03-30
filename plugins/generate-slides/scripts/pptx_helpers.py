@@ -53,8 +53,8 @@ _HARDCODED_DEFAULTS = {
     "typography": {
         "body_font": "Avenir Light",
         "code_font": "PT Mono",
-        "title_size": 40,
-        "subtitle_size": 28,
+        "title_size": 28,
+        "subtitle_size": 22,
         "body_size": 22,
         "footnote_size": 14,
         "table_size": 16,
