@@ -21,8 +21,12 @@ from pptx.util import Emu
 
 # ── Helpers ──────────────────────────────────────────────────────────
 
-SLIDE_W_EMU = 12192000  # 13.333" in EMU
-SLIDE_H_EMU = 6858000   #  7.5"   in EMU
+SLIDE_W_EMU = 12192000   # 13.333" in EMU
+SLIDE_H_EMU = 6858000    #  7.5"   in EMU
+MARGIN_EMU = 731520      #  0.8"   in EMU (left/right safe zone)
+TOP_MARGIN_EMU = 137160  #  0.15"  in EMU (title top)
+BOT_MARGIN_EMU = 274320  #  0.3"   in EMU (bottom safe zone)
+OVERLAP_TOLERANCE_EMU = 45720  # 0.05" — shapes closer than this are "overlapping"
 
 # Words that strongly suggest a topic-label title (not a sentence).
 TOPIC_LABEL_PATTERNS = [
@@ -192,6 +196,125 @@ def check_content_density(prs, max_bullets=6):
     return CheckResult("Content density", True)
 
 
+def check_shape_overlaps(prs):
+    """Detect shapes that overlap each other (e.g., title vs accent line, text vs figure).
+
+    Two shapes overlap if their bounding boxes intersect with more than
+    OVERLAP_TOLERANCE_EMU of penetration in both axes.
+    """
+    issues = []
+    for i, slide in enumerate(prs.slides, 1):
+        shapes = list(slide.shapes)
+        for a_idx in range(len(shapes)):
+            for b_idx in range(a_idx + 1, len(shapes)):
+                a, b = shapes[a_idx], shapes[b_idx]
+                # Compute overlap in x and y
+                x_overlap = min(a.left + a.width, b.left + b.width) - max(a.left, b.left)
+                y_overlap = min(a.top + a.height, b.top + b.height) - max(a.top, b.top)
+                if x_overlap > OVERLAP_TOLERANCE_EMU and y_overlap > OVERLAP_TOLERANCE_EMU:
+                    # Identify shape types for the message
+                    def _desc(s):
+                        if s.shape_type == 13:
+                            return "image"
+                        if hasattr(s, "text") and s.text:
+                            text_preview = s.text[:30].replace("\n", " ")
+                            return f"text(\"{text_preview}...\")" if len(s.text) > 30 else f"text(\"{s.text}\")"
+                        return f"shape({s.shape_type})"
+                    overlap_in = min(x_overlap, y_overlap) / 914400
+                    issues.append(
+                        f"Slide {i}: {_desc(a)} overlaps {_desc(b)} by {overlap_in:.2f}\""
+                    )
+    if issues:
+        return CheckResult("Shape overlaps", False, "; ".join(issues[:5]))  # cap at 5
+    return CheckResult("Shape overlaps", True)
+
+
+def check_margin_compliance(prs):
+    """Verify all shapes stay within the slide margins (not just slide edges).
+
+    Content should respect:
+    - Left margin: 0.8" (MARGIN_EMU)
+    - Right margin: slide_width - 0.8"
+    - Bottom margin: slide_height - 0.3"
+
+    The title slide (slide 1) uses different positioning and is skipped.
+    """
+    issues = []
+    right_limit = SLIDE_W_EMU - MARGIN_EMU
+    bottom_limit = SLIDE_H_EMU - BOT_MARGIN_EMU
+
+    for i, slide in enumerate(prs.slides, 1):
+        if i == 1:  # title slide has its own layout
+            continue
+        for shape in slide.shapes:
+            shape_right = shape.left + shape.width
+            shape_bottom = shape.top + shape.height
+
+            if shape.left < MARGIN_EMU - OVERLAP_TOLERANCE_EMU:
+                intrusion = (MARGIN_EMU - shape.left) / 914400
+                desc = "image" if shape.shape_type == 13 else "shape"
+                issues.append(f"Slide {i}: {desc} starts {intrusion:.2f}\" inside left margin")
+
+            if shape_right > right_limit + OVERLAP_TOLERANCE_EMU:
+                intrusion = (shape_right - right_limit) / 914400
+                desc = "image" if shape.shape_type == 13 else "shape"
+                issues.append(f"Slide {i}: {desc} extends {intrusion:.2f}\" past right margin")
+
+            if shape_bottom > bottom_limit + OVERLAP_TOLERANCE_EMU:
+                intrusion = (shape_bottom - bottom_limit) / 914400
+                desc = "image" if shape.shape_type == 13 else "shape"
+                issues.append(f"Slide {i}: {desc} extends {intrusion:.2f}\" past bottom margin")
+
+    if issues:
+        return CheckResult("Margin compliance", False, "; ".join(issues[:5]))
+    return CheckResult("Margin compliance", True)
+
+
+def check_text_alignment(prs):
+    """Flag text boxes with inconsistent left-edge alignment on the same slide.
+
+    Good slides have text boxes snapped to a grid (typically LEFT_MARGIN).
+    If text boxes on the same slide have left edges that differ by a small
+    but noticeable amount (0.1"–0.5"), they look sloppy.
+    """
+    issues = []
+    alignment_tolerance = 91440  # 0.1" — tighter than overlap tolerance
+
+    for i, slide in enumerate(prs.slides, 1):
+        if i == 1:  # title slide
+            continue
+        # Collect left edges of all text-bearing shapes
+        left_edges = []
+        for shape in slide.shapes:
+            if shape.has_text_frame and shape.text_frame.text.strip():
+                left_edges.append(shape.left)
+
+        if len(left_edges) < 2:
+            continue
+
+        # Group left edges by proximity
+        left_edges.sort()
+        groups = [[left_edges[0]]]
+        for edge in left_edges[1:]:
+            if edge - groups[-1][-1] <= alignment_tolerance:
+                groups[-1].append(edge)
+            else:
+                groups.append([edge])
+
+        # If there are >2 distinct alignment groups, some text is misaligned
+        # (title + body = 2 groups is normal; 3+ suggests sloppy placement)
+        if len(groups) > 2:
+            edges_in = [f"{e / 914400:.2f}\"" for e in left_edges]
+            issues.append(
+                f"Slide {i}: {len(groups)} distinct left alignments ({', '.join(edges_in)}) — "
+                f"text boxes may look misaligned"
+            )
+
+    if issues:
+        return CheckResult("Text alignment", False, "; ".join(issues[:5]))
+    return CheckResult("Text alignment", True)
+
+
 def check_slide_count(prs):
     """Report slide count (informational)."""
     n = len(prs.slides)
@@ -208,6 +331,9 @@ def verify(pptx_path, expected_font=None):
         check_action_titles(prs),
         check_ghost_deck(prs),
         check_figure_bounds(prs),
+        check_margin_compliance(prs),
+        check_shape_overlaps(prs),
+        check_text_alignment(prs),
         check_font_consistency(prs, expected_font),
         check_no_thank_you_ending(prs),
         check_content_density(prs),

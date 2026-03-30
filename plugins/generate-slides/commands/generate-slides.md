@@ -365,6 +365,9 @@ The bundled verifier at `scripts/verify_slides.py` performs automated quality ch
 | **Action titles** | Topic-label titles ("Results") instead of sentence takeaways |
 | **Ghost deck test** | Prints all titles sequentially — do they tell a story? |
 | **Figure bounds** | Images overflowing slide edges |
+| **Margin compliance** | Shapes extending past left/right/bottom margins |
+| **Shape overlaps** | Title vs accent line, text vs figure collisions |
+| **Text alignment** | Text boxes with inconsistent left-edge positioning |
 | **Font consistency** | Fonts not matching the style config |
 | **Conclusions ending** | Last slide being "Thank You" or "Questions?" |
 | **Content density** | Slides with >6 bullets |
