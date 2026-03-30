@@ -57,10 +57,10 @@ If `NEED_INSTALL`, run: `pip install python-pptx`
 **0b. Locate the pptx_helpers library.** Check these locations in order:
 
 ```bash
-ls -1 ~/.claude/skills/generate-slides/pptx_helpers.py ~/.claude/plugins/marketplaces/*/plugins/generate-slides/pptx_helpers.py ~/.claude/plugins/cache/*/generate-slides/*/pptx_helpers.py 2>/dev/null | head -1
+ls -1 ~/.claude/plugins/marketplaces/*/plugins/generate-slides/scripts/pptx_helpers.py ~/.claude/plugins/cache/*/generate-slides/*/scripts/pptx_helpers.py 2>/dev/null | head -1
 ```
 
-Store the directory containing `pptx_helpers.py` — it will be added to `sys.path` in the generated script. If not found, the helpers will be defined inline in the generated script.
+Store the directory containing `pptx_helpers.py` (the `scripts/` dir) — it will be added to `sys.path` in the generated script. If not found, the helpers will be defined inline in the generated script.
 
 **0b2. Locate slide style config.** Search for a project-specific style override:
 
@@ -230,11 +230,10 @@ Create a self-contained Python script at `scripts/generate_slides.py` (or a time
 import sys
 from pathlib import Path
 
-# Try plugin / skill locations for pptx_helpers
+# Try plugin locations for pptx_helpers (lives in scripts/ subdir)
 _helpers_dirs = [
-    Path.home() / ".claude/skills/generate-slides",
-    *Path.home().glob(".claude/plugins/marketplaces/*/plugins/generate-slides"),
-    *Path.home().glob(".claude/plugins/cache/*/generate-slides/*/"),
+    *Path.home().glob(".claude/plugins/marketplaces/*/plugins/generate-slides/scripts"),
+    *Path.home().glob(".claude/plugins/cache/*/generate-slides/*/scripts"),
 ]
 for d in _helpers_dirs:
     if (d / "pptx_helpers.py").exists():
@@ -309,6 +308,14 @@ print(f'Embedded {total_img} images')
 "
 ```
 
+**4f. Run the verification harness.**
+
+```bash
+python ${CLAUDE_SKILL_DIR}/scripts/verify_slides.py OUTPUT_PATH
+```
+
+The verifier checks: action titles, figure bounds, font consistency, no "Thank You" ending, and content density. If any check fails, fix the issue in the generation script and re-run Steps 4e-4f before proceeding. The ghost deck test output is informational — review it to confirm the title sequence tells a coherent story.
+
 ---
 
 ### Step 5: Report to User
@@ -339,43 +346,30 @@ If `docs/slides/` doesn't exist, create it. If a file with the same name exists,
 
 ---
 
-## Helper Library Reference
+## Helper Library & Style Customization
 
-The reusable helper library is bundled at `pptx_helpers.py` (same directory as this command file).
+For the full helper function reference, style YAML schema, and color/layout/typography constants, see [references/style-guide.md](../references/style-guide.md).
 
-### Key functions:
+Quick reference: `scripts/pptx_helpers.py` provides `new_presentation()`, `add_blank_slide()`, `add_slide_title()`, `add_bullets()`, `add_figure()`, `add_table()`, `add_code_box()`, `add_callout_box()`, `make_title_slide()`, `make_content_slide()`, `load_style()`.
 
-| Function | Purpose |
-|----------|---------|
-| `new_presentation()` | Create 16:9 widescreen Presentation |
-| `add_blank_slide(prs)` | Add blank slide |
-| `set_slide_bg(slide, color)` | Set background color |
-| `add_textbox(slide, l, t, w, h, text, ...)` | Simple text box |
-| `add_rich_textbox(slide, l, t, w, h, paras)` | Multi-run rich text |
-| `add_slide_title(slide, title, subtitle)` | Title + optional subtitle |
-| `add_accent_line(slide)` | Blue accent line below title |
-| `add_figure(slide, path, l, t, width, height)` | Embed image |
-| `add_code_box(slide, l, t, w, h, text)` | Monospace code/ASCII box |
-| `add_callout_box(slide, l, t, w, h, label, text)` | Highlighted takeaway |
-| `add_table(slide, l, t, w, h, rows, cols, data)` | Styled table |
-| `add_bullets(slide, l, t, w, h, items)` | Bulleted list (str or (emphasis, rest) tuples) |
-| `make_bullet_paragraphs(items)` | Convert items to paragraphs data |
-| `make_title_slide(slide, title, author, affil, date)` | White-background title slide |
-| `make_content_slide(slide, title, subtitle)` | Content slide with title |
-| `make_section_slide(slide, title)` | Section divider |
-| `load_style(path)` | Load style from YAML, override module defaults. Partial YAML OK. |
+To customize the style, place a `slide-style.yaml` in your project root (partial YAML OK — only specified keys override defaults). See the style guide for the full schema.
 
-### Color constants:
-`WHITE`, `BLACK`, `BLUE`, `GREEN`, `RED`, `GREY`, `LIGHT_GREY`, `TABLE_BORDER`
+---
 
-### Layout constants:
-`SLIDE_W`, `SLIDE_H`, `LEFT_MARGIN` (0.8"), `TOP_MARGIN` (1.2"), `CONTENT_W` (11.7")
+## Verification Harness
 
-### Typography constants:
-`FONT_NAME` ("Avenir Light"), `CODE_FONT` ("PT Mono"), `TITLE_SIZE` (40), `SUBTITLE_SIZE` (28), `BODY_SIZE` (22), `FOOTNOTE_SIZE` (14), `TABLE_SIZE` (16), `CODE_SIZE` (12)
+The bundled verifier at `scripts/verify_slides.py` performs automated quality checks:
 
-### Style flags (set by `load_style()`):
-`USE_BOLD` (false), `TITLE_SLIDE_BG` ("white" or "dark"), `BULLET_EMPHASIS` ("accent" or "bold"), `CALLOUT_BG` ("white" or "accent")
+| Check | What it catches |
+|-------|----------------|
+| **Action titles** | Topic-label titles ("Results") instead of sentence takeaways |
+| **Ghost deck test** | Prints all titles sequentially — do they tell a story? |
+| **Figure bounds** | Images overflowing slide edges |
+| **Font consistency** | Fonts not matching the style config |
+| **Conclusions ending** | Last slide being "Thank You" or "Questions?" |
+| **Content density** | Slides with >6 bullets |
+
+Run after generation: `python ${CLAUDE_SKILL_DIR}/scripts/verify_slides.py output.pptx`
 
 ---
 
@@ -390,60 +384,6 @@ The reusable helper library is bundled at `pptx_helpers.py` (same directory as t
 - **User provides very specific slide content**: Honor their exact wording — don't paraphrase or "improve" their text.
 - **Mixed content in directory**: Ask user which project/analysis to focus on.
 - **Custom slide-style.yaml**: Partial overrides OK — only specified keys are overridden. The rest use the bundled default.
-
----
-
-## Customizing the Style
-
-The slide style (fonts, colors, layout, emphasis) is configurable via a `slide-style.yaml` file. The bundled default is Y.J. Kim's minimal style. To override, place a `slide-style.yaml` in your project:
-
-**Search order:** `./slide-style.yaml` > `./docs/slide-style.yaml` > `./.claude/slide-style.yaml`
-
-Partial YAML is fine — only the keys you specify are overridden:
-
-```yaml
-# Example: just change the font and accent color
-typography:
-  body_font: "Calibri"
-colors:
-  accent: "#7C3AED"
-```
-
-**Full YAML schema:**
-
-```yaml
-typography:
-  body_font: "Avenir Light"    # Main font for all text
-  code_font: "PT Mono"         # Monospace font for code boxes
-  title_size: 40               # Title font size (pt)
-  subtitle_size: 28            # Subtitle font size (pt)
-  body_size: 22                # Body text font size (pt)
-  footnote_size: 14            # Footnote font size (pt)
-  table_size: 16               # Table cell font size (pt)
-  code_size: 12                # Code block font size (pt)
-
-colors:
-  accent: "#036DEA"            # Primary accent color (hex)
-  positive: "#059669"          # Positive/good values
-  negative: "#DC2626"          # Negative/bad values
-  grey: "#6B7280"              # Secondary text, footnotes
-  table_header: "#F5F5F5"     # Table header background
-
-layout:
-  left_margin: 0.8             # Left margin (inches)
-  top_margin: 1.2              # Content top margin (inches)
-  content_width: 11.7          # Content area width (inches)
-  title_top: 0.15              # Title Y position (inches)
-  accent_line_top: 1.05        # Accent line Y position (inches)
-
-style:
-  use_bold: false              # Allow bold text in titles
-  title_slide_bg: "white"     # "white" or "dark" (dark navy)
-  bullet_emphasis: "accent"   # "accent" (colored prefix) or "bold"
-  callout_bg: "white"         # "white" (border only) or "accent" (tinted fill)
-```
-
-Requires PyYAML (`pip install pyyaml`). If PyYAML is not installed, the hardcoded defaults are used with a warning.
 
 ---
 
