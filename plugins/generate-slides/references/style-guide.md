@@ -95,3 +95,20 @@ The reusable helper library is at `scripts/pptx_helpers.py`.
 
 ### Style flags (set by `load_style()`):
 `USE_BOLD` (false), `TITLE_SLIDE_BG` ("white"/"dark"), `BULLET_EMPHASIS` ("accent"/"bold"), `CALLOUT_BG` ("white"/"accent")
+
+---
+
+## Figure Generation Rules
+
+When generating matplotlib figures that will be embedded in slides, follow these rules:
+
+### Colorbar placement (MANDATORY)
+- **Never place colorbars on top of or overlapping the plot area.** Colorbars that use `fig.colorbar(sc, ax=axes, shrink=...)` with default positioning often overlap scatter plots.
+- **Always place colorbars on the far right** using a dedicated axes:
+  ```python
+  fig.subplots_adjust(right=0.88)
+  cbar_ax = fig.add_axes([0.90, 0.15, 0.02, 0.7])
+  cbar = fig.colorbar(sc, cax=cbar_ax)
+  ```
+- For single-panel figures, `fig.colorbar(sc, ax=ax, location='right', pad=0.08)` is acceptable.
+- The key principle: **the plot data area must never be occluded by UI elements** (colorbars, legends that cover data points, etc.).

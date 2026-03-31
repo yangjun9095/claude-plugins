@@ -281,6 +281,17 @@ for p in [Path("slide-style.yaml"), Path("docs/slide-style.yaml"), Path(".claude
 - Place figures below the title area (top >= Inches(1.2))
 - **Never place figures that extend past the right edge** (`left + width <= Inches(13.0)`) **or bottom edge** (`top + height <= Inches(7.2)`)
 
+**4c2. Matplotlib figure generation rules (when creating figures for slides):**
+
+- **Colorbars must NEVER overlap the plot area.** Default `fig.colorbar(sc, ax=axes, shrink=...)` often places the colorbar on top of multi-panel plots. Always use a dedicated axes on the far right:
+  ```python
+  fig.subplots_adjust(right=0.88)
+  cbar_ax = fig.add_axes([0.90, 0.15, 0.02, 0.7])
+  cbar = fig.colorbar(sc, cax=cbar_ax)
+  ```
+- **No UI element (colorbar, legend, annotation) should occlude data points.**
+- Legends: prefer `loc="lower right"` or place outside the axes if they cover data.
+
 **4d. Content guidelines per slide type:**
 
 - **Title slide**: Use `make_title_slide()` — white bg, title, author, affiliation, date
@@ -371,6 +382,7 @@ The bundled verifier at `scripts/verify_slides.py` performs automated quality ch
 | **Font consistency** | Fonts not matching the style config |
 | **Conclusions ending** | Last slide being "Thank You" or "Questions?" |
 | **Content density** | Slides with >6 bullets |
+| **Colorbar occlusion** | Matplotlib colorbars overlapping plot data area |
 
 Run after generation: `python ${CLAUDE_SKILL_DIR}/scripts/verify_slides.py output.pptx`
 
