@@ -28,9 +28,19 @@ Usage from a generated script:
     prs.save("output.pptx")
 """
 
+import subprocess
+import sys
 from pathlib import Path
 
-from pptx import Presentation
+try:
+    from pptx import Presentation
+except ImportError:
+    subprocess.check_call(
+        [sys.executable, "-m", "pip", "install", "python-pptx", "-q"],
+        stdout=subprocess.DEVNULL,
+    )
+    from pptx import Presentation
+
 from pptx.util import Inches, Pt, Emu
 from pptx.dml.color import RGBColor
 from pptx.enum.text import PP_ALIGN, MSO_ANCHOR
