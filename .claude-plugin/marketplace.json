@@ -40,6 +40,12 @@
       "source": "./plugins/generate-slides",
       "description": "Generate PPTX slide decks from session artifacts with interactive outline brainstorming and programmatic generation via python-pptx",
       "version": "1.0.0"
+    },
+    {
+      "name": "figure-style",
+      "source": "./plugins/figure-style",
+      "description": "Enforce publication-quality figure styling with automated verification — font sizes, colors, labels, layout, and export settings",
+      "version": "1.0.0"
     }
   ]
 }

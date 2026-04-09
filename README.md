@@ -94,6 +94,27 @@ Generates a polished `.pptx` slide deck from session artifacts. Builds on `prep-
 /generate-slides 8 slides -- ./report-style.md  # explicit style file
 ```
 
-**Requires:** `pip install python-pptx` (auto-installed if missing)
+**Requires:** `python-pptx` (auto-installed on first use)
 
 **Relationship to `prep-report`:** Use `/prep-report` when you want a markdown outline only. Use `/generate-slides` when you want a ready-to-present PPTX file with embedded figures.
+
+### `figure-style`
+
+Enforce publication-quality figure styling with an automated verification harness. Activates on demand — zero context cost when not in use.
+
+- Applies a clean matplotlib style (Helvetica, no top/right spines, white background)
+- Provides colorblind-safe palettes (qualitative, sequential, diverging)
+- Runs 11 automated quality checks on every figure before saving
+- Catches: missing labels, small fonts, colorbar overlaps, legend occlusion, low DPI, text overlap
+- Presets for different contexts: `apply_style_talk()`, `apply_style_paper()`, `apply_style_poster()`
+
+**Usage:**
+
+```
+/figure-style                    # activate for current session
+/figure-style UMAP plots         # activate with context hint
+```
+
+**Dependencies auto-installed.** Works with matplotlib, seaborn, and scanpy.
+
+**Relationship to `generate-slides`:** Use `/figure-style` to make individual figures publication-quality during analysis. Use `/generate-slides` to assemble them into a deck.
