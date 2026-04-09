@@ -1,0 +1,73 @@
+# publication.mplstyle — Clean, publication-quality defaults
+# Apply with: plt.style.use("path/to/publication.mplstyle")
+# or via figure_helpers.apply_style()
+
+# ── Figure ──────────────────────────────────────────────
+figure.figsize:     8, 5
+figure.dpi:         150
+figure.facecolor:   white
+figure.edgecolor:   white
+figure.autolayout:  True
+savefig.dpi:        300
+savefig.bbox:       tight
+savefig.pad_inches: 0.1
+savefig.facecolor:  white
+
+# ── Font ────────────────────────────────────────────────
+font.family:        sans-serif
+font.sans-serif:    Helvetica, Arial, DejaVu Sans
+font.size:          12
+mathtext.default:   regular
+
+# ── Axes ────────────────────────────────────────────────
+axes.titlesize:     14
+axes.titleweight:   normal
+axes.titlepad:      10
+axes.labelsize:     12
+axes.labelpad:      6
+axes.labelweight:   normal
+axes.linewidth:     0.8
+axes.edgecolor:     333333
+axes.facecolor:     white
+axes.grid:          False
+axes.spines.top:    False
+axes.spines.right:  False
+axes.prop_cycle:    cycler('color', ['036DEA', 'E6550D', '31A354', '756BB1', 'E7298A', '66C2A5', 'FC8D62', '8DA0CB'])
+
+# ── Ticks ───────────────────────────────────────────────
+xtick.labelsize:    10
+ytick.labelsize:    10
+xtick.major.size:   4
+ytick.major.size:   4
+xtick.major.width:  0.8
+ytick.major.width:  0.8
+xtick.minor.size:   2
+ytick.minor.size:   2
+xtick.direction:    out
+ytick.direction:    out
+xtick.color:        333333
+ytick.color:        333333
+
+# ── Legend ───────────────────────────────────────────────
+legend.fontsize:    10
+legend.frameon:     False
+legend.loc:         best
+legend.handlelength: 1.5
+legend.handletextpad: 0.5
+
+# ── Lines & Markers ────────────────────────────────────
+lines.linewidth:    1.5
+lines.markersize:   5
+scatter.marker:     o
+
+# ── Grid (off by default, clean when enabled) ──────────
+grid.color:         E5E7EB
+grid.linewidth:     0.5
+grid.alpha:         0.7
+
+# ── Patches / bars ─────────────────────────────────────
+patch.edgecolor:    333333
+patch.linewidth:    0.5
+
+# ── Images (heatmaps) ──────────────────────────────────
+image.cmap:         viridis

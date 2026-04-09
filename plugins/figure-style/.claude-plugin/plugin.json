@@ -1,0 +1,12 @@
+{
+  "name": "figure-style",
+  "version": "1.0.0",
+  "description": "Enforce publication-quality figure styling with automated verification — font sizes, colors, labels, layout, and export settings",
+  "author": {
+    "name": "Yang Joon Kim",
+    "url": "https://github.com/yangjun9095"
+  },
+  "repository": "https://github.com/yangjun9095/claude-plugins",
+  "license": "MIT",
+  "keywords": ["figures", "plots", "matplotlib", "seaborn", "style", "publication", "visualization"]
+}
