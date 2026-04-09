@@ -63,9 +63,12 @@ These rules are MANDATORY. They are what separates a good figure from a bad one.
 #### 2a. Labels & Text (NON-NEGOTIABLE)
 
 - **Every axis MUST have a label.** No exceptions. If the data is obvious (e.g., UMAP), still label it ("UMAP 1", "UMAP 2").
-- **Labels must include units** when applicable: "Distance (nm)", "Time (hours)", "Expression (log₂ CPM)". The unit is part of the label, not optional.
-- **Font sizes must be readable at final display size.** The verification harness catches anything below 7pt, but aim for ≥10pt for all text.
+- **Labels must be lowercase.** Use "expression (log₂ CPM)", not "Expression (log₂ CPM)". Exceptions: all-caps abbreviations (UMAP, PCA, DNA, RNA) stay uppercase.
+- **Labels must include units** when applicable: "distance (nm)", "time (hours)", "expression (log₂ CPM)". The unit is part of the label, not optional.
+- **Font sizes: title = 8pt, everything else = 6pt.** The mplstyle enforces this. Do NOT override with larger fonts. The harness checks that all text matches these sizes.
+- **Figure size should match the font size.** With 6pt body text, use compact figures (default 4x3 inches). The data should fill the figure — not be surrounded by whitespace with oversized labels.
 - **Use consistent fonts.** The mplstyle handles this — don't override with random font choices.
+- **No gridlines.** Ever. The data speaks for itself. The harness enforces this.
 
 #### 2b. Color (CRITICAL for scientific figures)
 
@@ -80,7 +83,7 @@ These rules are MANDATORY. They are what separates a good figure from a bad one.
 #### 2c. Layout & Composition
 
 - **One message per figure.** If a figure tries to say two things, split it into two figures.
-- **Remove chart junk:** no top/right spines (handled by mplstyle), no unnecessary gridlines, no 3D effects, no gradient fills.
+- **Remove chart junk:** no top/right spines (handled by mplstyle), **no gridlines ever** (harness enforces this), no 3D effects, no gradient fills.
 - **White background.** Always. No grey, no colored backgrounds.
 - **Legends should not occlude data.** Place outside the axes (`bbox_to_anchor=(1.05, 1)`) or in a data-sparse corner. If >8 items, consider a separate legend panel or direct labeling.
 - **Colorbars MUST NOT overlap the plot area.** Use a dedicated axes:
@@ -128,15 +131,18 @@ The harness checks:
 | Check | What it catches | Severity |
 |-------|----------------|----------|
 | `axis_labels` | Missing x/y labels | WARN |
-| `font_sizes` | Text below 7pt | WARN |
+| `lowercase_labels` | Title-case labels ("Expression" instead of "expression") | WARN |
+| `font_sizes` | Fonts deviating from 8pt title / 6pt body | WARN |
 | `font_consistency` | Mixed font families (>2) | WARN |
 | `title_present` | No title (informational) | WARN |
 | `figure_size` | Too small, too large, extreme aspect ratio | WARN |
 | `clean_spines` | Top/right spines visible | WARN |
+| `no_gridlines` | Any gridlines visible | WARN |
 | `legend_overlap` | Legend covers >40% of axes | WARN |
 | `colorbar_overlap` | Colorbar overlaps data area | FAIL |
 | `dpi` | Below minimum DPI | WARN |
 | `text_overlap` | Text elements overlapping each other | WARN |
+| `text_data_overlap` | Labels/titles intruding into data area (>15%) | FAIL |
 | `background` | Non-white background | WARN |
 
 **FAIL = must fix. WARN = review and fix if possible.**

@@ -31,9 +31,9 @@ Once activated, Claude will:
 ## What it enforces
 
 ### Typography
-- All text ≥ 7pt (axis labels ≥ 10pt recommended)
+- Title: 8pt, everything else: 6pt (compact, data-dominant style)
 - Consistent font family (Helvetica/Arial)
-- Labels on every axis, with units where applicable
+- Labels on every axis, lowercase, with units where applicable
 
 ### Color
 - Colorblind-safe qualitative palette (8 colors)
@@ -42,7 +42,8 @@ Once activated, Claude will:
 - Color encodes meaning, not decoration
 
 ### Layout
-- White background, no top/right spines
+- White background, no top/right spines, **no gridlines**
+- Compact figure sizes (default 4x3in) matched to small font sizes
 - Legends outside data area (or in data-sparse corner)
 - Colorbars on dedicated axes (never overlapping plot)
 - Appropriate aspect ratios (square for scatter, golden for line plots)
@@ -54,20 +55,23 @@ Once activated, Claude will:
 
 ## Verification harness
 
-The core differentiator. Every figure passes through 11 automated checks:
+The core differentiator. Every figure passes through 14 automated checks:
 
 | Check | What it catches | Severity |
 |-------|----------------|----------|
 | `axis_labels` | Missing x/y labels | WARN |
-| `font_sizes` | Text below 7pt | WARN |
+| `lowercase_labels` | Title-case labels ("Expression" not "expression") | WARN |
+| `font_sizes` | Fonts deviating from 8pt title / 6pt body | WARN |
 | `font_consistency` | Mixed font families | WARN |
 | `title_present` | No title (informational) | WARN |
 | `figure_size` | Extreme dimensions/aspect ratio | WARN |
 | `clean_spines` | Top/right spines visible | WARN |
+| `no_gridlines` | Any gridlines visible | WARN |
 | `legend_overlap` | Legend covers >40% of axes | WARN |
 | `colorbar_overlap` | Colorbar overlaps data | FAIL |
 | `dpi` | Below minimum resolution | WARN |
-| `text_overlap` | Text elements overlapping | WARN |
+| `text_overlap` | Text elements overlapping each other | WARN |
+| `text_data_overlap` | Labels/titles intruding into data area (>15%) | FAIL |
 | `background` | Non-white background | WARN |
 
 FAIL = must fix before saving. WARN = fix recommended.

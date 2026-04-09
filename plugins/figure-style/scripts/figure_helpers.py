@@ -195,21 +195,39 @@ def _check_labels(fig):
     return FigureCheck("axis_labels", True)
 
 
-def _check_font_sizes(fig, min_size=7):
-    """All text elements should be at least min_size pt."""
-    small = []
+def _check_font_sizes(fig, title_size=8, body_size=6, tolerance=0.5):
+    """Check font size hierarchy: titles=8pt, everything else=6pt.
+
+    Tolerance allows ±0.5pt for rounding. Flags anything that deviates
+    from the expected sizes.
+    """
+    issues = []
     for text_obj in fig.findobj(matplotlib.text.Text):
         txt = text_obj.get_text().strip()
         if not txt:
             continue
         size = text_obj.get_fontsize()
-        if size < min_size:
+
+        # Classify: is this a title?
+        is_title = False
+        if fig._suptitle and text_obj is fig._suptitle:
+            is_title = True
+        for ax in fig.get_axes():
+            if text_obj is ax.title:
+                is_title = True
+                break
+
+        expected = title_size if is_title else body_size
+        if abs(size - expected) > tolerance:
             preview = txt[:30] + ("..." if len(txt) > 30 else "")
-            small.append(f'"{preview}" is {size:.0f}pt (min {min_size}pt)')
-    if small:
+            role = "title" if is_title else "body"
+            issues.append(f'"{preview}" ({role}) is {size:.0f}pt, expected {expected}pt')
+
+    if issues:
         return FigureCheck("font_sizes", False, "warn",
-                           "; ".join(small[:5]))
-    return FigureCheck("font_sizes", True)
+                           "; ".join(issues[:5]))
+    return FigureCheck("font_sizes", True,
+                       details=f"title={title_size}pt, body={body_size}pt")
 
 
 def _check_font_consistency(fig):
@@ -368,19 +386,133 @@ def _check_white_background(fig):
     return FigureCheck("background", True)
 
 
+def _check_no_gridlines(fig):
+    """Gridlines must be off. Clean figures don't need them."""
+    issues = []
+    for i, ax in enumerate(fig.get_axes()):
+        if _is_auxiliary_axes(ax):
+            continue
+        # Check both major and minor gridlines
+        xgrid = ax.xaxis.get_gridlines()
+        ygrid = ax.yaxis.get_gridlines()
+        x_visible = any(line.get_visible() for line in xgrid)
+        y_visible = any(line.get_visible() for line in ygrid)
+        if x_visible or y_visible:
+            which = []
+            if x_visible:
+                which.append("x")
+            if y_visible:
+                which.append("y")
+            issues.append(f"Axes[{i}]: {'+'.join(which)} gridlines visible")
+    if issues:
+        return FigureCheck("no_gridlines", False, "warn",
+                           "; ".join(issues[:3]))
+    return FigureCheck("no_gridlines", True)
+
+
+def _check_lowercase_labels(fig):
+    """Axis labels should be lowercase (except unit abbreviations and proper nouns).
+
+    Checks that labels don't start with an uppercase letter. Allows:
+    - All-caps abbreviations (e.g., "UMAP", "PCA", "DNA", "RNA")
+    - Single uppercase letter followed by lowercase (e.g., "pH")
+    - Empty labels (caught by _check_labels)
+    """
+    import re
+    issues = []
+    # Pattern: starts with uppercase followed by lowercase = Title Case = bad
+    # "Expression (log2)" → bad (starts with E)
+    # "UMAP 1" → OK (all-caps abbreviation)
+    # "expression (log2)" → OK (lowercase)
+    # "pH" → OK (single uppercase)
+    title_case_pat = re.compile(r'^[A-Z][a-z]')
+
+    for i, ax in enumerate(fig.get_axes()):
+        if _is_auxiliary_axes(ax):
+            continue
+        for label_name, label_text in [("xlabel", ax.get_xlabel()),
+                                        ("ylabel", ax.get_ylabel())]:
+            text = label_text.strip()
+            if not text:
+                continue
+            # Split on spaces/hyphens to check first word
+            first_word = re.split(r'[\s\-(/]', text)[0]
+            if title_case_pat.match(first_word) and not first_word.isupper():
+                issues.append(
+                    f'Axes[{i}] {label_name}: "{text}" — '
+                    f'use lowercase ("{text[0].lower() + text[1:]}")')
+
+    if issues:
+        return FigureCheck("lowercase_labels", False, "warn",
+                           "; ".join(issues[:5]))
+    return FigureCheck("lowercase_labels", True)
+
+
+def _check_text_data_overlap(fig):
+    """Text elements (labels, titles, legends) should not overlap data.
+
+    Checks whether non-tick text bounding boxes overlap the actual data
+    region of the axes. This catches labels that are too large for the
+    figure or poorly placed annotations that occlude the plot content.
+    """
+    renderer = fig.canvas.get_renderer()
+    issues = []
+
+    for i, ax in enumerate(fig.get_axes()):
+        if _is_auxiliary_axes(ax):
+            continue
+        ax_bbox = ax.get_window_extent(renderer)
+
+        # Collect non-tick text associated with this axes
+        text_objs = []
+        if ax.title and ax.title.get_text().strip():
+            text_objs.append(("title", ax.title))
+        if ax.get_xlabel().strip():
+            text_objs.append(("xlabel", ax.xaxis.label))
+        if ax.get_ylabel().strip():
+            text_objs.append(("ylabel", ax.yaxis.label))
+
+        for name, txt_obj in text_objs:
+            try:
+                txt_bbox = txt_obj.get_window_extent(renderer)
+            except Exception:
+                continue
+            # Check if text bbox intrudes significantly into the data area
+            overlap = txt_bbox.intersection(txt_bbox, ax_bbox)
+            if overlap is None:
+                continue
+            overlap_area = overlap.width * overlap.height
+            ax_area = ax_bbox.width * ax_bbox.height
+            # Title slightly inside axes is normal (titlepad handles it).
+            # Flag if >15% of the axes area is occluded by a single text element.
+            if ax_area > 0 and overlap_area / ax_area > 0.15:
+                issues.append(
+                    f"Axes[{i}] {name} intrudes into data area "
+                    f"({overlap_area / ax_area:.0%} overlap) — "
+                    f"reduce font size or increase figure size")
+
+    if issues:
+        return FigureCheck("text_data_overlap", False, "fail",
+                           "; ".join(issues[:3]))
+    return FigureCheck("text_data_overlap", True)
+
+
 # ── Main Verifier ──────────────────────────────────────────────
 
 ALL_CHECKS = [
     _check_labels,
+    _check_lowercase_labels,
     _check_font_sizes,
     _check_font_consistency,
     _check_title,
     _check_figure_size,
     _check_spines,
+    _check_no_gridlines,
     _check_legend_overlap,
     _check_colorbar_overlap,
     _check_dpi,
     _check_overlapping_text,
+    _check_text_data_overlap,
     _check_white_background,
 ]
 

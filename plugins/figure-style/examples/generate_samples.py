@@ -81,17 +81,17 @@ def scatter_bad():
 
 
 def scatter_good():
-    """GOOD: styled, labeled, alpha, palette, legend outside."""
+    """GOOD: styled, lowercase labels, compact, palette, legend outside."""
     apply_style()
     X, labels = _make_clusters()
-    names = ["Cluster A", "Cluster B", "Cluster C", "Cluster D", "Cluster E"]
+    names = ["cluster A", "cluster B", "cluster C", "cluster D", "cluster E"]
     palette = get_palette(5)
 
-    fig, ax = plt.subplots(figsize=(8, 7))
+    fig, ax = plt.subplots(figsize=(4, 3.5))
     for k in range(5):
         mask = labels == k
         ax.scatter(X[mask, 0], X[mask, 1], c=palette[k], label=names[k],
-                   s=15, alpha=0.6, edgecolors="none", rasterized=True)
+                   s=5, alpha=0.6, edgecolors="none", rasterized=True)
     ax.set_xlabel("UMAP 1")
     ax.set_ylabel("UMAP 2")
     ax.legend(bbox_to_anchor=(1.05, 1), loc="upper left",
@@ -118,19 +118,19 @@ def heatmap_bad():
 
 
 def heatmap_good():
-    """GOOD: viridis, dedicated colorbar axes, labels, readable."""
+    """GOOD: viridis, dedicated colorbar axes, lowercase labels, compact."""
     apply_style()
     data = _make_heatmap_data()
 
-    fig, ax = plt.subplots(figsize=(10, 7))
+    fig, ax = plt.subplots(figsize=(5, 4))
     im = ax.imshow(data, cmap="viridis", aspect="auto")
-    ax.set_xlabel("Genes")
-    ax.set_ylabel("Cells")
+    ax.set_xlabel("genes")
+    ax.set_ylabel("cells")
 
     # Dedicated colorbar axes — never overlaps
     fig.subplots_adjust(right=0.85)
-    cbar_ax = fig.add_axes([0.88, 0.15, 0.03, 0.7])
-    fig.colorbar(im, cax=cbar_ax, label="Expression (z-score)")
+    cbar_ax = fig.add_axes([0.88, 0.15, 0.02, 0.7])
+    fig.colorbar(im, cax=cbar_ax, label="expression (z-score)")
 
     save_figure(fig, OUT / "sample_good_heatmap.png", dpi=300)
     plt.close(fig)
@@ -158,21 +158,21 @@ def multipanel_bad():
 
 
 def multipanel_good():
-    """GOOD: shared axes, consistent color, all labeled."""
+    """GOOD: shared axes, consistent color, lowercase labels, compact."""
     apply_style()
     X, labels = _make_clusters()
     palette = get_palette(5)
-    names = ["Neural Crest", "Somites", "PSM"]
+    names = ["neural crest", "somites", "PSM"]
 
-    fig, axes = plt.subplots(1, 3, figsize=(15, 5), sharex=True, sharey=True)
+    fig, axes = plt.subplots(1, 3, figsize=(9, 3), sharex=True, sharey=True)
     for i, ax in enumerate(axes):
         # Plot all in grey background, highlight one group
-        ax.scatter(X[:, 0], X[:, 1], c="#E5E7EB", s=3, alpha=0.3,
+        ax.scatter(X[:, 0], X[:, 1], c="#E5E7EB", s=1, alpha=0.3,
                    edgecolors="none", rasterized=True)
         mask = labels == i
-        ax.scatter(X[mask, 0], X[mask, 1], c=palette[i], s=8, alpha=0.7,
+        ax.scatter(X[mask, 0], X[mask, 1], c=palette[i], s=3, alpha=0.7,
                    edgecolors="none", rasterized=True, label=names[i])
-        ax.set_title(names[i], fontsize=12)
+        ax.set_title(names[i])
         ax.set_xlabel("UMAP 1")
     axes[0].set_ylabel("UMAP 2")
     fig.align_ylabels()
