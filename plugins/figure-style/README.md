@@ -30,9 +30,12 @@ Once activated, Claude will:
 
 ## What it enforces
 
+### Principle: Data-Ink Ratio (Tufte)
+Every mark must encode information. If it can be erased without information loss, erase it. The harness measures your data-ink ratio and flags non-data ink.
+
 ### Typography
 - Title: 8pt, everything else: 6pt (compact, data-dominant style)
-- Consistent font family (Helvetica/Arial)
+- Font: Avenir Light (fallback: Arial)
 - Labels on every axis, lowercase, with units where applicable
 
 ### Color
@@ -48,18 +51,23 @@ Once activated, Claude will:
 - Colorbars on dedicated axes (never overlapping plot)
 - Appropriate aspect ratios (square for scatter, golden for line plots)
 
+### Embedding Plots (UMAP / tSNE)
+- Axes are arbitrary — remove them entirely with `strip_embedding_axes(ax)`
+- The harness detects embedding plots and warns if axes are still present
+
 ### Export
-- 300 DPI for publication, 150 for screen
+- **Always saves both PNG (300 DPI) and PDF (vector, editable text)**
+- `pdf.fonttype = 42` — text remains editable in Illustrator/Inkscape
+- The harness verifies PDF text is not fragmented into individual characters
 - `bbox_inches='tight'` (no clipped labels)
-- Descriptive file names
 
 ## Verification harness
 
-The core differentiator. Every figure passes through 14 automated checks:
+The core differentiator. Every figure passes through 18 automated checks:
 
 | Check | What it catches | Severity |
 |-------|----------------|----------|
-| `axis_labels` | Missing x/y labels | WARN |
+| `axis_labels` | Missing x/y labels (skips stripped axes) | WARN |
 | `lowercase_labels` | Title-case labels ("Expression" not "expression") | WARN |
 | `font_sizes` | Fonts deviating from 8pt title / 6pt body | WARN |
 | `font_consistency` | Mixed font families | WARN |
@@ -67,14 +75,18 @@ The core differentiator. Every figure passes through 14 automated checks:
 | `figure_size` | Extreme dimensions/aspect ratio | WARN |
 | `clean_spines` | Top/right spines visible | WARN |
 | `no_gridlines` | Any gridlines visible | WARN |
+| `non_data_ink` | Box frames, heavy ticks (Tufte erasure test) | WARN |
+| `embedding_axes` | UMAP/tSNE with axes still present | WARN |
 | `legend_overlap` | Legend covers >40% of axes | WARN |
 | `colorbar_overlap` | Colorbar overlaps data | FAIL |
 | `dpi` | Below minimum resolution | WARN |
 | `text_overlap` | Text elements overlapping each other | WARN |
 | `text_data_overlap` | Labels/titles intruding into data area (>15%) | FAIL |
 | `background` | Non-white background | WARN |
+| `data_ink_ratio` | Approximate data-to-chrome ratio | INFO |
+| `pdf_text_editable` | PDF text not editable / fragmented chars | FAIL |
 
-FAIL = must fix before saving. WARN = fix recommended.
+FAIL = must fix. WARN = fix recommended. INFO = awareness only.
 
 ## Standalone usage (without Claude)
 
@@ -89,9 +101,9 @@ import matplotlib.pyplot as plt
 
 fig, ax = plt.subplots()
 ax.scatter(x, y, c=get_palette(3)[0])
-ax.set_xlabel("X label (units)")
-ax.set_ylabel("Y label (units)")
-save_figure(fig, "output.png")  # verifies, then saves at 300 DPI
+ax.set_xlabel("x label (units)")
+ax.set_ylabel("y label (units)")
+save_figure(fig, "output.png")  # saves .png + .pdf, verifies both
 ```
 
 ## Presets
@@ -109,10 +121,12 @@ apply_style_poster()    # Largest for posters
 figure-style/
   commands/figure-style.md       # Skill prompt (rules + harness instructions)
   scripts/
-    figure_helpers.py            # Helper library (style, palette, verification)
-    publication.mplstyle         # matplotlib style file
+    figure_helpers.py            # Helper library (style, palette, verification, PDF check)
+    publication.mplstyle         # matplotlib style file (Avenir Light, 8/6pt, pdf.fonttype=42)
+  references/
+    figure-style-guide.md        # Full style guide (Tufte principles, all rules)
   examples/
-    generate_samples.py          # Good vs bad comparison figures
+    generate_samples.py          # Good vs bad comparison figures (PNG + PDF)
 ```
 
 ## Relationship to `generate-slides`

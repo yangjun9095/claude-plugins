@@ -2,11 +2,11 @@
 """Generate good-vs-bad sample figures to demonstrate the figure-style plugin.
 
 Run:  python generate_samples.py
-Out:  sample_good_scatter.png, sample_bad_scatter.png,
-      sample_good_heatmap.png, sample_bad_heatmap.png,
-      sample_good_multipanel.png, sample_bad_multipanel.png
+Out:  sample_good_*.png + sample_good_*.pdf (dual-save),
+      sample_bad_*.png (no PDF for bad examples)
 
 Each pair shows the same data — one with publication styling, one without.
+Good examples are saved as both PNG and PDF (with editable text).
 """
 
 import sys
@@ -29,6 +29,7 @@ from figure_helpers import (
     save_figure,
     verify_figure,
     get_palette,
+    strip_embedding_axes,
     PALETTE_QUAL,
 )
 
@@ -81,7 +82,7 @@ def scatter_bad():
 
 
 def scatter_good():
-    """GOOD: styled, lowercase labels, compact, palette, legend outside."""
+    """GOOD: UMAP with stripped axes, compact, palette, legend outside."""
     apply_style()
     X, labels = _make_clusters()
     names = ["cluster A", "cluster B", "cluster C", "cluster D", "cluster E"]
@@ -92,8 +93,9 @@ def scatter_good():
         mask = labels == k
         ax.scatter(X[mask, 0], X[mask, 1], c=palette[k], label=names[k],
                    s=5, alpha=0.6, edgecolors="none", rasterized=True)
-    ax.set_xlabel("UMAP 1")
-    ax.set_ylabel("UMAP 2")
+    ax.set_title("embedding by cluster")
+    # UMAP axes are arbitrary — strip them
+    strip_embedding_axes(ax)
     ax.legend(bbox_to_anchor=(1.05, 1), loc="upper left",
               markerscale=2, frameon=False)
     save_figure(fig, OUT / "sample_good_scatter.png", dpi=300)
