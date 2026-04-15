@@ -16,9 +16,11 @@ savefig.facecolor:  white
 
 # ── Font ────────────────────────────────────────────────
 font.family:        sans-serif
-font.sans-serif:    Helvetica, Arial, DejaVu Sans
+font.sans-serif:    Avenir Light, Avenir, Arial, Helvetica, DejaVu Sans
 font.size:          6
 mathtext.default:   regular
+pdf.fonttype:       42
+ps.fonttype:        42
 
 # ── Axes ────────────────────────────────────────────────
 axes.titlesize:     8
@@ -27,7 +29,7 @@ axes.titlepad:      4
 axes.labelsize:     6
 axes.labelpad:      3
 axes.labelweight:   normal
-axes.linewidth:     0.5
+axes.linewidth:     0.4
 axes.edgecolor:     333333
 axes.facecolor:     white
 axes.grid:          False
@@ -40,8 +42,8 @@ xtick.labelsize:    6
 ytick.labelsize:    6
 xtick.major.size:   3
 ytick.major.size:   3
-xtick.major.width:  0.5
-ytick.major.width:  0.5
+xtick.major.width:  0.4
+ytick.major.width:  0.4
 xtick.minor.size:   1.5
 ytick.minor.size:   1.5
 xtick.direction:    out
@@ -66,7 +68,7 @@ grid.linewidth:     0
 
 # ── Patches / bars ─────────────────────────────────────
 patch.edgecolor:    333333
-patch.linewidth:    0.5
+patch.linewidth:    0.3
 
 # ── Images (heatmaps) ──────────────────────────────────
 image.cmap:         viridis

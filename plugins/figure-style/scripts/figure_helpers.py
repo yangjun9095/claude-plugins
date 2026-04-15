@@ -3,7 +3,12 @@
 Provides:
 - apply_style()       — load the bundled mplstyle + set seaborn defaults
 - verify_figure(fig)  — run all quality checks on a matplotlib Figure
-- save_figure(fig, path, **kw) — save with verification + sane defaults
+- save_figure(fig, path, **kw) — save PNG + PDF with verification
+- strip_embedding_axes(ax) — remove axes from UMAP/tSNE plots
+- verify_pdf(path)    — check PDF text editability
+
+Design principle: maximize data-ink ratio (Tufte). Every mark must encode
+information. If it can be erased without information loss, erase it.
 
 Usage:
     from figure_helpers import apply_style, save_figure
@@ -11,9 +16,9 @@ Usage:
 
     fig, ax = plt.subplots()
     ax.plot(x, y)
-    ax.set_xlabel("X label")
-    ax.set_ylabel("Y label")
-    save_figure(fig, "output.png")   # verifies before saving
+    ax.set_xlabel("x label")
+    ax.set_ylabel("y label")
+    save_figure(fig, "output.png")   # saves .png + .pdf, verifies both
 """
 
 import subprocess
@@ -44,6 +49,18 @@ try:
 except ImportError:
     _yaml = None
 
+try:
+    from pypdf import PdfReader as _PdfReader
+except ImportError:
+    try:
+        subprocess.check_call(
+            [sys.executable, "-m", "pip", "install", "pypdf", "-q"],
+            stdout=subprocess.DEVNULL,
+        )
+        from pypdf import PdfReader as _PdfReader
+    except Exception:
+        _PdfReader = None
+
 # ============================================================================
 # Paths
 # ============================================================================
@@ -67,6 +84,10 @@ def apply_style(mplstyle_path=None, seaborn_context="notebook",
         seaborn_style: Seaborn style preset ("white", "whitegrid", "dark", etc.)
         font_scale: Additional font scaling multiplier for seaborn.
     """
+    # Ensure editable text in PDF exports
+    matplotlib.rcParams['pdf.fonttype'] = 42
+    matplotlib.rcParams['ps.fonttype'] = 42
+
     style_path = Path(mplstyle_path) if mplstyle_path else _DEFAULT_MPLSTYLE
     if style_path.exists():
         plt.style.use(str(style_path))
@@ -138,6 +159,26 @@ def get_palette(n=None, name="qual"):
 
 
 # ============================================================================
+# Embedding Plot Helpers (UMAP / tSNE)
+# ============================================================================
+
+def strip_embedding_axes(ax):
+    """Remove all axes chrome from a UMAP/tSNE scatter plot.
+
+    UMAP/tSNE coordinates are arbitrary — axes, ticks, and labels add
+    zero information. This removes them entirely, leaving only the data
+    (scatter points, colorbar, legend).
+    """
+    for spine in ax.spines.values():
+        spine.set_visible(False)
+    ax.set_xticks([])
+    ax.set_yticks([])
+    ax.set_xlabel("")
+    ax.set_ylabel("")
+    ax.set_title(ax.get_title())  # preserve title if set
+
+
+# ============================================================================
 # Verification Harness
 # ============================================================================
 
@@ -169,10 +210,19 @@ def _is_auxiliary_axes(ax):
     return False
 
 
+def _is_stripped_axes(ax):
+    """Check if axes have been intentionally stripped (e.g., for UMAP)."""
+    has_visible_spines = any(s.get_visible() for s in ax.spines.values())
+    has_ticks = (len(ax.get_xticks()) > 0
+                 and any(t.get_visible() for t in ax.xaxis.get_ticklabels()))
+    return not has_visible_spines and not has_ticks
+
+
 def _check_labels(fig):
     """Every axis should have x and y labels (non-empty)."""
     issues = []
-    data_axes = [ax for ax in fig.get_axes() if not _is_auxiliary_axes(ax)]
+    data_axes = [ax for ax in fig.get_axes()
+                 if not _is_auxiliary_axes(ax) and not _is_stripped_axes(ax)]
 
     # Detect shared axes: if axes share x or y, only one needs the label
     for i, ax in enumerate(data_axes):
@@ -497,6 +547,134 @@ def _check_text_data_overlap(fig):
     return FigureCheck("text_data_overlap", True)
 
 
+def _check_non_data_ink(fig):
+    """Detect common non-data-ink offenders (Tufte erasure test).
+
+    Checks for visual elements that can be removed without information loss:
+    - All 4 spines visible (box frame = redundant)
+    - Heavy tick marks on small figures
+    - Redundant spine+tick combos
+    """
+    issues = []
+    for i, ax in enumerate(fig.get_axes()):
+        if _is_auxiliary_axes(ax):
+            continue
+
+        # Box frame: all 4 spines visible = unnecessary enclosure
+        visible_spines = [s for s in ax.spines.values() if s.get_visible()]
+        if len(visible_spines) == 4:
+            issues.append(f"Axes[{i}]: box frame (4 spines) — remove top+right")
+
+        # Heavy ticks: check tick line width relative to figure size
+        fig_w, fig_h = fig.get_size_inches()
+        for axis_obj in [ax.xaxis, ax.yaxis]:
+            for tick in axis_obj.get_major_ticks():
+                tw = tick.tick1line.get_linewidth()
+                if tw > 0.8 and max(fig_w, fig_h) < 6:
+                    issues.append(
+                        f"Axes[{i}]: tick width {tw:.1f}pt too heavy "
+                        f"for {fig_w:.0f}x{fig_h:.0f}in figure")
+                    break
+            if issues and "tick width" in issues[-1]:
+                break
+
+    if issues:
+        return FigureCheck("non_data_ink", False, "warn",
+                           "; ".join(issues[:3]))
+    return FigureCheck("non_data_ink", True)
+
+
+def _check_embedding_axes(fig):
+    """UMAP/tSNE plots should have axes stripped (coordinates are arbitrary).
+
+    Detects embedding plots by label text containing UMAP, umap, tSNE, tsne,
+    and warns if ticks or spines are still visible.
+    """
+    import re
+    embedding_pat = re.compile(r'[Uu][Mm][Aa][Pp]|[Tt][Ss][Nn][Ee]')
+    issues = []
+
+    for i, ax in enumerate(fig.get_axes()):
+        if _is_auxiliary_axes(ax):
+            continue
+        xl = ax.get_xlabel()
+        yl = ax.get_ylabel()
+        title = ax.get_title()
+        all_text = f"{xl} {yl} {title}"
+
+        if not embedding_pat.search(all_text):
+            continue
+
+        # This is an embedding plot — check for chrome
+        has_ticks = (len(ax.get_xticks()) > 0 and ax.xaxis.get_ticklabels()
+                     and any(t.get_visible() for t in ax.xaxis.get_ticklabels()))
+        has_spines = any(s.get_visible() for s in ax.spines.values())
+
+        if has_ticks or has_spines:
+            extras = []
+            if has_spines:
+                extras.append("spines")
+            if has_ticks:
+                extras.append("ticks")
+            issues.append(
+                f"Axes[{i}]: embedding plot has {'+'.join(extras)} — "
+                f"use strip_embedding_axes(ax)")
+
+    if issues:
+        return FigureCheck("embedding_axes", False, "warn",
+                           "; ".join(issues[:3]))
+    return FigureCheck("embedding_axes", True)
+
+
+def _check_data_ink_ratio(fig):
+    """Compute approximate data-ink ratio (informational, always passes).
+
+    Classifies matplotlib artists as 'data' or 'chrome' and reports the ratio.
+    """
+    from matplotlib.lines import Line2D
+    from matplotlib.collections import PathCollection, QuadMesh, PolyCollection
+    from matplotlib.image import AxesImage
+    from matplotlib.patches import FancyBboxPatch
+    from matplotlib.container import BarContainer
+
+    data_count = 0
+    chrome_count = 0
+
+    for ax in fig.get_axes():
+        if _is_auxiliary_axes(ax):
+            continue
+
+        # Data artists
+        for child in ax.get_children():
+            if isinstance(child, (PathCollection, QuadMesh, AxesImage, PolyCollection)):
+                data_count += 1
+            elif isinstance(child, Line2D):
+                # Distinguish data lines from tick/grid lines
+                if child in ax.get_lines():
+                    data_count += 1
+                else:
+                    chrome_count += 1
+            elif isinstance(child, matplotlib.spines.Spine):
+                if child.get_visible():
+                    chrome_count += 1
+
+        # Count visible tick groups as chrome
+        for axis_obj in [ax.xaxis, ax.yaxis]:
+            if axis_obj.get_visible():
+                chrome_count += 1  # ticks + labels as one unit
+
+        # BarContainer
+        for container in ax.containers:
+            if isinstance(container, BarContainer):
+                data_count += len(container)
+
+    total = data_count + chrome_count
+    ratio = data_count / total if total > 0 else 1.0
+
+    return FigureCheck("data_ink_ratio", True, details=(
+        f"data-ink ~{ratio:.2f} ({data_count} data / {chrome_count} chrome)"))
+
+
 # ── Main Verifier ──────────────────────────────────────────────
 
 ALL_CHECKS = [
@@ -508,12 +686,15 @@ ALL_CHECKS = [
     _check_figure_size,
     _check_spines,
     _check_no_gridlines,
+    _check_non_data_ink,
+    _check_embedding_axes,
     _check_legend_overlap,
     _check_colorbar_overlap,
     _check_dpi,
     _check_overlapping_text,
     _check_text_data_overlap,
     _check_white_background,
+    _check_data_ink_ratio,
 ]
 
 
@@ -578,13 +759,68 @@ def has_failures(results):
 # Save with Verification
 # ============================================================================
 
+def verify_pdf(pdf_path):
+    """Check that a PDF has editable (not rasterized/fragmented) text.
+
+    Returns a FigureCheck. Fails if:
+    - No text is extractable (rasterized)
+    - Text is fragmented into single characters (avg word length ≤ 2)
+    """
+    pdf_path = Path(pdf_path)
+    if not pdf_path.exists():
+        return FigureCheck("pdf_text_editable", False, "fail",
+                           f"PDF not found: {pdf_path}")
+
+    if _PdfReader is None:
+        return FigureCheck("pdf_text_editable", True, "warn",
+                           "pypdf not available — skipped PDF editability check")
+
+    try:
+        reader = _PdfReader(str(pdf_path))
+        all_text = ""
+        for page in reader.pages:
+            all_text += (page.extract_text() or "")
+
+        if not all_text.strip():
+            return FigureCheck("pdf_text_editable", False, "fail",
+                               "No extractable text in PDF — text may be rasterized")
+
+        # Check fragmentation: split into "words" and measure avg length
+        words = [w for w in all_text.split() if len(w) > 0]
+        avg_len = sum(len(w) for w in words) / max(len(words), 1)
+
+        if avg_len <= 2.0:
+            return FigureCheck("pdf_text_editable", False, "fail",
+                               f"Text appears fragmented (avg word length {avg_len:.1f} chars) "
+                               f"— set matplotlib.rcParams['pdf.fonttype'] = 42")
+
+        # Check that fonttype 42 was used
+        fonttype = matplotlib.rcParams.get('pdf.fonttype', 3)
+        if fonttype != 42:
+            return FigureCheck("pdf_text_editable", False, "warn",
+                               f"pdf.fonttype={fonttype} (should be 42 for editable text)")
+
+        return FigureCheck("pdf_text_editable", True,
+                           details=f"text editable, avg word length {avg_len:.1f}")
+
+    except Exception as e:
+        return FigureCheck("pdf_text_editable", False, "warn",
+                           f"Could not verify PDF: {e}")
+
+
 def save_figure(fig, path, dpi=300, verify=True, halt_on_fail=True, **kwargs):
-    """Save a figure with optional pre-save verification.
+    """Save a figure as BOTH PNG and PDF, with verification.
+
+    Always saves two files:
+    - {path}.png (or {path} if already .png) — raster at specified DPI
+    - {path}.pdf — vector with editable text (pdf.fonttype=42)
+
+    The PDF is verified for text editability after saving.
 
     Args:
         fig: matplotlib Figure.
-        path: Output file path.
-        dpi: Resolution (default 300 for publication).
+        path: Output file path (.png or no extension).
+        dpi: Resolution for PNG (default 300).
         verify: Run verification checks before saving.
         halt_on_fail: If True and a 'fail' severity check triggers,
             raise ValueError instead of saving.
@@ -593,26 +829,57 @@ def save_figure(fig, path, dpi=300, verify=True, halt_on_fail=True, **kwargs):
     Returns:
         list of FigureCheck results (or empty list if verify=False).
     """
+    # Ensure editable text in PDF
+    matplotlib.rcParams['pdf.fonttype'] = 42
+    matplotlib.rcParams['ps.fonttype'] = 42
+
     results = []
     if verify:
         results = verify_figure(fig, verbose=True)
         if halt_on_fail and has_failures(results):
             raise ValueError(
                 "Figure has FAIL-level issues. Fix them or pass halt_on_fail=False. "
-                "Issues: " + "; ".join(r.details for r in results if not r.passed and r.severity == "fail")
+                "Issues: " + "; ".join(r.details for r in results
+                                       if not r.passed and r.severity == "fail")
             )
 
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
 
-    kwargs.setdefault("dpi", dpi)
-    kwargs.setdefault("bbox_inches", "tight")
-    kwargs.setdefault("facecolor", "white")
+    # Determine PNG and PDF paths
+    if path.suffix.lower() in (".png", ".jpg", ".jpeg", ".tiff"):
+        path_png = path
+        path_pdf = path.with_suffix(".pdf")
+    elif path.suffix.lower() == ".pdf":
+        path_pdf = path
+        path_png = path.with_suffix(".png")
+    else:
+        path_png = path.with_suffix(".png")
+        path_pdf = path.with_suffix(".pdf")
+
+    save_kwargs = dict(kwargs)
+    save_kwargs.setdefault("bbox_inches", "tight")
+    save_kwargs.setdefault("facecolor", "white")
+
     import warnings
     with warnings.catch_warnings():
         warnings.simplefilter("ignore", UserWarning)
-        fig.savefig(str(path), **kwargs)
+        # Save PNG (raster)
+        fig.savefig(str(path_png), dpi=dpi, **save_kwargs)
+        # Save PDF (vector, editable text)
+        fig.savefig(str(path_pdf), **save_kwargs)
 
-    size_kb = path.stat().st_size / 1024
-    print(f"Saved: {path} ({size_kb:.0f} KB, {dpi} DPI)")
+    png_kb = path_png.stat().st_size / 1024
+    pdf_kb = path_pdf.stat().st_size / 1024
+    print(f"Saved: {path_png} ({png_kb:.0f} KB, {dpi} DPI)")
+    print(f"Saved: {path_pdf} ({pdf_kb:.0f} KB, vector)")
+
+    # Verify PDF editability
+    pdf_check = verify_pdf(path_pdf)
+    results.append(pdf_check)
+    if pdf_check.passed:
+        print(f"  [PASS] pdf_text_editable — {pdf_check.details}")
+    else:
+        print(f"  [{pdf_check.severity.upper()}] pdf_text_editable — {pdf_check.details}")
+
     return results
