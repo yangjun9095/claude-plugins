@@ -14,8 +14,8 @@
     {
       "name": "prep-report",
       "source": "./plugins/prep-report",
-      "description": "Convert analysis session artifacts into a structured report/slide deck outline, with optional archive to reports/",
-      "version": "1.1.0"
+      "description": "Convert analysis session artifacts into a structured report — slides, doc, or Anthropic Science blog-style write-up (interactive interview + outline approval gate)",
+      "version": "2.0.0"
     },
     {
       "name": "analyze-project",
