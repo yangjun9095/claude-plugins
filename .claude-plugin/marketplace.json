@@ -46,6 +46,12 @@
       "source": "./plugins/figure-style",
       "description": "Enforce publication-quality figure styling with automated verification — font sizes, colors, labels, layout, and export settings",
       "version": "1.0.0"
+    },
+    {
+      "name": "codeql-quality-review",
+      "source": "./plugins/codeql-quality-review",
+      "description": "Audit and fix GitHub Code Quality findings (/security/quality Standard + AI tabs) for Python repos — deploys a manual workflow that dumps SARIF as a downloadable artifact (works around the missing public REST API)",
+      "version": "1.0.0"
     }
   ]
 }
