@@ -48,6 +48,12 @@
       "version": "1.0.0"
     },
     {
+      "name": "meeting-distill",
+      "source": "./plugins/meeting-distill",
+      "description": "Distill a Zoom (or generic) meeting note into TL;DR + action items by owner + chronological timeline",
+      "version": "1.0.0"
+    },
+    {
       "name": "codeql-quality-review",
       "source": "./plugins/codeql-quality-review",
       "description": "Audit and fix GitHub Code Quality findings (/security/quality Standard + AI tabs) for Python repos — deploys a manual workflow that dumps SARIF as a downloadable artifact (works around the missing public REST API)",
