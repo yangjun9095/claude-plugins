@@ -29,24 +29,23 @@ def git_common_dir_pure(start=None):
     while True:
         dot = os.path.join(cur, ".git")
         if os.path.isdir(dot):
-            return _demodulize(dot)
+            return _finalize(dot)
         if os.path.isfile(dot):
             line = _read_first_line(dot) or ""
             if line.startswith("gitdir:"):
                 gitdir = line[len("gitdir:"):].strip()
                 if not os.path.isabs(gitdir):
                     gitdir = os.path.join(cur, gitdir)
-                gitdir = os.path.abspath(gitdir)
                 commondir = _read_first_line(os.path.join(gitdir, "commondir"))
                 if commondir:
                     if not os.path.isabs(commondir):
                         commondir = os.path.join(gitdir, commondir)
-                    return _demodulize(os.path.abspath(commondir))
-                return _demodulize(gitdir)
+                    return _finalize(commondir)
+                return _finalize(gitdir)
             return None
         # a bare repo: HEAD + objects + refs directly in this dir
         if all(os.path.exists(os.path.join(cur, n)) for n in ("HEAD", "objects", "refs")):
-            return cur
+            return _finalize(cur)
         parent = os.path.dirname(cur)
         if parent == cur:
             return None
@@ -61,6 +60,19 @@ def _demodulize(path):
     if idx != -1:
         return path[:idx + len(os.sep + ".git")]
     return path
+
+
+def _finalize(path):
+    """The single exit point for BOTH resolvers.
+
+    `git rev-parse` reports a physically-resolved path, so every return must be
+    realpath'd or the two resolvers disagree -- and because the hook uses the
+    pure resolver while the CLI uses the subprocess one, disagreement means TWO
+    DIFFERENT BOARDS for one repo. realpath BEFORE demodulize, matching git.
+    """
+    if not path:
+        return None
+    return _demodulize(os.path.realpath(path))
 
 
 def git_common_dir(start=None):
@@ -80,7 +92,7 @@ def git_common_dir(start=None):
     if proc.returncode != 0:
         return None
     out = proc.stdout.strip()
-    return _demodulize(os.path.realpath(out)) if out else None
+    return _finalize(out)
 
 
 def project_name(common):
