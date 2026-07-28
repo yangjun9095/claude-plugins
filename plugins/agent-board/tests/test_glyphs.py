@@ -3,14 +3,23 @@ import unicodedata
 from agent_board.render import glyphs, palette
 
 
-def test_every_glyph_is_east_asian_width_N_or_Na():
-    """A class-W or class-A glyph shifts the card border. U+26D4 is class W and
-    U+25B2 is class A -- both were real alignment bugs."""
+def test_no_glyph_is_double_width():
+    """Only class W and F occupy two cells under cw(), so only those can shift a
+    card border. U+26D4 (class W) was the real bug. Class A is fine: it renders
+    one cell outside a CJK locale, a CJK locale auto-routes to the ASCII table,
+    and every card frame character (U+2500 etc.) is itself class A."""
     for key, g in glyphs.GLYPH.items():
         for ch in g:
             eaw = unicodedata.east_asian_width(ch)
-            assert eaw in ("N", "Na"), "%s (%r U+%04X) is class %s" % (
+            assert eaw not in ("W", "F"), "%s (%r U+%04X) is class %s" % (
                 key, ch, ord(ch), eaw)
+
+
+def test_the_card_frame_is_class_A_so_the_rule_cannot_ban_class_A():
+    """Pins the reason the rule is W/F rather than N/Na -- if a future edit
+    tightens it back, this fails and explains why."""
+    for ch in "─│╭╮╰╯━":
+        assert unicodedata.east_asian_width(ch) == "A"
 
 
 def test_no_variation_selector_16():
