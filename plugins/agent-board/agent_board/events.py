@@ -52,25 +52,43 @@ def append_event(threads_dir, tid, record):
 
 
 def _tail_bytes(path, nbytes):
+    """Return (buf, head_truncated).
+
+    Reads one byte of LOOKBEHIND before the window so the caller can tell
+    whether the window began at a record boundary. Using `len(buf) >= nbytes`
+    as a proxy for "the first record is truncated" is WRONG: when the seek
+    lands exactly on a newline the first record is complete, and dropping it
+    silently loses the oldest event. Reproduced on a byte-exact fixture (a
+    65536-byte block of fixed-width records preceded by an arbitrary
+    newline-terminated prefix, so the tail window is exactly that block):
+    the proxy version returned 1023 of 1024 records, missing the first
+    (k000000), which was fully intact and valid JSON.
+    """
     with io.open(path, "rb") as fh:
-        try:
-            fh.seek(-nbytes, os.SEEK_END)
-        except (IOError, OSError):
+        fh.seek(0, os.SEEK_END)
+        size = fh.tell()
+        start = size - nbytes
+        if start <= 0:
             fh.seek(0)
-        return fh.read()
+            return fh.read(), False          # whole file: nothing truncated
+        fh.seek(start - 1)                   # one byte of lookbehind
+        buf = fh.read()
+        if buf[:1] == b"\n":
+            return buf[1:], False            # window began at a record boundary
+        return buf, True                     # first record really is truncated
 
 
 def read_events_tail(path, n):
     """Tolerate partial lines -- that is the NORMAL case, not an edge case."""
     try:
-        buf = _tail_bytes(path, 65536)
+        buf, head_truncated = _tail_bytes(path, 65536)
     except (IOError, OSError):
         return []
     if not buf.endswith(b"\n"):
         buf = buf.rpartition(b"\n")[0]          # drop the in-flight fragment
     out = []
     parts = buf.split(b"\n")
-    if len(buf) >= 65536 and len(parts) > 1:
+    if head_truncated and len(parts) > 1:
         parts = parts[1:]                       # drop a truncated leading record
     for raw in parts:
         if not raw.strip():
