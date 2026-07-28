@@ -132,3 +132,45 @@ def test_mutate_on_an_unknown_id_raises_cleanly(tdir):
         model.mutate(tdir, "real-efort", {"goal": "typo"}, actor="cli")
     assert not os.path.exists(os.path.join(tdir, "threads", "real-efort")), \
         "a failed mutate must not create the thread directory"
+
+
+@pytest.mark.parametrize("body", [
+    '{"worktrees": 5}', '{"worktrees": true}', '{"worktrees": 1.5}',
+    '{"blocked_by": 7}', '{"issues": "nope"}', '{"tags": {"a": 1}}',
+])
+def test_load_thread_never_raises_on_a_non_list_field(tdir, body):
+    d = os.path.join(tdir, "threads", "x")
+    os.makedirs(d)
+    with open(os.path.join(d, "thread.json"), "w") as fh:
+        fh.write(body)
+    t = model.load_thread(tdir, "x")
+    assert t["_status"] in ("degraded", "ok", "loader_crash")
+    assert isinstance(t["worktrees"], list)
+    assert isinstance(t["blocked_by"], list)
+
+
+def test_a_bare_string_worktrees_is_not_shredded(tdir):
+    d = os.path.join(tdir, "threads", "x")
+    os.makedirs(d)
+    with open(os.path.join(d, "thread.json"), "w") as fh:
+        fh.write('{"schema_version": 1, "id": "x", "worktrees": "/abs/path"}')
+    assert model.load_thread(tdir, "x")["worktrees"] == []
+
+
+def test_concurrent_appends_do_not_lose_a_worktree(tdir):
+    """The lost update the whole locking design exists to prevent."""
+    model.new_thread(tdir, "Race Test")
+    a = {"path": "/wt/a", "branch": None, "added_at": None}
+    b = {"path": "/wt/b", "branch": None, "added_at": None}
+    model.mutate(tdir, "race-test", {}, actor="cli", appends={"worktrees": [a]})
+    model.mutate(tdir, "race-test", {}, actor="cli", appends={"worktrees": [b]})
+    paths = [w["path"] for w in model.load_thread(tdir, "race-test")["worktrees"]]
+    assert paths == ["/wt/a", "/wt/b"], "lost update: %s" % paths
+
+
+def test_appends_are_idempotent(tdir):
+    model.new_thread(tdir, "Dedup Test")
+    a = {"path": "/wt/a", "branch": None, "added_at": None}
+    model.mutate(tdir, "dedup-test", {}, actor="cli", appends={"worktrees": [a]})
+    model.mutate(tdir, "dedup-test", {}, actor="cli", appends={"worktrees": [a]})
+    assert len(model.load_thread(tdir, "dedup-test")["worktrees"]) == 1

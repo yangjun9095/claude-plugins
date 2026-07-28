@@ -30,6 +30,11 @@ class ThreadNotFound(Exception):
     attempt to write a record into a directory that was never allocated."""
 
 
+class ThreadIdUnavailable(Exception):
+    """All numeric suffixes for this slug are taken. Must reach the user as one
+    line and rc 2, not a bare ValueError traceback."""
+
+
 def slugify(title):
     s = unicodedata.normalize("NFKD", title or "")
     s = s.encode("ascii", "ignore").decode("ascii").lower()
@@ -50,9 +55,19 @@ def _thread_path(threads_dir, tid):
     return os.path.join(thread_dir(threads_dir, tid), "thread.json")
 
 
+def _as_list(value):
+    """Persisted JSON is user- and future-writable, so a field declared as a list
+    can legally arrive as anything. `for x in value or []` raises TypeError on a
+    truthy non-iterable (5, true, 1.5) and silently SHREDS a bare string into
+    per-character entries -- which mutate then writes back, persisting the
+    corruption. Measured: {"worktrees": "/abs/path"} produced 9 garbage records.
+    """
+    return list(value) if isinstance(value, (list, tuple)) else []
+
+
 def _normalize_worktrees(value):
     out = []
-    for entry in value or []:
+    for entry in _as_list(value):
         if isinstance(entry, str):
             out.append({"path": entry, "branch": None, "added_at": None})
         elif isinstance(entry, dict):
@@ -72,8 +87,7 @@ def _skeleton(tid, status, problems):
     return t
 
 
-def load_thread(threads_dir, tid):
-    """Never raises. Always returns something renderable carrying _status."""
+def _load_thread_inner(threads_dir, tid):
     path = _thread_path(threads_dir, tid)
     store.refresh_dir(os.path.dirname(path))
     text, err = store.read_text_resilient(path)
@@ -112,9 +126,30 @@ def load_thread(threads_dir, tid):
     out["id"] = obj.get("id") or tid
     out["rev"] = obj.get("rev") if isinstance(obj.get("rev"), int) else 0
     out["worktrees"] = _normalize_worktrees(out.get("worktrees"))
+    for key in ("blocked_by", "issues", "tags"):
+        coerced = _as_list(out.get(key))
+        if coerced != out.get(key):
+            problems.append("%s was not a list; ignored" % key)
+            if status == "ok":
+                status = "degraded"
+        out[key] = coerced
     out["_status"] = status
     out["_problems"] = problems
     return out
+
+
+def load_thread(threads_dir, tid):
+    """Never raises. Always returns something renderable carrying _status.
+
+    The guarantee is structural: _load_thread_inner does the work and ANY
+    escaping exception becomes a loader_crash record. Enumerating field types
+    is not sufficient on its own -- persisted JSON is future- and
+    hand-writable, so the set of malformed shapes is open-ended.
+    """
+    try:
+        return _load_thread_inner(threads_dir, tid)
+    except BaseException as exc:
+        return _skeleton(tid, "loader_crash", [repr(exc)])
 
 
 def load_all(threads_dir):
@@ -139,8 +174,11 @@ def load_all(threads_dir):
 
 def _allocate_id(threads_dir, base):
     root = os.path.join(threads_dir, "threads")
-    if not os.path.isdir(root):
-        os.makedirs(root, 0o700)
+    # exist_ok on the SHARED parent is correct and required: two first-ever
+    # `abd thread new` calls race here and the loser got an uncaught
+    # FileExistsError. The prohibition on exist_ok applies to the PER-ID
+    # directory below, where it would let two nodes adopt one id.
+    os.makedirs(root, 0o700, exist_ok=True)
     for suffix in [""] + ["-%d" % n for n in range(2, 10)]:
         tid = base + suffix
         try:
@@ -150,7 +188,8 @@ def _allocate_id(threads_dir, base):
             return tid
         except OSError:
             continue
-    raise ValueError("could not allocate an id for %r; use a different title" % base)
+    raise ThreadIdUnavailable(
+        "could not allocate an id for %r; use a different title" % base)
 
 
 def new_thread(threads_dir, title, **kw):
@@ -170,8 +209,18 @@ def new_thread(threads_dir, title, **kw):
     return dict(t, _status="ok", _problems=[])
 
 
-def mutate(threads_dir, tid, changes, actor="cli"):
-    """Locked read-modify-write with a rev CAS. Retries 3x on a rev mismatch."""
+def mutate(threads_dir, tid, changes, actor="cli", appends=None):
+    """Locked read-modify-write with a rev CAS. Retries 3x on a rev mismatch.
+
+    `appends` merges list items INSIDE the lock, after the fresh re-read --
+    unlike `changes`, which replaces a field wholesale. A caller that
+    precomputes `cur + [new]` outside the lock and passes it via `changes`
+    reads the same base as a concurrent writer, and the CAS cannot catch it:
+    both readers saw the same rev, so the second writer's field-level append
+    silently overwrites the first's -- a lost update one layer above the very
+    lock this function holds. Do not "simplify" this back into a precomputed
+    list passed through `changes`.
+    """
     d = thread_dir(threads_dir, tid)
     path = _thread_path(threads_dir, tid)
     for _ in range(3):
@@ -193,6 +242,13 @@ def mutate(threads_dir, tid, changes, actor="cli"):
             out = {k: v for k, v in fresh.items() if not k.startswith("_")}
             for k, v in (changes or {}).items():
                 out[k] = v
+            for k, items in (appends or {}).items():
+                base = _as_list(out.get(k))
+                seen = {json.dumps(x, sort_keys=True) for x in base}
+                for item in items:
+                    if json.dumps(item, sort_keys=True) not in seen:
+                        base.append(item)
+                out[k] = base
             out["worktrees"] = _normalize_worktrees(out.get("worktrees"))
             out["rev"] = expected_rev + 1
             out["updated_at"] = utcnow_z()

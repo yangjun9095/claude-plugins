@@ -65,12 +65,16 @@ def _cmd_thread(argv):
                 val = getattr(args, field, None)
                 if val is not None:
                     changes[field] = val
+            appends = None
             if args.add_worktree:
-                cur = model.load_thread(threads_dir, args.id)["worktrees"]
-                changes["worktrees"] = cur + [
+                # Pass it as an APPEND so the merge happens inside mutate's lock.
+                # Precomputing `cur + [new]` here loses a concurrent add: the CAS
+                # sees a matching rev and overwrites the other writer's entry.
+                appends = {"worktrees": [
                     {"path": os.path.abspath(args.add_worktree),
-                     "branch": None, "added_at": utcnow_z()}]
-            model.mutate(threads_dir, args.id, changes, actor="cli")
+                     "branch": None, "added_at": utcnow_z()}]}
+            model.mutate(threads_dir, args.id, changes, actor="cli",
+                         appends=appends)
             return 0
         if args.verb == "park":
             model.mutate(threads_dir, args.id,
@@ -84,6 +88,9 @@ def _cmd_thread(argv):
             model.mutate(threads_dir, args.id,
                          {"done": False, "done_at": None, "parked": False}, actor="cli")
             return 0
+    except model.ThreadIdUnavailable as exc:
+        sys.stderr.write("abd: %s\n" % exc)
+        return 2
     except model.ThreadNotFound as exc:
         sys.stderr.write("abd: no thread %r (list them with: abd board --json)\n"
                          % str(exc))
