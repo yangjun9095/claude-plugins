@@ -3,6 +3,8 @@ import errno
 import io
 import json
 import os
+import random
+import socket
 import time
 
 _ESTALE_TRIES = 4
@@ -77,3 +79,55 @@ def read_text_resilient(path):
                 return None, "missing"
             return None, "io:%s" % errno.errorcode.get(exc.errno, exc.errno)
     return None, "estale_giveup"              # defensive; loop always returns
+
+
+HOST = socket.gethostname().split(".")[0].lower()
+LOCK_TIMEOUT_S = 5.0
+
+
+class Lock(object):
+    __slots__ = ("fd", "path")
+
+    def __init__(self, fd, path):
+        self.fd = fd
+        self.path = path
+
+
+def acquire_thread_lock(thread_dir):
+    """Return a Lock, or None meaning FAILED OPEN.
+
+    O_CREAT|O_EXCL is the ONLY permitted primitive: $HOME is mounted
+    nolock,local_lock=all, so flock/fcntl are client-local and give no
+    cross-node exclusion. Never blocks unboundedly. NEVER breaks another
+    holder's lock -- an mtime-based 'break if older than T' branch is the
+    classic unlink race and was demonstrated to put two writers in the
+    critical section. Stale cleanup is the board's job, not an agent's.
+    """
+    p = os.path.join(thread_dir, ".lock")
+    deadline = time.time() + LOCK_TIMEOUT_S
+    while True:
+        try:
+            fd = os.open(p, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)
+            os.write(fd, json.dumps(
+                {"host": HOST, "pid": os.getpid(), "ts": time.time()}).encode("utf-8"))
+            os.fsync(fd)
+            return Lock(fd, p)
+        except OSError as exc:
+            if exc.errno != errno.EEXIST:
+                return None                       # fail open
+            if time.time() > deadline:
+                return None                       # fail open, never wedge
+            time.sleep(0.01 + random.random() * 0.02)
+
+
+def release_thread_lock(lk):
+    if lk is None:
+        return                                    # REQUIRED GUARD -- see the test
+    try:
+        os.close(lk.fd)
+    except OSError:
+        pass
+    try:
+        os.unlink(lk.path)
+    except OSError:
+        pass
