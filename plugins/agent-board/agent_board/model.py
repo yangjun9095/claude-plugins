@@ -4,6 +4,7 @@ import re
 import unicodedata
 
 from agent_board import store
+from agent_board.events import append_event
 from agent_board.timeutil import utcnow_z
 
 SCHEMA_VERSION = 1
@@ -285,11 +286,3 @@ def mutate(threads_dir, tid, changes, actor="cli", appends=None):
         })
         return dict(out, _status="ok", _problems=[])
     raise RuntimeError("thread busy, retry")          # surfaced as rc 75 by the CLI
-
-
-# TODO(Task 7): delete this stub and replace with
-# `from agent_board.events import append_event` once agent_board/events.py lands.
-# Event shards have their own concurrency design and belong to Task 7 -- this
-# is a temporary no-op so `mutate()` above has something to call.
-def append_event(*a, **kw):
-    pass
