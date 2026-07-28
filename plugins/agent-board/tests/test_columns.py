@@ -128,7 +128,11 @@ def test_stale_blocks_reports_done_and_missing():
 ])
 def test_dirty_is_load_bearing(age, dirty, expected):
     """`dirty` must actually change the column. It changed nothing in 0 of 16
-    age values -- the motivating measurement was unimplemented."""
+    age values -- the motivating measurement was unimplemented.
+
+    Only the (5.0, 0, PARKED) case actually falsifies the pre-fix bug; the other
+    three overlap existing tests and are kept for readability as a contrast set.
+    Do not read the parametrisation as four independent proofs."""
     t = T("a")
     assert columns.column(t, {"a": t}, D(age_days=age, dirty=dirty), TH) == expected
 
@@ -140,10 +144,21 @@ def test_dirty_is_load_bearing(age, dirty, expected):
     (11.0, 9, "PARKED"),   # dirt band [10,7) is empty, so dirt cannot rescue it
 ])
 def test_inverted_thresholds_have_defined_semantics(age, dirty, expected):
-    """With active_commit_days > parked_idle_days the dirt band degenerates to
-    empty and active_commit_days alone decides. That is coherent, not a bug --
-    an earlier version of this test asserted PARKED for age=8, which contradicted
-    the user's own config saying anything under 10 days is recent."""
+    """CHARACTERISATION test, not a regression test -- it pins behaviour, it does
+    not discriminate this fix from its predecessors.
+
+    With active_commit_days > parked_idle_days the dirt band degenerates to empty
+    and active_commit_days alone decides. That is coherent, not a bug: an earlier
+    version asserted PARKED for age=8, contradicting the user's own config saying
+    anything under 10 days is recent.
+
+    Structural limit, verified by reimplementing all three historical versions of
+    column() and running these four cases against each: they produce IDENTICAL
+    output under the pre-fix, round-1-clamped, and final logic. Rule 1
+    (age < active_days) absorbs the whole zone where rule 3's cutoff choice would
+    differ, so NO age value under an inverted config can discriminate that line.
+    The value here is catching a future gross regression (an unconditional
+    `if dirty: ACTIVE`, or a dirt_days larger than 11), not proving this diff."""
     t = T("a")
     bad = {"active_commit_days": 10, "parked_idle_days": 7,
            "needs_attention_idle_hours": 24}
@@ -156,6 +171,13 @@ def test_a_done_thread_does_not_advertise_a_stale_block():
     threads = {"a": a, "b": b}
     assert columns.needs_attention(a, threads, D()) == []
     assert columns.stale_blocks(threads) == []
+
+
+def test_a_done_thread_does_not_advertise_a_dangling_blocker():
+    """DONE threads suppress dangling_blocker just as they suppress stale_block,
+    mirroring stale_blocks() which skips DONE threads entirely."""
+    a = T("a", done=True, blocked_by=["ghost"])
+    assert columns.needs_attention(a, {"a": a}, D()) == []
 
 
 def test_attention_reasons_are_deduplicated():
