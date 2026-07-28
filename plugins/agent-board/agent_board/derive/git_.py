@@ -71,7 +71,18 @@ def ref_exists(repo, ref):
 
 
 def default_branch(repo, cfg_branch=None, remote="origin"):
-    """Probe REMOTE refs before local. Never return the literal 'HEAD'."""
+    """Probe REMOTE refs before local. Never return the literal 'HEAD'.
+
+    `cfg_branch` is a DELIBERATE override and is honoured first, even when it
+    names a local ref that differs from the remote default. That is what
+    configuration means -- the same principle as an explicitly parked thread
+    beating derived PR state. The remote-before-local rule governs
+    AUTO-DETECTION, not explicit user intent.
+
+    The cost is real and accepted: a stale `project.default_branch` silently
+    poisons every ahead/behind number and every merge-base. `abd doctor` (M3)
+    warns when the configured branch differs from the resolved remote default.
+    """
     if cfg_branch and ref_exists(repo, cfg_branch):
         return cfg_branch
     out = _git(repo, "symbolic-ref", "--quiet", "refs/remotes/%s/HEAD" % remote)
@@ -133,6 +144,24 @@ def branch_rows(repo, base):
     return rows
 
 
+# Number of SPACE-SEPARATED header fields before the path in each porcelain-v2
+# entry type. Under -z the path is last and UNQUOTED, so it may contain spaces:
+# `split(" ")[-1]` returns only the last WORD. Measured: a repo with
+# "my file.txt" and "deep dir/two words.py" produced
+# {'file.txt','words.py','plain.txt'} -- two real paths missing and two
+# FABRICATED ones present.
+_V2_FIELDS = {"1": 8, "2": 9, "u": 10, "?": 1, "!": 1}
+
+
+def _v2_path(tok):
+    """Return the path from a porcelain-v2 -z entry, spaces intact."""
+    nfields = _V2_FIELDS.get(tok[:1])
+    if nfields is None:
+        return None
+    parts = tok.split(" ", nfields)
+    return parts[nfields] if len(parts) > nfields else None
+
+
 def status_v2(wt):
     """--porcelain=v2 -z -b -uall. -uall costs only 1.7% over normal and gives
     complete dirty sets; -uno is 3.5x faster but destroys the headline feature."""
@@ -168,10 +197,14 @@ def status_v2(wt):
         elif tok.startswith("#"):
             continue
         elif tok[:1] in ("1", "?", "u"):
-            res["dirty"].add(tok.split(" ")[-1])
+            path = _v2_path(tok)
+            if path:
+                res["dirty"].add(path)
         elif tok[:1] == "2":
             # a rename: the ORIGIN path is the NEXT NUL token. Consume it, add both.
-            res["dirty"].add(tok.split(" ")[-1])
+            path = _v2_path(tok)
+            if path:
+                res["dirty"].add(path)
             if i < len(tokens):
                 if tokens[i]:
                     res["dirty"].add(tokens[i])

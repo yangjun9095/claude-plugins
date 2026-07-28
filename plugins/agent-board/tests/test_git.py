@@ -123,3 +123,43 @@ def test_changed_files_uses_three_dot_semantics(repo_with_ahead_behind):
     changed = git_.changed_files(str(main), "trunk")
     assert changed == {"feat0.txt", "feat1.txt"}
     assert not any(f.startswith("trunk") for f in changed)
+
+
+def test_status_v2_preserves_paths_containing_spaces(repo_with_worktrees):
+    main, wts = repo_with_worktrees
+    wt = wts[0]
+    (wt / "my file.txt").write_text("y")
+    (wt / "deep dir").mkdir()
+    (wt / "deep dir" / "two words.py").write_text("y")
+    (wt / "plain.txt").write_text("y")
+    git(wt, "add", "my file.txt")
+    dirty = git_.status_v2(str(wt))["dirty"]
+    assert "my file.txt" in dirty
+    assert "deep dir/two words.py" in dirty
+    assert "plain.txt" in dirty
+    assert "file.txt" not in dirty, "fabricated path from a truncated split"
+    assert "words.py" not in dirty, "fabricated path from a truncated split"
+
+
+def test_status_v2_records_both_sides_of_a_staged_rename(repo_with_worktrees):
+    """A "2 " entry's origin path is the NEXT NUL token; failing to consume it
+    desynchronises the whole token stream for that worktree."""
+    main, wts = repo_with_worktrees
+    wt = wts[1]
+    (wt / "old name.txt").write_text("content\n")
+    git(wt, "add", "old name.txt")
+    git(wt, "commit", "-qm", "add old")
+    git(wt, "mv", "old name.txt", "new name.txt")
+    (wt / "after.txt").write_text("z")
+    dirty = git_.status_v2(str(wt))["dirty"]
+    assert "new name.txt" in dirty and "old name.txt" in dirty, dirty
+    assert "after.txt" in dirty, "stream desynchronised after the rename entry"
+
+
+def test_config_branch_is_a_deliberate_override_even_over_the_remote_default(
+        repo_local_master_remote_trunk):
+    """Explicit config wins over auto-detection -- the remote-first rule governs
+    detection order, not user intent."""
+    repo = str(repo_local_master_remote_trunk)
+    assert git_.default_branch(repo) == "trunk"
+    assert git_.default_branch(repo, cfg_branch="master") == "master"
