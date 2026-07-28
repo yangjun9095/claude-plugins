@@ -174,3 +174,28 @@ def test_appends_are_idempotent(tdir):
     model.mutate(tdir, "dedup-test", {}, actor="cli", appends={"worktrees": [a]})
     model.mutate(tdir, "dedup-test", {}, actor="cli", appends={"worktrees": [a]})
     assert len(model.load_thread(tdir, "dedup-test")["worktrees"]) == 1
+
+
+def test_appends_dedup_by_path_not_whole_record(tdir):
+    """The CLI stamps a fresh added_at every invocation, so whole-record equality
+    would let `--add-worktree /same/path` run twice append the same worktree
+    twice and render it twice on one card. Identity is the path."""
+    model.new_thread(tdir, "Restamp Test")
+    for stamp in ("2026-07-28T10:00:00Z", "2026-07-28T11:00:00Z"):
+        model.mutate(tdir, "restamp-test", {}, actor="cli", appends={
+            "worktrees": [{"path": "/wt/same", "branch": None, "added_at": stamp}]})
+    wts = model.load_thread(tdir, "restamp-test")["worktrees"]
+    assert [w["path"] for w in wts] == ["/wt/same"], wts
+    assert wts[0]["added_at"] == "2026-07-28T10:00:00Z", "first add wins"
+
+
+def test_malformed_worktrees_is_flagged_not_silently_dropped(tdir):
+    """Un-crashing is not enough: the user must be told data was discarded."""
+    d = os.path.join(tdir, "threads", "x")
+    os.makedirs(d)
+    with open(os.path.join(d, "thread.json"), "w") as fh:
+        fh.write('{"schema_version": 1, "id": "x", "worktrees": "/abs/path"}')
+    t = model.load_thread(tdir, "x")
+    assert t["worktrees"] == []
+    assert t["_status"] == "degraded"
+    assert any("worktrees" in p for p in t["_problems"]), t["_problems"]

@@ -55,6 +55,20 @@ def _thread_path(threads_dir, tid):
     return os.path.join(thread_dir(threads_dir, tid), "thread.json")
 
 
+# Which field of an appended record establishes identity. Whole-record equality
+# is WRONG for worktrees: the CLI stamps a fresh `added_at` on every invocation,
+# so `--add-worktree /same/path` twice at different times would append the same
+# worktree twice and render it twice on one card.
+_APPEND_KEYS = {"worktrees": "path"}
+
+
+def _append_identity(field, item):
+    key = _APPEND_KEYS.get(field)
+    if key and isinstance(item, dict):
+        return json.dumps(item.get(key), sort_keys=True)
+    return json.dumps(item, sort_keys=True)
+
+
 def _as_list(value):
     """Persisted JSON is user- and future-writable, so a field declared as a list
     can legally arrive as anything. `for x in value or []` raises TypeError on a
@@ -125,7 +139,14 @@ def _load_thread_inner(threads_dir, tid):
         out.setdefault(k, list(default) if isinstance(default, list) else default)
     out["id"] = obj.get("id") or tid
     out["rev"] = obj.get("rev") if isinstance(obj.get("rev"), int) else 0
-    out["worktrees"] = _normalize_worktrees(out.get("worktrees"))
+    raw_worktrees = out.get("worktrees")
+    out["worktrees"] = _normalize_worktrees(raw_worktrees)
+    if raw_worktrees is not None and not isinstance(raw_worktrees, (list, tuple)):
+        # Coercing without flagging would leave the headline field of this very
+        # bug silently dropping data -- un-crashed but still invisible.
+        problems.append("worktrees was not a list; ignored")
+        if status == "ok":
+            status = "degraded"
     for key in ("blocked_by", "issues", "tags"):
         coerced = _as_list(out.get(key))
         if coerced != out.get(key):
@@ -244,10 +265,12 @@ def mutate(threads_dir, tid, changes, actor="cli", appends=None):
                 out[k] = v
             for k, items in (appends or {}).items():
                 base = _as_list(out.get(k))
-                seen = {json.dumps(x, sort_keys=True) for x in base}
+                seen = {_append_identity(k, x) for x in base}
                 for item in items:
-                    if json.dumps(item, sort_keys=True) not in seen:
+                    ident = _append_identity(k, item)
+                    if ident not in seen:
                         base.append(item)
+                        seen.add(ident)
                 out[k] = base
             out["worktrees"] = _normalize_worktrees(out.get("worktrees"))
             out["rev"] = expected_rev + 1
