@@ -3,7 +3,9 @@ LIVE = ("ACTIVE", "BLOCKED", "IN REVIEW")
 
 def column(t, threads, derived, thresholds):
     """Ordered, first match wins. Each rule is an iff because it implicitly
-    negates every earlier one."""
+    negates every earlier one. Clamp so the two windows cannot invert: with
+    active_commit_days > parked_idle_days an idle thread returns ACTIVE,
+    which is wrong. Never validate config ordering, so dirty must be defensive."""
     if t.get("done"):
         return "DONE"
     for dep in t.get("blocked_by") or []:
@@ -16,15 +18,18 @@ def column(t, threads, derived, thresholds):
         return "IN REVIEW"
     age = derived.get("age_days")
     dirty = derived.get("dirty") or 0
+    active_days = thresholds["active_commit_days"]
+    parked_days = thresholds["parked_idle_days"]
+    dirt_days = max(parked_days, active_days)
     if derived.get("live_jobs"):
         return "ACTIVE"
-    if age is not None and age < thresholds["active_commit_days"]:
-        return "ACTIVE"
-    if dirty > 0 and age is not None and age < thresholds["parked_idle_days"]:
-        return "ACTIVE"
-    if age is not None and age >= thresholds["parked_idle_days"]:
-        return "PARKED"
-    return "ACTIVE"
+    if age is not None and age < active_days:
+        return "ACTIVE"                       # recent commit
+    if dirty > 0 and age is not None and age < dirt_days:
+        return "ACTIVE"                       # uncommitted work, still fresh
+    if age is not None and age >= active_days:
+        return "PARKED"                       # idle AND clean
+    return "ACTIVE"                           # age unknown only
 
 
 def needs_attention(t, threads, derived):
@@ -48,13 +53,23 @@ def needs_attention(t, threads, derived):
         reasons.append("missing_worktree")
     if derived.get("lock_stale"):
         reasons.append("lock_stale")
-    for dep in t.get("blocked_by") or []:
-        other = (threads or {}).get(dep)
-        if other is None:
-            reasons.append("dangling_blocker")
-        elif other.get("done"):
-            reasons.append("stale_block")
-    return reasons
+    # `not t.get("done")` mirrors stale_blocks(): a DONE card must not advertise
+    # a stale_block for a dependency that is also done.
+    if not t.get("done"):
+        for dep in t.get("blocked_by") or []:
+            other = (threads or {}).get(dep)
+            if other is None:
+                reasons.append("dangling_blocker")
+            elif other.get("done"):
+                reasons.append("stale_block")
+    # dedupe: two done dependencies otherwise emit stale_block twice, which a
+    # per-reason badge renderer would draw as a duplicate icon.
+    seen, out = set(), []
+    for r in reasons:
+        if r not in seen:
+            seen.add(r)
+            out.append(r)
+    return out
 
 
 def stale_blocks(threads):

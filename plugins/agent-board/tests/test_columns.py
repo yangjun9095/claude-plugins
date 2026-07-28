@@ -35,14 +35,14 @@ def test_blocked_when_a_dependency_is_not_done():
 def test_a_done_dependency_does_not_block():
     t = T("a", blocked_by=["b"])
     threads = {"a": t, "b": T("b", done=True)}
-    assert columns.column(t, threads, D(), TH) != "BLOCKED"
+    assert columns.column(t, threads, D(), TH) == "ACTIVE"
 
 
 def test_a_missing_dependency_does_not_block_and_does_not_raise():
     """A dangling id raised KeyError and took the whole board down. Declared
     state is user-authored and a thread file can be deleted at any time."""
     t = T("a", blocked_by=["ghost"])
-    assert columns.column(t, {"a": t}, D(), TH) != "BLOCKED"
+    assert columns.column(t, {"a": t}, D(), TH) == "ACTIVE"
 
 
 def test_parked_beats_an_open_pr():
@@ -118,6 +118,42 @@ def test_stale_blocks_reports_done_and_missing():
                "beta": T("beta", done=True)}
     got = set(columns.stale_blocks(threads))
     assert got == {("alpha", "beta", "DONE"), ("alpha", "ghost", "MISSING")}
+
+
+@pytest.mark.parametrize("age,dirty,expected", [
+    (5.0, 0, "PARKED"),    # idle 5d and clean -> not active
+    (5.0, 3, "ACTIVE"),    # idle 5d but uncommitted work -> active
+    (60.0, 10, "PARKED"),  # the measured case: old dirt is stale junk
+    (1.0, 0, "ACTIVE"),    # recent commit wins regardless
+])
+def test_dirty_is_load_bearing(age, dirty, expected):
+    """`dirty` must actually change the column. It changed nothing in 0 of 16
+    age values -- the motivating measurement was unimplemented."""
+    t = T("a")
+    assert columns.column(t, {"a": t}, D(age_days=age, dirty=dirty), TH) == expected
+
+
+def test_inverted_thresholds_do_not_make_an_idle_thread_active():
+    t = T("a")
+    bad = {"active_commit_days": 10, "parked_idle_days": 7,
+           "needs_attention_idle_hours": 24}
+    # With inverted thresholds, active > parked. An age >= active is treated as
+    # PARKED (not active). So age=11 (> active=10) should be PARKED.
+    assert columns.column(t, {"a": t}, D(age_days=11.0, dirty=0), bad) == "PARKED"
+
+
+def test_a_done_thread_does_not_advertise_a_stale_block():
+    a = T("a", done=True, blocked_by=["b"])
+    b = T("b", done=True)
+    threads = {"a": a, "b": b}
+    assert columns.needs_attention(a, threads, D()) == []
+    assert columns.stale_blocks(threads) == []
+
+
+def test_attention_reasons_are_deduplicated():
+    a = T("a", blocked_by=["b", "c"])
+    threads = {"a": a, "b": T("b", done=True), "c": T("c", done=True)}
+    assert columns.needs_attention(a, threads, D()).count("stale_block") == 1
 
 
 def test_block_cycle_is_detected_and_does_not_recurse_forever():
