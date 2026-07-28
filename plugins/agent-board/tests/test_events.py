@@ -45,6 +45,22 @@ def test_oversized_record_is_truncated_not_rejected(tmp_path):
     assert max(len(l) for l in open(path).read().splitlines()) <= 4096
 
 
+def test_multibyte_record_stays_within_the_byte_bound_and_stays_valid(tmp_path):
+    """The bound is BYTES; slicing by characters is a no-op for multi-byte text."""
+    d = tmp_path / "agent-board"
+    (d / "threads" / "t").mkdir(parents=True)
+    cjk = "日" * 2000
+    events.append_event(str(d), "t", {"kind": "note", "text": cjk,
+                                      "goal": cjk, "next_action": cjk})
+    p = d / "threads" / "t" / "events" / events.shard_name()
+    raw = p.read_bytes().rstrip(b"\n")
+    assert len(raw) <= events.MAX_LINE, "%d bytes exceeds the bound" % len(raw)
+    json.loads(raw.decode("utf-8"))             # must be valid JSON
+    got = events.read_events_tail(str(p), 10)
+    assert len(got) == 1, "the event was dropped, not truncated"
+    assert got[0]["truncated"] is True
+
+
 def test_tail_drops_an_in_flight_partial_final_line(tmp_path):
     """Measured: a reader tailing a live shard saw 5.0% unparseable lines, and a
     killed writer leaves a permanently truncated final line forever."""
@@ -69,6 +85,22 @@ def test_tail_returns_only_the_last_n(tmp_path):
 
 def test_missing_shard_returns_empty(tmp_path):
     assert events.read_events_tail(str(tmp_path / "nope.jsonl"), 5) == []
+
+
+def test_a_non_dict_line_does_not_crash_the_reader(tmp_path):
+    p = tmp_path / "h.jsonl"
+    p.write_text('{"kind":"a","ts":"t"}\n"just a string"\n[1,2]\n{"kind":"b","ts":"t"}\n')
+    got = events.read_events_tail(str(p), 10)
+    assert [r["kind"] for r in got] == ["a", "b"]
+
+
+def test_read_thread_events_survives_a_non_string_ts(tmp_path):
+    d = tmp_path / "agent-board"
+    ev = d / "threads" / "t" / "events"
+    ev.mkdir(parents=True)
+    (ev / "h.jsonl").write_text('{"kind":"a","ts":123}\n{"kind":"b","ts":"t"}\n')
+    got = events.read_thread_events(str(d), "t", 10)
+    assert {r["kind"] for r in got} == {"a", "b"}
 
 
 def test_tail_keeps_every_record_when_the_window_lands_on_a_boundary(tmp_path):
@@ -113,15 +145,21 @@ def test_tail_keeps_every_record_when_the_window_lands_on_a_boundary(tmp_path):
 
 def test_tail_drops_only_the_truncated_leading_record(tmp_path):
     """The complement: when the window really does start mid-record, that
-    fragment must be dropped rather than parsed."""
+    fragment must be dropped rather than parsed.
+
+    Pinned to the exact expected count/first/last -- a bare truthiness check
+    (`assert got`) would also pass under an over-drop that silently ate extra
+    valid records, which is exactly the class of bug this fix round is about.
+    """
     p = tmp_path / "h.jsonl"
     recs = [json.dumps({"kind": "k%d" % i, "ts": "t"}) + "\n" for i in range(4000)]
     blob = "".join(recs).encode()
     nl = blob.rfind(b"\n", 0, len(blob) - 65536)
     p.write_bytes(blob[nl + 5:])             # start deliberately mid-record
     got = events.read_events_tail(str(p), 10 ** 6)
-    assert got, "should still return the intact records"
-    assert all("kind" in r for r in got)
+    assert len(got) == 2259, "expected exactly 2259 intact records, got %d" % len(got)
+    assert got[0]["kind"] == "k1741"
+    assert got[-1]["kind"] == "k3999"
 
 
 def test_short_file_never_drops_its_first_record(tmp_path):

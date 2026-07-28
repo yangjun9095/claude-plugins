@@ -36,12 +36,27 @@ def append_event(threads_dir, tid, record):
                     rec[field] = rec[field][:512] + "…"
             rec["truncated"] = True
             line = json.dumps(rec, ensure_ascii=False, sort_keys=True)
-            if len(line.encode("utf-8")) > MAX_LINE:
-                line = line[:MAX_LINE - 2] + '"}'
+        if len(line.encode("utf-8")) > MAX_LINE:
+            # NEVER slice serialised JSON. Slicing by characters while the bound
+            # is measured in BYTES is a no-op for multi-byte text, and appending
+            # '"}' to an already-closed object yields invalid JSON that the
+            # reader silently skips -- so the event is DROPPED, not truncated.
+            # Measured: three 2000-char CJK fields -> 4747 bytes, unparseable,
+            # reader saw 0 records. Emit a minimal VALID record instead.
+            line = json.dumps({
+                "ts": str(rec.get("ts"))[:32],
+                "host": str(rec.get("host"))[:64],
+                "kind": str(rec.get("kind"))[:64],
+                "actor": str(rec.get("actor"))[:64],
+                "truncated": True,
+                "fields_dropped": True,
+            }, ensure_ascii=False, sort_keys=True)
         path = _shard_path(threads_dir, tid)
         d = os.path.dirname(path)
-        if not os.path.isdir(d):
-            os.makedirs(d, 0o700)
+        # exist_ok, not check-then-create: two hosts racing the FIRST event for a
+        # thread both pass an isdir() check, and the loser's FileExistsError is
+        # swallowed by the outer handler -- dropping the event entirely.
+        os.makedirs(d, 0o700, exist_ok=True)
         fd = os.open(path, os.O_WRONLY | os.O_CREAT | os.O_APPEND, 0o600)
         try:
             os.write(fd, (line + "\n").encode("utf-8"))
@@ -94,9 +109,11 @@ def read_events_tail(path, n):
         if not raw.strip():
             continue
         try:
-            out.append(json.loads(raw.decode("utf-8")))
+            parsed = json.loads(raw.decode("utf-8"))
         except Exception:
             continue                            # completes on the next render
+        if isinstance(parsed, dict):            # a bare scalar/array would crash
+            out.append(parsed)                  # the ts sort in read_thread_events
     return out[-n:]
 
 
@@ -111,5 +128,7 @@ def read_thread_events(threads_dir, tid, n):
     for name in shards:
         if name.endswith(".jsonl"):
             records.extend(read_events_tail(os.path.join(d, name), n))
-    records.sort(key=lambda r: r.get("ts") or "")
+    # str(): a non-string ts from a hand-edited or future record would otherwise
+    # raise TypeError out of the one function whose job is catching a human up.
+    records.sort(key=lambda r: str(r.get("ts") or ""))
     return records[-n:]
