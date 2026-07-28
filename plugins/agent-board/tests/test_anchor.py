@@ -22,13 +22,18 @@ def test_agree_from_subdirectory_of_a_worktree(repo_with_worktrees):
     main, wts = repo_with_worktrees
     sub = wts[0] / "deep" / "nested"
     sub.mkdir(parents=True)
-    assert anchor.git_common_dir_pure(str(sub)) == anchor.git_common_dir(str(sub))
+    got = anchor.git_common_dir_pure(str(sub))
+    assert got == anchor.git_common_dir(str(sub))
+    assert got == os.path.join(str(main), ".git")
 
 
 def test_bare_repo_common_dir_is_the_bare_dir_itself(bare_repo_with_worktree):
     bare, wt = bare_repo_with_worktree
     assert anchor.git_common_dir(str(bare)) == str(bare)
-    assert anchor.git_common_dir_pure(str(wt)) == anchor.git_common_dir(str(wt))
+    assert anchor.git_common_dir_pure(str(bare)) == str(bare)
+    got = anchor.git_common_dir_pure(str(wt))
+    assert got == anchor.git_common_dir(str(wt))
+    assert got == str(bare)
 
 
 def test_project_name_strips_dot_git_and_never_returns_the_parent():
@@ -66,3 +71,22 @@ def test_threads_dir_is_invisible_to_git(repo_with_worktrees):
         fh.write("{}")
     assert git(main, "status", "--porcelain").strip() == ""
     assert git(main, "clean", "-xdn").strip() == ""
+
+
+def test_both_resolvers_reject_a_non_directory_start(repo_with_worktrees):
+    """The invariant is agreement on EVERY input."""
+    main, _ = repo_with_worktrees
+    f = main / "base.txt"
+    assert f.is_file()
+    assert anchor.git_common_dir(str(f)) is None
+    assert anchor.git_common_dir_pure(str(f)) is None
+
+
+def test_submodule_resolves_to_the_superproject(repo_with_submodule):
+    """A session inside a submodule must land on the SUPERPROJECT board. Without
+    _demodulize it lands on .git/modules/<name>, a different and empty board."""
+    outer, sub = repo_with_submodule
+    expected = os.path.join(str(outer), ".git")
+    assert anchor.git_common_dir(str(sub)) == expected
+    assert anchor.git_common_dir_pure(str(sub)) == expected
+    assert anchor.resolve_threads_dir(str(sub)) == os.path.join(expected, "agent-board")

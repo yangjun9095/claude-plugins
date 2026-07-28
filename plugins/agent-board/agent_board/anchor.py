@@ -17,6 +17,11 @@ def git_common_dir_pure(start=None):
     """Resolve the git common dir WITHOUT spawning git. Used by the SessionStart
     hook, whose budget forbids a subprocess. Must agree with git_common_dir()."""
     cur = os.path.abspath(start or os.getcwd())
+    # The isdir guard is required for parity, not defensiveness: git_common_dir()
+    # returns None for a non-directory, and without this the pure resolver would
+    # happily walk up from a FILE's parent and return a real .git.
+    if not os.path.isdir(cur):
+        return None
     while True:
         dot = os.path.join(cur, ".git")
         if os.path.isdir(dot):

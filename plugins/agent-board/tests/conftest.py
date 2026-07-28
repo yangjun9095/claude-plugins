@@ -53,3 +53,22 @@ def bare_repo_with_worktree(tmp_path):
     wt = tmp_path / "wt-feat"
     git(bare, "worktree", "add", "-q", "-b", "feat", str(wt))
     return bare, wt
+
+
+@pytest.fixture
+def repo_with_submodule(tmp_path):
+    """Fixture 8: a superproject with a submodule. Returns (outer, sub_path).
+
+    A real submodule's `.git` file holds a RELATIVE `gitdir:` pointing into
+    `<outer>/.git/modules/<name>` -- exactly the path shape _demodulize must
+    truncate back to the superproject.
+    """
+    inner = _init(tmp_path / "inner", branch="trunk")
+    commit(inner, "inner.txt")
+    outer = _init(tmp_path / "outer", branch="trunk")
+    commit(outer, "outer.txt")
+    subprocess.run(["git", "-C", str(outer), "-c", "protocol.file.allow=always",
+                    "submodule", "add", "-q", str(inner), "sub"],
+                   check=True, capture_output=True)
+    git(outer, "commit", "-qm", "add submodule")
+    return outer, outer / "sub"
