@@ -87,3 +87,32 @@ def test_corrupt_config_file_falls_back_to_defaults_without_raising(tmp_path):
     cfg = config.load_config(str(tmp_path))
     assert cfg["scan"]["workers"] == 8
     assert cfg["_problems"], "a corrupt config must be reported, not silently ignored"
+
+
+@pytest.mark.parametrize("body", ["[1, 2, 3]", '"a string"', "null", "42"])
+def test_valid_json_that_is_not_an_object_is_reported(tmp_path, body):
+    """Falling back to defaults is right; doing it silently is not."""
+    (tmp_path / ".agent-board.json").write_text(body)
+    cfg = config.load_config(str(tmp_path))
+    assert cfg["scan"]["workers"] == 8
+    assert cfg["_problems"], "a non-dict config must be reported"
+
+
+def test_unreadable_config_file_is_reported(tmp_path):
+    if os.getuid() == 0:
+        pytest.skip("root bypasses file permissions")
+    p = tmp_path / ".agent-board.json"
+    p.write_text('{"scan": {"workers": 2}}')
+    p.chmod(0o000)
+    try:
+        cfg = config.load_config(str(tmp_path))
+    finally:
+        p.chmod(0o600)          # so tmp_path cleanup cannot fail
+    assert cfg["scan"]["workers"] == 8, "must not inherit the unreadable value"
+    assert cfg["_problems"], "an unreadable config must be reported"
+
+
+def test_absent_config_file_reports_no_problem(tmp_path):
+    """The contrast that makes the two tests above meaningful: a missing file is
+    the normal case and must stay silent."""
+    assert config.load_config(str(tmp_path))["_problems"] == []

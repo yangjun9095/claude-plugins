@@ -5,6 +5,9 @@ import os
 
 CONFIG_NAME = ".agent-board.json"
 
+# Sentinel: distinguishes "file not found" from "JSON parsed to None"
+_UNREAD = object()
+
 DEFAULTS = {
     "config_version": 1,
     "project":    {"name": None, "default_branch": None},
@@ -48,14 +51,20 @@ def _set_path(cfg, dotted, value):
 
 
 def _read_json(path, problems):
+    if not os.path.exists(path):
+        return _UNREAD                                  # normal, silent case
     try:
         with io.open(path, "r", encoding="utf-8") as fh:
             return json.load(fh)
-    except (IOError, OSError):
-        return None
+    except FileNotFoundError:
+        # File was deleted between exists() check and open(), treat as normal
+        return _UNREAD
+    except (IOError, OSError) as exc:
+        problems.append("%s: unreadable: %s" % (path, exc))
+        return _UNREAD
     except (ValueError, UnicodeDecodeError) as exc:
         problems.append("%s: %s" % (path, exc))
-        return None
+        return _UNREAD
 
 
 def load_config(start=None):
@@ -69,6 +78,9 @@ def load_config(start=None):
     found = _read_json(path, problems)
     if isinstance(found, dict):
         cfg = deep_merge(cfg, found)
+    elif found is not _UNREAD:
+        problems.append("%s: top level is %s, expected an object"
+                        % (path, type(found).__name__))
 
     for env, dotted in ENV_MAP.items():
         val = os.environ.get(env)
