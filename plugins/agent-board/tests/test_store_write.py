@@ -105,3 +105,40 @@ def test_read_text_resilient_retries_estale_then_succeeds(tmp_path, monkeypatch)
 
 def test_refresh_dir_never_raises_on_a_missing_dir(tmp_path):
     store.refresh_dir(str(tmp_path / "does-not-exist"))  # must not raise
+
+
+def test_read_text_resilient_never_raises_on_a_nul_byte_path():
+    """`io.open` raises ValueError -- NOT OSError -- for an embedded NUL."""
+    text, err = store.read_text_resilient("/tmp/bad\x00path")
+    assert text is None and err == "bad_path"
+
+
+def test_read_text_resilient_reports_estale_giveup_after_exhausting_retries(
+        tmp_path, monkeypatch):
+    p = tmp_path / "a.txt"
+    p.write_text("ok")
+    calls = {"n": 0}
+
+    def always_estale(*a, **kw):
+        calls["n"] += 1
+        raise IOError(errno.ESTALE, "Stale file handle")
+
+    monkeypatch.setattr(io, "open", always_estale)
+    monkeypatch.setattr(store.time, "sleep", lambda s: None)   # keep it fast
+    text, err = store.read_text_resilient(str(p))
+    assert text is None
+    assert err == "estale_giveup", "got %r -- the give-up branch is unreachable" % err
+    assert calls["n"] == store._ESTALE_TRIES
+
+
+def test_not_utf8_is_not_misreported_as_bad_path(tmp_path):
+    """UnicodeDecodeError subclasses ValueError; wrong arm order breaks this."""
+    p = tmp_path / "bad.bin"
+    p.write_bytes(b"\xff\xfe\x00garbage")
+    assert store.read_text_resilient(str(p)) == (None, "not_utf8")
+
+
+def test_refresh_dir_on_an_existing_dir_is_a_noop(tmp_path):
+    (tmp_path / "f").write_text("x")
+    store.refresh_dir(str(tmp_path))
+    assert (tmp_path / "f").read_text() == "x"

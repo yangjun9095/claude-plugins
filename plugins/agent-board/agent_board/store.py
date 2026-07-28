@@ -58,18 +58,22 @@ def atomic_write_json(path, obj, fsync=True):
 
 
 def read_text_resilient(path):
-    """Return (text, None) or (None, reason). Never raises."""
+    """Return (text, None) or (None, reason). NEVER raises, for ANY input."""
     for k in range(_ESTALE_TRIES):
         try:
             with io.open(path, "r", encoding="utf-8") as fh:
                 return fh.read(), None
-        except UnicodeDecodeError:
+        except UnicodeDecodeError:            # MUST precede ValueError
             return None, "not_utf8"
-        except (IOError, OSError) as exc:
-            if exc.errno == errno.ESTALE and k < _ESTALE_TRIES - 1:
-                time.sleep(0.01 * (k + 1))
-                continue
+        except ValueError:                    # embedded NUL byte in the path
+            return None, "bad_path"
+        except OSError as exc:
+            if exc.errno == errno.ESTALE:
+                if k < _ESTALE_TRIES - 1:
+                    time.sleep(0.01 * (k + 1))
+                    continue
+                return None, "estale_giveup"  # reachable, unlike a post-loop return
             if exc.errno == errno.ENOENT:
                 return None, "missing"
             return None, "io:%s" % errno.errorcode.get(exc.errno, exc.errno)
-    return None, "estale_giveup"
+    return None, "estale_giveup"              # defensive; loop always returns
