@@ -58,6 +58,12 @@
       "source": "./plugins/codeql-quality-review",
       "description": "Audit and fix GitHub Code Quality findings (/security/quality Standard + AI tabs) for Python repos — deploys a manual workflow that dumps SARIF as a downloadable artifact (works around the missing public REST API)",
       "version": "1.0.0"
+    },
+    {
+      "name": "agent-board",
+      "source": "./plugins/agent-board",
+      "description": "Live kanban board over parallel Claude Code agents working in git worktrees",
+      "version": "0.1.0"
     }
   ]
 }

@@ -1,0 +1,10 @@
+{
+  "name": "agent-board",
+  "version": "0.1.0",
+  "description": "Live kanban board over parallel Claude Code agents working in git worktrees.",
+  "author": {"name": "Yang Joon Kim", "url": "https://github.com/yangjun9095"},
+  "homepage": "https://github.com/yangjun9095/claude-plugins",
+  "repository": "https://github.com/yangjun9095/claude-plugins",
+  "license": "MIT",
+  "keywords": ["worktree", "kanban", "orchestration", "git", "tui"]
+}

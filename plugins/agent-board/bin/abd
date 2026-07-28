@@ -1,0 +1,30 @@
+#!/bin/sh
+set -eu
+_src=$0
+while [ -L "$_src" ]; do
+  _dir=$(CDPATH= cd -P "$(/usr/bin/dirname "$_src")" && pwd); _src=$(/usr/bin/readlink "$_src")
+  case $_src in /*) ;; *) _src=$_dir/$_src ;; esac
+done
+ABD_ROOT=$(CDPATH= cd -P "$(/usr/bin/dirname "$_src")/.." && pwd); export ABD_ROOT
+
+_ok() { "$1" -c 'import sys;raise SystemExit(0 if sys.version_info>=(3,8) else 1)' 2>/dev/null; }
+_pick() {
+  if [ -n "${ABD_PYTHON:-}" ] && [ -x "${ABD_PYTHON:-}" ] && _ok "$ABD_PYTHON"; then
+    printf '%s' "$ABD_PYTHON"; return 0
+  fi
+  _best=''
+  for v in python3.14 python3.13 python3.12 python3.11 python3.10 python3.9 python3.8 python3; do
+    _p=$(command -v "$v" 2>/dev/null || true)
+    [ -n "$_p" ] || continue
+    _ok "$_p" || continue
+    [ -z "$_best" ] && _best=$_p
+    if "$_p" -c 'import rich' 2>/dev/null; then printf '%s' "$_p"; return 0; fi
+  done
+  printf '%s' "$_best"
+}
+_py=$(_pick) || _py=''
+if [ -z "$_py" ]; then
+  case "${1:-}" in hook) exit 0 ;; esac
+  echo "agent-board: no python >= 3.8 found (set ABD_PYTHON)" >&2; exit 127
+fi
+PYTHONPATH="$ABD_ROOT${PYTHONPATH:+:$PYTHONPATH}" exec "$_py" -m agent_board "$@"
