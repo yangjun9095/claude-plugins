@@ -93,6 +93,24 @@ class Lock(object):
         self.path = path
 
 
+def _discard_own_lock(fd, path):
+    """Close and remove a lockfile THIS process just created with O_EXCL.
+
+    Not the forbidden "break another holder's lock" -- O_EXCL succeeding proves
+    ownership. Both operations are individually guarded so a failing close
+    cannot prevent the unlink, which is the one that matters: a surviving file
+    poisons the thread permanently.
+    """
+    try:
+        os.close(fd)
+    except OSError:
+        pass
+    try:
+        os.unlink(path)
+    except OSError:
+        pass
+
+
 def acquire_thread_lock(thread_dir):
     """Return a Lock, or None meaning FAILED OPEN.
 
@@ -136,15 +154,15 @@ def acquire_thread_lock(thread_dir):
                 {"host": HOST, "pid": os.getpid(), "ts": time.time()}).encode("utf-8"))
             os.fsync(fd)
         except OSError:
-            try:
-                os.close(fd)
-            except OSError:
-                pass
-            try:
-                os.unlink(p)
-            except OSError:
-                pass
+            _discard_own_lock(fd, p)
             return None                           # fail open, nothing left behind
+        except BaseException:
+            # Same failure, different exception type. Mirrors
+            # atomic_write_json's own `except BaseException: ...; raise`.
+            # Re-raise rather than returning None: a signal or an exhausted heap
+            # is not a "lock unavailable" condition and must not be downgraded.
+            _discard_own_lock(fd, p)
+            raise
         return Lock(fd, p)
 
 

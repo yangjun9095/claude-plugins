@@ -5,6 +5,8 @@ import subprocess
 import sys
 import textwrap
 
+import pytest
+
 from agent_board import store
 
 
@@ -92,6 +94,24 @@ def test_failure_after_open_leaves_no_orphan_lockfile(tmp_path, monkeypatch):
     assert not os.path.exists(os.path.join(str(tmp_path), ".lock")), \
         "orphan lockfile would poison this thread forever"
     # and the thread is still usable afterwards
+    lk = store.acquire_thread_lock(str(tmp_path))
+    assert lk is not None
+    store.release_thread_lock(lk)
+
+
+def test_non_oserror_in_the_open_window_also_cleans_up_and_propagates(
+        tmp_path, monkeypatch):
+    """MemoryError/KeyboardInterrupt in the same window orphans the lock just as
+    ENOSPC did. Cleanup must cover BaseException -- but the exception must
+    propagate, not be downgraded to a 'lock unavailable' None."""
+    def boom(fd, data):
+        raise MemoryError("simulated heap exhaustion")
+
+    monkeypatch.setattr(os, "write", boom)
+    with pytest.raises(MemoryError):
+        store.acquire_thread_lock(str(tmp_path))
+    monkeypatch.undo()
+    assert not os.path.exists(os.path.join(str(tmp_path), ".lock"))
     lk = store.acquire_thread_lock(str(tmp_path))
     assert lk is not None
     store.release_thread_lock(lk)
