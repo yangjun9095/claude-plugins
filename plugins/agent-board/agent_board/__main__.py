@@ -12,8 +12,18 @@ def _reconfigure_stdout():
 
 def main():
     _reconfigure_stdout()
-    from agent_board.cli import main as cli_main
-    raise SystemExit(cli_main(sys.argv[1:]))
+
+    # Fail-open guarantee for hook invocations: must exit 0 with empty output,
+    # even if import or dispatch fails. Check if this is a hook BEFORE importing.
+    is_hook = len(sys.argv) > 1 and sys.argv[1] == "hook"
+
+    try:
+        from agent_board.cli import main as cli_main
+        raise SystemExit(cli_main(sys.argv[1:]))
+    except BaseException:
+        if is_hook:
+            raise SystemExit(0)
+        raise
 
 
 if __name__ == "__main__":

@@ -25,4 +25,8 @@ tmp=$(mktemp -d); trap 'rm -rf "$tmp"' EXIT
 ln -s "$(cd "$(dirname "$ABD_BIN")" && pwd)/abd" "$tmp/abd"
 env -i PATH="$tmp:/usr/bin:/bin" "$tmp/abd" --version >/dev/null || fail "symlink install broken"
 
+# 5. hook with working interpreter exits 0 with empty output (fail-open guarantee)
+out=$("$ABD_BIN" hook session-start </dev/null 2>&1) || fail "hook with working interpreter must exit 0"
+[ -z "$out" ] || fail "hook with working interpreter must print nothing, got: $out"
+
 echo "PASS"
