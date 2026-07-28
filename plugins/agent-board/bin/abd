@@ -1,11 +1,20 @@
 #!/bin/sh
 set -eu
+
+# Pure-builtin dirname: no PATH, no fork. "/abd" -> "/", "abd" -> "."
+_dirname() {
+  case $1 in
+    */*) _d=${1%/*}; printf '%s' "${_d:-/}" ;;
+    *)   printf '.' ;;
+  esac
+}
+
 _src=$0
 while [ -L "$_src" ]; do
-  _dir=$(CDPATH= cd -P "$(/usr/bin/dirname "$_src")" && pwd); _src=$(/usr/bin/readlink "$_src")
+  _dir=$(CDPATH= cd -P "$(_dirname "$_src")" && pwd); _src=$(readlink "$_src")
   case $_src in /*) ;; *) _src=$_dir/$_src ;; esac
 done
-ABD_ROOT=$(CDPATH= cd -P "$(/usr/bin/dirname "$_src")/.." && pwd); export ABD_ROOT
+ABD_ROOT=$(CDPATH= cd -P "$(_dirname "$_src")/.." && pwd); export ABD_ROOT
 
 _ok() { "$1" -c 'import sys;raise SystemExit(0 if sys.version_info>=(3,8) else 1)' 2>/dev/null; }
 _pick() {
