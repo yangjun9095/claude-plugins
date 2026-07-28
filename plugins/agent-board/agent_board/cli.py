@@ -84,6 +84,10 @@ def _cmd_thread(argv):
             model.mutate(threads_dir, args.id,
                          {"done": False, "done_at": None, "parked": False}, actor="cli")
             return 0
+    except model.ThreadNotFound as exc:
+        sys.stderr.write("abd: no thread %r (list them with: abd board --json)\n"
+                         % str(exc))
+        return 2
     except model.ThreadRejected as exc:
         sys.stderr.write("abd: %s\n" % exc)
         return 2

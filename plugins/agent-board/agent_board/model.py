@@ -24,6 +24,12 @@ class ThreadRejected(Exception):
     """schema_version is newer than we understand: render read-only, never write."""
 
 
+class ThreadNotFound(Exception):
+    """No such thread id. A typo is the most likely user error, so it must
+    produce a one-line message and rc 2 -- never a traceback, and never an
+    attempt to write a record into a directory that was never allocated."""
+
+
 def slugify(title):
     s = unicodedata.normalize("NFKD", title or "")
     s = s.encode("ascii", "ignore").decode("ascii").lower()
@@ -170,6 +176,11 @@ def mutate(threads_dir, tid, changes, actor="cli"):
     path = _thread_path(threads_dir, tid)
     for _ in range(3):
         current = load_thread(threads_dir, tid)
+        if current["_status"] == "missing":
+            # Without this, the write path fails deep inside atomic_write_json
+            # with a raw FileNotFoundError traceback and rc 1 -- measured on a
+            # one-character id typo, which is the likeliest user error there is.
+            raise ThreadNotFound(tid)
         if current["_status"] == "rejected":
             raise ThreadRejected(current["_problems"][0])
         expected_rev = current["rev"]

@@ -122,3 +122,13 @@ def test_rejected_thread_is_never_written(tdir):
         fh.write('{"schema_version": 99, "id": "x"}')
     with pytest.raises(model.ThreadRejected):
         model.mutate(tdir, "x", {"goal": "g"}, actor="cli")
+
+
+def test_mutate_on_an_unknown_id_raises_cleanly(tdir):
+    """A typo'd id must not reach the write path -- it failed there with a raw
+    FileNotFoundError traceback and rc 1."""
+    model.new_thread(tdir, "Real Effort")
+    with pytest.raises(model.ThreadNotFound):
+        model.mutate(tdir, "real-efort", {"goal": "typo"}, actor="cli")
+    assert not os.path.exists(os.path.join(tdir, "threads", "real-efort")), \
+        "a failed mutate must not create the thread directory"
