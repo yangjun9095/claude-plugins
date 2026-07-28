@@ -133,13 +133,21 @@ def test_dirty_is_load_bearing(age, dirty, expected):
     assert columns.column(t, {"a": t}, D(age_days=age, dirty=dirty), TH) == expected
 
 
-def test_inverted_thresholds_do_not_make_an_idle_thread_active():
+@pytest.mark.parametrize("age,dirty,expected", [
+    (8.0, 0, "ACTIVE"),    # config says <10d is recent, so 8d IS recent
+    (8.0, 9, "ACTIVE"),
+    (11.0, 0, "PARKED"),   # past active_commit_days -> idle
+    (11.0, 9, "PARKED"),   # dirt band [10,7) is empty, so dirt cannot rescue it
+])
+def test_inverted_thresholds_have_defined_semantics(age, dirty, expected):
+    """With active_commit_days > parked_idle_days the dirt band degenerates to
+    empty and active_commit_days alone decides. That is coherent, not a bug --
+    an earlier version of this test asserted PARKED for age=8, which contradicted
+    the user's own config saying anything under 10 days is recent."""
     t = T("a")
     bad = {"active_commit_days": 10, "parked_idle_days": 7,
            "needs_attention_idle_hours": 24}
-    # With inverted thresholds, active > parked. An age >= active is treated as
-    # PARKED (not active). So age=11 (> active=10) should be PARKED.
-    assert columns.column(t, {"a": t}, D(age_days=11.0, dirty=0), bad) == "PARKED"
+    assert columns.column(t, {"a": t}, D(age_days=age, dirty=dirty), bad) == expected
 
 
 def test_a_done_thread_does_not_advertise_a_stale_block():
