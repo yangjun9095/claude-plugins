@@ -102,22 +102,50 @@ def acquire_thread_lock(thread_dir):
     holder's lock -- an mtime-based 'break if older than T' branch is the
     classic unlink race and was demonstrated to put two writers in the
     critical section. Stale cleanup is the board's job, not an agent's.
+
+    Creation (O_EXCL open) and population (write the identity metadata) are
+    deliberately TWO separate try/except blocks, not one -- do not merge
+    them. Once O_EXCL succeeds, this process is the sole owner of that
+    inode, so a failure while writing metadata (ENOSPC / EIO -- $HOME on
+    this cluster runs ~97% full, so ENOSPC is not hypothetical) MUST unlink
+    the file it just created before returning None. Unlinking our OWN
+    just-created lock here is not the forbidden "break another holder's
+    lock" -- that prohibition is about files created by OTHER processes.
+    Skipping this and returning None straight from a single merged
+    try/except leaves the orphaned file on disk: every later acquire then
+    sees EEXIST and fails open, permanently, since stale-lock cleanup is
+    board-side and human-driven, not this function's job.
     """
     p = os.path.join(thread_dir, ".lock")
     deadline = time.time() + LOCK_TIMEOUT_S
     while True:
         try:
             fd = os.open(p, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)
-            os.write(fd, json.dumps(
-                {"host": HOST, "pid": os.getpid(), "ts": time.time()}).encode("utf-8"))
-            os.fsync(fd)
-            return Lock(fd, p)
         except OSError as exc:
             if exc.errno != errno.EEXIST:
                 return None                       # fail open
             if time.time() > deadline:
                 return None                       # fail open, never wedge
             time.sleep(0.01 + random.random() * 0.02)
+            continue
+        # O_EXCL succeeded, so this process owns the file. Any failure from
+        # here MUST remove it -- unlinking our OWN just-created lock is not
+        # the forbidden "break another holder's lock".
+        try:
+            os.write(fd, json.dumps(
+                {"host": HOST, "pid": os.getpid(), "ts": time.time()}).encode("utf-8"))
+            os.fsync(fd)
+        except OSError:
+            try:
+                os.close(fd)
+            except OSError:
+                pass
+            try:
+                os.unlink(p)
+            except OSError:
+                pass
+            return None                           # fail open, nothing left behind
+        return Lock(fd, p)
 
 
 def release_thread_lock(lk):

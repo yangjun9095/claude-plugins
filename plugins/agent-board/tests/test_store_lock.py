@@ -1,3 +1,4 @@
+import errno
 import json
 import os
 import subprocess
@@ -76,3 +77,21 @@ def test_eight_concurrent_writers_preserve_all_eight_mutations(tmp_path):
     obj = json.loads(target.read_text())
     missing = [("k%d" % i) for i in range(8) if ("k%d" % i) not in obj]
     assert not missing, "lost updates: %s" % missing
+
+
+def test_failure_after_open_leaves_no_orphan_lockfile(tmp_path, monkeypatch):
+    """A failure between O_EXCL succeeding and the metadata being written must
+    remove the file we just created. Otherwise the orphan poisons the thread
+    permanently: every later acquire sees EEXIST and fails open forever."""
+    def enospc(fd, data):
+        raise OSError(errno.ENOSPC, "No space left on device")
+
+    monkeypatch.setattr(os, "write", enospc)
+    assert store.acquire_thread_lock(str(tmp_path)) is None
+    monkeypatch.undo()
+    assert not os.path.exists(os.path.join(str(tmp_path), ".lock")), \
+        "orphan lockfile would poison this thread forever"
+    # and the thread is still usable afterwards
+    lk = store.acquire_thread_lock(str(tmp_path))
+    assert lk is not None
+    store.release_thread_lock(lk)
