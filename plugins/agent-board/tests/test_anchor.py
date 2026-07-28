@@ -90,3 +90,16 @@ def test_submodule_resolves_to_the_superproject(repo_with_submodule):
     assert anchor.git_common_dir(str(sub)) == expected
     assert anchor.git_common_dir_pure(str(sub)) == expected
     assert anchor.resolve_threads_dir(str(sub)) == os.path.join(expected, "agent-board")
+
+
+def test_both_resolvers_agree_through_a_symlinked_repo_path(repo_with_worktrees, tmp_path):
+    """`git rev-parse` resolves symlinks; an abspath-based pure resolver does not.
+    The hook uses the pure resolver and the CLI uses the subprocess one, so a
+    disagreement here means two different boards for one repo."""
+    main, _ = repo_with_worktrees
+    link = tmp_path / "linked"
+    os.symlink(str(main), str(link))
+    got = anchor.git_common_dir_pure(str(link))
+    assert got == anchor.git_common_dir(str(link))
+    assert got == os.path.join(os.path.realpath(str(main)), ".git")
+    assert anchor.resolve_threads_dir(str(link)) == os.path.join(got, "agent-board")

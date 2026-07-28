@@ -16,7 +16,11 @@ def _read_first_line(path):
 def git_common_dir_pure(start=None):
     """Resolve the git common dir WITHOUT spawning git. Used by the SessionStart
     hook, whose budget forbids a subprocess. Must agree with git_common_dir()."""
-    cur = os.path.abspath(start or os.getcwd())
+    # realpath, NOT abspath: `git rev-parse` resolves symlinks, so an abspath
+    # here makes the two resolvers disagree for a symlinked repo path -- and
+    # since the hook uses the pure resolver while the CLI uses the subprocess
+    # one, that means TWO DIFFERENT BOARDS for one repo.
+    cur = os.path.realpath(start or os.getcwd())
     # The isdir guard is required for parity, not defensiveness: git_common_dir()
     # returns None for a non-directory, and without this the pure resolver would
     # happily walk up from a FILE's parent and return a real .git.
@@ -76,7 +80,7 @@ def git_common_dir(start=None):
     if proc.returncode != 0:
         return None
     out = proc.stdout.strip()
-    return _demodulize(os.path.abspath(out)) if out else None
+    return _demodulize(os.path.realpath(out)) if out else None
 
 
 def project_name(common):

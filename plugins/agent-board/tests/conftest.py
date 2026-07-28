@@ -57,7 +57,7 @@ def bare_repo_with_worktree(tmp_path):
 
 @pytest.fixture
 def repo_with_submodule(tmp_path):
-    """Fixture 8: a superproject with a submodule. Returns (outer, sub_path).
+    """A superproject with a submodule. Returns (outer, sub_path).
 
     A real submodule's `.git` file holds a RELATIVE `gitdir:` pointing into
     `<outer>/.git/modules/<name>` -- exactly the path shape _demodulize must
