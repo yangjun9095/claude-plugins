@@ -2,7 +2,7 @@ import unicodedata
 
 GLYPH = {
     "ok":               "✓",   # v  check
-    "warn":             "⚠",   # !  warning sign (class N -- NOT U+25B2, class A)
+    "warn":             "⚠",   # !  U+26A0 warning sign
     "bad":              "✕",   # x  multiplication x
     "live_job":         "⣿",   # *  braille full cell
     "needs_attention":  "⚑",   # !  black flag
@@ -43,11 +43,28 @@ SEMANTIC = ("ok", "warn", "bad", "blocked", "collision", "needs_attention")
 # The N/Na form of this rule wrongly rejected `…` U+2026 and `·` U+00B7, both of
 # which the spec's own board mockup uses throughout. `⛔` U+26D4 stays banned --
 # it is class W and cw() measures it at 2, which was the original real bug.
-assert all(unicodedata.east_asian_width(c) not in ("W", "F")
-           for g in GLYPH.values() for c in g)
-assert "️" not in "".join(GLYPH.values())
-assert len({GLYPH[k] for k in SEMANTIC}) == len(SEMANTIC)
-assert set(ASCII) == set(GLYPH)
+
+# Each assertion carries a diagnostic. A violation fails at IMPORT, which is a
+# collection error for the whole test file -- so the nicely-formatted messages in
+# test_glyphs.py never run in the one scenario they were written for, and a bare
+# AssertionError would name neither the key nor the codepoint.
+_wide = [(k, c, unicodedata.east_asian_width(c))
+         for k, g in GLYPH.items() for c in g
+         if unicodedata.east_asian_width(c) in ("W", "F")]
+assert not _wide, "double-width glyph(s) shift the card border: %s" % _wide
+
+_vs16 = [k for k, g in GLYPH.items() if "️" in g]
+assert not _vs16, "VS16 makes a codepoint class A; found in: %s" % _vs16
+
+_dupes = {}
+for _k in SEMANTIC:
+    _dupes.setdefault(GLYPH[_k], []).append(_k)
+_collided = {g: ks for g, ks in _dupes.items() if len(ks) > 1}
+assert not _collided, "semantic states share a glyph: %s" % _collided
+
+assert set(ASCII) == set(GLYPH), (
+    "ASCII/GLYPH key mismatch: only-GLYPH=%s only-ASCII=%s"
+    % (sorted(set(GLYPH) - set(ASCII)), sorted(set(ASCII) - set(GLYPH))))
 
 
 def table(ascii_mode):

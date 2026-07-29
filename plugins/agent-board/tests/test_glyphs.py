@@ -1,5 +1,7 @@
 import unicodedata
 
+import pytest
+
 from agent_board.render import glyphs, palette
 
 
@@ -56,21 +58,27 @@ def test_contrast_ratio_reference_values():
     assert round(palette.contrast_ratio("#000000", "#000000"), 1) == 1.0
 
 
-def test_dark_palette_text_colours_meet_wcag_aa():
-    bg = palette.DARK["bg"]
-    for key in ("ok", "warn", "bad", "chrome", "txt", "dim", "faint"):
-        cr = palette.contrast_ratio(palette.DARK[key], bg)
-        assert cr >= 4.5, "DARK[%s] contrast %.2f < 4.5" % (key, cr)
+@pytest.mark.parametrize("theme", ["DARK", "LIGHT"])
+def test_every_palette_text_colour_meets_wcag_aa(theme):
+    """Keys are derived from the palette, not hand-listed. Hand-listed tuples
+    silently under-covered: the LIGHT loop omitted `faint` entirely, so a future
+    edit could push it below 4.5 with nothing failing."""
+    pal = getattr(palette, theme)
+    keys = [k for k in pal if k != "bg"]
+    assert len(keys) >= 6, "palette shrank unexpectedly: %s" % keys
+    for key in keys:
+        cr = palette.contrast_ratio(pal[key], pal["bg"])
+        assert cr >= 4.5, "%s[%s]=%s contrast %.2f < 4.5" % (
+            theme, key, pal[key], cr)
 
 
-def test_light_palette_text_colours_meet_wcag_aa():
-    bg = palette.LIGHT["bg"]
-    for key in ("ok", "warn", "bad", "chrome", "txt", "dim"):
-        cr = palette.contrast_ratio(palette.LIGHT[key], bg)
-        assert cr >= 4.5, "LIGHT[%s] contrast %.2f < 4.5" % (key, cr)
-
-
-def test_dark_hexes_are_not_reused_on_the_light_background():
-    """They score 1.77 / 1.83 / 3.60 / 2.09 on white -- all failing AA."""
-    for key in ("ok", "warn", "chrome"):
-        assert palette.DARK[key] != palette.LIGHT[key]
+def test_no_dark_hex_is_reused_on_the_light_background():
+    """The four cited scores (1.77 / 1.83 / 3.60 / 2.09 on white) are DARK's
+    ok/warn/bad/chrome, but the hand-listed tuple omitted `bad`. Derive the keys
+    instead, and assert the real property -- that any shared hex would fail AA --
+    rather than merely that the strings differ."""
+    for key in [k for k in palette.DARK if k != "bg" and k in palette.LIGHT]:
+        if palette.DARK[key] == palette.LIGHT[key]:
+            cr = palette.contrast_ratio(palette.DARK[key], palette.LIGHT["bg"])
+            assert cr >= 4.5, "%s reused as %s scores %.2f on light" % (
+                key, palette.DARK[key], cr)
