@@ -104,6 +104,79 @@ def _cmd_thread(argv):
     return 2
 
 
+def resolve_color(flag):
+    if flag is not None:
+        return bool(flag)
+    if os.environ.get("NO_COLOR") is not None:      # PRESENCE, not truthiness
+        return False
+    if os.environ.get("CLICOLOR_FORCE") not in (None, "0"):
+        return True
+    return sys.stdout.isatty()
+
+
+def resolve_width(arg):
+    import shutil
+    if arg:
+        return int(arg)
+    size = shutil.get_terminal_size((120, 40))
+    if not sys.stdout.isatty():
+        return 100          # documented clamp: the fallback is echoed back, not detected
+    return size.columns
+
+
+def _cmd_board(argv):
+    import argparse
+    import json as _json
+    import signal
+
+    from agent_board import anchor, board as boardmod
+    from agent_board.render import palette
+    from agent_board.render.emit_plain import emit_plain
+    from agent_board.render.layout import render_board
+
+    if hasattr(signal, "SIGPIPE"):
+        signal.signal(signal.SIGPIPE, signal.SIG_DFL)
+
+    ap = argparse.ArgumentParser(prog="abd board")
+    ap.add_argument("--json", action="store_true")
+    ap.add_argument("--width", type=int)
+    ap.add_argument("--ascii", action="store_true")
+    ap.add_argument("--color", dest="color", action="store_true", default=None)
+    ap.add_argument("--no-color", dest="color", action="store_false")
+    ap.add_argument("--column")
+    ap.add_argument("--root")
+    ap.add_argument("--store")
+    args = ap.parse_args(argv)
+
+    repo = args.root or os.getcwd()
+    threads_dir = args.store or anchor.resolve_threads_dir(repo)
+    if not threads_dir:
+        sys.stderr.write("abd: not in a git repository; set ABD_THREADS_DIR\n")
+        return 2
+
+    data = boardmod.build_board(threads_dir, repo, None)
+    if args.column:
+        data["columns"] = {k: v for k, v in data["columns"].items()
+                           if k == args.column}
+    if args.json:
+        sys.stdout.write(_json.dumps(data, indent=2, sort_keys=True) + "\n")
+        return 0
+    if not any(data["columns"].values()):
+        sys.stdout.write(
+            "no threads yet - open one with: abd thread new --title \"...\"\n")
+        return 0
+
+    ascii_mode = args.ascii or (os.environ.get("ABD_ASCII") == "1")
+    width = resolve_width(args.width)
+    color = resolve_color(args.color)
+    try:
+        for line in render_board(data, width, ascii_mode=ascii_mode):
+            sys.stdout.write(emit_plain(line, palette.DARK, color) + "\n")
+    except BrokenPipeError:
+        return 141
+    return 0
+
+
 def main(argv):
     if not argv:
         sys.stdout.write("usage: abd {board,thread,show,hook,init,doctor} ...\n")
@@ -116,5 +189,7 @@ def main(argv):
         return _hook(argv[1:])
     if cmd == "thread":
         return _cmd_thread(argv[1:])
+    if cmd == "board":
+        return _cmd_board(argv[1:])
     sys.stderr.write("abd: unknown command %r\n" % cmd)
     return 2
