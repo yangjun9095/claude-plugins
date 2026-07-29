@@ -8,6 +8,13 @@ Span = collections.namedtuple("Span", "text style")
 GUT = 2
 CARD_W_PREF = 58
 
+# Below this the card frame's fixed characters (rounded corners, rules, padding)
+# cannot fit, and every line overflows no matter how content is clipped. Measured
+# on a trivial one-card board: width 40 -> max line 44, width 30 -> 44, width 20
+# -> 41. 50 is the first width that fits. Rendering wider than asked is a visible
+# wrap; a broken frame is worse, so clamp and say so.
+MIN_WIDTH = 50
+
 COLUMN_ORDER = ("ACTIVE", "IN REVIEW", "BLOCKED", "PARKED", "DONE")
 
 
@@ -115,6 +122,7 @@ def render_board(board, width, *, ascii_mode=False, meta=None):
     cannot silently swap them.
     """
     g = glyph_table(ascii_mode)
+    width = max(width, MIN_WIDTH)                # see MIN_WIDTH
     m = dict(board.get("meta") or {})
     m.update(meta or {})
     lines = []
@@ -126,8 +134,13 @@ def render_board(board, width, *, ascii_mode=False, meta=None):
     right = "%d open %s %s%d %s %s%d %s %s" % (
         m.get("open", 0), sep, g["live_job"], m.get("live_jobs", 0), sep,
         g["collision"], m.get("collisions", 0), sep, m.get("clock", ""))
-    gapw = max(1, width - cw(left) - cw(right))
-    lines.append([Span(clip(left, width, g["ellipsis"]), "chrome"),
+    # Reserve space for `right` BEFORE clipping `left`, and clip `right` too.
+    # The original clipped only `left` (against the FULL width) and appended
+    # `right` unclipped, so any realistic metadata overflowed.
+    right = clip(right, max(0, width - 1), g["ellipsis"])
+    left = clip(left, max(0, width - cw(right) - 1), g["ellipsis"])
+    gapw = width - cw(left) - cw(right)          # >= 1 by construction
+    lines.append([Span(left, "chrome"),
                   Span(" " * gapw, None), Span(right, "dim")])
     hline = "─" if not ascii_mode else "-"
     lines.append([Span(hline * width, "chrome")])
@@ -163,6 +176,9 @@ def render_board(board, width, *, ascii_mode=False, meta=None):
 
 
 def _lane(name, count, width, ascii_mode):
+    """The head must be CLIPPED, not merely have its fill clamped to zero: a long
+    column name or count could otherwise push the lane line past the target."""
+    g = glyph_table(ascii_mode)
     bar = "━" if not ascii_mode else "="
-    head = "%s %s (%d) " % (bar * 2, name, count)
+    head = clip("%s %s (%d) " % (bar * 2, name, count), width, g["ellipsis"])
     return [Span(head + bar * max(0, width - cw(head)), "chrome")]

@@ -1,8 +1,11 @@
+import copy
+
 import pytest
 
 from agent_board.render import palette
 from agent_board.render.emit_plain import emit_plain, strip_ansi
-from agent_board.render.layout import Span, clip, col_widths, cw, render_board
+from agent_board.render.layout import (
+    MIN_WIDTH, Span, _lane, clip, col_widths, cw, render_board)
 
 WIDTHS = (80, 100, 120, 160, 200, 240)
 
@@ -138,3 +141,32 @@ def test_emit_plain_with_color_emits_ansi_that_strips_back_to_the_same_text():
     assert plain == "hello world"
     assert "\x1b[" in colored
     assert strip_ansi(colored) == plain
+
+
+@pytest.mark.parametrize("width", WIDTHS)
+@pytest.mark.parametrize("ascii_mode", (False, True))
+def test_long_metadata_never_overflows_the_header(width, ascii_mode):
+    """The header clipped only its LEFT segment and appended the right one
+    unclipped. Measured pre-fix with this repo's own names: width 80 -> 107 cells,
+    width 120 -> 133."""
+    board = copy.deepcopy(BOARD)
+    board["meta"].update({
+        "project": "claude-plugins-agent-board-m1",
+        "branch": "feature/notochord-temporal-daniocell-integration",
+        "head": "d5ad8ce12", "open": 12, "collisions": 11, "live_jobs": 4})
+    for line in render_board(board, width, ascii_mode=ascii_mode):
+        text = emit_plain(line, palette.DARK, color=False)
+        assert cw(text) <= width, "overflow %d > %d: %r" % (cw(text), width, text)
+
+
+@pytest.mark.parametrize("width", [0, 1, 10, 20, 30, 40, 49, 50, 51])
+def test_narrow_widths_are_clamped_not_broken(width):
+    lines = render_board(BOARD, width)
+    target = max(width, MIN_WIDTH)
+    widths = [cw(emit_plain(l, palette.DARK, color=False)) for l in lines]
+    assert max(widths) == target, "max %d != clamped target %d" % (max(widths), target)
+
+
+def test_a_long_column_name_does_not_overflow_its_lane():
+    line = _lane("A" * 200, 9999, 80, False)
+    assert cw(emit_plain(line, palette.DARK, color=False)) <= 80
