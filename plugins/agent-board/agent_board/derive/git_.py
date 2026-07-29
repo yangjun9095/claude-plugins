@@ -3,8 +3,26 @@ import subprocess
 
 DEFAULT_CANDIDATES = ("main", "master", "trunk", "develop", "default")
 
-FMT = ("%(refname:short)%09%(ahead-behind:{base})%09%(committerdate:unix)"
+# %(refname) -- the FULL, unambiguous ref -- not %(refname:short). Verified on
+# git 2.43.7: with a tag and a branch both named `amb`, %(refname:short)
+# returns `heads/amb` (git's shortening falls back to a type-qualified form to
+# disambiguate), so a Python-side `rsplit("/refs/heads/")`-style match against
+# %(refname:short) output can STILL mismatch. %(refname) has no such ambiguity
+# and is exactly what `git worktree list --porcelain`'s own `branch` line
+# already gives verbatim (`branch refs/heads/...`), so keying on it lets
+# list_worktrees and branch_rows meet on one unambiguous key.
+FMT = ("%(refname)%09%(ahead-behind:{base})%09%(committerdate:unix)"
        "%09%(worktreepath)%09%(subject)")
+
+_HEADS_PREFIX = "refs/heads/"
+
+
+def _short_branch(ref):
+    """Display-only shortening: strip the known `refs/heads/` prefix (never
+    basename/rsplit -- that is exactly the bug this module had for
+    hierarchical names like `feature/auth`). A worktree's `branch` porcelain
+    field is always a `refs/heads/...` ref, never a tag, so this is safe."""
+    return ref[len(_HEADS_PREFIX):] if ref.startswith(_HEADS_PREFIX) else ref
 
 
 def _git(cwd, *args, **kw):
@@ -36,7 +54,16 @@ def _git(cwd, *args, **kw):
 
 def list_worktrees(repo):
     """-z avoids C-quoting of unusual paths (git >= 2.36). `locked` and
-    `prunable` carry a REASON STRING, not a bare flag."""
+    `prunable` carry a REASON STRING, not a bare flag.
+
+    `branch_ref` is the FULL, unmodified `refs/heads/...` value porcelain
+    reports -- the identity to key into `branch_rows` with (see FMT). `branch`
+    is a DISPLAY-only short form (prefix-stripped, never basename'd) so a
+    hierarchical name like `feature/auth` still reads correctly on a card.
+    Measured pre-fix: `branch` was `val.rsplit("/", 1)[-1]`, which collapsed
+    `refs/heads/feature/auth` to `auth` -- indistinguishable from a flat `auth`
+    branch, and board.py joined on THAT collapsed value.
+    """
     out = _git(repo, "worktree", "list", "--porcelain", "-z")
     if out is None:
         out = _git(repo, "worktree", "list", "--porcelain")
@@ -57,13 +84,15 @@ def list_worktrees(repo):
             if cur:
                 rows.append(cur)
             cur = {"worktree": val, "HEAD": None, "branch": None,
-                   "detached": False, "bare": False, "locked": None, "prunable": None}
+                   "branch_ref": None, "detached": False, "bare": False,
+                   "locked": None, "prunable": None}
         elif cur is None:
             continue
         elif key == "HEAD":
             cur["HEAD"] = val
         elif key == "branch":
-            cur["branch"] = val.rsplit("/", 1)[-1] if val else None
+            cur["branch_ref"] = val or None
+            cur["branch"] = _short_branch(val) if val else None
         elif key == "detached":
             cur["detached"] = True
         elif key == "bare":
@@ -101,7 +130,13 @@ def default_branch(repo, cfg_branch=None, remote="origin"):
         return cfg_branch
     out = _git(repo, "symbolic-ref", "--quiet", "refs/remotes/%s/HEAD" % remote)
     if out:
-        name = out.strip().rsplit("/", 1)[-1]
+        # SAME BUG CLASS as list_worktrees had: rsplit("/", 1)[-1] takes the
+        # last PATH COMPONENT, not the part after the known prefix. Measured:
+        # a remote HEAD at refs/remotes/origin/release/2.0 rsplit-collapsed to
+        # "2.0" instead of "release/2.0". Strip the literal prefix instead.
+        ref = out.strip()
+        prefix = "refs/remotes/%s/" % remote
+        name = ref[len(prefix):] if ref.startswith(prefix) else ref.rsplit("/", 1)[-1]
         if name and name != "HEAD":
             return name
     for cand in DEFAULT_CANDIDATES:                       # REMOTE FIRST

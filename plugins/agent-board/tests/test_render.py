@@ -167,6 +167,34 @@ def test_narrow_widths_are_clamped_not_broken(width):
     assert max(widths) == target, "max %d != clamped target %d" % (max(widths), target)
 
 
+@pytest.mark.parametrize("width", WIDTHS)
+@pytest.mark.parametrize("ascii_mode", (False, True))
+def test_control_characters_do_not_split_the_reported_line_count(width, ascii_mode):
+    """F6: cw() measured `\\n`, `\\t` and `\\x1b` as one cell each, so a title
+    containing them falsified render_board's documented contract ("returns a
+    list of lines") -- a `\\n` split one card row into two PHYSICAL lines --
+    and let a raw SGR escape reach stdout. Measured at --width 60 via `cat -A`.
+    """
+    board = copy.deepcopy(BOARD)
+    board["columns"]["ACTIVE"][0]["title"] = (
+        "alpha\nbeta line two\x1b[41;97mSTICKY\ta\tb\tc\x7f")
+    lines = render_board(board, width, ascii_mode=ascii_mode)
+    full_text = "\n".join(emit_plain(l, palette.DARK, color=False) for l in lines)
+    physical_lines = full_text.split("\n")
+    assert len(physical_lines) == len(lines), (
+        "render_board's contract is 'returns a list of lines' -- an embedded "
+        "control character must not silently add a physical line: got %d "
+        "physical lines for %d reported lines" % (len(physical_lines), len(lines)))
+    assert "\x1b" not in full_text, repr(full_text)
+    assert "\x7f" not in full_text, repr(full_text)
+    for line in lines:
+        text = emit_plain(line, palette.DARK, color=False)
+        assert cw(text) <= width, "overflow at width=%d: %r" % (width, text)
+    widest = max(cw(emit_plain(l, palette.DARK, color=False)) for l in lines)
+    assert widest == max(width, MIN_WIDTH), \
+        "max line width must still equal the clamped target"
+
+
 def test_a_long_column_name_does_not_overflow_its_lane():
     line = _lane("A" * 200, 9999, 80, False)
     assert cw(emit_plain(line, palette.DARK, color=False)) <= 80

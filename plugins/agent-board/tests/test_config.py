@@ -116,3 +116,28 @@ def test_absent_config_file_reports_no_problem(tmp_path):
     """The contrast that makes the two tests above meaningful: a missing file is
     the normal case and must stay silent."""
     assert config.load_config(str(tmp_path))["_problems"] == []
+
+
+_DICT_SECTIONS = ("project", "storage", "forge", "jobs", "thresholds",
+                  "collisions", "render", "scan")
+
+
+@pytest.mark.parametrize("section", _DICT_SECTIONS)
+@pytest.mark.parametrize("bad_value", ["oops", 5, [1, 2, 3]])
+def test_a_malformed_config_section_falls_back_to_defaults(
+        tmp_path, section, bad_value):
+    """F4: `deep_merge` documents that a non-dict override REPLACES, so
+    `{"storage": "oops"}` puts a bare string where every consumer
+    (anchor.py, board.py, columns.py) expects a dict, and `abd board` /
+    `abd thread` traceback with rc 1 -- `cfg["_problems"]` staying EMPTY the
+    whole time. `abd board` never worked again until the file was hand-edited."""
+    (tmp_path / ".agent-board.json").write_text(json.dumps({section: bad_value}))
+    cfg = config.load_config(str(tmp_path))
+    assert isinstance(cfg[section], dict), \
+        "section %r must fall back to a dict, not %r" % (section, cfg[section])
+    assert cfg[section] == config.DEFAULTS[section]
+    assert cfg["_problems"], "a malformed section must be reported, not silently dropped"
+    # every OTHER section must still resolve -- one bad section must not brick
+    # the whole config the way it bricked every CLI verb pre-fix.
+    assert cfg["scan"]["workers"] == 8
+    assert cfg["thresholds"]["active_commit_days"] == 3

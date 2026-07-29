@@ -1,7 +1,8 @@
 import os
+import subprocess
 
 from agent_board.derive import git_
-from tests.conftest import commit, git
+from tests.conftest import _init, commit, git
 
 
 def test_git_helper_always_passes_no_optional_locks(repo_with_worktrees, monkeypatch):
@@ -81,17 +82,24 @@ def test_config_branch_is_ignored_when_the_ref_does_not_exist(repo_with_worktree
 
 def test_ahead_behind_orientation(repo_with_ahead_behind):
     """for-each-ref %(ahead-behind:X) is 'ahead behind'; rev-list --left-right
-    --count is 'behind ahead'. Pin the orientation in ONE helper."""
+    --count is 'behind ahead'. Pin the orientation in ONE helper.
+
+    Keyed on the FULL ref (refs/heads/feat), not the short name -- see F5:
+    %(refname:short) is ambiguity-dependent (a tag and branch sharing a name
+    make it return "heads/<name>"), so branch_rows keys on %(refname) instead
+    and callers must match on the full ref too.
+    """
     main = repo_with_ahead_behind
     rows = git_.branch_rows(str(main), "trunk")
-    assert rows["feat"]["ahead"] == 2
-    assert rows["feat"]["behind"] == 5
+    assert rows["refs/heads/feat"]["ahead"] == 2
+    assert rows["refs/heads/feat"]["behind"] == 5
 
 
 def test_branch_rows_maps_branch_to_worktree_path(repo_with_worktrees):
     main, wts = repo_with_worktrees
     rows = git_.branch_rows(str(main), "trunk")
-    assert os.path.realpath(rows["wt-a"]["worktree"]) == os.path.realpath(str(wts[0]))
+    assert os.path.realpath(rows["refs/heads/wt-a"]["worktree"]) == \
+        os.path.realpath(str(wts[0]))
 
 
 def test_status_v2_reports_dirty_paths(repo_with_worktrees):
@@ -154,6 +162,34 @@ def test_status_v2_records_both_sides_of_a_staged_rename(repo_with_worktrees):
     dirty = git_.status_v2(str(wt))["dirty"]
     assert "new name.txt" in dirty and "old name.txt" in dirty, dirty
     assert "after.txt" in dirty, "stream desynchronised after the rename entry"
+
+
+def test_branch_rows_keys_a_hierarchical_name_by_its_full_ref(tmp_path):
+    """F5, at the git_ layer directly: %(refname) must be the full ref, so a
+    hierarchical branch name is never collapsed to (and confused with) a flat
+    basename sibling."""
+    main = _init(tmp_path / "main", branch="trunk")
+    commit(main, "base.txt")
+    git(main, "checkout", "-q", "-b", "feature/auth")
+    commit(main, "featurework.txt")
+    git(main, "checkout", "-q", "trunk")
+    rows = git_.branch_rows(str(main), "trunk")
+    assert "refs/heads/feature/auth" in rows, rows
+    assert rows["refs/heads/feature/auth"]["ahead"] == 1
+
+
+def test_default_branch_strips_a_hierarchical_remote_head_by_prefix_not_rsplit(
+        tmp_path):
+    """F5 audit: default_branch's remote-HEAD parsing had the SAME rsplit
+    bug as list_worktrees. Measured pre-fix: a remote HEAD at
+    refs/remotes/origin/release/2.0 rsplit-collapsed to '2.0' instead of
+    'release/2.0'."""
+    upstream = _init(tmp_path / "upstream", branch="release/2.0")
+    commit(upstream, "base.txt")
+    clone = tmp_path / "clone"
+    subprocess.run(["git", "clone", "-q", str(upstream), str(clone)],
+                   check=True, capture_output=True)
+    assert git_.default_branch(str(clone)) == "release/2.0"
 
 
 def test_config_branch_is_a_deliberate_override_even_over_the_remote_default(

@@ -20,6 +20,16 @@ DECLARED_DEFAULTS = {
     "notes": None,
 }
 
+# F3: leaves the loader coerces the same way it already coerces list
+# CONTAINERS (worktrees/blocked_by/issues/tags above). A wrong-typed leaf here
+# is not hypothetical -- it is the single most natural mistake an
+# agent-written thread.json makes ("goal": ["step1", "step2"]) -- and it
+# crashed the renderer (layout.py's `clip`/`cw`/string concatenation all
+# assume `str`), taking down every OTHER thread's card with it. Coerce with
+# str(), never drop: the user should still see whatever was there.
+STRING_LEAF_KEYS = ("title", "goal", "next_action", "notes", "parked_reason",
+                    "created_at", "done_at", "created_by", "job_name_prefix")
+
 
 class ThreadRejected(Exception):
     """schema_version is newer than we understand: render read-only, never write."""
@@ -199,6 +209,13 @@ def _load_thread_inner(threads_dir, tid):
             if status == "ok":
                 status = "degraded"
         out[key] = coerced
+    for key in STRING_LEAF_KEYS:
+        val = out.get(key)
+        if val is not None and not isinstance(val, str):
+            out[key] = str(val)
+            problems.append("%s was not a string; coerced to text" % key)
+            if status == "ok":
+                status = "degraded"
     out["_status"] = status
     out["_problems"] = problems
     return out

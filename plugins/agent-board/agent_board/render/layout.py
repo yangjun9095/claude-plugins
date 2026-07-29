@@ -1,9 +1,36 @@
 import collections
+import re
 import unicodedata
 
+from agent_board.render.emit_plain import strip_ansi
 from agent_board.render.glyphs import table as glyph_table
 
 Span = collections.namedtuple("Span", "text style")
+
+# C0 controls (0x00-0x1F, incl. \n \t and a bare ESC not swallowed by
+# strip_ansi below) plus DEL (0x7F).
+_CONTROL_CHARS = re.compile(r"[\x00-\x1f\x7f]")
+
+
+def sanitize(s, ascii_mode=False):
+    """Neutralise text that would break the card frame or move the reader's
+    cursor. Content NORMALISATION, not geometry -- lives here, not in cw()
+    (which must stay a pure measurement), and runs BEFORE clip()/pad() so
+    width accounting only ever sees the sanitised text.
+
+    Two passes: (1) strip recognised ANSI SGR colour escapes outright via the
+    shared `strip_ansi`, so an injected colour code leaves no residue; (2)
+    replace any REMAINING C0 control character -- `\\n`, `\\t`, a bare ESC not
+    part of a recognised SGR run -- and DEL with one visible placeholder
+    cell. Measured pre-fix at --width 60: a `\\n` in a title split one card
+    row into two PHYSICAL lines (falsifying render_board's "returns a list
+    of lines" contract), and a raw SGR escape reached stdout unmodified.
+    """
+    if not s:
+        return s
+    s = strip_ansi(s)
+    return _CONTROL_CHARS.sub("?" if ascii_mode else "�", s)
+
 
 GUT = 2
 CARD_W_PREF = 58
@@ -69,7 +96,7 @@ def _card_lines(card, width, g, ascii_mode):
     lines = [[Span(title_bar + h * fill + tail, "chrome")]]
 
     def row(text, style):
-        body = clip(text, inner - 2, g["ellipsis"])
+        body = clip(sanitize(text, ascii_mode), inner - 2, g["ellipsis"])
         return [Span(v, "chrome"), Span(" " + pad(body, inner - 1), style),
                 Span(v, "chrome")]
 
@@ -154,7 +181,7 @@ def render_board(board, width, *, ascii_mode=False, meta=None):
         if name == "DONE":
             for card in cards:
                 text = "  %s %s %s %s" % (g["ok"], card["id"], sep,
-                                          card.get("title") or "")
+                                          sanitize(card.get("title") or "", ascii_mode))
                 lines.append([Span(clip(text, width, g["ellipsis"]), "faint")])
             continue
         for start in range(0, len(cards), len(widths)):
@@ -168,10 +195,12 @@ def render_board(board, width, *, ascii_mode=False, meta=None):
         lines.append([Span(hline * width, "chrome")])
         for c in cols:
             text = "  %s %s %s %s %s %s" % (
-                g["collision"], c["severity"], sep, c["a"], sep, c["b"])
+                g["collision"], sanitize(c["severity"], ascii_mode), sep,
+                sanitize(c["a"], ascii_mode), sep, sanitize(c["b"], ascii_mode))
             lines.append([Span(clip(text, width, g["ellipsis"]), "bad")])
             for f in c.get("files") or []:
-                lines.append([Span(clip("      " + f, width, g["ellipsis"]), "dim")])
+                line = "      " + sanitize(f, ascii_mode)
+                lines.append([Span(clip(line, width, g["ellipsis"]), "dim")])
     return [_rstrip(list(l)) for l in lines]
 
 

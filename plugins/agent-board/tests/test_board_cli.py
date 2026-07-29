@@ -6,6 +6,7 @@ import sys
 import pytest
 
 from agent_board import board, cli, model
+from agent_board.derive import git_
 from tests.conftest import _init, commit, git
 
 
@@ -82,6 +83,49 @@ def test_build_board_survives_a_corrupt_thread(repo_with_worktrees, tmp_path):
     b = board.build_board(tdir, str(main), None)
     ids = [c["id"] for cards in b["columns"].values() for c in cards]
     assert "good" in ids and "broken" in ids
+
+
+@pytest.mark.parametrize("field", ["title", "goal", "next_action"])
+@pytest.mark.parametrize("bad_value", [12345, True, ["a", "b"], {"k": 1}])
+def test_a_wrong_typed_leaf_does_not_take_down_the_whole_board(
+        repo_with_worktrees, tmp_path, field, bad_value):
+    """F3: invariant 6 ('one corrupt thread must never take down the board')
+    was falsified by a single wrong-typed LEAF (not a wrong-typed list
+    container, which the loader already coerced). Measured pre-fix:
+    {"title": 12345} rendered rc 1 and ZERO cards -- including the healthy
+    thread sharing the same store."""
+    main, _ = repo_with_worktrees
+    tdir = str(tmp_path / "tb")
+    os.makedirs(os.path.join(tdir, "threads", "broken"))
+    with open(os.path.join(tdir, "threads", "broken", "thread.json"), "w") as fh:
+        json.dump({"schema_version": 1, "id": "broken", field: bad_value}, fh)
+    model.new_thread(tdir, "Good")
+
+    rc = cli.main(["board", "--root", str(main), "--store", tdir])
+    assert rc == 0
+
+    b = board.build_board(tdir, str(main), None)
+    ids = [c["id"] for cards in b["columns"].values() for c in cards]
+    assert "good" in ids, "the healthy thread must still render"
+    assert "broken" in ids, "the malformed thread must still render (degraded)"
+    broken = model.load_thread(tdir, "broken")
+    assert broken["_status"] == "degraded"
+    assert any(field in p for p in broken["_problems"]), broken["_problems"]
+
+
+def test_board_survives_a_malformed_config_section(repo_with_worktrees, tmp_path):
+    """F4 end-to-end: `{"thresholds": 5}` made `board.build_board`'s
+    `cfg.get("thresholds") or DEFAULTS["thresholds"]` keep the truthy int 5,
+    and `columns.column()` subscripting `thresholds["active_commit_days"]`
+    tracebacked with rc 1. Fixed entirely in config.load_config -- board.py
+    is unchanged."""
+    main, _ = repo_with_worktrees
+    (main / ".agent-board.json").write_text(json.dumps({"thresholds": 5}))
+    tdir = str(tmp_path / "tb")
+    os.makedirs(os.path.join(tdir, "threads"))
+    model.new_thread(tdir, "Effort One")
+    rc = cli.main(["board", "--root", str(main), "--store", tdir])
+    assert rc == 0
 
 
 def test_board_json_output_is_machine_readable(repo_with_worktrees, tmp_path, capsys):
@@ -219,6 +263,57 @@ def test_board_does_not_execute_a_foreign_repos_fsmonitor_payload(
     assert rc == 0
     assert not marker.exists(), \
         "abd board executed a foreign repo's fsmonitor payload"
+
+
+def _derive_for_worktree(main, wt):
+    """Build the (rows, wt_index) pair build_board would, then call
+    derive_thread directly for a single-worktree thread -- precise enough to
+    assert on ahead/behind/age_days without going through card rendering."""
+    base = git_.default_branch(str(main))
+    rows = git_.branch_rows(str(main), base)
+    wt_index = {}
+    for row in git_.list_worktrees(str(main)):
+        if row.get("bare"):
+            continue
+        wt_index[os.path.realpath(row["worktree"])] = row
+    t = {"worktrees": [{"path": str(wt), "branch": None, "added_at": None}]}
+    return board.derive_thread(t, rows, wt_index, {})
+
+
+def test_derive_thread_picks_the_hierarchical_branch_not_a_flat_namesake(
+        tmp_path):
+    """F5: a worktree on `feature/auth` (1 ahead) with a FLAT `auth` branch
+    also present (0 ahead, same basename). Measured pre-fix: the card showed
+    `auth +0 -0 *0` -- the WRONG branch name and the OTHER branch's numbers,
+    with no `?` and no badge."""
+    main = _init(tmp_path / "main", branch="trunk")
+    commit(main, "base.txt")
+    git(main, "branch", "auth")                    # flat sibling, 0 ahead
+    wt = tmp_path / "wt-auth"
+    git(main, "worktree", "add", "-q", "-b", "feature/auth", str(wt))
+    commit(wt, "featurework.txt")                   # feature/auth -> 1 ahead
+
+    d, wt_lines, _ = _derive_for_worktree(main, wt)
+    assert d["ahead"] == 1 and d["behind"] == 0, d
+    assert "feature/auth" in wt_lines[0], wt_lines
+    assert wt_lines[0].split()[0] == "feature/auth", wt_lines
+
+
+def test_derive_thread_reports_real_numbers_for_a_solo_hierarchical_branch(
+        tmp_path):
+    """F5: a worktree on `feature/solo` with NO flat sibling. Measured
+    pre-fix: `+? -? *0 never` -- age_days is None, so PARKED (spec rule 6)
+    and the `unpushed` needs_attention reason can never fire for it."""
+    main = _init(tmp_path / "main", branch="trunk")
+    commit(main, "base.txt")
+    wt = tmp_path / "wt-solo"
+    git(main, "worktree", "add", "-q", "-b", "feature/solo", str(wt))
+    commit(wt, "solowork.txt")
+
+    d, wt_lines, _ = _derive_for_worktree(main, wt)
+    assert d["ahead"] == 1 and d["behind"] == 0, d
+    assert d["age_days"] is not None, "age_days must not be None for a real commit"
+    assert "+?" not in wt_lines[0] and "-?" not in wt_lines[0], wt_lines
 
 
 def test_an_unknown_column_is_rejected(repo_with_worktrees, tmp_path, capsys):

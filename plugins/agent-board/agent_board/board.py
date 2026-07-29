@@ -58,8 +58,14 @@ def derive_thread(t, rows, wt_index, cfg):
             d["missing_worktree"] = True
             notes.append("prunable worktree %s" % os.path.basename(path.rstrip("/")))
             continue
-        branch = meta.get("branch")
-        row = rows.get(branch) if branch else None
+        branch = meta.get("branch")            # short form -- DISPLAY only
+        branch_ref = meta.get("branch_ref")     # full refs/heads/... -- IDENTITY
+        # `rows` (git_.branch_rows) is keyed on the full ref. Looking up by
+        # the short/display name was the F5 bug: `feature/auth` and a flat
+        # `auth` both display-collapse to a basename, so a flat sibling with
+        # the same tail silently substituted its ahead/behind onto the wrong
+        # card (and the branch NAME shown was wrong too).
+        row = rows.get(branch_ref) if branch_ref else None
         status = git_.status_v2(path)
         dirty = len(status["dirty"])
         d["dirty"] += dirty
