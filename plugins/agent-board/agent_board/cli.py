@@ -98,6 +98,9 @@ def _cmd_thread(argv):
     except model.ThreadRejected as exc:
         sys.stderr.write("abd: %s\n" % exc)
         return 2
+    except model.ThreadCorrupt as exc:
+        sys.stderr.write("abd: %s\n" % exc)
+        return 2
     except RuntimeError as exc:
         sys.stderr.write("abd: %s\n" % exc)
         return 75

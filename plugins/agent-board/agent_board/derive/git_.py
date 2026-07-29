@@ -8,10 +8,24 @@ FMT = ("%(refname:short)%09%(ahead-behind:{base})%09%(committerdate:unix)"
 
 
 def _git(cwd, *args, **kw):
-    """The ONE git entry point. --no-optional-locks is mandatory on every call."""
+    """The ONE git entry point. --no-optional-locks is mandatory on every call.
+
+    `cwd` may be a worktree path recorded by a coding agent -- untrusted,
+    prompt-injectable input. Git treats a repository's OWN config as trusted
+    code (core.fsmonitor, core.hooksPath, diff.external all name executables
+    git will run), so every invocation neutralises the config keys that turn
+    a read into code execution. Measured: `-c core.fsmonitor=false` stops a
+    planted payload from running; the same command without it executes the
+    payload. `diff.external=` matters once `changed_files` (M2) runs `git
+    diff` inside caller-supplied worktrees.
+    """
     timeout = kw.pop("timeout", 30)
     env = dict(os.environ, GIT_OPTIONAL_LOCKS="0", GIT_TERMINAL_PROMPT="0")
-    cmd = ["git", "--no-optional-locks", "-C", cwd] + list(args)
+    cmd = ["git", "--no-optional-locks",
+           "-c", "core.fsmonitor=false",
+           "-c", "core.hooksPath=/dev/null",
+           "-c", "diff.external=",
+           "-C", cwd] + list(args)
     try:
         proc = subprocess.run(cmd, capture_output=True, text=True,
                               timeout=timeout, env=env)

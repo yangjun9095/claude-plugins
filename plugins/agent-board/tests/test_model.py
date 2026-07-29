@@ -3,7 +3,7 @@ import os
 
 import pytest
 
-from agent_board import model, store
+from agent_board import cli, model, store
 
 
 @pytest.fixture
@@ -199,3 +199,123 @@ def test_malformed_worktrees_is_flagged_not_silently_dropped(tdir):
     assert t["worktrees"] == []
     assert t["_status"] == "degraded"
     assert any("worktrees" in p for p in t["_problems"]), t["_problems"]
+
+
+# --- F1a: mutate must never write over a record it cannot safely read -----
+
+def _torn_write(path):
+    """Truncate an existing thread.json mid-object, simulating the torn write
+    store.py's own comment calls non-hypothetical ($HOME on this cluster runs
+    ~97% full). Returns the truncated bytes."""
+    full = open(path, "rb").read()
+    torn = full[: len(full) // 2]
+    with open(path, "wb") as fh:
+        fh.write(torn)
+    return open(path, "rb").read()
+
+
+def test_mutate_refuses_a_torn_write_record(tdir):
+    t = model.new_thread(tdir, "Notochord temporal CRE design",
+                         goal="a real goal", next_action="run ISM sweep")
+    p = os.path.join(tdir, "threads", t["id"], "thread.json")
+    before = _torn_write(p)
+    assert model.load_thread(tdir, t["id"])["_status"] == "corrupt_json"
+    with pytest.raises(model.ThreadCorrupt):
+        model.mutate(tdir, t["id"], {"goal": "clobbered"}, actor="cli")
+    after = open(p, "rb").read()
+    assert after == before, "a torn record must be left byte-for-byte untouched"
+
+
+def test_cli_thread_set_on_a_torn_record_is_rc2_and_leaves_it_untouched(
+        tdir, monkeypatch):
+    t = model.new_thread(tdir, "Notochord temporal CRE design",
+                         goal="a real goal", next_action="run ISM sweep")
+    p = os.path.join(tdir, "threads", t["id"], "thread.json")
+    before = _torn_write(p)
+    monkeypatch.setenv("ABD_THREADS_DIR", tdir)
+    rc = cli.main(["thread", "set", t["id"], "--goal", "clobbered"])
+    assert rc == 2
+    assert open(p, "rb").read() == before
+
+
+def test_degraded_records_are_still_writable_by_mutate(tdir):
+    """`degraded` (e.g. an in-memory schema migration) is the one non-`ok`
+    status mutate must still be able to write -- only ThreadCorrupt's five
+    unreadable statuses are refused."""
+    d = os.path.join(tdir, "threads", "x")
+    os.makedirs(d)
+    with open(os.path.join(d, "thread.json"), "w") as fh:
+        fh.write('{"id": "x", "title": "no schema_version field"}')
+    assert model.load_thread(tdir, "x")["_status"] == "degraded"
+    out = model.mutate(tdir, "x", {"goal": "g"}, actor="cli")
+    assert out["goal"] == "g"
+
+
+# --- F1b: an absolute id must not escape the store -------------------------
+
+def test_absolute_id_does_not_escape_the_store(tdir, tmp_path):
+    victim_dir = tmp_path / "victim"
+    victim_dir.mkdir()
+    victim_file = victim_dir / "thread.json"
+    victim_file.write_text("IMPORTANT USER DATA")
+    with pytest.raises(model.ThreadNotFound):
+        model.mutate(tdir, str(victim_dir), {"goal": "pwned"}, actor="cli")
+    assert victim_file.read_text() == "IMPORTANT USER DATA"
+    assert not (victim_dir / "events").exists()
+
+
+def test_cli_thread_set_with_an_absolute_id_is_rejected(
+        tdir, tmp_path, monkeypatch):
+    victim_dir = tmp_path / "victim"
+    victim_dir.mkdir()
+    victim_file = victim_dir / "thread.json"
+    victim_file.write_text("IMPORTANT USER DATA")
+    monkeypatch.setenv("ABD_THREADS_DIR", tdir)
+    rc = cli.main(["thread", "set", str(victim_dir), "--goal", "pwned"])
+    assert rc == 2
+    assert victim_file.read_text() == "IMPORTANT USER DATA", \
+        "an absolute id must not write outside the store"
+    assert not (victim_dir / "events").exists()
+
+
+@pytest.mark.parametrize("verb,extra", [
+    ("set", ["--goal", "pwned"]),
+    ("park", []),
+    ("done", []),
+    ("reopen", []),
+])
+def test_cli_thread_verbs_all_reject_an_absolute_id(
+        tdir, tmp_path, monkeypatch, verb, extra):
+    victim_dir = tmp_path / ("victim-%s" % verb)
+    victim_dir.mkdir()
+    (victim_dir / "thread.json").write_text("IMPORTANT USER DATA")
+    monkeypatch.setenv("ABD_THREADS_DIR", tdir)
+    rc = cli.main(["thread", verb, str(victim_dir)] + extra)
+    assert rc == 2
+    assert (victim_dir / "thread.json").read_text() == "IMPORTANT USER DATA"
+
+
+# --- F1c: the new id-shape guard must accept every id this tool allocates --
+
+@pytest.mark.parametrize("title", [
+    "a", "MHB 16 hpf agent-native demo", "Café  ---  Déjà vu!!",
+    "archive", "config", "cache", "threads", "!!!",
+    "word " * 40, "x" * 100,
+])
+def test_thread_dir_accepts_every_slugify_output(tdir, title):
+    tid = model.slugify(title)
+    assert model.thread_dir(tdir, tid).endswith(os.path.join("threads", tid))
+
+
+def test_thread_dir_accepts_a_suffixed_id_at_the_length_boundary(tdir):
+    """A title slugifying to exactly ID_MAX (48) chars, re-used so the second
+    thread collides and gets a numeric suffix appended AFTER truncation --
+    the allocated id can be up to ID_MAX + len('-9') = 50 characters, longer
+    than a naive ID_MAX-only bound would allow."""
+    title = "x" * 100
+    assert len(model.slugify(title)) == model.ID_MAX
+    first = model.new_thread(tdir, title)
+    second = model.new_thread(tdir, title)
+    assert second["id"] != first["id"]
+    model.thread_dir(tdir, first["id"])       # must not raise
+    model.thread_dir(tdir, second["id"])      # must not raise

@@ -40,7 +40,20 @@ def derive_thread(t, rows, wt_index, cfg):
             d["missing_worktree"] = True
             notes.append("missing worktree %s" % os.path.basename(path.rstrip("/")))
             continue
-        meta = wt_index.get(os.path.realpath(path)) or {}
+        rp = os.path.realpath(path)
+        if rp not in wt_index:
+            # `path` is agent-written and may point anywhere on disk,
+            # including into a repo this project does not own. Probing it
+            # with git_.status_v2 would trust THAT repo's own config (git
+            # treats a repo's config as trusted code -- core.fsmonitor names
+            # an executable git runs on `status`). Never call into a path
+            # that this repo's own `git worktree list` does not know about;
+            # treat it exactly like a missing worktree instead.
+            d["missing_worktree"] = True
+            notes.append("not a worktree of this repo: %s"
+                         % os.path.basename(path.rstrip("/")))
+            continue
+        meta = wt_index[rp]
         if meta.get("prunable"):
             d["missing_worktree"] = True
             notes.append("prunable worktree %s" % os.path.basename(path.rstrip("/")))

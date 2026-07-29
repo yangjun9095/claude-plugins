@@ -6,7 +6,7 @@ import sys
 import pytest
 
 from agent_board import board, cli, model
-from tests.conftest import commit, git
+from tests.conftest import _init, commit, git
 
 
 def test_resolve_color_no_color_is_presence_based(monkeypatch):
@@ -191,6 +191,34 @@ def test_column_filter_does_not_claim_the_store_is_empty(
     out = capsys.readouterr().out
     assert "no threads yet" not in out, out
     assert "DONE" in out
+
+
+def test_board_does_not_execute_a_foreign_repos_fsmonitor_payload(
+        repo_with_worktrees, tmp_path):
+    """F2: a thread's recorded worktree path is agent-written and may point
+    anywhere on disk -- including into a repo this project does not own. Git
+    treats a repository's own config as trusted code: `core.fsmonitor` names
+    an arbitrary script that git executes on `status`. Reproduced pre-fix: a
+    plain `abd board` ran the payload and touched the marker file.
+    """
+    main, _ = repo_with_worktrees
+    unrelated = _init(tmp_path / "unrelated", branch="trunk")
+    commit(unrelated, "f.txt")
+    marker = tmp_path / "pwned.marker"
+    payload = tmp_path / "payload.sh"
+    payload.write_text("#!/bin/sh\ntouch '%s'\nexit 1\n" % marker)
+    payload.chmod(0o755)
+    git(unrelated, "config", "core.fsmonitor", str(payload))
+
+    tdir = str(tmp_path / "tb")
+    os.makedirs(os.path.join(tdir, "threads"))
+    model.new_thread(tdir, "Untrusted", worktrees=[
+        {"path": str(unrelated), "branch": None, "added_at": None}])
+
+    rc = cli.main(["board", "--root", str(main), "--store", tdir])
+    assert rc == 0
+    assert not marker.exists(), \
+        "abd board executed a foreign repo's fsmonitor payload"
 
 
 def test_an_unknown_column_is_rejected(repo_with_worktrees, tmp_path, capsys):

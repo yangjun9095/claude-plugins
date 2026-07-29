@@ -36,6 +36,17 @@ class ThreadIdUnavailable(Exception):
     line and rc 2, not a bare ValueError traceback."""
 
 
+class ThreadCorrupt(Exception):
+    """The on-disk record cannot be safely read: _status is one of not_utf8,
+    unreadable, empty, corrupt_json, loader_crash. mutate refuses to write
+    over it -- writing a fresh skeleton would silently destroy whatever
+    recoverable data still survives in the damaged file (measured: a 478-byte
+    torn write became a 394-byte skeleton, title/next_action/created_at gone,
+    rc 0, no warning). `degraded` is NOT this status -- it is the deliberate
+    in-memory-only schema migration path and mutate must still be able to
+    write it."""
+
+
 def slugify(title):
     s = unicodedata.normalize("NFKD", title or "")
     s = s.encode("ascii", "ignore").decode("ascii").lower()
@@ -48,7 +59,40 @@ def slugify(title):
     return s or "thread"
 
 
+_MAX_SUFFIX_LEN = len("-9")  # widest suffix _allocate_id appends: "-2".."-9"
+
+# NOTE (deviation from the reviewer's literal regex `[a-z0-9-]{0,47}`, total
+# length <= ID_MAX=48): _allocate_id can append a 2-char numeric suffix
+# ("-2".."-9") to a base that is ALREADY at ID_MAX after slugify's own
+# truncation, so a legitimately-allocated id can be up to ID_MAX + 2 = 50
+# characters. Measured: two threads titled "x"*100 both slugify their base to
+# exactly 48 x's; the second becomes that base + "-2" (50 chars), and the
+# reviewer's literal bound raised ThreadNotFound on it -- i.e. a normal
+# id-collision, not an attack, would have started failing every subsequent
+# `abd thread set` on that thread. Widened by _MAX_SUFFIX_LEN so the
+# guarantee the reviewer stated ("no legitimately allocated id is newly
+# rejected") actually holds; still rejects the traversal/absolute-path shapes
+# that motivated the guard, since both contain '/' or exceed the new bound.
+_TID_RE = re.compile(r"^[a-z0-9][a-z0-9-]{0,%d}$" % (47 + _MAX_SUFFIX_LEN))
+
+
 def thread_dir(threads_dir, tid):
+    """`tid` reaches here verbatim from argv on the `set`/`park`/`done`/
+    `reopen` CLI paths (only `new` runs it through `slugify`). Without a
+    guard, `os.path.join` DISCARDS everything before an absolute component --
+    `os.path.join(threads_dir, "threads", "/abs/path/victim")` returns
+    "/abs/path/victim" unchanged, so an absolute id writes a thread record
+    over an arbitrary file outside the store. A relative id containing ".."
+    is already rejected upstream by ThreadNotFound (no such allocated
+    directory); this closes the absolute-id escape the same way.
+
+    The pattern is slugify's output alphabet (lowercase a-z0-9 and internal
+    '-', never leading '-') plus ID_MAX=48 plus the widest numeric collision
+    suffix _allocate_id can append -- see _TID_RE's comment for why the plain
+    ID_MAX bound is insufficient.
+    """
+    if not _TID_RE.match(tid or ""):
+        raise ThreadNotFound(tid)
     return os.path.join(threads_dir, "threads", tid)
 
 
@@ -247,13 +291,26 @@ def mutate(threads_dir, tid, changes, actor="cli", appends=None):
     path = _thread_path(threads_dir, tid)
     for _ in range(3):
         current = load_thread(threads_dir, tid)
-        if current["_status"] == "missing":
+        status = current["_status"]
+        if status == "missing":
             # Without this, the write path fails deep inside atomic_write_json
             # with a raw FileNotFoundError traceback and rc 1 -- measured on a
             # one-character id typo, which is the likeliest user error there is.
             raise ThreadNotFound(tid)
-        if current["_status"] == "rejected":
+        if status == "rejected":
             raise ThreadRejected(current["_problems"][0])
+        if status not in ("ok", "degraded"):
+            # The other four skeleton statuses (not_utf8, unreadable, empty,
+            # corrupt_json, loader_crash) mean the file on disk cannot be
+            # safely read. Falling through here writes atomic_write_json's
+            # skeleton OVER it -- measured: a 478-byte torn write became a
+            # 394-byte skeleton, rc 0, no warning, title/next_action/
+            # created_at gone. `degraded` is the deliberate in-memory schema
+            # migration and is excluded on purpose -- it must still be
+            # writable.
+            raise ThreadCorrupt(
+                "%s: refusing to write -- record is %s (%s); left untouched"
+                % (path, status, "; ".join(current.get("_problems") or []) or "no detail"))
         expected_rev = current["rev"]
         lk = store.acquire_thread_lock(d)
         bypassed = lk is None

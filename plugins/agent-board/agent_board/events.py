@@ -18,7 +18,13 @@ def shard_name():
 
 
 def _shard_path(threads_dir, tid):
-    return os.path.join(threads_dir, "threads", tid, "events", shard_name())
+    # Route through model.thread_dir so a malformed/absolute tid is rejected
+    # by the SAME guard `mutate` uses, instead of events.py growing its own
+    # copy of the id-shape rule. Imported lazily: model.py imports
+    # append_event from this module at load time, so a top-level import here
+    # would be circular.
+    from agent_board.model import thread_dir
+    return os.path.join(thread_dir(threads_dir, tid), "events", shard_name())
 
 
 def append_event(threads_dir, tid, record):
