@@ -1,0 +1,140 @@
+import pytest
+
+from agent_board.render import palette
+from agent_board.render.emit_plain import emit_plain, strip_ansi
+from agent_board.render.layout import Span, clip, col_widths, cw, render_board
+
+WIDTHS = (80, 100, 120, 160, 200, 240)
+
+BOARD = {
+    "meta": {"project": "agenticCRE", "branch": "main", "head": "f361567",
+             "fetched": "3d ago", "open": 5, "live_jobs": 2, "collisions": 3,
+             "clock": "14:07", "derived_s": 0.71},
+    "columns": {
+        "ACTIVE": [
+            {"id": "mhb-agent-demo", "title": "MHB 16 hpf agent-native demo",
+             "goal": "4-step demo: pareto_rank + MasterReport 1.1 + fasta",
+             "next_action": "rerun step 3 once job 35061 lands",
+             "badges": [("live_job", "2 jobs: 1 RUNNING 1 PENDING")],
+             "worktrees": ["mhb-agent-demo  +5 -12 *3   2h ago"],
+             "notes": ["notochord-design . src/agenticcre/agent.py"]},
+            {"id": "artifact-backfill", "title": "Backfill analysis/ artifacts",
+             "goal": "promote figures + sequences from 6 worktrees",
+             "next_action": "coordinate docs/manuscript",
+             "badges": [], "worktrees": ["artifact-backfill  +7 -31 *0  19h ago"],
+             "notes": []},
+        ],
+        "BLOCKED": [
+            {"id": "manuscript-audit", "title": "Manuscript <-> code audit",
+             "goal": "manuscript still describes the retired pre-SDK arch",
+             "next_action": "blocked: needs artifact-backfill figure paths",
+             "badges": [("blocked", "blocked_by artifact-backfill")],
+             "worktrees": ["manuscript-drafts  +2 -86 *1   6d ago"], "notes": []},
+        ],
+        "DONE": [
+            {"id": "ui-redesign", "title": "terminal UI violet theme",
+             "goal": None, "next_action": None, "badges": [],
+             "worktrees": [], "notes": []},
+        ],
+    },
+    "collisions": [
+        {"a": "artifact-backfill", "b": "manuscript-audit",
+         "files": ["docs/manuscript/fig1.md"], "severity": "HIGH"},
+    ],
+}
+
+
+def test_cw_counts_wide_characters_as_two():
+    assert cw("abc") == 3
+    assert cw("你好") == 4          # CJK, class W
+    assert cw("✓") == 1                # our glyphs are class N
+
+
+def test_clip_never_exceeds_the_budget():
+    assert cw(clip("a" * 50, 10, "…")) <= 10
+    assert clip("abc", 10, "…") == "abc"
+
+
+def test_clip_uses_the_supplied_ellipsis_only():
+    out = clip("a" * 50, 10, "...")
+    assert out.endswith("...") and all(ord(c) < 128 for c in out)
+
+
+@pytest.mark.parametrize("width", WIDTHS)
+def test_col_widths_exactly_fill_the_terminal(width):
+    cols = col_widths(width)
+    assert sum(cols) + 2 * (len(cols) - 1) == width, cols
+
+
+@pytest.mark.parametrize("width", WIDTHS)
+def test_col_widths_differ_by_at_most_one(width):
+    cols = col_widths(width)
+    assert max(cols) - min(cols) <= 1, "remainder must be distributed, not dropped"
+
+
+def test_col_widths_is_one_column_at_eighty():
+    assert col_widths(80) == [80]
+
+
+@pytest.mark.parametrize("width", WIDTHS)
+@pytest.mark.parametrize("ascii_mode", (False, True))
+def test_no_rendered_line_exceeds_the_target_width(width, ascii_mode):
+    lines = render_board(BOARD, width, ascii_mode=ascii_mode)
+    for line in lines:
+        text = emit_plain(line, palette.DARK, color=False)
+        assert cw(text) <= width, "overflow at width=%d: %r (%d)" % (
+            width, text, cw(text))
+
+
+@pytest.mark.parametrize("width", WIDTHS)
+def test_max_line_width_equals_the_target(width):
+    lines = render_board(BOARD, width)
+    widest = max(cw(emit_plain(l, palette.DARK, color=False)) for l in lines)
+    assert widest == width, "expected exactly %d, got %d" % (width, widest)
+
+
+@pytest.mark.parametrize("width", WIDTHS)
+def test_ascii_mode_output_is_pure_ascii(width):
+    lines = render_board(BOARD, width, ascii_mode=True)
+    text = "\n".join(emit_plain(l, palette.DARK, color=False) for l in lines)
+    bad = [c for c in text if ord(c) >= 128]
+    assert not bad, "non-ascii in --ascii output: %r" % sorted(set(bad))
+
+
+def test_no_trailing_whitespace_on_any_line():
+    for line in render_board(BOARD, 120):
+        text = emit_plain(line, palette.DARK, color=False)
+        assert text == text.rstrip(), repr(text)
+
+
+def test_every_column_with_cards_appears():
+    text = "\n".join(emit_plain(l, palette.DARK, color=False)
+                     for l in render_board(BOARD, 120))
+    for name in ("ACTIVE", "BLOCKED", "DONE"):
+        assert name in text
+    assert "IN REVIEW" not in text, "empty columns must not render a lane"
+
+
+def test_collisions_panel_renders():
+    text = "\n".join(emit_plain(l, palette.DARK, color=False)
+                     for l in render_board(BOARD, 120))
+    assert "docs/manuscript/fig1.md" in text
+
+
+def test_done_collapses_to_a_single_line():
+    lines = render_board(BOARD, 120)
+    texts = [emit_plain(l, palette.DARK, color=False) for l in lines]
+    idx = [i for i, t in enumerate(texts) if "DONE" in t][0]
+    after = [t for t in texts[idx + 1:] if t.strip()]
+    assert "ui-redesign" in after[0]
+    assert not any("╭" in t or "+-" in t for t in after[:2]), \
+        "DONE threads must not render full cards"
+
+
+def test_emit_plain_with_color_emits_ansi_that_strips_back_to_the_same_text():
+    line = [Span("hello", "ok"), Span(" world", None)]
+    plain = emit_plain(line, palette.DARK, color=False)
+    colored = emit_plain(line, palette.DARK, color=True)
+    assert plain == "hello world"
+    assert "\x1b[" in colored
+    assert strip_ansi(colored) == plain
