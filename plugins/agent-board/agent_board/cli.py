@@ -132,7 +132,7 @@ def _cmd_board(argv):
     from agent_board import anchor, board as boardmod
     from agent_board.render import palette
     from agent_board.render.emit_plain import emit_plain
-    from agent_board.render.layout import render_board
+    from agent_board.render.layout import COLUMN_ORDER, render_board
 
     if hasattr(signal, "SIGPIPE"):
         signal.signal(signal.SIGPIPE, signal.SIG_DFL)
@@ -155,15 +155,25 @@ def _cmd_board(argv):
         return 2
 
     data = boardmod.build_board(threads_dir, repo, None)
+    # Decide emptiness against the UNFILTERED board. Checking after the filter
+    # cannot tell "no threads at all" from "this lane is empty right now".
+    store_is_empty = not any(data["columns"].values())
     if args.column:
+        if args.column not in COLUMN_ORDER:
+            sys.stderr.write("abd: unknown column %r (known: %s)\n"
+                             % (args.column, ", ".join(COLUMN_ORDER)))
+            return 2
         data["columns"] = {k: v for k, v in data["columns"].items()
                            if k == args.column}
     if args.json:
         sys.stdout.write(_json.dumps(data, indent=2, sort_keys=True) + "\n")
         return 0
-    if not any(data["columns"].values()):
+    if store_is_empty:
         sys.stdout.write(
             "no threads yet - open one with: abd thread new --title \"...\"\n")
+        return 0
+    if not any(data["columns"].values()):
+        sys.stdout.write("no threads in %s\n" % args.column)
         return 0
 
     ascii_mode = args.ascii or (os.environ.get("ABD_ASCII") == "1")
