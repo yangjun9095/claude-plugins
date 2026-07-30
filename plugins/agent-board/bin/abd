@@ -9,31 +9,81 @@ _dirname() {
   esac
 }
 
+# readlink is EXTERNAL. Resolve it once, and treat its absence as "stop
+# resolving", never as an error: a degraded PATH must not break the hook's
+# absolute exit-0 contract. Same class as the _dirname fix above.
+_readlink=$(command -v readlink 2>/dev/null || true)
+
 _src=$0
-while [ -L "$_src" ]; do
-  _dir=$(CDPATH= cd -P "$(_dirname "$_src")" && pwd); _src=$(readlink "$_src")
+while [ -L "$_src" ] && [ -n "$_readlink" ]; do
+  _dir=$(CDPATH= cd -P "$(_dirname "$_src")" && pwd)
+  _tgt=$("$_readlink" "$_src" 2>/dev/null) || break
+  [ -n "$_tgt" ] || break
+  _src=$_tgt
   case $_src in /*) ;; *) _src=$_dir/$_src ;; esac
 done
 ABD_ROOT=$(CDPATH= cd -P "$(_dirname "$_src")/.." && pwd); export ABD_ROOT
 
-_ok() { "$1" -c 'import sys;raise SystemExit(0 if sys.version_info>=(3,8) else 1)' 2>/dev/null; }
+# ONE spawn per candidate, not two. -I is load-bearing, not hygiene: without it
+# sys.path[0] is the caller's cwd, so a stray ./rich.py is EXECUTED by this
+# probe -- including under `abd hook`, which fires automatically in whatever
+# directory a session opens. -I also drops PYTHONPATH and user site-packages,
+# so rich installed there goes undetected here; that only changes which
+# interpreter is preferred, since the runtime import is not isolated.
+# rc 0 = usable and has rich, 2 = usable without rich, anything else = unusable.
+_probe() {
+  "$1" -I -c 'import sys
+if sys.version_info < (3, 8):
+    sys.exit(1)
+try:
+    import rich
+except Exception:
+    sys.exit(2)
+sys.exit(0)' 2>/dev/null
+}
+
 _pick() {
-  if [ -n "${ABD_PYTHON:-}" ] && [ -x "${ABD_PYTHON:-}" ] && _ok "$ABD_PYTHON"; then
-    printf '%s' "$ABD_PYTHON"; return 0
+  if [ -n "${ABD_PYTHON:-}" ] && [ -x "${ABD_PYTHON:-}" ]; then
+    _rc=0; _probe "$ABD_PYTHON" || _rc=$?
+    if [ "$_rc" -eq 0 ] || [ "$_rc" -eq 2 ]; then printf '%s' "$ABD_PYTHON"; return 0; fi
   fi
   _best=''
   for v in python3.14 python3.13 python3.12 python3.11 python3.10 python3.9 python3.8 python3; do
     _p=$(command -v "$v" 2>/dev/null || true)
     [ -n "$_p" ] || continue
-    _ok "$_p" || continue
-    [ -z "$_best" ] && _best=$_p
-    if "$_p" -c 'import rich' 2>/dev/null; then printf '%s' "$_p"; return 0; fi
+    _rc=0; _probe "$_p" || _rc=$?
+    case $_rc in
+      0) printf '%s' "$_p"; return 0 ;;
+      2) if [ -z "$_best" ]; then _best=$_p; fi ;;
+      *) continue ;;
+    esac
   done
   printf '%s' "$_best"
 }
 _py=$(_pick) || _py=''
-if [ -z "$_py" ]; then
+
+# ABD_ROOT is wrong when symlink resolution was skipped for want of readlink.
+# Check before exec so that failure is a clean message -- or a silent hook
+# exit 0 -- instead of an ImportError traceback out of Python.
+if [ -z "$_py" ] || [ ! -f "$ABD_ROOT/agent_board/__main__.py" ]; then
   case "${1:-}" in hook) exit 0 ;; esac
-  echo "agent-board: no python >= 3.8 found (set ABD_PYTHON)" >&2; exit 127
+  if [ -z "$_py" ]; then
+    echo "agent-board: no python >= 3.8 found (set ABD_PYTHON)" >&2
+  else
+    echo "agent-board: cannot locate its own package under $ABD_ROOT" >&2
+  fi
+  exit 127
 fi
-PYTHONPATH="$ABD_ROOT${PYTHONPATH:+:$PYTHONPATH}" exec "$_py" -m agent_board "$@"
+
+# NOT `-m agent_board`: -m puts the caller's cwd at sys.path[0], AHEAD of
+# PYTHONPATH, so a stray ./agent_board/ silently replaces the real package.
+# Bootstrap sys.path explicitly instead. Drop cwd by value rather than by
+# index, because under -P / PYTHONSAFEPATH position 0 is already a real entry.
+exec "$_py" -c 'import os, runpy, sys
+try:
+    _cwd = os.getcwd()
+except OSError:
+    _cwd = None
+sys.path[:] = [p for p in sys.path if p not in ("", ".", _cwd)]
+sys.path.insert(0, os.environ["ABD_ROOT"])
+runpy.run_module("agent_board", run_name="__main__", alter_sys=True)' "$@"
