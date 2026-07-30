@@ -113,6 +113,39 @@ def test_a_wrong_typed_leaf_does_not_take_down_the_whole_board(
     assert any(field in p for p in broken["_problems"]), broken["_problems"]
 
 
+@pytest.mark.parametrize("field,bad_value", [
+    ("worktrees", [{"path": 99}]),
+    ("blocked_by", [["u"]]),
+])
+def test_a_nested_malformed_field_does_not_take_down_the_whole_board(
+        repo_with_worktrees, tmp_path, field, bad_value):
+    """F3 residual: the flat-leaf fix wave (title/goal/next_action/...) missed
+    these two NESTED shapes. Both loaded with _status="ok" (not even flagged
+    as degraded) and crashed later: {"worktrees":[{"path":99}]} raised
+    AttributeError at board.py:41 (int has no .rstrip); {"blocked_by":[["u"]]}
+    raised TypeError at columns.py:10 (unhashable list used as a dict key).
+    Either crash previously took the WHOLE board down -- zero cards, not one --
+    including the healthy thread sharing the same store; that is the invariant
+    under test, so this asserts count == 2, not just rc 0."""
+    main, _ = repo_with_worktrees
+    tdir = str(tmp_path / "tb")
+    os.makedirs(os.path.join(tdir, "threads", "broken"))
+    with open(os.path.join(tdir, "threads", "broken", "thread.json"), "w") as fh:
+        json.dump({"schema_version": 1, "id": "broken", field: bad_value}, fh)
+    model.new_thread(tdir, "Good")
+
+    rc = cli.main(["board", "--root", str(main), "--store", tdir])
+    assert rc == 0
+
+    b = board.build_board(tdir, str(main), None)
+    ids = [c["id"] for cards in b["columns"].values() for c in cards]
+    assert ids.count("good") == 1, "the healthy thread must still render"
+    assert ids.count("broken") == 1, "the malformed thread must still render (degraded)"
+    broken = model.load_thread(tdir, "broken")
+    assert broken["_status"] == "degraded"
+    assert any(field in p for p in broken["_problems"]), broken["_problems"]
+
+
 def test_board_survives_a_malformed_config_section(repo_with_worktrees, tmp_path):
     """F4 end-to-end: `{"thresholds": 5}` made `board.build_board`'s
     `cfg.get("thresholds") or DEFAULTS["thresholds"]` keep the truthy int 5,

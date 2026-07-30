@@ -319,3 +319,52 @@ def test_thread_dir_accepts_a_suffixed_id_at_the_length_boundary(tdir):
     assert second["id"] != first["id"]
     model.thread_dir(tdir, first["id"])       # must not raise
     model.thread_dir(tdir, second["id"])      # must not raise
+
+
+# --- F3 residual: nested malformed shapes the flat-leaf fix wave missed ----
+#
+# Measured (both traced against the code as it stood before this fix):
+#   {"worktrees":[{"path":99}]}   -> load_thread _status="ok" (not flagged)
+#                                     -> board.py:41 os.path.basename(path.rstrip("/"))
+#                                        AttributeError: 'int' object has no
+#                                        attribute 'rstrip'
+#   {"blocked_by":[["u"]]}        -> load_thread _status="ok" (not flagged)
+#                                     -> columns.py:10 threads.get(dep)
+#                                        TypeError: unhashable type: 'list'
+# (a dict element crashes columns.py the same way; not hashable either.)
+
+@pytest.mark.parametrize("field,bad_value", [
+    ("worktrees", [{"path": 99}]),
+    ("worktrees", [{"path": ""}]),
+    ("worktrees", [{"path": None}]),
+    ("blocked_by", [["u"]]),
+    ("blocked_by", [{"k": 1}]),
+    ("blocked_by", [99]),
+])
+def test_nested_malformed_entries_are_dropped_and_flagged(tdir, field, bad_value):
+    d = os.path.join(tdir, "threads", "x")
+    os.makedirs(d)
+    with open(os.path.join(d, "thread.json"), "w") as fh:
+        json.dump({"schema_version": 1, "id": "x", field: bad_value}, fh)
+    t = model.load_thread(tdir, "x")           # must not raise
+    assert t[field] == [], "the bad element must be gone, not coerced: %r" % t[field]
+    assert t["_status"] == "degraded", t
+    assert any(field in p for p in t["_problems"]), t["_problems"]
+
+
+def test_clean_worktrees_and_blocked_by_stay_ok_and_intact(tdir):
+    """Regression guard: the new flagging must not fire on a healthy record --
+    a real worktree path and a real (string) thread id must survive untouched."""
+    d = os.path.join(tdir, "threads", "x")
+    os.makedirs(d)
+    with open(os.path.join(d, "thread.json"), "w") as fh:
+        json.dump({"schema_version": 1, "id": "x",
+                   "worktrees": [{"path": "/abs/path/wt", "branch": "b",
+                                  "added_at": "2026-07-28T10:00:00Z"}],
+                   "blocked_by": ["other-thread"]}, fh)
+    t = model.load_thread(tdir, "x")
+    assert t["_status"] == "ok", t
+    assert t["_problems"] == []
+    assert t["worktrees"] == [{"path": "/abs/path/wt", "branch": "b",
+                               "added_at": "2026-07-28T10:00:00Z"}]
+    assert t["blocked_by"] == ["other-thread"]

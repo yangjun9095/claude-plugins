@@ -135,15 +135,38 @@ def _as_list(value):
 
 
 def _normalize_worktrees(value):
-    out = []
+    """F3 residual (measured): {"worktrees":[{"path":99}]} passed through this
+    function unchanged with `_status="ok"` -- not even flagged -- and blew up
+    one hop later at board.py:41 (`os.path.basename(path.rstrip("/"))`,
+    AttributeError: 'int' object has no attribute 'rstrip'). str(99) would
+    "fix" that crash by fabricating the path "99", which os.path.isdir then
+    reports as missing -- a worse lie than just omitting the entry: it invents
+    data that was never there. An empty or None path is the same defect by a
+    different route -- there is no worktree without a real path -- so all
+    three are dropped, never coerced, matching `_as_list`'s existing
+    malformed-input-drops shape.
+
+    Returns `(entries, dropped)`. `dropped` counts ONLY entries that were
+    worktree-shaped (a bare string or a dict) but carried an unusable path --
+    NOT the pre-existing, deliberately-silent drop of an entry that is neither
+    (e.g. a bare `99` sitting directly in the list), which has never been
+    flagged and must stay that way.
+    """
+    out, dropped = [], 0
     for entry in _as_list(value):
         if isinstance(entry, str):
-            out.append({"path": entry, "branch": None, "added_at": None})
+            path, branch, added_at = entry, None, None
         elif isinstance(entry, dict):
-            out.append({"path": entry.get("path"),
-                        "branch": entry.get("branch"),
-                        "added_at": entry.get("added_at")})
-    return out
+            path = entry.get("path")
+            branch = entry.get("branch")
+            added_at = entry.get("added_at")
+        else:
+            continue  # not worktree-shaped at all; pre-existing silent drop
+        if not isinstance(path, str) or not path:
+            dropped += 1
+            continue
+        out.append({"path": path, "branch": branch, "added_at": added_at})
+    return out, dropped
 
 
 def _skeleton(tid, status, problems):
@@ -195,11 +218,23 @@ def _load_thread_inner(threads_dir, tid):
     out["id"] = obj.get("id") or tid
     out["rev"] = obj.get("rev") if isinstance(obj.get("rev"), int) else 0
     raw_worktrees = out.get("worktrees")
-    out["worktrees"] = _normalize_worktrees(raw_worktrees)
+    normalized_worktrees, dropped_worktrees = _normalize_worktrees(raw_worktrees)
+    out["worktrees"] = normalized_worktrees
     if raw_worktrees is not None and not isinstance(raw_worktrees, (list, tuple)):
         # Coercing without flagging would leave the headline field of this very
         # bug silently dropping data -- un-crashed but still invisible.
         problems.append("worktrees was not a list; ignored")
+        if status == "ok":
+            status = "degraded"
+    elif dropped_worktrees:
+        # F3 residual -- see _normalize_worktrees's docstring for the measured
+        # crash (board.py:41 AttributeError) this closes. Un-crashing alone is
+        # not enough: a user with no signal that entries were discarded is the
+        # exact "un-crashed but silently dropped" defect this project has
+        # already rejected once for the top-level not-a-list case above.
+        problems.append(
+            "worktrees had %d entr%s with an unusable path; dropped"
+            % (dropped_worktrees, "y" if dropped_worktrees == 1 else "ies"))
         if status == "ok":
             status = "degraded"
     for key in ("blocked_by", "issues", "tags"):
@@ -208,6 +243,23 @@ def _load_thread_inner(threads_dir, tid):
             problems.append("%s was not a list; ignored" % key)
             if status == "ok":
                 status = "degraded"
+        if key == "blocked_by":
+            # F3 residual (measured): {"blocked_by":[["u"]]} loaded with
+            # _status="ok" and crashed one hop later at columns.py:10 --
+            # `threads.get(dep)` raises TypeError: unhashable type: 'list'
+            # (a dict element crashes the same way; also unhashable). A
+            # thread id is always a string, so any non-string element can
+            # never name a real dependency -- dropping it costs the user
+            # nothing they could have used. Fixed here, not in columns.py,
+            # which is a pure decision layer (zero imports) and must not grow
+            # a defensive type check just to survive malformed input this
+            # loader should never have handed it in the first place.
+            filtered = [dep for dep in coerced if isinstance(dep, str)]
+            if len(filtered) != len(coerced):
+                problems.append("blocked_by had a non-string entry; dropped")
+                if status == "ok":
+                    status = "degraded"
+            coerced = filtered
         out[key] = coerced
     for key in STRING_LEAF_KEYS:
         val = out.get(key)
@@ -287,7 +339,7 @@ def new_thread(threads_dir, title, **kw):
     for k, v in kw.items():
         if k in DECLARED_DEFAULTS:
             t[k] = v
-    t["worktrees"] = _normalize_worktrees(t.get("worktrees"))
+    t["worktrees"] = _normalize_worktrees(t.get("worktrees"))[0]
     store.atomic_write_json(_thread_path(threads_dir, tid), t)
     return dict(t, _status="ok", _problems=[])
 
@@ -347,7 +399,7 @@ def mutate(threads_dir, tid, changes, actor="cli", appends=None):
                         base.append(item)
                         seen.add(ident)
                 out[k] = base
-            out["worktrees"] = _normalize_worktrees(out.get("worktrees"))
+            out["worktrees"] = _normalize_worktrees(out.get("worktrees"))[0]
             out["rev"] = expected_rev + 1
             out["updated_at"] = utcnow_z()
             store.atomic_write_json(path, out)
