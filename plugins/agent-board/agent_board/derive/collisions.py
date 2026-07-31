@@ -37,6 +37,10 @@ DEFAULT_IGNORE_GLOBS = (
     "**/__pycache__/**", "**/node_modules/**", "**/dist/**", "**/build/**",
     "**/*.egg-info/**",
     "**/.DS_Store", "**/*.pyc",
+    # Our OWN config. `abd init` writes it into the working tree, where -uall sees
+    # it as untracked -- and two threads sharing one worktree then both listed it as
+    # dirty, manufacturing a HIGH collision out of a file this tool created.
+    ".agent-board.json", "**/.agent-board.json",
 )
 # Documented blind spot, stated here rather than buried: .png is the single most
 # common extension in the three-dot union (204 of 539 files) and analysis/ the

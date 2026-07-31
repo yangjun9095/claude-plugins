@@ -59,6 +59,14 @@ def append_event(threads_dir, tid, record):
             }, ensure_ascii=False, sort_keys=True)
         path = _shard_path(threads_dir, tid)
         d = os.path.dirname(path)
+        # Refuse to CREATE the thread's directory. makedirs here resurrected a
+        # thread that `abd thread archive` had just renamed away -- mutate's
+        # trailing append_event runs outside the lock, so it recreated
+        # threads/<id>/events/ with no thread.json, producing a phantom card that
+        # no verb could remove. An event for a thread that is not there is a
+        # convenience to drop, never a reason to invent the thread.
+        if not os.path.isdir(os.path.dirname(d)):
+            return
         # exist_ok, not check-then-create: two hosts racing the FIRST event for a
         # thread both pass an isdir() check, and the loser's FileExistsError is
         # swallowed by the outer handler -- dropping the event entirely.
@@ -139,7 +147,10 @@ def read_events_tail(path, n):
     is the smallest window that can always satisfy n.
     """
     try:
-        buf, head_truncated = _tail_bytes(path, max(65536, n * MAX_LINE))
+        # Sized from the budget alone. A 64 KiB FLOOR meant a 3-event card read and
+        # json-parsed the same 64 KiB per shard per thread as the 50-event detail
+        # view -- measured 4.1x slower board renders once cards carried events.
+        buf, head_truncated = _tail_bytes(path, max(4096, n * MAX_LINE))
     except (IOError, OSError):
         return []
     if not buf.endswith(b"\n"):

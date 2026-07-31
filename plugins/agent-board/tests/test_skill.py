@@ -21,11 +21,12 @@ SUBS = {
     "<path>": ".", "<at most 8 words>": "T", "<1-2 sentences>": "G",
     "<the single next concrete step, one line>": "next step",
     "<why>": "on ice", "<base directory>": ".", "<one sentence>": "a note",
+    "<substring>": "alpha",
 }
 # A placeholder missing from this map makes its command silently unverified -- the
 # newest one, `abd event add`, was dropped exactly that way. The test below asserts
 # the count, so an unmapped placeholder now shows up as a failure.
-EXPECTED_COMMAND_COUNT = 21
+EXPECTED_COMMAND_COUNT = 23
 
 
 def _text():
@@ -151,26 +152,35 @@ def test_extraction_found_the_commands_at_all():
 def test_every_command_the_skill_names_is_accepted_by_the_cli(
         repo_with_worktrees, tmp_path, monkeypatch, capsys):
     """Runs each one for real. argparse exits 2 on an unknown flag, so a documented
-    command that does not exist fails here instead of in a user's session."""
+    command that does not exist fails here instead of in a user's session.
+
+    Each command gets a FRESH store. Sharing one made the result depend on
+    alphabetical order: `abd thread archive t` ran before `abd thread done t` and
+    moved the thread away, so `done` failed with rc 2 -- a harness artifact that
+    looked exactly like a missing verb.
+    """
     from agent_board import cli, model
 
     main, _wts = repo_with_worktrees
-    store_dir = tmp_path / "board"
-    (store_dir / "threads").mkdir(parents=True)
-    monkeypatch.setenv("ABD_THREADS_DIR", str(store_dir))
     monkeypatch.setenv("ABD_ALLOW_NETWORK", "0")
     monkeypatch.chdir(main)
-    model.new_thread(str(store_dir), "T", worktrees=[{"path": str(main)}])
-    model.new_thread(str(store_dir), "Other")
 
     failures = []
-    for argv in skill_commands():
+    for index, argv in enumerate(skill_commands()):
         argv = list(argv)
+        store_dir = tmp_path / ("store%02d" % index)
+        (store_dir / "threads").mkdir(parents=True)
+        monkeypatch.setenv("ABD_THREADS_DIR", str(store_dir))
+        model.new_thread(str(store_dir), "T", worktrees=[{"path": str(main)}])
+        model.new_thread(str(store_dir), "Other")
+        if "--html" in argv:
+            argv[argv.index("--html") + 1] = str(tmp_path / ("out%02d.html" % index))
+        for flag in ("export", "import"):
+            if argv[:1] == [flag]:
+                argv[1] = str(tmp_path / ("bundle%02d.json" % index))
         # Belt and braces alongside the extraction cutoff: this test must never
         # enter an interactive loop, whatever a future edit adds to the file.
         assert "--watch" not in argv, "SKILL.md must not instruct --watch"
-        if "--html" in argv:
-            argv[argv.index("--html") + 1] = str(tmp_path / "out.html")
         try:
             rc = cli.main(argv)
         except SystemExit as exc:               # argparse's own exit

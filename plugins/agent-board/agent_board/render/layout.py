@@ -9,7 +9,11 @@ Span = collections.namedtuple("Span", "text style")
 
 # C0 controls (0x00-0x1F, incl. \n \t and a bare ESC not swallowed by
 # strip_ansi below) plus DEL (0x7F).
-_CONTROL_CHARS = re.compile(r"[\x00-\x1f\x7f]")
+# C0 (incl. \n \t and a bare ESC), DEL, plus three characters that terminals AND
+# str.splitlines() treat as line breaks even though they are not C0: U+0085 NEL,
+# U+2028 LINE SEPARATOR, U+2029 PARAGRAPH SEPARATOR. Without them one rendered
+# element still became several physical lines.
+_CONTROL_CHARS = re.compile(r"[\x00-\x1f\x7f\u0085\u2028\u2029]")
 
 
 def sanitize(s, ascii_mode=False):
@@ -111,8 +115,32 @@ def _card_lines(card, width, g, ascii_mode):
         lines.append(row("%s %s" % (g[key], text), "warn" if key != "ok" else "ok"))
     for note in card.get("notes") or []:
         lines.append(row("%s %s" % (g["collision"], note), "bad"))
+    for ev in card.get("events") or []:
+        lines.append(row("  %s" % _event_text(ev), "faint"))
     lines.append([Span(bl + h * (width - 2) + br, "chrome")])
     return lines
+
+
+def _event_text(ev):
+    """One line of last activity.
+
+    `abd event add` writes `text`; the hook writes `reason`; but every MUTATION
+    (`thread set/park/done/reopen`) writes only `{"kind": "set", "fields": [...]}`.
+    Falling through to the bare kind rendered "set" and "logout" -- true, and
+    useless. Name the fields that changed instead.
+    """
+    if not isinstance(ev, dict):
+        return ""
+    for key in ("text", "reason"):
+        value = ev.get(key)
+        if isinstance(value, str) and value:
+            return value
+    fields = ev.get("fields")
+    kind = str(ev.get("kind") or "")
+    if isinstance(fields, list) and fields:
+        return "%s %s" % (kind or "changed",
+                          ", ".join(str(f) for f in fields))
+    return kind
 
 
 def _join_row(cards_lines, widths):

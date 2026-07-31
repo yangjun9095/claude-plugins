@@ -172,6 +172,7 @@ padding:12px 14px}
 font-size:12px;border:1px solid currentColor;color:var(--warn)}
 .badge.jobs{color:var(--ok)}
 .note{color:var(--bad);font-size:12px;margin-top:6px}
+.ev{color:var(--faint);font-size:12px;margin-top:4px}
 a{color:var(--chrome)}
 table{border-collapse:collapse;width:100%%;font-size:13px}
 th,td{text-align:left;padding:5px 10px;border-bottom:1px solid var(--line);
@@ -223,6 +224,13 @@ def _card_html(card):
                    % (esc(href), esc(label)))
     for note in card.get("notes") or []:
         out.append('<div class="note">%s</div>' % esc(note))
+    # The terminal card shows its last activity, so the shared snapshot must too --
+    # it is the artifact a reader opens instead of the board.
+    for ev in card.get("events") or []:
+        from agent_board.render.layout import _event_text
+        text = _event_text(ev)
+        if text:
+            out.append('<div class="ev">%s</div>' % esc(text))
     out.append("</div>")
     return "".join(out)
 

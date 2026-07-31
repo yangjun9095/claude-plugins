@@ -68,6 +68,38 @@ Un-opted repositories cost one directory check — no store is created and nothi
 is printed. Linux, macOS and WSL; Windows is not supported in v1, where the
 failure is a silent no-op.
 
+## Filtering, finishing, and moving a board
+
+```bash
+abd board resolver              # substring on id, title or worktree path
+abd board refactor resolver     # every term must match (AND)
+abd thread archive <id>         # one rename into archive/; reverse it with mv
+abd init                        # create the store and a config skeleton
+abd export board.json           # threads + timelines, one portable file
+abd import board.json           # into a fresh clone; existing threads are kept
+```
+
+`archive` is a single `os.rename` — atomic, on the same filesystem, and reversible
+with a plain `mv`, which is why there is no `unarchive` verb to drift out of sync
+with it. Nothing is ever auto-archived or auto-deleted: the board suggests, you act.
+
+`export`/`import` exist because of a deliberate trade. The board lives in `.git/`,
+which is what makes it invisible to git and free of per-repo setup — and the cost is
+that a fresh clone starts empty. A bundle carries threads, their event timelines and
+your archive, and `import` **skips** anything already present unless you pass
+`--force`: a half-merged thread, this machine's next action against another's
+blockers, is worse than either version alone. `rev` restarts at 1 on import, since
+it is this store's compare-and-swap token, not portable data.
+
+One thing to expect: worktree paths in a bundle are absolute and from the source
+machine, so imported threads show `not a worktree of this repo` until you point them
+at local paths with `--add-worktree` / `--rm-worktree`. The board is telling the
+truth there — those directories really are somewhere else.
+
+`init` is optional. The store is created on first write and every config key has a
+default; `init` just writes a skeleton so the knobs are discoverable without reading
+the source.
+
 ## Looking at one thread
 
 ```bash

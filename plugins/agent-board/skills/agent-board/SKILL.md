@@ -104,6 +104,11 @@ Resist the urge to narrate. The timeline earns its value by being short.
 If the effort is finished: `abd thread done <id>`.
 If it is going on ice: `abd thread park <id> --reason "<why>"`.
 
+DONE threads collapse to one line, so they cost almost nothing on the board. Only
+archive one if the user asks: `abd thread archive <id>` moves it out of the board
+entirely. Never archive on your own initiative — it is their history, and the board
+suggests while the user acts.
+
 ## When the user asks about the board
 
 | They ask | Run |
@@ -111,6 +116,7 @@ If it is going on ice: `abd thread park <id> --reason "<why>"`.
 | "show the board", "what am I working on" | `abd board` |
 | "what happened on this one", "catch me up" | `abd show <id>` |
 | "what's blocked" | `abd board --column BLOCKED` |
+| "what about the X work" | `abd board <substring>` |
 | "what am I not tracking" | `abd board --all` |
 | "why aren't my jobs showing up" | `abd board --unattributed` |
 | "is anything colliding" | `abd board` — collisions print under the lanes |

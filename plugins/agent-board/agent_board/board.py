@@ -1,8 +1,8 @@
 import os
 import time
 
-from agent_board import model
-from agent_board.config import DEFAULTS, load_config
+from agent_board import events as events_mod, model
+from agent_board.config import CONFIG_NAME, DEFAULTS, load_config
 from agent_board.derive import collisions
 from agent_board.derive import columns as coldef
 from agent_board.derive import forge, git_, jobs
@@ -10,6 +10,7 @@ from agent_board.render.layout import COLUMN_ORDER
 
 
 SNAPSHOT_NAME = "board.json"
+CARD_EVENTS = 3
 
 
 def _age_days(committed_at):
@@ -73,7 +74,12 @@ def derive_thread(t, rows, wt_index, cfg, forge_data=None, jobs_data=None):
         # card (and the branch NAME shown was wrong too).
         row = rows.get(branch_ref) if branch_ref else None
         status = git_.status_v2(path)
-        dirty = len(status["dirty"])
+        # Exclude our own config from the dirty COUNT as well. Left in, an
+        # `abd init` in a clean repo made every thread owning that worktree look
+        # dirty, which silently reclassified PARKED cards as ACTIVE -- the tool
+        # perturbing the measurement it exists to report.
+        dirty = len([f for f in status["dirty"]
+                     if os.path.basename(f) != CONFIG_NAME])
         d["dirty"] += dirty
         ahead = (row or {}).get("ahead")
         behind = (row or {}).get("behind")
@@ -195,6 +201,17 @@ def build_board(threads_dir, repo, cfg=None, allow_probe=True,
             "attention": reasons,
             "jobs": d["live_jobs"],
             "column": columns[tid],
+            # The display budget: 3 on a card, 10 injected at session start, 50 in
+            # `abd show`. Loading 30 threads' events was measured at 0.011 s --
+            # three orders of magnitude under one `git status`, so this is free
+            # relative to what the render already pays for.
+            "events": events_mod.read_thread_events(threads_dir, tid, CARD_EVENTS),
+            # The real paths, for FILTER. The rendered `worktrees` lines carry the
+            # BRANCH plus ahead/behind/dirty counters and a relative timestamp --
+            # no path at all -- so filtering on them matched "0" and "ago" against
+            # everything while never matching the path the help text promises.
+            "worktree_paths": [w.get("path") for w in (t.get("worktrees") or [])
+                               if isinstance(w, dict) and w.get("path")],
         })
 
     # None, not [] -- the two must be distinguishable. A snapshot written without

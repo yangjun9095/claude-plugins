@@ -344,6 +344,46 @@ def new_thread(threads_dir, title, **kw):
     return dict(t, _status="ok", _problems=[])
 
 
+def archive_thread(threads_dir, tid):
+    """Move threads/<id>/ to archive/<id>/ with ONE os.rename.
+
+    Same filesystem, so the rename is atomic, and it is reversible with a plain
+    `mv` -- which is why there is no `unarchive` verb to get out of sync with it.
+    Nothing is ever auto-archived or auto-deleted: the board suggests, the user acts.
+
+    Returns the destination path. Raises ThreadNotFound for an unknown or
+    wrong-shaped id, and ThreadRejected if the destination already exists (a
+    silent overwrite would destroy the earlier archive's events).
+    """
+    src = thread_dir(threads_dir, tid)          # also validates the id shape
+    if not os.path.isdir(src):
+        raise ThreadNotFound(tid)
+    archive_root = os.path.join(threads_dir, "archive")
+    dst = os.path.join(archive_root, tid)
+    # os.path.LEXISTS, not exists: a dangling symlink at archive/<id> reports
+    # False from exists() and the guard was bypassed, so the rename then failed
+    # with ENOTDIR instead of this message.
+    if os.path.lexists(dst):
+        raise ThreadRejected(
+            "%s already exists; move it aside first (archiving is a plain rename, "
+            "so nothing here is overwritten automatically)" % dst)
+    # Take the per-thread lock. Every other thread-directory mutation does, and
+    # without it archive races mutate's TRAILING append_event -- which runs after
+    # the lock is released -- and that append recreated threads/<id>/events/,
+    # leaving a phantom card no abd verb could remove. Measured: ~10% of concurrent
+    # trials produced a ghost or a traceback.
+    lk = store.acquire_thread_lock(src)
+    try:
+        if not os.path.isdir(src):
+            raise ThreadNotFound(tid)       # lost the race to another archiver
+        store.makedirs_private(archive_root)
+        os.rename(src, dst)
+    finally:
+        # The lockfile moved with the directory, so release what is now inside dst.
+        store.release_thread_lock(lk)
+    return dst
+
+
 def mutate(threads_dir, tid, changes, actor="cli", appends=None, removes=None):
     """Locked read-modify-write with a rev CAS. Retries 3x on a rev mismatch.
 

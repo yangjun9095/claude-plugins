@@ -108,7 +108,7 @@ def _cmd_thread(argv):
     p_set.add_argument("--rm-worktree", dest="rm_worktree")
     p_set.add_argument("--issue", dest="issues", action="append", type=int)
     p_set.add_argument("--job-prefix", dest="job_name_prefix")
-    for verb in ("park", "done", "reopen", "use"):
+    for verb in ("park", "done", "reopen", "use", "archive"):
         pv = sub.add_parser(verb)
         pv.add_argument("id")
         if verb == "park":
@@ -170,6 +170,10 @@ def _cmd_thread(argv):
             model.mutate(threads_dir, args.id,
                          {"done": False, "done_at": None, "parked": False}, actor="cli")
             return 0
+        if args.verb == "archive":
+            dst = model.archive_thread(threads_dir, args.id)
+            sys.stdout.write("moved to %s (reverse it with a plain mv)\n" % dst)
+            return 0
         if args.verb == "use":
             # The pin the SessionStart hook consults second, after ABD_THREAD.
             # load_thread first so a typo'd id cannot pin a thread that does not
@@ -198,6 +202,13 @@ def _cmd_thread(argv):
     except RuntimeError as exc:
         sys.stderr.write("abd: %s\n" % exc)
         return 75
+    except OSError as exc:
+        # A filesystem failure is a one-line rc 2, like every other error in this
+        # command and like the new init/export verbs -- not a traceback. Pre-existing
+        # for `thread use` on an unwritable store; archive made it reachable with a
+        # cross-device rename, and the fix covers both.
+        sys.stderr.write("abd: %s\n" % exc)
+        return 2
     return 2
 
 
@@ -219,6 +230,146 @@ def resolve_width(arg):
     if not sys.stdout.isatty():
         return 100          # documented clamp: the fallback is echoed back, not detected
     return size.columns
+
+
+def _cmd_init(argv):
+    import argparse
+
+    from agent_board import anchor, store
+    from agent_board.config import CONFIG_NAME, DEFAULTS
+
+    ap = argparse.ArgumentParser(prog="abd init")
+    ap.add_argument("--force", action="store_true",
+                    help="overwrite an existing config file")
+    ap.add_argument("--root")
+    args = ap.parse_args(argv)
+
+    start = args.root or os.getcwd()
+    threads_dir = anchor.resolve_threads_dir(start)
+    if not threads_dir:
+        sys.stderr.write("abd: not in a git repository; set ABD_THREADS_DIR\n")
+        return 2
+    try:
+        store.makedirs_private(os.path.join(threads_dir, "threads"))
+    except OSError as exc:
+        sys.stderr.write("abd: cannot create %s (%s)\n" % (threads_dir, exc))
+        return 2
+    sys.stdout.write("store ready at %s\n" % threads_dir)
+
+    # The config file is optional -- every key has a default and a repo with no
+    # config works. init writes a commented skeleton so the knobs are discoverable
+    # without reading the source.
+    # Where load_config will ACTUALLY read it. load_config(start) looks only at
+    # <start>/.agent-board.json with no upward search, and every consumer passes cwd
+    # -- so writing to the main worktree root (what _repo_root returns) produced a
+    # file that is never read from a linked worktree, which is the normal case for a
+    # tool about parallel worktrees. ABD_CONFIG wins, as it does everywhere else.
+    config_path = os.environ.get("ABD_CONFIG") or os.path.join(start, CONFIG_NAME)
+    if os.path.exists(config_path) and not args.force:
+        sys.stdout.write("%s exists; leaving it alone (--force overwrites)\n"
+                         % config_path)
+        return 0
+    skeleton = {"config_version": DEFAULTS["config_version"],
+                "project": dict(DEFAULTS["project"]),
+                "thresholds": dict(DEFAULTS["thresholds"]),
+                "collisions": {"ignore_globs_extra": []},
+                "scan": dict(DEFAULTS["scan"])}
+    try:
+        store.atomic_write_json(config_path, skeleton)
+    except OSError as exc:
+        sys.stderr.write("abd: cannot write %s (%s)\n" % (config_path, exc))
+        return 2
+    sys.stdout.write("wrote %s (every key is optional; delete it to use "
+                     "defaults)\n" % config_path)
+    # The BOARD is invisible to git by design -- it lives in .git/. The config is
+    # not board state, it is an ordinary project file, so it does show up as
+    # untracked. Say so, because the surprising consequence is that `git clean -xdn`
+    # lists it, and because whether to share it is the user's call, not ours:
+    # install-hooks could write .git/info/exclude unasked precisely because
+    # settings.local.json is never shareable, and thresholds are.
+    from agent_board.derive import git_
+    inside_worktree = git_._git(os.path.dirname(config_path) or ".",
+                                "rev-parse", "--is-inside-work-tree")
+    if (inside_worktree or "").strip() == "true":
+        sys.stdout.write(
+            "note: unlike the board itself, this config is a normal file in your "
+            "working tree.\n"
+            "      commit it to share thresholds with collaborators, or exclude it:\n"
+            "        printf '%s\\n' >> "
+            "\"$(git rev-parse --git-common-dir)/info/exclude\"\n"
+            "      until you do one or the other, `git clean -xdn` will list it.\n"
+            % os.path.basename(config_path))
+    else:
+        # A bare repo has no working tree, so neither claim in that note holds:
+        # nothing tracks the file and git clean has nothing to clean.
+        sys.stdout.write("note: this repository is bare, so the config sits beside "
+                         "HEAD and git will neither track nor clean it.\n")
+    return 0
+
+
+def _cmd_export(argv):
+    import argparse
+
+    from agent_board import anchor, portable
+
+    ap = argparse.ArgumentParser(prog="abd export")
+    ap.add_argument("path")
+    ap.add_argument("--root")
+    args = ap.parse_args(argv)
+    threads_dir = anchor.resolve_threads_dir(args.root or os.getcwd())
+    if not threads_dir:
+        sys.stderr.write("abd: not in a git repository; set ABD_THREADS_DIR\n")
+        return 2
+    bundle = portable.build_bundle(threads_dir)
+    try:
+        portable.write_bundle(args.path, bundle)
+    except OSError as exc:
+        sys.stderr.write("abd: cannot write %s (%s)\n" % (args.path, exc))
+        return 2
+    sys.stdout.write("exported %d thread(s) and %d archived to %s\n"
+                     % (len(bundle["threads"]), len(bundle["archived"]),
+                        args.path))
+    for row in bundle.get("unexportable") or []:
+        # Named, not silently omitted: the on-disk record is damaged and is the
+        # only copy of whatever is still recoverable.
+        sys.stderr.write("abd: skipped %s (%s) -- damaged on disk, not exported\n"
+                         % (row["id"], row["status"]))
+    for tid in bundle.get("truncated") or []:
+        sys.stderr.write("abd: %s had more events than the export cap; only the "
+                         "newest %d are in the bundle\n"
+                         % (tid, portable.DEFAULT_EVENT_CAP))
+    return 2 if bundle.get("unexportable") else 0
+
+
+def _cmd_import(argv):
+    import argparse
+
+    from agent_board import anchor, portable
+
+    ap = argparse.ArgumentParser(prog="abd import")
+    ap.add_argument("path")
+    ap.add_argument("--force", action="store_true",
+                    help="overwrite threads that already exist here")
+    ap.add_argument("--root")
+    args = ap.parse_args(argv)
+    threads_dir = anchor.resolve_threads_dir(args.root or os.getcwd())
+    if not threads_dir:
+        sys.stderr.write("abd: not in a git repository; set ABD_THREADS_DIR\n")
+        return 2
+    bundle, error = portable.read_bundle(args.path)
+    if error:
+        sys.stderr.write("abd: %s: %s\n" % (args.path, error))
+        return 2
+    imported, skipped, problems = portable.import_bundle(
+        threads_dir, bundle, force=args.force)
+    sys.stdout.write("imported %d thread(s)\n" % len(imported))
+    if skipped:
+        sys.stdout.write(
+            "skipped %d that already exist here (--force to overwrite): %s\n"
+            % (len(skipped), ", ".join(skipped[:8])))
+    for problem in problems:
+        sys.stderr.write("abd: %s\n" % problem)
+    return 2 if problems else 0
 
 
 def _cmd_show(argv):
@@ -328,6 +479,8 @@ def _cmd_board(argv):
         signal.signal(signal.SIGPIPE, signal.SIG_DFL)
 
     ap = argparse.ArgumentParser(prog="abd board")
+    ap.add_argument("filter", nargs="*", metavar="FILTER",
+                    help="substring match on thread id, title or worktree path")
     ap.add_argument("--json", action="store_true")
     ap.add_argument("--width", type=int)
     ap.add_argument("--ascii", action="store_true")
@@ -374,10 +527,15 @@ def _cmd_board(argv):
         for flag, present in (("--all", args.show_all),
                               ("--unattributed", args.unattributed),
                               ("--html", bool(args.html)),
-                              ("--json", args.json)):
+                              ("--json", args.json),
+                              ("a FILTER", bool([t for t in args.filter if t]))):
             if present:
                 sys.stderr.write("abd: --watch cannot be combined with %s\n" % flag)
                 return 2
+    if args.unattributed and [t for t in args.filter if t]:
+        sys.stderr.write("abd: --unattributed lists jobs, so a thread FILTER "
+                         "cannot apply to it\n")
+        return 2
     if args.unattributed and args.show_all:
         sys.stderr.write("abd: --unattributed and --all are separate views; "
                          "run them one at a time\n")
@@ -435,6 +593,22 @@ def _cmd_board(argv):
     # Decide emptiness against the UNFILTERED board. Checking after the filter
     # cannot tell "no threads at all" from "this lane is empty right now".
     store_is_empty = not any(data["columns"].values())
+    if [t for t in args.filter if t]:
+        # Every term must match somewhere on the card (AND), each term matching
+        # any of id / title / worktree line. Applied AFTER store_is_empty is
+        # decided, so "no threads at all" stays distinguishable from "nothing
+        # matched" -- the same reason --column is applied here rather than earlier.
+        # Drop empty terms: `abd board ""` is not a filter, and keeping it produced
+        # a no-match message naming an empty filter with a trailing space.
+        terms = [t.lower() for t in args.filter if t]
+
+        def _matches(card):
+            haystack = " ".join([str(card.get("id") or ""),
+                                 str(card.get("title") or ""),
+                                 " ".join(card.get("worktree_paths") or [])]).lower()
+            return all(term in haystack for term in terms)
+        data["columns"] = {name: [c for c in rows if _matches(c)]
+                           for name, rows in (data.get("columns") or {}).items()}
     if args.column:
         if args.column not in COLUMN_ORDER:
             sys.stderr.write("abd: unknown column %r (known: %s)\n"
@@ -475,8 +649,20 @@ def _cmd_board(argv):
         sys.stdout.write(
             "no threads yet - open one with: abd thread new --title \"...\"\n\n")
     elif not any(data["columns"].values()):
-        sys.stdout.write("no threads in %s\n" % args.column)
-        return 0
+        what = []
+        if args.column:
+            what.append("column %s" % args.column)
+        terms = [t for t in args.filter if t]
+        if terms:
+            # Echoing the raw term put arbitrary text on stdout unsanitised: an
+            # ANSI escape stuck, a newline broke the one-line contract, and
+            # --ascii stopped being ASCII.
+            from agent_board.show import _s
+            what.append("filter %s" % _s(" ".join(terms), ascii_mode))
+        sys.stdout.write("no threads matching %s\n"
+                         % (" and ".join(what) or "that view"))
+        if not args.show_all:
+            return 0
 
     if args.html:
         import io as _io
@@ -487,6 +673,13 @@ def _cmd_board(argv):
         # The DAG needs the raw threads and their columns, which the rendered
         # board flattens away.
         threads = _model.load_all(threads_dir)
+        if [t for t in args.filter if t]:
+            # The DAG iterates threads_by_id, so passing every thread on disk drew
+            # nodes for threads the filter had removed -- and labelled their column
+            # from the filtered board, i.e. wrongly.
+            visible = {c["id"] for rows in (data.get("columns") or {}).values()
+                       for c in rows}
+            threads = {k: v for k, v in threads.items() if k in visible}
         cols = {}
         for tid, thread in threads.items():
             for name, rows in (data.get("columns") or {}).items():
@@ -533,8 +726,8 @@ def _cmd_board(argv):
 def main(argv):
     if not argv:
         sys.stdout.write(
-            "usage: abd {board,show,thread,event,hook,install-hooks,doctor}"
-            " ...\n")
+            "usage: abd {board,show,thread,event,init,export,import,hook,"
+            "install-hooks,doctor} ...\n")
         return 2
     cmd = argv[0]
     if cmd in ("--version", "-V"):
@@ -554,5 +747,11 @@ def main(argv):
         return _cmd_show(argv[1:])
     if cmd == "event":
         return _cmd_event(argv[1:])
+    if cmd == "init":
+        return _cmd_init(argv[1:])
+    if cmd == "export":
+        return _cmd_export(argv[1:])
+    if cmd == "import":
+        return _cmd_import(argv[1:])
     sys.stderr.write("abd: unknown command %r\n" % cmd)
     return 2
