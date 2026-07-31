@@ -27,35 +27,50 @@ Generate an interactive HTML knowledge graph and summary index from a directory 
 
 ## How to Run
 
-The script is at `~/.claude/skills/build-kg/build_kg.py`.
+The script ships with this plugin at `${CLAUDE_PLUGIN_ROOT}/build_kg.py`.
+
+**Dependencies.** It needs `networkx` and `pyvis`, which are NOT in the standard library. Pick an
+interpreter that has them, and check first rather than discovering it mid-run:
+
+```bash
+python3 -c "import networkx, pyvis; print('deps OK')" || echo "NEED: pip install networkx pyvis"
+```
+
+If the system `python3` lacks them, use one that has them (e.g. a conda env) or install them. Set
+`KG_PYTHON` to that interpreter and use it throughout:
+
+```bash
+KG_PYTHON="${KG_PYTHON:-python3}"
+```
 
 **Basic usage:**
 ```bash
-~/miniconda3/bin/python ~/.claude/skills/build-kg/build_kg.py $ARGUMENTS
+"$KG_PYTHON" "${CLAUDE_PLUGIN_ROOT}/build_kg.py" $ARGUMENTS
 ```
 
 **With options:**
 ```bash
 # Output to a different directory
-~/miniconda3/bin/python ~/.claude/skills/build-kg/build_kg.py /path/to/docs --output /path/to/output
+"$KG_PYTHON" "${CLAUDE_PLUGIN_ROOT}/build_kg.py" /path/to/docs --output /path/to/output
 
 # Also export graph as JSON
-~/miniconda3/bin/python ~/.claude/skills/build-kg/build_kg.py /path/to/docs --json
+"$KG_PYTHON" "${CLAUDE_PLUGIN_ROOT}/build_kg.py" /path/to/docs --json
 
 # Custom title
-~/miniconda3/bin/python ~/.claude/skills/build-kg/build_kg.py /path/to/docs --title "My Project Docs"
+"$KG_PYTHON" "${CLAUDE_PLUGIN_ROOT}/build_kg.py" /path/to/docs --title "My Project Docs"
 
 # Exclude tag nodes (show only document-to-document links)
-~/miniconda3/bin/python ~/.claude/skills/build-kg/build_kg.py /path/to/docs --no-tags
+"$KG_PYTHON" "${CLAUDE_PLUGIN_ROOT}/build_kg.py" /path/to/docs --no-tags
 
 # Limit scan depth
-~/miniconda3/bin/python ~/.claude/skills/build-kg/build_kg.py /path/to/docs --depth 3
+"$KG_PYTHON" "${CLAUDE_PLUGIN_ROOT}/build_kg.py" /path/to/docs --depth 3
 ```
 
 ## Steps
 
 1. Determine the target docs directory from `$ARGUMENTS`. If not provided, ask the user.
-2. Run the script using the Bash tool with `~/miniconda3/bin/python`.
+2. Verify `networkx` and `pyvis` are importable, then run the script with that interpreter.
+   If they are missing, say so and give the `pip install networkx pyvis` line — do not fail silently.
 3. Report the results: number of documents, tags, links found.
 4. Tell the user where the output files are (`knowledge_graph.html` and `knowledge_graph_summary.md`).
 5. Read and present key findings from the summary (hub docs, orphans, tag breakdown).

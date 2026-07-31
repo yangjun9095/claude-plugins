@@ -70,6 +70,12 @@
       "source": "./plugins/email-report",
       "description": "Email a threaded status/report from a long-running or unattended session via a local MTA — no OAuth, no API key",
       "version": "1.0.0"
+    },
+    {
+      "name": "build-kg",
+      "source": "./plugins/build-kg",
+      "description": "Build an interactive knowledge graph from a folder of markdown documentation files. Extracts wikilinks, standard links, tags, and headings to generate an HTML graph visualization and summary index.",
+      "version": "1.0.0"
     }
   ]
 }
