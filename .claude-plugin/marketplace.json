@@ -64,6 +64,12 @@
       "source": "./plugins/agent-board",
       "description": "Live kanban board over parallel Claude Code agents working in git worktrees",
       "version": "0.1.0"
+    },
+    {
+      "name": "email-report",
+      "source": "./plugins/email-report",
+      "description": "Email a threaded status/report from a long-running or unattended session via a local MTA — no OAuth, no API key",
+      "version": "1.0.0"
     }
   ]
 }
