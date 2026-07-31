@@ -72,6 +72,36 @@ def append_event(threads_dir, tid, record):
         return
 
 
+def append_event_locked(threads_dir, tid, record):
+    """append_event, but holding the thread's O_EXCL lock.
+
+    The lock-free path is safe only for SINGLE-NODE O_APPEND. Cross-node appends to
+    one file lose 73-74% on NFS, because each client computes the offset from its own
+    cached size -- and a compute node writing to a login node's store is exactly that
+    case. Per-host shards make the common path safe; this makes the shared-shard case
+    safe too, for the one verb a batch job calls.
+
+    Returns True when the lock was held, False when it was bypassed after the
+    timeout -- the caller can then say so rather than implying a guarantee it did
+    not get.
+    """
+    from agent_board.model import thread_dir
+
+    lk = None
+    try:
+        lk = store.acquire_thread_lock(thread_dir(threads_dir, tid))
+    except BaseException:
+        lk = None
+    try:
+        append_event(threads_dir, tid, record)
+    finally:
+        try:
+            store.release_thread_lock(lk)
+        except BaseException:
+            pass
+    return lk is not None
+
+
 def _tail_bytes(path, nbytes):
     """Return (buf, head_truncated).
 
@@ -100,9 +130,16 @@ def _tail_bytes(path, nbytes):
 
 
 def read_events_tail(path, n):
-    """Tolerate partial lines -- that is the NORMAL case, not an edge case."""
+    """Tolerate partial lines -- that is the NORMAL case, not an edge case.
+
+    The window is sized from the BUDGET, not fixed at 64 KiB. A fixed window makes
+    the achievable count 65536/mean_line_bytes, so `abd show`'s budget of 50
+    silently delivered 21 once events averaged ~3 KB -- and the header reported
+    those 21 as the whole tail. A line may legally reach MAX_LINE, so n * MAX_LINE
+    is the smallest window that can always satisfy n.
+    """
     try:
-        buf, head_truncated = _tail_bytes(path, 65536)
+        buf, head_truncated = _tail_bytes(path, max(65536, n * MAX_LINE))
     except (IOError, OSError):
         return []
     if not buf.endswith(b"\n"):

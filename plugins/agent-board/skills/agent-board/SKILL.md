@@ -91,6 +91,16 @@ abd thread set <id> --job-prefix <prefix>       # its scheduler jobs share a pre
 `thread.json` is forbidden. Use it when you have *checked* that the blockers are
 done — not because the board still shows BLOCKED and that seems inconvenient.
 
+If something happened that the next reader genuinely needs and `--next-action`
+cannot carry — a dead end worth not repeating, a decision and its reason — add one
+event. This is **optional**, and it does not replace the next action:
+
+```bash
+abd event add <id> --kind note --text "<one sentence>"
+```
+
+Resist the urge to narrate. The timeline earns its value by being short.
+
 If the effort is finished: `abd thread done <id>`.
 If it is going on ice: `abd thread park <id> --reason "<why>"`.
 
@@ -99,7 +109,10 @@ If it is going on ice: `abd thread park <id> --reason "<why>"`.
 | They ask | Run |
 |---|---|
 | "show the board", "what am I working on" | `abd board` |
+| "what happened on this one", "catch me up" | `abd show <id>` |
 | "what's blocked" | `abd board --column BLOCKED` |
+| "what am I not tracking" | `abd board --all` |
+| "why aren't my jobs showing up" | `abd board --unattributed` |
 | "is anything colliding" | `abd board` — collisions print under the lanes |
 | "why is the board wrong / empty" | `abd doctor` |
 | "share this" | `abd board --html <path>` |

@@ -151,7 +151,10 @@ def load(threads_dir, cfg, threads, allow_probe=True):
         if error == "job probe timed out" and payload is not None:
             raw = payload.get("jobs") or []
             stale = True
-        elif not error:
+        elif not error and allow_probe and scheduler:
+            # Only a real probe may refresh the cache. Writing [] after an offline
+            # run stamped a fresh mtime on an empty result, so the NEXT online
+            # render served "no jobs" from cache for the whole TTL.
             cache.write(threads_dir, CACHE_NAME,
                         {"jobs": raw, "scheduler": scheduler, "error": error})
 

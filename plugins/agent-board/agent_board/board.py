@@ -115,7 +115,8 @@ def derive_thread(t, rows, wt_index, cfg, forge_data=None, jobs_data=None):
     return d, wt_lines, notes
 
 
-def build_board(threads_dir, repo, cfg=None, allow_probe=True, write_cache=True):
+def build_board(threads_dir, repo, cfg=None, allow_probe=True,
+                write_cache=True, include_unowned=False):
     cfg = cfg or load_config(repo)
     thresholds = cfg.get("thresholds") or DEFAULTS["thresholds"]
     threads = model.load_all(threads_dir)
@@ -168,7 +169,11 @@ def build_board(threads_dir, repo, cfg=None, allow_probe=True, write_cache=True)
         reasons = coldef.needs_attention(t, threads, d)
         badges = []
         if reasons:
-            badges.append(("needs_attention", ", ".join(sorted(set(reasons)))))
+            # Join `reasons` as-is. needs_attention already dedupes and returns a
+            # deterministic order; re-sorting here made the rendered badge disagree
+            # with the `attention` list on the same card, which defeats the point of
+            # show reusing the board's derivation instead of recomputing it.
+            badges.append(("needs_attention", ", ".join(reasons)))
         if d["live_jobs"]:
             badges.append(("live_jobs", jobs.summarize(d["live_jobs"])))
         notes = notes_by[tid]
@@ -184,9 +189,48 @@ def build_board(threads_dir, repo, cfg=None, allow_probe=True, write_cache=True)
             "worktrees": wt_lines_by[tid],
             "notes": notes,
             "pr": d.get("pr"),
+            # Structured alongside the rendered badge string: `abd show --json`
+            # and any other consumer needs the reasons as a list, not as prose
+            # they would have to re-split.
+            "attention": reasons,
+            "jobs": d["live_jobs"],
+            "column": columns[tid],
         })
 
+    # None, not [] -- the two must be distinguishable. A snapshot written without
+    # --all carries "no data"; [] means "looked, found none". Collapsing them let
+    # `--all --cached` positively claim every worktree was owned.
+    unowned = None
+    if include_unowned:
+        unowned = []
+        owned = set()
+        for t in threads.values():
+            for entry in t.get("worktrees") or []:
+                path = entry.get("path") if isinstance(entry, dict) else None
+                if isinstance(path, str) and path:
+                    owned.add(os.path.realpath(path))
+        for real, meta in sorted(wt_index.items()):
+            if real in owned or meta.get("prunable"):
+                continue
+            # git does NOT report prunable for a worktree that was locked and then
+            # deleted, so porcelain still lists it and it would be offered for
+            # adoption. The owned path has this same isdir guard (above); the
+            # unowned path lacked it, and probing a vanished dir also fatals.
+            if not os.path.isdir(real):
+                continue
+            status = git_.status_v2(real)
+            row = rows.get(meta.get("branch_ref")) if meta.get("branch_ref") else None
+            unowned.append({
+                "path": real,
+                "branch": meta.get("branch"),
+                "ahead": (row or {}).get("ahead"),
+                "behind": (row or {}).get("behind"),
+                "dirty": len(status["dirty"]),
+                "last_commit": _rel((row or {}).get("committed_at")),
+            })
+
     return {
+        "unowned": unowned,
         "meta": {"project": os.path.basename(os.path.abspath(repo)),
                  "branch": base or "?",
                  "head": (git_._git(repo, "rev-parse", "--short", "HEAD") or "?").strip(),
@@ -203,6 +247,10 @@ def build_board(threads_dir, repo, cfg=None, allow_probe=True, write_cache=True)
             "jobs": {"scheduler": jobs_data.get("scheduler"),
                      "error": jobs_data.get("error"),
                      "unattributed": len(jobs_data.get("unattributed") or [])},
+            # The rows themselves, for `abd board --unattributed`. Kept out of the
+            # jobs block above so the footer's count stays a count -- but the list
+            # has to exist somewhere, or that view silently prints "none".
+            "unattributed_jobs": jobs_data.get("unattributed") or [],
             # Logged on every render so drift in the two unvalidated ubiquity
             # constants is visible and they can be retuned on a noisier repo.
             "collisions": {"demote_at": coll["demote_at"],

@@ -221,6 +221,99 @@ def resolve_width(arg):
     return size.columns
 
 
+def _cmd_show(argv):
+    import argparse
+    import json as _json
+    import signal
+
+    from agent_board import anchor, board as boardmod, show as showmod
+
+    # Same guard as the board: a detail view is long enough to fill a pipe buffer,
+    # and `abd show <id> | head -1` raised BrokenPipeError as an 11-line traceback.
+    if hasattr(signal, "SIGPIPE"):
+        signal.signal(signal.SIGPIPE, signal.SIG_DFL)
+
+    ap = argparse.ArgumentParser(prog="abd show")
+    ap.add_argument("id")
+    ap.add_argument("--json", action="store_true")
+    ap.add_argument("--ascii", action="store_true")
+    ap.add_argument("--root")
+    ap.add_argument("--store")
+    ap.add_argument("--offline", action="store_true")
+    args = ap.parse_args(argv)
+
+    repo = args.root or os.getcwd()
+    threads_dir = args.store or anchor.resolve_threads_dir(repo)
+    if not threads_dir:
+        sys.stderr.write("abd: not in a git repository; set ABD_THREADS_DIR\n")
+        return 2
+    board = boardmod.build_board(threads_dir, repo, None,
+                                 allow_probe=not args.offline)
+    detail, error = showmod.build(board, threads_dir, args.id)
+    if error:
+        sys.stderr.write("abd: %s (list them with: abd board --json)\n" % error)
+        return 2
+    if args.json:
+        sys.stdout.write(_json.dumps(detail, indent=2, sort_keys=True) + "\n")
+        return 0
+    ascii_mode = args.ascii or (os.environ.get("ABD_ASCII") == "1")
+    try:
+        for line in showmod.render(detail, ascii_mode=ascii_mode):
+            sys.stdout.write(line + "\n")
+    except BrokenPipeError:
+        return 141
+    return 0
+
+
+def _cmd_event(argv):
+    import argparse
+
+    from agent_board import anchor, events as events_mod, model
+
+    ap = argparse.ArgumentParser(prog="abd event")
+    sub = ap.add_subparsers(dest="verb", required=True)
+    p_add = sub.add_parser("add")
+    p_add.add_argument("id")
+    p_add.add_argument("--kind", default="note")
+    p_add.add_argument("--text", required=True)
+    p_add.add_argument("--actor", default="cli")
+    args = ap.parse_args(argv)
+
+    if args.kind not in events_mod.VALID_KINDS:
+        sys.stderr.write("abd: unknown kind %r (want: %s)\n"
+                         % (args.kind, ", ".join(events_mod.VALID_KINDS)))
+        return 2
+    threads_dir = anchor.resolve_threads_dir(os.getcwd())
+    if not threads_dir:
+        sys.stderr.write("abd: not in a git repository; set ABD_THREADS_DIR\n")
+        return 2
+    # Refuse an id with no thread rather than creating a shard under it: an event
+    # on a nonexistent thread is unreadable by every consumer and looks like data
+    # loss later.
+    status = model.load_thread(threads_dir, args.id).get("_status")
+    if status not in ("ok", "degraded"):
+        # NOT `== "missing"`: an id whose shape thread_dir rejects (a capitalised
+        # typo, `../../evil`) comes back as "loader_crash", so the old guard let it
+        # through and append_event silently swallowed the failure -- rc 0, nothing
+        # written, no message.
+        sys.stderr.write("abd: cannot write to thread %r (%s); list them with: "
+                         "abd board --json\n" % (args.id, status))
+        return 2
+    # A long free-form --actor pushed the serialised record past MAX_LINE, and the
+    # truncation pass only shortens text/goal/next_action -- so the whole --text was
+    # replaced by a fields_dropped stub, rc 0, silently.
+    if len(args.actor) > 64:
+        sys.stderr.write("abd: --actor is limited to 64 characters\n")
+        return 2
+    locked = events_mod.append_event_locked(
+        threads_dir, args.id,
+        {"kind": args.kind, "actor": args.actor, "text": args.text})
+    if not locked:
+        sys.stderr.write("abd: warning: wrote without the lock (timed out); safe on "
+                         "one node, at risk across nodes\n")
+    return 0
+
+
 def _cmd_board(argv):
     import argparse
     import json as _json
@@ -252,6 +345,10 @@ def _cmd_board(argv):
                     help="repaint on an interval (15s floor); q quits, r refreshes")
     ap.add_argument("--html", metavar="PATH",
                     help="write a self-contained HTML snapshot and exit")
+    ap.add_argument("--all", dest="show_all", action="store_true",
+                    help="also list worktrees no thread owns (probes every one)")
+    ap.add_argument("--unattributed", action="store_true",
+                    help="list scheduler jobs that matched no thread")
     args = ap.parse_args(argv)
 
     repo = args.root or os.getcwd()
@@ -264,9 +361,27 @@ def _cmd_board(argv):
 
     def _build():
         return boardmod.build_board(threads_dir, repo, None,
-                                    allow_probe=not args.offline)
+                                    allow_probe=not args.offline,
+                                    include_unowned=args.show_all)
 
     ascii_mode = args.ascii or (os.environ.get("ABD_ASCII") == "1")
+
+    # Refuse rather than swallow. Every one of these combinations previously ran,
+    # printed one view, and silently dropped the other flag -- while still paying
+    # its cost: `--watch --all` re-probed every worktree on every 15 s refresh
+    # forever and never rendered a single unowned row.
+    if args.watch is not None:
+        for flag, present in (("--all", args.show_all),
+                              ("--unattributed", args.unattributed),
+                              ("--html", bool(args.html)),
+                              ("--json", args.json)):
+            if present:
+                sys.stderr.write("abd: --watch cannot be combined with %s\n" % flag)
+                return 2
+    if args.unattributed and args.show_all:
+        sys.stderr.write("abd: --unattributed and --all are separate views; "
+                         "run them one at a time\n")
+        return 2
 
     if args.watch is not None:
         from agent_board import watch as watchmod
@@ -299,9 +414,18 @@ def _cmd_board(argv):
         else:
             sys.stderr.write("abd: no snapshot yet; scanning\n")
     if data is None:
+        if args.show_all:
+            # Honest rather than silent: --all probes every worktree, and on a
+            # 64-worktree repo that is seconds, not milliseconds. A stderr notice
+            # beats an animated spinner, which would need its own thread purely to
+            # decorate a one-shot command.
+            sys.stderr.write("abd: --all probes every worktree; this takes a few "
+                             "seconds on a large repo...\n")
+            sys.stderr.flush()
         started = _time.time()
         data = boardmod.build_board(threads_dir, repo, None,
-                                    allow_probe=not args.offline)
+                                    allow_probe=not args.offline,
+                                    include_unowned=args.show_all)
         elapsed = _time.time() - started
         _cache.write(threads_dir, boardmod.SNAPSHOT_NAME, data)
         if elapsed > 5.0:
@@ -321,11 +445,36 @@ def _cmd_board(argv):
     if args.json:
         sys.stdout.write(_json.dumps(data, indent=2, sort_keys=True) + "\n")
         return 0
-    if store_is_empty:
+
+    if args.unattributed:
+        from agent_board import show as showmod
+        signals = data.get("signals") or {}
+        rows = signals.get("unattributed_jobs")
+        if rows is None:
+            # A snapshot written before this view existed has the COUNT but not the
+            # rows. Printing "none" would contradict that same snapshot's footer.
+            sys.stderr.write("abd: this snapshot predates the unattributed view; "
+                             "re-run without --cached\n")
+            return 2
+        lines = showmod.render_unattributed(rows, ascii_mode=ascii_mode)
+        age = signals.get("snapshot_age_s")
+        if age is not None:
+            from agent_board.render.layout import _ago
+            lines.append("")
+            lines.append("snapshot from %s ago - re-run without --cached to refresh"
+                         % _ago(age))
+        for line in lines:
+            sys.stdout.write(line + "\n")
+        return 0
+
+    if store_is_empty and not args.show_all:
         sys.stdout.write(
             "no threads yet - open one with: abd thread new --title \"...\"\n")
         return 0
-    if not any(data["columns"].values()):
+    if store_is_empty:
+        sys.stdout.write(
+            "no threads yet - open one with: abd thread new --title \"...\"\n\n")
+    elif not any(data["columns"].values()):
         sys.stdout.write("no threads in %s\n" % args.column)
         return 0
 
@@ -358,8 +507,24 @@ def _cmd_board(argv):
     width = resolve_width(args.width)
     color = resolve_color(args.color)
     try:
-        for line in render_board(data, width, ascii_mode=ascii_mode):
-            sys.stdout.write(emit_plain(line, palette.DARK, color) + "\n")
+        if not store_is_empty:
+            for line in render_board(data, width, ascii_mode=ascii_mode):
+                sys.stdout.write(emit_plain(line, palette.DARK, color) + "\n")
+        if args.show_all:
+            from agent_board import show as showmod
+            unowned = data.get("unowned")
+            if not store_is_empty:
+                sys.stdout.write("\n")
+            if unowned is None:
+                # None means NOT COMPUTED (a snapshot from a run without --all);
+                # [] means computed and genuinely empty. Collapsing the two let
+                # `--all --cached` assert "every worktree belongs to a thread"
+                # about data it had never looked at.
+                sys.stdout.write("unowned worktrees were not computed for this "
+                                 "snapshot - re-run without --cached\n")
+            else:
+                for line in showmod.render_unowned(unowned, ascii_mode=ascii_mode):
+                    sys.stdout.write(line + "\n")
     except BrokenPipeError:
         return 141
     return 0
@@ -368,7 +533,8 @@ def _cmd_board(argv):
 def main(argv):
     if not argv:
         sys.stdout.write(
-            "usage: abd {board,thread,hook,install-hooks,show,init,doctor} ...\n")
+            "usage: abd {board,show,thread,event,hook,install-hooks,doctor}"
+            " ...\n")
         return 2
     cmd = argv[0]
     if cmd in ("--version", "-V"):
@@ -384,5 +550,9 @@ def main(argv):
         return _cmd_install_hooks(argv[1:])
     if cmd == "doctor":
         return _cmd_doctor(argv[1:])
+    if cmd == "show":
+        return _cmd_show(argv[1:])
+    if cmd == "event":
+        return _cmd_event(argv[1:])
     sys.stderr.write("abd: unknown command %r\n" % cmd)
     return 2

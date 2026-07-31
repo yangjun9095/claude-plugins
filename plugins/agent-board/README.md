@@ -68,6 +68,42 @@ Un-opted repositories cost one directory check — no store is created and nothi
 is printed. Linux, macOS and WSL; Windows is not supported in v1, where the
 failure is a silent no-op.
 
+## Looking at one thread
+
+```bash
+abd show <id>            # detail: worktrees, PR, jobs, attention, collisions, timeline
+abd show <id> --json
+abd event add <id> --kind note --text "spent the afternoon on the token stream"
+```
+
+`show` is the view for when you have lost a thread and want its history — the
+timeline is the last **50** events, against 3 on a card and 10 in an injected session
+card. It reuses the board's derivation rather than recomputing, so a card and its
+detail view can never disagree.
+
+`event add` is the one write a batch job should make. Unlike the hook's append it
+takes the thread's lock, because the lock-free path is only safe for single-node
+appends — a compute node writing to a login node's store over NFS loses most of what
+it writes. If the lock times out it still writes and says so on stderr, since an
+event is a convenience, not a correctness dependency.
+
+## Finding what you have forgotten
+
+```bash
+abd board --all             # also list worktrees no thread owns (probes every one)
+abd board --unattributed    # scheduler jobs that matched no thread
+```
+
+They are separate views, so run them one at a time — and neither combines with
+`--watch`, which refuses rather than silently dropping the flag while still paying
+for it. Both are opt-in because both cost something. `--all` probes every worktree,
+which is seconds on a large repo, and says so on stderr rather than looking hung.
+With `--cached` it will tell you the snapshot has no unowned data instead of
+claiming every worktree is accounted for.
+`--unattributed` is a separate view because at 675 of 728 real jobs the bucket is
+noise — a default panel would bury the signal. It prints the remedy with the list:
+declare `--job-prefix` on the thread that owns those jobs.
+
 ## Watching, and sharing
 
 ```bash

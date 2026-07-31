@@ -20,8 +20,12 @@ SUBS = {
     "<id>": "t", "<other-id>": "other", "<n>": "42", "<prefix>": "mhb_",
     "<path>": ".", "<at most 8 words>": "T", "<1-2 sentences>": "G",
     "<the single next concrete step, one line>": "next step",
-    "<why>": "on ice", "<base directory>": ".",
+    "<why>": "on ice", "<base directory>": ".", "<one sentence>": "a note",
 }
+# A placeholder missing from this map makes its command silently unverified -- the
+# newest one, `abd event add`, was dropped exactly that way. The test below asserts
+# the count, so an unmapped placeholder now shows up as a failure.
+EXPECTED_COMMAND_COUNT = 21
 
 
 def _text():
@@ -130,7 +134,13 @@ def test_extraction_found_the_commands_at_all():
     """A guard on the guard: a regex that silently matches nothing would make every
     command test below vacuously pass."""
     commands = skill_commands()
-    assert len(commands) >= 10, commands
+    assert len(commands) == EXPECTED_COMMAND_COUNT, (
+        "expected %d commands, extracted %d -- if you added one to SKILL.md bump the "
+        "constant; if it DROPPED, a placeholder is missing from SUBS and that "
+        "command is going unverified:\n%s"
+        % (EXPECTED_COMMAND_COUNT, len(commands),
+           "\n".join("abd " + " ".join(c) for c in commands)))
+    assert any(c[:2] == ("event", "add") for c in commands)
     assert any(c[:2] == ("thread", "new") for c in commands)
     assert any(c[:2] == ("thread", "set") and "--next-action" in c
                for c in commands)
