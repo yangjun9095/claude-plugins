@@ -230,6 +230,11 @@ def _cmd_board(argv):
                     help="never probe the forge; serve whatever the cache holds")
     ap.add_argument("--cached", action="store_true",
                     help="render the last snapshot instantly instead of scanning")
+    ap.add_argument("--watch", nargs="?", const=15, type=float, default=None,
+                    metavar="SECS",
+                    help="repaint on an interval (15s floor); q quits, r refreshes")
+    ap.add_argument("--html", metavar="PATH",
+                    help="write a self-contained HTML snapshot and exit")
     args = ap.parse_args(argv)
 
     repo = args.root or os.getcwd()
@@ -238,12 +243,35 @@ def _cmd_board(argv):
         sys.stderr.write("abd: not in a git repository; set ABD_THREADS_DIR\n")
         return 2
 
+    from agent_board import cache as _cache
+
+    def _build():
+        return boardmod.build_board(threads_dir, repo, None,
+                                    allow_probe=not args.offline)
+
+    ascii_mode = args.ascii or (os.environ.get("ABD_ASCII") == "1")
+
+    if args.watch is not None:
+        from agent_board import watch as watchmod
+        width = resolve_width(args.width)
+        color = resolve_color(args.color)
+
+        def paint(board, notes):
+            for line in render_board(board, width, ascii_mode=ascii_mode):
+                sys.stdout.write(emit_plain(line, palette.DARK, color) + "\n")
+            for note in notes:
+                sys.stdout.write("  %s\n" % note)
+
+        def build_and_cache():
+            board = _build()
+            _cache.write(threads_dir, boardmod.SNAPSHOT_NAME, board)
+            return board
+        return watchmod.run(build_and_cache, paint, interval=args.watch)
+
     # A cold scan on a large repo over a network filesystem is genuinely slow
     # (measured 32 s cold / 2.5 s warm on a 65-worktree repo, all of it I/O wait),
     # so the last derived board is persisted and can be rendered instantly.
     import time as _time
-
-    from agent_board import cache as _cache
     data = None
     if args.cached:
         snapshot, age, _fresh = _cache.read(threads_dir, boardmod.SNAPSHOT_NAME,
@@ -284,7 +312,32 @@ def _cmd_board(argv):
         sys.stdout.write("no threads in %s\n" % args.column)
         return 0
 
-    ascii_mode = args.ascii or (os.environ.get("ABD_ASCII") == "1")
+    if args.html:
+        import io as _io
+        import time as _tm
+
+        from agent_board import model as _model
+        from agent_board.render.html import export
+        # The DAG needs the raw threads and their columns, which the rendered
+        # board flattens away.
+        threads = _model.load_all(threads_dir)
+        cols = {}
+        for tid, thread in threads.items():
+            for name, rows in (data.get("columns") or {}).items():
+                if any(c["id"] == tid for c in rows):
+                    cols[tid] = name
+                    break
+        page = export(data, threads_by_id=threads, columns=cols,
+                      generated_at=_tm.strftime("%Y-%m-%d %H:%M"))
+        try:
+            with _io.open(args.html, "w", encoding="utf-8") as fh:
+                fh.write(page)
+        except OSError as exc:
+            sys.stderr.write("abd: cannot write %s (%s)\n" % (args.html, exc))
+            return 2
+        sys.stdout.write("wrote %s (%d bytes)\n" % (args.html, len(page)))
+        return 0
+
     width = resolve_width(args.width)
     color = resolve_color(args.color)
     try:

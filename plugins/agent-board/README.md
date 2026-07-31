@@ -51,6 +51,33 @@ Un-opted repositories cost one directory check — no store is created and nothi
 is printed. Linux, macOS and WSL; Windows is not supported in v1, where the
 failure is a silent no-op.
 
+## Watching, and sharing
+
+```bash
+abd board --watch          # repaint every 15s; q quits, r refreshes now
+abd board --watch 60       # slower is fine, faster is not (15s floor)
+abd board --html board.html
+```
+
+`--watch` runs the scan on a **worker thread**, so a slow filesystem never freezes
+the display or swallows the keypress meant to quit. A failed refresh keeps the last
+good board and says so. Repaints clear the screen rather than moving the cursor up,
+because the frame's height changes between refreshes as dirty state and job counts
+change. Without a tty (a pipe, CI, `watch abd board`) it degrades to interval-only
+instead of failing.
+
+The 15-second floor is deliberate: `git status` over a network filesystem is the
+cost, faster polling is not more informative, and on a shared login node it turns a
+monitor into a load generator.
+
+`--html` writes **one self-contained file** — no scripts, no external assets, safe
+to email or drop in a PR. Lanes reflow to phone width with no media query, DONE
+collapses via native `<details>`, it follows the reader's light/dark preference, and
+`blocked_by` renders as an inline SVG dependency graph with blockers laid out to the
+left of what they block. Links to PRs are real links; nothing else is fetched or
+executed. It is a frozen snapshot on purpose — there is no auto-refresh, because
+reloading a static file cannot show new data.
+
 ## Collisions, PR state and jobs
 
 **Collisions** answer "are my agents stepping on each other". Every non-DONE
