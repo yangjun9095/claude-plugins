@@ -59,6 +59,28 @@ def atomic_write_json(path, obj, fsync=True):
             pass
 
 
+def atomic_write_text(path, text):
+    """Same tmp-in-the-same-directory + os.replace dance as atomic_write_json,
+    for the one-line files that are not JSON (the active-thread pin). Kept
+    separate rather than generalising atomic_write_json, whose JSON encoding and
+    fsync behaviour are pinned by tests."""
+    d = os.path.dirname(os.path.abspath(path))
+    tmp = os.path.join(d, ".%s.%d.%s.tmp" % (os.path.basename(path), os.getpid(), rand6()))
+    fd = os.open(tmp, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)
+    try:
+        with io.open(fd, "w", encoding="utf-8") as fh:
+            fh.write(text)
+            fh.flush()
+            os.fsync(fh.fileno())
+        os.replace(tmp, path)
+    except BaseException:
+        try:
+            os.unlink(tmp)
+        except OSError:
+            pass
+        raise
+
+
 def read_text_resilient(path):
     """Return (text, None) or (None, reason). NEVER raises, for ANY input."""
     for k in range(_ESTALE_TRIES):

@@ -107,8 +107,10 @@ def project_name(common):
     return base
 
 
-def resolve_threads_dir(start=None):
-    start = start or os.getcwd()
+def _threads_dir_from(start, common):
+    """The shared tail of both resolvers: env override, explicit config, else
+    <common>/agent-board. Only the common-dir step differs between them, and
+    keeping the rest in one place is what stops them drifting apart."""
     env = os.environ.get("ABD_THREADS_DIR")
     if env:
         return os.path.abspath(os.path.expanduser(os.path.expandvars(env)))
@@ -117,7 +119,20 @@ def resolve_threads_dir(start=None):
     if storage.get("mode") == "explicit" and storage.get("threads_dir"):
         return os.path.abspath(os.path.expanduser(
             os.path.expandvars(storage["threads_dir"])))
-    common = git_common_dir(start)
     if not common:
         return None
     return os.path.join(common, "agent-board")
+
+
+def resolve_threads_dir(start=None):
+    start = start or os.getcwd()
+    return _threads_dir_from(start, git_common_dir(start))
+
+
+def resolve_threads_dir_pure(start=None):
+    """resolve_threads_dir without spawning git -- for the SessionStart hook,
+    whose budget forbids a subprocess. Must agree with resolve_threads_dir():
+    the hook uses this one and the CLI uses that one, so any disagreement means
+    two different boards for one repo. load_config is pure file reads."""
+    start = start or os.getcwd()
+    return _threads_dir_from(start, git_common_dir_pure(start))

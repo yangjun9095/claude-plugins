@@ -1,0 +1,19 @@
+{
+  "description": "agent-board: inject the active thread card at session start; snapshot at session end.",
+  "hooks": {
+    "SessionStart": [
+      { "matcher": "startup|resume|fork|clear",
+        "hooks": [ { "type": "command",
+          "command": "\"${CLAUDE_PLUGIN_ROOT}/bin/abd\" hook session-start 2>/dev/null",
+          "timeout": 5,
+          "statusMessage": "agent-board: loading thread card" } ] }
+    ],
+    "SessionEnd": [
+      { "matcher": "prompt_input_exit|logout|other|bypass_permissions_disabled",
+        "hooks": [ { "type": "command",
+          "command": "\"${CLAUDE_PLUGIN_ROOT}/bin/abd\" hook session-end 2>/dev/null",
+          "timeout": 15,
+          "async": true } ] }
+    ]
+  }
+}

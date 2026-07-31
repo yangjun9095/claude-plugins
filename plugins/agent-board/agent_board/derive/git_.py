@@ -52,6 +52,18 @@ def _git(cwd, *args, **kw):
     return proc.stdout if proc.returncode == 0 else None
 
 
+def head_short(cwd, timeout=2):
+    """Abbreviated HEAD, or None. The single git call the SessionEnd hook makes.
+
+    Public so the hook does not reach for _git directly -- every git invocation
+    in this project goes through that one hardened entry point. The short
+    timeout is the point: a session is ending, and a hung git must not hold it.
+    Any failure (no git, no repo, unborn HEAD, timeout) simply omits the field.
+    """
+    out = _git(cwd, "rev-parse", "--short", "HEAD", timeout=timeout)
+    return (out or "").strip() or None
+
+
 def list_worktrees(repo):
     """-z avoids C-quoting of unusual paths (git >= 2.36). `locked` and
     `prunable` carry a REASON STRING, not a bare flag.

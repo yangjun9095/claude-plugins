@@ -5,16 +5,50 @@ from agent_board import __version__
 
 
 def _hook(argv):
-    """Hook entry. Fails open: prints nothing, always returns 0."""
+    """Hook entry. Fails open: prints nothing, always returns 0.
+
+    The import is inside the try because an ImportError here -- a half-installed
+    package, a syntax error from a bad edit -- must still exit 0 rather than
+    print a traceback into the user's session.
+    """
     try:
-        for truthy in ("1", "true", "TRUE", "yes", "YES"):
-            if os.environ.get("ABD_DISABLE") == truthy:
-                return 0
-        if os.path.exists(os.path.expanduser("~/.agent-board-DISABLED")):
-            return 0
-        return 0  # real behaviour lands in M3
+        from agent_board import hookimpl
+        return hookimpl.hook_main(argv)
     except BaseException:
         return 0
+
+
+def _cmd_install_hooks(argv):
+    import argparse
+
+    from agent_board import anchor, install
+
+    ap = argparse.ArgumentParser(prog="abd install-hooks")
+    ap.add_argument("--scope", choices=install.SCOPES, default="local")
+    ap.add_argument("--root")
+    args = ap.parse_args(argv)
+
+    start = args.root or os.getcwd()
+    common = anchor.git_common_dir(start)
+    if not common and args.scope != "user":
+        sys.stderr.write("abd: not in a git repository; use --scope user\n")
+        return 2
+    # dirname('/repo/.git') is the worktree root; a bare repo has no worktree, so
+    # fall back to the common dir itself rather than emitting '/'.
+    repo_root = start
+    if common:
+        parent = os.path.dirname(common)
+        repo_root = parent if os.path.basename(common) == ".git" else common
+
+    abd_path = os.path.join(os.environ.get("ABD_ROOT")
+                            or os.path.dirname(os.path.dirname(
+                                os.path.abspath(__file__))), "bin", "abd")
+    rc, messages = install.install(args.scope, abd_path, repo_root,
+                                   common_dir=common)
+    stream = sys.stdout if rc == 0 else sys.stderr
+    for line in messages:
+        stream.write(line + "\n")
+    return rc
 
 
 def _cmd_thread(argv):
@@ -38,7 +72,7 @@ def _cmd_thread(argv):
     p_set.add_argument("--next-action", dest="next_action")
     p_set.add_argument("--blocked-by", dest="blocked_by", action="append")
     p_set.add_argument("--add-worktree", dest="add_worktree")
-    for verb in ("park", "done", "reopen"):
+    for verb in ("park", "done", "reopen", "use"):
         pv = sub.add_parser(verb)
         pv.add_argument("id")
         if verb == "park":
@@ -87,6 +121,18 @@ def _cmd_thread(argv):
         if args.verb == "reopen":
             model.mutate(threads_dir, args.id,
                          {"done": False, "done_at": None, "parked": False}, actor="cli")
+            return 0
+        if args.verb == "use":
+            # The pin the SessionStart hook consults second, after ABD_THREAD.
+            # load_thread first so a typo'd id cannot pin a thread that does not
+            # exist -- a silent wrong-card bug that would look like a hook fault.
+            from agent_board import hookimpl, store
+            t = model.load_thread(threads_dir, args.id)
+            if t.get("_status") == "missing":
+                raise model.ThreadNotFound(args.id)
+            os.makedirs(threads_dir, 0o700, exist_ok=True)
+            store.atomic_write_text(
+                os.path.join(threads_dir, hookimpl.PIN_NAME), args.id + "\n")
             return 0
     except model.ThreadIdUnavailable as exc:
         sys.stderr.write("abd: %s\n" % exc)
@@ -192,7 +238,8 @@ def _cmd_board(argv):
 
 def main(argv):
     if not argv:
-        sys.stdout.write("usage: abd {board,thread,show,hook,init,doctor} ...\n")
+        sys.stdout.write(
+            "usage: abd {board,thread,hook,install-hooks,show,init,doctor} ...\n")
         return 2
     cmd = argv[0]
     if cmd in ("--version", "-V"):
@@ -204,5 +251,7 @@ def main(argv):
         return _cmd_thread(argv[1:])
     if cmd == "board":
         return _cmd_board(argv[1:])
+    if cmd == "install-hooks":
+        return _cmd_install_hooks(argv[1:])
     sys.stderr.write("abd: unknown command %r\n" % cmd)
     return 2
