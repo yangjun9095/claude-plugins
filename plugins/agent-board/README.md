@@ -10,6 +10,23 @@ Install via Claude Code's plugin marketplace:
 claude plugin install agent-board
 ```
 
+## The skill — so you stop typing the commands
+
+The plugin ships a skill, so the agent maintains the board itself. It fires at
+session kickoff and wrap-up, or when you ask "what am I working on", "show the
+board", "what's blocked", or say you're starting or finishing a named effort.
+
+Its whole writing burden is **one line per session** — the next concrete step.
+Everything else on the card is derived, so there is nothing else to write. If the
+skill ever needs a third mandatory write, the declared/derived split has failed.
+
+It is also explicitly told what *not* to do: never write `thread.json` directly
+(only `abd` takes the lock and bumps `rev`), never record derived state like "5
+commits ahead" into a goal, never run `--watch` from inside a session, never mark a
+thread done because a PR merged — a merge is a suggestion and the human decides —
+and never open a thread for a two-minute fix, because a board full of trivia is the
+same problem as no board.
+
 ## Hooks — how the board stays fresh
 
 Two hooks, and only two. **SessionStart** injects the active thread's card into a

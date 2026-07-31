@@ -447,3 +447,73 @@ def test_thread_use_rejects_an_unknown_id(tmp_path, monkeypatch, capsys):
     assert cli.main(["thread", "use", "nope"]) == 2
     assert not os.path.exists(os.path.join(store_dir, "active-thread"))
     assert "nope" in capsys.readouterr().err
+
+
+# --- thread set: the flags the skill instructs agents to use ------------------
+
+def _read_thread(store_dir, tid):
+    with io.open(os.path.join(store_dir, "threads", tid, "thread.json"),
+                 encoding="utf-8") as fh:
+        return json.load(fh)
+
+
+def test_job_prefix_can_be_set_after_creation(tmp_path, monkeypatch):
+    """Shipped job attribution is useless if the prefix can only be declared at
+    `thread new` time -- and the documented command was `thread set --job-prefix`."""
+    store_dir = _store(tmp_path)
+    _thread(store_dir, "t")
+    monkeypatch.setenv("ABD_THREADS_DIR", store_dir)
+    assert cli.main(["thread", "set", "t", "--job-prefix", "mhb_"]) == 0
+    assert _read_thread(store_dir, "t")["job_name_prefix"] == "mhb_"
+
+
+def test_issues_accumulate_and_do_not_duplicate(tmp_path, monkeypatch):
+    store_dir = _store(tmp_path)
+    _thread(store_dir, "t")
+    monkeypatch.setenv("ABD_THREADS_DIR", store_dir)
+    assert cli.main(["thread", "set", "t", "--issue", "7", "--issue", "9"]) == 0
+    assert cli.main(["thread", "set", "t", "--issue", "9"]) == 0
+    assert sorted(_read_thread(store_dir, "t")["issues"]) == [7, 9]
+
+
+def test_clear_blocked_by_unblocks_without_hand_editing_json(tmp_path, monkeypatch):
+    """The skill forbids writing thread.json directly, so a thread with no way to
+    clear its blockers would be permanently stuck in BLOCKED."""
+    store_dir = _store(tmp_path)
+    _thread(store_dir, "t", blocked_by=["a", "b"])
+    monkeypatch.setenv("ABD_THREADS_DIR", store_dir)
+    assert cli.main(["thread", "set", "t", "--clear-blocked-by"]) == 0
+    assert _read_thread(store_dir, "t")["blocked_by"] == []
+
+
+def test_rm_worktree_removes_only_the_named_one(tmp_path, monkeypatch):
+    store_dir = _store(tmp_path)
+    keep, drop = tmp_path / "keep", tmp_path / "drop"
+    keep.mkdir()
+    drop.mkdir()
+    _thread(store_dir, "t", worktrees=[{"path": str(keep)}, {"path": str(drop)}])
+    monkeypatch.setenv("ABD_THREADS_DIR", store_dir)
+    assert cli.main(["thread", "set", "t", "--rm-worktree", str(drop)]) == 0
+    paths = [w["path"] for w in _read_thread(store_dir, "t")["worktrees"]]
+    assert paths == [str(keep)]
+
+
+def test_removal_happens_inside_the_lock_not_precomputed(tmp_path):
+    """A precomputed filtered list would discard whatever a concurrent writer
+    appended between the read and the write -- the same lost update `appends`
+    exists to prevent, in the other direction."""
+    from agent_board import model as m
+    store_dir = _store(tmp_path)
+    _thread(store_dir, "t", worktrees=[{"path": "/a"}, {"path": "/b"}])
+    m.mutate(store_dir, "t", {}, appends={"worktrees": [{"path": "/c"}]},
+             removes={"worktrees": [{"path": "/a"}]})
+    paths = sorted(w["path"] for w in _read_thread(store_dir, "t")["worktrees"])
+    assert paths == ["/b", "/c"]
+
+
+def test_removing_an_absent_worktree_is_a_no_op(tmp_path):
+    from agent_board import model as m
+    store_dir = _store(tmp_path)
+    _thread(store_dir, "t", worktrees=[{"path": "/a"}])
+    m.mutate(store_dir, "t", {}, removes={"worktrees": [{"path": "/nope"}]})
+    assert [w["path"] for w in _read_thread(store_dir, "t")["worktrees"]] == ["/a"]

@@ -344,7 +344,7 @@ def new_thread(threads_dir, title, **kw):
     return dict(t, _status="ok", _problems=[])
 
 
-def mutate(threads_dir, tid, changes, actor="cli", appends=None):
+def mutate(threads_dir, tid, changes, actor="cli", appends=None, removes=None):
     """Locked read-modify-write with a rev CAS. Retries 3x on a rev mismatch.
 
     `appends` merges list items INSIDE the lock, after the fresh re-read --
@@ -355,6 +355,12 @@ def mutate(threads_dir, tid, changes, actor="cli", appends=None):
     silently overwrites the first's -- a lost update one layer above the very
     lock this function holds. Do not "simplify" this back into a precomputed
     list passed through `changes`.
+
+    `removes` exists for exactly the same reason, in the other direction: a
+    precomputed `[x for x in cur if x != gone]` discards any entry a concurrent
+    writer appended between the read and the write. Identity is the same
+    `_append_identity` key appends uses, so removing a worktree matches on its
+    path rather than on the whole dict.
     """
     d = thread_dir(threads_dir, tid)
     path = _thread_path(threads_dir, tid)
@@ -399,6 +405,10 @@ def mutate(threads_dir, tid, changes, actor="cli", appends=None):
                         base.append(item)
                         seen.add(ident)
                 out[k] = base
+            for k, items in (removes or {}).items():
+                drop = {_append_identity(k, x) for x in items}
+                out[k] = [x for x in _as_list(out.get(k))
+                          if _append_identity(k, x) not in drop]
             out["worktrees"] = _normalize_worktrees(out.get("worktrees"))[0]
             out["rev"] = expected_rev + 1
             out["updated_at"] = utcnow_z()

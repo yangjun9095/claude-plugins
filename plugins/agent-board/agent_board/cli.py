@@ -102,7 +102,12 @@ def _cmd_thread(argv):
     p_set.add_argument("--goal")
     p_set.add_argument("--next-action", dest="next_action")
     p_set.add_argument("--blocked-by", dest="blocked_by", action="append")
+    p_set.add_argument("--clear-blocked-by", dest="clear_blocked_by",
+                       action="store_true")
     p_set.add_argument("--add-worktree", dest="add_worktree")
+    p_set.add_argument("--rm-worktree", dest="rm_worktree")
+    p_set.add_argument("--issue", dest="issues", action="append", type=int)
+    p_set.add_argument("--job-prefix", dest="job_name_prefix")
     for verb in ("park", "done", "reopen", "use"):
         pv = sub.add_parser(verb)
         pv.add_argument("id")
@@ -126,20 +131,32 @@ def _cmd_thread(argv):
             return 0
         if args.verb == "set":
             changes = {}
-            for field in ("title", "goal", "next_action", "blocked_by"):
+            for field in ("title", "goal", "next_action", "blocked_by",
+                          "job_name_prefix"):
                 val = getattr(args, field, None)
                 if val is not None:
                     changes[field] = val
-            appends = None
+            if args.clear_blocked_by:
+                # Without this there is no way to unblock a thread except editing
+                # thread.json by hand, which is exactly what the skill forbids.
+                changes["blocked_by"] = []
+            appends, removes = {}, {}
+            if args.issues:
+                appends["issues"] = list(args.issues)
             if args.add_worktree:
                 # Pass it as an APPEND so the merge happens inside mutate's lock.
                 # Precomputing `cur + [new]` here loses a concurrent add: the CAS
                 # sees a matching rev and overwrites the other writer's entry.
-                appends = {"worktrees": [
+                appends["worktrees"] = [
                     {"path": os.path.abspath(args.add_worktree),
-                     "branch": None, "added_at": utcnow_z()}]}
+                     "branch": None, "added_at": utcnow_z()}]
+            if args.rm_worktree:
+                # Symmetric, and for the same reason: a precomputed filtered list
+                # would discard whatever a concurrent writer appended.
+                removes["worktrees"] = [
+                    {"path": os.path.abspath(args.rm_worktree)}]
             model.mutate(threads_dir, args.id, changes, actor="cli",
-                         appends=appends)
+                         appends=appends or None, removes=removes or None)
             return 0
         if args.verb == "park":
             model.mutate(threads_dir, args.id,
