@@ -226,6 +226,10 @@ def _cmd_board(argv):
     ap.add_argument("--column")
     ap.add_argument("--root")
     ap.add_argument("--store")
+    ap.add_argument("--offline", action="store_true",
+                    help="never probe the forge; serve whatever the cache holds")
+    ap.add_argument("--cached", action="store_true",
+                    help="render the last snapshot instantly instead of scanning")
     args = ap.parse_args(argv)
 
     repo = args.root or os.getcwd()
@@ -234,7 +238,31 @@ def _cmd_board(argv):
         sys.stderr.write("abd: not in a git repository; set ABD_THREADS_DIR\n")
         return 2
 
-    data = boardmod.build_board(threads_dir, repo, None)
+    # A cold scan on a large repo over a network filesystem is genuinely slow
+    # (measured 32 s cold / 2.5 s warm on a 65-worktree repo, all of it I/O wait),
+    # so the last derived board is persisted and can be rendered instantly.
+    import time as _time
+
+    from agent_board import cache as _cache
+    data = None
+    if args.cached:
+        snapshot, age, _fresh = _cache.read(threads_dir, boardmod.SNAPSHOT_NAME,
+                                            10 ** 9)
+        if snapshot is not None:
+            data = snapshot
+            data.setdefault("signals", {})["snapshot_age_s"] = age
+        else:
+            sys.stderr.write("abd: no snapshot yet; scanning\n")
+    if data is None:
+        started = _time.time()
+        data = boardmod.build_board(threads_dir, repo, None,
+                                    allow_probe=not args.offline)
+        elapsed = _time.time() - started
+        _cache.write(threads_dir, boardmod.SNAPSHOT_NAME, data)
+        if elapsed > 5.0:
+            sys.stderr.write(
+                "abd: scan took %.0fs (cold filesystem cache); "
+                "`abd board --cached` renders this snapshot instantly\n" % elapsed)
     # Decide emptiness against the UNFILTERED board. Checking after the filter
     # cannot tell "no threads at all" from "this lane is empty right now".
     store_is_empty = not any(data["columns"].values())

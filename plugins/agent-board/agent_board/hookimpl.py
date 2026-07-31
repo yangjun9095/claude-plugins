@@ -158,15 +158,22 @@ def read_collisions(threads_dir, tid, now=None):
     for row in rows or []:
         if not isinstance(row, dict) or row.get("severity") != "HIGH":
             continue
-        parties = row.get("threads")
-        parties = list(parties) if isinstance(parties, (list, tuple)) else []
-        if parties and tid not in parties:
+        # One row per PAIR, keyed a/b with a files list -- the schema
+        # derive/collisions.py actually writes. An earlier version of this reader
+        # guessed at {"path", "threads"} and returned [] for every real cache
+        # file: fail-soft, so nothing crashed and the card silently lost its
+        # collision section.
+        a, b = row.get("a"), row.get("b")
+        if tid != a and tid != b:
             continue
-        path_s = row.get("path")
-        if not isinstance(path_s, str):
+        other = b if tid == a else a
+        files = [f for f in (row.get("files") or []) if isinstance(f, str)]
+        if not files:
             continue
-        others = [str(p) for p in parties if p != tid]
-        out.append("%s%s" % (path_s, " (also: %s)" % ", ".join(others) if others else ""))
+        shown = ", ".join(files[:3])
+        if len(files) > 3:
+            shown += ", +%d more" % (len(files) - 3)
+        out.append("%s (with %s)" % (shown, other))
     return out[:5]
 
 

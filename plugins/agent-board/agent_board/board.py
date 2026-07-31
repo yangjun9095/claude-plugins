@@ -3,9 +3,13 @@ import time
 
 from agent_board import model
 from agent_board.config import DEFAULTS, load_config
+from agent_board.derive import collisions
 from agent_board.derive import columns as coldef
-from agent_board.derive import git_
+from agent_board.derive import forge, git_, jobs
 from agent_board.render.layout import COLUMN_ORDER
+
+
+SNAPSHOT_NAME = "board.json"
 
 
 def _age_days(committed_at):
@@ -25,13 +29,15 @@ def _rel(committed_at):
     return "%dd ago" % int(age)
 
 
-def derive_thread(t, rows, wt_index, cfg):
+def derive_thread(t, rows, wt_index, cfg, forge_data=None, jobs_data=None):
     """Recompute every display field. Nothing here is ever persisted."""
     d = {"has_open_nondraft_pr": False, "pr": None, "live_jobs": [],
          "dirty": 0, "ahead": 0, "behind": 0, "age_days": None,
          "missing_worktree": False, "lock_stale": False, "high_collision": False}
+    d["live_jobs"] = ((jobs_data or {}).get("by_thread") or {}).get(t.get("id")) or []
     wt_lines, notes = [], []
     newest = None
+    branch_refs = []
     for entry in t.get("worktrees") or []:
         path = entry.get("path")
         if not path:
@@ -76,16 +82,40 @@ def derive_thread(t, rows, wt_index, cfg):
         committed_at = (row or {}).get("committed_at")
         if committed_at and (newest is None or committed_at > newest):
             newest = committed_at
+        if branch:
+            branch_refs.append(branch)
         wt_lines.append("%s  +%s -%s *%d  %s" % (
             branch or "(detached)",
             "?" if ahead is None else ahead,
             "?" if behind is None else behind,
             dirty, _rel(committed_at)))
     d["age_days"] = _age_days(newest)
+
+    # PR mapping is by BRANCH, and a detached worktree has none -- it is excluded
+    # rather than guessed at.
+    prs = (forge_data or {}).get("prs") or {}
+    merged = set((forge_data or {}).get("merged") or [])
+    for name in branch_refs:
+        pr = prs.get(name)
+        if pr:
+            d["pr"] = pr
+            # Draft PRs deliberately do NOT put a thread IN REVIEW: nobody is
+            # waiting on the human yet.
+            if not pr.get("isDraft"):
+                d["has_open_nondraft_pr"] = True
+            break
+    if d["pr"] is None:
+        for name in branch_refs:
+            if name in merged:
+                # The squash-merge remedy: a landed branch reports its full
+                # changed set forever under squash, so surface it as "mark this
+                # done" and let R1 absorb the rest once they do.
+                d["pr"] = {"state": "MERGED", "number": None, "isDraft": False}
+                break
     return d, wt_lines, notes
 
 
-def build_board(threads_dir, repo, cfg=None):
+def build_board(threads_dir, repo, cfg=None, allow_probe=True, write_cache=True):
     cfg = cfg or load_config(repo)
     thresholds = cfg.get("thresholds") or DEFAULTS["thresholds"]
     threads = model.load_all(threads_dir)
@@ -99,26 +129,61 @@ def build_board(threads_dir, repo, cfg=None):
             continue
         wt_index[os.path.realpath(row["worktree"])] = row
 
+    forge_data = forge.load(threads_dir, repo, cfg, allow_probe=allow_probe)
+    jobs_data = jobs.load(threads_dir, cfg, threads, allow_probe=allow_probe)
+
+    # PASS 1 -- per-thread derivation and columns. Collision severity CONSUMES
+    # the column, so every column must exist before any pair is scored.
+    derived, wt_lines_by, notes_by, columns = {}, {}, {}, {}
+    for tid in sorted(threads):
+        t = threads[tid]
+        d, wt_lines, notes = derive_thread(t, rows, wt_index, cfg,
+                                           forge_data=forge_data,
+                                           jobs_data=jobs_data)
+        derived[tid], wt_lines_by[tid], notes_by[tid] = d, wt_lines, notes
+        columns[tid] = coldef.column(t, threads, d, thresholds)
+
+    # PASS 2 -- collisions over the worktrees of non-DONE threads only. The cap is
+    # the performance rule from the spec: a full 64-worktree scan is 2.5 s.
+    scan_paths = set()
+    for tid, t in threads.items():
+        if columns.get(tid) == "DONE":
+            continue
+        for entry in t.get("worktrees") or []:
+            path = entry.get("path") if isinstance(entry, dict) else None
+            if isinstance(path, str) and path:
+                real = os.path.realpath(path)
+                if real in wt_index and not wt_index[real].get("prunable"):
+                    scan_paths.add(real)
+    coll = collisions.detect(threads_dir, threads, columns, scan_paths, base, cfg,
+                             write_cache=write_cache)
+    high = collisions.high_by_thread(coll["collisions"])
+
+    # PASS 3 -- badges, now that high_collision is known.
     out = {name: [] for name in COLUMN_ORDER}
     for tid in sorted(threads):
         t = threads[tid]
-        d, wt_lines, notes = derive_thread(t, rows, wt_index, cfg)
-        col = coldef.column(t, threads, d, thresholds)
+        d = derived[tid]
+        d["high_collision"] = bool(high.get(tid))
         reasons = coldef.needs_attention(t, threads, d)
         badges = []
         if reasons:
             badges.append(("needs_attention", ", ".join(sorted(set(reasons)))))
+        if d["live_jobs"]:
+            badges.append(("live_jobs", jobs.summarize(d["live_jobs"])))
+        notes = notes_by[tid]
         if t["_status"] != "ok":
             notes = notes + ["%s: %s" % (t["_status"],
                                          "; ".join(t.get("_problems") or []))]
-        out[col].append({
+        out[columns[tid]].append({
             "id": tid,
             "title": t.get("title") or tid,
             "goal": t.get("goal"),
             "next_action": t.get("next_action"),
             "badges": badges,
-            "worktrees": wt_lines,
+            "worktrees": wt_lines_by[tid],
             "notes": notes,
+            "pr": d.get("pr"),
         })
 
     return {
@@ -126,10 +191,26 @@ def build_board(threads_dir, repo, cfg=None):
                  "branch": base or "?",
                  "head": (git_._git(repo, "rev-parse", "--short", "HEAD") or "?").strip(),
                  "open": sum(len(v) for k, v in out.items() if k != "DONE"),
-                 # jobs and collisions land in M2; M1 renders the zero state so
-                 # the header layout is already exercised at final width.
-                 "live_jobs": 0, "collisions": 0,
+                 "live_jobs": sum(len(v) for v in
+                                  (jobs_data.get("by_thread") or {}).values()),
+                 "collisions": len(coll["collisions"]),
                  "clock": time.strftime("%H:%M", time.localtime())},
         "columns": out,
-        "collisions": [],
+        "collisions": coll["collisions"],
+        "signals": {
+            "forge": {"cli": forge_data.get("cli"), "stale": forge_data.get("stale"),
+                      "error": forge_data.get("error")},
+            "jobs": {"scheduler": jobs_data.get("scheduler"),
+                     "error": jobs_data.get("error"),
+                     "unattributed": len(jobs_data.get("unattributed") or [])},
+            # Logged on every render so drift in the two unvalidated ubiquity
+            # constants is visible and they can be retuned on a noisier repo.
+            "collisions": {"demote_at": coll["demote_at"],
+                           "demoted": len(coll["demoted"]),
+                           "considered": coll["considered"],
+                           "degraded": coll["degraded"],
+                           "failed_probes": len(coll["failed_probes"])},
+            "stale_blocks": coldef.stale_blocks(threads),
+            "block_cycles": coldef.block_cycles(threads),
+        },
     }

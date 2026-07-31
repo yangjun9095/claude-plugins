@@ -51,6 +51,56 @@ Un-opted repositories cost one directory check — no store is created and nothi
 is printed. Linux, macOS and WSL; Windows is not supported in v1, where the
 failure is a silent no-op.
 
+## Collisions, PR state and jobs
+
+**Collisions** answer "are my agents stepping on each other". Every non-DONE
+thread's worktrees are diffed three-dot against the default branch and unioned
+with their uncommitted changes; any file two threads both touch is a collision.
+
+The dirty union is the whole point — in the reference repo both real source
+collisions were uncommitted on one side, so a committed-only scan finds neither.
+Severity follows from that: **HIGH** = both sides have uncommitted edits to the
+same file (a merge conflict being built right now), **MEDIUM** = one side does, or
+both are live and committed, **LOW** = a finished or parked thread is involved.
+Only HIGH raises a card badge and reaches the injected session card.
+
+Three-dot matters as much: two-dot answers "what differs between the base tip and
+this branch" — mostly *what the base did* — and builds a noise wall out of the base
+branch's newest commits.
+
+The default ignore list is **lockfiles, binaries and build caches only**. Docs and
+markdown are deliberately *not* ignored: adding them dropped the collision count
+4→2 in testing and destroyed a 9-file `docs/manuscript/` collision, which is
+exactly the "two agents editing the paper" case worth catching. Add your own with
+`collisions.ignore_globs_extra` — it is additive, so you cannot lose the defaults.
+Known blind spot: `.png` is ignored, so two threads regenerating the same figures
+are not flagged. Binary conflicts are not diff-resolvable.
+
+**PR state** comes from `gh` or `glab` and puts a thread IN REVIEW once it has a
+non-draft open PR (a draft does not — nobody is waiting on you yet). Cached 300 s;
+a merged PR raises "mark this thread done". With no CLI, IN REVIEW is simply never
+derived and the footer says so rather than quietly understating severities.
+
+**Jobs** come from `squeue` and are attributed by `job_name_prefix` first, then by
+WorkDir. Declare the prefix — only 7% of real jobs ran from inside a worktree, so
+WorkDir alone finds almost nothing:
+
+```bash
+abd thread set <id> --job-prefix mhb_ism_
+```
+
+A live job forces a thread ACTIVE regardless of commit age.
+
+**Speed.** Warm render is ~2.5 s on a 65-worktree repo. A *cold* filesystem cache
+can take 30 s or more — all I/O wait — so every render saves a snapshot and
+`abd board --cached` replays it in ~0.1 s with its age in the footer. `--offline`
+skips the network probe entirely (or set `ABD_ALLOW_NETWORK=0`).
+
+The board never writes inside a worktree and never runs a mutating git command.
+Every git call carries `--no-optional-locks`, because plain `git status` rewrites
+the index and takes a lock — measured, that broke 13 of 80 concurrent agent
+commits. A monitoring tool that breaks the agents it monitors is worse than none.
+
 ## `abd doctor`
 
 Reports what is actually configured, detected and installed — not what the config

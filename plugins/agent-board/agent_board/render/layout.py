@@ -201,7 +201,61 @@ def render_board(board, width, *, ascii_mode=False, meta=None):
             for f in c.get("files") or []:
                 line = "      " + sanitize(f, ascii_mode)
                 lines.append([Span(clip(line, width, g["ellipsis"]), "dim")])
+            demoted = c.get("demoted_files") or []
+            if demoted:
+                # Demoted files render COLLAPSED, never silently dropped.
+                line = ("      + %d ubiquitous file%s demoted"
+                        % (len(demoted), "" if len(demoted) == 1 else "s"))
+                lines.append([Span(clip(line, width, g["ellipsis"]), "faint")])
+
+    for note in footer_notes(board):
+        lines.append([Span(clip("  " + sanitize(note, ascii_mode), width,
+                                g["ellipsis"]), "faint")])
     return [_rstrip(list(l)) for l in lines]
+
+
+def _ago(seconds):
+    seconds = max(0, int(seconds or 0))
+    if seconds < 90:
+        return "%ds" % seconds
+    if seconds < 3600:
+        return "%dm" % (seconds // 60)
+    if seconds < 172800:
+        return "%dh" % (seconds // 3600)
+    return "%dd" % (seconds // 86400)
+
+
+def footer_notes(board):
+    """What the board could NOT see. An understated severity that says so is
+    usable; one that stays silent is a wrong answer."""
+    signals = board.get("signals") or {}
+    forge_sig = signals.get("forge") or {}
+    jobs_sig = signals.get("jobs") or {}
+    coll_sig = signals.get("collisions") or {}
+    notes = []
+    age = signals.get("snapshot_age_s")
+    if age is not None:
+        notes.append("snapshot from %s ago - re-run without --cached to refresh"
+                     % _ago(age))
+    if forge_sig.get("error"):
+        notes.append("PR state unavailable (%s) - IN REVIEW is not derived and "
+                     "severities may be understated" % forge_sig["error"])
+    elif forge_sig.get("stale"):
+        notes.append("PR state is from cache and may be out of date")
+    if jobs_sig.get("error"):
+        notes.append("job state unavailable (%s)" % jobs_sig["error"])
+    if coll_sig.get("degraded"):
+        notes.append("collision scan degraded: %d worktree probe(s) failed"
+                     % (coll_sig.get("failed_probes") or 0))
+    if coll_sig.get("demoted"):
+        notes.append("%d file(s) demoted as ubiquitous (demote_at=%s over %s "
+                     "threads)" % (coll_sig["demoted"], coll_sig.get("demote_at"),
+                                   coll_sig.get("considered")))
+    unattributed = jobs_sig.get("unattributed") or 0
+    if unattributed:
+        notes.append("%d scheduler job(s) matched no thread - declare "
+                     "job_name_prefix to attribute them" % unattributed)
+    return notes
 
 
 def _lane(name, count, width, ascii_mode):

@@ -263,19 +263,39 @@ def _write_collisions(threads_dir, obj, age_s=0):
 
 
 def test_high_collisions_are_read_from_cache(tmp_path):
+    """The row schema here is the one derive/collisions.py actually writes: one
+    row per PAIR, keyed a/b with a files list. An earlier version of this test
+    asserted a {"path", "threads"} shape that no writer ever produced, so it
+    passed while the reader returned [] for every real cache file."""
     store_dir = _store(tmp_path)
     _write_collisions(store_dir, {"collisions": [
-        {"path": "src/a.py", "severity": "HIGH", "threads": ["me", "them"]},
-        {"path": "src/b.py", "severity": "LOW", "threads": ["me", "them"]},
+        {"a": "me", "b": "them", "severity": "HIGH", "files": ["src/a.py"]},
+        {"a": "me", "b": "them", "severity": "LOW", "files": ["src/b.py"]},
     ]})
     out = hookimpl.read_collisions(store_dir, "me")
     assert len(out) == 1 and "src/a.py" in out[0] and "them" in out[0]
 
 
+def test_collision_row_for_another_pair_is_not_shown(tmp_path):
+    store_dir = _store(tmp_path)
+    _write_collisions(store_dir, {"collisions": [
+        {"a": "x", "b": "y", "severity": "HIGH", "files": ["src/a.py"]}]})
+    assert hookimpl.read_collisions(store_dir, "me") == []
+
+
+def test_long_file_lists_are_summarised(tmp_path):
+    store_dir = _store(tmp_path)
+    _write_collisions(store_dir, {"collisions": [
+        {"a": "me", "b": "them", "severity": "HIGH",
+         "files": ["f%d.py" % i for i in range(9)]}]})
+    out = hookimpl.read_collisions(store_dir, "me")
+    assert "+6 more" in out[0]
+
+
 def test_stale_collisions_are_ignored_entirely(tmp_path):
     store_dir = _store(tmp_path)
     _write_collisions(store_dir, {"collisions": [
-        {"path": "src/a.py", "severity": "HIGH", "threads": ["me"]}]},
+        {"a": "me", "b": "them", "severity": "HIGH", "files": ["src/a.py"]}]},
         age_s=25 * 3600)
     assert hookimpl.read_collisions(store_dir, "me") == []
 
