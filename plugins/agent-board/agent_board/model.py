@@ -313,7 +313,7 @@ def _allocate_id(threads_dir, base):
     # `abd thread new` calls race here and the loser got an uncaught
     # FileExistsError. The prohibition on exist_ok applies to the PER-ID
     # directory below, where it would let two nodes adopt one id.
-    os.makedirs(root, 0o700, exist_ok=True)
+    store.makedirs_private(root)
     for suffix in [""] + ["-%d" % n for n in range(2, 10)]:
         tid = base + suffix
         try:

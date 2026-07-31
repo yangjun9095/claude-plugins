@@ -51,6 +51,42 @@ Un-opted repositories cost one directory check — no store is created and nothi
 is printed. Linux, macOS and WSL; Windows is not supported in v1, where the
 failure is a silent no-op.
 
+## `abd doctor`
+
+Reports what is actually configured, detected and installed — not what the config
+file claims. Nothing here is declarative: there is deliberately no `*.enabled` key
+anywhere in the schema, because enablement that is *declared* goes stale and
+enablement that is *proven* cannot.
+
+```bash
+abd doctor          # human-readable; rc 0 unless something is genuinely broken
+abd doctor --json   # same rows, for scripting
+```
+
+`warn` rows keep the exit code at 0 — a warn that returned non-zero would train
+you to ignore the code. Only a `fail` makes it 1.
+
+It exists mainly to name the failures that are otherwise **silent**:
+
+- an org-set `disableAllHooks` in managed settings, which kills the tool where
+  nothing but managed settings can re-enable it
+- a `threads_dir` that resolves *inside* the working tree, where `git status`
+  shows the board as untracked and `git clean -xdn` offers to delete it
+- the pure and subprocess git resolvers disagreeing — the hook uses one and the
+  CLI the other, so disagreement means two different boards for one repo
+- a `project.default_branch` that no longer matches the remote, or a base guessed
+  from a local ref while a remote exists; either silently poisons every
+  ahead/behind number and every merge-base
+- an SDK launcher in this repo passing neither `plugins=` nor `setting_sources=`,
+  which is why hooks do not fire in SDK sessions. Doctor prints the exact line to
+  add, with the plugin root resolved, and lists the shallowest paths first so a
+  live launcher is not buried under archived ones.
+
+`rich` missing is reported as **ok**, never as a failure: the plain ANSI renderer
+is the guaranteed one and rich is an opportunistic upgrade. The remediation is
+interpreter-aware, because naming an interpreter whose `pip` is absent or too old
+is advice that fails.
+
 ## Gotchas
 
 1. **Restart Claude Code after install.** Plugin `bin/` directories join `PATH` and hooks register at session start. If the command is not available immediately after install, restart the Claude Code session.

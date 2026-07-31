@@ -59,6 +59,34 @@ def atomic_write_json(path, obj, fsync=True):
             pass
 
 
+def makedirs_private(path):
+    """makedirs with 0o700 on EVERY component we create, not just the last.
+
+    os.makedirs(path, 0o700) passes the mode only to the final mkdir; every
+    intermediate directory gets 0o777 & ~umask. Measured: with umask 022 the
+    store came out as 755 .git/agent-board containing 700 threads/ -- the data
+    was unreadable but the board's existence and thread ids were not.
+
+    Only ever applied on the CREATION path. An existing directory is left
+    exactly as it is: chmod 0o700 would also clear an inherited setgid bit
+    (the parent here is drwxrwsr-x with a shared group), and a deliberately
+    widened directory is the user's decision to make, not ours.
+    """
+    missing = []
+    cur = os.path.abspath(path)
+    while cur and not os.path.isdir(cur):
+        missing.append(cur)
+        parent = os.path.dirname(cur)
+        if parent == cur:
+            break
+        cur = parent
+    for target in reversed(missing):
+        try:
+            os.mkdir(target, 0o700)
+        except FileExistsError:
+            pass                    # another process won the race; fine either way
+
+
 def atomic_write_text(path, text):
     """Same tmp-in-the-same-directory + os.replace dance as atomic_write_json,
     for the one-line files that are not JSON (the active-thread pin). Kept

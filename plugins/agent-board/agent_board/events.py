@@ -62,7 +62,7 @@ def append_event(threads_dir, tid, record):
         # exist_ok, not check-then-create: two hosts racing the FIRST event for a
         # thread both pass an isdir() check, and the loser's FileExistsError is
         # swallowed by the outer handler -- dropping the event entirely.
-        os.makedirs(d, 0o700, exist_ok=True)
+        store.makedirs_private(d)
         fd = os.open(path, os.O_WRONLY | os.O_CREAT | os.O_APPEND, 0o600)
         try:
             os.write(fd, (line + "\n").encode("utf-8"))

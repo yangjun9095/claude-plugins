@@ -52,6 +52,14 @@ def _git(cwd, *args, **kw):
     return proc.stdout if proc.returncode == 0 else None
 
 
+def remote_url(repo, remote="origin"):
+    """The configured URL for `remote`, or None when it does not exist. Public so
+    `abd doctor` can tell 'no remote' from 'remote exists but was never fetched'
+    without reaching past the single hardened git entry point."""
+    out = _git(repo, "remote", "get-url", remote)
+    return (out or "").strip() or None
+
+
 def head_short(cwd, timeout=2):
     """Abbreviated HEAD, or None. The single git call the SessionEnd hook makes.
 

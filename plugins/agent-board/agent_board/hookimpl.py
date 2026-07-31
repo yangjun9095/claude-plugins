@@ -229,6 +229,8 @@ def _nudged_recently(threads_dir, worktree, now):
     one of them. The stamp is written BEFORE the caller emits, so a crash after
     this point cannot turn into a nag on every subsequent session.
     """
+    from agent_board import store
+
     key = hashlib.sha1(os.path.realpath(worktree).encode("utf-8")).hexdigest()[:16]
     directory = os.path.join(threads_dir, "cache", "nudge")
     path = os.path.join(directory, key)
@@ -238,7 +240,7 @@ def _nudged_recently(threads_dir, worktree, now):
     except OSError:
         pass
     try:
-        os.makedirs(directory, 0o700, exist_ok=True)
+        store.makedirs_private(directory)
         with io.open(path, "w", encoding="utf-8") as fh:
             fh.write("")
     except OSError:

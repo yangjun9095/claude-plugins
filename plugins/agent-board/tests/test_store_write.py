@@ -142,3 +142,38 @@ def test_refresh_dir_on_an_existing_dir_is_a_noop(tmp_path):
     (tmp_path / "f").write_text("x")
     store.refresh_dir(str(tmp_path))
     assert (tmp_path / "f").read_text() == "x"
+
+
+def test_makedirs_private_applies_0700_to_every_component(tmp_path):
+    """os.makedirs(path, 0o700) passes the mode to the LAST component only;
+    intermediates get 0o777 & ~umask. Measured before the fix: a 755
+    .git/agent-board containing a 700 threads/ -- the data was unreadable but
+    the board's existence and its thread ids were not."""
+    import os
+    from agent_board import store
+
+    deep = tmp_path / "a" / "b" / "c"
+    store.makedirs_private(str(deep))
+    for part in (tmp_path / "a", tmp_path / "a" / "b", deep):
+        assert os.stat(str(part)).st_mode & 0o777 == 0o700, part
+
+
+def test_makedirs_private_leaves_an_existing_wider_dir_alone(tmp_path):
+    """chmod 0o700 on an existing dir would also clear an inherited setgid bit,
+    and a deliberately widened directory is the user's decision."""
+    import os
+    from agent_board import store
+
+    wide = tmp_path / "wide"
+    wide.mkdir()
+    os.chmod(str(wide), 0o755)
+    store.makedirs_private(str(wide / "child"))
+    assert os.stat(str(wide)).st_mode & 0o777 == 0o755
+    assert os.stat(str(wide / "child")).st_mode & 0o777 == 0o700
+
+
+def test_makedirs_private_is_idempotent(tmp_path):
+    from agent_board import store
+    target = str(tmp_path / "x" / "y")
+    store.makedirs_private(target)
+    store.makedirs_private(target)          # must not raise

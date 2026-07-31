@@ -18,27 +18,58 @@ def _hook(argv):
         return 0
 
 
-def _cmd_install_hooks(argv):
+def _repo_root(start):
+    """The worktree root for `start`, falling back to `start` itself.
+
+    dirname('/repo/.git') is the worktree root; a bare repo has no worktree, so
+    return the common dir rather than emitting its parent directory.
+    """
+    from agent_board import anchor
+    common = anchor.git_common_dir(start)
+    if not common:
+        return start, None
+    if os.path.basename(common) == ".git":
+        return os.path.dirname(common), common
+    return common, common
+
+
+def _cmd_doctor(argv):
     import argparse
+    import json as _json
 
-    from agent_board import anchor, install
+    from agent_board import doctor
 
-    ap = argparse.ArgumentParser(prog="abd install-hooks")
-    ap.add_argument("--scope", choices=install.SCOPES, default="local")
+    ap = argparse.ArgumentParser(prog="abd doctor")
+    ap.add_argument("--json", action="store_true")
     ap.add_argument("--root")
     args = ap.parse_args(argv)
 
     start = args.root or os.getcwd()
-    common = anchor.git_common_dir(start)
+    repo, _common = _repo_root(start)
+    rows = doctor.run_checks(start, repo)
+    if args.json:
+        sys.stdout.write(_json.dumps({"checks": rows}, indent=2, sort_keys=True) + "\n")
+    else:
+        for line in doctor.format_text(rows):
+            sys.stdout.write(line + "\n")
+    return doctor.exit_code(rows)
+
+
+def _cmd_install_hooks(argv):
+    import argparse
+
+    from agent_board import install
+
+    ap = argparse.ArgumentParser(prog="abd install-hooks")
+    ap.add_argument("--scope", choices=list(install.SCOPES), default="local")
+    ap.add_argument("--root")
+    args = ap.parse_args(argv)
+
+    start = args.root or os.getcwd()
+    repo_root, common = _repo_root(start)
     if not common and args.scope != "user":
         sys.stderr.write("abd: not in a git repository; use --scope user\n")
         return 2
-    # dirname('/repo/.git') is the worktree root; a bare repo has no worktree, so
-    # fall back to the common dir itself rather than emitting '/'.
-    repo_root = start
-    if common:
-        parent = os.path.dirname(common)
-        repo_root = parent if os.path.basename(common) == ".git" else common
 
     abd_path = os.path.join(os.environ.get("ABD_ROOT")
                             or os.path.dirname(os.path.dirname(
@@ -130,7 +161,7 @@ def _cmd_thread(argv):
             t = model.load_thread(threads_dir, args.id)
             if t.get("_status") == "missing":
                 raise model.ThreadNotFound(args.id)
-            os.makedirs(threads_dir, 0o700, exist_ok=True)
+            store.makedirs_private(threads_dir)
             store.atomic_write_text(
                 os.path.join(threads_dir, hookimpl.PIN_NAME), args.id + "\n")
             return 0
@@ -253,5 +284,7 @@ def main(argv):
         return _cmd_board(argv[1:])
     if cmd == "install-hooks":
         return _cmd_install_hooks(argv[1:])
+    if cmd == "doctor":
+        return _cmd_doctor(argv[1:])
     sys.stderr.write("abd: unknown command %r\n" % cmd)
     return 2
