@@ -32,8 +32,8 @@
     {
       "name": "codeql-quality-review",
       "source": "./plugins/codeql-quality-review",
-      "description": "Audit and fix GitHub Code Quality findings (/security/quality Standard + AI tabs) for Python repos — deploys a manual workflow that dumps SARIF as a downloadable artifact (works around the missing public REST API)",
-      "version": "1.0.0"
+      "description": "Audit and fix GitHub Code Quality findings (/security/quality) through the REST API with gh api. A SARIF workflow is the fallback for findings the API does not return",
+      "version": "2.0.0"
     },
     {
       "name": "agent-board",

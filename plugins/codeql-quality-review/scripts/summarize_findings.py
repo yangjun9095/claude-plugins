@@ -9,8 +9,10 @@ Usage:
 The script reads the file you name, or standard input when you name none.
 It accepts three shapes of input:
     one JSON array of findings,
-    several JSON arrays one after another (the output of gh api --paginate),
+    several JSON arrays one after another (one array per page),
     one array of arrays (the output of gh api --paginate --slurp).
+gh 2.87.3 prints one merged array for gh api --paginate. The script reads
+all three shapes so that it does not depend on the gh version.
 
 The output has the total, the counts by severity, category and rule, the ten files
 with the most findings, and one line per finding grouped by rule.
