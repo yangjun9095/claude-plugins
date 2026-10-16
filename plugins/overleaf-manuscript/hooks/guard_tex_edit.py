@@ -5,10 +5,11 @@ Reads the hook payload as JSON on stdin. Prints a permission decision, or nothin
 Fails open: an error prints to stderr and exits 0, so a broken hook never blocks work.
 """
 import json
+import os
 import sys
 from pathlib import Path
 
-WATCHED = {".tex", ".sty", ".bib"}
+WATCHED = {".tex", ".sty", ".cls", ".bib"}
 TOOLS = {"Edit", "Write", "MultiEdit"}
 LEVELS_UP = 4
 
@@ -17,6 +18,7 @@ REASONS = {
     "main.tex": ("Rule 4: main.tex is the file most prone to Overleaf conflicts. "
                  "Confirm that Overleaf is closed, then approve this edit."),
     ".sty": "Rule 3: this is a shared style file. Edit it only after the author approves.",
+    ".cls": "Rule 3: this is a shared class file. Edit it only after the author approves.",
     ".bib": ("Rule 2: never invent BibTeX keys or ORCIDs. "
              "Edit the bibliography only after the author approves."),
     ".tex": "Rule 1: edit a .tex file only after explicit approval in the current turn.",
@@ -39,6 +41,8 @@ def decide(payload):
     path = Path(raw)
     if not path.is_absolute():
         path = Path(payload.get("cwd") or ".") / path
+    # Resolve "." and ".." in the text of the path, so the parent walk sees the real folders.
+    path = Path(os.path.normpath(str(path)))
     suffix = path.suffix.lower()
     if suffix not in WATCHED or not in_manuscript(path):
         return None

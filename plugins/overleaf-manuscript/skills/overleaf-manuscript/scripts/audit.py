@@ -25,6 +25,12 @@ IDENT_ARG = re.compile(
     r"\*?(?:\[[^\]]*\])*\{[^}]*\}"
 )
 COMMAND = re.compile(r"\\[A-Za-z]+\*?")
+# A sectioning command that fills its line. Its title is not prose, so it must not start a
+# paragraph. The title may hold one level of nested braces, such as \emph{...}.
+HEADING = re.compile(
+    r"(?m)^[ \t]*\\(?:part|chapter|section|subsection|subsubsection|paragraph|subparagraph)\*?"
+    r"(?:\[[^\]]*\])?\{(?:[^{}\n]|\{[^{}\n]*\})*\}[ \t]*$"
+)
 FIG_REF = re.compile(r"\bFigs?\.\s*\\(?:ref|cref|Cref|autoref)\b")
 TODO_CITE = re.compile(r"\\todo\{\s*cite[^}\n]*", re.I)
 EMDASH = re.compile(r"---|\u2014")
@@ -95,7 +101,10 @@ def check_text(raw, terms, spelling):
         for m in re.finditer(item["pattern"], masked, re.I | re.S):
             add(m.start(), "construction:" + item["term"], m.group(0))
     initial = {w.lower() for w in terms["paragraph_initial"]}
-    for offset, para in paragraphs(masked):
+    # Blank each heading line so the prose under it starts a paragraph. Offsets stay valid
+    # because blank() keeps the length. The vocabulary checks above still see the heading words.
+    body = mask_commands(HEADING.sub(lambda m: blank(m.group(0)), clean))
+    for offset, para in paragraphs(body):
         lead = para.lstrip()
         first = re.match(r"[A-Za-z]+", lead)
         if first and first.group(0).lower() in initial:

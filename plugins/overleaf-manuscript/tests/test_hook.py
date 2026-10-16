@@ -56,6 +56,23 @@ class GuardTexEdit(unittest.TestCase):
     def test_style_file_cites_rule_3(self):
         self.assertIn("Rule 3", self.ask("MultiEdit", self.root / "royer_style.sty"))
 
+    def test_class_file_cites_rule_3(self):
+        reason = self.ask("Edit", self.root / "journal.cls")
+        self.assertIn("Rule 3", reason)
+        self.assertIn("class file", reason)
+
+    def test_upper_case_class_extension_is_watched(self):
+        self.assertIn("Rule 3", self.ask("Write", self.root / "Journal.CLS"))
+
+    def test_dot_dot_in_the_path_is_resolved_before_the_scope_check(self):
+        # Without normalization the parents of this path stop one level short of main.tex.
+        tricky = str(self.root / "a" / "b" / "c" / "d") + "/../e.tex"
+        self.assertIn("Rule 1", self.ask("Edit", tricky))
+
+    def test_dot_dot_that_leaves_the_manuscript_is_silent(self):
+        outside = str(self.root / "sections") + "/../../notes/scratch.tex"
+        self.silent(payload("Edit", outside))
+
     def test_bibliography_cites_rule_2(self):
         self.assertIn("Rule 2", self.ask("Edit", self.root / "paperpile.bib"))
 

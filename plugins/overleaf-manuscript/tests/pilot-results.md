@@ -4,6 +4,8 @@ Run on 2026-10-16 with `audit.py` from this plugin. Sample: seed 20261015, two f
 
 The first run exposed two recall defects (`fig-ref` and the Oxford `-ise` list). I fixed both and reran the same sample with the same options. The tables below hold the rerun. The first run's hit counts sit in "Before the fix".
 
+After the final review I fixed the paragraph-initial rule for prose directly under a heading. I reran the same 15 files with the same options. The count for each rule is unchanged (74 hits), so the labels and the precision figures below still hold. The 15 files hold no paragraph that starts with Furthermore, Moreover or Additionally, so this rerun cannot show the effect of the heading fix. The unit tests show it.
+
 The manuscripts are unpublished and this repository is public. This file holds rule names, counts and labels. It names no repository, folder or file, and it quotes no manuscript text and no manuscript number. Manuscripts A, B and C are three copies of one project. Manuscript D is a different project.
 
 ## Sample
@@ -52,7 +54,7 @@ Per family, using the audit's own count lines:
 
 `todo-cite` is an inventory of placeholders, so it stays out of the last row.
 
-Manuscripts A, B and C share text, so their hits are not independent samples. One `vocab:landscape` sentence and one `emdash:paragraph` paragraph appear in two manuscripts. Seven `todo-cite` marker texts appear in two or more manuscripts.
+Manuscripts A, B and C share text, so their hits are not independent samples. One `vocab:landscape` sentence and one `emdash:paragraph` paragraph appear in two manuscripts. Seven `todo-cite` marker occurrences appear in two or more manuscripts. They hold 6 distinct texts.
 
 ## Before the fix
 
@@ -95,7 +97,7 @@ The `-ise` list mirrors `manuscript-write` section 3 (decision X6). The author s
 - `vocab:landscape`, 2 FP. Both hits are one sentence, copied into two manuscripts. It uses landscape as an optimization term of art for a search space. The 3 TP hits use the word as a figure of speech in manuscript D.
 - `vocab:robust`, 1 FP. The hit is the noun form, used for a measured property with a stated scope. The 2 TP hits use the adjective with no stated scope. This label is borderline.
 
-The 0.60 for `vocab:landscape` rests on 3 of 5 labels. If the author counts the optimization sentence as a TP, precision is 1.00. If the author counts the three figurative uses as acceptable, none of the 5 hits is a problem in the author's view, and precision falls to 0 of 5. The 5 hits are 4 distinct sentences, because one sentence appears in two manuscripts. By raw count that meets the fix line, and by distinct sentences it is below it. The rule needs a narrower pattern only if the author's view changes.
+The 0.60 for `vocab:landscape` rests on 3 of 5 labels. If the author counts the optimization sentence as a TP, precision is 1.00. If the author counts the three figurative uses as acceptable, none of the 5 hits is a problem in the author's view, and precision falls to 0 of 5. The 5 hits are 4 distinct sentences, because one sentence appears in two manuscripts. By raw count that meets the decision rule's threshold (5 or more hits and precision below 0.5), and by distinct sentences it is below the threshold. The rule needs a narrower pattern only if the author's view changes.
 
 ## Reconciliation with an independent search
 

@@ -41,7 +41,7 @@ I verified these on this machine on 2026-10-15.
 - The handoff describes a Dropbox mirror with no `.git`. That setup exists on the laptop, so the plugin handles a fourth mode, no `.git`.
 - `manuscript-write` and `agenticcre-manuscript` were created on 2026-10-15. They sync from claude.ai plugins, so a local edit is overwritten. `manuscript-write` holds hard rules 1 to 7, the working method, house style, honesty rules and LaTeX hygiene. `agenticcre-manuscript` holds the AgenticCRE project state.
 - `manuscript-write` section 5 says cloud-synced folders typically have no `.git` and cannot be branched. That is wrong on this machine.
-- The `CLAUDE.md` in folder A has 300 lines. It still describes the "three layers" framing that `agenticcre-manuscript` bans. Folders A and B carry identical copies.
+- The `CLAUDE.md` in folder A has 300 lines. It still uses a banned framing term. `agenticcre-manuscript` section 3 names that term. Folders A and B carry identical copies.
 - I did not verify which branch Overleaf tracks for the GitHub-linked repo.
 
 ## 4. Layout
@@ -77,7 +77,7 @@ The plugin also needs an entry in `.claude-plugin/marketplace.json`. `CONTRIBUTI
 
 Command: `python3 audit.py [--spelling oxford|american|off] FILE...`. The default for `--spelling` is `off`. Claude passes the value that the project skill states.
 
-The script strips `%` comments, then prints one row per hit as `file:line: rule: text`. It ends with a count per rule. It never edits a file. The rules:
+The script strips `%` comments, then prints one row per hit as `file:line: rule: text`. It ends with a count per rule family, such as `vocab: 3`. It never edits a file. The rules:
 - Em-dash density: more than one `---` in a paragraph, or more than one per 400 words in a file.
 - Banned vocabulary, from `audit_terms.json`.
 - Banned constructions: paragraph-initial Furthermore, Moreover or Additionally; "Not only ... but also"; "It is worth noting that".
@@ -87,7 +87,7 @@ The script strips `%` comments, then prints one row per hit as `file:line: rule:
 
 ## 7. Edit guard hook
 
-`guard_tex_edit.py` runs as a PreToolUse hook on Edit, Write and MultiEdit. The hook acts when the target ends in `.tex`, `.sty` or `.bib`. It also needs `main.tex` in a directory up to four levels above the target. In that case it returns `permissionDecision: "ask"` with a reason that names the rule. Otherwise it stays silent.
+`guard_tex_edit.py` runs as a PreToolUse hook on Edit, Write and MultiEdit. The hook acts when the target ends in `.tex`, `.sty`, `.cls` or `.bib`. It also needs `main.tex` in a directory up to four levels above the target. In that case it returns `permissionDecision: "ask"` with a reason that names the rule. A `.sty` or `.cls` file gets the Rule 3 reason, because rule 3 covers shared style and class files. Otherwise the hook stays silent.
 
 Limits:
 - A Bash write such as `sed -i` bypasses the hook. `manuscript-write` forbids edits without approval, and `SKILL.md` repeats that for Bash writes.
@@ -119,7 +119,7 @@ The plan follows `superpowers:writing-skills` and the pilot-then-scale method in
 | 1. Hard rules | `manuscript-write` section 1. The hook backs rules 1, 3 and 4. |
 | 2. How the author works | `manuscript-write` section 2 |
 | 3. Style, banned words, spelling | `manuscript-write` section 3. `audit_terms.json` mirrors the lists. |
-| 3. Terminology and the "three layers" ban | `agenticcre-manuscript` section 3 |
+| 3. Terminology, including a banned framing term | `agenticcre-manuscript` section 3 |
 | 4. Topology and sync | `SKILL.md` modes and `preflight.sh`. The laptop topology sits in `agenticcre-manuscript` section 6. |
 | 5. Project state | `agenticcre-manuscript` section 1 |
 | 6. Honesty commitments | `agenticcre-manuscript` section 2, with the general rules in `manuscript-write` section 4 |
@@ -130,4 +130,4 @@ The plan follows `superpowers:writing-skills` and the pilot-then-scale method in
 ## 10. Open items
 
 - Which branch Overleaf tracks for folder A. The `github-linked` text in `SKILL.md` stays general until the author says.
-- The `CLAUDE.md` in folder A still contradicts `agenticcre-manuscript` on the "three layers" framing. Trimming it to pointers is a follow-up that needs approval.
+- The `CLAUDE.md` in folder A still contradicts `agenticcre-manuscript` on a banned framing term. Trimming it to pointers is a follow-up that needs approval.

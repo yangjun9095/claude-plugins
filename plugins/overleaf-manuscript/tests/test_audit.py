@@ -267,6 +267,34 @@ class PilotGaps(unittest.TestCase):
                              "--spelling", "american")
         self.assertEqual((rc, rows(out)), (0, []))
 
+    def test_paragraph_initial_word_directly_under_a_heading_is_flagged(self):
+        for command in ("\\section{Results}", "\\subsection{Results}", "\\subsubsection{Results}",
+                        "\\paragraph{Results}", "\\section*{Results}", "\\section[Short]{Results}"):
+            with self.subTest(command=command):
+                rc, out = audit_text("%s\nFurthermore, the model works.\n" % command)
+                self.assertEqual((rc, rows(out)), (1, [(2, "construction:paragraph-initial")]))
+
+    def test_paragraph_initial_word_under_a_subsection_is_flagged(self):
+        rc, out = audit_text("\\subsection{Method}\nMoreover, the step is short.\n")
+        self.assertEqual((rc, rows(out)), (1, [(2, "construction:paragraph-initial")]))
+
+    def test_heading_with_a_nested_command_does_not_hide_the_paragraph(self):
+        rc, out = audit_text("\\section{The \\emph{big} result}\nAdditionally, the model works.\n")
+        self.assertEqual((rc, rows(out)), (1, [(2, "construction:paragraph-initial")]))
+
+    def test_heading_followed_by_clean_prose_has_no_hit(self):
+        rc, out = audit_text("\\section{Results}\nThe model works.\n")
+        self.assertEqual((rc, rows(out)), (0, []))
+
+    def test_words_inside_a_heading_are_still_checked(self):
+        rc, out = audit_text("\\section{A robust method}\nThe model works.\n")
+        self.assertEqual((rc, rows(out)), (1, [(1, "vocab:robust")]))
+
+    def test_em_dashes_are_grouped_per_paragraph_across_a_heading(self):
+        text = "One---two.\n\\section{Next}\nThree---four.\n"
+        rc, out = audit_text(text)
+        self.assertEqual((rc, rows(out)), (1, [(1, "emdash:density")]))
+
     def test_ise_pattern_is_identical_in_both_spelling_lists(self):
         def pattern(mode):
             return [e["pattern"] for e in TERMS["spelling"][mode] if e["term"] == "-ise form"]
