@@ -15,7 +15,9 @@ gh 2.87.3 prints one merged array for gh api --paginate. The script reads
 all three shapes so that it does not depend on the gh version.
 
 The output has the total, the counts by severity, category and rule, the ten files
-with the most findings, and one line per finding grouped by rule.
+with the most findings, and one line per finding grouped by rule. Each rule line shows
+the severity and the category. Each finding line starts with #number. A field that the
+input lacks prints as ?.
 
 Exit code 0 means success. Exit code 2 means unreadable or non-finding input.
 The script uses only the Python standard library and runs on Python 3.6.
@@ -156,15 +158,23 @@ def summarize(findings):
         out.append("  %d  %s" % (count, name))
 
     titles = {}
+    details = {}
     for finding in findings:
         rule = rule_of(finding)
+        details.setdefault(rule["id"], {})
+        for field in ("severity", "category"):
+            if rule.get(field) and field not in details[rule["id"]]:
+                details[rule["id"]][field] = str(rule[field])
         if rule.get("title") and rule["id"] not in titles:
             titles[rule["id"]] = " ".join(str(rule["title"]).split())
     by_rule = ranked(tally(findings, lambda f: rule_of(f)["id"]))
 
     out += ["", "By rule:"]
     for rule_id, count in by_rule:
-        out.append(("  %d  %s  %s" % (count, rule_id, titles.get(rule_id, ""))).rstrip())
+        line = "  %d  %s  %s  %s  %s" % (
+            count, rule_id, details[rule_id].get("severity", "?"),
+            details[rule_id].get("category", "?"), titles.get(rule_id, ""))
+        out.append(line.rstrip())
 
     out += ["", "Top files:"]
     for path, count in ranked(tally(findings, path_of))[:TOP_FILES]:
@@ -177,20 +187,23 @@ def summarize(findings):
         members = [f for f in findings if rule_of(f)["id"] == rule_id]
         for finding in sorted(members, key=lambda f: (path_of(f), line_of(f) or 0)):
             line = line_of(finding)
-            text = "%s:%s: %s: %s" % (
-                path_of(finding), line if line is not None else "?", rule_id, message_of(finding))
+            number = finding.get("number")
+            text = "#%s %s:%s: %s: %s" % (
+                number if number is not None else "?", path_of(finding),
+                line if line is not None else "?", rule_id, message_of(finding))
             out.append(text.rstrip())
     return "\n".join(out) + "\n"
 
 
 def write_text(stream, text):
-    """Write UTF-8 text. A plain ASCII locale must not break a finding message."""
+    """Write UTF-8 text. A plain ASCII locale or a lone surrogate must not break the output."""
+    data = text.encode("utf-8", "replace")
     if hasattr(stream, "buffer"):
         stream.flush()
-        stream.buffer.write(text.encode("utf-8"))
+        stream.buffer.write(data)
         stream.buffer.flush()
     else:
-        stream.write(text)
+        stream.write(data.decode("utf-8"))
 
 
 def main(argv):

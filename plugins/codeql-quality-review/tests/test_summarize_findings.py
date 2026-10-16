@@ -21,20 +21,23 @@ SCRIPT = os.path.join(PLUGIN, "scripts", "summarize_findings.py")
 def make_finding(number=1, rule_id="py/rule-a", title="Title A", severity="warning",
                  category="maintainability", path="src/a.py", start_line=10,
                  message="Message A.", state="open"):
-    """Build one finding. Pass start_line=None to leave the field out."""
+    """Build one finding. Pass None for start_line, number or message to leave the field out."""
     location = {"path": path, "start_column": 1, "end_line": 11, "end_column": 5}
     if start_line is not None:
         location["start_line"] = start_line
-    return {
-        "number": number,
+    finding = {
         "state": state,
-        "url": "https://example.invalid/findings/%d" % number,
+        "url": "https://example.invalid/findings/%s" % number,
         "rule": {"id": rule_id, "title": title, "description": "Description.",
                  "severity": severity, "category": category},
         "location": location,
-        "message": {"text": message, "markdown": message},
         "created_at": "2026-01-01T00:00:00Z",
     }
+    if number is not None:
+        finding["number"] = number
+    if message is not None:
+        finding["message"] = {"text": message, "markdown": message}
+    return finding
 
 
 def sample_findings():
@@ -46,14 +49,26 @@ def sample_findings():
     ]
 
 
-def run_script(args=(), stdin_text=None, env=None):
-    """Run the script in a child process. Return (exit code, stdout, stderr) as text."""
+# An ASCII locale. PYTHONCOERCECLOCALE=0 and PYTHONUTF8=0 keep the child on ASCII for
+# Python 3.7 and later, where the C locale would otherwise switch to UTF-8. Python 3.6 ignores them.
+ASCII_LOCALE = {"LC_ALL": "C", "LANG": "C", "PYTHONCOERCECLOCALE": "0", "PYTHONUTF8": "0"}
+
+
+def run_script(args=(), stdin_text=None, env=None, script=SCRIPT):
+    """Run a script in a child process. Return (exit code, stdout, stderr) as text.
+
+    Each argument can be text or bytes. The child never inherits PYTHONIOENCODING or
+    PYTHONUTF8, because either one hides an encoding bug.
+    """
     child_env = dict(os.environ)
+    for name in ("PYTHONIOENCODING", "PYTHONUTF8"):
+        child_env.pop(name, None)
     if env:
         child_env.update(env)
+    command = [os.fsencode(sys.executable), b"-B", os.fsencode(script)]
+    command += [arg if isinstance(arg, bytes) else arg.encode("utf-8") for arg in args]
     proc = subprocess.Popen(
-        [sys.executable, "-B", SCRIPT] + list(args),
-        stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, env=child_env)
+        command, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE, env=child_env)
     if stdin_text is None:
         data = b""
     elif isinstance(stdin_text, bytes):
@@ -82,8 +97,8 @@ class SingleArray(unittest.TestCase):
         self.assertEqual(count_lines(out, "error"), 1)
         self.assertEqual(count_lines(out, "maintainability"), 2)
         self.assertEqual(count_lines(out, "reliability"), 1)
-        self.assertRegex(out, r"(?m)^\s+2\s+py/rule-a\s+Title A$")
-        self.assertRegex(out, r"(?m)^\s+1\s+py/rule-b\s+Title B$")
+        self.assertRegex(out, r"(?m)^\s+2\s+py/rule-a\s+warning\s+maintainability\s+Title A$")
+        self.assertRegex(out, r"(?m)^\s+1\s+py/rule-b\s+error\s+reliability\s+Title B$")
 
     def test_file_counts_use_the_path(self):
         code, out, _ = run_script(stdin_text=json.dumps(sample_findings()))
@@ -91,15 +106,31 @@ class SingleArray(unittest.TestCase):
         self.assertEqual(count_lines(out, "src/a.py"), 2)
         self.assertEqual(count_lines(out, "src/b.py"), 1)
 
-    def test_one_line_per_finding_grouped_by_rule(self):
-        code, out, _ = run_script(stdin_text=json.dumps(sample_findings()))
+    def test_one_line_per_finding_grouped_by_rule_and_sorted_by_path(self):
+        # The input lists src/b.py:20 before src/a.py:10, so only a sort puts them in path order.
+        findings = [sample_findings()[1], sample_findings()[0], sample_findings()[2]]
+        code, out, _ = run_script(stdin_text=json.dumps(findings))
         self.assertEqual(code, 0)
         lines = out.splitlines()
-        a1 = lines.index("src/a.py:10: py/rule-a: Message A1.")
-        a2 = lines.index("src/b.py:20: py/rule-a: Message A2.")
-        b1 = lines.index("src/a.py:5: py/rule-b: Message B1.")
+        a1 = lines.index("#1 src/a.py:10: py/rule-a: Message A1.")
+        a2 = lines.index("#2 src/b.py:20: py/rule-a: Message A2.")
+        b1 = lines.index("#3 src/a.py:5: py/rule-b: Message B1.")
         self.assertEqual(a2, a1 + 1)
         self.assertLess(a2, b1)
+
+    def test_finding_without_a_number_prints_a_question_mark(self):
+        findings = [make_finding(number=None, message="No number here.")]
+        code, out, err = run_script(stdin_text=json.dumps(findings))
+        self.assertEqual(code, 0, err)
+        self.assertIn("#? src/a.py:10: py/rule-a: No number here.", out.splitlines())
+
+    def test_message_falls_back_to_the_rule_title(self):
+        findings = [make_finding(1, message=""), make_finding(2, path="src/b.py", message=None)]
+        code, out, err = run_script(stdin_text=json.dumps(findings))
+        self.assertEqual(code, 0, err)
+        lines = out.splitlines()
+        self.assertIn("#1 src/a.py:10: py/rule-a: Title A", lines)
+        self.assertIn("#2 src/b.py:10: py/rule-a: Title A", lines)
 
     def test_file_path_argument(self):
         with tempfile.NamedTemporaryFile("w", suffix=".json", delete=False) as handle:
@@ -114,11 +145,12 @@ class SingleArray(unittest.TestCase):
     def test_empty_array(self):
         code, out, err = run_script(stdin_text="[]")
         self.assertEqual(code, 0, err)
-        self.assertIn("Total findings: 0", out)
+        self.assertEqual(err, "")
+        self.assertEqual(out, "Total findings: 0\n")
 
 
 class PaginatedShapes(unittest.TestCase):
-    """gh api --paginate prints one JSON array per page. With --slurp it prints an array of arrays."""
+    """Some gh versions print one JSON array per page. With --slurp gh prints an array of arrays."""
 
     def setUp(self):
         findings = sample_findings()
@@ -178,7 +210,7 @@ class MissingOptionalFields(unittest.TestCase):
         findings = [make_finding(1, path="src/no_line.py", start_line=None, message="No line here.")]
         code, out, err = run_script(stdin_text=json.dumps(findings))
         self.assertEqual(code, 0, err)
-        self.assertIn("src/no_line.py:?: py/rule-a: No line here.", out.splitlines())
+        self.assertIn("#1 src/no_line.py:?: py/rule-a: No line here.", out.splitlines())
 
     def test_finding_without_help_title_location_or_message(self):
         bare = {"number": 7, "state": "open", "rule": {"id": "py/rule-bare"}}
@@ -189,19 +221,51 @@ class MissingOptionalFields(unittest.TestCase):
         category_block = out.split("By category:")[1].split("By rule:")[0]
         self.assertIn("  1  unknown", severity_block)
         self.assertIn("  1  unknown", category_block)
-        self.assertIn("(no path):?: py/rule-bare:", out.splitlines())
+        self.assertIn("#7 (no path):?: py/rule-bare:", out.splitlines())
+        self.assertRegex(out, r"(?m)^\s+1\s+py/rule-bare\s+\?\s+\?$")
 
     def test_message_with_a_newline_stays_on_one_line(self):
         findings = [make_finding(1, message="First line.\nSecond line.")]
         code, out, _ = run_script(stdin_text=json.dumps(findings))
         self.assertEqual(code, 0)
-        self.assertIn("src/a.py:10: py/rule-a: First line. Second line.", out.splitlines())
+        self.assertIn("#1 src/a.py:10: py/rule-a: First line. Second line.", out.splitlines())
 
     def test_non_ascii_message_in_a_plain_ascii_locale(self):
         findings = [make_finding(1, message="Name ‘x’ is not used: café.")]
-        code, out, err = run_script(stdin_text=json.dumps(findings), env={"LC_ALL": "C", "LANG": "C"})
+        code, out, err = run_script(stdin_text=json.dumps(findings), env=ASCII_LOCALE)
         self.assertEqual(code, 0, err)
         self.assertIn("Name ‘x’ is not used: café.", out)
+
+    def test_lone_surrogate_in_a_path_and_a_message(self):
+        # json.dumps writes the lone surrogate as the ASCII escape \ud800.
+        findings = [make_finding(1, path="src/bad\ud800.py", message="Bad \ud800 character.")]
+        code, out, err = run_script(stdin_text=json.dumps(findings))
+        self.assertEqual(code, 0, err)
+        self.assertNotIn("Traceback", err)
+        self.assertIn("#1 src/bad?.py:10: py/rule-a: Bad ? character.", out.splitlines())
+
+
+class NonAsciiPathArgument(unittest.TestCase):
+    def test_missing_file_with_a_non_ascii_name_exits_2_with_one_line(self):
+        code, out, err = run_script([b"/nonexistent/caf\xc3\xa9.json"], env=ASCII_LOCALE)
+        self.assertEqual(code, 2, err)
+        self.assertEqual(out, "")
+        self.assertEqual(len(err.strip().splitlines()), 1, err)
+        self.assertIn("cannot read", err)
+        self.assertNotIn("Traceback", err)
+
+    def test_existing_file_with_a_non_ascii_name_is_read(self):
+        folder = tempfile.mkdtemp()
+        path = os.path.join(os.fsencode(folder), b"caf\xc3\xa9.json")
+        try:
+            with open(path, "w") as handle:
+                json.dump(sample_findings(), handle)
+            code, out, err = run_script([path], env=ASCII_LOCALE)
+        finally:
+            os.unlink(path)
+            os.rmdir(folder)
+        self.assertEqual(code, 0, err)
+        self.assertIn("Total findings: 3", out)
 
 
 class BadInput(unittest.TestCase):
