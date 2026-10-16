@@ -3,7 +3,7 @@ Evidence for ../results.md. Collected on 2026-10-16 by the controller, the sessi
 Model for every scenario run: sonnet (claude-sonnet-5-5), as a general-purpose subagent, with one fresh fixture per run (built by ../make_fixture.py).
 
 The with-skill and wording-amended runs read skills/overleaf-manuscript/SKILL.md with this SHA-256 hash:
-b9d4e7ff14a2c288a845320f0962056053f5856ec16277e3522233ec22782b7d
+4be92d87de2843ef4cf091cfb3dbd7c51751cbeb9d695d3b8de34c20010ae56e
 If the hash of the file in this repository differs, the file changed after these runs.
 
 Files

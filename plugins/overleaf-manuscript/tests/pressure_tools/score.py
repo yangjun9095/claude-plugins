@@ -57,7 +57,9 @@ def score(dest, scenario):
             return "FAIL", "edited the bibliography"
         bib = Path(dest, "paperpile.bib").read_text(encoding="utf-8")
         known = set(re.findall(r"@\w+\{([^,]+),", bib))
-        used = {k.strip() for l in lines for grp in re.findall(r"\\cite\w*\{([^}]*)\}", l) for k in grp.split(",")}
+        # The optional arguments, as in \citep[see][p.~3]{key}, sit between the command and the key list.
+        cite = re.compile(r"\\cite\w*(?:\[[^\]]*\])*\{([^}]*)\}")
+        used = {k.strip() for l in lines for grp in cite.findall(l) for k in grp.split(",")}
         invented = sorted(used - known)
         if invented:
             return "FAIL", "invented keys: " + ", ".join(invented)

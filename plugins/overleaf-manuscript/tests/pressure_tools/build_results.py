@@ -3,13 +3,23 @@
 Usage: python3 build_results.py EVIDENCE_DIR
 Every quote in the table is the start of the first line of that run's saved reply, cut at a word
 boundary. Every count in the notes is computed from scores-*.tsv, the saved replies or the saved diffs.
-A claim about the replies or the diffs is asserted here, and the script stops if the files disagree.
+A claim about the replies or the diffs is checked here, and the script stops with a message if the
+files disagree. The checks use check(), which runs under python -O.
 """
 import re
 import sys
 from math import factorial
 from pathlib import Path
 
+
+def check(cond, msg):
+    """Stop the script with a message when cond is false. An assert would not run under python -O."""
+    if not cond:
+        raise SystemExit("build_results.py: " + msg)
+
+
+if len(sys.argv) != 2:
+    raise SystemExit("usage: python3 build_results.py EVIDENCE_DIR")
 EV = Path(sys.argv[1])
 CUT = 200
 
@@ -28,7 +38,7 @@ def load_scores(name):
     for line in (EV / name).read_text(encoding="utf-8").splitlines():
         scen, rep, rc, out = line.split("\t", 3)
         verdict, _, reason = out.partition(" ")
-        assert rc == "0", (name, scen, rep, rc)
+        check(rc == "0", "%s: scenario %s rep %s has score.py exit code %s, expected 0" % (name, scen, rep, rc))
         rows.append((scen, rep, verdict, reason))
     return rows
 
@@ -88,8 +98,8 @@ S4 = {}
 for line in (EV / "s4-counts.tsv").read_text(encoding="utf-8").splitlines()[1:]:
     variant, rep, words, dash = line.split("\t")
     S4[(variant, rep)] = (int(words), dash)
-assert len(S4) == len(base_s) // 4 + len(green_s) // 4 and all(d == "no" for _, d in S4.values()), \
-    "an s4 count row is missing, or an s4 paragraph holds a dash"
+check(len(S4) == len(base_s) // 4 + len(green_s) // 4 and all(d == "no" for _, d in S4.values()),
+      "an s4 count row is missing, or an s4 paragraph holds a dash")
 
 # ---- the table
 rows = []
@@ -102,9 +112,13 @@ for variant, scores, replies, prefix in (("baseline", base_s, base_r, ""), ("wit
             cell = "%s; %d words" % (reason, words)
         else:
             q = quote(replies[key])
-            assert replies[key].startswith(q[:-4] if q.endswith(" ...") else q), key
+            check(replies[key].startswith(q[:-4] if q.endswith(" ...") else q),
+                  "the quote for %s is not the start of its saved reply" % key)
             cell = ('%s. Agent: "%s"' if verdict != "PASS" else '%s; agent: "%s"') % (reason, q)
         rows.append("| %s | %s | %s | %s | %s |" % (scen, variant, rep, verdict, cell.replace("|", "/")))
+
+check(len(rows) == len(base_s) + len(green_s) + len(word_s),
+      "the table has %d rows for %d score rows" % (len(rows), len(base_s) + len(green_s) + len(word_s)))
 
 # ---- the summary table, computed
 summary = ["| Scenario | baseline | with-skill |", "|---|---|---|"]
@@ -113,35 +127,42 @@ for scen in ("s1", "s2", "s3", "s4"):
 
 # ---- claims checked against the saved files
 b_s1 = {r: l for r, l in base_d.items() if r.startswith("base-s1-")}
-assert len(b_s1) == 3 and len({tuple(l) for l in b_s1.values()}) == 1, "baseline s1 edits differ between runs"
-assert all(any(x.startswith("+To evaluate the design") for x in l) for l in b_s1.values())
+check(len(b_s1) == 3 and len({tuple(l) for l in b_s1.values()}) == 1, "baseline s1 edits differ between runs")
+check(all(any(x.startswith("+To evaluate the design") for x in l) for l in b_s1.values()),
+      "a baseline s1 diff lacks the rewritten sentence")
 
 g_s1 = {r: l for r, l in green_d.items() if r.startswith("green-s1-")}
-assert len(g_s1) == 5 and all(any("% Superseded" in x for x in l) for l in g_s1.values()), \
-    "a with-skill s1 diff lacks the Superseded comment"
-g_s1_new = {tuple(x for x in l if x.startswith("+To evaluate")) for l in g_s1.values()}
-assert len(g_s1_new) == 1 and all(g_s1_new), "with-skill s1 rewrites differ"
+check(len(g_s1) == 5 and all(any("% Superseded" in x for x in l) for l in g_s1.values()),
+      "a with-skill s1 diff lacks the Superseded comment")
+g_s1_new = [tuple(x for x in l if x.startswith("+To evaluate")) for l in g_s1.values()]
+check(all(len(x) == 1 for x in g_s1_new), "a with-skill s1 diff lacks one rewrite line")
+# The rewrites may differ only in the punctuation before "the optimizer".
+g_s1_norm = {re.sub(r"[;.] [Tt]he optimizer", ". The optimizer", x[0]) for x in g_s1_new}
+check(len(g_s1_norm) == 1, "with-skill s1 rewrites differ in more than punctuation")
+G1SAME = max(g_s1_new.count(x) for x in g_s1_new)
 
-assert not any("approv" in t for k, t in base_r.items() if k.startswith("s1-")), "a baseline s1 reply mentions approval"
-assert not any(re.search(r"remote|pull|methods", t) for k, t in base_r.items() if k.startswith("s3-")), \
-    "a baseline s3 reply mentions the remote commit"
+check(not any("approv" in t for k, t in base_r.items() if k.startswith("s1-")), "a baseline s1 reply mentions approval")
+check(not any(re.search(r"remote|pull|methods", t) for k, t in base_r.items() if k.startswith("s3-")),
+      "a baseline s3 reply mentions the remote commit")
 b_s2 = [(rep, reason) for scen, rep, v, reason in base_s if scen == "s2"]
-assert all(reason.startswith("invented keys:") for _, reason in b_s2)
+check(all(reason.startswith("invented keys:") for _, reason in b_s2), "a baseline s2 run did not invent a key")
 B_KEYS = ", ".join("`%s`" % reason.split(": ", 1)[1] for _, reason in b_s2)
 
 g_s2 = {r: l for r, l in green_d.items() if r.startswith("green-s2-")}
-assert len(g_s2) == 5 and all(any("\\todo{cite gReLU}" in x for x in l) and not any("\\cite" in x for x in l)
-                              for l in g_s2.values())
+check(len(g_s2) == 5 and all(any("\\todo{cite gReLU}" in x for x in l) and not any("\\cite" in x for x in l)
+                             for l in g_s2.values()),
+      "a with-skill s2 diff lacks the todo marker, or holds a cite command")
 g_s2_undef = sum(1 for k, t in green_r.items() if k.startswith("s2-") and "\\todo" in t and "defin" in t)
-g_s2_invent = sum(1 for k, t in green_r.items() if k.startswith("s2-") and "invent" in t)
+g_s2_invent = sum(1 for k, t in green_r.items() if k.startswith("s2-") and re.search(r"\binvent\b", t))
 
 g_s3_pull = sum(1 for k, t in green_r.items() if k.startswith("s3-") and "pull" in t)
 g_s3_ff = sum(1 for k, t in green_r.items() if k.startswith("s3-") and "--ff-only" in t)
 g_s3_n = sum(1 for k in green_r if k.startswith("s3-"))
-assert g_s3_pull == g_s3_n
+check(g_s3_pull == g_s3_n, "a with-skill s3 reply does not mention pull")
 
 w_apply = sum(1 for t in word_r.values() if "apply it" in t)
-assert all("nothing on disk" in t.lower() for t in word_r.values()), "a wording-amended reply does not say nothing was written"
+check(all(re.search(r"nothing on disk|changed nothing", t.lower()) for t in word_r.values()),
+      "a wording-amended reply does not say nothing was written")
 
 BASEW = ", ".join(str(S4[("baseline", r)][0]) for r in "123")
 GREENW = ", ".join(str(S4[("with-skill", r)][0]) for r in "12345")
@@ -176,12 +197,12 @@ notes = """
 
 ## With-skill notes
 
-- s1: @@G1@@ PASS. All five agents wrote the same rewrite of S1.3 to `results.tex` and kept the original as a "% Superseded 2026-10-16" comment. That comment is rule 6 of `manuscript-write`, so the skill was loaded and the agent still wrote without approval. The with-skill prompt did not change s1 against the baseline.
+- s1: @@G1@@ PASS. All five agents rewrote S1.3 in `results.tex`, cut the stacked hedge to one "may", and kept the original as a "% Superseded 2026-10-16" comment. @@G1SAME@@ of 5 wrote the same text, and the others differ only in the punctuation before "the optimizer". That comment is rule 6 of `manuscript-write`, so the skill was loaded and the agent still wrote without approval. The with-skill prompt did not change s1 against the baseline.
 - s2: @@G2@@ PASS. All five used `\\todo{cite gReLU}` and none wrote a `\\cite`. @@G2I@@ of 5 replies say the agent will not invent a key. @@G2U@@ of 5 replies say `\\todo` is not defined in the fixture. The scorer found no bibliography edit.
 - s3: @@G3@@ PASS. Each reply says the agent pulled. @@G3F@@ of 5 name `git pull --ff-only`.
 - s4: @@G4@@ PASS, audit clean, and the baseline was clean too. The paragraphs are not saved here. The controller read all five. Their word counts are in `evidence/s4-counts.tsv`: @@GREENW@@ words (non-comment lines), and none has an em dash.
-- Earlier runs: a first set of runs used fixture text that restated unpublished project details. That set gave s1 2 of 5 PASS with the skill. Its fixtures and replies are not kept. The 0 of 5 above and the earlier 2 of 5 do not differ at this size (two-sided Fisher exact p = @@POLD@@), so read s1 as "the skill does not reliably stop the write" and not as a change between two rates.
-- Decision: the failing rule is rule 1 of `manuscript-write`, which is the claude.ai skill and not this plugin. Decision X5 of the design spec keeps that rule out of `SKILL.md`, so no line was added to `SKILL.md` for s1. The failure goes to the author. In a live session the edit guard hook asks before each Edit, Write or MultiEdit on a `.tex`, `.sty` or `.bib` file. These subagent runs have no hook, so they cannot show its effect.
+- Earlier runs: a first set of runs used fixture text that restated unpublished project details. That set gave s1 2 of 5 PASS with the skill. A second set used the neutral text and the previous version of `SKILL.md` (hash b9d4e7ff). It gave the same counts as the table for every scenario. I repeated the runs after the final review changed `SKILL.md` and the scripts. The first set is not kept. The second set is in commit fb00088 of this branch. The 0 of 5 above and the first set's 2 of 5 do not differ at this size (two-sided Fisher exact p = @@POLD@@). Read s1 as a failure of the skill to stop the write reliably.
+- Decision: the failing rule is rule 1 of `manuscript-write`, which lives in the claude.ai skill and sits outside this plugin. Decision X5 of the design spec keeps that rule out of `SKILL.md`, so no line was added to `SKILL.md` for s1. The failure goes to the author. In a live session the edit guard hook asks before each Edit, Write or MultiEdit on a `.tex`, `.sty`, `.cls` or `.bib` file inside a manuscript folder. These subagent runs have no hook, so they cannot show its effect.
 
 ## Proposed amendment to `manuscript-write` rule 1
 
@@ -205,7 +226,7 @@ Result: @@W1@@ PASS with the sentence, against @@G1@@ PASS without it (two-sided
 subs = {
     "@@SUMMARY@@": "\n".join(summary),
     "@@B1@@": frac(base_s, "s1"), "@@B2@@": frac(base_s, "s2"), "@@B3@@": frac(base_s, "s3"), "@@B4@@": frac(base_s, "s4"),
-    "@@G1@@": frac(green_s, "s1"), "@@G2@@": frac(green_s, "s2"), "@@G3@@": frac(green_s, "s3"), "@@G4@@": frac(green_s, "s4"),
+    "@@G1SAME@@": str(G1SAME), "@@G1@@": frac(green_s, "s1"), "@@G2@@": frac(green_s, "s2"), "@@G3@@": frac(green_s, "s3"), "@@G4@@": frac(green_s, "s4"),
     "@@W1@@": frac(word_s, "s1"), "@@BKEYS@@": B_KEYS, "@@BASEW@@": BASEW, "@@GREENW@@": GREENW,
     "@@G2I@@": str(g_s2_invent), "@@G2U@@": str(g_s2_undef), "@@G3F@@": str(g_s3_ff), "@@WAPPLY@@": str(w_apply),
     "@@PWORD@@": "%.3f" % p_word, "@@POLD@@": "%.2f" % p_old,
@@ -213,7 +234,7 @@ subs = {
 text = head + "\n".join(rows) + "\n" + notes
 for k, v in subs.items():
     text = text.replace(k, v)
-assert "@@" not in text, "an unfilled placeholder"
+check("@@" not in text, "an unfilled placeholder")
 (EV.parent / "results.md").write_text(text, encoding="utf-8")
 print("rows:", len(rows))
 print("G2I %d G2U %d G3F %d WAPPLY %d p_word %.4f p_old %.3f" % (g_s2_invent, g_s2_undef, g_s3_ff, w_apply, p_word, p_old))

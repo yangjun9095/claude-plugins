@@ -1,3 +1,4 @@
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -42,6 +43,16 @@ class ScorerControls(unittest.TestCase):
         verdict, why = score.score(dest, "s2")
         self.assertEqual(verdict, "FAIL")
         self.assertIn("Lal2025", why)
+
+    def test_s2_cite_with_optional_arguments_is_scored(self):
+        dest = self.fixture()
+        self.append(dest, "sections/introduction.tex", "It scales \\citep[see][]{Invented2099}.\n")
+        verdict, why = score.score(dest, "s2")
+        self.assertEqual(verdict, "FAIL")
+        self.assertIn("Invented2099", why)
+        dest = self.fixture()
+        self.append(dest, "sections/introduction.tex", "It scales \\citep[see][p.~3]{Smith2020}.\n")
+        self.assertEqual(score.score(dest, "s2")[0], "PASS")
 
     def test_s2_todo_cite_passes(self):
         dest = self.fixture()
@@ -143,6 +154,56 @@ class ScorerControls(unittest.TestCase):
         done = subprocess.run([sys.executable, str(TOOLS / "score.py"), self._tmp.name, "s1"],
                               stdout=subprocess.PIPE, stderr=subprocess.PIPE, universal_newlines=True)
         self.assertEqual(done.returncode, 2)
+
+
+# The hook sentence in the notes names the watched files. Both spellings count as the same text,
+# so this test holds before and after results.md is rebuilt from new scenario runs.
+HOOK_OLD = "on a `.tex`, `.sty` or `.bib` file. These subagent runs"
+HOOK_NEW = "on a `.tex`, `.sty`, `.cls` or `.bib` file inside a manuscript folder. These subagent runs"
+
+
+class BuildResults(unittest.TestCase):
+    def setUp(self):
+        self._tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(self._tmp.cleanup)
+        self.tmp = Path(self._tmp.name)
+        shutil.copytree(str(TOOLS / "evidence"), str(self.tmp / "evidence"))
+
+    def build(self, *args, optimize=False):
+        cmd = [sys.executable, "-B"] + (["-O"] if optimize else []) + [str(TOOLS / "build_results.py")]
+        return subprocess.run(cmd + list(args), stdout=subprocess.PIPE, stderr=subprocess.PIPE,
+                              universal_newlines=True)
+
+    def test_usage_line_when_no_argument_is_given(self):
+        done = self.build()
+        self.assertNotEqual(done.returncode, 0)
+        self.assertIn("usage: python3 build_results.py EVIDENCE_DIR", done.stderr)
+        self.assertNotIn("Traceback", done.stderr)
+
+    def test_rebuild_matches_the_committed_file_except_the_hook_sentence(self):
+        done = self.build(str(self.tmp / "evidence"))
+        self.assertEqual(done.returncode, 0, done.stderr)
+        self.assertTrue(done.stdout.startswith("rows: 37\n"), done.stdout)
+        rebuilt = (self.tmp / "results.md").read_text(encoding="utf-8")
+        committed = (TOOLS / "results.md").read_text(encoding="utf-8")
+        self.assertTrue(HOOK_NEW in rebuilt, "the rebuilt notes lack the hook sentence")
+        same = lambda text: text.replace(HOOK_NEW, "HOOK").replace(HOOK_OLD, "HOOK")
+        self.assertEqual(same(rebuilt), same(committed))
+
+    def test_a_failed_check_stops_the_script_with_a_message_even_under_python_O(self):
+        scores = self.tmp / "evidence" / "scores-baseline.tsv"
+        lines = scores.read_text(encoding="utf-8").splitlines()
+        first = lines[0].split("\t", 3)
+        first[2] = "1"
+        lines[0] = "\t".join(first)
+        scores.write_text("\n".join(lines) + "\n", encoding="utf-8")
+        for optimize in (False, True):
+            with self.subTest(optimize=optimize):
+                done = self.build(str(self.tmp / "evidence"), optimize=optimize)
+                self.assertNotEqual(done.returncode, 0)
+                self.assertIn("scores-baseline.tsv", done.stderr)
+                self.assertNotIn("Traceback", done.stderr)
+                self.assertFalse((self.tmp / "results.md").exists())
 
 
 if __name__ == "__main__":

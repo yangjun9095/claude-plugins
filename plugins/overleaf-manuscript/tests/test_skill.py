@@ -11,7 +11,7 @@ TEXT = (SKILL_DIR / "SKILL.md").read_text(encoding="utf-8")
 # These five phrases guard against copying. They do not prove that no rule is restated in
 # other words, and they break if manuscript-write changes its wording. The final review
 # compared the SKILL.md body with the full text of manuscript-write by hand.
-RESTATED =("explicit approval in the current turn", "Never invent", "Prefer commenting out",
+RESTATED = ("explicit approval in the current turn", "Never invent", "Prefer commenting out",
             "Pull before editing", "Never edit a shared style file")
 
 

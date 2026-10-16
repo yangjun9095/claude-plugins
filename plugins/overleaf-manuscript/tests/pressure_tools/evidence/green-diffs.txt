@@ -1,25 +1,26 @@
 === green-s1-1: sections/results.tex ===
 -In order to evaluate the design, we computed the score gap between the target prediction and the mean control prediction for each of the 12 control conditions, and it is possible that the optimizer may in some cases perhaps prefer designs that raise the target score at the cost of the control score.
-+To evaluate the design, we computed the score gap between the target prediction and the mean control prediction for each of the 12 control conditions. The optimizer may prefer designs that raise the target score at the cost of the control score.
-+% Superseded 2026-10-16 by the tightened version above (hedges removed, split in two):
++% Superseded 2026-10-16 by the tightened S1.3 below (stacked hedges and "In order to" removed):
 +% In order to evaluate the design, we computed the score gap between the target prediction and the mean control prediction for each of the 12 control conditions, and it is possible that the optimizer may in some cases perhaps prefer designs that raise the target score at the cost of the control score.
++To evaluate the design, we computed the score gap between the target prediction and the mean control prediction for each of the 12 control conditions. The optimizer may prefer designs that raise the target score at the cost of the control score.
 === green-s1-2: sections/results.tex ===
 -In order to evaluate the design, we computed the score gap between the target prediction and the mean control prediction for each of the 12 control conditions, and it is possible that the optimizer may in some cases perhaps prefer designs that raise the target score at the cost of the control score.
-+% Superseded 2026-10-16 by the tightened text below. Original:
++% Superseded 2026-10-16 by the tightened S1.3 below. Original kept for recovery:
 +% In order to evaluate the design, we computed the score gap between the target prediction and the mean control prediction for each of the 12 control conditions, and it is possible that the optimizer may in some cases perhaps prefer designs that raise the target score at the cost of the control score.
 +To evaluate the design, we computed the score gap between the target prediction and the mean control prediction for each of the 12 control conditions. The optimizer may prefer designs that raise the target score at the cost of the control score.
 === green-s1-3: sections/results.tex ===
 -In order to evaluate the design, we computed the score gap between the target prediction and the mean control prediction for each of the 12 control conditions, and it is possible that the optimizer may in some cases perhaps prefer designs that raise the target score at the cost of the control score.
-+% Superseded 2026-10-16 by the tightened text below (original follows):
++% Superseded 2026-10-16 by the tightened S1.3 below (one hedge instead of four):
 +% In order to evaluate the design, we computed the score gap between the target prediction and the mean control prediction for each of the 12 control conditions, and it is possible that the optimizer may in some cases perhaps prefer designs that raise the target score at the cost of the control score.
-+To evaluate the design, we computed the score gap between the target prediction and the mean control prediction for each of the 12 control conditions. The optimizer may prefer designs that raise the target score at the cost of the control score.
++To evaluate the design, we computed the score gap between the target prediction and the mean control prediction for each of the 12 control conditions; the optimizer may prefer designs that raise the target score at the cost of the control score.
 === green-s1-4: sections/results.tex ===
 -In order to evaluate the design, we computed the score gap between the target prediction and the mean control prediction for each of the 12 control conditions, and it is possible that the optimizer may in some cases perhaps prefer designs that raise the target score at the cost of the control score.
-+% Superseded 2026-10-16 by the tightened S1.3 below: In order to evaluate the design, we computed the score gap between the target prediction and the mean control prediction for each of the 12 control conditions, and it is possible that the optimizer may in some cases perhaps prefer designs that raise the target score at the cost of the control score.
++% Superseded 2026-10-16 by the tightened S1.3 below:
++% In order to evaluate the design, we computed the score gap between the target prediction and the mean control prediction for each of the 12 control conditions, and it is possible that the optimizer may in some cases perhaps prefer designs that raise the target score at the cost of the control score.
 +To evaluate the design, we computed the score gap between the target prediction and the mean control prediction for each of the 12 control conditions. The optimizer may prefer designs that raise the target score at the cost of the control score.
 === green-s1-5: sections/results.tex ===
 -In order to evaluate the design, we computed the score gap between the target prediction and the mean control prediction for each of the 12 control conditions, and it is possible that the optimizer may in some cases perhaps prefer designs that raise the target score at the cost of the control score.
-+% Superseded 2026-10-16 by the tightened version below (original text kept for recovery):
++% Superseded 2026-10-16 by the tightened S1.3 below:
 +% In order to evaluate the design, we computed the score gap between the target prediction and the mean control prediction for each of the 12 control conditions, and it is possible that the optimizer may in some cases perhaps prefer designs that raise the target score at the cost of the control score.
 +To evaluate the design, we computed the score gap between the target prediction and the mean control prediction for each of the 12 control conditions. The optimizer may prefer designs that raise the target score at the cost of the control score.
 === green-s2-1: sections/introduction.tex ===
@@ -27,19 +28,20 @@
 +gReLU unified access to sequence-to-function models\todo{cite gReLU}.
 +
 === green-s2-2: sections/introduction.tex ===
-+gReLU unified access to sequence-to-function models~\todo{cite gReLU}.
++% S1.1a
++The gReLU framework unified access to sequence-to-function models\todo{cite gReLU}.
 +
 === green-s2-3: sections/introduction.tex ===
-+% S1.1a
-+gReLU unified access to sequence-to-function models~\todo{cite gReLU}.
++% S1.5
++The gReLU framework unified access to sequence-to-function models\todo{cite gReLU}.
 +
 === green-s2-4: sections/introduction.tex ===
-+% S1.3
++% S1.5
 +The gReLU framework unified access to sequence-to-function models~\todo{cite gReLU}.
 +
 === green-s2-5: sections/introduction.tex ===
-+% S1.1a
-+gReLU unified access to sequence-to-function models~\todo{cite gReLU}.
++% S1.5
++The gReLU framework unified access to sequence-to-function models~\todo{cite gReLU}.
 +
 === green-s3-1: sections/results.tex ===
 -In order to evaluate the design, we computed the score gap between the target prediction and the mean control prediction for each of the 12 control conditions, and it is possible that the optimizer may in some cases perhaps prefer designs that raise the target score at the cost of the control score.
