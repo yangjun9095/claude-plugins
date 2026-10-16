@@ -5,168 +5,207 @@ allowed-tools:
   - Write
   - Glob
   - Grep
-  - Bash(git *)
-  - Bash(gh *)
-  - Bash(curl *)
-  - Bash(mkdir *)
-  - Bash(ls *)
-  - Bash(cat *)
-  - Bash(head *)
-  - Bash(tail *)
-  - Bash(grep *)
-  - Bash(find *)
-  - Bash(sed *)
-  - Bash(awk *)
-  - Bash(wc *)
-  - Bash(python3 *)
-  - Bash(date *)
-  - Bash(echo *)
-  - Bash(sleep *)
-description: Audit a GitHub repo's CodeQL Code Quality findings (Standard + AI tabs at /security/quality) and fix them. Works around the lack of public REST API for code-quality results by deploying a manual workflow that uploads SARIF as a downloadable artifact.
+  - Bash(gh api *)
+  - Bash(gh auth status)
+  - Bash(gh repo view *)
+  - Bash(gh run list *)
+  - Bash(gh run view *)
+  - Bash(gh run download *)
+  - Bash(gh workflow run *)
+  - Bash(python3 "${CLAUDE_PLUGIN_ROOT}/scripts/summarize_findings.py" *)
+  - Bash(python3 "${CLAUDE_PLUGIN_ROOT}/scripts/parse_sarif.py" *)
+  - Bash(git branch --show-current)
+  - Bash(git status --short)
+  - Bash(git switch -c fix/codeql-quality-*)
+  - Bash(git diff)
+  - Bash(date +%Y-%m-%d)
+description: Audit a GitHub repo's CodeQL Code Quality findings through the GitHub REST API (gh api) and fix them. A SARIF workflow is the fallback for findings the API does not return.
 ---
 
 # CodeQL Quality Review
 
-Audit and fix the CodeQL **Code Quality** findings on a GitHub repo's `/security/quality` page (Standard + AI tabs).
+Audit and fix the CodeQL Code Quality findings of a GitHub repository.
+The command fetches the findings with `gh api` and summarizes them with a bundled script.
+It then fixes the findings in the working tree and re-checks the result.
 
 **Argument:** `$ARGUMENTS`
 
-Modes (optional):
-- `/codeql-quality-review` → full flow on the current repo's default branch
-- `/codeql-quality-review --branch <branch>` → run on a specific branch
-- `/codeql-quality-review --dry-run` → just deploy workflow + trigger + parse; don't fix
-- `/codeql-quality-review --fix-only` → assume workflow + SARIF already present; jump to fix-and-recheck loop
+Modes (all optional):
+- `/codeql-quality-review`: fetch the open findings, fix them, and re-check.
+- `/codeql-quality-review --dry-run`: fetch and summarize. Edit nothing.
+- `/codeql-quality-review --include-dismissed`: also fetch the dismissed findings and report their count.
+- `/codeql-quality-review --fallback`: skip the API and use the SARIF workflow in the Fallback section.
+- `/codeql-quality-review --branch <branch>`: choose the branch for a fallback workflow run. The API has no branch parameter.
 
-## Why this skill exists
+## Rules for every GitHub call
 
-GitHub's Code Quality findings (the `/security/quality` page, Standard + AI tabs) are
-**not exposed via the public REST API**. The standard `/code-scanning/alerts`
-endpoint only returns Security CodeQL — Code Quality SARIF is uploaded to a
-separate UI-only endpoint.
+Every `gh api` call in this command is a GET.
+Never pass `-X` or `--method` with a method other than GET.
+Never pass `-f`, `-F`, `--field`, `--raw-field` or `--input`, because `gh api` then sends a POST.
+Put every query parameter in the URL.
+This command never closes or dismisses a finding.
+This command never merges a pull request.
+When a finding needs a dismissal, tell the user to dismiss it in the web interface.
 
-This skill bypasses that by deploying a manual GitHub Actions workflow that
-runs CodeQL with the `python-code-quality.qls` and `python-code-quality-extended.qls`
-suites, then uploads the SARIF as a regular workflow artifact you can download
-and parse locally.
+## What the API covers
 
-## Prerequisites (check before starting)
+- `GET /repos/{owner}/{repo}/code-quality/findings` lists the findings of a repository.
+- `GET /repos/{owner}/{repo}/code-quality/findings/{finding_number}` returns one finding.
+- The API is a public preview on github.com. It is not yet available on GitHub Enterprise Server. The source is the GitHub changelog entry of 2026-06-23 (https://github.blog/changelog/2026-06-23-fetch-code-quality-findings-via-rest-api). The REST documentation page does not state this.
+- The endpoints return CodeQL findings. The documentation does not mention the AI tab of `/security/quality`.
+- Treat "the AI tab findings appear in the API" as unverified. Step 2 includes a check against the web page.
+- The documentation does not say what an omitted `state` parameter returns. Always pass `state` in the URL.
 
-1. **`gh` CLI authenticated** with at least `repo` scope. Verify:
-   ```bash
-   gh auth status
-   ```
-2. **Working directory is a git checkout** of the target repo (or use `-R owner/repo` consistently).
-3. **The repo has CodeQL enabled** (default setup OR advanced — either works; this skill runs alongside).
-4. **`python3` available locally** for SARIF parsing (no extra deps needed; stdlib only).
-
-If any prerequisite is missing, surface it to the user before proceeding.
+Each finding has `number`, `state`, `url`, `rule`, `location`, `message` and `created_at`.
+The `rule` object has `id`, `title`, `description`, `severity` (error, warning, note, none) and `category` (none, maintainability, reliability).
+The `location` object has `path`, `start_line`, `start_column`, `end_line` and `end_column`.
 
 ## Reference material
 
-This skill bundles two helpers (you can read them directly via `Read`):
-- `scripts/codeql-quality-artifact.yml` — the GitHub Actions workflow file to deploy
-- `scripts/parse_sarif.py` — Python script that summarizes a SARIF file (count by rule, detail per location)
-- `references/rule-fixes.md` — playbook of fixes per CodeQL rule (USE THIS when deciding how to address each finding)
-
-Always read `references/rule-fixes.md` early — it has the rule-to-action mapping and known false-positive caveats.
+Read these files with the `Read` tool:
+- `${CLAUDE_PLUGIN_ROOT}/references/rule-fixes.md`: the fix playbook per CodeQL rule, with known false-positive cases. Read it before Step 3.
+- `${CLAUDE_PLUGIN_ROOT}/scripts/summarize_findings.py`: summarizes the JSON from the API. Step 2 uses it.
+- `${CLAUDE_PLUGIN_ROOT}/scripts/codeql-quality-artifact.yml`: the fallback workflow.
+- `${CLAUDE_PLUGIN_ROOT}/scripts/parse_sarif.py`: summarizes the SARIF files of the fallback.
 
 ## Steps
 
-### Step 0 — Identify target repo and branch
+### Step 0: Preflight
 
-- Determine `OWNER/REPO` from `gh repo view --json owner,name --jq '.owner.login + "/" + .name'`.
-- Determine target branch from `$ARGUMENTS` (`--branch <branch>`) or default to the repo's default branch (`gh repo view --json defaultBranchRef`).
-- Confirm with the user (one short sentence).
+1. Run `gh auth status`. If it fails, ask the user to run `gh auth login`.
+2. A classic token needs the `repo` scope (`public_repo` for a public repository). For a fine-grained token, ask the user to read the documentation page of the endpoint.
+3. Run `gh repo view --json nameWithOwner,url,defaultBranchRef`. The output has `OWNER/REPO`, the `url` and the default branch name. If the call fails, ask the user for `OWNER/REPO` and assume `github.com`.
+4. Read the host from the `url`. If the host is not `github.com`, the API is not available. Go to the Fallback section.
+5. Tell the user the repository name in one sentence.
+6. Run `git branch --show-current` and compare the result with the default branch. Run `git status --short`. If the working tree has uncommitted changes, tell the user.
+7. If you are on the default branch, plan a fix branch named `fix/codeql-quality-<date>`. Step 4 creates it before the first edit.
+8. If you are on another branch, or on no branch, ask the user which branch gets the fixes. The options are the current branch or a new fix branch.
+9. Tell the user in one sentence that commits, pushes and pull request creation will prompt for permission. Add that the `which`, `ruff`, test and `grep` commands of Step 4 can prompt as well.
 
-### Step 1 — Deploy the workflow file (if not already present)
+### Step 1: Fetch the findings
 
-Check if `.github/workflows/codeql-quality-artifact.yml` exists on the target branch.
-
-If absent:
-1. Read the workflow template from the plugin's `scripts/codeql-quality-artifact.yml`.
-2. Write it to `.github/workflows/codeql-quality-artifact.yml` in the working tree.
-3. Open a PR via `gh pr create` and ask the user to merge. **The workflow must be on the default branch to be triggerable** — even though you can `gh workflow run --ref <other>` to use a different branch's *definition*, GitHub Actions requires the workflow file to exist on the default branch for it to register at all.
-
-If present: skip to Step 2.
-
-### Step 2 — Trigger + wait
+Choose a temporary directory. Use the scratchpad directory if the session names one. Otherwise use `$TMPDIR`.
 
 ```bash
-gh workflow run codeql-quality-artifact.yml --ref <branch>
+gh api --paginate -H "X-GitHub-Api-Version: 2026-03-10" -H "Accept: application/vnd.github+json" "repos/OWNER/REPO/code-quality/findings?state=open&per_page=100" > "<tmpdir>/codeql-findings-open.json"
 ```
 
-Note the run ID from the URL in the output. Then poll with `gh run view <id> --json status,conclusion`. CodeQL DB build + analyze typically takes 2–4 minutes for small/medium Python repos.
+Write each command on one line, so that the permission rules match it.
 
-For long waits, use `ScheduleWakeup` for ~3–5 minute checks instead of busy-polling.
+With `--include-dismissed`, make a second call with `state=dismissed`. Write it to `<tmpdir>/codeql-findings-dismissed.json`.
+Keep the two states in separate files. Summarize each file on its own.
 
-If the workflow run fails:
-- Most common cause: CodeQL CLI download URL changed. Check the "Install CodeQL CLI" step log. The official asset name is `codeql-linux64.zip` (NOT `.tar.gz`). If GitHub changes the format, update the workflow template.
-- Surface the error to the user; offer to fix the workflow template.
+If `gh` exits with an error, ignore the output file. `gh` prints the HTTP status on stderr, for example `gh: Not Found (HTTP 404)`. Handle the status like this:
 
-### Step 3 — Download SARIF + parse
+- 403: GitHub denies access to Code Quality for this repository. Code Quality is off, or the token lacks access. Ask the user to check the repository settings and the token scope (`gh auth status`). If the message mentions a rate limit, wait and retry. Otherwise stop until the user chooses: fix the access, or use the Fallback section.
+- 404: The repository name is wrong, or the Code Quality preview is not enabled for this repository. Check the name with `gh repo view`. Then ask the user to check that the preview is on. Stop until the user chooses: fix the setup, or use the Fallback section.
+- 503: GitHub reports that the service is unavailable. Tell the user to retry later. Do not start the Fallback section.
+- Any other status: show the message from `gh` and stop.
+
+Pagination is unverified against a live repository. `--paginate` should follow the `Link` header.
+If the total in Step 2 is a nonzero multiple of 100, check for a cut-off. Run the call again with `-i` and without `--paginate`. Read the `Link` header for a `next` link.
+
+### Step 2: Summarize and check completeness
 
 ```bash
-mkdir -p /tmp/claude/codeql-sarif
-gh run download <run-id> --name codeql-quality-sarif --dir /tmp/claude/codeql-sarif
-python3 <plugin>/scripts/parse_sarif.py \
-    /tmp/claude/codeql-sarif/quality.sarif \
-    /tmp/claude/codeql-sarif/quality-extended.sarif
+python3 "${CLAUDE_PLUGIN_ROOT}/scripts/summarize_findings.py" "<tmpdir>/codeql-findings-open.json"
 ```
 
-The output reports findings grouped by rule and per location.
+The script prints the total and the counts by severity, category and rule. Each rule line also shows the severity and the category. It then prints the ten files with the most findings and one line per finding, grouped by rule.
+Each finding line starts with `#number`. The script prints `?` for a field that the input lacks.
+It exits with code 2 and a one-line message when the file is not a list of findings. Show that message to the user.
 
-### Step 4 — Itemize findings and prioritize
+The documentation does not say which branch the findings describe. Assume the default branch and tell the user.
+Ask the user for the finding counts on `/security/quality`, on the Standard tab and on the AI tab.
+If the AI tab shows more findings than the API returned, the API does not cover the AI tab. Offer the Fallback section.
+If the total is 0 and the user sees findings on the web page, offer the Fallback section.
 
-Group findings by **severity tier** (this maps to user intent):
+With `--dry-run`, stop here and write the report.
 
-1. **Reliability bugs** (real or near-real bugs): `py/uninitialized-local-variable`, `py/empty-except`, `py/raise-not-implemented`, `py/non-standard-exception-special-method`, `py/call/wrong-named-argument`, `py/unreachable-statement` — **fix these first**.
-2. **Shadowing / clarity issues**: `py/local-shadows-global`, `py/redundant-comparison` — **fix next** (usually one-line renames).
-3. **Auto-fixable maintainability**: `py/unused-import` (`ruff F401`), `py/unused-local-variable` (`ruff F841`), `py/ineffectual-statement` (mostly notebook cell-output displays — wrap in `print()` and update BOTH `.py` and `.ipynb`), `py/explicit-returns-mixed-with-implicit-returns` (`ruff RET503`), `py/commented-out-code` (manual review — delete obvious dead blocks).
-4. **False-positive prone** (`py/unused-parameter`, `py/local-shadows-global` in tight scopes): consult `references/rule-fixes.md`. Often the right action is to **dismiss in the UI** rather than rename — especially for PyTorch Lightning callback signatures.
+### Step 3: Itemize and prioritize
 
-Surface the breakdown to the user with the recommended action per tier. Get explicit OK before bulk-fixing.
+Use the severity and the category on each rule line of the summary as a guide.
+To read one finding in full, use its number in this GET call: `gh api -H "X-GitHub-Api-Version: 2026-03-10" repos/OWNER/REPO/code-quality/findings/NUMBER`.
+After the SARIF fallback, the severity, the category and the number are absent. `parse_sarif.py` prints only the rule id, the location and the message. Use the rule ids in the tiers.
+Group the findings by tier:
 
-### Step 5 — Apply fixes
+1. Reliability bugs: `py/uninitialized-local-variable`, `py/empty-except`, `py/raise-not-implemented`, `py/non-standard-exception-special-method`, `py/call/wrong-named-argument`, `py/unreachable-statement`. Fix these first.
+2. Shadowing and clarity issues: `py/local-shadows-global`, `py/redundant-comparison`. Fix these next. Most need a one-line rename.
+3. Auto-fixable maintainability: `py/unused-import` (`ruff F401`), `py/unused-local-variable` (`ruff F841`), `py/ineffectual-statement`, `py/explicit-returns-mixed-with-implicit-returns` (`ruff RET503`), `py/commented-out-code`. For `py/ineffectual-statement`, wrap notebook cell displays in `print()` and update both the `.py` and the `.ipynb`. Review `py/commented-out-code` by hand and delete obvious dead blocks.
+4. Findings that are often false positives: `py/unused-parameter`, and `py/local-shadows-global` in tight scopes. Read `references/rule-fixes.md`. Often the right action is a dismissal in the web interface, for example for PyTorch Lightning callback signatures.
 
-Per the playbook in `references/rule-fixes.md`. Use the project's environment's `ruff` if available (find via `which ruff` or check common conda env paths like `~/.conda/envs/<env>/bin/ruff`).
+Show the user the breakdown and the recommended action per tier. Get an explicit OK before you fix in bulk.
 
-**Key gotchas to internalize:**
+### Step 4: Apply the fixes
 
-- ❌ **Do NOT use `git add -A`** — untracked files from other branches sneak into commits. Always `git add <explicit-files>`.
-- ❌ **Do NOT prefix unused parameters with `_`** to silence `py/unused-parameter` — CodeQL doesn't respect the convention AND the rename breaks callers that use kwarg syntax. Either remove the param entirely (verify no kwarg callers via `grep -rn 'PARAM='`) or dismiss the alert.
-- ✅ **Notebook fixes go in BOTH `.py` and `.ipynb`** — if you edit only the `.py`, the next `jupytext --sync` reverts your fix.
-- ✅ **`ruff` understands `.ipynb`** — you can pass notebook paths directly: `ruff check --fix --select F401 notebook.ipynb`.
-- ✅ **Commit at logical boundaries**, not in one mega-commit — easier to bisect if something breaks.
+Create the fix branch first if Step 0 planned one: `git switch -c fix/codeql-quality-<date>`. Take `<date>` from `date +%Y-%m-%d`. If the branch name exists, add a suffix such as `-2`.
+Follow `references/rule-fixes.md`. Use the `ruff` of the project environment if it exists. Find it with `which ruff` or in the conda environment directories.
+The `which`, `ruff`, test and `grep` commands in this step may prompt for permission, because the command pre-approves none of them.
 
-### Step 6 — Re-scan + verify
+- Run `git add` with explicit file names. Never run `git add -A`, because untracked files from other branches enter the commit.
+- Do not prefix an unused parameter with `_`. CodeQL ignores that convention, and the rename breaks callers that pass the parameter by keyword. Remove the parameter after `grep -rn 'PARAM='` finds no keyword callers. Otherwise tell the user to dismiss the finding.
+- Fix notebooks in both the `.py` and the `.ipynb`. An edit to the `.py` alone is lost at the next `jupytext --sync`.
+- `ruff` accepts `.ipynb` paths, for example `ruff check --fix --select F401 notebook.ipynb`.
+- Commit at logical boundaries. Run `git diff` first. The command does not pre-approve `git add` or `git commit`, so each one asks the user for permission.
 
-Trigger the workflow again (Step 2), wait, download SARIF (Step 3), and confirm the count dropped.
+### Step 5: Re-check
 
-Iterate until the count is 0 or stable at a set of dismissable false-positives. Surface the remaining items + their rule IDs to the user so they can dismiss in the `/security/quality` UI.
+The API reports the findings that GitHub has analysed. Your local edits do not change them. The documentation does not say when the findings update after a merge.
+Check the fixes locally first with `ruff` and the tests of the project.
+Then ask the user to push the branch, open the pull request and merge it. This command never merges.
+After the merge, wait for the Code Quality analysis to finish on the default branch. Repeat Step 1 and Step 2.
+Write the new fetch to `<tmpdir>/codeql-findings-open-recheck.json`. Keep the first file, so that the first total stays available.
+Compare the new total with the first total. List the findings that remain with their rule ids.
+Stop when the total is 0 or when only false positives remain. Tell the user to dismiss those in the web interface.
 
-### Step 7 — Open PR + clean up
+### Step 6: Hand off
 
-If working on a non-default branch:
-1. Push the branch.
-2. Open a PR via `gh pr create` with a clear title and body summarizing:
-   - Initial findings count + breakdown by rule
-   - What was fixed (per file or per rule, with brief justification)
-   - What was deferred for dismissal (with reasons)
-   - Final SARIF run URL(s) as evidence
-3. Wait for merge confirmation from user.
+Ask the user before you push a branch or open a pull request. `git push` and `gh pr create` are not pre-approved.
+A pull request body has four parts:
+- The first count and its breakdown by rule.
+- The fixes, per file or per rule, with a short reason.
+- The findings left for dismissal, with the reason for each.
+- The summary output from the final re-check.
 
-The workflow file itself stays in the repo — leave it. It's manual-trigger only and has zero CI cost when idle.
+## Fallback: the SARIF workflow
 
-## Output / report
+Use this section in one of four cases:
+- The host is GitHub Enterprise Server.
+- The API did not return findings that the AI tab shows.
+- The user passes `--fallback`.
+- The API returned 403 or 404, and the user chooses the fallback.
 
-At the end, write a short status report to the user (≤ 200 words) covering:
-- Initial vs final finding count (Standard + Extended)
-- Categorized list of remaining findings + recommended UI dismissal reasons
-- Link(s) to the PRs you opened
-- The workflow URL for future manual re-scans
+A 503 never starts this section. Tell the user to retry later.
 
-## Out-of-scope / known limitations
+The workflow `codeql-quality-artifact.yml` runs CodeQL with the Python code-quality query suites. It uploads the SARIF files as a workflow artifact. It does not change the code scanning results of the repository.
+The workflow runs the standard and the extended suite. The playbook treats the extended suite as the source of the AI tab. That mapping is unverified.
 
-- **Non-Python languages**: this skill targets Python. For JavaScript / TypeScript / Java / Go, swap the query-suite names in the workflow (e.g., `codeql/javascript-queries:codeql-suites/javascript-code-quality.qls`) and update the Code DB language argument.
-- **AI-only findings (Copilot Autofix)**: the workflow's SARIF contains the Standard + Extended code-quality findings — most "AI tab" findings come from the extended suite. If the user reports an AI finding that doesn't appear in either SARIF, it may be a Copilot Autofix suggestion attached to an existing Security alert (see the regular `/security/code-scanning` page). In that case, ask the user to share the specific finding text/file path.
-- **Default Setup vs Advanced Setup**: this skill works alongside Default Setup. If the user has Advanced Setup with a custom CodeQL config, ensure the manual workflow doesn't conflict with the category name (use `category: /code-quality:python` or similar to avoid overlap).
+1. Check that the workflow file exists on the default branch with `gh api repos/OWNER/REPO/contents/.github/workflows/codeql-quality-artifact.yml`. If the call returns 404, write the file from `scripts/codeql-quality-artifact.yml` on a new branch. This branch is separate from the fix branch. Ask the user to push the branch and merge the pull request. GitHub needs the workflow file on the default branch before `gh workflow run` can trigger it.
+2. Run `gh workflow run codeql-quality-artifact.yml --ref <branch>`. The branch defaults to the default branch. After the fixes, use the fix branch to check them before the merge. The user must push that branch first.
+3. Find the run with `gh run list --workflow codeql-quality-artifact.yml --limit 1 --json databaseId,status,conclusion`. Check it with `gh run view <id> --json status,conclusion`. The run takes a few minutes. Wait between checks with a scheduled wakeup if the session has one. Otherwise ask the user to tell you when the run ends.
+4. If the run fails, read the log of the step "Install CodeQL CLI" first (`gh run view <id> --log-failed`). The release asset is `codeql-linux64.zip`. If GitHub changed the asset format, offer to update the workflow template.
+5. Download and parse the SARIF files:
+
+```bash
+gh run download <run-id> --name codeql-quality-sarif --dir "<tmpdir>/codeql-sarif"
+python3 "${CLAUDE_PLUGIN_ROOT}/scripts/parse_sarif.py" "<tmpdir>/codeql-sarif/quality.sarif" "<tmpdir>/codeql-sarif/quality-extended.sarif"
+```
+
+6. Continue at Step 3 with these findings. For the re-check in Step 5, repeat items 2 to 5 on the fix branch.
+
+The workflow file stays in the repository. It runs only when triggered by hand and costs nothing when idle.
+If the repository uses a custom CodeQL configuration (Advanced Setup), give the upload a category such as `/code-quality:python`. This avoids an overlap with the existing category.
+
+## Output
+
+Write a short report for the user, at most 200 words:
+- The first and final finding counts, and the path you used (API or fallback).
+- The result of the AI tab check: done with the counts, or skipped.
+- The remaining findings with their rule ids and a recommended dismissal reason for each.
+- The links to the pull requests.
+
+## Known limits
+
+- The fix playbook covers Python rules. The API documentation names no language limit.
+- The fallback workflow targets Python. For another language, change the query suite and the database language in the workflow. Example suite: `codeql/javascript-queries:codeql-suites/javascript-code-quality.qls`.
+- The API documentation does not mention Copilot Autofix suggestions. A user can name a finding that neither the API nor the SARIF files contain. Then ask for the finding text and the file path.
