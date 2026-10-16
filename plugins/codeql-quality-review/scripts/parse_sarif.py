@@ -11,8 +11,6 @@ Output:
       <LABEL>: total findings + count per rule
       detail: rule | path:line | first-80-chars-of-message
 """
-from __future__ import annotations
-
 import json
 import sys
 from pathlib import Path
@@ -39,8 +37,8 @@ def parse_one(path: Path) -> None:
 
     runs = sarif.get("runs", [])
     total = 0
-    by_rule: dict[str, int] = {}
-    detail: list[tuple[str, str, str]] = []
+    by_rule = {}
+    detail = []
     for run in runs:
         for r in run.get("results", []):
             total += 1
@@ -66,7 +64,7 @@ def parse_one(path: Path) -> None:
     print()
 
 
-def main(argv: list[str]) -> int:
+def main(argv):
     if not argv:
         print(__doc__)
         return 1
