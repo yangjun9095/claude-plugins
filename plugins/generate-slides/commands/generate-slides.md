@@ -89,7 +89,7 @@ find . -maxdepth 5 \( -name "*.ipynb" -o -name "*.py" \) -not -path "./.git/*" -
 find . -maxdepth 3 -name "*.md" -not -path "./.git/*" -not -path "./.claude/*" -not -name "LICENSE*" | head -30
 ```
 ```bash
-ls -1 report-style*.md docs/report-style*.md .claude/report-style*.md 2>/dev/null || echo "NO_REPORT_STYLE_FILES"
+ls -1 report-style*.md docs/report-style*.md .claude/report-style*.md /hpc/projects/data.science/yangjoon.kim/report-style*.md 2>/dev/null || echo "NO_REPORT_STYLE_FILES"
 ```
 
 **0d. Parse `$ARGUMENTS`:**
