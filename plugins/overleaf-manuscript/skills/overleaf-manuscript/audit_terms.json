@@ -1,0 +1,51 @@
+{
+  "_comment": "Machine copy of the word lists in the claude.ai skill manuscript-write, section 3. Change both together.",
+  "vocabulary": [
+    {"term": "realm", "pattern": "\\brealm"},
+    {"term": "intricate", "pattern": "\\bintricat\\w*|\\bintricac\\w*"},
+    {"term": "showcase", "pattern": "\\bshowcas\\w*"},
+    {"term": "pivotal", "pattern": "\\bpivotal"},
+    {"term": "delve", "pattern": "\\bdelv\\w*"},
+    {"term": "leverage", "pattern": "\\bleverag\\w*"},
+    {"term": "harness", "pattern": "\\bharness(?:ed|ing)\\b|\\b(?:to|we|can|could|will|would|may|might|must|should|it|they|and|or|that|which)\\s+harness(?:es)?\\b"},
+    {"term": "facilitate", "pattern": "\\bfacilitat\\w*"},
+    {"term": "foster", "pattern": "\\bfoster\\w*"},
+    {"term": "underscore", "pattern": "\\bunderscor\\w*"},
+    {"term": "embark on", "pattern": "\\bembark\\w* on\\b"},
+    {"term": "navigate", "pattern": "\\bnavigat\\w*"},
+    {"term": "unlock", "pattern": "\\bunlock\\w*"},
+    {"term": "comprehensive", "pattern": "\\bcomprehensive"},
+    {"term": "robust", "pattern": "\\brobust"},
+    {"term": "seamless", "pattern": "\\bseamless"},
+    {"term": "multifaceted", "pattern": "\\bmultifaceted"},
+    {"term": "holistic", "pattern": "\\bholistic"},
+    {"term": "nuanced", "pattern": "\\bnuanc\\w*"},
+    {"term": "crucial", "pattern": "\\bcrucial"},
+    {"term": "vital", "pattern": "\\bvital\\b"},
+    {"term": "paradigm", "pattern": "\\bparadigm"},
+    {"term": "tapestry", "pattern": "\\btapestr\\w*"},
+    {"term": "landscape", "pattern": "\\blandscape\\b"},
+    {"term": "unprecedented", "pattern": "\\bunprecedented"},
+    {"term": "transformative", "pattern": "\\btransformative"},
+    {"term": "revolutionize", "pattern": "\\brevolutioni[sz]\\w*"},
+    {"term": "cutting-edge", "pattern": "\\bcutting[- ]edge"},
+    {"term": "state-of-the-art", "pattern": "\\bstate[- ]of[- ]the[- ]art"}
+  ],
+  "constructions": [
+    {"term": "not only ... but also", "pattern": "\\bnot only\\b[^.;]{0,160}?\\bbut also\\b"},
+    {"term": "it is worth noting", "pattern": "\\bit is (?:worth noting|important to note)\\b"},
+    {"term": "plays a key role in", "pattern": "\\bplays? a key role in\\b"}
+  ],
+  "paragraph_initial": ["Furthermore", "Moreover", "Additionally"],
+  "spelling": {
+    "oxford": [
+      {"term": "-or/-er form", "pattern": "\\b(?:color|behavior|harbor|neighbor|center|fiber)\\w*"},
+      {"term": "-ise form", "pattern": "\\b(?:(?:optimis|organis|summaris|generalis|normalis|characteris|visualis|utilis|recognis|minimis|maximis|prioritis|specialis|standardis|randomis|categoris|parameteris|tokenis|vectoris|regularis|hybridis|discretis|localis|stabilis|quantis|binaris|centralis|digitis|mobilis|sensitis|polaris|immunis)(?:e|es|ed|ing|er|ers|ation|ations)|synthesis(?:e|es|ed|ing|er|ers))\\b"},
+      {"term": "organizm", "pattern": "\\borganizm"}
+    ],
+    "american": [
+      {"term": "-our/-re form", "pattern": "\\b(?:colour|behaviour|harbour|neighbour|centre|fibre)\\w*"},
+      {"term": "-ise form", "pattern": "\\b(?:(?:optimis|organis|summaris|generalis|normalis|characteris|visualis|utilis|recognis|minimis|maximis|prioritis|specialis|standardis|randomis|categoris|parameteris|tokenis|vectoris|regularis|hybridis|discretis|localis|stabilis|quantis|binaris|centralis|digitis|mobilis|sensitis|polaris|immunis)(?:e|es|ed|ing|er|ers|ation|ations)|synthesis(?:e|es|ed|ing|er|ers))\\b"}
+    ]
+  }
+}

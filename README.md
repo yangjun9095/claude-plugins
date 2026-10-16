@@ -87,6 +87,12 @@ Enforce publication-quality figure styling with an automated verification harnes
 
 **Relationship to `generate-slides`:** Use `/figure-style` to make individual figures publication-quality during analysis. Use `/generate-slides` to assemble them into a deck.
 
+### `overleaf-manuscript`
+
+Sync preflight, a prose audit and an ask-before-edit hook for LaTeX manuscripts that sync with Overleaf. Works with the `manuscript-write` skill.
+
+**Install:** `/plugin install overleaf-manuscript@yangjun9095-plugins`
+
 ## Archived
 
 Plugins retired on 2026-10-15 live in [`archive/`](archive/README.md). They are not in the marketplace. The archive README says why and how to restore each one.

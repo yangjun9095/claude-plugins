@@ -1,0 +1,11 @@
+{
+  "description": "overleaf-manuscript: ask before Claude edits a LaTeX file in a manuscript folder.",
+  "hooks": {
+    "PreToolUse": [
+      { "matcher": "Edit|Write|MultiEdit",
+        "hooks": [ { "type": "command",
+          "command": "python3 \"${CLAUDE_PLUGIN_ROOT}/hooks/guard_tex_edit.py\"",
+          "timeout": 5 } ] }
+    ]
+  }
+}

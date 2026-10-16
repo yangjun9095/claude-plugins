@@ -1,0 +1,11 @@
+{
+  "name": "overleaf-manuscript",
+  "version": "0.1.0",
+  "description": "Sync-mode detection, a prose audit and an ask-before-edit hook for LaTeX manuscripts that sync with Overleaf.",
+  "author": {"name": "Yang Joon Kim", "url": "https://github.com/yangjun9095"},
+  "homepage": "https://github.com/yangjun9095/claude-plugins",
+  "repository": "https://github.com/yangjun9095/claude-plugins",
+  "license": "MIT",
+  "keywords": ["latex", "overleaf", "manuscript", "hook", "writing"],
+  "skills": "./skills/overleaf-manuscript"
+}
