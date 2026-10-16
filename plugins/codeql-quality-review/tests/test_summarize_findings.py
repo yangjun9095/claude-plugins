@@ -118,6 +118,17 @@ class SingleArray(unittest.TestCase):
         self.assertEqual(a2, a1 + 1)
         self.assertLess(a2, b1)
 
+    def test_findings_in_one_file_are_listed_by_line_number(self):
+        # The input lists line 30 before line 4 in one file, so only a numeric sort by line orders them.
+        findings = [make_finding(1, path="src/a.py", start_line=30, message="Late."),
+                    make_finding(2, path="src/a.py", start_line=4, message="Early.")]
+        code, out, err = run_script(stdin_text=json.dumps(findings))
+        self.assertEqual(code, 0, err)
+        lines = out.splitlines()
+        early = lines.index("#2 src/a.py:4: py/rule-a: Early.")
+        late = lines.index("#1 src/a.py:30: py/rule-a: Late.")
+        self.assertEqual(late, early + 1)
+
     def test_finding_without_a_number_prints_a_question_mark(self):
         findings = [make_finding(number=None, message="No number here.")]
         code, out, err = run_script(stdin_text=json.dumps(findings))

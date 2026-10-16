@@ -8,7 +8,7 @@ The command reads the findings with `gh api` from the GitHub REST endpoint `GET 
 A bundled script summarizes the JSON by severity, category, rule and file.
 The command then fixes the findings in your working tree and fetches them again to confirm the result.
 
-The GitHub changelog entry of 2026-06-23 announces the endpoints as a public preview on github.com. The entry says they are not available on GitHub Enterprise Server. The REST documentation page does not state either point.
+The GitHub changelog entry of 2026-06-23 announces the endpoints as a public preview on github.com. The entry says they are not yet available on GitHub Enterprise Server. The REST documentation page does not state either point.
 Source: https://github.blog/changelog/2026-06-23-fetch-code-quality-findings-via-rest-api
 The documentation covers CodeQL findings and does not mention the AI tab of `/security/quality`.
 On 2026-10-16, one repository returned HTTP 200 with 0 findings for `state=open`, `state=dismissed` and no `state`. This confirms the endpoint, the version header and the empty-response path.
@@ -69,8 +69,8 @@ The command never closes or dismisses a finding, and it never merges a pull requ
 You dismiss false positives in the web interface.
 
 The `allowed-tools` list in the command grants `gh api`, `gh auth status` (without options), `gh repo view`, `gh run list`, `gh run view`, `gh run download` and `gh workflow run`.
-It grants `python3` only for the two bundled scripts, `summarize_findings.py` and `parse_sarif.py`. It grants four exact git commands: `git branch --show-current`, `git status --short`, `git switch -c fix/codeql-quality-*` and `git diff`. It also grants `date +%Y-%m-%d`.
-It does not grant a blanket `gh *` or a blanket `python3 *`. The two script patterns use a `*` before the script name, so `python3 -c '...' summarize_findings.py` would match them. The patterns narrow the grant and do not block a determined misuse.
+Python runs only for the two bundled scripts, `summarize_findings.py` and `parse_sarif.py`, called by their path under `${CLAUDE_PLUGIN_ROOT}`. Git has four rules: `git branch --show-current`, `git status --short`, `git switch -c fix/codeql-quality-*` and `git diff` with no arguments. `date +%Y-%m-%d` is also granted.
+The list holds no blanket `gh *` and no blanket `python3 *`. The script-path form matches the pattern of the official `claude-security` plugin. This plugin has not tested that pattern in a live session.
 
 ## Fallback: the SARIF workflow
 

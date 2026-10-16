@@ -12,12 +12,12 @@ allowed-tools:
   - Bash(gh run view *)
   - Bash(gh run download *)
   - Bash(gh workflow run *)
-  - Bash(python3 *summarize_findings.py*)
-  - Bash(python3 *parse_sarif.py*)
+  - Bash(python3 "${CLAUDE_PLUGIN_ROOT}/scripts/summarize_findings.py" *)
+  - Bash(python3 "${CLAUDE_PLUGIN_ROOT}/scripts/parse_sarif.py" *)
   - Bash(git branch --show-current)
   - Bash(git status --short)
   - Bash(git switch -c fix/codeql-quality-*)
-  - Bash(git diff *)
+  - Bash(git diff)
   - Bash(date +%Y-%m-%d)
 description: Audit a GitHub repo's CodeQL Code Quality findings through the GitHub REST API (gh api) and fix them. A SARIF workflow is the fallback for findings the API does not return.
 ---
@@ -51,7 +51,7 @@ When a finding needs a dismissal, tell the user to dismiss it in the web interfa
 
 - `GET /repos/{owner}/{repo}/code-quality/findings` lists the findings of a repository.
 - `GET /repos/{owner}/{repo}/code-quality/findings/{finding_number}` returns one finding.
-- The API is a public preview on github.com. It is not available on GitHub Enterprise Server. The source is the GitHub changelog entry of 2026-06-23 (https://github.blog/changelog/2026-06-23-fetch-code-quality-findings-via-rest-api). The REST documentation page does not state this.
+- The API is a public preview on github.com. It is not yet available on GitHub Enterprise Server. The source is the GitHub changelog entry of 2026-06-23 (https://github.blog/changelog/2026-06-23-fetch-code-quality-findings-via-rest-api). The REST documentation page does not state this.
 - The endpoints return CodeQL findings. The documentation does not mention the AI tab of `/security/quality`.
 - Treat "the AI tab findings appear in the API" as unverified. Step 2 includes a check against the web page.
 - The documentation does not say what an omitted `state` parameter returns. Always pass `state` in the URL.
@@ -80,7 +80,7 @@ Read these files with the `Read` tool:
 6. Run `git branch --show-current` and compare the result with the default branch. Run `git status --short`. If the working tree has uncommitted changes, tell the user.
 7. If you are on the default branch, plan a fix branch named `fix/codeql-quality-<date>`. Step 4 creates it before the first edit.
 8. If you are on another branch, or on no branch, ask the user which branch gets the fixes. The options are the current branch or a new fix branch.
-9. Tell the user in one sentence that commits, pushes and pull request creation will prompt for permission.
+9. Tell the user in one sentence that commits, pushes and pull request creation will prompt for permission. Add that the `which`, `ruff`, test and `grep` commands of Step 4 can prompt as well.
 
 ### Step 1: Fetch the findings
 
@@ -140,7 +140,7 @@ Show the user the breakdown and the recommended action per tier. Get an explicit
 
 Create the fix branch first if Step 0 planned one: `git switch -c fix/codeql-quality-<date>`. Take `<date>` from `date +%Y-%m-%d`. If the branch name exists, add a suffix such as `-2`.
 Follow `references/rule-fixes.md`. Use the `ruff` of the project environment if it exists. Find it with `which ruff` or in the conda environment directories.
-The `ruff`, test and `grep` commands in this step may prompt for permission, because the command pre-approves none of them.
+The `which`, `ruff`, test and `grep` commands in this step may prompt for permission, because the command pre-approves none of them.
 
 - Run `git add` with explicit file names. Never run `git add -A`, because untracked files from other branches enter the commit.
 - Do not prefix an unused parameter with `_`. CodeQL ignores that convention, and the rename breaks callers that pass the parameter by keyword. Remove the parameter after `grep -rn 'PARAM='` finds no keyword callers. Otherwise tell the user to dismiss the finding.
