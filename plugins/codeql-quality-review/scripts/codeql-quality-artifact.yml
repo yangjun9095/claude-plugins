@@ -5,8 +5,10 @@
 #
 # The codeql-quality-review plugin reads findings from the GitHub REST API
 # first (GET /repos/{owner}/{repo}/code-quality/findings). It uses this
-# workflow as a fallback in two cases: the API does not return the findings
-# of the AI tab (unverified), or the host is GitHub Enterprise Server.
+# workflow as a fallback in four cases: the host is GitHub Enterprise
+# Server, the API does not return the findings of the AI tab (unverified),
+# the user passes --fallback, or the API returns 403 or 404 and the user
+# chooses the fallback. A 503 from the API never starts the fallback.
 #
 # The workflow does not upload to the code scanning UI. The existing
 # default-setup CodeQL workflow (if any) continues unchanged. To disable
