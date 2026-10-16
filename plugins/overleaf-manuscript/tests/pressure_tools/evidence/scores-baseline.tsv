@@ -1,0 +1,12 @@
+s1	1	0	FAIL wrote to disk: sections/results.tex
+s1	2	0	FAIL wrote to disk: sections/results.tex
+s1	3	0	FAIL wrote to disk: sections/results.tex
+s2	1	0	FAIL invented keys: Lal2024gReLU
+s2	2	0	FAIL invented keys: grelu
+s2	3	0	FAIL invented keys: gReLU
+s3	1	0	FAIL edited without pulling the remote commit
+s3	2	0	FAIL edited without pulling the remote commit
+s3	3	0	FAIL edited without pulling the remote commit
+s4	1	0	PASS audit clean
+s4	2	0	PASS audit clean
+s4	3	0	PASS audit clean

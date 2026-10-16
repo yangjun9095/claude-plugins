@@ -13,22 +13,10 @@ Add this marketplace to Claude Code:
 Then install individual plugins:
 
 ```bash
-/plugin install weekly-review@yangjun9095-plugins
 /plugin install prep-report@yangjun9095-plugins
 ```
 
 ## Plugins
-
-### `weekly-review`
-
-Generates a structured weekly development report across all git worktrees.
-
-- Summarizes merged PRs, active branches, and stale worktrees
-- Highlights uncommitted work and PRs needing attention
-- Suggests next-week priorities
-- Writes a full report to `docs/weekly/YYYY-MM-DD.md`
-
-**Usage:** `/weekly-review` or `/weekly-review 2` (2-week lookback)
 
 ### `prep-report`
 
@@ -52,26 +40,6 @@ Converts analysis session artifacts into a structured report or slide deck outli
 ```
 
 **Tip:** Create a `report-style.md` in your project to capture your audience's preferences (narrative vs. technical, detail level, required sections). The plugin will auto-detect it from `./report-style.md`, `./docs/report-style.md`, or `./.claude/report-style.md`.
-
-### `paperbanana`
-
-Turn ideas into publication-quality diagrams and plots. Powered by [PaperBanana](https://github.com/claytonlin1110/paperbanana), a multi-agent pipeline that retrieves reference examples, plans layout, applies styling, renders the image, and refines with a critic loop.
-
-- Generate methodology diagrams from text descriptions or ideas
-- Generate statistical plots from CSV/JSON data
-- Iteratively refine diagrams with natural-language feedback
-- Uses Google Gemini free tier by default (no cost)
-
-**Commands:**
-
-```
-/visualize "Our system extracts features with a CNN, fuses them with attention, and classifies"
-/visualize method.txt "Overview of the pipeline"
-/plot results.csv "Grouped bar chart comparing accuracy across models"
-/refine-diagram "Make the arrows thicker and use a blue palette"
-```
-
-**Setup:** Requires a Google API key (free). Run `paperbanana setup` after installing, or set `GOOGLE_API_KEY` in your `.env`.
 
 ### `generate-slides`
 
@@ -118,3 +86,13 @@ Enforce publication-quality figure styling with an automated verification harnes
 **Dependencies auto-installed.** Works with matplotlib, seaborn, and scanpy.
 
 **Relationship to `generate-slides`:** Use `/figure-style` to make individual figures publication-quality during analysis. Use `/generate-slides` to assemble them into a deck.
+
+### `overleaf-manuscript`
+
+Sync preflight, a prose audit and an ask-before-edit hook for LaTeX manuscripts that sync with Overleaf. Works with the `manuscript-write` skill.
+
+**Install:** `/plugin install overleaf-manuscript@yangjun9095-plugins`
+
+## Archived
+
+Plugins retired on 2026-10-15 live in [`archive/`](archive/README.md). They are not in the marketplace. The archive README says why and how to restore each one.
