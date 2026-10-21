@@ -1,0 +1,27 @@
+settings: profile=peers minutes=12 theme=light notes=on
+findings:
+slide 2: title-sentence: warn: T3: the title has 22 words; use 6 to 20 words
+slide 6: title-sentence: warn: T3: the title has no verb that this check knows. Use a plain verb, or ignore this warning if the title is a sentence.
+ghost deck:
+slide 1: The Osprey score picks designs that bind Target T
+slide 2: The Osprey score picked designs that bound Target T: the hit rate rose from 20 percent to 70 percent across four rounds.
+slide 3: Only 20 percent of the designs in Round 1 bound Target T.
+slide 4: The Osprey score ranks each design before the assay.
+slide 5: The hit rate rose from 20 percent to 70 percent across the four rounds.
+slide 6: Every design with an Osprey score of 9 or more gave a signal above 60 au.
+slide 7: On Target C the designed set beat the control, 80 percent to 10 percent.
+slide 8: The Batched pipeline cost 41 units per design, against 100 for the Manual pipeline.
+slide 9: Each of the three results improves on its baseline.
+slide 10: The 40-residue peptide gave 24.9 au and the 8-residue peptide gave 60.6 au.
+words per slide:
+slide 1: 6 words
+slide 2: 14 words
+slide 3: 16 words
+slide 4: 17 words
+slide 5: 4 words
+slide 6: 5 words
+slide 7: 6 words
+slide 8: 5 words
+slide 9: 51 words
+slide 10: 8 words
+errors: 0 warnings: 2
