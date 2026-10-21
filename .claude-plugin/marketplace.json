@@ -58,6 +58,12 @@
       "source": "./plugins/overleaf-manuscript",
       "description": "Sync-mode detection, a prose audit and an ask-before-edit hook for LaTeX manuscripts that sync with Overleaf",
       "version": "0.1.0"
+    },
+    {
+      "name": "generate-slides-minimal",
+      "source": "./plugins/generate-slides-minimal",
+      "description": "Build a .pptx deck from a message and a story spine, with sentence headlines over one visual, draft speaker notes, and a design linter that labels each rule with its evidence tier.",
+      "version": "0.1.0"
     }
   ]
 }
