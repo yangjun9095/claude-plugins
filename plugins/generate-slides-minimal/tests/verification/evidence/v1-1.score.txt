@@ -1,0 +1,134 @@
+settings: profile=peers minutes=12 theme=light notes=on
+findings:
+slide 1: title-empty: error: T2: no title placeholder or shape named Title holds text; add a headline that states the claim
+slide 1: notes: warn: T3: the slide has no speaker notes; add a script that you speak in your own words
+slide 1: body-font: warn: T2: size comes from paragraph defaults, which PowerPoint may ignore; rule skipped (TextBox 1, TextBox 2, TextBox 3 and 1 more)
+slide 1: fonts-per-slide: warn: T2: font family comes from paragraph defaults, which PowerPoint may ignore; rule skipped (TextBox 1, TextBox 2, TextBox 3 and 1 more)
+slide 1: text-contrast: warn: T1: color comes from paragraph defaults, which PowerPoint may ignore; rule skipped (TextBox 1, TextBox 2, TextBox 3 and 1 more)
+slide 2: title-empty: error: T2: no title placeholder or shape named Title holds text; add a headline that states the claim
+slide 2: words-per-slide: error: T3: 99 words on the slide; the limit is 40. Cut the text or move it to the notes
+slide 2: body-font: warn: T2: Rounded Rectangle 3 is 20 pt; use at least 24 pt for body text
+slide 2: margin: warn: T3: TextBox 1 is 0.15 in from the top edge; keep at least 0.5 in
+slide 2: notes: warn: T3: the slide has no speaker notes; add a script that you speak in your own words
+slide 2: body-font: warn: T2: size comes from paragraph defaults, which PowerPoint may ignore; rule skipped (TextBox 1)
+slide 2: fonts-per-slide: warn: T2: font family comes from paragraph defaults, which PowerPoint may ignore; rule skipped (TextBox 1)
+slide 2: text-contrast: warn: T1: color comes from paragraph defaults, which PowerPoint may ignore; rule skipped (TextBox 1)
+slide 3: title-empty: error: T2: no title placeholder or shape named Title holds text; add a headline that states the claim
+slide 3: words-per-slide: error: T3: 115 words on the slide; the limit is 40. Cut the text or move it to the notes
+slide 3: body-font: warn: T2: TextBox 3 is 22 pt; use at least 24 pt for body text
+slide 3: margin: warn: T3: TextBox 1 is 0.15 in from the top edge; keep at least 0.5 in
+slide 3: notes: warn: T3: the slide has no speaker notes; add a script that you speak in your own words
+slide 3: body-font: warn: T2: size comes from paragraph defaults, which PowerPoint may ignore; rule skipped (TextBox 1, Rectangle 2)
+slide 3: fonts-per-slide: warn: T2: font family comes from paragraph defaults, which PowerPoint may ignore; rule skipped (TextBox 1, Rectangle 2)
+slide 3: text-contrast: warn: T1: color comes from paragraph defaults, which PowerPoint may ignore; rule skipped (TextBox 1, Rectangle 2)
+slide 4: title-empty: error: T2: no title placeholder or shape named Title holds text; add a headline that states the claim
+slide 4: words-per-slide: error: T3: 51 words on the slide; the limit is 40. Cut the text or move it to the notes
+slide 4: body-font: warn: T2: Rounded Rectangle 4 is 20 pt; use at least 24 pt for body text
+slide 4: margin: warn: T3: TextBox 1 is 0.15 in from the top edge; keep at least 0.5 in
+slide 4: alt-text: warn: T2: Picture 2 has a file name as alt text; describe what the picture shows
+slide 4: notes: warn: T3: the slide has no speaker notes; add a script that you speak in your own words
+slide 4: body-font: warn: T2: size comes from paragraph defaults, which PowerPoint may ignore; rule skipped (TextBox 1, TextBox 5)
+slide 4: fonts-per-slide: warn: T2: font family comes from paragraph defaults, which PowerPoint may ignore; rule skipped (TextBox 1)
+slide 4: text-contrast: warn: T1: color comes from paragraph defaults, which PowerPoint may ignore; rule skipped (TextBox 1, TextBox 5)
+slide 5: title-empty: error: T2: no title placeholder or shape named Title holds text; add a headline that states the claim
+slide 5: words-per-slide: error: T3: 62 words on the slide; the limit is 40. Cut the text or move it to the notes
+slide 5: lines-per-paragraph: warn: T2: TextBox 3 has a paragraph of an estimated 4 lines; keep at most 2 (the estimate uses 0.5 em per character)
+slide 5: body-font: warn: T2: Rounded Rectangle 4 is 20 pt; use at least 24 pt for body text
+slide 5: margin: warn: T3: TextBox 1 is 0.15 in from the top edge; keep at least 0.5 in
+slide 5: alt-text: warn: T2: Picture 2 has a file name as alt text; describe what the picture shows
+slide 5: notes: warn: T3: the slide has no speaker notes; add a script that you speak in your own words
+slide 5: body-font: warn: T2: size comes from paragraph defaults, which PowerPoint may ignore; rule skipped (TextBox 1, TextBox 5)
+slide 5: fonts-per-slide: warn: T2: font family comes from paragraph defaults, which PowerPoint may ignore; rule skipped (TextBox 1)
+slide 5: text-contrast: warn: T1: color comes from paragraph defaults, which PowerPoint may ignore; rule skipped (TextBox 1, TextBox 5)
+slide 6: title-empty: error: T2: no title placeholder or shape named Title holds text; add a headline that states the claim
+slide 6: words-per-slide: error: T3: 58 words on the slide; the limit is 40. Cut the text or move it to the notes
+slide 6: lines-per-paragraph: warn: T2: TextBox 3 has a paragraph of an estimated 4 lines; keep at most 2 (the estimate uses 0.5 em per character)
+slide 6: body-font: warn: T2: Rounded Rectangle 4 is 20 pt; use at least 24 pt for body text
+slide 6: margin: warn: T3: TextBox 1 is 0.15 in from the top edge; keep at least 0.5 in
+slide 6: alt-text: warn: T2: Picture 2 has a file name as alt text; describe what the picture shows
+slide 6: notes: warn: T3: the slide has no speaker notes; add a script that you speak in your own words
+slide 6: body-font: warn: T2: size comes from paragraph defaults, which PowerPoint may ignore; rule skipped (TextBox 1, TextBox 5)
+slide 6: fonts-per-slide: warn: T2: font family comes from paragraph defaults, which PowerPoint may ignore; rule skipped (TextBox 1)
+slide 6: text-contrast: warn: T1: color comes from paragraph defaults, which PowerPoint may ignore; rule skipped (TextBox 1, TextBox 5)
+slide 7: title-empty: error: T2: no title placeholder or shape named Title holds text; add a headline that states the claim
+slide 7: words-per-slide: error: T3: 44 words on the slide; the limit is 40. Cut the text or move it to the notes
+slide 7: lines-per-paragraph: warn: T2: TextBox 3 has a paragraph of an estimated 3 lines; keep at most 2 (the estimate uses 0.5 em per character)
+slide 7: body-font: warn: T2: Rounded Rectangle 4 is 20 pt; use at least 24 pt for body text
+slide 7: margin: warn: T3: TextBox 1 is 0.15 in from the top edge; keep at least 0.5 in
+slide 7: alt-text: warn: T2: Picture 2 has a file name as alt text; describe what the picture shows
+slide 7: notes: warn: T3: the slide has no speaker notes; add a script that you speak in your own words
+slide 7: body-font: warn: T2: size comes from paragraph defaults, which PowerPoint may ignore; rule skipped (TextBox 1, TextBox 5)
+slide 7: fonts-per-slide: warn: T2: font family comes from paragraph defaults, which PowerPoint may ignore; rule skipped (TextBox 1)
+slide 7: text-contrast: warn: T1: color comes from paragraph defaults, which PowerPoint may ignore; rule skipped (TextBox 1, TextBox 5)
+slide 8: title-empty: error: T2: no title placeholder or shape named Title holds text; add a headline that states the claim
+slide 8: words-per-slide: error: T3: 82 words on the slide; the limit is 40. Cut the text or move it to the notes
+slide 8: body-font: warn: T2: TextBox 2 is 22 pt; use at least 24 pt for body text
+slide 8: margin: warn: T3: TextBox 1 is 0.15 in from the top edge; keep at least 0.5 in
+slide 8: notes: warn: T3: the slide has no speaker notes; add a script that you speak in your own words
+slide 8: body-font: warn: T2: size comes from paragraph defaults, which PowerPoint may ignore; rule skipped (TextBox 1)
+slide 8: fonts-per-slide: warn: T2: font family comes from paragraph defaults, which PowerPoint may ignore; rule skipped (TextBox 1)
+slide 8: text-contrast: warn: T1: color comes from paragraph defaults, which PowerPoint may ignore; rule skipped (TextBox 1)
+slide 9: title-empty: error: T2: no title placeholder or shape named Title holds text; add a headline that states the claim
+slide 9: words-per-slide: error: T3: 60 words on the slide; the limit is 40. Cut the text or move it to the notes
+slide 9: body-font: warn: T2: TextBox 2 is 22 pt; use at least 24 pt for body text
+slide 9: margin: warn: T3: TextBox 1 is 0.15 in from the top edge; keep at least 0.5 in
+slide 9: notes: warn: T3: the slide has no speaker notes; add a script that you speak in your own words
+slide 9: body-font: warn: T2: size comes from paragraph defaults, which PowerPoint may ignore; rule skipped (TextBox 1)
+slide 9: fonts-per-slide: warn: T2: font family comes from paragraph defaults, which PowerPoint may ignore; rule skipped (TextBox 1)
+slide 9: text-contrast: warn: T1: color comes from paragraph defaults, which PowerPoint may ignore; rule skipped (TextBox 1)
+slide 10: title-empty: error: T2: no title placeholder or shape named Title holds text; add a headline that states the claim
+slide 10: words-per-slide: error: T3: 98 words on the slide; the limit is 40. Cut the text or move it to the notes
+slide 10: body-font: error: T2: TextBox 2 is 16 pt; use at least 18 pt
+slide 10: margin: warn: T3: TextBox 1 is 0.15 in from the top edge; keep at least 0.5 in
+slide 10: notes: warn: T3: the slide has no speaker notes; add a script that you speak in your own words
+slide 10: body-font: warn: T2: size comes from paragraph defaults, which PowerPoint may ignore; rule skipped (TextBox 1)
+slide 10: fonts-per-slide: warn: T2: font family comes from paragraph defaults, which PowerPoint may ignore; rule skipped (TextBox 1)
+slide 10: text-contrast: warn: T1: color comes from paragraph defaults, which PowerPoint may ignore; rule skipped (TextBox 1)
+slide 11: title-empty: error: T2: no title placeholder or shape named Title holds text; add a headline that states the claim
+slide 11: words-per-slide: error: T3: 68 words on the slide; the limit is 40. Cut the text or move it to the notes
+slide 11: lines-per-paragraph: warn: T2: TextBox 3 has a paragraph of an estimated 3 lines; keep at most 2 (the estimate uses 0.5 em per character)
+slide 11: body-font: warn: T2: Rounded Rectangle 4 is 20 pt; use at least 24 pt for body text
+slide 11: margin: warn: T3: TextBox 1 is 0.15 in from the top edge; keep at least 0.5 in
+slide 11: alt-text: warn: T2: Picture 2 has a file name as alt text; describe what the picture shows
+slide 11: notes: warn: T3: the slide has no speaker notes; add a script that you speak in your own words
+slide 11: body-font: warn: T2: size comes from paragraph defaults, which PowerPoint may ignore; rule skipped (TextBox 1, TextBox 5)
+slide 11: fonts-per-slide: warn: T2: font family comes from paragraph defaults, which PowerPoint may ignore; rule skipped (TextBox 1)
+slide 11: text-contrast: warn: T1: color comes from paragraph defaults, which PowerPoint may ignore; rule skipped (TextBox 1, TextBox 5)
+slide 12: title-empty: error: T2: no title placeholder or shape named Title holds text; add a headline that states the claim
+slide 12: words-per-slide: error: T3: 53 words on the slide; the limit is 40. Cut the text or move it to the notes
+slide 12: lines-per-paragraph: warn: T2: TextBox 3 has a paragraph of an estimated 3 lines; keep at most 2 (the estimate uses 0.5 em per character)
+slide 12: lines-per-paragraph: warn: T2: Rounded Rectangle 4 has a paragraph of an estimated 3 lines; keep at most 2 (the estimate uses 0.5 em per character)
+slide 12: body-font: warn: T2: Rounded Rectangle 4 is 20 pt; use at least 24 pt for body text
+slide 12: margin: warn: T3: TextBox 1 is 0.15 in from the top edge; keep at least 0.5 in
+slide 12: alt-text: warn: T2: Picture 2 has a file name as alt text; describe what the picture shows
+slide 12: notes: warn: T3: the slide has no speaker notes; add a script that you speak in your own words
+slide 12: body-font: warn: T2: size comes from paragraph defaults, which PowerPoint may ignore; rule skipped (TextBox 1, TextBox 5)
+slide 12: fonts-per-slide: warn: T2: font family comes from paragraph defaults, which PowerPoint may ignore; rule skipped (TextBox 1)
+slide 12: text-contrast: warn: T1: color comes from paragraph defaults, which PowerPoint may ignore; rule skipped (TextBox 1, TextBox 5)
+ghost deck:
+slide 1: (no title)
+slide 2: (no title)
+slide 3: (no title)
+slide 4: (no title)
+slide 5: (no title)
+slide 6: (no title)
+slide 7: (no title)
+slide 8: (no title)
+slide 9: (no title)
+slide 10: (no title)
+slide 11: (no title)
+slide 12: (no title)
+words per slide:
+slide 1: 15 words
+slide 2: 99 words
+slide 3: 115 words
+slide 4: 51 words
+slide 5: 62 words
+slide 6: 58 words
+slide 7: 44 words
+slide 8: 82 words
+slide 9: 60 words
+slide 10: 98 words
+slide 11: 68 words
+slide 12: 53 words
+errors: 24 warnings: 81

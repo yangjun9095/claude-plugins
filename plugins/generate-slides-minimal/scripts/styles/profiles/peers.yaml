@@ -1,0 +1,2 @@
+# Default profile. The audience is peers.
+# The peers profile equals the lint baseline in default.yaml, so it adds no entries.
