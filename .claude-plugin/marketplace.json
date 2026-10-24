@@ -58,6 +58,12 @@
       "source": "./plugins/overleaf-manuscript",
       "description": "Sync-mode detection, a prose audit and an ask-before-edit hook for LaTeX manuscripts that sync with Overleaf",
       "version": "0.1.0"
+    },
+    {
+      "name": "plain-prose",
+      "source": "./plugins/plain-prose",
+      "description": "Find LLM-style patterns in LaTeX, Markdown and plain-text manuscripts and propose plain rewrites that the author approves.",
+      "version": "0.1.0"
     }
   ]
 }

@@ -93,6 +93,14 @@ Sync preflight, a prose audit and an ask-before-edit hook for LaTeX manuscripts 
 
 **Install:** `/plugin install overleaf-manuscript@yangjun9095-plugins`
 
+### `plain-prose`
+
+Finds the patterns that large language models often write in LaTeX, Markdown and plain-text manuscripts, and proposes plain rewrites. A script finds the patterns and checks each rewrite, and you approve by group before any file changes. The plugin makes no claim about detectors of artificial intelligence (AI) text or about authorship. See the [plugin README](plugins/plain-prose/README.md).
+
+**Usage:** `/plain-prose main.tex` (add `--report-only` to see the findings and stop)
+
+**Install:** `/plugin install plain-prose@yangjun9095-plugins`
+
 ## Archived
 
 Plugins retired on 2026-10-15 live in [`archive/`](archive/README.md). They are not in the marketplace. The archive README says why and how to restore each one.
