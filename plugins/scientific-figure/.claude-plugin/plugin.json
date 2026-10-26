@@ -1,0 +1,12 @@
+{
+  "name": "scientific-figure",
+  "version": "1.0.0",
+  "description": "Build or rebuild a publication figure from a draft, a description, or a results section — claim-first design, build-time data assertions, and an independent second-model review",
+  "author": {
+    "name": "Yang Joon Kim",
+    "url": "https://github.com/yangjun9095"
+  },
+  "repository": "https://github.com/yangjun9095/claude-plugins",
+  "license": "MIT",
+  "keywords": ["figures", "publication", "manuscript", "tufte", "matplotlib", "peer-review", "reproducibility", "codex"]
+}

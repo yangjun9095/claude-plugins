@@ -8,7 +8,7 @@
     {
       "name": "prep-report",
       "source": "./plugins/prep-report",
-      "description": "Convert analysis session artifacts into a structured report — slides, doc, or Anthropic Science blog-style write-up (interactive interview + outline approval gate)",
+      "description": "Convert analysis session artifacts into a structured report \u2014 slides, doc, or Anthropic Science blog-style write-up (interactive interview + outline approval gate)",
       "version": "2.0.0"
     },
     {
@@ -20,7 +20,13 @@
     {
       "name": "figure-style",
       "source": "./plugins/figure-style",
-      "description": "Enforce publication-quality figure styling with automated verification — font sizes, colors, labels, layout, and export settings",
+      "description": "Enforce publication-quality figure styling with automated verification \u2014 font sizes, colors, labels, layout, and export settings",
+      "version": "1.0.0"
+    },
+    {
+      "name": "scientific-figure",
+      "source": "./plugins/scientific-figure",
+      "description": "Build or rebuild a publication figure from a draft, a description, or a results section \u2014 claim-first design, build-time data assertions, and an independent second-model review. Pairs with figure-style.",
       "version": "1.0.0"
     },
     {
@@ -32,7 +38,7 @@
     {
       "name": "codeql-quality-review",
       "source": "./plugins/codeql-quality-review",
-      "description": "Audit and fix GitHub Code Quality findings (/security/quality Standard + AI tabs) for Python repos — deploys a manual workflow that dumps SARIF as a downloadable artifact (works around the missing public REST API)",
+      "description": "Audit and fix GitHub Code Quality findings (/security/quality Standard + AI tabs) for Python repos \u2014 deploys a manual workflow that dumps SARIF as a downloadable artifact (works around the missing public REST API)",
       "version": "1.0.0"
     },
     {
@@ -44,7 +50,7 @@
     {
       "name": "email-report",
       "source": "./plugins/email-report",
-      "description": "Email a threaded status/report from a long-running or unattended session via a local MTA — no OAuth, no API key",
+      "description": "Email a threaded status/report from a long-running or unattended session via a local MTA \u2014 no OAuth, no API key",
       "version": "1.0.0"
     },
     {
