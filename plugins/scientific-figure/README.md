@@ -1,5 +1,9 @@
 # scientific-figure
 
+```
+/plugin install scientific-figure --marketplace yangjun9095/claude-plugins
+```
+
 Build or rebuild a publication figure from whatever exists: a draft figure, a paragraph
 describing what to plot, or the results section the figure has to support.
 
