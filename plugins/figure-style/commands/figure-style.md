@@ -269,3 +269,23 @@ from figure_helpers import (
 - Does not choose what data to plot (that's a scientific decision)
 - Does not replace scanpy/seaborn (it wraps and verifies them)
 - It ensures that whatever you plot maximizes data-ink ratio
+
+## When to escalate to `scientific-figure`
+
+This skill styles and verifies **one axes**. It cannot tell you whether a figure is the right
+figure, whether its numbers still match the data, or whether a referee will misread it.
+
+Use the `scientific-figure` skill as well when the figure goes into a paper:
+
+| | this skill | `scientific-figure` |
+|---|---|---|
+| scope | one matplotlib axes | one publication figure |
+| asks | "is this plot drawn well?" | "is this file publishable, and is it true?" |
+| adds | — | claim-first design, mining an existing draft for reusable art, build-time data assertions, an independent second-model review, and file-level checks (exact page width, embedded editable text, placeholder art, palette leaks, raster ppi) |
+
+The two stack and neither finds the other's defects. A project style module should call this
+skill's `apply_style()` FIRST and then override with what a general plotting style cannot
+know: exact journal column widths, canonical display names, semantic colour maps kept
+disjoint, inch-from-top-left placement. Extend this plugin; do not fork it. Forking gives two
+answers to "what is the house font size" that agree only by luck, and improvements here stop
+reaching those figures.
