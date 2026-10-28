@@ -1,0 +1,532 @@
+[
+  {
+    "id": "p01",
+    "text": "Before turning to the data, it is important to understand how the plots were laid out. We placed 24 plots of 4 m by 4 m in a regular grid. Each plot held one Veldt grass line. The grid covered 0.8 ha of cleared forest soil.",
+    "seeded": [
+      "throat-clearing"
+    ],
+    "legit": []
+  },
+  {
+    "id": "p02",
+    "text": "The match between the two sites suggests that the same process operates in both lake ecosystems. Wind speed explained 64% of the variance in surface mixing at the northern lake and 58% at the southern lake (Fig. 8). The remaining variance may come from inflow, which we measured only at the northern lake. We therefore limit our claim to wind-driven mixing.",
+    "seeded": [],
+    "legit": [
+      "hedge-qualifying-inference",
+      "ecosystem-biological-sense",
+      "we-first-person"
+    ]
+  },
+  {
+    "id": "p03",
+    "text": "Pressure rose. Leaves stiffened. Stomata shut. Gas exchange stopped within 90 s (Fig. 7).",
+    "seeded": [
+      "staccato-run"
+    ],
+    "legit": []
+  },
+  {
+    "id": "p04",
+    "text": "The cohort came from a single clinic, so our estimate may not hold in other populations. Participants who dropped out before week 12 were younger than those who stayed (mean 31 vs 38 years), which could bias the result toward older adults. We did not record diet, and diet may explain part of the difference between groups. A larger trial across sites would address these limits.",
+    "seeded": [],
+    "legit": [
+      "hedge-qualifying-inference",
+      "we-first-person"
+    ]
+  },
+  {
+    "id": "p05",
+    "text": "The Dunmar-1 pathway plays a crucial role in the survival of Kestrel-6 yeast under heat stress (n = 12 cultures). Survival fell from 74% to 21% in the null mutant. The Hollin kinase acts as a powerful driver of the pathway. Figure 4 serves as a visual summary of these assays.",
+    "seeded": [
+      "importance-puffery",
+      "fake-strong-verb"
+    ],
+    "legit": []
+  },
+  {
+    "id": "p06",
+    "text": "The Zorbian moss mat — a dense carpet of gametophytes — held water for 9 days — far longer than the Veldt fern mat — after the rain stopped (Fig. 5). The dense mat lost water at 0.4 g per day — a slow rate — while the loose mat lost 1.1 g per day. Both mats came from the same bog — only the density differed.",
+    "seeded": [
+      "em-dash"
+    ],
+    "legit": []
+  },
+  {
+    "id": "p07",
+    "text": "These findings could possibly suggest that Tavo regulates root hair length. The effect might perhaps be larger in older plants, although we measured only plants younger than 30 days (n = 44). We measured root hair length on day 30 in all plants.",
+    "seeded": [
+      "hedge-stack"
+    ],
+    "legit": []
+  },
+  {
+    "id": "p08",
+    "text": "Seed mass differed among the five Veldt grass lines (Kruskal-Wallis test, p = 0.003). We fitted a linear model of seed mass on line and planting block, with robust standard errors clustered by block. Line 4 produced seeds 18% heavier than line 1 (95% CI 11% to 25%). Block explained only 3% of the variance, so the choice of clustering did not change the interval.",
+    "seeded": [],
+    "legit": [
+      "robust-statistical-term",
+      "we-first-person"
+    ]
+  },
+  {
+    "id": "p09",
+    "text": "Spore release from Veldt fern fronds rose from 12 spores per frond at 40% humidity to 88 at 85% humidity (Fig. 2). The rise began at 60% humidity — the same threshold at which the annulus cells began to curl. Fronds that were held at constant humidity released few spores, so the curling itself appears to trigger release. We counted spores in three fronds per plant and four plants per humidity level.",
+    "seeded": [],
+    "legit": [
+      "single-em-dash",
+      "hedge-qualifying-inference",
+      "we-first-person"
+    ]
+  },
+  {
+    "id": "p10",
+    "text": "Tavo mutants lost 31% of their root hairs, and the loss was largest in the oldest part of the root (Fig. 11). Marlin-2 mutants lost 12%, with no age effect. Taken together, the two mutants suggest that Tavo acts throughout root development while Marlin-2 acts only early. The double mutant lost 30%, which is close to the Tavo single mutant. This pattern fits a model in which Marlin-2 acts through Tavo.",
+    "seeded": [],
+    "legit": [
+      "taken-together-once",
+      "hedge-qualifying-inference"
+    ]
+  },
+  {
+    "id": "p11",
+    "text": "It is worth noting that Ostrel lichen thalli leverage stored sugars to restart photosynthesis after rewetting. In the 12 thalli we measured, net carbon uptake resumed within 20 min of rewetting. The stored sugar pool fell from 41 to 15 mg per gram of dry mass during the first hour. Thalli with a smaller pool resumed uptake later.",
+    "seeded": [
+      "throat-clearing",
+      "vocabulary-excess"
+    ],
+    "legit": []
+  },
+  {
+    "id": "p12",
+    "text": "Volatile extracts of Zorbian moss were separated by comprehensive two-dimensional gas chromatography. We detected 212 compounds, of which 38 matched a reference library at a score above 850. Sesquiterpenes made up 41% of the total peak area in the blue light group and 17% in the red light group (Fig. 5). The remaining compounds were present at similar levels in both groups.",
+    "seeded": [],
+    "legit": [
+      "comprehensive-technical-term",
+      "we-first-person"
+    ]
+  },
+  {
+    "id": "p13",
+    "text": "Figure 9. Sesquiterpene content in the headspace of Zorbian moss. Panel A shows the blue light group, panel B shows the red light group, and panel C shows the difference between groups with 95% confidence intervals from 2,000 bootstrap resamples. Peak areas are normalized to the internal standard.",
+    "seeded": [],
+    "legit": [
+      "figure-legend"
+    ]
+  },
+  {
+    "id": "p14",
+    "text": "Several studies suggest that moss growth could potentially respond to blue light in other species. Recent work indicates that Marlin-2 homologs may possibly act in the same pathway. We tested 14 moss species and found a growth response in 9 (Fig. 7).",
+    "seeded": [
+      "weasel-attribution",
+      "hedge-stack"
+    ],
+    "legit": []
+  },
+  {
+    "id": "p15",
+    "text": "Seeds were stratified at 4 C for 14 days, ensuring uniform germination across all lines. Specialists widely recognize that stratification time affects the germination rate in alpine grasses. Germination reached 91% in line 2 and 78% in line 5 (n = 200 seeds per line).",
+    "seeded": [
+      "participial-benefit",
+      "weasel-attribution"
+    ],
+    "legit": []
+  },
+  {
+    "id": "p16",
+    "text": "Zorbian moss gametophytes recovered from 14 days of drying with no loss of chlorophyll (n = 30). How does the moss do this? It keeps its photosystems intact during drying (Fig. 6). This resilience is a remarkable adaptation of immense significance for restoring degraded bogs. Recovery took 48 h on average.",
+    "seeded": [
+      "rhetorical-question",
+      "importance-puffery"
+    ],
+    "legit": []
+  },
+  {
+    "id": "p17",
+    "text": "Fronds were sampled at dawn and placed in sealed bags with damp paper. Each frond was weighed, photographed and mounted in a humidity chamber within 2 h of collection. Humidity was raised from 30% to 90% in steps of 10% every 15 min, and spores were collected on greased slides. Slides were stained and counted under a microscope at 200-fold magnification.",
+    "seeded": [],
+    "legit": [
+      "passive-methods"
+    ]
+  },
+  {
+    "id": "p18",
+    "text": "The Tavo gene is the linchpin of the root hair program in Zorbian moss. Tavo mutants lost 31% of their root hairs (n = 40 gametophytes; Fig. 11). This finding is of paramount importance for understanding moss development. The remaining root hairs were also 22% shorter than in the wild type.",
+    "seeded": [
+      "figurative-load",
+      "importance-puffery"
+    ],
+    "legit": []
+  },
+  {
+    "id": "p19",
+    "text": "Zorbian moss gametophytes grew 2.4 mm in 10 days under blue light and 1.1 mm under red light (n = 36 per condition; Fig. 1A). Both of the two independent trials gave the same ranking (Fig. 1B). Gametophytes that lacked Marlin-2 grew 0.9 mm under blue light. This deficit suggests that Marlin-2 contributes to the blue light response, but we did not test other wavelengths.",
+    "seeded": [],
+    "legit": [
+      "hedge-qualifying-inference",
+      "we-first-person"
+    ]
+  },
+  {
+    "id": "p20",
+    "text": "Marlin-2 constitutes a binding site for Tavo on the promoter. The finding was dramatic: Tavo binding fell by 80% when this site was mutated (Fig. 8B). The Hollin kinase stands as the main regulator of this interaction.",
+    "seeded": [
+      "fake-strong-verb",
+      "colon-reveal"
+    ],
+    "legit": []
+  },
+  {
+    "id": "p21",
+    "text": "The plasmids were assembled by seamless cloning, and the reporter carries the luciferase gene under the Marlin-2 promoter. A 40-bp region upstream of the start codon serves as the binding site for Tavo, based on a footprint assay. We mutated this region by site-directed mutagenesis and confirmed the change by sequencing. Wild-type and mutant plasmids were transfected into cells in equal amounts, and luminescence was read 24 h later.",
+    "seeded": [],
+    "legit": [
+      "serves-as-literal-role",
+      "seamless-cloning-term",
+      "passive-methods",
+      "we-first-person"
+    ]
+  },
+  {
+    "id": "p22",
+    "text": "Tarn midge larvae live in ponds that freeze for up to five months. They survive by entering diapause, a state of arrested development with a low metabolic rate. Larvae from the northern ponds enter diapause at a body mass of 3 mg, while those from southern ponds enter at 5 mg. We asked whether this difference reflects local adaptation or plasticity by rearing both populations in the same conditions.",
+    "seeded": [],
+    "legit": [
+      "we-first-person"
+    ]
+  },
+  {
+    "id": "p23",
+    "text": "Table 2 lists the 14 genes with the largest change in expression between fed and starved Quorra minnows. Eleven of the 14 genes encode enzymes of fatty acid oxidation. Two encode transporters, and one has no annotated function. The largest change was a 9.7-fold increase in the transcript of an acyl-CoA oxidase (adjusted p = 0.0004).",
+    "seeded": [],
+    "legit": []
+  },
+  {
+    "id": "p24",
+    "text": "We recorded four traits for each plant: height at day 30, number of leaves, leaf area and flowering date. Height was measured from the soil to the apical bud with a steel ruler. Leaf area was calculated from scanned leaves with image analysis software. Flowering date was the first day on which a petal was visible.",
+    "seeded": [],
+    "legit": [
+      "list-after-colon",
+      "we-first-person",
+      "passive-methods"
+    ]
+  },
+  {
+    "id": "p25",
+    "text": "Flux fell. Pores closed. Leaves curled within 6 h. In summary, these data show that pore closure comes before leaf curl in Veldt fern (n = 20 fronds; Fig. 10).",
+    "seeded": [
+      "recap-opener",
+      "staccato-run"
+    ],
+    "legit": []
+  },
+  {
+    "id": "p26",
+    "text": "The ring-flux curve serves as an indicator of stomatal opening and rose steadily over 12 h. What drives this steady rise? The stomata open in a fixed order across the leaf (Fig. 3C). The curve was the same in all six plants.",
+    "seeded": [
+      "fake-strong-verb",
+      "rhetorical-question"
+    ],
+    "legit": []
+  },
+  {
+    "id": "p27",
+    "text": "Figure 3. Holdfast diameter of Pellian kelp cultures after 14 days. Bars show the mean of six cultures and error bars show the standard deviation. Asterisks mark pairs that differ by Tukey's test (p < 0.05). Cultures grew in 12 h of light and 12 h of dark at 16 C.",
+    "seeded": [],
+    "legit": [
+      "figure-legend"
+    ]
+  },
+  {
+    "id": "p28",
+    "text": "We delve into how the Hollin kinase shapes the response of Kestrel-6 yeast to osmotic stress (n = 18 cultures). Growth rate fell by 34% at 1 M sorbitol, and the kinase mutant fell by 61% (Fig. 3A). These data weave a tapestry of responses that differ between strains and between doses. The mutant also recovered more slowly after the stress ended.",
+    "seeded": [
+      "vocabulary-excess",
+      "figurative-load"
+    ],
+    "legit": []
+  },
+  {
+    "id": "p29",
+    "text": "It is not the dose that sets the rate of growth, but the passage number of the colony. Marlin-2 may possibly limit the stress response by binding Tavo (Fig. 5). Colonies from the second passage grew 12% faster than colonies from the first (n = 14 per passage).",
+    "seeded": [
+      "binary-contrast",
+      "hedge-stack"
+    ],
+    "legit": []
+  },
+  {
+    "id": "p30",
+    "text": "As of my last knowledge update, I cannot confirm the exact density of the beetle population. The mean was 14 beetles per trap (range 2 to 41). Counts rose. They peaked. They fell in week 12.",
+    "seeded": [
+      "assistant-residue",
+      "staccato-run"
+    ],
+    "legit": []
+  },
+  {
+    "id": "p31",
+    "text": "The ring-flux assay underscores the intricate link between sap pressure and leaf curl in Veldt fern (Fig. 2). Fronds were pressurized in a chamber at 0.2 to 0.8 MPa, enabling a direct comparison of curl angle at each step. Curl angle rose by 4 degrees per 0.1 MPa. The slope was the same in all 12 plants.",
+    "seeded": [
+      "vocabulary-excess",
+      "participial-benefit"
+    ],
+    "legit": []
+  },
+  {
+    "id": "p32",
+    "text": "Moss mats dried out. Moss mats shrank. Moss mats curled. Moss mats recovered after rain, and the recovery took 36 h (n = 18 mats).",
+    "seeded": [
+      "repeated-openers",
+      "staccato-run"
+    ],
+    "legit": []
+  },
+  {
+    "id": "p33",
+    "text": "We see three possible explanations for the loss of Marlin-2 signal at day 8: a drop in transcription, faster degradation of the protein, or loss of the cells that express it. The cell counts in Fig. 10 argue against the third, since cell number stayed constant. The first two cannot be separated with our data. A pulse-chase experiment would distinguish transcription from degradation.",
+    "seeded": [],
+    "legit": [
+      "list-after-colon",
+      "hedge-qualifying-inference",
+      "we-first-person"
+    ]
+  },
+  {
+    "id": "p34",
+    "text": "The key prior measurement of spore lift came from a field trial of 40 plots (Fenwhistle et al., 2017). That trial recorded lift height but not spore number. Our wind tunnel assay adds the number of spores, which was 1,900 per frond at a wind speed of 3 m per second. The two data sets agree on the wind speed at which lift begins, about 1.5 m per second.",
+    "seeded": [],
+    "legit": [
+      "key-literature-sense",
+      "cited-attribution"
+    ]
+  },
+  {
+    "id": "p35",
+    "text": "Dunmar-1 protein rose 3.1-fold in heat-shocked Kestrel-6 yeast (Fig. 4A). The rise was absent in a strain that lacked the Hollin kinase, and Dunmar-1 stayed at its unstressed level even after 90 min at 42 C. Hollin kinase activity rose within 10 min of heat shock, well before Dunmar-1 accumulated (Fig. 4B). Taken together, the kinase seems to act upstream of Dunmar-1, although these data do not show a direct interaction.",
+    "seeded": [],
+    "legit": [
+      "taken-together-once",
+      "hedge-qualifying-inference"
+    ]
+  },
+  {
+    "id": "p36",
+    "text": "Sure, here is a polished version of your Results paragraph. Midge larvae from the northern ponds entered diapause at 3.1 mg and larvae from southern ponds at 4.9 mg (n = 60 per pond; Fig. 2). The gap was the same in both years. I hope this helps.",
+    "seeded": [
+      "assistant-residue"
+    ],
+    "legit": []
+  },
+  {
+    "id": "p37",
+    "text": "The Tavo mutant grew slowly. The Tavo mutant lost its root hairs. The Tavo mutant failed to take up phosphate. The answer was simple: the mutant lacks the transporter that loads phosphate into the root (Fig. 12).",
+    "seeded": [
+      "colon-reveal",
+      "repeated-openers"
+    ],
+    "legit": []
+  },
+  {
+    "id": "p38",
+    "text": "This section describes how the pitfall traps were arranged and emptied. Traps were placed 5 m apart along three transects, allowing researchers to compare beetle abundance across habitats. Each trap was emptied weekly for 16 weeks. In total, 2,143 Tarn beetles were caught.",
+    "seeded": [
+      "throat-clearing",
+      "participial-benefit"
+    ],
+    "legit": []
+  },
+  {
+    "id": "p39",
+    "text": "The Tavo transcript peaked 6 h before the Brix-3 transcript in all four lines. Does Tavo activate Brix-3 directly? Our time course cannot answer this, because we sampled only at 2-h intervals and we have no binding data. A reporter assay with a mutated Tavo site would test the idea. Until then, we treat the order of the peaks as a correlation.",
+    "seeded": [],
+    "legit": [
+      "genuine-question",
+      "we-first-person"
+    ]
+  },
+  {
+    "id": "p40",
+    "text": "Next, we turn to the question of how the delay arises. Overall, these results indicate that the delay depends on cell number (Fig. 9). Cultures started at 1,000 cells took 14 h to reach the threshold. Cultures started at 100,000 cells took 6 h.",
+    "seeded": [
+      "throat-clearing",
+      "recap-opener"
+    ],
+    "legit": []
+  },
+  {
+    "id": "p41",
+    "text": "I do not have access to your raw data, so please verify the values below. Marlin-2 expression may potentially increase at 40 C in the heat-shocked moss (Fig. 3). The increase was 2.9-fold in the first trial and 3.4-fold in the second.",
+    "seeded": [
+      "assistant-residue",
+      "hedge-stack"
+    ],
+    "legit": []
+  },
+  {
+    "id": "p42",
+    "text": "This comprehensive study utilizes a robust panel of 12 Marlin-2 mutants to facilitate a deeper understanding of root growth. The groundbreaking assay offers crucial insights, and the results unveil a myriad of effects on growth (Table 1). We utilize the panel to foster further work.",
+    "seeded": [
+      "vocabulary-density"
+    ],
+    "legit": []
+  },
+  {
+    "id": "p43",
+    "text": "Many researchers believe that nitrogen limits moss growth in alpine bogs. Our 9-year record of monthly samples (n = 108) is a landmark dataset with far-reaching implications for bog conservation. Biomass fell by 3% per year over the record.",
+    "seeded": [
+      "weasel-attribution",
+      "importance-puffery"
+    ],
+    "legit": []
+  },
+  {
+    "id": "p44",
+    "text": "A fitness landscape maps each genotype to its reproductive success. The shape of this landscape determines which mutations can fix in a population (Ludgrove et al., 2016). For a protein of 120 residues, the number of possible sequences far exceeds the number of organisms that have ever lived. Experiments therefore sample a small part of the landscape, usually the neighbors of one wild-type sequence. We mapped the 1,800 single and double mutants of the Hollin kinase active site to ask how rugged the local landscape is.",
+    "seeded": [],
+    "legit": [
+      "fitness-landscape-term",
+      "cited-attribution",
+      "we-first-person"
+    ]
+  },
+  {
+    "id": "p45",
+    "text": "Each trap held a different bait. Each trap sat in a different habitat. Each trap was emptied on a different day. These differences complicate the comparison of the counts (n = 18 traps).",
+    "seeded": [
+      "repeated-openers"
+    ],
+    "legit": []
+  },
+  {
+    "id": "p46",
+    "text": "Pups cross-fostered to Tarn vole dams of the other line gained 0.8 g less weight by day 14 than pups raised by their own dams (n = 22 litters; Fig. 7A). Pups fostered within their own line gained a similar weight to control pups (difference 0.1 g). The effect of the foster dam did not depend on pup genotype. Milk protein content did not differ between dam lines (3.9% vs 4.0%).",
+    "seeded": [],
+    "legit": [
+      "foster-husbandry-term"
+    ]
+  },
+  {
+    "id": "p47",
+    "text": "We compared groups with a two-sided Welch t test and corrected for multiple tests with the Benjamini-Hochberg procedure. Effect sizes are given as Cohen's d with 95% confidence intervals from 2,000 bootstrap resamples. We set the false discovery rate at 5%. All analyses used R version 4.2, and the code is available on request.",
+    "seeded": [],
+    "legit": [
+      "we-first-person",
+      "passive-methods"
+    ]
+  },
+  {
+    "id": "p48",
+    "text": "Larvae were reared at 12 C in 1-L tanks with 40 animals per tank. The water was changed twice per week, and larvae were fed ground fish flakes at 2% of body mass per day. Tanks were checked daily for deaths. Eight tanks per population were used, and tank position was assigned at random.",
+    "seeded": [],
+    "legit": [
+      "passive-methods"
+    ]
+  },
+  {
+    "id": "p49",
+    "text": "Lichens can survive repeated cycles of drying and rewetting, yet the cost of each cycle is poorly measured. Earlier field work recorded photosynthesis only after rain (Brantwick et al., 2018). Two later studies measured respiration during the dry phase and reported conflicting rates (Marchbanks et al., 2019; Ludgrove et al., 2021). Here we measure net carbon exchange of Ostrel lichen through 14 days of drying and rewetting.",
+    "seeded": [],
+    "legit": [
+      "cited-attribution",
+      "we-first-person"
+    ]
+  },
+  {
+    "id": "p50",
+    "text": "Plasma lactate was elevated in the starved minnows (4.8 vs 2.1 mM, p < 0.001). The level returned to baseline within 6 h of refeeding. Liver glycogen showed the opposite trend and fell from 62 to 19 mg per gram of tissue during starvation. Neither measure differed between the sexes.",
+    "seeded": [],
+    "legit": [
+      "elevated-measured-level"
+    ]
+  },
+  {
+    "id": "p51",
+    "text": "Moss tissue was frozen in liquid nitrogen and ground to a fine powder. RNA was extracted with a column kit and treated with DNase for 20 min at 37 C. We measured RNA integrity on a capillary system and kept samples with a score of 7.0 or higher. Libraries were prepared from 500 ng of total RNA and sequenced to a depth of 30 million reads per sample.",
+    "seeded": [],
+    "legit": [
+      "passive-methods",
+      "we-first-person"
+    ]
+  },
+  {
+    "id": "p52",
+    "text": "In the open-field paradigm, a mouse is placed in a square arena and its movement is tracked for 10 min. Time spent in the center of the arena is taken as a measure of exploratory drive. We adapted this paradigm for the Tarn vole, which spends more time near walls than mice do. The adapted arena has a 5 cm wall ledge, and we scored time on the ledge as a separate measure.",
+    "seeded": [],
+    "legit": [
+      "experimental-paradigm-term",
+      "we-first-person"
+    ]
+  },
+  {
+    "id": "p53",
+    "text": "Our results show that Brix-3 is not simply an enzyme; it is a scaffold that holds three partners together. The outcome was unambiguous: scaffold mutants lost all three partners in pull-down assays (Fig. 6B). Wild-type Brix-3 recovered all three at a ratio near 1:1:1.",
+    "seeded": [
+      "binary-contrast",
+      "colon-reveal"
+    ],
+    "legit": []
+  },
+  {
+    "id": "p54",
+    "text": "Pollinator visits to the Veldt orchid fell by half in plots with high nitrogen soil (Fig. 6). Orchid flowers in those plots were 14% smaller, and smaller flowers may be less visible to bees. The data cannot separate an effect of flower size from an effect of scent, which we did not measure. A field experiment that trims flowers to a common size in both plot types would test the first explanation.",
+    "seeded": [],
+    "legit": [
+      "hedge-qualifying-inference",
+      "we-first-person"
+    ]
+  },
+  {
+    "id": "p55",
+    "text": "Dye released at the inlet followed smooth streamlines around the larval case at flow speeds below 4 cm per second. Above 6 cm per second, the streamlines broke into eddies that trailed behind the case (Fig. 9A). The eddies carried dye back toward the larva and increased the dye concentration at the gills by 2.3-fold. Larvae in fast flow moved their gills more often (11 vs 4 strokes per minute, n = 15).",
+    "seeded": [],
+    "legit": [
+      "streamlines-flow-term"
+    ]
+  },
+  {
+    "id": "p56",
+    "text": "The delay in budding is not a sign of slow growth but a reprogramming of the bud clock. Marlin-2 and Tavo perform a delicate dance that sets the timing of bud formation. Mutants budded 5 days later than the wild type (n = 30 per genotype; Fig. 4). Double mutants budded 9 days later.",
+    "seeded": [
+      "binary-contrast",
+      "figurative-load"
+    ],
+    "legit": []
+  },
+  {
+    "id": "p57",
+    "text": "The Ostrel lichen lost 22% of its carbon gain after each rewetting event, a cost that earlier studies did not measure (Brantwick et al., 2018; Quenby et al., 2020). The cost fell with each of the next four cycles, which suggests that the thallus adjusts to repeated drying. A second explanation is that the symbiotic algae shifted to a more tolerant strain; we have no data on strain composition. Sequencing the algal marker gene across cycles would separate these two explanations.",
+    "seeded": [],
+    "legit": [
+      "cited-attribution",
+      "hedge-qualifying-inference",
+      "we-first-person"
+    ]
+  },
+  {
+    "id": "p58",
+    "text": "Spore numbers rose with wind speed up to 3 m per second and then leveled off (Fig. 13). So what limits release at higher speeds? The annulus cells run out of stored tension. Let us now examine the stored tension in more detail. We measured it by laser displacement in 25 annuli.",
+    "seeded": [
+      "rhetorical-question",
+      "throat-clearing"
+    ],
+    "legit": []
+  },
+  {
+    "id": "p59",
+    "text": "Here we embark on an exploration of how Tarn voles respond to cold (n = 20 per group). Body temperature fell by 2.1 C in the cold group, which is not a failure of heat production but a controlled drop. Taken together, these results illustrate the multifaceted nature of the response. Metabolic rate rose by 18%.",
+    "seeded": [
+      "vocabulary-excess",
+      "binary-contrast",
+      "recap-opener"
+    ],
+    "legit": []
+  },
+  {
+    "id": "p60",
+    "text": "The pivotal Phase 3 trial of the Brix-3 inhibitor enrolled 412 patients at 38 sites. Median progression-free survival was 11.2 months in the treatment arm and 7.9 months in the placebo arm (hazard ratio 0.68; 95% CI 0.54 to 0.86). Grade 3 or higher adverse events occurred in 27% of treated patients and 19% of placebo patients. The trial met its primary endpoint at the planned interim analysis.",
+    "seeded": [],
+    "legit": [
+      "pivotal-regulatory-term"
+    ]
+  }
+]

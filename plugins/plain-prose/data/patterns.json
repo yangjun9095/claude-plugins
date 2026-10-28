@@ -1,0 +1,1210 @@
+{
+  "version": 1,
+  "as_of": "2026-10-23",
+  "families": [
+    {
+      "id": "vocabulary-excess",
+      "title": "Vocabulary with excess in LLM text, and the repository owner's banned words (list as of 2026-10-23)",
+      "mode": "each",
+      "max_per_1000": null,
+      "strategy": "Replace the style word with the plain word, or with the fact that the word stands for.",
+      "delete_ok": false,
+      "note": "Lists age. The T1 words describe 2023 and 2024 text. Rows G4 and X1 of the corpus note show that delve, intricate and others fell later (corpus:S14, corpus:S13). Those keys are not cited. The words of row K9 and the function words are not listed. A word with a plain scientific sense is not listed. A word that only the author bans keeps tier T3.",
+      "rules": [
+        {
+          "tier": "T1",
+          "sources": ["corpus:S1", "corpus:S2", "corpus:S6", "corpus:S8", "corpus:S10", "corpus:S11", "corpus:S20", "wikipedia:S1", "guides:S2", "guides:S5", "guides:S6", "guides:S8", "authors:S1", "authors:S2", "authors:S6", "authors:S9"],
+          "label": "delve",
+          "words": ["delv*"]
+        },
+        {
+          "tier": "T1",
+          "sources": ["corpus:S1", "corpus:S2", "corpus:S5", "corpus:S6", "corpus:S8", "corpus:S10", "corpus:S11", "corpus:S15", "corpus:S20", "wikipedia:S1", "guides:S2", "guides:S8", "authors:S6", "authors:S9"],
+          "label": "underscore",
+          "words": ["underscor*"],
+          "unless": "\\b(?:character|filename|identifier|snake_case)",
+          "note": "Exception from the author's list: the underscore character."
+        },
+        {
+          "tier": "T1",
+          "sources": ["corpus:S1", "corpus:S2", "corpus:S3", "corpus:S6", "corpus:S8", "corpus:S10", "corpus:S20", "wikipedia:S1", "guides:S2", "authors:S1", "authors:S6", "authors:S9"],
+          "label": "showcase",
+          "words": ["showcas*"]
+        },
+        {
+          "tier": "T1",
+          "sources": ["corpus:S1", "corpus:S2", "corpus:S4", "corpus:S6", "corpus:S9", "corpus:S10", "corpus:S11", "corpus:S20", "wikipedia:S1", "authors:S1", "authors:S2"],
+          "label": "meticulous",
+          "words": ["meticulous*"]
+        },
+        {
+          "tier": "T1",
+          "sources": ["corpus:S1", "corpus:S2", "corpus:S3", "corpus:S4", "corpus:S6", "corpus:S8", "corpus:S9", "corpus:S10", "corpus:S11", "corpus:S15", "corpus:S20", "wikipedia:S1", "guides:S2", "guides:S5", "authors:S1", "authors:S2", "authors:S6", "authors:S9"],
+          "label": "intricate",
+          "words": ["intricat*", "intricac*"]
+        },
+        {
+          "tier": "T1",
+          "sources": ["corpus:S1", "corpus:S2", "corpus:S4", "corpus:S9", "corpus:S10"],
+          "label": "commendable",
+          "words": ["commendable"]
+        },
+        {
+          "tier": "T1",
+          "sources": ["corpus:S1", "corpus:S2"],
+          "label": "excels",
+          "words": ["excels"]
+        },
+        {
+          "tier": "T1",
+          "sources": ["corpus:S1", "corpus:S2", "corpus:S6", "corpus:S8", "corpus:S20", "wikipedia:S1"],
+          "label": "garner",
+          "words": ["garner*"],
+          "lower_only": true,
+          "note": "The first letter must be lower case, so the surname Garner stays quiet."
+        },
+        {
+          "tier": "T1",
+          "sources": ["corpus:S1", "corpus:S2", "corpus:S3", "corpus:S8", "authors:S1", "authors:S2", "authors:S6", "authors:S9"],
+          "label": "realm",
+          "words": ["realm*"],
+          "unless": "\\b(?:virus|viral|virion|ICTV|taxonom)",
+          "note": "Exception from the author's list: realm as a virus taxonomy rank."
+        },
+        {
+          "tier": "T1",
+          "sources": ["corpus:S1", "corpus:S2", "corpus:S3", "corpus:S4", "corpus:S5", "corpus:S9", "corpus:S10", "corpus:S20", "corpus:S25", "wikipedia:S1", "guides:S2", "guides:S5", "authors:S1", "authors:S6", "authors:S9"],
+          "label": "pivotal",
+          "words": ["pivotal"],
+          "unless": "\\bpivotal (?:(?:phase\\s+\\w+|clinical|registration\\w*)\\s+)?(?:trials?|stud(?:y|ies))\\b",
+          "note": "Exception from the author's list: pivotal trial and pivotal study are regulatory terms. One qualifier such as Phase 3 or clinical may come before the noun."
+        },
+        {
+          "tier": "T1",
+          "sources": ["corpus:S1", "corpus:S2", "corpus:S4", "corpus:S9", "authors:S1", "authors:S6", "authors:S9"],
+          "label": "seamless",
+          "words": ["seamless*"],
+          "unless": "\\bseamless (?:cloning|assembly|ligation|genome editing|editing)\\b",
+          "note": "Exception from the author's list: seamless cloning and related lab methods."
+        },
+        {
+          "tier": "T1",
+          "sources": ["corpus:S1", "corpus:S2", "corpus:S10", "guides:S6", "authors:S1", "authors:S2", "authors:S6", "authors:S9"],
+          "label": "harness",
+          "regex": "\\b(?:harnessed|harnessing|harnesses)\\b|\\b(?:to|we|can|could|will|would|may|might|must|should|it|they|and|or|that|which)(?:\\s+\\w+ly)?\\s+harness\\b",
+          "unless": "\\b(?:test|animal|safety|body|wiring|cable|rodent|mouse|rat)\\s+harness(?:es)?\\b|\\bharness(?:es)?\\s+(?:system|apparatus)\\b",
+          "note": "The regex is the form of the author's audit file, extended for the verb after an adverb. Exception: the noun, as in test harness or animal harness."
+        },
+        {
+          "tier": "T1",
+          "sources": ["corpus:S1", "corpus:S2", "authors:S1", "authors:S2"],
+          "label": "empower",
+          "words": ["empower*"],
+          "unless": "\\bEmpower\\s+(?:\\d|software\\b|data\\b|chromatography\\b)",
+          "note": "Exception from the author's list: the chromatography software Empower."
+        },
+        {
+          "tier": "T3",
+          "sources": ["authors:S1"],
+          "label": "journey",
+          "words": ["journey*"]
+        },
+        {
+          "tier": "T2",
+          "sources": ["corpus:S20", "wikipedia:S1", "guides:S2", "guides:S5", "authors:S1"],
+          "label": "testament",
+          "words": ["testament"]
+        },
+        {
+          "tier": "T3",
+          "sources": ["authors:S1"],
+          "label": "plethora",
+          "words": ["plethora"]
+        },
+        {
+          "tier": "T1",
+          "sources": ["corpus:S8", "corpus:S20", "wikipedia:S1", "authors:S1"],
+          "label": "boasts",
+          "words": ["boasts"]
+        },
+        {
+          "tier": "T3",
+          "sources": ["authors:S2"],
+          "label": "paramount",
+          "words": ["paramount"]
+        },
+        {
+          "tier": "T3",
+          "sources": ["authors:S2"],
+          "label": "ever-evolving",
+          "words": ["ever-evolving"]
+        },
+        {
+          "tier": "T3",
+          "sources": ["authors:S1"],
+          "label": "myriad",
+          "words": ["myriad"],
+          "unless": "\\bMyriad Genetics\\b",
+          "note": "Exception from the author's list: the company name."
+        },
+        {
+          "tier": "T3",
+          "sources": ["authors:S2", "authors:S6", "authors:S9"],
+          "label": "embark",
+          "words": ["embark*"]
+        },
+        {
+          "tier": "T1",
+          "sources": ["corpus:S1", "corpus:S2", "corpus:S10", "corpus:S20", "wikipedia:S1", "guides:S6", "authors:S2", "authors:S6", "authors:S9"],
+          "label": "multifaceted",
+          "words": ["multifaceted"]
+        },
+        {
+          "tier": "T3",
+          "sources": ["authors:S1", "authors:S2", "authors:S6", "authors:S9"],
+          "label": "holistic",
+          "words": ["holistic"]
+        },
+        {
+          "tier": "T1",
+          "sources": ["corpus:S1", "corpus:S2", "corpus:S10", "authors:S1", "authors:S2", "authors:S6", "authors:S9"],
+          "label": "nuance",
+          "words": ["nuanc*"]
+        },
+        {
+          "tier": "T1",
+          "sources": ["corpus:S1", "corpus:S2", "corpus:S10", "authors:S2", "authors:S6", "authors:S9"],
+          "label": "transformative",
+          "words": ["transformative"],
+          "unless": "\\bTransformative Research\\b",
+          "note": "Exception from the author's list: a funder program title."
+        },
+        {
+          "tier": "T2",
+          "sources": ["guides:S6", "authors:S6", "authors:S9"],
+          "label": "unprecedented",
+          "words": ["unprecedented"]
+        },
+        {
+          "tier": "T1",
+          "sources": ["corpus:S1", "corpus:S2", "authors:S6", "authors:S9"],
+          "label": "revolutionize",
+          "words": ["revolutioniz*", "revolutionis*"]
+        },
+        {
+          "tier": "T2",
+          "sources": ["wikipedia:S8", "authors:S1", "authors:S2", "authors:S6", "authors:S9"],
+          "label": "cutting-edge",
+          "words": ["cutting-edge"]
+        },
+        {
+          "tier": "T3",
+          "sources": ["authors:S1", "authors:S6", "authors:S9"],
+          "label": "state-of-the-art",
+          "words": ["state-of-the-art"],
+          "unless": "\\bSOTA\\b",
+          "unless_citation": true,
+          "note": "Exceptions from the author's list: a comparison to named, cited prior methods in the same sentence, and the label SOTA."
+        },
+        {
+          "tier": "T3",
+          "sources": ["authors:S2"],
+          "label": "beacon",
+          "words": ["beacon*"],
+          "unless": "\\bmolecular beacons?\\b|\\bGA4GH\\b|\\bBeacon (?:protocol|network|API)\\b",
+          "note": "Exceptions from the author's list: molecular beacon and the Beacon discovery protocol."
+        },
+        {
+          "tier": "T3",
+          "sources": ["authors:S2"],
+          "label": "supercharge",
+          "words": ["supercharg*"],
+          "unless": "\\bsupercharged (?:proteins?|GFP)\\b|\\bsupercharging reagents?\\b",
+          "note": "Exceptions from the author's list: supercharged proteins and the mass spectrometry reagent."
+        }
+      ]
+    },
+    {
+      "id": "vocabulary-density",
+      "title": "Rarer words with an excess in LLM text, flagged by density (list as of 2026-10-23)",
+      "mode": "density",
+      "max_per_1000": 3,
+      "strategy": "Replace the style word with the plain word, or with the fact that the word stands for.",
+      "delete_ok": false,
+      "note": "Rarer words of rows K3 to K8 of the corpus note, and common words that manuscripts also use (robust, crucial, facilitate and others). They flag only above the threshold. The threshold of 3 hits per 1000 words is the plugin default.",
+      "rules": [
+        {
+          "tier": "T1",
+          "sources": ["corpus:S1", "corpus:S2"],
+          "label": "renowned",
+          "words": ["renowned"]
+        },
+        {
+          "tier": "T1",
+          "sources": ["corpus:S1", "corpus:S2", "corpus:S15"],
+          "label": "grapple",
+          "words": ["grappl*"]
+        },
+        {
+          "tier": "T1",
+          "sources": ["corpus:S1", "corpus:S2", "corpus:S6", "corpus:S8", "corpus:S10"],
+          "label": "groundbreaking",
+          "words": ["groundbreaking"]
+        },
+        {
+          "tier": "T1",
+          "sources": ["corpus:S1", "corpus:S2"],
+          "label": "formidable",
+          "words": ["formidable"]
+        },
+        {
+          "tier": "T1",
+          "sources": ["corpus:S1", "corpus:S2", "corpus:S8"],
+          "label": "comprehending",
+          "words": ["comprehending"]
+        },
+        {
+          "tier": "T1",
+          "sources": ["corpus:S1", "corpus:S2"],
+          "label": "endeavor",
+          "words": ["endeavo*"]
+        },
+        {
+          "tier": "T1",
+          "sources": ["corpus:S1", "corpus:S2", "corpus:S8"],
+          "label": "advancement",
+          "words": ["advancement*"]
+        },
+        {
+          "tier": "T1",
+          "sources": ["corpus:S1", "corpus:S2"],
+          "label": "unveil",
+          "words": ["unveil*"],
+          "note": "Rows K3 and K4 of the corpus note show the excess in PubMed abstracts. Row T6 (corpus:S10) shows unveil falling in MDPI full texts, so the key is not cited."
+        },
+        {
+          "tier": "T1",
+          "sources": ["corpus:S1", "corpus:S2"],
+          "label": "pioneering",
+          "words": ["pioneering"]
+        },
+        {
+          "tier": "T1",
+          "sources": ["corpus:S1", "corpus:S2"],
+          "label": "scrutinize",
+          "words": ["scrutiniz*", "scrutinis*"]
+        },
+        {
+          "tier": "T1",
+          "sources": ["corpus:S1", "corpus:S2", "corpus:S10", "corpus:S20", "wikipedia:S1"],
+          "label": "bolster",
+          "words": ["bolster*"]
+        },
+        {
+          "tier": "T1",
+          "sources": ["corpus:S1", "corpus:S2"],
+          "label": "necessitate",
+          "words": ["necessitat*"]
+        },
+        {
+          "tier": "T1",
+          "sources": ["corpus:S1", "corpus:S2"],
+          "label": "adept",
+          "words": ["adept"]
+        },
+        {
+          "tier": "T1",
+          "sources": ["corpus:S1", "corpus:S2"],
+          "label": "uncharted",
+          "words": ["uncharted"]
+        },
+        {
+          "tier": "T1",
+          "sources": ["corpus:S1", "corpus:S2"],
+          "label": "burgeoning",
+          "words": ["burgeoning"]
+        },
+        {
+          "tier": "T1",
+          "sources": ["corpus:S1", "corpus:S2", "corpus:S4", "corpus:S9", "corpus:S25"],
+          "label": "noteworthy",
+          "words": ["noteworthy"]
+        },
+        {
+          "tier": "T1",
+          "sources": ["corpus:S1", "corpus:S2", "corpus:S4", "corpus:S9", "corpus:S25"],
+          "label": "invaluable",
+          "words": ["invaluable"]
+        },
+        {
+          "tier": "T1",
+          "sources": ["corpus:S1", "corpus:S2"],
+          "label": "unparalleled",
+          "words": ["unparalleled"]
+        },
+        {
+          "tier": "T1",
+          "sources": ["corpus:S1", "corpus:S2", "corpus:S4", "corpus:S5", "corpus:S9", "corpus:S10"],
+          "label": "innovative",
+          "words": ["innovative"]
+        },
+        {
+          "tier": "T1",
+          "sources": ["corpus:S1", "corpus:S2", "corpus:S4", "corpus:S20", "wikipedia:S1"],
+          "label": "valuable",
+          "words": ["valuable"]
+        },
+        {
+          "tier": "T1",
+          "sources": ["corpus:S1", "corpus:S2", "corpus:S5"],
+          "label": "insights",
+          "words": ["insights"]
+        },
+        {
+          "tier": "T1",
+          "sources": ["corpus:S1", "corpus:S2", "corpus:S4", "corpus:S5", "corpus:S9", "corpus:S10"],
+          "label": "notably",
+          "words": ["notably"]
+        },
+        {
+          "tier": "T1",
+          "sources": ["corpus:S1", "corpus:S2", "corpus:S4", "corpus:S9", "corpus:S20", "corpus:S25", "wikipedia:S1", "guides:S5"],
+          "label": "additionally",
+          "words": ["additionally"]
+        },
+        {
+          "tier": "T1",
+          "sources": ["corpus:S1", "corpus:S2", "corpus:S20", "wikipedia:S1"],
+          "label": "highlighting",
+          "words": ["highlighting"]
+        },
+        {
+          "tier": "T2",
+          "sources": ["guides:S6"],
+          "label": "intersection",
+          "regex": "\\bat the intersection of\\b",
+          "note": "The row of the guides note lists the intersection of. The regex needs at before it, because the intersection of two sets is plain wording in genomics."
+        },
+        {
+          "tier": "T1",
+          "sources": ["corpus:S1", "corpus:S2", "corpus:S8"],
+          "label": "surpass",
+          "words": ["surpass*"]
+        },
+        {
+          "tier": "T1",
+          "sources": ["corpus:S1", "corpus:S2", "corpus:S5", "corpus:S10", "corpus:S20", "corpus:S25", "wikipedia:S1", "guides:S5", "guides:S6", "authors:S1", "authors:S6", "authors:S9"],
+          "label": "crucial",
+          "words": ["crucial*"]
+        },
+        {
+          "tier": "T1",
+          "sources": ["corpus:S1", "corpus:S2", "corpus:S4", "corpus:S5", "corpus:S9", "corpus:S10", "corpus:S25", "authors:S1", "authors:S6", "authors:S9"],
+          "label": "comprehensive",
+          "words": ["comprehensive*"],
+          "unless": "\\b(?:comprehensive two-dimensional gas chromatography|Comprehensive Antibiotic Resistance Database|Comprehensive R Archive Network)",
+          "note": "Exception from the author's list: three proper names."
+        },
+        {
+          "tier": "T1",
+          "sources": ["corpus:S4", "corpus:S9", "corpus:S10", "wikipedia:S1", "authors:S1", "authors:S2", "authors:S6", "authors:S9"],
+          "label": "robust",
+          "words": ["robust*"],
+          "unless": "\\brobust (?:regression|statistics|standard errors?|estimat\\w+|linear models?|PCA)\\b|\\brobust(?:ly)? to\\b|\\b(?:network|genetic|developmental|phenotypic|biological) robustness\\b|\\brobustness (?:of|in) (?:\\w+ ){0,2}(?:network|circuit|pathway|development)\\w*|\\brobustness (?:checks?|analys[ie]s|tests?)\\b",
+          "note": "Exceptions from the author's list: robust regression, robust statistics, robust standard errors, robust to a named perturbation, and the robustness of a biological network. A robustness check is also quiet."
+        },
+        {
+          "tier": "T1",
+          "sources": ["corpus:S1", "corpus:S2", "corpus:S6", "corpus:S10", "corpus:S20", "wikipedia:S1", "authors:S1", "authors:S2", "authors:S6", "authors:S9"],
+          "label": "leverage",
+          "words": ["leverag*"],
+          "unless": "\\bhigh[- ]leverage\\b|\\bleverage (?:scores?|points?|statistics?)\\b|\\b(?:mechanical|statistical|financial) leverage\\b",
+          "note": "Exceptions from the author's list: the noun in statistics and mechanics."
+        },
+        {
+          "tier": "T1",
+          "sources": ["corpus:S1", "corpus:S2", "authors:S1", "authors:S2"],
+          "label": "utilize",
+          "words": ["utiliz*", "utilis*"],
+          "unless": "\\b(?:glucose|oxygen|nutrient|substrate|energy|resource|CPU|memory|GPU|drug|lipid)\\s+utili[sz]ation\\b|\\butili[sz]ation\\s+(?:rate|efficiency)\\b",
+          "note": "The author bans every form. Row K9 of the corpus note lists utilized as a common word that is no single-word flag, so the author keys back the form utilized. Exception: utilization as a measured quantity."
+        },
+        {
+          "tier": "T1",
+          "sources": ["corpus:S1", "corpus:S2", "authors:S1", "authors:S6", "authors:S9"],
+          "label": "unlock",
+          "words": ["unlock*"],
+          "unless": "\\bunlocked nucleic acids?\\b|\\bunlocked (?:conformations?|states?|forms?)\\b|\\blocked and unlocked\\b|\\bunlocked and locked\\b",
+          "note": "Exceptions from the author's list: unlocked nucleic acid, and locked and unlocked conformations."
+        },
+        {
+          "tier": "T1",
+          "sources": ["corpus:S1", "corpus:S2", "authors:S1", "authors:S2"],
+          "label": "elevate",
+          "regex": "\\belevat(?:e|es|ing)\\b",
+          "unless": "\\belevat\\w*\\s+(?:\\w+\\s+){0,3}(?:levels?|concentrations?|pressure|temperature|expression|risk|rates?)\\b",
+          "note": "The regex leaves out elevated and elevation, as the author's list does. A sentence that raises a measured level is quiet."
+        },
+        {
+          "tier": "T1",
+          "sources": ["corpus:S10", "authors:S1"],
+          "label": "synergy",
+          "words": ["synergy", "synergies"],
+          "unless": "\\b(?:Bliss|Loewe|HSA|ZIP)\\b|\\bsynergy scores?\\b|\\bdrug synerg(?:y|ies)\\b",
+          "note": "Exceptions from the author's list: drug synergy defined by a model, and a synergy score."
+        },
+        {
+          "tier": "T1",
+          "sources": ["corpus:S1", "corpus:S2", "authors:S1", "authors:S2"],
+          "label": "streamline",
+          "words": ["streamlin*"],
+          "unless": "\\bstreamlines?\\b[^.!?]{0,60}\\b(?:flow|velocity|fluid|eddies|vortex|vortices|turbulen\\w*|laminar)\\b|\\b(?:flow|velocity|fluid|eddies|vortex|vortices|turbulen\\w*|laminar)\\b[^.!?]{0,60}\\bstreamlines?\\b|\\bstreamlined (?:body|bodies|shape)\\b",
+          "note": "Exception from the author's list: streamlines of a flow field. Words such as eddies and vortex also name a flow."
+        },
+        {
+          "tier": "T1",
+          "sources": ["corpus:S10", "authors:S1", "authors:S6", "authors:S9"],
+          "label": "navigate",
+          "words": ["navigat*"],
+          "unless": "\\b(?:maze|mazes|arena|arenas|gradient|gradients)\\b|\\b(?:spatial|animal|visual|olfactory|chemotactic) navigation\\b|\\bnavigation menus?\\b",
+          "note": "Exceptions from the author's list: spatial or animal navigation, a maze, an arena or a gradient, and a navigation menu."
+        },
+        {
+          "tier": "T1",
+          "sources": ["corpus:S1", "corpus:S2", "corpus:S10", "authors:S2", "authors:S6", "authors:S9"],
+          "label": "facilitate",
+          "words": ["facilitat*"],
+          "unless": "\\bfacilitated (?:diffusion|transport)\\b|\\bsynaptic facilitation\\b|\\bpaired[- ]pulse facilitation\\b",
+          "note": "Exceptions from the author's list: facilitated diffusion and transport, synaptic facilitation."
+        },
+        {
+          "tier": "T1",
+          "sources": ["corpus:S1", "corpus:S2", "corpus:S10", "corpus:S20", "wikipedia:S1", "guides:S6", "authors:S2", "authors:S6", "authors:S9"],
+          "label": "foster",
+          "words": ["foster*"],
+          "unless": "\\bcross-foster\\w*|\\bfoster (?:dams?|mothers?|pups?|litters?|parents?|care|homes?)\\b|\\b(?:pups?|litters?|mice|rats?|offspring) (?:were |was )?(?:cross-)?fostered\\b|\\bfostered (?:within|to|onto)\\b",
+          "lower_only": true,
+          "note": "Exceptions from the author's list: rodent husbandry terms. Pups or litters that were fostered, and fostered within or to a line, count too. The first letter must be lower case, so the surname Foster stays quiet."
+        },
+        {
+          "tier": "T1",
+          "sources": ["corpus:S10", "authors:S1", "authors:S2", "authors:S6", "authors:S9"],
+          "label": "paradigm",
+          "words": ["paradigm*"],
+          "unless": "\\b(?:experimental|behaviou?ral|training|conditioning|task|learning|stimulation|testing) paradigms?\\b|\\b(?:open[- ]field|forced[- ]choice|two[- ]choice|Pavlovian|operant|go/no-go|oddball|stop-signal) paradigms?\\b",
+          "note": "Exception from the author's list: paradigm as the name of an experimental design. Named designs such as open-field and forced-choice count too."
+        },
+        {
+          "tier": "T3",
+          "sources": ["authors:S1", "authors:S6", "authors:S9"],
+          "label": "vital",
+          "words": ["vital"],
+          "unless": "\\bvital (?:signs?|dyes?|stain\\w*|rates?|capacity)\\b",
+          "note": "Exceptions from the author's list: vital signs, dyes, staining, rates and capacity."
+        }
+      ]
+    },
+    {
+      "id": "figurative-load",
+      "title": "Figurative load words",
+      "mode": "each",
+      "max_per_1000": null,
+      "strategy": "Replace the figure with the literal term for the relation that the figure names.",
+      "delete_ok": false,
+      "rules": [
+        {
+          "tier": "T3",
+          "sources": ["authors:S11"],
+          "label": "load-bearing",
+          "words": ["load-bearing"],
+          "unless": "\\bload[- ]bearing\\s+(?:bone|bones|cartilage|joints?|structures?|tissues?|walls?|limbs?|surfaces?|regions?|segments?)\\b",
+          "note": "Exception from the author's list: a load-bearing bone, cartilage, joint or structure."
+        },
+        {
+          "tier": "T3",
+          "sources": ["authors:S11"],
+          "label": "cornerstone",
+          "words": ["cornerstone*"]
+        },
+        {
+          "tier": "T3",
+          "sources": ["authors:S11"],
+          "label": "backbone",
+          "words": ["backbone*"],
+          "unless": "\\b(?:peptide|protein|polypeptide|carbon|sugar[- ]phosphate|phosphodiester|DNA|RNA|amide|polymer|main[- ]chain)\\s+backbones?\\b|\\bbackbone\\s+(?:atoms?|dihedrals?|RMSD|torsions?|angles?|conformations?)\\b|\\b(?:neural|network|networks|architecture|encoder|ResNet|transformer)\\b",
+          "note": "Exceptions from the author's list: the peptide, protein, carbon and sugar-phosphate backbone, and the backbone of a neural network."
+        },
+        {
+          "tier": "T1",
+          "sources": ["corpus:S10", "corpus:S15", "corpus:S20", "wikipedia:S1", "guides:S2", "guides:S5", "guides:S6", "guides:S8", "authors:S1", "authors:S2", "authors:S6", "authors:S9"],
+          "label": "tapestry",
+          "words": ["tapestr*"],
+          "unless": "\\bTapestri\\b",
+          "note": "Exception from the author's list: Tapestri, the name of a single-cell platform."
+        },
+        {
+          "tier": "T2",
+          "sources": ["corpus:S20", "wikipedia:S1", "guides:S1", "guides:S6", "authors:S1", "authors:S6", "authors:S9"],
+          "label": "landscape",
+          "words": ["landscape*"],
+          "unless": "\\b(?:fitness|energy|adaptive|epigenetic|mutational|conformational|selection|Waddington|rugged|local|smooth|neutral|sequence|functional|molecular|evolutionary|regulatory)\\s+landscapes?\\b|\\blandscape\\s+(?:mode|orientation|format)\\b|\\b(?:species|ecolog|marine|genom|chromatin|epigenomic|microbi|habitat|forest)",
+          "severity": "info",
+          "note": "Exceptions from the author's list and the spec: fitness, energy, adaptive, rugged and similar landscapes, page orientation. A sentence with an ecological or genomic context word is quiet. The hit is info: the word has many literal uses, and 3 of 3 hits in a pilot were literal."
+        },
+        {
+          "tier": "T3",
+          "sources": ["authors:S1"],
+          "label": "ecosystem",
+          "words": ["ecosystem*"],
+          "unless": "\\b(?:species|ecolog|marine|genom|chromatin|epigenomic|microbi|habitat|forest)|\\b(?:lake|river|ocean|freshwater|reef|wetland|soil|coral|plankton|biodiversity|wildlife|aquatic|terrestrial)",
+          "note": "The spec skips a sentence with an ecological or genomic context word. The list adds lake, river, ocean, soil and similar words, after a pilot on 20 papers showed a plastic-waste sentence."
+        },
+        {
+          "tier": "T2",
+          "sources": ["guides:S1", "authors:S1", "authors:S2"],
+          "label": "game-changer",
+          "words": ["game-chang*"]
+        },
+        {
+          "tier": "T2",
+          "sources": ["wikipedia:S1", "guides:S1"],
+          "label": "deep dive",
+          "words": ["deep dive*"]
+        },
+        {
+          "tier": "T2",
+          "sources": ["guides:S1"],
+          "label": "lean into",
+          "regex": "\\blean(?:s|ed|ing)? into\\b"
+        }
+      ]
+    },
+    {
+      "id": "binary-contrast",
+      "title": "Binary contrast",
+      "mode": "each",
+      "max_per_1000": null,
+      "strategy": "State the positive claim once. Drop the denied half unless a reader holds that view or a test addressed it.",
+      "delete_ok": false,
+      "rules": [
+        {
+          "tier": "T2",
+          "sources": ["corpus:S20", "wikipedia:S1", "guides:S1", "guides:S2", "guides:S5", "authors:S1", "authors:S2"],
+          "label": "not just X but Y",
+          "regex": "(?:\\bnot|n['\\u2019]t) just\\b[^.;?!]{0,160}?\\bbut\\b|(?:\\bnot|n['\\u2019]t) just\\b[^.;?!]{1,100}[,;]\\s+(?:it|this|that|they)\\b"
+        },
+        {
+          "tier": "T2",
+          "sources": ["corpus:S20", "wikipedia:S1", "guides:S5", "authors:S6", "authors:S9"],
+          "label": "not only X but also Y",
+          "regex": "\\bnot only\\b[^.;?!]{0,160}?\\bbut\\b",
+          "severity": "info",
+          "note": "This construction is common in plain science text, so the hit is info."
+        },
+        {
+          "tier": "T2",
+          "sources": ["corpus:S20", "wikipedia:S1", "guides:S1", "guides:S6", "authors:S1", "authors:S2"],
+          "label": "is not X, it is Y",
+          "regex": "\\b(?:is|was|are|were|do|does|did)(?: not|n['\\u2019]t)\\b[^.;?!]{1,100},\\s+(?:it|this|that|they)(?:['\\u2019]s|['\\u2019]re| is| was| are| were)\\b(?!\\s+(?:not|likely|possible|unlikely|probable|clear|unclear|important|necessary|worth|also|known|true|that|because|difficult|hard|impossible)\\b)",
+          "unless": "\\b[pn]\\s*[=<>]|\\bFigs?\\b\\.?\\s*\\d|\\bFigures?\\s+\\d|\\bTables?\\s+\\d",
+          "unless_citation": true,
+          "note": "A sentence that rules out a tested alternative is quiet when it holds p, n, a figure or table reference, or a citation. The lookahead leaves out stock clauses such as it is likely and it is not possible."
+        },
+        {
+          "tier": "T2",
+          "sources": ["corpus:S20", "wikipedia:S1", "guides:S1", "guides:S2", "guides:S6"],
+          "label": "it's not X, it's Y",
+          "regex": "\\b(?:it|this|that)['\\u2019]s not\\b[^.;?!]{1,100},\\s+(?:it|this|that)(?:['\\u2019]s| is| was)\\b(?!\\s+(?:not|likely|possible|unlikely|probable|clear|unclear|important|necessary|worth|also|known|true|that|because|difficult|hard|impossible)\\b)",
+          "unless": "\\b[pn]\\s*[=<>]|\\bFigs?\\b\\.?\\s*\\d|\\bFigures?\\s+\\d|\\bTables?\\s+\\d",
+          "unless_citation": true,
+          "note": "A sentence that rules out a tested alternative is quiet when it holds p, n, a figure or table reference, or a citation. The lookahead leaves out stock clauses such as it is likely and it is not possible."
+        },
+        {
+          "tier": "T2",
+          "sources": ["corpus:S20", "wikipedia:S1", "guides:S1", "guides:S2", "guides:S6", "authors:S1", "authors:S2"],
+          "label": "is not X; it is Y",
+          "regex": "(?:\\b(?:is|was|are|were|do|does|did)(?: not|n['\\u2019]t)|\\b(?:it|this|that)['\\u2019]s not)\\b[^.;?!]{1,100};\\s+(?:it|this|that|they)(?:['\\u2019]s|['\\u2019]re| is| was| are| were)\\b(?!\\s+(?:not|likely|possible|unlikely|probable|clear|unclear|important|necessary|worth|also|known|true|that|because|difficult|hard|impossible)\\b)",
+          "unless": "\\b[pn]\\s*[=<>]|\\bFigs?\\b\\.?\\s*\\d|\\bFigures?\\s+\\d|\\bTables?\\s+\\d",
+          "unless_citation": true,
+          "severity": "info",
+          "note": "The semicolon form is common in plain science text, so the hit is info. A sentence that rules out a tested alternative is quiet when it holds p, n, a figure or table reference, or a citation."
+        },
+        {
+          "tier": "T2",
+          "sources": ["corpus:S20", "wikipedia:S1"],
+          "label": "is not a X but a Y",
+          "regex": "\\b(?:is|was|are|were) not (?:an?|the)\\b[^.;?!,]{1,50}\\bbut (?:an?|the)\\b"
+        },
+        {
+          "tier": "T3",
+          "sources": ["authors:S1"],
+          "label": "less about X, more about Y",
+          "regex": "\\bless (?:about|an?)\\b[^.;?!]{1,60}?(?:[,;]\\s*|\\s+and\\s+)more (?:about|an?)\\b"
+        },
+        {
+          "tier": "T3",
+          "sources": ["authors:S1"],
+          "label": "a X, not a Y",
+          "regex": "\\b(?:an?|the)\\s+\\w+(?:\\s+\\w+)?,\\s+not\\s+(?:an?|the)\\s+\\w+",
+          "severity": "info",
+          "note": "Both nouns can name literal scientific entities. The detector flags and the model decides."
+        },
+        {
+          "tier": "T2",
+          "sources": ["guides:S1", "authors:S2"],
+          "label": "Not a X.",
+          "regex": "^Not (?:an?|the) [^.!?]{1,40}[.!?]?$",
+          "unless": "^Not an? (?:single|one)\\b",
+          "case_sensitive": true,
+          "note": "A sentence rule: a short fragment that starts with Not a. The three-fragment form Not a X. Not a Y. A Z. spans sentences and belongs to the staccato check."
+        },
+        {
+          "tier": "T2",
+          "sources": ["guides:S1"],
+          "label": "not because X, but because Y",
+          "regex": "\\bnot because\\b[^.;?!]{1,120}[,;]?\\s*but because\\b"
+        },
+        {
+          "tier": "T2",
+          "sources": ["wikipedia:S1"],
+          "label": "no X, no Y, just Z",
+          "regex": "\\bno [^.;?!,]{1,40}, no [^.;?!,]{1,40}, (?:just|only)\\b"
+        },
+        {
+          "tier": "T2",
+          "sources": ["corpus:S20", "wikipedia:S1", "guides:S5"],
+          "label": "prioritizing X rather than Y",
+          "regex": "\\b(?:prioriti[sz]ing|favou?ring|emphasi[sz]ing)\\b[^.;?!]{1,60}\\brather than\\b",
+          "note": "Rather than also states honest comparisons, so the rule needs a participle before it."
+        },
+        {
+          "tier": "T2",
+          "sources": ["guides:S2"],
+          "label": "does not mean X, it means Y",
+          "regex": "\\b(?:this|that|it) does(?: not|n['\\u2019]t) mean\\b[^.;?!]{1,100}[;,]\\s+it means\\b"
+        },
+        {
+          "tier": "T2",
+          "sources": ["guides:S2"],
+          "label": "not mainly about X",
+          "regex": "\\b(?:this|it|that) (?:isn['\\u2019]t|is not|wasn['\\u2019]t|was not) (?:mainly|really|primarily|just|simply|only) about\\b|\\bI(?:['\\u2019]m| am) not saying\\b"
+        },
+        {
+          "tier": "T2",
+          "sources": ["wikipedia:S1"],
+          "label": "is not X; rather, it is Y",
+          "regex": "\\b(?:is|was|are|were) not\\b[^.?!]{1,100}[;,]\\s*rather,?\\s+(?:it|this|that|they)\\b"
+        }
+      ]
+    },
+    {
+      "id": "importance-puffery",
+      "title": "Importance puffery",
+      "mode": "each",
+      "max_per_1000": null,
+      "strategy": "Replace the praise with the measured result or the cited fact that supports it.",
+      "delete_ok": true,
+      "rules": [
+        {
+          "tier": "T2",
+          "sources": ["corpus:S20", "wikipedia:S1", "guides:S2", "guides:S5", "authors:S2", "authors:S11", "craft:S8"],
+          "label": "stands as a testament",
+          "regex": "\\b(?:stands?|stood|standing|serves?|served|serving) as (?:an?|the) (?:testament|reminder)\\b|\\b(?:is|was|are|were) (?:an?|the) (?:testament|reminder) (?:to|of|that)\\b",
+          "unless_citation": true,
+          "note": "A cited role in the same sentence is quiet."
+        },
+        {
+          "tier": "T2",
+          "sources": ["corpus:S20", "wikipedia:S1", "guides:S5", "authors:S2", "authors:S11", "craft:S8"],
+          "label": "plays a pivotal role",
+          "regex": "\\bplay(?:s|ed|ing)? an? (?:vital|pivotal|crucial) role\\b",
+          "unless_citation": true,
+          "note": "A cited role in the same sentence is quiet."
+        },
+        {
+          "tier": "T2",
+          "sources": ["corpus:S20", "wikipedia:S1", "guides:S2", "authors:S6", "authors:S9", "craft:S8"],
+          "label": "plays a key role",
+          "regex": "\\bplay(?:s|ed|ing)? an? (?:key|significant) role\\b",
+          "unless_citation": true,
+          "severity": "info",
+          "note": "A cited role in the same sentence is quiet. Plays a key role is common in plain science text, so the hit is info."
+        },
+        {
+          "tier": "T2",
+          "sources": ["corpus:S20", "wikipedia:S1", "guides:S5", "guides:S6", "authors:S2", "authors:S11", "craft:S8"],
+          "label": "marks a turning point",
+          "regex": "\\bmarks? an? (?:pivotal|turning|watershed|crucial|vital|significant|key) (?:moment|point)\\b",
+          "unless_citation": true,
+          "note": "A cited role in the same sentence is quiet."
+        },
+        {
+          "tier": "T3",
+          "sources": ["authors:S2", "authors:S11"],
+          "label": "solidifies its position",
+          "regex": "\\bsolidif(?:y|ies|ied|ying) (?:its|their) (?:position|place)\\b",
+          "unless_citation": true,
+          "note": "A cited role in the same sentence is quiet."
+        },
+        {
+          "tier": "T2",
+          "sources": ["corpus:S20", "wikipedia:S1", "authors:S2", "authors:S11", "craft:S8"],
+          "label": "underscores its importance",
+          "regex": "\\b(?:underscor|highlight)\\w+ (?:its|their|the) (?:importance|significance)\\b",
+          "unless_citation": true,
+          "note": "A cited role in the same sentence is quiet."
+        },
+        {
+          "tier": "T2",
+          "sources": ["corpus:S20", "wikipedia:S1", "guides:S5"],
+          "label": "sets the stage",
+          "regex": "\\bsetting the stage for\\b|\\breflect(?:s|ing)? (?:a )?broader (?:trends?|themes?|movements?|societal|cultural|historical)\\b|\\bevolving landscape\\b|\\bindelible mark\\b"
+        },
+        {
+          "tier": "T2",
+          "sources": ["corpus:S20", "wikipedia:S1"],
+          "label": "focal point",
+          "regex": "\\bfocal point\\b",
+          "unless": "\\b(?:lens|lenses|objective|microscop\\w*|optic\\w*|laser|beam|imaging|image|camera)\\b",
+          "note": "Focal point is an optics term, so a sentence with an optics word is quiet."
+        },
+        {
+          "tier": "T2",
+          "sources": ["corpus:S20", "wikipedia:S1"],
+          "label": "deeply rooted",
+          "regex": "\\bdeeply rooted\\b",
+          "unless": "\\b(?:plants?|roots?|trees?|phylogen\\w*|lineages?|clades?|taxa|nodes?)\\b",
+          "note": "Deeply rooted is a phylogeny term, so a sentence with a plant or tree word is quiet."
+        },
+        {
+          "tier": "T2",
+          "sources": ["wikipedia:S1"],
+          "label": "promotional words",
+          "regex": "\\bnestled\\b|\\bdiverse array\\b|\\bexemplif(?:ies|ying)\\b",
+          "note": "Only the present tense matches. Exemplified by is plain wording in science."
+        },
+        {
+          "tier": "T2",
+          "sources": ["guides:S1"],
+          "label": "high stakes",
+          "regex": "\\bthe stakes are (?:high|enormous)\\b|\\bthe implications are (?:significant|profound|far-reaching)\\b"
+        },
+        {
+          "tier": "T2",
+          "sources": ["guides:S3"],
+          "label": "bright future",
+          "regex": "\\bthe future (?:looks|is|remains) bright\\b"
+        },
+        {
+          "tier": "T2",
+          "sources": ["guides:S2", "guides:S3", "guides:S5"],
+          "label": "despite challenges",
+          "regex": "\\bdespite (?:these|its|such|the)\\b[^.;?!]{1,60}\\bchallenges\\b[^.;?!]{0,80}\\bcontinues? to (?:thrive|grow|evolve|play|shape|drive|inspire)\\b",
+          "note": "Only the formula matches. A Despite these limitations sentence in a Discussion is quiet."
+        }
+      ]
+    },
+    {
+      "id": "participial-benefit",
+      "title": "Trailing participial benefit clause",
+      "mode": "each",
+      "max_per_1000": null,
+      "strategy": "Move the clause into its own sentence with a subject and a verb. Delete it when it states a benefit that the data do not show.",
+      "delete_ok": false,
+      "rules": [
+        {
+          "tier": "T1",
+          "sources": ["corpus:S15", "corpus:S17", "wikipedia:S1", "guides:S2", "guides:S5", "guides:S6", "authors:S1", "authors:S2", "craft:S10"],
+          "label": "trailing participial clause",
+          "regex": ",\\s+(?:highlighting|underscoring|emphasi[sz]ing|showcasing|ensuring|paving the way)\\b",
+          "unless": "\\bensuring\\b[^.;?!]{0,50}\\b(?:by|using|via|through)\\b",
+          "note": "The measurements of corpus:S15 and corpus:S17 count all participial clauses. They do not isolate the trailing benefit clause. The guides name the trailing clause (T2). Methods text that names the step that gives the property is quiet: ensuring followed by by, using, via or through."
+        },
+        {
+          "tier": "T1",
+          "sources": ["corpus:S15", "corpus:S17", "wikipedia:S1", "guides:S2", "guides:S5", "guides:S6", "authors:S1", "authors:S2", "craft:S10"],
+          "label": "mild participial clause",
+          "regex": ",\\s+(?:making|allowing|enabling|reflecting|symbolizing|contributing to|cultivating|fostering|encompassing|enhancing|yielding)\\b",
+          "severity": "info",
+          "note": "These verbs also start plain result clauses in Methods and Results. The hit is info. The corpus counts cover all participial clauses."
+        },
+        {
+          "tier": "T2",
+          "sources": ["wikipedia:S1", "guides:S5"],
+          "label": "valuable insights",
+          "regex": "\\bvaluable insights?\\b"
+        }
+      ]
+    },
+    {
+      "id": "weasel-attribution",
+      "title": "Weasel attribution",
+      "mode": "each",
+      "max_per_1000": null,
+      "strategy": "Name the source with a citation. With no source, state the claim as your own or delete it. Never add a citation.",
+      "delete_ok": true,
+      "rules": [
+        {
+          "tier": "T2",
+          "sources": ["corpus:S20", "wikipedia:S1", "guides:S2", "guides:S5", "guides:S6", "guides:S7", "authors:S2", "craft:S8"],
+          "label": "studies show",
+          "regex": "(?<!\\bthe )(?<!\\bthese )(?<!\\bthose )(?<!\\bour )(?<!\\bboth )(?<!\\bsuch )(?<!\\btwo )(?<!\\bthree )\\b(?:experts|researchers|scientists|studies|reports|critics)(?: have)?\\s+(?:agree|argu|say|suggest|show|believ|claim)\\w*\\b",
+          "unless_citation": true,
+          "note": "A citation in the same sentence makes the rule quiet. The determiners the, these, those, our, both, such, two and three before the noun keep the rule quiet, because they point to cited work."
+        },
+        {
+          "tier": "T2",
+          "sources": ["corpus:S20", "wikipedia:S1", "authors:S2", "craft:S8"],
+          "label": "many argue",
+          "regex": "\\bmany (?:argue|say|believe)\\b|\\bwidely (?:regarded|considered)\\b|\\bsome (?:critics|experts|observers) (?:argue|say|believe|have)\\b",
+          "unless_citation": true,
+          "note": "A citation in the same sentence makes the rule quiet."
+        },
+        {
+          "tier": "T2",
+          "sources": ["corpus:S20", "wikipedia:S1", "guides:S2", "guides:S5"],
+          "label": "industry reports",
+          "regex": "\\bindustry reports\\b|\\bobservers have\\b|\\bseveral (?:sources|publications)\\b",
+          "unless_citation": true,
+          "note": "A citation in the same sentence makes the rule quiet."
+        },
+        {
+          "tier": "T2",
+          "sources": ["guides:S6"],
+          "label": "research suggests",
+          "regex": "(?<!\\bour )(?<!\\bthis )(?<!\\bthe )(?<!\\bmy )\\bresearch (?:suggests|shows|indicates|has shown|have shown)\\b",
+          "unless_citation": true,
+          "note": "A citation in the same sentence makes the rule quiet. Our research, this research and the research keep the rule quiet, because they point to the author's own work."
+        },
+        {
+          "tier": "T3",
+          "sources": ["authors:S1"],
+          "label": "vague quantity",
+          "regex": "\\b(?:most|many|several|numerous) (?:users|researchers|studies|experts|people)\\b|\\babout \\d+\\s?% of (?:the )?(?:cases|users|people|researchers|studies|experts)\\b",
+          "unless": "\\bn\\s*=|\\bFigs?\\b\\.?\\s*\\d|\\bFigures?\\s+\\d|\\bTables?\\s+\\d",
+          "unless_citation": true,
+          "note": "A citation, a figure or table reference or n = in the same sentence makes the rule quiet. The author's list also names about 40% of cases. A pilot on 20 papers showed that most other about N% hits were plain approximate measurements, so only about N% of a vague group matches."
+        }
+      ]
+    },
+    {
+      "id": "fake-strong-verb",
+      "title": "Fake-strong verbs",
+      "mode": "each",
+      "max_per_1000": null,
+      "strategy": "Use the verb that names the action, or use `is`.",
+      "delete_ok": false,
+      "rules": [
+        {
+          "tier": "T2",
+          "sources": ["corpus:S20", "wikipedia:S1", "guides:S2", "guides:S5", "guides:S6", "authors:S2", "authors:S11"],
+          "label": "stands as a",
+          "regex": "\\b(?:stands?|stood|standing) as an?\\b"
+        },
+        {
+          "tier": "T2",
+          "sources": ["corpus:S20", "wikipedia:S1", "guides:S2", "guides:S5", "guides:S6", "authors:S2", "authors:S11"],
+          "label": "serves as praise",
+          "regex": "\\b(?:serves?|served|serving|acts?|acted|acting|functions?|functioned|functioning|operates?|operated|operating) as (?:an? )?(?:(?:powerful|vital|crucial|critical|important|stark|poignant|compelling)\\b|(?:testament|reminder|cornerstone|symbol|beacon|blueprint|roadmap|window|gateway)\\b)",
+          "note": "The rule flags a praise noun or a praise adjective after the verb. A plain role such as acts as a negative regulator is quiet."
+        },
+        {
+          "tier": "T2",
+          "sources": ["corpus:S20", "wikipedia:S1", "guides:S2", "guides:S5", "guides:S6", "authors:S2", "authors:S11"],
+          "label": "serves as a figure",
+          "regex": "\\b(?:serves?|served|serving|acts?|acted|acting|functions?|functioned|functioning|operates?|operated|operating) as (?:an? )?(?:bridge|catalyst|example|illustration)\\b",
+          "severity": "info",
+          "note": "These nouns can name a real role in chemistry or biology, so the hit is info."
+        }
+      ]
+    },
+    {
+      "id": "throat-clearing",
+      "title": "Throat-clearing and signposting",
+      "mode": "density",
+      "max_per_1000": 2,
+      "strategy": "Delete the opener and start with the claim.",
+      "delete_ok": true,
+      "note": "No source gives a threshold. The value 2 per 1000 words is the plugin default, and the project file can change it. Row T6 of the corpus note (corpus:S10) shows that Importantly, Moreover, Furthermore and Thus fell, so the family never uses each mode.",
+      "rules": [
+        {
+          "tier": "T2",
+          "sources": ["wikipedia:S1", "guides:S3", "guides:S6", "guides:S7", "guides:S8", "authors:S1", "authors:S2", "authors:S6", "authors:S9"],
+          "label": "it is worth noting that",
+          "regex": "\\bit(?:['\\u2019]s| is) (?:worth noting|important to (?:note|remember|understand|recognize|keep in mind)|crucial to (?:note|differentiate|remember|understand))\\b"
+        },
+        {
+          "tier": "T2",
+          "sources": ["wikipedia:S1", "authors:S1", "authors:S2"],
+          "label": "sentence adverb",
+          "regex": "(?:^|[.!?]\\s+)(?:Interestingly|Notably|Essentially|Fundamentally|Crucially|Simply put)\\b",
+          "case_sensitive": true
+        },
+        {
+          "tier": "T3",
+          "sources": ["authors:S1", "authors:S2"],
+          "label": "Importantly,",
+          "regex": "(?:^|[.!?]\\s+)Importantly\\b",
+          "case_sensitive": true,
+          "note": "Row T6 of the corpus note (corpus:S10) shows that importantly fell from 7.3% to 6.0% of MDPI articles, so no corpus key backs this rule. The author lists it."
+        },
+        {
+          "tier": "T2",
+          "sources": ["guides:S2", "authors:S1", "authors:S2"],
+          "label": "stock opener",
+          "regex": "\\bat its core\\b|\\bat the end of the day\\b|\\bin today['\\u2019]s (?:world|landscape)\\b|\\bin the (?:age|world) of\\b|\\bas we all know\\b|\\bthe (?:reality|truth) is\\b|\\bgoing forward\\b|\\bwhen it comes to\\b"
+        },
+        {
+          "tier": "T3",
+          "sources": ["authors:S1", "authors:S2"],
+          "label": "in this article",
+          "regex": "\\b[Ii]n this article\\b",
+          "case_sensitive": true,
+          "note": "In this Article with a capital A is quiet, because Nature-family text uses it for the article itself."
+        },
+        {
+          "tier": "T2",
+          "sources": ["guides:S1", "guides:S2", "guides:S6", "authors:S1", "authors:S2"],
+          "label": "chatty opener",
+          "regex": "\\bhere['\\u2019]s (?:the thing|what i mean|what nobody tells you)\\b|\\blet me be clear\\b|\\bi['\\u2019]ll be honest\\b|\\bthe uncomfortable truth is\\b|\\blet['\\u2019]s (?:dive|get started)\\b|\\bdive (?:in|into)\\b|\\bit turns out\\b|\\blet that sink in\\b"
+        },
+        {
+          "tier": "T2",
+          "sources": ["guides:S1", "craft:S2", "craft:S6"],
+          "label": "in this section, we",
+          "regex": "\\bin this (?:section|subsection|paragraph|chapter),? we(?:['\\u2019]ll| will| describe| present| discuss| show| review| outline)\\b",
+          "note": "A roadmap sentence. Keep the sentence that states the question that a Results paragraph answers."
+        },
+        {
+          "tier": "T2",
+          "sources": ["guides:S8"],
+          "label": "on the one hand",
+          "regex": "\\bon the one hand\\b[^.?!]{0,200}\\bon the other hand\\b"
+        }
+      ]
+    },
+    {
+      "id": "recap-opener",
+      "title": "Recap openers",
+      "mode": "density",
+      "max_per_1000": 1,
+      "strategy": "Delete the opener word and keep the statement when it draws a new inference.",
+      "delete_ok": true,
+      "note": "No source gives a threshold. The value 1 per 1000 words is the plugin default. Taken together is density only.",
+      "rules": [
+        {
+          "tier": "T2",
+          "sources": ["wikipedia:S1", "guides:S5", "guides:S8", "authors:S2", "authors:S11"],
+          "label": "recap opener",
+          "regex": "(?:^|[.!?]\\s+)(?:In conclusion|In summary|Ultimately|Overall|Taken together),",
+          "case_sensitive": true,
+          "note": "Overall survival has no comma and stays quiet. Keep the first sentence of a Conclusions section and a summary that opens a Discussion."
+        }
+      ]
+    },
+    {
+      "id": "em-dash",
+      "title": "Em dash",
+      "mode": "density",
+      "max_per_1000": 2.5,
+      "strategy": "Use commas or parentheses for an aside, a period for a second clause and a colon for a list.",
+      "delete_ok": false,
+      "rules": [
+        {
+          "tier": "T1",
+          "sources": ["corpus:S6", "corpus:S13", "wikipedia:S1", "guides:S2", "guides:S5", "guides:S6", "authors:S1", "authors:S2", "authors:S7", "authors:S9"],
+          "label": "em dash",
+          "regex": "\u2014|(?<!-)---(?!-)",
+          "note": "The T1 key is a population measure: Discussion sections with an em dash rose from 4.23% to 11.58% in medRxiv preprints (corpus:S6). No source gives a density threshold for science text (corpus.md row P8). The value 2.5 per 1000 words equals max(1, words // 400) of the author's audit (authors:S7). Corpus:S13 counts 0.68 to 1.41 dash marks of all kinds per 1000 tokens in CHI papers from 1982 to 2025. The em dash is a population marker. It does not test one document. Corpus row P8 has no data for the LaTeX --- form."
+        },
+        {
+          "tier": "T2",
+          "sources": ["guides:S2", "guides:S6"],
+          "label": "spaced dash",
+          "regex": "(?<=[A-Za-z0-9,)]) (?:--|\u2013) (?=[A-Za-z(])",
+          "note": "A spaced double hyphen or spaced en dash between words stands in for an em dash. A numeric range is quiet."
+        }
+      ]
+    },
+    {
+      "id": "colon-reveal",
+      "title": "Colon reveal",
+      "mode": "each",
+      "max_per_1000": null,
+      "strategy": "State the finding as the main clause.",
+      "delete_ok": false,
+      "rules": [
+        {
+          "tier": "T3",
+          "sources": ["authors:S2", "authors:S11"],
+          "label": "The X is Y: z",
+          "regex": "(?:^|[.!?]\\s+)The (?:answer|result|reason|problem|catch|difference|truth|point|upshot|finding|explanation|takeaway) (?:is|was) [a-z-]+: [A-Za-z0-9(]",
+          "case_sensitive": true,
+          "note": "The announce-then-reveal shape: a short abstract noun, is or was, one word, a colon. A colon before a list or after a longer lead-in is quiet."
+        },
+        {
+          "tier": "T3",
+          "sources": ["authors:S2", "authors:S11"],
+          "label": "found one reason",
+          "regex": "(?:^|[.!?]\\s+)We (?:found|noticed|saw|identified|observed) (?:one|a|an|the)(?: [a-z-]+){0,2} (?:explanation|reason|answer|catch|surprise|clue|possibility): \\S",
+          "case_sensitive": true,
+          "note": "Only singular abstract nouns match. A colon before a list of named items is quiet."
+        }
+      ]
+    },
+    {
+      "id": "rhetorical-question",
+      "title": "Rhetorical question answered at once",
+      "mode": "each",
+      "max_per_1000": null,
+      "strategy": "State the answer as a statement.",
+      "delete_ok": true,
+      "note": "No corpus supports this family. Row B2 of the corpus note (corpus:S16, essays) finds fewer rhetorical questions in LLM text, 2.28 per document against 5.55 for human experts. The tier stays T3 with the author's keys. guides:S1 and guides:S6 list the pattern at T2, and the measurement argues against it. Task 5 reads the params. With skip_paragraph_start it skips a question that opens its paragraph.",
+      "check": "question_answer",
+      "params": {
+        "answers": ["this", "that", "the", "it", "we", "yes", "no", "because", "simply", "here", "our", "these"],
+        "skip_paragraph_start": true
+      },
+      "tier": "T3",
+      "sources": ["authors:S1", "authors:S2"]
+    },
+    {
+      "id": "assistant-residue",
+      "title": "Assistant residue",
+      "mode": "each",
+      "max_per_1000": null,
+      "strategy": "Delete the whole span and tell the author to check the sentences that followed it.",
+      "delete_ok": true,
+      "rules": [
+        {
+          "tier": "T2",
+          "sources": ["wikipedia:S1", "guides:S2", "guides:S5", "guides:S6"],
+          "label": "chat opener",
+          "regex": "^(?:Certainly|Of course|Absolutely|Sure thing)!|\\bI hope (?:this|that) helps\\b|\\bwould you like me to\\b|\\bis there anything else\\b"
+        },
+        {
+          "tier": "T2",
+          "sources": ["wikipedia:S1"],
+          "label": "here is the revised",
+          "regex": "\\bhere(?:['\\u2019]s| is| are) (?:the|a|an|your) (?:revised|updated|rewritten|improved|polished|edited|corrected)\\b"
+        },
+        {
+          "tier": "T2",
+          "sources": ["corpus:S20", "wikipedia:S1"],
+          "label": "as an AI",
+          "regex": "\\bas an? (?:AI|artificial intelligence)(?: language model| assistant| model)?\\b|\\bas a large language model\\b"
+        },
+        {
+          "tier": "T2",
+          "sources": ["wikipedia:S1"],
+          "label": "refusal",
+          "regex": "\\bI (?:cannot|can['\\u2019]t|can not|am unable to|am not able to) (?:verify|offer|provide|access|browse|confirm|help)\\b|\\bI(?:['\\u2019]m| am) sorry,? but\\b"
+        },
+        {
+          "tier": "T2",
+          "sources": ["wikipedia:S1", "guides:S2", "guides:S6"],
+          "label": "knowledge cutoff",
+          "regex": "\\bup to my last (?:training|knowledge) update\\b|\\bas of my last (?:training|knowledge) (?:update|cutoff)\\b|\\bmy knowledge cutoff\\b"
+        },
+        {
+          "tier": "T2",
+          "sources": ["corpus:S20", "wikipedia:S1"],
+          "label": "draft marker",
+          "regex": "\\bdelete this section before submission\\b|\\bregenerate response\\b"
+        },
+        {
+          "tier": "T2",
+          "sources": ["wikipedia:S1", "wikipedia:S4"],
+          "label": "chat label",
+          "regex": "^(?:You said|ChatGPT said|Claude responded|Claude said|Gemini said)\\s*:",
+          "case_sensitive": true
+        },
+        {
+          "tier": "T2",
+          "sources": ["wikipedia:S2"],
+          "label": "tool marker",
+          "regex": "contentReference|oaicite|oai_citation|\\bturn\\d+search\\d+\\b|attributableIndex|grok_card|grok_render_citation_card_json|ppl-ai-file-upload|\\[attached_file:\\d+\\]|\\[web:\\d+\\]|\\[cite:\\s*\\d+\\]|\\[span_\\d+\\]|:::writing\\{",
+          "note": "The masker hides URLs, so a tool tag inside a URL such as utm_source=openai cannot match. The tags above stay visible in prose."
+        },
+        {
+          "tier": "T2",
+          "sources": ["wikipedia:S1", "guides:S5", "guides:S6", "guides:S7"],
+          "label": "placeholder",
+          "regex": "\\[Your (?:Name|Institution|Affiliation)\\]|\\[(?:Describe|Insert|Add|Include) [^\\]\\n]{1,80}\\]|\\bINSERT_[A-Z0-9]+(?:_[A-Z0-9]+)*|\\bPASTE_[A-Z0-9_]+_HERE\\b|\\b20\\d\\d-XX-XX\\b|\\binsert table \\d+ here\\b",
+          "note": "A bare XX is not a match, because the author uses it as a marker for an unknown number."
+        },
+        {
+          "tier": "T2",
+          "sources": ["wikipedia:S1", "guides:S2", "guides:S5"],
+          "label": "source gap",
+          "regex": "\\bwhile (?:specific )?details are (?:limited|scarce)\\b|\\b(?:in|on|from) the provided (?:search results|sources|text|context)\\b",
+          "note": "Based on available information also occurs in human text, so it is not listed."
+        },
+        {
+          "tier": "T2",
+          "sources": ["wikipedia:S1", "guides:S2", "guides:S3", "authors:S1"],
+          "label": "sycophancy",
+          "regex": "\\bgreat question\\b|\\byou(?:['\\u2019]re| are) absolutely right\\b|\\bexcellent catch\\b|\\bi love this idea\\b",
+          "unless": "\\bthank\\w*\\b[^.!?]{0,80}\\breviewer",
+          "note": "Exception from the author's list: a response letter that thanks the reviewer."
+        },
+        {
+          "tier": "T3",
+          "sources": ["authors:S1"],
+          "label": "meta-narration",
+          "regex": "\\blet me (?:analy[sz]e|break|walk|explain|start)\\b|\\bi will now proceed\\b|\\bi have completed (?:the|this)\\b"
+        }
+      ]
+    },
+    {
+      "id": "hedge-stack",
+      "title": "Hedge stacking",
+      "mode": "each",
+      "max_per_1000": null,
+      "strategy": "Keep the one hedge that the data support. Delete the other hedge word.",
+      "delete_ok": false,
+      "rules": [
+        {
+          "tier": "T3",
+          "sources": ["authors:S1"],
+          "label": "modal and adverb",
+          "regex": "\\b(?:may|might|could|can)\\s+(?:potentially|possibly|perhaps)\\b|\\b(?:potentially|possibly)\\s+(?:may|might|could)\\b|\\bit seems (?:likely|possible) that (?:perhaps|maybe)\\b",
+          "note": "One hedge is allowed. Only a modal verb stacked with an adverb matches."
+        }
+      ]
+    },
+    {
+      "id": "repeated-openers",
+      "title": "Repeated sentence openers",
+      "mode": "each",
+      "max_per_1000": null,
+      "strategy": "Merge the sentences, or put the old information first so that each opener differs for a reason.",
+      "delete_ok": true,
+      "note": "Task 5 reads the params. For a sentence whose first word is in the ignore list, it compares the first ignored_compare_words words. So The assay, The assay, The assay flags and The cells, The medium, The plates does not.",
+      "check": "repeated_openers",
+      "params": {
+        "run": 3,
+        "ignore": ["the", "a", "an", "we", "in"],
+        "ignored_compare_words": 2
+      },
+      "tier": "T2",
+      "sources": ["guides:S2", "guides:S6", "guides:S7", "authors:S1"]
+    },
+    {
+      "id": "staccato-run",
+      "title": "Staccato run",
+      "mode": "each",
+      "max_per_1000": null,
+      "strategy": "Join three or more fragments into one or two sentences. Put the new fact last.",
+      "delete_ok": true,
+      "note": "Three sentences of five words or fewer. The threshold misses No config. No setup. (authors.md row R03). Figure legends, table notes and list items need the model check.",
+      "check": "staccato",
+      "params": {
+        "run": 3,
+        "max_words": 5
+      },
+      "tier": "T2",
+      "sources": ["guides:S1", "guides:S2", "guides:S6", "authors:S1", "authors:S2"]
+    }
+  ]
+}

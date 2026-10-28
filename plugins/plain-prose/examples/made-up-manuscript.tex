@@ -1,0 +1,73 @@
+% A made-up manuscript. The organisms, genes and numbers do not exist.
+% The file growth.pdf does not exist either. Compile nothing: the file only feeds the detector.
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{graphicx}
+
+\title{Light and growth in Zorbian moss}
+\author{Anonymous}
+
+\begin{document}
+\maketitle
+
+\begin{abstract}
+Zorbian moss grows slowly in dim light. Here we delve into the intricate response of its shoots to three light levels. The gene \emph{Marlin-2} limits growth in the shade, and the protein Tavo represses it.
+\end{abstract}
+
+\section{Introduction}
+
+Zorbian moss covers bare rock on the cold slopes of the Zorb valley. Earlier work measured its growth in the field and found a mean rate of 0.02 per day in full sun \cite{lorn2019}. The authors did not test the genes that act in the shoot, and they used one temperature only.
+
+Light is the cornerstone of moss growth, and the moss slows down when clouds hide the sun. Studies show that shaded colonies lose half of their shoots each year. It is worth noting that the colonies recover within two seasons.
+
+The slowdown is not just a stress response but a programmed pause. Marlin-2 plays a pivotal role in drought tolerance. We asked whether the same gene controls growth in dim light.
+
+\section{Methods}
+
+Colonies were collected at 2100 m and grown on agar plates. The plates were kept at 12 degrees Celsius under three light levels: 20, 60 and 180 units of photon flux. Shoot length was measured every week with a digital caliper. Tissue was frozen in liquid nitrogen at noon, and RNA was extracted from 24 shoots per level. Expression was quantified by a standard protocol that has been described before \cite{pell2020}.
+
+\section{Results}
+
+In this section, we describe the growth of the colonies. Shoots grew slowest in dim light (Figure~\ref{fig:growth}). Growth followed the model of Equation~\ref{eq:growth}, where $M$ is shoot length, $r$ is the growth rate, $K$ is the maximum length and $T$ is the level of Tavo.
+
+\begin{equation}
+\frac{dM}{dt} = r M \left( 1 - \frac{M}{K} \right) - c\,T\,M
+\label{eq:growth}
+\end{equation}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.8\linewidth]{growth.pdf}
+\caption{Shoot length of Zorbian moss under three light levels. Bars show the mean of 24 plants.}
+\label{fig:growth}
+\end{figure}
+
+Shoots were measured weekly, ensuring reproducibility across plates. Figure~\ref{fig:growth} stands as a summary of the growth curves. The table below lists the fitted rates. The rate in bright light was almost four times the rate in dim light.
+
+\begin{table}[t]
+\centering
+\begin{tabular}{lcc}
+Light level & Rate $r$ (per day) & Length $K$ (mm) \\
+Dim & 0.04 & 11 \\
+Medium & 0.09 & 19 \\
+Bright & 0.15 & 26 \\
+\end{tabular}
+\caption{Fitted growth rates.}
+\label{tab:rates}
+\end{table}
+
+Growth slowed. Shoots paled. Death followed at 48 h.
+
+The mutant grew slowly. The mutant lost the C-terminal domain. The mutant failed to bind Tavo.
+
+Tavo is a small protein of 140 amino acids. Why does Tavo limit growth? Because it represses Marlin-2. The result was clear: Tavo limits growth in dim light. Tavo may possibly repress Marlin-2 in the shade.
+
+\section{Discussion}
+
+Certainly! Here is the revised paragraph: the fitted rate rose with light, and the mutant did not respond. These data suggest that Tavo may limit growth through Marlin-2, although we did not test binding in living shoots. A second explanation is that light changes the supply of sugar to the shoot, which we cannot exclude.
+
+Overall, these data suggest that Marlin-2 limits shoot growth in dim light. We used a robust assay and a comprehensive panel of six mutants to utilize the full range of light. A crucial next step is to leverage a longer time series, because the moss grows so slowly. The mutant is small---about half the length of the wild type.
+
+Taken together, the colonies show a clear pattern. Light sets the rate of growth, and the shoots reach the maximum length of Table~\ref{tab:rates} within a season. We found no sign of damage in the shoots that we kept for two years, so the loss in the field probably has another cause. A test of that cause needs a field trial with shading cloth over six colonies.
+
+\end{document}
