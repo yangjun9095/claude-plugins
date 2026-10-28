@@ -1,6 +1,6 @@
 # plain-prose: design
 
-Status: implemented. The code, the data, the tests and the documents of this spec exist in `plugins/plain-prose/`. Agent sessions ran the precision pilot, the rewrite pilot and the discovery check (`tests/verification/evidence/results.md`). No person has run one of them, and the author's voice check is open. Section 13 lists the open items.
+Status: implemented. The code, the data, the tests and the documents of this spec exist in `plugins/plain-prose/`. Agent sessions ran the precision pilot, the rewrite pilot and the discovery check (`tests/verification/evidence/results.md`). No person has run the other three. The author ran the voice check on invented text on 2026-10-28. The check on the author's writing is open. Section 13 lists the open items.
 
 Date: 2026-10-23. The repository owner requested the plugin. The assistant wrote this spec from the brainstorming answers.
 
@@ -245,6 +245,6 @@ Fixtures use made-up text only. The repository is public. No manuscript text and
 
 - The final name. The working name is `plain-prose`.
 - Word files and a batch-patch apply mode, if the prompt count of `Edit` proves too high.
-- The precision pilot, the rewrite pilot, the voice check and the discovery check of section 11. They stay open until a person runs each pilot and records the result. Agent sessions ran the precision pilot, the rewrite pilot and the discovery check on 2026-10-23 and 2026-10-24. The author has not run one.
+- The precision pilot, the rewrite pilot, the voice check and the discovery check of section 11. They stay open until a person runs each pilot and records the result. Agent sessions ran the precision pilot, the rewrite pilot and the discovery check on 2026-10-23 and 2026-10-24. The author has not run one of them. The author ran the blind sample of the voice check on invented text on 2026-10-28. The check on the author's writing samples is open.
 
 Two items of the draft are closed. The data holds the threshold and the tier of each family. The plugin copies only family names and short examples from `no-ai-slop`, so version 1 needs no answer on its license.

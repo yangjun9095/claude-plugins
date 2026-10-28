@@ -140,9 +140,28 @@ A headless session ran once with the plugin folder as `--plugin-dir`, one turn a
 
 ## 5. Blind sample for the author
 
-`ab-sample.md` holds ten before-and-after pairs from run C, chosen with the fixed seed 7 among the reworded sentences, in random order as A and B. The file does not say which side is the revised one. The key was written to a separate file that is not in the repository. The author is the only judge of voice. The result goes in the record as the author gives it, without a score.
+`ab-sample.md` holds ten before-and-after pairs from run C, chosen with the fixed seed 7 among the reworded sentences, in random order as A and B. The file does not say which side is the revised one. The key stayed outside the repository until the author answered. The author is the only judge of voice. The result goes in the record as the author gave it, without a score.
 
 The pairs come from invented text that a model wrote to hold the patterns. They show whether the rewrites read well. They do not show whether the rewrites sound like the author.
+
+### The author's choices
+
+The author read the ten pairs on 2026-10-28 and gave one answer for each item. The revised version was A in items 1, 2, 3, 4 and 6, and B in items 5, 7, 8, 9 and 10.
+
+| Item | Author's choice | Version chosen |
+|---|---|---|
+| 1 | B | original |
+| 2 | A | revised |
+| 3 | A | revised |
+| 4 | A | revised |
+| 5 | A | original |
+| 6 | A | revised |
+| 7 | B | revised |
+| 8 | B | revised |
+| 9 | B | revised |
+| 10 | B | revised |
+
+The author kept the original in item 1 (`plays a crucial role` against `contributes to`) and in item 5 (the clause `, ensuring uniform germination across all lines`). The clause may carry information that the author wants in a Methods sentence, and the phrase may be one that the author accepts in their own voice. One reading of ten pairs does not settle either point.
 
 ## 6. How to repeat this
 

@@ -976,14 +976,16 @@ class SpecTests(unittest.TestCase):
                       section)
         self.assertIn("They stay open until a person runs each pilot and records the result", section)
         self.assertIn("Agent sessions ran the precision pilot, the rewrite pilot and the discovery check on 2026-10-23 "
-                      "and 2026-10-24. The author has not run one.", section)
+                      "and 2026-10-24. The author has not run one of them. The author ran the blind sample of the voice "
+                      "check on invented text on 2026-10-28. The check on the author's writing samples is open.", section)
 
     def test_the_status_line_names_the_pilots_that_agent_sessions_ran(self):
         # The record in results.md publishes the three runs, so the status line no longer calls every pilot open.
         status = [l for l in read_text(SPEC).split("\n") if l.startswith("Status:")][0]
         self.assertIn("implemented", status)
         self.assertIn("Agent sessions ran the precision pilot, the rewrite pilot and the discovery check "
-                      "(`tests/verification/evidence/results.md`). No person has run one of them, and the author's voice check is open.", status)
+                      "(`tests/verification/evidence/results.md`). No person has run the other three. The author ran the voice check "
+                      "on invented text on 2026-10-28. The check on the author's writing is open.", status)
         self.assertNotIn("The pilots of section 11 are open", status)
         self.assertTrue(os.path.isfile(os.path.join(PLUGIN_DIR, "tests", "verification", "evidence", "results.md")))
 
@@ -2659,6 +2661,36 @@ class ReadmeTests(unittest.TestCase):
         for name in ("rewrite-pilot-run-C-changes.txt", "rewrite-pilot-run-E-changes.txt"):
             self.assertTrue(os.path.isfile(os.path.join(PLUGIN_DIR, "tests", "verification", "evidence", name)))
         self.assertNotIn("because the precision pilot is open", read_text(README))
+
+    def test_the_record_holds_the_choices_of_the_voice_check_and_they_match_the_key(self):
+        # The record lists the ten choices of the author with the version chosen. The revised side of each item
+        # is the side of ab-sample.md that does not occur word for word in the fixture paragraphs.
+        evidence = os.path.join(PLUGIN_DIR, "tests", "verification", "evidence")
+        record = read_text(os.path.join(evidence, "results.md"))
+        sample = read_text(os.path.join(evidence, "ab-sample.md"))
+        fixtures = " ".join(" ".join(p["text"].split()) for p in json.loads(
+            read_text(os.path.join(PLUGIN_DIR, "tests", "verification", "fixtures", "paragraphs.json"))))
+        items = re.findall(r"## Item (\d+)\n\nA\. (.+)\n\nB\. (.+)\n", sample)
+        self.assertEqual([int(i[0]) for i in items], list(range(1, 11)))
+        revised_side = {}
+        for number, a_text, b_text in items:
+            in_a, in_b = " ".join(a_text.split()) in fixtures, " ".join(b_text.split()) in fixtures
+            self.assertNotEqual(in_a, in_b, "item %s: exactly one side must be the original" % number)
+            revised_side[int(number)] = "B" if in_a else "A"
+        rows = re.findall(r"^\| (\d+) \| ([AB]) \| (original|revised) \|$", record, re.M)
+        self.assertEqual([int(r[0]) for r in rows], list(range(1, 11)))
+        for number, choice, version in rows:
+            with self.subTest(item=number):
+                chose_revised = choice == revised_side[int(number)]
+                self.assertEqual(version, "revised" if chose_revised else "original")
+        key_a = [n for n, side in sorted(revised_side.items()) if side == "A"]
+        key_b = [n for n, side in sorted(revised_side.items()) if side == "B"]
+        self.assertIn("The revised version was A in items %s, and B in items %s." % (
+            ", ".join(str(n) for n in key_a[:-1]) + " and " + str(key_a[-1]),
+            ", ".join(str(n) for n in key_b[:-1]) + " and " + str(key_b[-1])), record)
+        # The record gives the choices without a score.
+        for phrase in ("out of 10", "out of ten", "of 10 pairs preferred", "preferred the rewrite in"):
+            self.assertNotIn(phrase, record)
 
     def test_a_lower_case_gene_name_with_no_digit_is_not_caught(self):
         result = guard_result("The plants grew.", "The plants grew near tavo.")
