@@ -62,6 +62,12 @@ class WordTests(unittest.TestCase):
     def test_words_keep_letters_with_accents(self):
         self.assertEqual(lt.words("García's fern"), ["García's", "fern"])
 
+    def test_words_keep_identifiers_and_typographic_apostrophes(self):
+        self.assertEqual(lt.words("p53 CD4+ IL-6 COVID-19 H3K27ac CRISPR-Cas9 3D"),
+                         ["p53", "CD4", "IL-6", "COVID-19", "H3K27ac", "CRISPR-Cas9", "3D"])
+        self.assertEqual(lt.words("don’t García’s Single–cell 10–20 1,000,000 2.5"),
+                         ["don’t", "García’s", "Single–cell", "10", "20", "1,000,000", "2.5"])
+
 
 class NormalizeTests(unittest.TestCase):
     def test_quotes_dashes_spaces_and_ligatures(self):
@@ -71,6 +77,10 @@ class NormalizeTests(unittest.TestCase):
     def test_titles(self):
         self.assertEqual(lt.normalize_title("Fern Spores: Swell, Split!"), "fern spores swell split")
         self.assertEqual(lt.normalize_title("Fern spóres swell"), "fern spores swell")
+
+    def test_title_keys_keep_greek_letters(self):
+        self.assertEqual(lt.normalize_title("TGF-α signaling"), "tgf α signaling")
+        self.assertNotEqual(lt.normalize_title("TGF-α signaling"), lt.normalize_title("TGF-β signaling"))
 
     def test_dois(self):
         self.assertEqual(lt.normalize_doi("https://doi.org/10.1000/ABC.1"), "10.1000/abc.1")

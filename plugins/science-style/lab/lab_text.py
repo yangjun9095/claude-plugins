@@ -20,7 +20,7 @@ _DASHES = "‐‑‒–—―−"
 _END = re.compile(r"[.?!]")
 _TAIL = re.compile(r"(?:\[CIT\])?[\"')\]’”]*")
 _NEXT = re.compile(r"\s+[\"'(\[‘“]?[A-Z0-9]")
-_WORD = re.compile(r"[^\W\d_](?:[^\W\d_]|['\-](?=[^\W\d_]))*|\d+(?:[.,]\d+)?")
+_WORD = re.compile(r"\d+(?:[.,]\d+)*(?![^\W_])|[^\W_]+(?:['’‐‑–\-][^\W_]+)*")
 _DOI_PREFIX = re.compile(r"^(?:https?://(?:dx\.)?doi\.org/|doi:)", re.I)
 
 
@@ -78,7 +78,7 @@ def normalize_title(title):
     """Return a key for matching titles: lower case, no accents, letters and digits only."""
     text = unicodedata.normalize("NFKD", title or "")
     text = "".join(ch for ch in text if not unicodedata.combining(ch)).lower()
-    return " ".join(re.sub(r"[^a-z0-9]+", " ", text).split())
+    return " ".join(re.sub(r"[\W_]+", " ", text).split())
 
 
 def normalize_doi(doi):
