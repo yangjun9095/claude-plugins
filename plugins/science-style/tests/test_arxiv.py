@@ -60,16 +60,55 @@ class ArxivTests(unittest.TestCase):
         experiments = self.paper["sections"][1]
         self.assertEqual(experiments["paragraphs"], ["The net found 9 spore types."])
         self.assertEqual(experiments["subsections"], [{"heading": "Training",
-                                                       "paragraphs": ["We trained for 3 days.", "Loss fell."]}])
+                                                       "paragraphs": ["We trained for 3 days. [EQ] Loss fell."]}])
 
     def test_legends(self):
         self.assertEqual(self.paper["legends"], ["Loss over time."])
 
+    def test_nested_figure_panels_give_each_legend_once(self):
+        page = ('<html><body><article class="ltx_document"><section class="ltx_section">'
+                '<h2 class="ltx_title">Results</h2><div class="ltx_para"><p class="ltx_p">Two panels.</p></div>'
+                '<figure class="ltx_figure" id="F1">'
+                '<figure class="ltx_figure ltx_figure_panel"><img src="a.png"/><figcaption class="ltx_caption">'
+                '<span class="ltx_tag ltx_tag_figure">(a) </span>Left panel.</figcaption></figure>'
+                '<figure class="ltx_figure ltx_figure_panel"><img src="b.png"/><figcaption class="ltx_caption">'
+                'Right panel.</figcaption></figure>'
+                '<figcaption class="ltx_caption"><span class="ltx_tag ltx_tag_figure">Figure 1: </span>'
+                'Both panels.</figcaption></figure></section></article></body></html>')
+        paper = la.read_arxiv_html(page, META)
+        self.assertEqual(paper["legends"], ["Left panel.", "Right panel.", "Both panels."])
+
     def test_references_appendix_and_acknowledgements_are_dropped(self):
         text = lt.canonical_text(self.paper)
-        for gone in ("Ash 2001.", "Extra text.", "We thank the moss.", "Ben Rowan"):
+        for gone in ("Ash 2001.", "Extra text.", "We thank the moss.", "Ben Rowan", "marginparsep"):
             self.assertNotIn(gone, text)
         self.assertIn("Nets sort spores & seeds.", text)
+
+    def test_a_display_equation_stays_inside_its_paragraph(self):
+        page = ('<html><body><article class="ltx_document"><div class="ltx_para"><p class="ltx_p">We fit</p>'
+                '<table class="ltx_equation ltx_eqn_table"><tr><td><math alttext="y"><mi>y</mi></math></td></tr>'
+                '</table><p class="ltx_p">, where y counts spores.</p>'
+                '<div class="ltx_equationgroup"><math alttext="z"><mi>z</mi></math></div>'
+                '<p class="ltx_p">Then z follows.</p></div>'
+                '<p class="ltx_p">A bare paragraph.</p></article></body></html>')
+        paper = la.read_arxiv_html(page, META)
+        self.assertEqual(paper["sections"][0]["paragraphs"],
+                         ["We fit [EQ], where y counts spores. [EQ] Then z follows.", "A bare paragraph."])
+
+    def test_a_paragraph_of_only_equations_is_dropped(self):
+        page = ('<html><body><article class="ltx_document"><div class="ltx_para">'
+                '<table class="ltx_equation"><tr><td><math alttext="y"><mi>y</mi></math></td></tr></table></div>'
+                '<div class="ltx_para"><p class="ltx_p">Nets sort spores.</p></div></article></body></html>')
+        paper = la.read_arxiv_html(page, META)
+        self.assertEqual(paper["sections"][0]["paragraphs"], ["Nets sort spores."])
+
+    def test_a_list_inside_a_paragraph_keeps_its_items(self):
+        page = ('<html><body><article class="ltx_document"><div class="ltx_para"><p class="ltx_p">Two kinds:</p>'
+                '<ul class="ltx_itemize"><li class="ltx_item"><div class="ltx_para"><p class="ltx_p">Moss.</p></div>'
+                '</li><li class="ltx_item"><div class="ltx_para"><p class="ltx_p">Fern.</p></div></li></ul></div>'
+                '</article></body></html>')
+        paper = la.read_arxiv_html(page, META)
+        self.assertEqual(paper["sections"][0]["paragraphs"], ["Two kinds:", "Moss.", "Fern."])
 
     def test_metadata_type_and_hash(self):
         self.assertEqual((self.paper["work_id"], self.paper["text_version"]), ("W4", "arxiv"))

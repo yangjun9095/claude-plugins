@@ -1,11 +1,13 @@
 """Read arXiv LaTeXML HTML (arxiv.org/html/<id>) into a paper file (spec section 10).
 
-The reader builds a small tree with html.parser. Paragraphs are the p elements of class ltx_p.
-Citations become [CIT], formulas and display equations become [EQ], and number tags, footnotes,
-figures, the bibliography, appendices and acknowledgements stay out of the text. On a page with
-sections, the text before the first section is front matter: the dry run of 2026-10-29 found only
-style-file warnings there (arXiv 1901.11365). The reader keeps that text only on a page without
-sections, as its body.
+The reader builds a small tree with html.parser. One div of class ltx_para gives one paragraph.
+The paragraph joins, in order, the p elements of class ltx_p in the div. A display equation between
+two p elements becomes [EQ] inside the paragraph. A p element outside such a div gives its own paragraph.
+Citations become [CIT]. Inline formulas become [EQ]. Number tags, footnotes, figures, the bibliography,
+appendices and acknowledgements stay out of the text. Each figure caption becomes one legend.
+On a page with sections, the text before the first section is front matter. The dry run of 2026-10-29
+found only style-file warnings there (arXiv 1901.11365). The reader keeps that text only on a page
+without sections, as its body.
 """
 import re
 from html.parser import HTMLParser
@@ -16,6 +18,8 @@ from lab_text import finish_paper, new_paper
 VOID = frozenset("area base br col embed hr img input link meta param source track wbr".split())
 SECTION_CLASSES = ("ltx_section", "ltx_subsection", "ltx_subsubsection", "ltx_paragraph", "ltx_bibliography",
                    "ltx_appendix")
+EQUATION_CLASSES = ("ltx_equation", "ltx_equationgroup")
+EQ_SPACE = re.compile(r"\[EQ\] ([.,;:?!)])")
 SKIP_CLASSES = ("ltx_figure", "ltx_table", "ltx_note", "ltx_bibliography", "ltx_appendix", "ltx_abstract",
                 "ltx_authors", "ltx_dates", "ltx_keywords", "ltx_classification", "ltx_acknowledgements")
 
@@ -84,7 +88,7 @@ def node_text(node):
     parts = []
     _text(node, parts)
     text = " ".join("".join(parts).split())
-    return CIT_WRAP.sub("[CIT]", CIT_RUN.sub("[CIT]", text))
+    return EQ_SPACE.sub(r"[EQ]\1", CIT_WRAP.sub("[CIT]", CIT_RUN.sub("[CIT]", text)))
 
 
 def _find_all(node, pred, stop=None):
@@ -116,8 +120,57 @@ def _section_or_skipped(node):
     return is_section(node) or is_skipped(node)
 
 
+def is_equation(node):
+    return any(node.has_class(c) for c in EQUATION_CLASSES)
+
+
+def _is_unit(node):
+    return node.has_class("ltx_para") or is_para(node)
+
+
+def _joined(parts):
+    """Join the parts of one paragraph. Return "" when the parts hold only display equations."""
+    parts = [part for part in parts if part]
+    if all(part == "[EQ]" for part in parts):
+        return ""
+    return EQ_SPACE.sub(r"[EQ]\1", " ".join(parts))
+
+
+def _para_texts(para, stop):
+    """Return the paragraphs of one ltx_para div: its p elements and display equations make one paragraph.
+
+    Another element in the div (a list, for example) ends the paragraph. Its own paragraphs follow it.
+    """
+    texts = []
+    parts = []
+    for child in para.children:
+        if isinstance(child, str):
+            continue
+        if is_para(child):
+            parts.append(node_text(child))
+        elif is_equation(child):
+            parts.append("[EQ]")
+        elif is_skipped(child) or (stop is not None and stop(child)):
+            continue
+        else:
+            texts.append(_joined(parts))
+            parts = []
+            texts.extend(_para_texts(child, stop) if child.has_class("ltx_para") else _paragraphs(child, stop))
+    texts.append(_joined(parts))
+    return texts
+
+
 def _paragraphs(node, stop):
-    return [t for t in (node_text(p) for p in _find_all(node, is_para, stop)) if t]
+    def halt(found):
+        return found.has_class("ltx_para") or (stop is not None and stop(found))
+
+    texts = []
+    for unit in _find_all(node, _is_unit, halt):
+        if unit.has_class("ltx_para"):
+            texts.extend(_para_texts(unit, stop))
+        else:
+            texts.append(node_text(unit))
+    return [t for t in texts if t]
 
 
 def _heading(section):
@@ -158,11 +211,10 @@ def read_arxiv_html(data, meta):
     if meta.get("group") != "essay":
         infer_results(sections)
     legends = []
-    for figure in _find_all(article, lambda n: n.tag == "figure"):
-        for caption in _find_all(figure, lambda n: n.tag == "figcaption"):
-            caption_text = node_text(caption)
-            if caption_text:
-                legends.append(caption_text)
+    for caption in _find_all(article, lambda n: n.tag == "figcaption"):
+        caption_text = node_text(caption)
+        if caption_text:
+            legends.append(caption_text)
     paper = new_paper(meta)
     paper.update({"article_type": "arxiv", "jats_manuscript": False, "abstract": abstract,
                   "sections": sections, "legends": legends})
