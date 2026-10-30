@@ -34,12 +34,12 @@ NUMBER = re.compile(r"(?<!\w)(?:\d{1,3}(?:,\d{3})+(?!\d)|\.?\d+(?:\.\d+)?)")
 UNIT_PHRASE = re.compile(r"\bper\s+(?:{})(?!\d|,\d)".format(
     "|".join(sorted((re.escape(n) for n in UNIT_NUMBERS), key=len, reverse=True))), re.I)
 COUNT = re.compile(r"(?<![\w.,/])(\d{1,3}(?:,\d{3})+|\d+)(?:\s+(?:of|out\s+of)(?:\s+the)?\s+|\s*/\s*)"
-                   r"(\d{1,3}(?:,\d{3})+|\d+)(?![\d/]|\.\d|,\d)(?:\s+([^\W\d_]+))?")
+                   r"(\d{1,3}(?:,\d{3})+|\d+)(?![\d/]|\.\d|,\d)(?:\s+([^\W\d_]+))?", re.I)
 PERCENT = re.compile(r"[%\uff05]|\bper\s+cent\b|\bpercent(?:age)?s?\b", re.I)
 HYPHENS = "-\u2010\u2011"
 WORD_TOKEN = re.compile(r"[^\W\d_]+(?:[{0}][^\W\d_]+)*".format(HYPHENS))
 FOLD = re.compile(r"\b\w+[{0}]fold\b".format(HYPHENS), re.I)
-ONE_OF = re.compile(r"\bone\s+(?:of|in)\s+(?:\d+|(?:{})\b)".format(
+ONE_OF = re.compile(r"\bone\s+(?:of|in|out\s+of)\s+(?:the\s+)?(?:\d+|(?:{})\b)".format(
     "|".join(sorted(NUMBER_WORDS, key=len, reverse=True))), re.I)
 
 
@@ -110,7 +110,8 @@ def profile_count_pairs(profile):
 
     The first set holds the paper counts of the item fields: the counts of all papers, of the first and
     last value, and of each group and tier, each with its own denominator. The second set holds the
-    pairs of the paper total: (n_papers, n_papers) and (papers used, n_papers). A text may use these
+    pairs of the paper total: (n_papers, n_papers), (papers used, n_papers) and each count of the
+    top-level splits by_cell, by_group, by_tier and text_versions with n_papers. A text may use these
     only before the word "papers".
     """
     pairs, paper_pairs = set(), set()
@@ -129,6 +130,8 @@ def profile_count_pairs(profile):
         paper_pairs.add((total, total))
         if isinstance(profile.get("papers_used"), list):
             paper_pairs.add((len(profile["papers_used"]), total))
+        for split in ("by_cell", "by_group", "by_tier", "text_versions"):
+            _add_pairs(paper_pairs, profile.get(split), total)
     return pairs, paper_pairs
 
 

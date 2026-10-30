@@ -177,6 +177,29 @@ class CountPairTests(unittest.TestCase):
         self.assertIn("count not in the profile data: 12 of 12",
                       check(CARD.replace("9 of 12 titles", "12 of 12 titles"), profiles=[profile]))
 
+    def test_paper_splits_pass_as_counts(self):
+        profile = dict(PROFILE, by_cell={"senior_high": 6, "senior_other": 1, "first_high": 4, "first_other": 1},
+                       by_group={"senior": 7, "first": 5}, by_tier={"high": 10, "other": 2},
+                       text_versions={"published": 10, "preprint": 2})
+
+        def failures(sentence):
+            return check(sig(sentence), profiles=[profile])
+        self.assertEqual(failures("7 of 12 papers come from senior-author groups."), [])
+        self.assertEqual(failures("2 of 12 papers use the preprint text."), [])
+        self.assertEqual(failures("10 of 12 papers appear in high-tier venues."), [])
+        self.assertEqual(failures("4 of 12 papers belong to the first-author high-tier cell."), [])
+        self.assertIn("count not in the profile data: 8 of 12",
+                      failures("8 of 12 papers come from senior-author groups."))
+        self.assertIn("count not in the profile data: 7 of 12", failures("7 of 12 titles state a claim."))
+
+    def test_a_count_in_capitals_is_checked(self):
+        for form in ("12 OF 12 titles", "12 Of 12 titles", "3 OUT OF 9 titles"):
+            failures = check(CARD.replace("9 of 12 titles", form))
+            self.assertTrue(any(f.startswith("count not in the profile data: ") for f in failures), form)
+        self.assertIn("count not in the profile data: 12 of 12",
+                      check(CARD.replace("9 of 12 titles", "12 OF 12 titles")))
+        self.assertEqual(check(CARD.replace("9 of 12 titles", "9 OF 12 titles")), [])
+
     def test_n_larger_than_m_gives_one_failure_for_the_pair(self):
         failures = check(CARD.replace("9 of 12 titles", "12 of 9 titles"))
         self.assertEqual([f for f in failures if " of " in f], ["12 of 9 has N larger than M"])
@@ -214,6 +237,12 @@ class NumberWordTests(unittest.TestCase):
         self.assertWord("One in five titles states a claim.", "One in five")
         self.assertWord("Only one of 12 titles states a claim.", "one of 12")
         self.assertEqual(check(sig("One question leads to the next, and one of the titles asks it.")), [])
+
+    def test_one_fails_before_out_of_and_before_of_the_and_a_number(self):
+        self.assertWord("One out of 12 titles states a claim.", "One out of 12")
+        self.assertWord("Only one of the 12 titles states a claim.", "one of the 12")
+        self.assertWord("Only one of the twelve titles states a claim.", "one of the twelve")
+        self.assertEqual(check(sig("One out of the question leads to the next, and one of the titles asks it.")), [])
 
     def test_percentages_fail_in_every_form(self):
         for sentence in ("12 percent of titles state a claim.", "12 per cent of titles state a claim.",
