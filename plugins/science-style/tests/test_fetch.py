@@ -195,6 +195,31 @@ class NewPrefixTests(unittest.TestCase):
         self.assertEqual((result["text_version"], result["text_doi"]), ("preprint", NEW_PREFIX))
 
 
+class EssayTextTests(unittest.TestCase):
+    TYPES = ("review-article", "editorial", "article-commentary", "letter", "discussion", "book-review", "reply",
+             "correspondence")
+
+    def test_essay_text_in_a_research_cell_is_a_permanent_route_failure(self):
+        for article_type in self.TYPES:
+            http = FakeHttp([NO_HITS, ("efetch.fcgi", jats_body(700, article_type=article_type)),
+                             ("fullTextXML", jats_body(700, article_type=article_type))])
+            for group in ("senior", "first"):
+                result, reasons = lf.try_routes(http, dict(paper("W1", pmcid="PMC1000001"), group=group), "ada")
+                self.assertIsNone(result, (article_type, group))
+                self.assertIn("ncbi-pmc: essay text in a research cell", reasons)
+                self.assertIn("europepmc: essay text in a research cell", reasons)
+
+    def test_essay_text_in_an_essay_cell_is_kept(self):
+        http = FakeHttp([NO_HITS, ("efetch.fcgi", jats_body(700, article_type="review-article"))])
+        result, _ = lf.try_routes(http, dict(paper("W1", pmcid="PMC1000001"), group="essay"), "ada")
+        self.assertEqual(result["article_type"], "review-article")
+
+    def test_research_text_in_a_research_cell_is_kept(self):
+        http = FakeHttp([NO_HITS, ("efetch.fcgi", jats_body(700))])
+        result, _ = lf.try_routes(http, paper("W1", pmcid="PMC1000001"), "ada")
+        self.assertEqual(result["article_type"], "research-article")
+
+
 class TextDoiTests(unittest.TestCase):
     def test_a_pmc_text_cites_the_journal_doi(self):
         http = FakeHttp([NO_HITS, ("efetch.fcgi?db=pmc&id=1000001", jats_body(700, doi="10.1000/A"))])
@@ -345,6 +370,18 @@ class FetchPersonTests(unittest.TestCase):
         self.assertEqual([p["status"] for p in saved["papers"]], ["chosen", "fetched", "fetched"])
         self.assertTrue(any(line.startswith("deferred W0: ") for line in logged))
         self.assertEqual(sum(1 for url, _ in http.calls if url == JATS_URL), 1)
+
+    def test_a_review_in_a_senior_cell_is_replaced(self):
+        records = [rec("W{}".format(i), pmcid="PMC700000{}".format(i), year=2000 + i) for i in range(6)]
+        manifest = ls.build_sample("ada", records)
+        first = manifest["papers"][0]
+        http = FakeHttp([NO_HITS, ("id=" + first["pmcid"][3:], jats_body(700, article_type="review-article")),
+                         ("PMC" + first["pmcid"][3:] + "/fullTextXML", jats_body(700, article_type="review-article")),
+                         ("efetch.fcgi", jats_body(700))])
+        counts = lf.fetch_person(http, manifest, self.path, self.data, {r["work_id"]: r for r in records})
+        self.assertEqual(counts, {"fetched": 5, "replaced": 1})
+        self.assertEqual(manifest["replacements"][0]["replaced"], first["work_id"])
+        self.assertIn("essay text in a research cell", manifest["replacements"][0]["reason"])
 
     def test_an_api_with_no_record_still_leads_to_a_replacement(self):
         records = [rec("W0", preprint_doi="10.1101/222222", year=2000)]

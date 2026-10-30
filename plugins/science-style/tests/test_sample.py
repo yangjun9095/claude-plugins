@@ -155,13 +155,25 @@ class ReplaceTests(unittest.TestCase):
         self.assertEqual(len(self.manifest["replacements"]), 1)
         self.assertEqual(self.manifest["n_papers"], 2)
 
-    def test_replace_leaves_the_manifest_unchanged_when_the_lookup_lacks_the_replacement(self):
+    def test_replace_skips_a_queued_id_that_the_lookup_lacks(self):
         i = self.ids
         lookup = {wid: record for wid, record in self.lookup.items() if wid != i[2]}
-        before = copy.deepcopy(self.manifest)
-        with self.assertRaises(KeyError):
-            ls.replace(self.manifest, i[0], "no text", lookup)
-        self.assertEqual(self.manifest, before)
+        self.assertEqual(ls.replace(self.manifest, i[0], "no text", lookup), i[1])
+        self.assertNotIn(i[2], [p["work_id"] for p in self.manifest["papers"]])
+        bare = {wid: record for wid, record in self.lookup.items() if wid in (i[0], i[3])}
+        self.assertIsNone(ls.replace(self.manifest, i[3], "no text", bare))
+        self.assertEqual(self.manifest["replacements"][-1]["replacement"], None)
+
+    def test_replace_without_a_replacement_adds_to_the_shortfall(self):
+        i = self.ids
+        self.manifest["shortfall"] = 2
+        self.assertEqual(ls.replace(self.manifest, i[0], "no text", self.lookup), i[2])
+        self.assertEqual(self.manifest["shortfall"], 2)
+        bare = {i[0]: self.lookup[i[0]]}
+        self.assertIsNone(ls.replace(self.manifest, i[3], "no text", bare))
+        self.assertEqual(self.manifest["shortfall"], 3)
+        self.assertIsNone(ls.replace(self.manifest, i[2], "no text", bare))
+        self.assertEqual(self.manifest["shortfall"], 4)
 
 
 class SubsetTests(unittest.TestCase):

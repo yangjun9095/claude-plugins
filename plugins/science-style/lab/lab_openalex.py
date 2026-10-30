@@ -16,6 +16,9 @@ PER_PAGE = 200
 KEEP_TYPES = frozenset(["article", "review", "preprint", "editorial", "letter", "conference-paper"])
 ESSAY_TYPES = frozenset(["review", "editorial", "letter"])
 MAX_ESSAY_AUTHORS = 3
+# OpenAlex list responses cut each author list at 100 entries.
+MAX_LISTED_AUTHORS = 100
+REPLY = re.compile("^[\\s\"'“”‘’«»]*(?:response to|reply to|correspondence)\\b", re.I)
 CORRECTION = re.compile(r"^\s*(?:author correction|publisher correction|correction|corrigendum|erratum|"
                         r"retraction note|retraction|retracted|expression of concern)\s*(?::|\bto\b|\bfor\b|$)",
                         re.I)
@@ -140,8 +143,16 @@ def identifiers(work):
 
 
 def classify(work, person, venues):
-    """Return (record, None) for a kept work, or (None, reason) for a dropped work."""
+    """Return (record, None) for a kept work, or (None, reason) for a dropped work.
+
+    A review, editorial or letter, a work in an essay venue, and a reply ("Response to", "Reply
+    to", "Correspondence") is an essay when it has at most MAX_ESSAY_AUTHORS authors. With more
+    authors it is dropped. A work whose author list OpenAlex cut at 100 is dropped, because the
+    position of the person is unknown.
+    """
     brief = authorship_brief(work)
+    if len(brief) == MAX_LISTED_AUTHORS or work.get("is_authors_truncated"):
+        return None, "author list cut at {}".format(MAX_LISTED_AUTHORS)
     index = person_index(brief, person)
     if index is None:
         return None, "person not in the author list"
@@ -157,7 +168,11 @@ def classify(work, person, venues):
     n = len(brief)
     position = position_name(index, n)
     corresponding = brief[index]["corresponding"]
-    if (wtype in ESSAY_TYPES or is_essay_venue(venue, venues)) and n <= MAX_ESSAY_AUTHORS:
+    reply = bool(REPLY.match(title))
+    if reply or wtype in ESSAY_TYPES or is_essay_venue(venue, venues):
+        if n > MAX_ESSAY_AUTHORS:
+            kind = "reply" if reply else "essay type"
+            return None, "{} with more than {} authors".format(kind, MAX_ESSAY_AUTHORS)
         group = "essay"
     elif position in ("last", "sole") or (corresponding and position != "first"):
         group = "senior"

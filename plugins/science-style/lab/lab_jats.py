@@ -35,7 +35,7 @@ BLOCKS = frozenset(["p", "list", "disp-quote", "boxed-text"])
 SKIP_INLINE = frozenset(["fig", "table-wrap", "supplementary-material", "fn", "table", "graphic", "media"])
 FORMULA = frozenset(["inline-formula", "disp-formula", "math", "tex-math"])
 ESSAY_ARTICLE_TYPES = frozenset(["review-article", "editorial", "article-commentary", "letter", "discussion",
-                                 "book-review"])
+                                 "book-review", "reply", "correspondence"])
 
 
 def heading_kind(heading):

@@ -111,9 +111,10 @@ def replace(manifest, work_id, reason, lookup):
     """Mark a paper replaced and add its replacement. Return the replacement's work id or None.
 
     The replacement is the first unused paper of the same year bin in queue order, else the first
-    unused paper of the cell's queue. The function raises ValueError for a work id that is not in
-    the manifest or is already replaced. It raises KeyError if the lookup lacks the replacement. In
-    each case the manifest stays unchanged.
+    unused paper of the cell's queue. Queued ids that the lookup lacks are skipped: a new discovery
+    can drop a work that an older manifest still queues. When no replacement exists, the shortfall
+    grows by 1. The function raises ValueError for a work id that is not in the manifest or is
+    already replaced, and the manifest then stays unchanged.
     """
     paper = next((p for p in manifest["papers"] if p["work_id"] == work_id), None)
     if paper is None:
@@ -122,18 +123,20 @@ def replace(manifest, work_id, reason, lookup):
         raise ValueError("already replaced: {}".format(work_id))
     cell = manifest["cells"][paper["cell"]]
     used = {p["work_id"] for p in manifest["papers"]}
+    queue = [w for w in cell["queue"] if w not in used and w in lookup]
     candidates = []
     for members in cell["bins"]:
         if work_id in members:
-            candidates = [w for w in cell["queue"] if w in members and w not in used]
+            candidates = [w for w in queue if w in members]
             break
     if not candidates:
-        candidates = [w for w in cell["queue"] if w not in used]
+        candidates = queue
     replacement = candidates[0] if candidates else None
-    new_paper = manifest_paper(lookup[replacement], paper["cell"]) if replacement else None
     paper["status"] = "replaced"
-    if new_paper:
-        manifest["papers"].append(new_paper)
+    if replacement:
+        manifest["papers"].append(manifest_paper(lookup[replacement], paper["cell"]))
+    else:
+        manifest["shortfall"] = manifest.get("shortfall", 0) + 1
     manifest["replacements"].append({"replaced": work_id, "reason": reason, "replacement": replacement})
     manifest["n_papers"] = count_papers(manifest)
     return replacement

@@ -12,7 +12,7 @@ import urllib.parse
 
 from lab_arxiv import read_arxiv_html
 from lab_http import FetchError
-from lab_jats import ReaderError, read_jats
+from lab_jats import ESSAY_ARTICLE_TYPES, ReaderError, read_jats
 from lab_paths import paper_path, read_json, write_json
 from lab_sample import count_papers, replace
 from lab_text import body_words, normalize_doi, normalize_title
@@ -126,10 +126,17 @@ def epmc_lookup(http, paper):
 
 
 def _try_reader(reader, body, meta):
+    """Return (paper_file, None), or (None, reason) for a permanent route failure.
+
+    A JATS text whose article type is an essay type fails in a senior or first cell, because the
+    research items of the checklist do not apply to it.
+    """
     try:
         result = reader(body, meta)
     except ReaderError as err:
         return None, "reader: {}".format(err)
+    if meta.get("group") in ("senior", "first") and result.get("article_type") in ESSAY_ARTICLE_TYPES:
+        return None, "essay text in a research cell"
     count = body_words(result)
     if count < MIN_BODY_WORDS:
         return None, "body has {} words, fewer than {}".format(count, MIN_BODY_WORDS)

@@ -70,13 +70,47 @@ class GroupTests(unittest.TestCase):
         record, _ = classify(make_work("W1", others(1) + [ADA_AUTHOR] + others(1, 95), wtype="review"))
         self.assertEqual(record["group"], "essay")
 
-    def test_a_review_with_four_authors_follows_the_position_rules(self):
-        record, _ = classify(make_work("W1", others(3) + [ADA_AUTHOR], wtype="review"))
-        self.assertEqual(record["group"], "senior")
+    def test_an_essay_type_with_four_authors_is_dropped(self):
+        for wtype in ("review", "editorial", "letter"):
+            record, reason = classify(make_work("W1", others(3) + [ADA_AUTHOR], wtype=wtype))
+            self.assertIsNone(record, wtype)
+            self.assertEqual(reason, "essay type with more than 3 authors")
 
     def test_an_article_in_an_essay_venue_is_an_essay(self):
         record, _ = classify(make_work("W1", [ADA_AUTHOR, author("A90")], venue="Trends in Genetics"))
         self.assertEqual(record["group"], "essay")
+
+    def test_an_article_in_an_essay_venue_with_four_authors_is_dropped(self):
+        record, reason = classify(make_work("W1", [ADA_AUTHOR] + others(3), venue="Trends in Genetics"))
+        self.assertIsNone(record)
+        self.assertEqual(reason, "essay type with more than {} authors".format(lo.MAX_ESSAY_AUTHORS))
+
+    def test_a_reply_with_three_authors_is_an_essay(self):
+        for title in ("Reply to: Fern spores swell", "Response to Ash and Birch", '"Reply to" a critique of moss',
+                      "“Response to” spore critics", "CORRESPONDENCE: moss dries", "correspondence"):
+            record, reason = classify(make_work("W1", [ADA_AUTHOR] + others(2), title=title))
+            self.assertIsNone(reason, title)
+            self.assertEqual(record["group"], "essay", title)
+
+    def test_a_reply_with_four_authors_is_dropped(self):
+        record, reason = classify(make_work("W1", others(3) + [ADA_AUTHOR], title="Reply to: Fern spores swell"))
+        self.assertIsNone(record)
+        self.assertEqual(reason, "reply with more than 3 authors")
+
+    def test_titles_that_only_resemble_a_reply_follow_the_position_rules(self):
+        for title in ("Responses to drought in ferns", "A reply to critics of moss", "Replying to light in ferns"):
+            record, _ = classify(make_work("W1", others(3) + [ADA_AUTHOR], title=title))
+            self.assertEqual(record["group"], "senior", title)
+
+    def test_a_list_of_exactly_100_authors_is_dropped_as_cut(self):
+        record, reason = classify(make_work("W1", others(99, start=200) + [ADA_AUTHOR]))
+        self.assertIsNone(record)
+        self.assertEqual(reason, "author list cut at 100")
+        record, _ = classify(make_work("W1", others(98, start=200) + [ADA_AUTHOR]))
+        self.assertEqual(record["group"], "senior")
+        flagged = make_work("W1", others(3) + [ADA_AUTHOR])
+        flagged["is_authors_truncated"] = True
+        self.assertEqual(classify(flagged), (None, "author list cut at 100"))
 
     def test_a_sole_author_research_paper_is_senior(self):
         record, _ = classify(make_work("W1", [ADA_AUTHOR], venue="Cell Systems"))
