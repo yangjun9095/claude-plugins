@@ -19,7 +19,7 @@ The card starts with `# <name>` and has these headings, in this order:
 
 ## Rules
 
-1. Take every count from the profile data, as "N of M". M is the `n` of the field, the `n_by_group` or `n_by_tier` value for one group or tier, or `n_papers` for the Sample split.
+1. Take every count from the profile data, as "N of M". M is the `n` of the field, the `n_by_group` or `n_by_tier` value for one group or tier, or `n_papers` for the Sample split. For the papers left out, write `n_left_out` of `n_fetched` papers.
 2. In a count about papers, put the word papers right after M, as in 7 of 15 papers. Do not add or subtract counts.
 3. Use only numbers that appear in the profile data. The numbers 100 and 1,000 are allowed in "per 100" and "per 1,000". Write every number as digits.
 4. Do not write number words such as two, half, quarter or twice. Do not write "-fold" forms such as 3-fold or twofold. Do not write "one of N" or "one in N". Do not use percentages.

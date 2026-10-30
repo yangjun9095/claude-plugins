@@ -192,6 +192,20 @@ class CountPairTests(unittest.TestCase):
                       failures("8 of 12 papers come from senior-author groups."))
         self.assertIn("count not in the profile data: 7 of 12", failures("7 of 12 titles state a claim."))
 
+    def test_the_fetched_and_left_out_counts_pass_before_the_word_papers(self):
+        profile = dict(PROFILE, n_papers=13, papers_used=["W{}".format(i) for i in range(13)], n_fetched=15,
+                       n_left_out=2)
+
+        def failures(sentence, profiles=(profile,)):
+            return check(sig(sentence), profiles=profiles)
+        self.assertEqual(failures("2 of 15 papers were left out."), [])
+        self.assertEqual(failures("13 of 15 papers passed the quote check."), [])
+        self.assertEqual(failures("15 of 15 papers have a full text."), [])
+        self.assertIn("count not in the profile data: 2 of 13", failures("2 of 13 papers were left out."))
+        self.assertIn("count not in the profile data: 2 of 15", failures("2 of 15 titles were left out."))
+        same = dict(PROFILE, n_papers=15, n_fetched=15, n_left_out=2)
+        self.assertEqual(failures("2 of 15 papers were left out.", profiles=(same,)), [])
+
     def test_a_count_in_capitals_is_checked(self):
         for form in ("12 OF 12 titles", "12 Of 12 titles", "3 OUT OF 9 titles"):
             failures = check(CARD.replace("9 of 12 titles", form))

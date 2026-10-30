@@ -203,6 +203,7 @@ def build_profile(person, manifest, extractions, checks, checklist, stability, s
     return {
         "schema": 1, "person": person["id"], "name": person["name"], "checklist_version": checklist["version"],
         "n_papers": len(used), "papers_used": used, "left_out": left_out,
+        "n_fetched": len(meta), "n_left_out": len(left_out),
         "by_cell": _plain(Counter(meta[w]["cell"] for w in used)),
         "by_group": _plain(Counter(meta[w]["group"] for w in used)),
         "by_tier": _plain(Counter(meta[w]["tier"] for w in used)),

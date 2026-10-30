@@ -85,6 +85,7 @@ class ProfileTests(unittest.TestCase):
         self.assertEqual(profile["papers_used"], ["W1", "W2", "W3"])
         self.assertEqual(profile["n_papers"], 3)
         self.assertEqual(profile["left_out"], [{"work_id": "W4", "reason": "redo"}])
+        self.assertEqual((profile["n_fetched"], profile["n_left_out"]), (4, 1))
         self.assertEqual(profile["years"], {"first": 2009, "last": 2024})
         self.assertEqual(profile["unverified"], {"here_we": 1})
         self.assertEqual(profile["surface"], {"n_sentences": 2})

@@ -111,8 +111,10 @@ def profile_count_pairs(profile):
     The first set holds the paper counts of the item fields: the counts of all papers, of the first and
     last value, and of each group and tier, each with its own denominator. The second set holds the
     pairs of the paper total: (n_papers, n_papers), (papers used, n_papers) and each count of the
-    top-level splits by_cell, by_group, by_tier and text_versions with n_papers. A text may use these
-    only before the word "papers".
+    top-level splits by_cell, by_group, by_tier and text_versions with n_papers. It also holds the
+    pairs of the fetched papers: (n_fetched, n_fetched), (papers used, n_fetched) and (n_left_out,
+    n_fetched). n_papers counts the papers used, so it is never the denominator of n_fetched. A text
+    may use the second set only before the word "papers".
     """
     pairs, paper_pairs = set(), set()
     for fields in (profile.get("items") or {}).values():
@@ -132,6 +134,15 @@ def profile_count_pairs(profile):
             paper_pairs.add((len(profile["papers_used"]), total))
         for split in ("by_cell", "by_group", "by_tier", "text_versions"):
             _add_pairs(paper_pairs, profile.get(split), total)
+    fetched = profile.get("n_fetched")
+    if _is_count(fetched):
+        paper_pairs.add((fetched, fetched))
+        if _is_count(total):
+            paper_pairs.add((total, fetched))
+        if isinstance(profile.get("papers_used"), list):
+            paper_pairs.add((len(profile["papers_used"]), fetched))
+        if _is_count(profile.get("n_left_out")):
+            paper_pairs.add((profile["n_left_out"], fetched))
     return pairs, paper_pairs
 
 
