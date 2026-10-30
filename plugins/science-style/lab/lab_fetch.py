@@ -27,30 +27,42 @@ META_FIELDS = ("work_id", "doi", "title", "year", "venue", "tier", "group", "co_
 
 
 def epmc_query(http, query):
-    """Return the results of a Europe PMC search, or [] when the search fails."""
+    """Return the results of a Europe PMC search: [] for no hits, None when the request or the JSON fails."""
     try:
         data = http.get(EPMC_SEARCH + urllib.parse.quote(query)).json()
     except (FetchError, ValueError):
-        return []
+        return None
     return (data.get("resultList") or {}).get("result") or []
 
 
 def epmc_lookup(http, paper):
-    """Return the PMC ID, the author-manuscript flag and a preprint DOI from the Europe PMC search."""
-    info = {"pmcid": paper.get("pmcid"), "auth_man": False, "preprint_doi": paper.get("preprint_doi")}
+    """Return the PMC ID, the author-manuscript flag and a preprint DOI from the Europe PMC search.
+
+    The key "failed" is True when a search request failed. The other keys then hold what the other
+    searches found, and a missing value does not show that Europe PMC has no record.
+    """
+    info = {"pmcid": paper.get("pmcid"), "auth_man": False, "preprint_doi": paper.get("preprint_doi"),
+            "failed": False}
+
+    def search(query):
+        hits = epmc_query(http, query)
+        if hits is None:
+            info["failed"] = True
+            return []
+        return hits
+
     results = []
     if paper.get("doi"):
-        results = [r for r in epmc_query(http, 'DOI:"{}"'.format(paper["doi"]))
-                   if normalize_doi(r.get("doi")) == paper["doi"]]
+        results = [r for r in search('DOI:"{}"'.format(paper["doi"])) if normalize_doi(r.get("doi")) == paper["doi"]]
     if not results and info["pmcid"]:
-        results = [r for r in epmc_query(http, "PMCID:" + info["pmcid"]) if r.get("pmcid") == info["pmcid"]]
+        results = [r for r in search("PMCID:" + info["pmcid"]) if r.get("pmcid") == info["pmcid"]]
     if results:
         if results[0].get("pmcid") and not info["pmcid"]:
             info["pmcid"] = results[0]["pmcid"]
         info["auth_man"] = results[0].get("authMan") == "Y"
     if not info["preprint_doi"] and paper.get("title"):
         title = " ".join(re.sub(r"[^\w\s]", " ", paper["title"]).split())
-        for record in epmc_query(http, 'SRC:PPR AND TITLE:"{}"'.format(title)):
+        for record in search('SRC:PPR AND TITLE:"{}"'.format(title)):
             doi = normalize_doi(record.get("doi"))
             if doi and BIORXIV_DOI.match(doi) and normalize_title(record.get("title")) == normalize_title(paper["title"]):
                 info["preprint_doi"] = doi
@@ -90,9 +102,15 @@ def _rxiv(http, doi, base):
 
 
 def try_routes(http, paper, person_id):
-    """Return (paper_file, None) from the first route that works, or (None, reasons)."""
+    """Return (paper_file, None) from the first route that works, or (None, reasons).
+
+    Raise FetchError when a Europe PMC search failed and no route works. The paper then stays
+    "chosen", because the failed search could have found a PMC ID or a preprint.
+    """
     reasons = []
     info = epmc_lookup(http, paper)
+    if info["failed"]:
+        reasons.append("europepmc lookup: failed")
     base = {field: paper.get(field) for field in META_FIELDS}
     base["person"] = person_id
     if info["pmcid"]:
@@ -135,6 +153,8 @@ def try_routes(http, paper, person_id):
             reasons.append("arxiv: " + why)
     else:
         reasons.append("arxiv: no arXiv ID")
+    if info["failed"]:
+        raise FetchError("europepmc", None, "Europe PMC lookup failed; paper left as chosen")
     return None, reasons
 
 
