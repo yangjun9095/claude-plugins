@@ -75,3 +75,59 @@ def make_work(wid, authors, title="Fern spores swell in water", wtype="article",
         "ids": {"pmcid": ("https://www.ncbi.nlm.nih.gov/pmc/articles/" + pmcid[3:]) if pmcid else None},
         "locations": locations or [],
     }
+
+
+import urllib.error  # noqa: E402
+
+PARAGRAPH = "Spores swell in water and split along a seam while the coat dries under light."
+
+
+def jats_body(n_words, manuscript=False):
+    """Return a JATS document whose introduction has at least n_words words."""
+    paragraphs = "".join("<p>{}</p>".format(PARAGRAPH) for _ in range(-(-n_words // 15)))
+    mid = '<article-id pub-id-type="manuscript">NIHMS000001</article-id>' if manuscript else ""
+    return ('<?xml version="1.0" encoding="UTF-8"?><pmc-articleset><article article-type="research-article">'
+            '<front><article-meta>{}<abstract><p>Spores swell.</p></abstract></article-meta></front>'
+            '<body><sec><title>Introduction</title>{}</sec><sec><title>Results</title><p>Spores split.</p></sec>'
+            '</body></article></pmc-articleset>').format(mid, paragraphs).encode("utf-8")
+
+
+def arxiv_body(n_words):
+    """Return a LaTeXML page whose introduction has at least n_words words."""
+    paragraphs = "".join('<div class="ltx_para"><p class="ltx_p">{}</p></div>'.format(PARAGRAPH)
+                         for _ in range(-(-n_words // 15)))
+    return ('<html><body><article class="ltx_document"><div class="ltx_abstract"><p class="ltx_p">Nets sort spores.'
+            '</p></div><section class="ltx_section"><h2 class="ltx_title">1 Introduction</h2>{}</section>'
+            '</article></body></html>').format(paragraphs).encode("utf-8")
+
+
+def epmc_result(doi=None, pmcid=None, auth_man="N", title=None):
+    record = {"authMan": auth_man}
+    if doi:
+        record["doi"] = doi
+    if pmcid:
+        record["pmcid"] = pmcid
+    if title:
+        record["title"] = title
+    return {"resultList": {"result": [record]}}
+
+
+class MapOpener(object):
+    """An opener for lab_http.Http. It answers from routes like FakeHttp, and a URL with no route
+    gets HTTP 404."""
+
+    def __init__(self, routes):
+        self.routes = list(routes)
+        self.calls = []
+
+    def __call__(self, url, headers, timeout):
+        self.calls.append(url)
+        for key, answer in self.routes:
+            keys = key if isinstance(key, tuple) else (key,)
+            if all(k in url for k in keys):
+                if isinstance(answer, Exception):
+                    raise answer
+                if isinstance(answer, (dict, list)):
+                    answer = json.dumps(answer)
+                return 200, answer if isinstance(answer, bytes) else answer.encode("utf-8")
+        raise urllib.error.HTTPError(url, 404, "not found", {}, None)
