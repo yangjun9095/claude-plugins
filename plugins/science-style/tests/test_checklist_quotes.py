@@ -5,6 +5,7 @@ import os
 import sys
 import tempfile
 import unittest
+from unittest import mock
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(os.path.dirname(HERE), "lab"))
@@ -455,9 +456,14 @@ class PerPaperCheckTests(unittest.TestCase):
         extraction = make_extraction(self.papers["W1"], CHECKLIST)
         self.write_extraction("W1", extraction)
         self.assertEqual(self.checks()["W1"]["status"], "ok")
-        extraction["prompt_version"] = 0
+        extraction["prompt_version"] = lc.PROMPT_VERSION - 1
         self.write_extraction("W1", extraction)
         self.assertEqual(self.checks()["W1"]["status"], "stale")
+
+    def test_the_fake_extraction_follows_the_prompt_version(self):
+        self.assertEqual(make_extraction(self.papers["W1"], CHECKLIST)["prompt_version"], lc.PROMPT_VERSION)
+        with mock.patch.object(lc, "PROMPT_VERSION", lc.PROMPT_VERSION + 1):
+            self.assertEqual(make_extraction(self.papers["W1"], CHECKLIST)["prompt_version"], lc.PROMPT_VERSION)
 
 
 if __name__ == "__main__":

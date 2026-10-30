@@ -277,8 +277,8 @@ class StabilityTests(unittest.TestCase):
 
     def test_a_stale_version_skips_the_pair(self):
         self.write_pair("W1")
-        self.write_pair("W2", edit_main=lambda e: e.update(prompt_version=0))
-        self.write_pair("W3", edit_agreement=lambda e: e.update(prompt_version=0))
+        self.write_pair("W2", edit_main=lambda e: e.update(prompt_version=lc.PROMPT_VERSION - 1))
+        self.write_pair("W3", edit_agreement=lambda e: e.update(prompt_version=lc.PROMPT_VERSION - 1))
         self.write_pair("W4", edit_main=lambda e: e.update(checklist_version=0))
         self.write_pair("W5", edit_agreement=lambda e: e.update(checklist_version=0))
         self.assertEqual(self.collected("W1", "W2", "W3", "W4", "W5"), ["W1"])

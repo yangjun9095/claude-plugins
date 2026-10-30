@@ -135,6 +135,7 @@ class MapOpener(object):
         raise urllib.error.HTTPError(url, 404, "not found", {}, None)
 
 
+import lab_checklist  # noqa: E402
 import lab_text  # noqa: E402
 
 
@@ -180,6 +181,6 @@ def make_extraction(paper, checklist, group="senior", attempt=1, run="main"):
             elif kind == "strings":
                 answer[name] = ["A heading"]
         answers[item["id"]] = answer
-    return {"schema": 1, "checklist_version": checklist["version"], "prompt_version": 1,
+    return {"schema": 1, "checklist_version": checklist["version"], "prompt_version": lab_checklist.PROMPT_VERSION,
             "paper_sha256": paper["sha256"], "work_id": paper["work_id"], "person": paper["person"],
             "attempt": attempt, "run": run, "answers": answers}
