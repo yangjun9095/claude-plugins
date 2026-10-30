@@ -91,7 +91,7 @@ VERSION_3_SENTENCES = (
     'For such a paper with no section of kind `results`, answer `{"not_applicable": true}` to these three items.',
     "Any other paper is a research paper.",
     "A research paper of group `senior` or `first` can have no section of kind `results`.",
-    "In such a paper, the introduction ends at the first paragraph that reports the paper's own work.",
+    "In such a paper, the introduction ends just before the first paragraph that reports the paper's own work.",
     "The headed sections or subsections after it, before the discussion, are its results sections.",
     "Answer `results_headings`, `results_openings` and `storyline` from them.",
     "When the paper has no headings after the introduction, treat its paragraphs after the introduction as one "
@@ -102,7 +102,7 @@ VERSION_3_SENTENCES = (
     "When several sentences state a gap, choose the gap that the `here_we` sentence answers.",
     "If the `here_we` sentence answers none of them, choose the first.",
     "The paragraph that holds the `gap_sentence` quote has the role `gap`.",
-    "The paragraph that holds the `here_we` quote has the role `here-we`.",
+    "The paragraph that holds the `here_we` quote has the role `here-we`, even when it also holds the gap.",
     "Quote wording habits, such as transitions, hedges, evaluative words and framing phrases.",
     "Never quote the name of a method, a model, a molecule, a quantity or a phenomenon that the paper studies, "
     "however often it recurs.",
