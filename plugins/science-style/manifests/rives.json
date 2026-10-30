@@ -1,0 +1,363 @@
+{
+ "cells": {
+  "essay/high": {
+   "allocated": 0,
+   "bins": [],
+   "pool": 0,
+   "queue": [],
+   "target": 2
+  },
+  "essay/other": {
+   "allocated": 0,
+   "bins": [],
+   "pool": 0,
+   "queue": [],
+   "target": 1
+  },
+  "first/high": {
+   "allocated": 0,
+   "bins": [],
+   "pool": 0,
+   "queue": [],
+   "target": 3
+  },
+  "first/other": {
+   "allocated": 2,
+   "bins": [
+    [
+     "W2081931663"
+    ],
+    [
+     "W3146944767"
+    ]
+   ],
+   "pool": 2,
+   "queue": [],
+   "target": 1
+  },
+  "senior/high": {
+   "allocated": 2,
+   "bins": [
+    [
+     "W4327550249"
+    ],
+    [
+     "W4406440058"
+    ]
+   ],
+   "pool": 2,
+   "queue": [],
+   "target": 5
+  },
+  "senior/other": {
+   "allocated": 9,
+   "bins": [
+    [
+     "W2994961465"
+    ],
+    [
+     "W3111174583"
+    ],
+    [
+     "W3127980148"
+    ],
+    [
+     "W3133458480"
+    ],
+    [
+     "W3179485843"
+    ],
+    [
+     "W4223581484"
+    ],
+    [
+     "W4312197262"
+    ],
+    [
+     "W4312198087"
+    ],
+    [
+     "W7163532908"
+    ]
+   ],
+   "pool": 9,
+   "queue": [],
+   "target": 3
+  }
+ },
+ "n_papers": 12,
+ "papers": [
+  {
+   "arxiv_id": null,
+   "cell": "senior/high",
+   "co_senior": false,
+   "doi": "10.1126/science.ade2574",
+   "group": "senior",
+   "pmcid": null,
+   "preprint_doi": "10.1101/2022.07.20.500902",
+   "route": "biorxiv",
+   "source_url": "https://www.biorxiv.org/content/early/2022/12/21/2022.07.20.500902.source.xml",
+   "status": "fetched",
+   "text_doi": "10.1101/2022.07.20.500902",
+   "text_version": "preprint",
+   "tier": "high",
+   "title": "Evolutionary-scale prediction of atomic-level protein structure with a language model",
+   "type": "article",
+   "venue": "Science",
+   "work_id": "W4327550249",
+   "year": 2023
+  },
+  {
+   "arxiv_id": null,
+   "cell": "senior/high",
+   "co_senior": false,
+   "doi": "10.1126/science.ads0018",
+   "group": "senior",
+   "pmcid": null,
+   "preprint_doi": "10.1101/2024.07.01.600583",
+   "route": "biorxiv",
+   "source_url": "https://www.biorxiv.org/content/early/2024/12/31/2024.07.01.600583.source.xml",
+   "status": "fetched",
+   "text_doi": "10.1101/2024.07.01.600583",
+   "text_version": "preprint",
+   "tier": "high",
+   "title": "Simulating 500 million years of evolution with a language model",
+   "type": "article",
+   "venue": "Science",
+   "work_id": "W4406440058",
+   "year": 2025
+  },
+  {
+   "arxiv_id": "2004.13167",
+   "cell": "senior/other",
+   "co_senior": false,
+   "doi": "10.48550/arxiv.2004.13167",
+   "group": "senior",
+   "pmcid": null,
+   "preprint_doi": null,
+   "route": "arxiv-html",
+   "source_url": "https://arxiv.org/html/2004.13167",
+   "status": "fetched",
+   "text_doi": "10.48550/arxiv.2004.13167",
+   "text_version": "arxiv",
+   "tier": "other",
+   "title": "Energy-based models for atomic-resolution protein conformations",
+   "type": "preprint",
+   "venue": "arXiv (Cornell University)",
+   "work_id": "W2994961465",
+   "year": 2020
+  },
+  {
+   "arxiv_id": null,
+   "cell": "senior/other",
+   "co_senior": true,
+   "doi": "10.1101/2020.12.15.422761",
+   "group": "senior",
+   "pmcid": null,
+   "preprint_doi": "10.1101/2020.12.15.422761",
+   "route": "biorxiv",
+   "source_url": "https://www.biorxiv.org/content/early/2020/12/15/2020.12.15.422761.source.xml",
+   "status": "fetched",
+   "text_doi": "10.1101/2020.12.15.422761",
+   "text_version": "preprint",
+   "tier": "other",
+   "title": "Transformer protein language models are unsupervised structure learners",
+   "type": "preprint",
+   "venue": "bioRxiv (Cold Spring Harbor Laboratory)",
+   "work_id": "W3111174583",
+   "year": 2020
+  },
+  {
+   "arxiv_id": null,
+   "cell": "senior/other",
+   "co_senior": false,
+   "doi": "10.1101/2021.04.08.439084",
+   "group": "senior",
+   "pmcid": null,
+   "preprint_doi": "10.1101/2021.04.08.439084",
+   "route": "biorxiv",
+   "source_url": "https://www.biorxiv.org/content/early/2021/04/11/2021.04.08.439084.source.xml",
+   "status": "fetched",
+   "text_doi": "10.1101/2021.04.08.439084",
+   "text_version": "preprint",
+   "tier": "other",
+   "title": "Neural Potts Model",
+   "type": "preprint",
+   "venue": "bioRxiv (Cold Spring Harbor Laboratory)",
+   "work_id": "W3127980148",
+   "year": 2021
+  },
+  {
+   "arxiv_id": null,
+   "cell": "senior/other",
+   "co_senior": true,
+   "doi": "10.1101/2021.02.12.430858",
+   "group": "senior",
+   "pmcid": null,
+   "preprint_doi": "10.1101/2021.02.12.430858",
+   "route": "biorxiv",
+   "source_url": "https://www.biorxiv.org/content/early/2021/08/27/2021.02.12.430858.source.xml",
+   "status": "fetched",
+   "text_doi": "10.1101/2021.02.12.430858",
+   "text_version": "preprint",
+   "tier": "other",
+   "title": "MSA Transformer",
+   "type": "preprint",
+   "venue": "bioRxiv (Cold Spring Harbor Laboratory)",
+   "work_id": "W3133458480",
+   "year": 2021
+  },
+  {
+   "arxiv_id": null,
+   "cell": "senior/other",
+   "co_senior": false,
+   "doi": "10.1101/2021.07.09.450648",
+   "group": "senior",
+   "pmcid": null,
+   "preprint_doi": "10.1101/2021.07.09.450648",
+   "route": "biorxiv",
+   "source_url": "https://www.biorxiv.org/content/early/2021/11/17/2021.07.09.450648.source.xml",
+   "status": "fetched",
+   "text_doi": "10.1101/2021.07.09.450648",
+   "text_version": "preprint",
+   "tier": "other",
+   "title": "Language models enable zero-shot prediction of the effects of mutations on protein function",
+   "type": "preprint",
+   "venue": "bioRxiv (Cold Spring Harbor Laboratory)",
+   "work_id": "W3179485843",
+   "year": 2021
+  },
+  {
+   "arxiv_id": null,
+   "cell": "senior/other",
+   "co_senior": true,
+   "doi": "10.1101/2022.04.10.487779",
+   "group": "senior",
+   "pmcid": null,
+   "preprint_doi": "10.1101/2022.04.10.487779",
+   "route": "biorxiv",
+   "source_url": "https://www.biorxiv.org/content/early/2022/09/06/2022.04.10.487779.source.xml",
+   "status": "fetched",
+   "text_doi": "10.1101/2022.04.10.487779",
+   "text_version": "preprint",
+   "tier": "other",
+   "title": "Learning inverse folding from millions of predicted structures",
+   "type": "preprint",
+   "venue": "bioRxiv (Cold Spring Harbor Laboratory)",
+   "work_id": "W4223581484",
+   "year": 2022
+  },
+  {
+   "arxiv_id": null,
+   "cell": "senior/other",
+   "co_senior": false,
+   "doi": "10.1101/2022.12.21.521521",
+   "group": "senior",
+   "pmcid": null,
+   "preprint_doi": "10.1101/2022.12.21.521521",
+   "route": "biorxiv",
+   "source_url": "https://www.biorxiv.org/content/early/2022/12/22/2022.12.21.521521.source.xml",
+   "status": "fetched",
+   "text_doi": "10.1101/2022.12.21.521521",
+   "text_version": "preprint",
+   "tier": "other",
+   "title": "Language models generalize beyond natural proteins",
+   "type": "preprint",
+   "venue": "bioRxiv (Cold Spring Harbor Laboratory)",
+   "work_id": "W4312197262",
+   "year": 2022
+  },
+  {
+   "arxiv_id": null,
+   "cell": "senior/other",
+   "co_senior": false,
+   "doi": "10.1101/2022.12.21.521526",
+   "group": "senior",
+   "pmcid": null,
+   "preprint_doi": "10.1101/2022.12.21.521526",
+   "route": "biorxiv",
+   "source_url": "https://www.biorxiv.org/content/early/2022/12/22/2022.12.21.521526.source.xml",
+   "status": "fetched",
+   "text_doi": "10.1101/2022.12.21.521526",
+   "text_version": "preprint",
+   "tier": "other",
+   "title": "A high-level programming language for generative protein design",
+   "type": "preprint",
+   "venue": "bioRxiv (Cold Spring Harbor Laboratory)",
+   "work_id": "W4312198087",
+   "year": 2022
+  },
+  {
+   "arxiv_id": null,
+   "cell": "senior/other",
+   "co_senior": false,
+   "doi": "10.64898/2026.06.03.729735",
+   "group": "senior",
+   "pmcid": null,
+   "preprint_doi": "10.64898/2026.06.03.729735",
+   "route": "biorxiv",
+   "source_url": "https://www.biorxiv.org/content/early/2026/06/04/2026.06.03.729735.source.xml",
+   "status": "fetched",
+   "text_doi": "10.64898/2026.06.03.729735",
+   "text_version": "preprint",
+   "tier": "other",
+   "title": "Language Modeling Materializes a World Model of Protein Biology",
+   "type": "preprint",
+   "venue": "bioRxiv (Cold Spring Harbor Laboratory)",
+   "work_id": "W7163532908",
+   "year": 2026
+  },
+  {
+   "arxiv_id": null,
+   "cell": "first/other",
+   "co_senior": false,
+   "doi": "10.1073/pnas.0237338100",
+   "group": "first",
+   "pmcid": "PMC298738",
+   "preprint_doi": null,
+   "route": null,
+   "source_url": null,
+   "status": "replaced",
+   "text_doi": null,
+   "text_version": null,
+   "tier": "other",
+   "title": "Modular organization of cellular networks",
+   "type": "article",
+   "venue": "Proceedings of the National Academy of Sciences",
+   "work_id": "W2081931663",
+   "year": 2003
+  },
+  {
+   "arxiv_id": null,
+   "cell": "first/other",
+   "co_senior": false,
+   "doi": "10.1073/pnas.2016239118",
+   "group": "first",
+   "pmcid": "PMC8053943",
+   "preprint_doi": "10.1101/622803",
+   "route": "ncbi-pmc",
+   "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=8053943",
+   "status": "fetched",
+   "text_doi": "10.1073/pnas.2016239118",
+   "text_version": "published",
+   "tier": "other",
+   "title": "Biological structure and function emerge from scaling unsupervised learning to 250 million protein sequences",
+   "type": "article",
+   "venue": "Proceedings of the National Academy of Sciences",
+   "work_id": "W3146944767",
+   "year": 2021
+  }
+ ],
+ "person": "rives",
+ "replacements": [
+  {
+   "reason": "no open full text: ncbi-pmc: body has 0 words, fewer than 600; europepmc: https://www.ebi.ac.uk/europepmc/webservices/rest/PMC298738/fullTextXML (500): HTTP Error 500: ; preprint: no bioRxiv DOI; arxiv: no arXiv ID",
+   "replaced": "W2081931663",
+   "replacement": null
+  }
+ ],
+ "schema": 1,
+ "seed": 20261029,
+ "shortfall": 3,
+ "venues_version": 1
+}
