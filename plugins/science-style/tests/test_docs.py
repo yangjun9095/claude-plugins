@@ -67,6 +67,19 @@ class PromptTests(unittest.TestCase):
                        "(doi:"):
             self.assertIn(phrase, text)
 
+    def test_the_card_brief_states_the_stability_passive_and_ordinal_rules(self):
+        text = " ".join(read(PLUGIN, "prompts", "card.md").split())
+        for sentence in ("Storyline, explanations and signature_phrases have no stability entry; you may describe them.",
+                         "The passive share is a lower bound: the pattern misses some passive forms. "
+                         "Say so when you give it.",
+                         "Do not name list sizes or ordinals, such as top 30 or 90th percentile; the check rejects "
+                         "numbers that the profile does not hold."):
+            self.assertIn(sentence, text)
+        checklist = lc.load_checklist()
+        closed = {i["id"] for i in lc.closed_items(checklist)}
+        self.assertEqual(sorted(i["id"] for i in checklist["items"] if i["id"] not in closed),
+                         ["explanations", "signature_phrases", "storyline"])
+
     def test_the_extraction_rules_name_every_item_that_has_evidence_rules(self):
         rules = section(read(PLUGIN, "prompts", "extract.md"), "Rules")
         with_evidence = [i["id"] for i in lc.load_checklist()["items"] if "evidence" in i]

@@ -21,7 +21,7 @@ The card starts with `# <name>` and has these headings, in this order:
 
 1. Take every count from the profile data, as "N of M". M is the `n` of the field, the `n_by_group` or `n_by_tier` value for one group or tier, or `n_papers` for the Sample split. For the papers left out, write `n_left_out` of `n_fetched` papers.
 2. In a count about papers, put the word papers right after M, as in 7 of 15 papers. Do not add or subtract counts.
-3. Use only numbers that appear in the profile data. The numbers 100 and 1,000 are allowed in "per 100" and "per 1,000". Write every number as digits.
+3. Use only numbers that appear in the profile data. The numbers 100 and 1,000 are allowed in "per 100" and "per 1,000". Write every number as digits. Do not name list sizes or ordinals, such as top 30 or 90th percentile; the check rejects numbers that the profile does not hold.
 4. Do not write number words such as two, half, quarter or twice. Do not write "-fold" forms such as 3-fold or twofold. Do not write "one of N" or "one in N". Do not use percentages.
 5. Quote only from the `quotes` list of the profile data. A quote may be the whole entry or a contiguous part of it, 25 words or fewer. Write each quote as `"text" (doi:10.xxxx/yyyy)` with the DOI of that entry. Use double quotes for nothing else.
 6. Copy the characters of a quote exactly. Do not add punctuation inside the quote marks or change a capital letter. Write each quote on one line. Do not use a quote that contains a double quote mark.
@@ -30,10 +30,11 @@ The card starts with `# <name>` and has these headings, in this order:
 9. Keep the card to at most 900 words. Aim for about 800 words. The check counts the headings and the quotes.
 10. Use no level-2 heading other than the ten above. Do not number list items.
 11. When the `stability` of an item says `"stable": false`, state no pattern from that item. Say that the checklist could not measure it reliably.
-12. When `stable` is `null`, the item had no agreement pairs. State no pattern from it.
+12. When `stable` is `null`, the item had no agreement pairs. State no pattern from it. Storyline, explanations and signature_phrases have no stability entry; you may describe them.
 13. When `distinctive_note` is not empty, say in `## Sentences and words` that the distinctive words could not be computed, and why. Give the reason in words. Do not repeat a number from the note.
-14. Describe what the papers do. Do not rank the person, praise the writing, or compare its quality with other people.
-15. Write plain English: short sentences, the active voice, one name for each thing. Start each section with its main point.
+14. The passive share is a lower bound: the pattern misses some passive forms. Say so when you give it.
+15. Describe what the papers do. Do not rank the person, praise the writing, or compare its quality with other people.
+16. Write plain English: short sentences, the active voice, one name for each thing. Start each section with its main point.
 
 ## Report
 

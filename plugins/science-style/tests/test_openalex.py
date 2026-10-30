@@ -177,26 +177,26 @@ class EmptyFieldTests(unittest.TestCase):
 
 class IdentifierTests(unittest.TestCase):
     def test_pmcid_doi_and_preprint_from_the_landing_page(self):
-        work = make_work("W1", [ADA_AUTHOR], doi="10.1000/FERN.1", pmcid="PMC1234567", locations=[
+        work = make_work("W1", [ADA_AUTHOR], doi="10.1000/FERN.1", pmcid="PMC90000001", locations=[
             {"landing_page_url": "https://www.biorxiv.org/content/10.1101/2020.01.02.123456v2.full"}])
-        self.assertEqual(lo.identifiers(work), ("10.1000/fern.1", "PMC1234567", "10.1101/2020.01.02.123456", None))
+        self.assertEqual(lo.identifiers(work), ("10.1000/fern.1", "PMC90000001", "10.1101/2020.01.02.123456", None))
 
     def test_a_cold_spring_harbor_journal_doi_is_not_a_preprint(self):
         work = make_work("W1", [ADA_AUTHOR], doi="10.1101/gad.000001.17")
         self.assertIsNone(lo.identifiers(work)[2])
 
     def test_a_biorxiv_doi_is_its_own_preprint(self):
-        work = make_work("W1", [ADA_AUTHOR], doi="10.1101/654321", wtype="preprint")
-        self.assertEqual(lo.identifiers(work)[2], "10.1101/654321")
+        work = make_work("W1", [ADA_AUTHOR], doi="10.1101/954321", wtype="preprint")
+        self.assertEqual(lo.identifiers(work)[2], "10.1101/954321")
 
     def test_preprint_doi_comes_from_a_biorxiv_location_with_a_doi_landing_url(self):
         work = make_work("W1", [ADA_AUTHOR], doi="10.1000/fern.1", locations=[
             {"landing_page_url": "https://doi.org/10.1000/fern.1", "pdf_url": None,
              "source": {"display_name": "Current Biology"}},
-            {"landing_page_url": "https://doi.org/10.1101/2020.07.21.214387",
-             "pdf_url": "https://www.biorxiv.org/content/biorxiv/early/2020/07/22/2020.07.21.214387.full.pdf",
+            {"landing_page_url": "https://doi.org/10.1101/2020.07.21.000777",
+             "pdf_url": "https://www.biorxiv.org/content/biorxiv/early/2020/07/22/2020.07.21.000777.full.pdf",
              "source": {"display_name": "bioRxiv (Cold Spring Harbor Laboratory)"}}])
-        self.assertEqual(lo.identifiers(work)[2], "10.1101/2020.07.21.214387")
+        self.assertEqual(lo.identifiers(work)[2], "10.1101/2020.07.21.000777")
 
     def test_the_new_rxiv_prefix_is_a_preprint_doi(self):
         new = "10.64898/2026.02.03.000321"
@@ -213,15 +213,15 @@ class IdentifierTests(unittest.TestCase):
         self.assertIsNone(lo.identifiers(work)[2])
 
     def test_arxiv_from_the_doi_and_from_a_url(self):
-        work = make_work("W1", [ADA_AUTHOR], doi="10.48550/arXiv.1901.00001")
-        self.assertEqual(lo.identifiers(work)[3], "1901.00001")
-        work = make_work("W1", [ADA_AUTHOR], locations=[{"pdf_url": "https://arxiv.org/pdf/2101.00002v3"}])
-        self.assertEqual(lo.identifiers(work)[3], "2101.00002")
+        work = make_work("W1", [ADA_AUTHOR], doi="10.48550/arXiv.1901.99901")
+        self.assertEqual(lo.identifiers(work)[3], "1901.99901")
+        work = make_work("W1", [ADA_AUTHOR], locations=[{"pdf_url": "https://arxiv.org/pdf/2101.99902v3"}])
+        self.assertEqual(lo.identifiers(work)[3], "2101.99902")
 
     def test_a_pmcid_without_the_prefix_gets_it(self):
         work = make_work("W1", [ADA_AUTHOR])
-        work["ids"] = {"pmcid": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7654321/"}
-        self.assertEqual(lo.identifiers(work)[1], "PMC7654321")
+        work["ids"] = {"pmcid": "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC90000002/"}
+        self.assertEqual(lo.identifiers(work)[1], "PMC90000002")
 
 
 class MergeTests(unittest.TestCase):
@@ -229,10 +229,10 @@ class MergeTests(unittest.TestCase):
         journal, _ = classify(make_work("W2", others(2) + [ADA_AUTHOR], title="Fern Spores Swell in Water.",
                                         doi="10.1000/fern.2", year=2016))
         preprint, _ = classify(make_work("W1", others(2) + [ADA_AUTHOR], title="Fern spores swell in water",
-                                         wtype="preprint", venue="bioRxiv", doi="10.1101/111111", year=2015))
+                                         wtype="preprint", venue="bioRxiv", doi="10.1101/911111", year=2015))
         kept, merged = lo.merge_preprints([preprint, journal])
         self.assertEqual([r["work_id"] for r in kept], ["W2"])
-        self.assertEqual(kept[0]["preprint_doi"], "10.1101/111111")
+        self.assertEqual(kept[0]["preprint_doi"], "10.1101/911111")
         self.assertEqual(merged, [{"kept": "W2", "merged": "W1", "title": "Fern spores swell in water"}])
 
     def test_different_titles_stay_apart_and_sort_by_year(self):
@@ -306,7 +306,7 @@ class FetchTests(unittest.TestCase):
         works = [
             make_work("W1", others(2) + [ADA_AUTHOR], title="Spores swell", doi="10.1000/a", year=2016),
             make_work("W2", others(2) + [ADA_AUTHOR], title="Spores swell", wtype="preprint", venue="bioRxiv",
-                      doi="10.1101/222222", year=2015),
+                      doi="10.1101/922222", year=2015),
             make_work("W3", [ADA_AUTHOR] + others(3), title="Moss dries", venue="Nature Genetics", year=2009),
             make_work("W4", others(2) + [ADA_AUTHOR] + others(2, 95), title="A big atlas"),
             make_work("W5", others(2) + [ADA_AUTHOR], title="Erratum", wtype="erratum"),

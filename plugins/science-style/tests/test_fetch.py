@@ -246,8 +246,8 @@ class TextDoiTests(unittest.TestCase):
 
     def test_an_undated_biorxiv_doi_on_a_pmc_route_keeps_the_pmc_text_version(self):
         http = FakeHttp([NO_HITS, ("efetch.fcgi?db=pmc&id=1000001", jats_body(700))])
-        result, _ = lf.try_routes(http, paper("W1", pmcid="PMC1000001", doi="10.1101/123456"), "ada")
-        self.assertEqual((result["text_version"], result["text_doi"]), ("published", "10.1101/123456"))
+        result, _ = lf.try_routes(http, paper("W1", pmcid="PMC1000001", doi="10.1101/923456"), "ada")
+        self.assertEqual((result["text_version"], result["text_doi"]), ("published", "10.1101/923456"))
 
 
 class LookupTests(unittest.TestCase):
