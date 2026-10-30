@@ -1,6 +1,6 @@
 # science-style
 
-The style lab finds open-access papers of chosen scientists and extracts how each person writes. It publishes one checked profile per person and a file of principles that the people share. A writing skill that uses the profiles comes in a later version.
+The style lab finds open-access papers of chosen scientists and extracts how each person writes. It publishes one checked profile per person and a file of principles that the people share. The prototype skill `science-write` drafts and revises text with those profiles.
 
 ## What it extracts
 
@@ -32,6 +32,20 @@ In Claude Code, run `/style-lab <person ids> --pilot` for a pilot, then `/style-
 | `status` | Shows the state of each person. |
 
 Run a step by hand with `python3 -I lab/style_lab.py <step> --help`.
+
+## Write with the profiles (prototype)
+
+Ask for a draft or a revision "in the style of" a profiled person, or "with the shared principles". The skill `science-write` reads `profiles/principles.md` and the card of that person. It applies the card's moves to your content and runs the plain-prose lint when that plugin is installed. Then it reports which moves it applied. It never invents results or citations, and it never presents text as written by the profiled person.
+
+## Known limits of the 2026-10-30 run
+
+- The profiles hold 10 to 14 papers per person: 83 papers in all. Royer and Zou fall 5 papers short of 15, Pinello 4, Shendure and Rives 3, Garcia and Trapnell 1. Their other sampled papers had no open full text.
+- Extraction precision on the spot check is 102 of 112 answers (1 wrong, 9 vague). The `excitement` item reaches an agreement of 0.65 only, so the cards state no pattern from it.
+- Reviews with more than 3 authors are left out. A few research papers that OpenAlex types as reviews are lost with them.
+- Pinello's sample holds his PhD thesis, which OpenAlex does not type as a dissertation.
+- In 2 papers (Shendure W2118970626, Trapnell W3010569643) the real results sit in sections after a short "Results" section, so their results items under-describe them.
+- The distinctive words are mostly field terms.
+- The author has not yet read the cards.
 
 ## What the repository holds
 
