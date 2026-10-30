@@ -7,25 +7,35 @@ description: Use when drafting or revising a manuscript section, an abstract, a 
 
 This skill is a prototype. It reads the style cards that the lab wrote on 2026-10-30, and the author has not reviewed those cards yet.
 
-`<plugin>` below means the folder two levels above this SKILL.md.
+`<plugin>` below means the plugin folder: the folder that holds `skills/`, `profiles/` and `prompts/`.
 
 ## Before you write
 
 1. Get three facts from the request, or ask for them in one question: the genre (manuscript section, abstract, blog post or grant aim), the section, and the card (a person id from `<plugin>/data/people.json`, or `principles`).
 2. Read `<plugin>/profiles/principles.md`. For a person, also read `<plugin>/profiles/<id>.md`. Read `<plugin>/profiles/<id>.json` only to check a count.
-3. List the card moves that fit the genre and the section. Examples: the order of introduction roles, a gap sentence before a here-we sentence, results subheadings as full-sentence claims, how a results section opens, where the figure reference stands, where limits stand and how specific they are, the order of discussion moves, sentence length, hedges and connectives.
-4. Leave out every move that the card says the checklist could not measure reliably.
+3. Take the moves from the card sections that fit the text:
+
+   | Text | Card sections |
+   |---|---|
+   | Abstract | Storyline (abstract moves), Introduction (gap and here-we sentences) |
+   | Introduction | Introduction |
+   | Results | Results, Signature moves |
+   | Discussion | Discussion, Limitations, Excitement (strongest claim only) |
+   | Blog post or grant aim | the essay counts of the card, and principles.md |
+   | Any text | Sentences and words |
+
+4. Leave out each item that the card names as not measured reliably. Other lines of the same card section stay usable.
 
 ## Write
 
-- Apply the moves to the author's content. Never invent a result, a number or a citation. Mark a missing fact as `[TODO: ...]`.
+- Apply the moves to the author's content. Never invent a result, a number or a citation.
+- When the draft lacks a fact that a move needs, write the sentence and mark the fact as `[TODO: ...]`. A gap sentence with no gap in the draft is an example.
 - Use the habits of the card, not its quotes. Copy at most a few words of a quote. Never present text as written by the profiled person.
-- For a blog post or grant text, use the essay counts of the card and the shared principles. No card holds a blog post or a grant.
-- Treat the measures as a range. Aim near the median sentence length of the card, not at its exact value.
+- Treat the measures as a range. The author's house style, such as a sentence-length cap in CLAUDE.md, wins over a card measure.
 
 ## Check
 
-1. When the plain-prose plugin is installed, run its lint on the draft and fix every flagged pattern.
+1. Write the draft alone to a file. When the plain-prose plugin is installed, run its lint on that file: `python3 -B <plain-prose plugin>/scripts/prose_lint.py <file>`. Fix every flagged pattern.
 2. Report a short table: each move you applied, where it stands in the draft, and the card line it comes from. Name the moves you left out, with the reason.
 
 ## Limits
