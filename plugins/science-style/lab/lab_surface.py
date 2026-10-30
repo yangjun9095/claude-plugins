@@ -9,6 +9,7 @@ MIN_PEOPLE people use.
 import math
 import os
 import re
+import string
 from collections import Counter
 
 from lab_paths import PLUGIN_ROOT, read_json
@@ -18,8 +19,12 @@ WORDLISTS_PATH = os.path.join(PLUGIN_ROOT, "data", "wordlists.json")
 MIN_PEOPLE = 4
 TOP_WORDS = 30
 TOP_PAIRS = 20
-FIRST_PERSON = re.compile(r"\b(?:[Ww]e|[Oo]ur|[Oo]urs|us|I|[Mm]y)\b")
-FIGREF = re.compile(r"\b(?:Extended Data |Supplementary )?(?:Fig(?:ure)?s?\.?|Table)\s*S?\d", re.I)
+FIRST_PERSON = re.compile(r"\b(?:[Ww]e|[Oo]ur|[Oo]urs|us|[Mm]y)\b")
+FIGREF = re.compile(r"\b(?:Extended Data |Supplementary )?(?:Fig(?:ure)?s?\.?|Tables?)\s*S?\d", re.I)
+BARE_I = re.compile(r"\bI\b(?![-\d])(?!\s+I\b)")
+ROMAN_CONTEXT = frozenset("""type class phase complex group stage grade part site domain region photosystem
+chapter section table figure fig appendix level set""".split())
+_EDGE_MARKS = string.punctuation + "“”‘’"
 NUMBER = re.compile(r"(?<![\w.])\d+(?:[.,]\d+)?")
 QUESTION_END = re.compile(r"\?[\"')\]”’]*$")
 
@@ -34,6 +39,23 @@ def passive_pattern(irregular):
     forms = "|".join(sorted((re.escape(w) for w in irregular), key=len, reverse=True))
     return re.compile(r"\b(?:am|is|are|was|were|be|been|being)\s+(?:\w+ly\s+)?"
                       r"(?:(?!indeed\b)\w{2,}ed|" + forms + r")\b", re.I)
+
+
+def has_first_person(sentence):
+    """Return True when the sentence has a first-person word.
+
+    A bare "I" counts unless it is a roman numeral. The "I" is a roman numeral when "-", a digit or
+    another "I" follows it, or when a word of ROMAN_CONTEXT, such as "Type", comes before it. A comma,
+    semicolon or colon after that word ends the context, so "In this section, I show" counts.
+    """
+    if FIRST_PERSON.search(sentence):
+        return True
+    for match in BARE_I.finditer(sentence):
+        before = sentence[:match.start()].split()
+        previous = before[-1] if before else ""
+        if previous[-1:] in (",", ";", ":") or previous.strip(_EDGE_MARKS).lower() not in ROMAN_CONTEXT:
+            return True
+    return False
 
 
 def top(counter, n):
@@ -90,7 +112,7 @@ def measures(collected, wordlists):
             openers[lower[0]] += 1
         if len(lower) > 1:
             opener_pairs[lower[0] + " " + lower[1]] += 1
-        first += 1 if FIRST_PERSON.search(sentence) else 0
+        first += 1 if has_first_person(sentence) else 0
         passives += 1 if passive.search(sentence) else 0
         questions += 1 if QUESTION_END.search(sentence) else 0
         numbers += len(NUMBER.findall(sentence))
@@ -149,13 +171,16 @@ def log_odds_z(counts_a, counts_b, prior):
 
 
 def distinctive(person_counts, min_people=MIN_PEOPLE, top_n=TOP_WORDS):
-    """Return the top_n words of each person by z-score, or {} with fewer than min_people people."""
+    """Return the top_n words of each person by z-score, or {} with fewer than min_people people.
+    With fewer than 2 shared words, return an empty list for each person."""
     if len(person_counts) < min_people:
         return {}
     presence = Counter()
     for counts in person_counts.values():
         presence.update(set(counts))
     shared = {w for w, k in presence.items() if k >= min_people}
+    if len(shared) < 2:
+        return {person: [] for person in person_counts}
     total = Counter()
     for counts in person_counts.values():
         total.update({w: n for w, n in counts.items() if w in shared})
@@ -179,8 +204,16 @@ def run_surface(papers_by_person, wordlists):
         unigrams[person], bigrams[person] = vocab_counts(pooled)
     words_z = distinctive(unigrams, top_n=TOP_WORDS)
     pairs_z = distinctive(bigrams, top_n=TOP_PAIRS)
+    notes = []
+    if not words_z:
+        notes.append("needs at least {} people".format(MIN_PEOPLE))
+    else:
+        if not any(words_z.values()):
+            notes.append("fewer than 2 words shared by {} people".format(MIN_PEOPLE))
+        if not any(pairs_z.values()):
+            notes.append("fewer than 2 pairs shared by {} people".format(MIN_PEOPLE))
     for person in out:
         out[person]["distinctive_words"] = words_z.get(person, [])
         out[person]["distinctive_pairs"] = pairs_z.get(person, [])
-        out[person]["distinctive_note"] = "" if words_z else "needs at least {} people".format(MIN_PEOPLE)
+        out[person]["distinctive_note"] = "; ".join(notes)
     return out

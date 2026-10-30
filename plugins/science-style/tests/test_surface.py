@@ -60,9 +60,26 @@ class MeasureTests(unittest.TestCase):
 
     def test_first_person(self):
         for yes in ("Let us count.", "I counted.", "Our coats split."):
-            self.assertTrue(lsu.FIRST_PERSON.search(yes), yes)
+            self.assertTrue(lsu.has_first_person(yes), yes)
         for no in ("The US data.", "Use the mouse."):
-            self.assertFalse(lsu.FIRST_PERSON.search(no), no)
+            self.assertFalse(lsu.has_first_person(no), no)
+
+    def test_first_person_ignores_roman_numeral_i(self):
+        for no in ("Type I interferon rose.", "MHC class I molecules bound.", "In a Phase I trial, doses rose.",
+                   "Type I and II interferons rose.", "The I-band shrank.", "Complex I, II and III bound."):
+            self.assertFalse(lsu.has_first_person(no), no)
+        for yes in ("Here I show the result.", "We show the result.", "I show the result.",
+                    "In this section, I show the result.", "I'm sure of the result."):
+            self.assertTrue(lsu.has_first_person(yes), yes)
+
+    def test_first_person_share_skips_roman_numeral_i(self):
+        m = lsu.measures(lsu.collect(make_paper("W9", "Type I interferon rose. I measured it.")), WORDLISTS)
+        self.assertEqual(m["first_person_share"], 0.5)
+
+    def test_figure_references_count_tables(self):
+        self.assertEqual(len(lsu.FIGREF.findall("See Tables 1 and 2.")), 1)
+        self.assertEqual(len(lsu.FIGREF.findall("Supplementary Tables S1 and S2.")), 1)
+        self.assertEqual(len(lsu.FIGREF.findall("See Table 1 and Fig. 2.")), 2)
 
     def test_top_breaks_ties_by_word(self):
         self.assertEqual(lsu.top(Counter({"b": 2, "a": 2, "c": 5}), 2), [["c", 5], ["a", 2]])
@@ -85,6 +102,10 @@ class DistinctiveTests(unittest.TestCase):
         counts = {p: Counter({"spores": 3}) for p in ("a", "b", "c")}
         self.assertEqual(lsu.distinctive(counts), {})
 
+    def test_one_shared_word_gives_empty_lists_not_an_error(self):
+        counts = {p: Counter({"spores": 3}) for p in ("a", "b", "c", "d")}
+        self.assertEqual(lsu.distinctive(counts), {"a": [], "b": [], "c": [], "d": []})
+
     def test_words_of_fewer_than_four_people_are_left_out(self):
         counts = {"a": Counter({"spores": 40, "the": 10, "fern": 30}), "b": Counter({"spores": 5, "the": 40, "fern": 1}),
                   "c": Counter({"spores": 5, "the": 40, "fern": 1}), "d": Counter({"spores": 5, "the": 40})}
@@ -101,6 +122,36 @@ class DistinctiveTests(unittest.TestCase):
         self.assertEqual(out["ben"]["pooled"]["n_sentences"], 2)
         self.assertEqual(out["ada"]["distinctive_words"], [])
         self.assertEqual(out["ada"]["distinctive_note"], "needs at least 4 people")
+
+    def test_one_shared_pair_gives_empty_lists_and_a_note(self):
+        # The four people share four words and exactly one pair of words: "spores swell".
+        texts = {"ada": "Spores swell water coats.", "ben": "Spores swell coats water.",
+                 "cy": "Water spores swell coats.", "di": "Coats water spores swell."}
+        papers = {person: [make_paper("W" + person, text)] for person, text in texts.items()}
+        out = lsu.run_surface(papers, WORDLISTS)
+        for person in texts:
+            self.assertEqual(out[person]["distinctive_pairs"], [], person)
+            self.assertEqual(sorted(w for w, _ in out[person]["distinctive_words"]),
+                             ["coats", "spores", "swell", "water"], person)
+            self.assertEqual(out[person]["distinctive_note"], "fewer than 2 pairs shared by 4 people", person)
+
+    def test_one_shared_word_and_no_pair_give_both_notes(self):
+        papers = {person: [make_paper("W" + person, "Spores.")] for person in ("ada", "ben", "cy", "di")}
+        out = lsu.run_surface(papers, WORDLISTS)
+        self.assertEqual(out["ada"]["distinctive_words"], [])
+        self.assertEqual(out["ada"]["distinctive_pairs"], [])
+        self.assertEqual(out["ada"]["distinctive_note"],
+                         "fewer than 2 words shared by 4 people; fewer than 2 pairs shared by 4 people")
+
+    def test_enough_shared_words_and_pairs_give_no_note(self):
+        texts = {"ada": "Spores swell in water. Spores swell in coats.", "ben": "Spores swell in moss. Moss swell in coats.",
+                 "cy": "Spores swell in ferns. Ferns swell in coats.", "di": "Spores swell in lichens. Lichens swell in coats."}
+        papers = {person: [make_paper("W" + person, text)] for person, text in texts.items()}
+        out = lsu.run_surface(papers, WORDLISTS)
+        for person in texts:
+            self.assertTrue(out[person]["distinctive_words"], person)
+            self.assertTrue(out[person]["distinctive_pairs"], person)
+            self.assertEqual(out[person]["distinctive_note"], "", person)
 
 
 if __name__ == "__main__":
