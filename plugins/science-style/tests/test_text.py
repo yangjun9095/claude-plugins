@@ -35,6 +35,18 @@ class SplitTests(unittest.TestCase):
                          ["Spores swell (Fig. 2).", "Ash et al. found this, e.g. in moss.",
                           "Birch i.e. Ash agreed."])
 
+    def test_dotted_abbreviations_do_not_end_sentences(self):
+        self.assertEqual(lt.split_sentences("Spores split at n.c. 14 (Figure 2B). Then they swell."),
+                         ["Spores split at n.c. 14 (Figure 2B).", "Then they swell."])
+        self.assertEqual(lt.split_sentences("The gap vanishes (Supp. Figure 9). This shows a rule."),
+                         ["The gap vanishes (Supp. Figure 9).", "This shows a rule."])
+        self.assertEqual(lt.split_sentences("See Eq. 3 and Ref. 12 for details. The fern grew."),
+                         ["See Eq. 3 and Ref. 12 for details.", "The fern grew."])
+        self.assertEqual(lt.split_sentences("Values are in a.u. as before. Next we count."),
+                         ["Values are in a.u. as before.", "Next we count."])
+        self.assertEqual(lt.split_sentences("Ash grew in s.d. Birch 4 (Vol. 2). Cf. Birch."),
+                         ["Ash grew in s.d. Birch 4 (Vol. 2).", "Cf. Birch."])
+
     def test_initials_and_decimals_do_not_end_a_sentence(self):
         self.assertEqual(lt.split_sentences("H. G. Ash measured 0.5 mm. The rest grew."),
                          ["H. G. Ash measured 0.5 mm.", "The rest grew."])

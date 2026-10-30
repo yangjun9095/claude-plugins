@@ -11,8 +11,8 @@ NORMALIZER_VERSION = "1"
 PLACEHOLDERS = ("[CIT]", "[EQ]")
 PAPER_META_FIELDS = ("work_id", "person", "doi", "title", "year", "venue", "tier", "group",
                      "co_senior", "text_version", "text_doi", "route", "source_url")
-ABBREVIATIONS = frozenset("""fig figs eq eqs ref refs no nos vs al approx ca cf resp sec suppl ext
-dr prof st etc e.g i.e""".split())
+ABBREVIATIONS = frozenset("""fig figs eq eqs ref refs no nos vs al approx ca cf resp sec secs supp suppl
+ch vol ext dr prof st etc e.g i.e""".split())
 
 _SINGLE_QUOTES = "‘’‚‛′"
 _DOUBLE_QUOTES = "“”„‟″"
@@ -20,6 +20,7 @@ _DASHES = "‐‑‒–—―−"
 _END = re.compile(r"[.?!]")
 _TAIL = re.compile(r"(?:\[CIT\])?[\"')\]’”]*")
 _NEXT = re.compile(r"\s+[\"'(\[‘“]?[A-Z0-9]")
+_DOTTED = re.compile(r"\b[a-z](?:\.[a-z])+\.$", re.I)
 _WORD = re.compile(r"\d+(?:[.,]\d+)*(?![^\W_])|[^\W_]+(?:['’‐‑–\-][^\W_]+)*")
 _DOI_PREFIX = re.compile(r"^(?:https?://(?:dx\.)?doi\.org/|doi:)", re.I)
 
@@ -46,8 +47,9 @@ def split_sentences(text):
     """Split a paragraph into sentences.
 
     A sentence ends at ".", "?" or "!" when white space and a capital letter or a digit follow.
-    Abbreviations, initials and decimals do not end a sentence. A citation mark, closing quotes
-    and closing brackets after the stop stay with the sentence.
+    Abbreviations, initials, decimals and dotted letters such as "n.c." or "a.u." do not end a
+    sentence. A citation mark, closing quotes and closing brackets after the stop stay with the
+    sentence.
     """
     text = " ".join(text.split())
     sentences, start = [], 0
@@ -57,7 +59,8 @@ def split_sentences(text):
         end = tail.end()
         if not _NEXT.match(text, end):
             continue
-        if match.group() == "." and _is_abbreviation(text[start:pos]):
+        if match.group() == "." and (_is_abbreviation(text[start:pos])
+                                     or _DOTTED.search(text[start:pos + 1])):
             continue
         sentences.append(text[start:end].strip())
         start = end
