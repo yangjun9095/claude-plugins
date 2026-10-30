@@ -44,24 +44,30 @@ Write one JSON file per paper, at its output path, in this shape:
 ```
 
 Fill the top fields this way:
+- `schema` is 1.
 - `checklist_version` is the `version` of the checklist file.
-- `paper_sha256`, `work_id` and `person` come from the paper file.
+- `prompt_version` is the number on the `Prompt version` line of this brief.
+- `paper_sha256` is the `sha256` field of the paper file. `work_id` and `person` also come from the paper file.
 - `attempt` is the attempt number of the dispatch, and `run` is the run named for the paper.
 - `answers` has one entry for each checklist item, keyed by the item id.
 
 ## Rules
 
 1. For the fields of type `enum`, `enum_list` and `objects`, use only the values that the checklist lists. Copy each value exactly.
-2. Copy every quote from the paper file word for word, with its `[CIT]` and `[EQ]` marks. Do not shorten a quote with an ellipsis. A quote has at most 40 words. A script checks every quote against the paper file and rejects the extraction when more than one quote in ten fails.
-3. A `quote` field holds one quote, or null when its value is `none`. A `quotes` field holds a list, which may be empty.
-4. A `paragraph` field counts the paragraphs of the introduction from 1, in reading order. The introduction is every section of kind `intro`. Use null when the value is `none`.
-5. For `gap_sentence` and `here_we`, a `value` of `present` needs a `quote` and a `paragraph`.
-6. For `strongest_claim`, a `value` of `hedged` needs a `quote` and a `hedge_quote`. A `value` of `unhedged` needs a `quote`, and `hedge_quote` is null. A `value` of `none` leaves both null.
-7. For `limitations`, a `placement` of `none` needs a `specificity` of `none` and an empty `quotes` list. Any other `placement` needs at least one quote and a `specificity` other than `none`.
-8. When the group of a paper is not `essay`, the answer to `essay_argument` is `{"not_applicable": true}`.
-9. For `essay_argument`, a `call_to_action` of `yes` needs the sentence as `quote`. A `call_to_action` of `no` needs a `quote` of null.
-10. Answer from the text as it stands. When the text shows no answer, choose `none` or `other`, or leave the list empty.
-11. Write the output file as valid JSON. Escape every double quote inside a quote as `\"`.
+2. Each answer holds every field of its item and no other field. Each `excitement` entry holds `marker`, `location` and `quote`, and the quote is not empty.
+3. Copy every quote from the paper file word for word, with its `[CIT]` and `[EQ]` marks. Do not shorten a quote with an ellipsis. A quote has at most 40 words.
+4. Prefer quotes of 25 words or fewer. A longer quote never reaches a profile.
+5. A script checks every quote against the paper file. The script rejects an extraction when more than 1 quote in 10 fails. With fewer than 10 quotes, one failed quote rejects the extraction. The script also rejects an extraction with no quote.
+6. A `quote` field holds one quote, or null when its value is `none`. A `quotes` field holds a list, which may be empty.
+7. A `paragraph` field counts the paragraphs of the introduction from 1, in reading order. The introduction is every section of kind `intro`. Use null when the value is `none`.
+8. A `value` of `present` in `gap_sentence` or `here_we` needs a `quote` and a `paragraph`.
+9. In `strongest_claim`, a `value` of `hedged` needs a `quote` and a `hedge_quote`. A `value` of `unhedged` needs a `quote`, and `hedge_quote` is null. A `value` of `none` leaves both null.
+10. `limitations` needs a `specificity` of `none` and an empty `quotes` list when `placement` is `none`. Any other `placement` needs at least one quote and a `specificity` other than `none`.
+11. When the group of a paper is not `essay`, the answer to `essay_argument` is `{"not_applicable": true}`.
+12. A `call_to_action` of `yes` in `essay_argument` needs the sentence as `quote`. A `call_to_action` of `no` needs a `quote` of null.
+13. Answer from the text as it stands. When the text shows no answer, choose `none` or `other` if the item lists it, or leave the list empty.
+14. For `figure_reference`, choose `no figures` when the text cites no figure.
+15. Write the output file as valid JSON. Escape every double quote inside a quote as `\"`.
 
 ## Meanings of the values
 
@@ -77,7 +83,7 @@ Fill the top fields this way:
 - `limitations`: `placement` is where the limits stand. `specificity`: `specific with a remedy` names a limit and the experiment or method that would remove it; `specific` names a limit; `generic` says only that more work is needed.
 - `discussion_moves`, in the order they occur: `summary`, `mechanism` (a proposed explanation), `comparison with prior work`, `limitation`, `future work`, `implication`.
 - `explanations`: analogies and plain explanations that a reader outside the field can follow.
-- `figure_reference`: `result then reference` states the result and cites the figure at the end; `reference then result` starts with the figure ("Figure 2 shows that"); `mixed` does both often.
+- `figure_reference`: `result then reference` states the result and cites the figure at the end; `reference then result` starts with the figure ("Figure 2 shows that"); `mixed` does both often; `no figures` means the text cites no figure.
 - `signature_phrases`: phrases that recur in the paper or stand out from common scientific prose.
 - `essay_argument`: `thesis_location` is where the essay states its main point; `argument` is one or two sentences on how the argument proceeds; `call_to_action` is `yes` when the essay asks the reader or the field to act, with that sentence as `quote`.
 
