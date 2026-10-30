@@ -19,11 +19,13 @@ DOCTYPE = re.compile(r"<!DOCTYPE[^>\[]*(?:\[[^\]]*\])?\s*>", re.S)
 CIT_RUN = re.compile(r"\[CIT\](?:[\s,;\-–—]*\[CIT\])+")
 CIT_WRAP = re.compile(r"[(\[]\s*\[CIT\]\s*[)\]]")
 LEADING_NUMBER = re.compile(r"^[\d.\s]+")
-DROP_HEADINGS = ("reference", "acknowledg", "author contribution", "competing interest",
+DROP_HEADINGS = ("references", "reference list", "bibliography", "literature cited", "acknowledg",
+                 "author contribution", "competing interest",
                  "declaration of interest", "conflict of interest", "conflicts of interest", "data availability",
                  "code availability", "data and code availability", "materials availability", "supplementary",
                  "supporting information", "funding", "additional information", "abbreviations")
-KIND_RULES = (("methods", ("method", "materials and method", "material and method", "online method",
+KIND_RULES = (("methods", ("method", "materials and method", "material and method", "materials & method",
+                           "material & method", "patients and method", "subjects and method", "online method",
                            "star method", "star★method", "star★ method", "experimental procedure",
                            "experimental model")),
               ("results", ("result",)),
@@ -43,7 +45,7 @@ def heading_kind(heading):
     "A reference atlas" stay "other".
     """
     text = LEADING_NUMBER.sub("", heading.casefold()).strip()
-    if text.startswith(DROP_HEADINGS):
+    if text == "reference" or text.startswith(DROP_HEADINGS):
         return "drop"
     for kind, prefixes in KIND_RULES:
         if text.startswith(prefixes):

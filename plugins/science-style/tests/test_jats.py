@@ -76,6 +76,32 @@ class HeadingTests(unittest.TestCase):
         for heading, kind in cases.items():
             self.assertEqual(lj.heading_kind(heading), kind, heading)
 
+    def test_heading_kinds_for_reference_and_methods_variants(self):
+        cases = {"Reference genome": "other", "Reference genome and annotation": "other",
+                 "Reference-free evaluation": "other", "References": "drop", "Reference": "drop",
+                 "Reference list": "drop", "Bibliography": "drop", "Literature Cited": "drop",
+                 "Materials & Methods": "methods", "Material & Methods": "methods",
+                 "Patients and Methods": "methods", "Subjects and Methods": "methods",
+                 "2. Subjects and methods": "methods"}
+        for heading, kind in cases.items():
+            self.assertEqual(lj.heading_kind(heading), kind, heading)
+
+    def test_a_methods_section_with_an_ampersand_is_not_inferred_as_results(self):
+        paper = lj.read_jats(b"<article><body><sec><title>Introduction</title><p>Moss grows.</p></sec>"
+                             b"<sec><title>Moss dries fast</title><p>Moss dried.</p></sec>"
+                             b"<sec><title>Materials &amp; Methods</title><p>We dried 9 mats.</p></sec>"
+                             b"</body></article>", META)
+        self.assertEqual(kinds(paper), ["intro", "results", "methods"])
+
+    def test_a_reference_genome_subsection_is_kept_and_a_reference_list_is_dropped(self):
+        paper = lj.read_jats(b"<article><body><sec><title>Methods</title>"
+                             b"<sec><title>Reference genome and annotation</title><p>We used build 9.</p></sec>"
+                             b"<sec><title>References</title><p>Ash 2001.</p></sec></sec>"
+                             b"<sec><title>Reference</title><p>Birch 2003.</p></sec></body></article>", META)
+        self.assertEqual([s["heading"] for s in paper["sections"][0]["subsections"]],
+                         ["Reference genome and annotation"])
+        self.assertEqual(kinds(paper), ["methods"])
+
 
 class ManuscriptTests(unittest.TestCase):
     def setUp(self):
