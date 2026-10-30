@@ -11,10 +11,19 @@ sys.path.insert(0, HERE)
 import lab_aggregate as la  # noqa: E402
 import lab_checklist as lc  # noqa: E402
 import lab_paths as lp  # noqa: E402
+import lab_quotes as lq  # noqa: E402
+import lab_text as lt  # noqa: E402
 from fakes import ADA, make_extraction, make_paper_file  # noqa: E402
 
 CHECKLIST = lc.load_checklist()
 PARAGRAPH = "Here we show that spores swell in water. Long sentence " + "word " * 30 + "ends here."
+INVENTED = ("brim tolk vane sorp quill dren mavo fell grisp holt jarn kell lumo nest orba pell ruve sild toma "
+            "urn veld wick yarn zest amble bront clove drift ember fjord glen").split()
+
+
+def quote_of(n_words, marks=0):
+    """Return a quote of n_words invented words, followed by marks citation placeholders."""
+    return " ".join(INVENTED[:n_words] + ["[CIT]"] * marks)
 
 
 def meta(wid, group="senior", tier="high", year=2010, doi=None, arxiv_id=None):
@@ -82,8 +91,23 @@ class ProfileTests(unittest.TestCase):
         texts = {(q["work_id"], q["item"], q["field"]) for q in profile["quotes"]}
         self.assertNotIn(("W2", "here_we", "quote"), texts)
         self.assertIn(("W1", "here_we", "quote"), texts)
-        self.assertTrue(all(len(q["text"].split()) <= la.QUOTE_LIMIT for q in profile["quotes"]))
+        self.assertTrue(all(len(lt.words(q["text"])) <= la.QUOTE_LIMIT for q in profile["quotes"]))
         self.assertIn("10.48550/arxiv.1901.00001", {q["doi"] for q in profile["quotes"]})
+
+    def test_the_profile_keeps_the_note_and_the_paper_count_of_the_surface(self):
+        manifest = {"person": "ada", "papers": [meta("W1")]}
+        extraction = make_extraction(make_paper_file("W1", "ada", [PARAGRAPH]), CHECKLIST)
+        stability = la.compute_stability([], CHECKLIST)
+        surface = {"n_papers": 4, "pooled": {}, "distinctive_words": [],
+                   "distinctive_note": "the comparison has fewer than 3 people"}
+        profile = la.build_profile(ADA, manifest, {"W1": extraction}, {"W1": ok_check("W1")}, CHECKLIST,
+                                   stability, surface)
+        self.assertEqual(profile["surface_papers"], 4)
+        self.assertEqual(profile["distinctive_note"], "the comparison has fewer than 3 people")
+        bare = la.build_profile(ADA, manifest, {"W1": extraction}, {"W1": ok_check("W1")}, CHECKLIST,
+                                stability, None)
+        self.assertIsNone(bare["surface_papers"])
+        self.assertEqual(bare["distinctive_note"], "")
 
     def test_the_digest_holds_free_text_and_no_quotes(self):
         manifest = {"person": "ada", "papers": [meta("W1")]}
@@ -93,6 +117,79 @@ class ProfileTests(unittest.TestCase):
         self.assertEqual(free["storyline.lines"], ["The first section asks how spores swell."])
         self.assertEqual(free["results_headings.headings"], ["A heading"])
         self.assertNotIn("gap_sentence.quote", free)
+
+
+class QuoteTests(unittest.TestCase):
+    def accepted(self, wid, quotes_by_item):
+        """Return an extraction and a check. The paper text holds each quote, so the quote check
+        accepts it."""
+        paper = make_paper_file(wid, "ada", [PARAGRAPH] + [q + "." for q in quotes_by_item.values()])
+        extraction = make_extraction(paper, CHECKLIST)
+        for item_id, quote in quotes_by_item.items():
+            extraction["answers"][item_id]["quote"] = quote
+        check = lq.check_extraction(extraction, paper, CHECKLIST)
+        self.assertEqual(check["failed"], [])
+        check["status"] = "ok"
+        return extraction, check
+
+    def candidates(self, quotes_by_item, paper_meta=None):
+        extraction, check = self.accepted("W1", quotes_by_item)
+        return la.candidate_quotes({"W1": extraction}, {"W1": check}, {"W1": paper_meta or meta("W1")}, CHECKLIST)
+
+    @staticmethod
+    def texts(quotes, item):
+        return [q["text"] for q in quotes if q["item"] == item]
+
+    def test_a_quote_of_26_words_is_dropped_and_one_of_25_is_kept(self):
+        quotes = self.candidates({"gap_sentence": quote_of(26), "here_we": quote_of(25)})
+        self.assertEqual(self.texts(quotes, "gap_sentence"), [])
+        self.assertEqual(self.texts(quotes, "here_we"), [quote_of(25)])
+
+    def test_placeholders_do_not_count_as_words(self):
+        marked = quote_of(25, marks=3)
+        self.assertEqual(len(marked.split()), 28)
+        self.assertEqual(len(lt.words(marked)), 25)
+        quotes = self.candidates({"here_we": marked, "gap_sentence": quote_of(26, marks=3)})
+        self.assertEqual(self.texts(quotes, "here_we"), [marked])
+        self.assertEqual(self.texts(quotes, "gap_sentence"), [])
+
+    def test_a_paper_with_neither_doi_nor_arxiv_id_gives_no_quotes(self):
+        self.assertTrue(self.candidates({"here_we": quote_of(10)}))
+        self.assertEqual(self.candidates({"here_we": quote_of(10)}, meta("W1", doi="")), [])
+        arxiv = self.candidates({"here_we": quote_of(10)}, meta("W1", doi="", arxiv_id="1901.00001"))
+        self.assertEqual({q["doi"] for q in arxiv}, {"10.48550/arxiv.1901.00001"})
+
+    def test_a_quote_repeated_in_two_answers_of_one_item_appears_once(self):
+        sentence = "Here we show that spores swell in water."
+        paper = make_paper_file("W1", "ada", [PARAGRAPH])
+        extraction = make_extraction(paper, CHECKLIST)
+        entries = extraction["answers"]["excitement"]["value"]
+        self.assertEqual(entries[0]["quote"], sentence)
+        entries.append(dict(entries[0], marker="scope claim"))
+        extraction["answers"]["limitations"]["quotes"] = [sentence, sentence]
+        check = lq.check_extraction(extraction, paper, CHECKLIST)
+        self.assertEqual(check["failed"], [])
+        check["status"] = "ok"
+        quotes = la.candidate_quotes({"W1": extraction}, {"W1": check}, {"W1": meta("W1")}, CHECKLIST)
+        self.assertEqual(self.texts(quotes, "excitement"), [sentence])
+        self.assertEqual(self.texts(quotes, "limitations"), [sentence])
+        self.assertIn("here_we", {q["item"] for q in quotes if q["text"] == sentence})
+
+    def test_a_quote_from_preprint_text_cites_the_preprint_doi(self):
+        preprint = dict(meta("W1", doi="10.0000/journal.1"), text_version="preprint",
+                        preprint_doi="https://doi.org/10.1101/222222")
+        quotes = self.candidates({"here_we": quote_of(10)}, preprint)
+        self.assertTrue(quotes)
+        self.assertEqual({q["doi"] for q in quotes}, {"10.1101/222222"})
+        self.assertEqual({q["text_version"] for q in quotes}, {"preprint"})
+        published = self.candidates({"here_we": quote_of(10)}, dict(preprint, text_version="published"))
+        self.assertEqual({q["doi"] for q in published}, {"10.0000/journal.1"})
+        self.assertEqual({q["text_version"] for q in published}, {"published"})
+        no_preprint_doi = self.candidates({"here_we": quote_of(10)}, dict(preprint, preprint_doi=None))
+        self.assertEqual({q["doi"] for q in no_preprint_doi}, {"10.0000/journal.1"})
+        self.assertEqual({q["text_version"] for q in no_preprint_doi}, {"preprint"})
+        unknown = self.candidates({"here_we": quote_of(10)}, dict(preprint, text_version=None))
+        self.assertEqual({q["text_version"] for q in unknown}, {None})
 
 
 class StabilityTests(unittest.TestCase):
@@ -122,6 +219,78 @@ class StabilityTests(unittest.TestCase):
         lp.write_json(lp.extraction_path(data, "ada", "W2"), broken)
         lp.write_json(lp.extraction_path(data, "ada", "W2", "agreement"), make_extraction(paper, CHECKLIST, run="agreement"))
         self.assertEqual(len(la.collect_pairs(data, [manifest], CHECKLIST)), 1)
+
+    def write_pair(self, wid, edit_main=None, edit_agreement=None, agreement=True):
+        paper = make_paper_file(wid, "ada", [PARAGRAPH])
+        main = make_extraction(paper, CHECKLIST)
+        agree = make_extraction(paper, CHECKLIST, run="agreement")
+        if edit_main:
+            edit_main(main)
+        if edit_agreement:
+            edit_agreement(agree)
+        lp.write_json(lp.extraction_path(self.tmp.name, "ada", wid), main)
+        if agreement:
+            lp.write_json(lp.extraction_path(self.tmp.name, "ada", wid, "agreement"), agree)
+
+    def write_bytes(self, wid, run, content):
+        path = lp.extraction_path(self.tmp.name, "ada", wid, run)
+        os.makedirs(os.path.dirname(path), exist_ok=True)
+        with open(path, "wb") as handle:
+            handle.write(content)
+
+    def collected(self, *wids):
+        manifest = {"person": "ada", "papers": [meta(w) for w in wids]}
+        return [a["work_id"] for a, b in la.collect_pairs(self.tmp.name, [manifest], CHECKLIST)]
+
+    def test_an_unreadable_file_skips_only_its_pair(self):
+        for wid in ("W1", "W2", "W3", "W4", "W5", "W6"):
+            self.write_pair(wid)
+        self.write_bytes("W2", "agreement", b"{not json")
+        self.write_bytes("W3", "main", b"{not json")
+        self.write_bytes("W4", "agreement", b"[]")
+        self.write_bytes("W5", "main", b"\xff\xfe\x00")
+        self.assertEqual(self.collected("W1", "W2", "W3", "W4", "W5", "W6"), ["W1", "W6"])
+
+    def test_a_stale_version_skips_the_pair(self):
+        self.write_pair("W1")
+        self.write_pair("W2", edit_main=lambda e: e.update(prompt_version=0))
+        self.write_pair("W3", edit_agreement=lambda e: e.update(prompt_version=0))
+        self.write_pair("W4", edit_main=lambda e: e.update(checklist_version=0))
+        self.write_pair("W5", edit_agreement=lambda e: e.update(checklist_version=0))
+        self.assertEqual(self.collected("W1", "W2", "W3", "W4", "W5"), ["W1"])
+
+    def test_a_wrong_run_label_skips_the_pair(self):
+        self.write_pair("W1")
+        self.write_pair("W2", edit_main=lambda e: e.update(run="agreement"))
+        self.write_pair("W3", edit_agreement=lambda e: e.update(run="main"))
+        self.assertEqual(self.collected("W1", "W2", "W3"), ["W1"])
+
+    def test_an_extraction_of_another_paper_never_makes_a_pair(self):
+        self.write_pair("W1")
+        w1_main = lp.read_json(lp.extraction_path(self.tmp.name, "ada", "W1"))
+
+        def copy_of_w1(extraction):
+            extraction.clear()
+            extraction.update(w1_main)
+
+        self.write_pair("W2", edit_agreement=copy_of_w1)
+        self.write_pair("W3", edit_agreement=lambda e: e.update(work_id="W1"))
+        self.write_pair("W4", edit_main=lambda e: e.update(work_id="W1"))
+        self.assertEqual(self.collected("W1", "W2", "W3", "W4"), ["W1"])
+
+    def test_two_runs_on_different_paper_text_never_make_a_pair(self):
+        other = make_paper_file("W2", "ada", [PARAGRAPH + " More text follows."])
+        self.write_pair("W1")
+        self.write_pair("W2", edit_agreement=lambda e: e.update(paper_sha256=other["sha256"]))
+        self.assertNotEqual(other["sha256"], make_paper_file("W2", "ada", [PARAGRAPH])["sha256"])
+        self.assertEqual(self.collected("W1", "W2"), ["W1"])
+
+    def test_a_missing_file_skips_the_pair(self):
+        self.write_pair("W1")
+        self.write_pair("W2", agreement=False)
+        self.write_pair("W3")
+        os.remove(lp.extraction_path(self.tmp.name, "ada", "W3"))
+        self.assertEqual(self.collected("W1", "W2", "W3"), ["W1"])
 
 
 class QualityTests(unittest.TestCase):

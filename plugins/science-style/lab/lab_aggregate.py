@@ -3,14 +3,16 @@ quality report.
 
 A profile counts papers, never sentences: each paper adds one to each closed value it holds. Only
 papers whose check status is "ok" count. Quotes in a profile have at most 25 words, passed the
-quote check, and carry a DOI.
+quote check, and carry the DOI of the text they come from. A quote read from preprint text cites
+the preprint DOI.
 """
 import os
 from collections import Counter
 
-from lab_checklist import CLOSED_TYPES, NOT_APPLICABLE, closed_items, item_agreement, iter_quotes, validate_extraction
+from lab_checklist import (CLOSED_TYPES, NOT_APPLICABLE, PROMPT_VERSION, closed_items, item_agreement, iter_quotes,
+                           validate_extraction)
 from lab_paths import extraction_path, read_json
-from lab_text import words
+from lab_text import normalize_doi, words
 
 QUOTE_LIMIT = 25
 STABLE_THRESHOLD = 0.7
@@ -22,6 +24,16 @@ def quote_doi(meta):
     if meta.get("arxiv_id"):
         return "10.48550/arxiv." + meta["arxiv_id"]
     return None
+
+
+def citation_doi(meta):
+    """Return the DOI that a quote from this paper cites: the preprint DOI when the text is the
+    preprint, otherwise the DOI of the paper."""
+    if meta.get("text_version") == "preprint":
+        preprint = normalize_doi(meta.get("preprint_doi"))
+        if preprint:
+            return preprint
+    return quote_doi(meta)
 
 
 def _new_counter(ordered):
@@ -93,12 +105,14 @@ def count_answers(extractions, papers_meta, checklist):
 
 
 def candidate_quotes(extractions, checks, papers_meta, checklist):
-    """Return the verified quotes of at most QUOTE_LIMIT words, each with its DOI, without repeats."""
+    """Return the verified quotes of at most QUOTE_LIMIT words, without repeats. Each quote has the
+    DOI of the text it comes from and the text version of that text."""
     out = []
     for wid in sorted(extractions):
-        doi = quote_doi(papers_meta[wid])
+        doi = citation_doi(papers_meta[wid])
         if not doi:
             continue
+        text_version = papers_meta[wid].get("text_version")
         failed = {(f["item"], f["field"], f["quote"]) for f in checks[wid]["failed"]}
         seen = set()
         for item_id, field, quote in iter_quotes(extractions[wid], checklist):
@@ -106,7 +120,8 @@ def candidate_quotes(extractions, checks, papers_meta, checklist):
             if (item_id, field, quote) in failed or len(words(text)) > QUOTE_LIMIT or (item_id, text) in seen:
                 continue
             seen.add((item_id, text))
-            out.append({"item": item_id, "field": field, "text": text, "doi": doi, "work_id": wid})
+            out.append({"item": item_id, "field": field, "text": text, "doi": doi, "work_id": wid,
+                        "text_version": text_version})
     return out
 
 
@@ -124,8 +139,26 @@ def compute_stability(pairs, checklist, threshold=STABLE_THRESHOLD):
     return out
 
 
+def _read_extraction(path):
+    """Return the extraction in the file, or None when the file is unreadable or not an object."""
+    try:
+        extraction = read_json(path)
+    except (ValueError, OSError):
+        return None
+    return extraction if isinstance(extraction, dict) else None
+
+
+def _is_current(extraction, work_id, run, checklist):
+    return (extraction.get("checklist_version") == checklist["version"]
+            and extraction.get("prompt_version") == PROMPT_VERSION
+            and extraction.get("work_id") == work_id
+            and extraction.get("run") == run)
+
+
 def collect_pairs(data, manifests, checklist):
-    """Return (main, agreement) extraction pairs of fetched papers where both extractions are valid."""
+    """Return (main, agreement) extraction pairs of fetched papers. A pair needs two readable valid
+    extractions of the current checklist and prompt, each labelled with its own work id and run,
+    and both made from the same paper text. The function skips any other pair."""
     pairs = []
     for manifest in manifests:
         for meta in manifest["papers"]:
@@ -135,8 +168,14 @@ def collect_pairs(data, manifests, checklist):
             agree = extraction_path(data, manifest["person"], meta["work_id"], "agreement")
             if not (os.path.exists(main) and os.path.exists(agree)):
                 continue
-            a, b = read_json(main), read_json(agree)
+            a, b = _read_extraction(main), _read_extraction(agree)
+            if a is None or b is None:
+                continue
             if validate_extraction(a, checklist, meta["group"]) or validate_extraction(b, checklist, meta["group"]):
+                continue
+            if not (_is_current(a, meta["work_id"], "main", checklist)
+                    and _is_current(b, meta["work_id"], "agreement", checklist)
+                    and a["paper_sha256"] == b["paper_sha256"]):
                 continue
             pairs.append((a, b))
     return pairs
@@ -165,8 +204,10 @@ def build_profile(person, manifest, extractions, checks, checklist, stability, s
         "unverified": _plain(unverified),
         "stability": stability,
         "surface": surface.get("pooled"),
+        "surface_papers": surface.get("n_papers"),
         "distinctive_words": surface.get("distinctive_words", []),
         "distinctive_pairs": surface.get("distinctive_pairs", []),
+        "distinctive_note": surface.get("distinctive_note", ""),
         "quotes": candidate_quotes(chosen, checks, meta, checklist),
     }
 
