@@ -46,11 +46,34 @@ class RegistryTests(unittest.TestCase):
             dict(ADA, openalex_ids=[]),
             dict(ADA, openalex_ids=["W1"]),
             dict(ADA, ml_venues="no"),
+            dict(ADA, orcid=12345),
+            dict(ADA, id=7),
+            dict(ADA, openalex_ids="A1"),
+            dict(ADA, openalex_ids=[1]),
+            dict(ADA, id="ada\n"),
+            dict(ADA, orcid="0000-0000-0000-0001\n"),
+            dict(ADA, openalex_ids=["A1\n"]),
+            dict(ADA, orcid="\u0660\u0661\u0662\u0663-0000-0000-0001"),
         ]
         for entry in bad:
-            self.write([entry])
-            with self.assertRaises(lr.RegistryError):
-                lr.load_registry(self.path)
+            with self.subTest(entry=entry):
+                self.write([entry])
+                with self.assertRaises(lr.RegistryError):
+                    lr.load_registry(self.path)
+
+    def test_malformed_registry_files_raise_registry_error(self):
+        texts = ["{not json", json.dumps([ADA]), '{"people": null}', '{"people": "x"}',
+                 '{"people": ["ada"]}']
+        for text in texts:
+            with self.subTest(text=text):
+                with open(self.path, "w", encoding="utf-8") as handle:
+                    handle.write(text)
+                with self.assertRaises(lr.RegistryError):
+                    lr.load_registry(self.path)
+
+    def test_a_missing_registry_file_raises_registry_error(self):
+        with self.assertRaises(lr.RegistryError):
+            lr.load_registry(os.path.join(self.tmp.name, "absent.json"))
 
     def test_a_repeated_id_fails(self):
         self.write([ADA, dict(ADA)])
