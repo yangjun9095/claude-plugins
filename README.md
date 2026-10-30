@@ -93,6 +93,16 @@ Sync preflight, a prose audit and an ask-before-edit hook for LaTeX manuscripts 
 
 **Install:** `/plugin install overleaf-manuscript@yangjun9095-plugins`
 
+### `science-style`
+
+The style lab finds open-access papers of chosen scientists, extracts how each person writes, and publishes one checked profile per person. A writing skill that uses the profiles comes in a later version.
+
+- Finds papers through OpenAlex by ORCID and fetches open full texts from PubMed Central, Europe PMC, bioRxiv and arXiv
+- Keeps every full text in a scratch folder outside the repository
+- Checks every quote against its paper and every number in a card against the profile data
+
+**Usage:** `/style-lab <person ids> --pilot`, then `/style-lab all`
+
 ## Archived
 
 Plugins retired on 2026-10-15 live in [`archive/`](archive/README.md). They are not in the marketplace. The archive README says why and how to restore each one.
