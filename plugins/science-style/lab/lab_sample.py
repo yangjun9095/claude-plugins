@@ -110,10 +110,15 @@ def replace(manifest, work_id, reason, lookup):
     """Mark a paper replaced and add its replacement. Return the replacement's work id or None.
 
     The replacement is the first unused paper of the same year bin in queue order, else the first
-    unused paper of the cell's queue.
+    unused paper of the cell's queue. The function raises ValueError for a work id that is not in
+    the manifest or is already replaced. It raises KeyError if the lookup lacks the replacement. In
+    each case the manifest stays unchanged.
     """
-    paper = next(p for p in manifest["papers"] if p["work_id"] == work_id)
-    paper["status"] = "replaced"
+    paper = next((p for p in manifest["papers"] if p["work_id"] == work_id), None)
+    if paper is None:
+        raise ValueError("unknown work id: {}".format(work_id))
+    if paper["status"] == "replaced":
+        raise ValueError("already replaced: {}".format(work_id))
     cell = manifest["cells"][paper["cell"]]
     used = {p["work_id"] for p in manifest["papers"]}
     candidates = []
@@ -124,8 +129,10 @@ def replace(manifest, work_id, reason, lookup):
     if not candidates:
         candidates = [w for w in cell["queue"] if w not in used]
     replacement = candidates[0] if candidates else None
-    if replacement:
-        manifest["papers"].append(manifest_paper(lookup[replacement], paper["cell"]))
+    new_paper = manifest_paper(lookup[replacement], paper["cell"]) if replacement else None
+    paper["status"] = "replaced"
+    if new_paper:
+        manifest["papers"].append(new_paper)
     manifest["replacements"].append({"replaced": work_id, "reason": reason, "replacement": replacement})
     manifest["n_papers"] = count_papers(manifest)
     return replacement

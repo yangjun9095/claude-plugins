@@ -1,4 +1,5 @@
 """Tests for lab/lab_sample.py. All papers in this file are made up."""
+import copy
 import os
 import random
 import sys
@@ -61,6 +62,15 @@ class DrawTests(unittest.TestCase):
         for wid, members in zip(chosen, bins):
             self.assertIn(wid, members)
         self.assertEqual(sorted(chosen + queue), sorted(p["work_id"] for p in papers))
+
+    def test_bins_follow_years_not_ids(self):
+        papers = [rec("W{:03d}".format(i), "senior", "high", 2020 - i) for i in range(20)]
+        year_of = {p["work_id"]: p["year"] for p in papers}
+        chosen, bins, queue = ls.draw_cell(papers, 4, random.Random("seed"))
+        years = [[year_of[w] for w in b] for b in bins]
+        self.assertEqual([len(b) for b in years], [5, 5, 5, 5])
+        for earlier, later in zip(years, years[1:]):
+            self.assertLessEqual(max(earlier), min(later))
 
     def test_the_same_seed_gives_the_same_draw(self):
         papers = pool("senior", "high", 40, "W")
@@ -131,6 +141,26 @@ class ReplaceTests(unittest.TestCase):
         statuses = {p["work_id"]: p["status"] for p in self.manifest["papers"]}
         self.assertEqual(statuses[i[5]], "chosen")
         self.assertEqual(statuses[i[0]], "replaced")
+
+    def test_replace_refuses_unknown_and_already_replaced_ids(self):
+        i = self.ids
+        with self.assertRaisesRegex(ValueError, "unknown work id: W999"):
+            ls.replace(self.manifest, "W999", "no text", self.lookup)
+        self.assertEqual(ls.replace(self.manifest, i[0], "no text", self.lookup), i[2])
+        after_first = copy.deepcopy(self.manifest)
+        with self.assertRaisesRegex(ValueError, "already replaced: " + i[0]):
+            ls.replace(self.manifest, i[0], "no text", self.lookup)
+        self.assertEqual(self.manifest, after_first)
+        self.assertEqual(len(self.manifest["replacements"]), 1)
+        self.assertEqual(self.manifest["n_papers"], 2)
+
+    def test_replace_leaves_the_manifest_unchanged_when_the_lookup_lacks_the_replacement(self):
+        i = self.ids
+        lookup = {wid: record for wid, record in self.lookup.items() if wid != i[2]}
+        before = copy.deepcopy(self.manifest)
+        with self.assertRaises(KeyError):
+            ls.replace(self.manifest, i[0], "no text", lookup)
+        self.assertEqual(self.manifest, before)
 
 
 class SubsetTests(unittest.TestCase):
