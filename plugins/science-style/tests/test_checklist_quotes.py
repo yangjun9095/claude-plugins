@@ -34,8 +34,54 @@ class ChecklistTests(unittest.TestCase):
         self.extraction = make_extraction(self.paper, CHECKLIST)
 
     def test_the_shipped_checklist(self):
-        self.assertEqual(CHECKLIST["version"], 1)
+        self.assertEqual(CHECKLIST["version"], 2)
         self.assertEqual([i["id"] for i in CHECKLIST["items"]], ITEM_IDS)
+
+    def test_version_two_values_and_question(self):
+        self.assertIn("result preview", item("intro_roles")["fields"]["value"]["values"])
+        placement = item("limitations")["fields"]["placement"]
+        self.assertEqual(placement["type"], "enum")
+        self.assertEqual(placement["values"], ["own paragraph", "own section", "inline in results",
+                                               "inline in discussion", "inline in methods", "inline in body", "none"])
+        self.assertEqual(item("strongest_claim")["question"], "What is the widest claim, and how is it hedged?")
+
+    def test_three_items_may_be_not_applicable(self):
+        self.assertEqual([i["id"] for i in CHECKLIST["items"] if lc.may_be_not_applicable(i)],
+                         ["results_headings", "results_openings", "storyline"])
+        self.assertFalse(any("groups" in i for i in CHECKLIST["items"] if lc.may_be_not_applicable(i)))
+
+    def test_a_results_item_may_be_not_applicable_in_every_group(self):
+        for group in ("senior", "first", "essay"):
+            extraction = make_extraction(self.paper, CHECKLIST, group=group)
+            for item_id in ("results_headings", "results_openings", "storyline"):
+                extraction["answers"][item_id] = {"not_applicable": True}
+            self.assertEqual(lc.validate_extraction(extraction, CHECKLIST, group), [], group)
+
+    def test_an_item_without_the_key_never_accepts_not_applicable(self):
+        for item_id in ("title_form", "abstract_moves", "intro_roles", "gap_sentence", "excitement", "limitations"):
+            extraction = make_extraction(self.paper, CHECKLIST)
+            extraction["answers"][item_id] = {"not_applicable": True}
+            errors = lc.validate_extraction(extraction, CHECKLIST, "senior")
+            self.assertTrue(any(e.startswith(item_id) for e in errors), (item_id, errors))
+
+    def test_not_applicable_with_other_fields_still_fails(self):
+        extraction = make_extraction(self.paper, CHECKLIST)
+        extraction["answers"]["storyline"]["not_applicable"] = True
+        errors = lc.validate_extraction(extraction, CHECKLIST, "senior")
+        self.assertTrue(any(e.startswith("storyline: unknown fields") for e in errors), errors)
+        extraction["answers"]["storyline"] = {"not_applicable": False}
+        self.assertTrue(lc.validate_extraction(extraction, CHECKLIST, "senior"))
+
+    def test_the_essay_item_still_needs_not_applicable_outside_its_group(self):
+        extraction = make_extraction(self.paper, CHECKLIST, group="essay")
+        errors = lc.validate_extraction(extraction, CHECKLIST, "senior")
+        self.assertTrue(any(e.startswith("essay_argument") for e in errors), errors)
+
+    def test_iter_quotes_skips_a_not_applicable_results_item(self):
+        self.extraction["answers"]["storyline"] = {"not_applicable": True}
+        rows = list(lc.iter_quotes(self.extraction, CHECKLIST))
+        self.assertEqual(len(rows), 8)
+        self.assertFalse(any(r[0] == "storyline" for r in rows))
 
     def test_a_valid_extraction_passes(self):
         self.assertEqual(lc.validate_extraction(self.extraction, CHECKLIST, "senior"), [])
@@ -104,6 +150,14 @@ class AgreementTests(unittest.TestCase):
         self.assertEqual(lc.item_agreement(limitations, a, b), 0.5)
         self.assertIsNone(lc.item_agreement(item("essay_argument"), lc.NOT_APPLICABLE, lc.NOT_APPLICABLE))
         self.assertNotIn("storyline", [i["id"] for i in lc.closed_items(CHECKLIST)])
+
+    def test_item_agreement_skips_a_not_applicable_results_item(self):
+        openings = item("results_openings")
+        filled = {"value": ["aim"]}
+        self.assertIsNone(lc.item_agreement(openings, lc.NOT_APPLICABLE, lc.NOT_APPLICABLE))
+        self.assertIsNone(lc.item_agreement(openings, lc.NOT_APPLICABLE, filled))
+        self.assertIsNone(lc.item_agreement(openings, filled, lc.NOT_APPLICABLE))
+        self.assertEqual(lc.item_agreement(openings, filled, filled), 1.0)
 
 
 class QuoteTests(unittest.TestCase):
@@ -283,7 +337,8 @@ class EvidenceTests(unittest.TestCase):
         self.assert_rejects("limitations", "quotes", placement="none", specificity="none", quotes=["It fails."])
 
     def test_stated_limits_need_quotes_and_a_specificity(self):
-        for placement in ("own paragraph", "own section", "inline in results", "inline in discussion"):
+        for placement in ("own paragraph", "own section", "inline in results", "inline in discussion",
+                          "inline in methods", "inline in body"):
             self.assertEqual(self.errors("limitations", placement=placement, specificity="specific",
                                          quotes=["It fails."]), [])
         self.assert_rejects("limitations", "quotes", placement="own section", specificity="specific", quotes=[])
@@ -338,6 +393,39 @@ class LoadChecklistTests(unittest.TestCase):
             with self.subTest(name):
                 with self.assertRaises(lc.ChecklistError):
                     self.load_with(evidence)
+
+
+class NotApplicableKeyTests(unittest.TestCase):
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(self.tmp.cleanup)
+
+    def load_with(self, item_id, **keys):
+        checklist = copy.deepcopy(CHECKLIST)
+        next(i for i in checklist["items"] if i["id"] == item_id).update(keys)
+        path = os.path.join(self.tmp.name, "checklist.json")
+        with open(path, "w", encoding="utf-8") as handle:
+            json.dump(checklist, handle)
+        return lc.load_checklist(path)
+
+    def test_the_key_loads_on_any_item(self):
+        loaded = self.load_with("title_form", may_be_not_applicable=True)
+        self.assertTrue(lc.may_be_not_applicable(next(i for i in loaded["items"] if i["id"] == "title_form")))
+        loaded = self.load_with("storyline", may_be_not_applicable=False)
+        self.assertFalse(lc.may_be_not_applicable(next(i for i in loaded["items"] if i["id"] == "storyline")))
+
+    def test_the_key_must_be_true_or_false(self):
+        for bad in ("yes", 1, None, [True]):
+            with self.assertRaises(lc.ChecklistError):
+                self.load_with("storyline", may_be_not_applicable=bad)
+
+    def test_a_loaded_key_changes_the_validator(self):
+        paper = make_paper_file("W1", "ada", PARAGRAPHS)
+        extraction = make_extraction(paper, CHECKLIST)
+        extraction["answers"]["title_form"] = {"not_applicable": True}
+        self.assertTrue(lc.validate_extraction(extraction, CHECKLIST, "senior"))
+        loaded = self.load_with("title_form", may_be_not_applicable=True)
+        self.assertEqual(lc.validate_extraction(extraction, loaded, "senior"), [])
 
 
 class PerPaperCheckTests(unittest.TestCase):

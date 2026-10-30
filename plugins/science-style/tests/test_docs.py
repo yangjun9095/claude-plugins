@@ -36,6 +36,56 @@ def section(text, heading):
     return match.group(1)
 
 
+REVISED_SENTENCES = (
+    "When no section has kind `intro`, the introduction is the first section, if its kind is `other` or `body`.",
+    "When the first section has any other kind, for example `results`, the paper has no introduction.",
+    "Leave `intro_roles` empty.",
+    "Answer `none` to `gap_sentence` and `here_we`.",
+    'When no section of the paper has kind `results`, answer `{"not_applicable": true}` to `results_headings`, '
+    "`results_openings` and `storyline`.",
+    "When any section has kind `results`, fill these three items.",
+    "Each section of kind `results` is one results section.",
+    "When the paper has one section of kind `results` and it has subsections, each subsection is one results "
+    "section instead.",
+    "A section of any other kind is never a results section.",
+    "When the results are one section with no subsections, write one line for each new question that the text "
+    "answers.",
+    "A step that serves the same question gets no line of its own.",
+    "Judge each results section by its first sentence that asks a question, states an aim, states a finding or "
+    "describes a method.",
+    "Skip sentences that give background, cite earlier work or state a hypothesis.",
+    'A sentence that states the finding ("we begin by showing that X") is `result first`.',
+    "`placement` is where most limits stand.",
+    "When no place holds most, choose the first place in reading order.",
+    "`inline in methods` means that the limits stand in the Methods.",
+    "`inline in body` is for a paper with no results or discussion section.",
+    "A limit is a weakness or boundary of this paper's own data, method or claims.",
+    "A hypothesis, or a limit of earlier work, is not a limit.",
+    "`specificity` is the most specific level that any limit reaches.",
+    "These levels run from most to least specific.",
+    "the claim with the widest scope, the one that carries the findings furthest beyond the systems the authors "
+    "tested.",
+    "Choose it over a narrower claim even when it is hedged.",
+    "`mixed` means that each of these two patterns makes up at least one third of the figure and table citations "
+    "outside the Methods.",
+    "Otherwise choose the pattern that most citations follow.",
+    "Quote only the recurring or unusual words, at most 12 words, not the sentence around them.",
+    "analogies, and sentences that say in everyday words why or how something works, so that a reader outside "
+    "the field can follow.",
+    "Do not quote method steps written in field terms, or clauses that only pose a question.",
+    'what earlier work has not done ("studied to date", "current models only"), or a stated need',
+    "In a paper with no section of kind `results`, a sentence on what the paper covers or teaches is `approach`.",
+    "In such a paper, a sentence on what the reviewed work found is `context`.",
+    "In such a paper, an outlook or a recommendation is `implication`.",
+    "Do not use `result` for such a paper.",
+    "Choose the form that most headings take.",
+    "Use the lowest heading level inside the results.",
+    "That means the subsection headings when the results have subsections, and the section headings when they "
+    "have none.",
+    "`result preview` summarizes the findings of this paper before the results section",
+)
+
+
 def one_line_card(sentence):
     return "# Ada\n\n## Sample\n\n{}\n".format(sentence)
 
@@ -51,6 +101,30 @@ class PromptTests(unittest.TestCase):
         example = json.loads(json_blocks(text)[0])
         self.assertEqual(lc.validate_extraction(example, checklist, "senior"), [])
         self.assertEqual(example["prompt_version"], lc.PROMPT_VERSION)
+        self.assertEqual(example["checklist_version"], checklist["version"])
+
+    def test_the_extraction_brief_holds_the_revised_rules_in_short_sentences(self):
+        text = " ".join(read(PLUGIN, "prompts", "extract.md").split())
+        for sentence in REVISED_SENTENCES:
+            self.assertIn(sentence, text)
+            self.assertLessEqual(len(sentence.split()), 25, sentence)
+
+    def test_the_extraction_brief_numbers_its_rules_in_order(self):
+        rules = section(read(PLUGIN, "prompts", "extract.md"), "Rules")
+        numbers = [int(n) for n in re.findall(r"^(\d+)\. ", rules, re.M)]
+        self.assertEqual(numbers, list(range(1, len(numbers) + 1)))
+
+    def test_the_brief_lists_every_value_that_the_checklist_adds(self):
+        text = read(PLUGIN, "prompts", "extract.md")
+        meanings = section(text, "Meanings of the values")
+        self.assertIn("`result preview`", meanings)
+        self.assertIn("`inline in methods`", meanings)
+        self.assertIn("`inline in body`", meanings)
+        checklist = lc.load_checklist()
+        marked = [i["id"] for i in checklist["items"] if lc.may_be_not_applicable(i)]
+        rules = section(text, "Rules")
+        for item_id in marked:
+            self.assertIn("`{}`".format(item_id), rules, item_id)
 
     def test_the_prompt_version_of_the_extraction_brief_matches_the_code(self):
         text = read(PLUGIN, "prompts", "extract.md")

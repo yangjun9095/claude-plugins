@@ -2,7 +2,9 @@
 
 Each item has fields with a type. Closed types (enum, enum_list, objects) hold values from a fixed
 list, so a script can count them and compare two extractions. An item with "groups" applies only
-to those groups; for any other group its answer is {"not_applicable": true}.
+to those groups; for any other group its answer is {"not_applicable": true}. An item with
+"may_be_not_applicable": true accepts the same answer in any group, for a paper that has no text
+for the item (for example, no section of kind results).
 
 An item may have an "evidence" key. It names a controlling field, and for each value of that field
 it lists what the other fields must hold. The "filled" fields need a non-empty quote, list or
@@ -14,7 +16,7 @@ import os
 from lab_paths import PLUGIN_ROOT, read_json
 
 CHECKLIST_PATH = os.path.join(PLUGIN_ROOT, "data", "checklist.json")
-PROMPT_VERSION = 1
+PROMPT_VERSION = 2
 TOP_KEYS = ("schema", "checklist_version", "prompt_version", "paper_sha256", "work_id", "person", "attempt",
             "run", "answers")
 FIELD_TYPES = frozenset(["enum", "enum_list", "objects", "quote", "quotes", "text", "texts", "int", "strings"])
@@ -36,6 +38,9 @@ def load_checklist(path=CHECKLIST_PATH):
         if item["id"] in seen:
             raise ChecklistError("item {} appears twice".format(item["id"]))
         seen.add(item["id"])
+        if "may_be_not_applicable" in item:
+            if not isinstance(item["may_be_not_applicable"], bool):
+                raise ChecklistError("{}: may_be_not_applicable must be true or false".format(item["id"]))
         for name, spec in item["fields"].items():
             if spec["type"] not in FIELD_TYPES:
                 raise ChecklistError("{}.{} has the unknown type {}".format(item["id"], name, spec["type"]))
@@ -87,6 +92,11 @@ def _check_evidence(item):
 
 def applies(item, group):
     return "groups" not in item or group in item["groups"]
+
+
+def may_be_not_applicable(item):
+    """Return True when the item accepts {"not_applicable": true} in any group."""
+    return item.get("may_be_not_applicable") is True
 
 
 def _str_list(value):
@@ -205,6 +215,8 @@ def validate_extraction(extraction, checklist, group):
             continue
         if not isinstance(answer, dict):
             errors.append(item["id"] + ": must be an object")
+            continue
+        if answer == NOT_APPLICABLE and may_be_not_applicable(item):
             continue
         unknown = sorted(set(answer) - set(item["fields"]))
         absent = sorted(set(item["fields"]) - set(answer))

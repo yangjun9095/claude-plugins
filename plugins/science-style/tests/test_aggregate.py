@@ -68,6 +68,77 @@ class CountTests(unittest.TestCase):
         self.assertEqual(counts["essay_argument"]["thesis_location"]["n"], 0)
 
 
+class NotApplicableTests(unittest.TestCase):
+    """A paper with no results section answers not_applicable to three items. Counts skip that answer."""
+    ITEMS = ("results_headings", "results_openings", "storyline")
+
+    def setUp(self):
+        self.metas = {"W1": meta("W1"), "W2": meta("W2"), "W3": meta("W3", group="first", tier="other")}
+        self.extractions = {w: make_extraction(make_paper_file(w, "ada", [PARAGRAPH]), CHECKLIST) for w in self.metas}
+        for item_id in self.ITEMS:
+            self.extractions["W3"]["answers"][item_id] = {"not_applicable": True}
+
+    def test_a_valid_extraction_holds_the_not_applicable_answers(self):
+        self.assertEqual(lc.validate_extraction(self.extractions["W3"], CHECKLIST, "first"), [])
+
+    def test_counts_skip_a_not_applicable_answer(self):
+        counts = la.count_answers(self.extractions, self.metas, CHECKLIST)
+        headings = counts["results_headings"]["value"]
+        self.assertEqual(headings["n"], 2)
+        self.assertEqual(headings["all"], {"full-sentence claim": 2})
+        self.assertEqual(headings["n_by_group"], {"senior": 2})
+        self.assertNotIn("first", headings["by_group"])
+        openings = counts["results_openings"]["value"]
+        self.assertEqual((openings["n"], openings["all"], openings["first"]), (2, {"question": 2}, {"question": 2}))
+        self.assertEqual(counts["title_form"]["value"]["n"], 3)
+
+    def test_a_profile_counts_a_paper_with_not_applicable_answers_once_per_item(self):
+        manifest = {"person": "ada", "papers": [self.metas["W1"], self.metas["W3"]]}
+        checks = {w: ok_check(w) for w in ("W1", "W3")}
+        stability = la.compute_stability([], CHECKLIST)
+        profile = la.build_profile(ADA, manifest, self.extractions, checks, CHECKLIST, stability, None)
+        self.assertEqual(profile["n_papers"], 2)
+        self.assertEqual(profile["items"]["results_headings"]["value"]["n"], 1)
+        self.assertEqual(profile["items"]["title_form"]["value"]["n"], 2)
+        quotes = {(q["work_id"], q["item"]) for q in profile["quotes"]}
+        self.assertIn(("W3", "here_we"), quotes)
+        self.assertNotIn(("W3", "storyline"), quotes)
+
+    def test_stability_skips_a_pair_with_a_not_applicable_answer(self):
+        paper = make_paper_file("W1", "ada", [PARAGRAPH])
+        full = make_extraction(paper, CHECKLIST)
+        full_b = make_extraction(paper, CHECKLIST, run="agreement")
+        none_a = make_extraction(paper, CHECKLIST)
+        none_b = make_extraction(paper, CHECKLIST, run="agreement")
+        for item_id in self.ITEMS:
+            none_a["answers"][item_id] = {"not_applicable": True}
+            none_b["answers"][item_id] = {"not_applicable": True}
+        full_b["answers"]["results_headings"]["value"] = "noun phrase"
+        stability = la.compute_stability([(full, full_b), (none_a, none_b), (none_a, full_b)], CHECKLIST)
+        self.assertEqual(stability["results_headings"], {"agreement": 0.0, "pairs": 1, "stable": False})
+        self.assertEqual(stability["title_form"]["pairs"], 3)
+        only_none = la.compute_stability([(none_a, none_b)], CHECKLIST)
+        self.assertEqual(only_none["results_openings"], {"agreement": None, "pairs": 0, "stable": None})
+
+    def test_the_digest_skips_a_not_applicable_answer(self):
+        manifest = {"person": "ada", "papers": [self.metas["W3"]]}
+        digest = la.build_digest("ada", manifest, self.extractions, CHECKLIST, ["W3"])
+        free = digest["papers"][0]["free_text"]
+        self.assertNotIn("storyline.lines", free)
+        self.assertNotIn("results_headings.headings", free)
+
+    def test_collect_pairs_accepts_not_applicable_answers(self):
+        with tempfile.TemporaryDirectory() as data:
+            paper = make_paper_file("W3", "ada", [PARAGRAPH], group="first")
+            for run in ("main", "agreement"):
+                extraction = make_extraction(paper, CHECKLIST, run=run)
+                for item_id in self.ITEMS:
+                    extraction["answers"][item_id] = {"not_applicable": True}
+                lp.write_json(lp.extraction_path(data, "ada", "W3", run), extraction)
+            manifest = {"person": "ada", "papers": [self.metas["W3"]]}
+            self.assertEqual(len(la.collect_pairs(data, [manifest], CHECKLIST)), 1)
+
+
 class ProfileTests(unittest.TestCase):
     def test_a_profile_uses_only_papers_that_passed(self):
         manifest = {"person": "ada", "papers": [meta("W1", year=2009), meta("W2", year=2024),
