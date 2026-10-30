@@ -24,11 +24,13 @@ import lab_sample  # noqa: E402
 import lab_surface  # noqa: E402
 import lab_venues  # noqa: E402
 
-PEOPLE_COMMANDS = ("discover", "sample", "fetch", "normalize", "surface", "select", "check-quotes", "aggregate")
-
 
 class UsageError(Exception):
     """A usage or input error. main() turns it into exit code 2."""
+
+
+class NetworkError(Exception):
+    """A network failure with the person id in the message. main() turns it into exit code 1."""
 
 
 class ArgumentParser(argparse.ArgumentParser):
@@ -87,6 +89,7 @@ class Context(object):
 
     def say(self, text):
         self.out.write(text + "\n")
+        self.out.flush()
 
     def pilot(self):
         return getattr(self.args, "pilot", False)
@@ -161,8 +164,11 @@ def cmd_fetch(ctx):
         manifest = ctx.load_manifest(person["id"])
         works = lab_paths.read_json(lab_paths.works_path(ctx.data, person["id"]))
         lookup = {p["work_id"]: p for p in works["papers"]}
-        counts = lab_fetch.fetch_person(http, manifest, ctx.manifest_path(person["id"]), ctx.data, lookup,
-                                        only=only, log=ctx.say)
+        try:
+            counts = lab_fetch.fetch_person(http, manifest, ctx.manifest_path(person["id"]), ctx.data, lookup,
+                                            only=only, log=ctx.say)
+        except lab_http.FetchError as exc:
+            raise NetworkError("{}: {}".format(person["id"], exc))
         ctx.say("{}: fetched {}, replaced {}, {} papers in the manifest".format(
             person["id"], counts["fetched"], counts["replaced"], manifest["n_papers"]))
     return 0
@@ -184,13 +190,19 @@ def _fetched(manifest):
 
 def cmd_surface(ctx):
     wordlists = lab_surface.load_wordlists(ctx.args.wordlists)
+    selected = [person["id"] for person in ctx.selected()]
+    manifests = {m["person"]: m for m in _manifests(ctx)}
+    for person_id in selected:
+        if person_id not in manifests:
+            raise UsageError("no manifest for {}: run sample first".format(person_id))
     papers_by_person = {}
-    for person in ctx.selected():
-        manifest = ctx.load_manifest(person["id"])
-        papers_by_person[person["id"]] = [lab_paths.read_json(lab_paths.paper_path(ctx.data, person["id"], p["work_id"]))
-                                          for p in _fetched(manifest)]
+    for person_id, manifest in manifests.items():
+        papers_by_person[person_id] = [lab_paths.read_json(lab_paths.paper_path(ctx.data, person_id, p["work_id"]))
+                                       for p in _fetched(manifest)]
     folder = lab_paths.stage_dir(ctx.data, ctx.pilot(), "surface")
-    for person_id, result in lab_surface.run_surface(papers_by_person, wordlists).items():
+    for person_id, result in sorted(lab_surface.run_surface(papers_by_person, wordlists).items()):
+        if person_id not in selected:
+            continue
         lab_paths.write_json(os.path.join(folder, person_id + ".json"), result)
         note = "; " + result["distinctive_note"] if result["distinctive_note"] else ""
         ctx.say("{}: {} papers, {} sentences{}".format(person_id, result["n_papers"],
@@ -214,11 +226,13 @@ def cmd_check_quotes(ctx):
     checklist = ctx.checklist()
     bad = 0
     for person in ctx.selected():
-        for check in lab_quotes.check_person(ctx.data, ctx.load_manifest(person["id"]), checklist, ctx.args.run):
+        checks = lab_quotes.check_person(ctx.data, ctx.load_manifest(person["id"]), checklist, ctx.args.run)
+        for check in checks:
             bad += check["status"] != "ok"
             errors = ("; " + "; ".join(check["errors"][:3])) if check["errors"] else ""
             ctx.say("{} {} {} ({} of {} quotes failed){}".format(person["id"], check["work_id"], check["status"],
                                                                  len(check["failed"]), check["checked"], errors))
+        ctx.say("{}: {} papers checked".format(person["id"], len(checks)))
     return 1 if bad else 0
 
 
@@ -335,9 +349,12 @@ def main(argv=None, http_factory=None, environ=None, out=None, err=None):
     except (UsageError, lab_paths.PathError, lab_registry.RegistryError, lab_checklist.ChecklistError) as exc:
         err.write("error: {}\n".format(exc))
         return 2
-    except lab_http.FetchError as exc:
+    except (lab_http.FetchError, NetworkError) as exc:
         err.write("network error: {}\n".format(exc))
         return 1
+    except (OSError, ValueError, KeyError) as exc:
+        err.write("error: cannot read or parse a data file: {}\n".format(exc))
+        return 2
 
 
 if __name__ == "__main__":

@@ -1,10 +1,12 @@
 """Tests for lab/style_lab.py: the whole pipeline offline, and the exit codes. All data is made up."""
+import contextlib
 import io
 import json
 import os
 import sys
 import tempfile
 import unittest
+from unittest import mock
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(os.path.dirname(HERE), "lab"))
@@ -14,6 +16,7 @@ import lab_card_check  # noqa: E402
 import lab_checklist  # noqa: E402
 import lab_http  # noqa: E402
 import lab_paths as lp  # noqa: E402
+import lab_surface  # noqa: E402
 import style_lab  # noqa: E402
 from fakes import ADA, BEN, FakeHttp, arxiv_body, author, jats_body, make_extraction, make_work  # noqa: E402
 
@@ -135,6 +138,66 @@ class PipelineTests(unittest.TestCase):
         self.assertEqual(self.run_lab("discover", "ada"), 1)
         self.assertIn("network error", self.err.getvalue())
 
+    def fetch_everyone(self):
+        self.assertEqual(self.run_lab("discover", "--all"), 0)
+        self.assertEqual(self.run_lab("sample", "--all", "--pilot"), 0)
+        self.assertEqual(self.run_lab("fetch", "--all", "--pilot"), 0)
+
+    def test_surface_of_one_person_uses_every_person_with_a_manifest(self):
+        self.fetch_everyone()
+        self.assertEqual(self.run_lab("surface", "--all", "--pilot"), 0)
+        folder = os.path.join(self.data, "pilot", "surface")
+        ada_path, ben_path = os.path.join(folder, "ada.json"), os.path.join(folder, "ben.json")
+        ada_all = lp.read_json(ada_path)
+        lp.write_json(ben_path, {"sentinel": True})
+        seen = []
+
+        def spy(papers_by_person, wordlists):
+            seen.append(sorted(papers_by_person))
+            return real(papers_by_person, wordlists)
+
+        real = lab_surface.run_surface
+        with mock.patch.object(lab_surface, "run_surface", spy):
+            self.assertEqual(self.run_lab("surface", "ada", "--pilot"), 0)
+        self.assertEqual(seen, [["ada", "ben"]])
+        self.assertEqual(lp.read_json(ada_path), ada_all)
+        self.assertEqual(lp.read_json(ben_path), {"sentinel": True})
+
+    def test_a_failed_lookup_stops_the_fetch_and_keeps_the_manifest(self):
+        self.assertEqual(self.run_lab("discover", "ada"), 0)
+        self.assertEqual(self.run_lab("discover", "ben"), 0)
+        self.assertEqual(self.run_lab("sample", "--all", "--pilot"), 0)
+        self.http = FakeHttp([])
+        self.assertEqual(self.run_lab("fetch", "ada", "--pilot"), 1)
+        self.assertIn("network error: ada: ", self.err.getvalue())
+        ada = lp.read_json(os.path.join(self.data, "pilot", "manifests", "ada.json"))
+        self.assertEqual([p["status"] for p in ada["papers"]], ["chosen"] * 3)
+        self.assertEqual(ada["replacements"], [])
+
+    def test_check_quotes_reports_the_number_of_papers_checked(self):
+        self.assertEqual(self.run_lab("discover", "--all"), 0)
+        self.assertEqual(self.run_lab("sample", "--all", "--pilot"), 0)
+        self.assertEqual(self.run_lab("check-quotes", "ada", "--pilot"), 0)
+        self.assertIn("ada: 0 papers checked", self.out.getvalue())
+        self.assertEqual(self.run_lab("fetch", "--all", "--pilot"), 0)
+        self.assertEqual(self.run_lab("check-quotes", "ada", "--pilot"), 1)
+        self.assertIn("ada: 3 papers checked", self.out.getvalue())
+
+    def test_a_truncated_manifest_is_exit_code_2(self):
+        folder = lp.ensure_dir(self.data, "pilot", "manifests")
+        with open(os.path.join(folder, "ada.json"), "w", encoding="utf-8") as handle:
+            handle.write('{"person": "ada", "papers": [')
+        for argv in (("status", "--pilot"), ("select", "agreement", "ada", "--pilot")):
+            self.assertEqual(self.run_lab(*argv), 2)
+        self.assertIn("error: cannot read or parse a data file", self.err.getvalue())
+        self.assertNotIn("Traceback", self.err.getvalue())
+
+    def test_a_missing_paper_file_is_exit_code_2(self):
+        self.fetch_everyone()
+        os.remove(lp.paper_path(self.data, "ada", "W1"))
+        self.assertEqual(self.run_lab("surface", "ada", "--pilot"), 2)
+        self.assertIn("error: cannot read or parse a data file", self.err.getvalue())
+
 
 class ExitCodeTests(unittest.TestCase):
     def test_usage_errors_are_exit_code_2(self):
@@ -149,7 +212,8 @@ class ExitCodeTests(unittest.TestCase):
             self.assertEqual(style_lab.main(["fly"], environ=env, out=out, err=err), 2)
 
     def test_help_is_exit_code_0(self):
-        self.assertEqual(style_lab.main(["--help"], out=io.StringIO(), err=io.StringIO()), 0)
+        with contextlib.redirect_stdout(io.StringIO()):
+            self.assertEqual(style_lab.main(["--help"], out=io.StringIO(), err=io.StringIO()), 0)
 
 
 if __name__ == "__main__":
