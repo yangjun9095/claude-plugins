@@ -182,6 +182,29 @@ def infer_results(sections):
     return sections
 
 
+def demote_late_intro(sections):
+    """Mark as "other" each section of kind "intro" that stands after the first section of kind
+    "results" or "discussion", for example "Related Work" after the results. Change the list in
+    place and return it."""
+    late = False
+    for section in sections:
+        if section["kind"] in ("results", "discussion"):
+            late = True
+        elif section["kind"] == "intro" and late:
+            section["kind"] = "other"
+    return sections
+
+
+def finish_kinds(sections, infer=True):
+    """Set the final kind of each section. Both readers call this function once per paper.
+
+    When infer is true, descriptive sections may become results (see infer_results). Then a late
+    section of kind "intro" becomes "other" (see demote_late_intro). Return the list."""
+    if infer:
+        infer_results(sections)
+    return demote_late_intro(sections)
+
+
 def read_abstract(article):
     meta = _child(article, "front")
     meta = _child(meta, "article-meta") if meta is not None else None
@@ -254,8 +277,7 @@ def read_jats(data, meta):
     article_type = article.get("article-type") or ""
     body = _child(article, "body")
     sections = read_body(body) if body is not None else []
-    if meta.get("group") != "essay" and article_type not in ESSAY_ARTICLE_TYPES:
-        infer_results(sections)
+    finish_kinds(sections, infer=meta.get("group") != "essay" and article_type not in ESSAY_ARTICLE_TYPES)
     paper = new_paper(meta)
     paper.update({"article_type": article_type, "jats_manuscript": is_manuscript(article),
                   "article_doi": article_doi(article),

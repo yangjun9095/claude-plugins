@@ -187,6 +187,48 @@ class ShapeTests(unittest.TestCase):
         self.assertEqual(paper["sections"][0]["paragraphs"], ["Café spores swell."])
 
 
+class LateIntroTests(unittest.TestCase):
+    """A section named like an introduction, after the results or the discussion, is other text."""
+
+    @staticmethod
+    def sections(*headings):
+        return [{"heading": h, "kind": lj.heading_kind(h), "paragraphs": [], "subsections": []} for h in headings]
+
+    def test_related_work_after_the_results_becomes_other(self):
+        sections = lj.finish_kinds(self.sections("Introduction", "Results", "Related Work", "Discussion"), infer=False)
+        self.assertEqual([s["kind"] for s in sections], ["intro", "results", "other", "discussion"])
+
+    def test_related_work_before_the_results_stays_intro(self):
+        sections = lj.finish_kinds(self.sections("Introduction", "Related Work", "Results"), infer=False)
+        self.assertEqual([s["kind"] for s in sections], ["intro", "intro", "results"])
+
+    def test_related_work_after_the_discussion_becomes_other(self):
+        sections = lj.finish_kinds(self.sections("Introduction", "Discussion", "Background"), infer=False)
+        self.assertEqual([s["kind"] for s in sections], ["intro", "discussion", "other"])
+
+    def test_every_late_intro_section_becomes_other(self):
+        sections = lj.finish_kinds(self.sections("Introduction", "Results", "Background", "Related Work"),
+                                   infer=False)
+        self.assertEqual([s["kind"] for s in sections], ["intro", "results", "other", "other"])
+
+    def test_the_rule_runs_after_the_inference_of_results(self):
+        sections = self.sections("Introduction", "A new model", "Related Work")
+        self.assertEqual([s["kind"] for s in lj.finish_kinds(sections, infer=True)], ["intro", "results", "other"])
+
+    def test_an_essay_with_a_discussion_also_demotes_a_late_intro(self):
+        sections = lj.finish_kinds(self.sections("Introduction", "Why moss", "Discussion", "Background"), infer=False)
+        self.assertEqual([s["kind"] for s in sections], ["intro", "other", "discussion", "other"])
+
+    def test_the_jats_reader_applies_the_rule(self):
+        xml = (b"<article article-type=\"research-article\"><body>"
+               b"<sec><title>Introduction</title><p>Moss dries.</p></sec>"
+               b"<sec><title>Results</title><p>Mats shrank.</p></sec>"
+               b"<sec><title>Related Work</title><p>Others studied moss.</p></sec>"
+               b"<sec><title>Discussion</title><p>Moss tolerates drying.</p></sec></body></article>")
+        self.assertEqual(kinds(lj.read_jats(xml, META)), ["intro", "results", "other", "discussion"])
+        self.assertEqual(kinds(lj.read_jats(xml, dict(META, group="essay"))), ["intro", "results", "other", "discussion"])
+
+
 class RefusalTests(unittest.TestCase):
     def test_an_entity_declaration_is_refused(self):
         doc = b'<?xml version="1.0"?><!DOCTYPE a [<!ENTITY x "boom">]><article><body><p>&x;</p></body></article>'

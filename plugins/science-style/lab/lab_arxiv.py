@@ -12,7 +12,7 @@ without sections, as its body.
 import re
 from html.parser import HTMLParser
 
-from lab_jats import CIT_RUN, CIT_WRAP, ReaderError, heading_kind, infer_results
+from lab_jats import CIT_RUN, CIT_WRAP, ReaderError, finish_kinds, heading_kind
 from lab_text import finish_paper, new_paper
 
 VOID = frozenset("area base br col embed hr img input link meta param source track wbr".split())
@@ -208,8 +208,7 @@ def read_arxiv_html(data, meta):
                          "subsections": subsections})
     if lead and not sections:
         sections = [{"heading": "", "kind": "body", "paragraphs": lead, "subsections": []}]
-    if meta.get("group") != "essay":
-        infer_results(sections)
+    finish_kinds(sections, infer=meta.get("group") != "essay")
     legends = []
     for caption in _find_all(article, lambda n: n.tag == "figcaption"):
         caption_text = node_text(caption)

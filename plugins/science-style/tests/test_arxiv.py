@@ -116,6 +116,22 @@ class ArxivTests(unittest.TestCase):
         self.assertFalse(self.paper["jats_manuscript"])
         self.assertEqual(len(self.paper["sha256"]), 64)
 
+    def test_related_work_after_the_results_becomes_other(self):
+        def section(number, title):
+            return ('<section class="ltx_section"><h2 class="ltx_title ltx_title_section">'
+                    '<span class="ltx_tag ltx_tag_section">{} </span>{}</h2>'
+                    '<div class="ltx_para"><p class="ltx_p">Text of {}.</p></div></section>'.format(number, title, title))
+        page = ('<html><body><article class="ltx_document">' + section(1, "Introduction") + section(2, "Experiments")
+                + section(3, "Related Work") + section(4, "Conclusion") + "</article></body></html>")
+        paper = la.read_arxiv_html(page, META)
+        self.assertEqual([(s["heading"], s["kind"]) for s in paper["sections"]],
+                         [("Introduction", "intro"), ("Experiments", "results"), ("Related Work", "other"),
+                          ("Conclusion", "discussion")])
+        early = ('<html><body><article class="ltx_document">' + section(1, "Introduction")
+                 + section(2, "Related Work") + section(3, "Experiments") + "</article></body></html>")
+        self.assertEqual([s["kind"] for s in la.read_arxiv_html(early, META)["sections"]],
+                         ["intro", "intro", "results"])
+
     def test_an_essay_keeps_other_sections(self):
         paper = la.read_arxiv_html(DOC, dict(META, group="essay"))
         self.assertEqual(paper["sections"][1]["kind"], "other")
