@@ -19,9 +19,11 @@ MAX_ESSAY_AUTHORS = 3
 CORRECTION = re.compile(r"^\s*(?:author correction|publisher correction|correction|corrigendum|erratum|"
                         r"retraction note|retraction|retracted|expression of concern)\s*(?::|\bto\b|\bfor\b|$)",
                         re.I)
-BIORXIV_DOI = re.compile(r"^10\.1101/(?:\d{4}\.\d{2}\.\d{2}\.)?\d{6,}$")
+# bioRxiv and medRxiv DOIs: prefix 10.1101, and 10.64898 for newer works (every 2026 work in the
+# Stage A cache has it).
+BIORXIV_DOI = re.compile(r"^10\.(?:1101|64898)/(?:\d{4}\.\d{2}\.\d{2}\.)?\d{6,}$")
 RXIV_URL = re.compile(r"(?:bio|med)rxiv\.org/content/(?:early/\d{4}/\d{2}/\d{2}/)?"
-                      r"(10\.1101/(?:\d{4}\.\d{2}\.\d{2}\.)?\d{6,})")
+                      r"(10\.(?:1101|64898)/(?:\d{4}\.\d{2}\.\d{2}\.)?\d{6,})")
 ARXIV_URL = re.compile(r"arxiv\.org/(?:abs|pdf|html)/(\d{4}\.\d{4,5}|[a-z\-]+(?:\.[a-z]{2})?/\d{7})", re.I)
 ARXIV_DOI = re.compile(r"^10\.48550/arxiv\.(.+)$")
 

@@ -172,6 +172,29 @@ class TransientTests(unittest.TestCase):
         self.assertEqual(result["route"], "arxiv-html")
 
 
+NEW_PREFIX = "10.64898/2026.02.03.000321"
+
+
+class NewPrefixTests(unittest.TestCase):
+    def test_a_paper_with_a_new_prefix_doi_takes_the_preprint_route(self):
+        jats_url = "https://www.biorxiv.org/content/early/2026/02/04/2026.02.03.000321.source.xml"
+        http = FakeHttp([NO_HITS, ("details/biorxiv/" + NEW_PREFIX, {"collection": [{"jatsxml": jats_url}]}),
+                         (jats_url, jats_body(700))])
+        result, _ = lf.try_routes(http, paper("W5", doi=NEW_PREFIX), "ada")
+        self.assertEqual((result["route"], result["text_version"], result["text_doi"]),
+                         ("biorxiv", "preprint", NEW_PREFIX))
+
+    def test_the_title_search_accepts_a_new_prefix_preprint(self):
+        http = FakeHttp([((SEARCH, "SRC%3APPR"), {"resultList": {"result": [
+            {"doi": NEW_PREFIX, "title": "Fern spores swell"}]}}), NO_HITS])
+        self.assertEqual(lf.epmc_lookup(http, paper("W1", title="Fern spores swell"))["preprint_doi"], NEW_PREFIX)
+
+    def test_a_pmc_text_with_a_dated_new_prefix_doi_is_the_preprint(self):
+        http = FakeHttp([NO_HITS, ("efetch.fcgi?db=pmc&id=1000001", jats_body(700))])
+        result, _ = lf.try_routes(http, paper("W1", pmcid="PMC1000001", doi=NEW_PREFIX), "ada")
+        self.assertEqual((result["text_version"], result["text_doi"]), ("preprint", NEW_PREFIX))
+
+
 class TextDoiTests(unittest.TestCase):
     def test_a_pmc_text_cites_the_journal_doi(self):
         http = FakeHttp([NO_HITS, ("efetch.fcgi?db=pmc&id=1000001", jats_body(700, doi="10.1000/A"))])

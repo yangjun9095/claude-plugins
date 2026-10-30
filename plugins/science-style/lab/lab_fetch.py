@@ -24,8 +24,10 @@ EPMC_FULLTEXT = "https://www.ebi.ac.uk/europepmc/webservices/rest/{}/fullTextXML
 RXIV_DETAILS = "https://api.biorxiv.org/details/{}/{}"
 ARXIV_HTML = "https://arxiv.org/html/{}"
 MIN_BODY_WORDS = 600
-BIORXIV_DOI = re.compile(r"^10\.1101/(?:\d{4}\.\d{2}\.\d{2}\.)?\d{6,}$")
-DATED_RXIV_DOI = re.compile(r"^10\.1101/\d{4}\.\d{2}\.\d{2}\.\d{6,}$")
+# bioRxiv and medRxiv DOIs: prefix 10.1101, and 10.64898 for newer works. The API check in _rxiv
+# guards against a false match.
+BIORXIV_DOI = re.compile(r"^10\.(?:1101|64898)/(?:\d{4}\.\d{2}\.\d{2}\.)?\d{6,}$")
+DATED_RXIV_DOI = re.compile(r"^10\.(?:1101|64898)/\d{4}\.\d{2}\.\d{2}\.\d{6,}$")
 META_FIELDS = ("work_id", "doi", "title", "year", "venue", "tier", "group", "co_senior")
 RXIV_HOSTS = frozenset(["www.biorxiv.org", "www.medrxiv.org", "api.biorxiv.org", "api.medrxiv.org"])
 RXIV_ROUTES = ("biorxiv", "medrxiv")
