@@ -170,6 +170,8 @@ class PipelineTests(unittest.TestCase):
         self.http = FakeHttp([])
         self.assertEqual(self.run_lab("fetch", "ada", "--pilot"), 1)
         self.assertIn("network error: ada: ", self.err.getvalue())
+        self.assertIn("deferred", self.err.getvalue())
+        self.assertIn("run fetch again", self.err.getvalue())
         ada = lp.read_json(os.path.join(self.data, "pilot", "manifests", "ada.json"))
         self.assertEqual([p["status"] for p in ada["papers"]], ["chosen"] * 3)
         self.assertEqual(ada["replacements"], [])

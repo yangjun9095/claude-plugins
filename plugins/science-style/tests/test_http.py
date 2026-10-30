@@ -42,8 +42,8 @@ class FakeOpener(object):
         return result
 
 
-def http_error(url, code):
-    return urllib.error.HTTPError(url, code, "status {}".format(code), {}, None)
+def http_error(url, code, headers=None):
+    return urllib.error.HTTPError(url, code, "status {}".format(code), headers or {}, None)
 
 
 class HttpTests(unittest.TestCase):
@@ -108,6 +108,43 @@ class HttpTests(unittest.TestCase):
         self.assertEqual(http.get(url).body, b"ok")
         self.assertEqual(len(opener.calls), 2)
         self.assertIn(2, self.clock.sleeps)
+
+    def test_a_429_waits_for_the_retry_after_seconds(self):
+        url = "https://www.biorxiv.org/content/early/2020/01/01/222222.source.xml"
+        http, opener = self.make({url: [http_error(url, 429, {"Retry-After": "47"}), (200, b"ok")]})
+        self.assertEqual(http.get(url).body, b"ok")
+        self.assertEqual(self.clock.sleeps, [47])
+
+    def test_a_long_retry_after_is_capped_at_120_seconds(self):
+        url = "https://www.biorxiv.org/content/early/2020/01/01/333333.source.xml"
+        http, opener = self.make({url: [http_error(url, 429, {"retry-after": "500"}), (200, b"ok")]})
+        self.assertEqual(http.get(url).body, b"ok")
+        self.assertEqual(self.clock.sleeps, [120])
+
+    def test_a_429_without_a_numeric_retry_after_backs_off(self):
+        url = "https://api.biorxiv.org/details/biorxiv/10.1101/222222"
+        date = "Wed, 21 Oct 2026 07:28:00 GMT"
+        http, opener = self.make({url: [http_error(url, 429), http_error(url, 429, {"Retry-After": date}),
+                                        (200, b"ok")]})
+        self.assertEqual(http.get(url).body, b"ok")
+        self.assertEqual(self.clock.sleeps, [2, 4])
+
+    def test_a_retry_after_on_a_503_does_not_replace_the_backoff(self):
+        url = "https://eutils.ncbi.nlm.nih.gov/y"
+        http, opener = self.make({url: [http_error(url, 503, {"Retry-After": "47"}), (200, b"ok")]})
+        self.assertEqual(http.get(url).body, b"ok")
+        self.assertEqual(self.clock.sleeps, [2])
+
+    def test_the_preprint_web_hosts_wait_five_seconds_and_the_apis_one(self):
+        self.assertEqual(lh.MIN_INTERVAL["www.biorxiv.org"], 5.0)
+        self.assertEqual(lh.MIN_INTERVAL["www.medrxiv.org"], 5.0)
+        self.assertEqual(lh.MIN_INTERVAL["api.biorxiv.org"], 1.0)
+        self.assertEqual(lh.MIN_INTERVAL["api.medrxiv.org"], 1.0)
+        a, b = "https://www.medrxiv.org/a.xml", "https://www.medrxiv.org/b.xml"
+        http, _ = self.make({a: [(200, b"a")], b: [(200, b"b")]})
+        http.get(a)
+        http.get(b)
+        self.assertEqual(self.clock.sleeps, [5.0])
 
     def test_a_404_fails_at_once(self):
         url = "https://www.ebi.ac.uk/x"

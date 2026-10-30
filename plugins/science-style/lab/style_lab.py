@@ -167,6 +167,8 @@ def cmd_fetch(ctx):
         try:
             counts = lab_fetch.fetch_person(http, manifest, ctx.manifest_path(person["id"]), ctx.data, lookup,
                                             only=only, log=ctx.say)
+        except lab_fetch.Deferred as exc:
+            raise NetworkError("{}; run fetch again later to resume".format(exc))
         except lab_http.FetchError as exc:
             raise NetworkError("{}: {}".format(person["id"], exc))
         ctx.say("{}: fetched {}, replaced {}, {} papers in the manifest".format(

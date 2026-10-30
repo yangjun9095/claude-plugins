@@ -2,7 +2,9 @@
 
 The routes, in order: NCBI efetch for a PMC ID, Europe PMC fullTextXML, the bioRxiv or medRxiv
 JATS file, and arXiv HTML. A route succeeds when the reader finds at least 600 words of body text
-outside Methods. When every route fails, the sample replaces the paper (lab_sample.replace). The
+outside Methods. When every route fails for a permanent reason, the sample replaces the paper
+(lab_sample.replace). When a failure may pass (is_transient), the paper stays "chosen", the fetch
+goes on with the next paper and ends with an error, so a later run tries the paper again. The
 manifest is saved after each paper, so an interrupted run resumes where it stopped.
 """
 import re
@@ -24,6 +26,28 @@ ARXIV_HTML = "https://arxiv.org/html/{}"
 MIN_BODY_WORDS = 600
 BIORXIV_DOI = re.compile(r"^10\.1101/(?:\d{4}\.\d{2}\.\d{2}\.)?\d{6,}$")
 META_FIELDS = ("work_id", "doi", "title", "year", "venue", "tier", "group", "co_senior")
+RXIV_HOSTS = frozenset(["www.biorxiv.org", "www.medrxiv.org", "api.biorxiv.org", "api.medrxiv.org"])
+
+
+class Deferred(FetchError):
+    """No route worked, and at least one route failed for a reason that may pass. The paper stays
+    "chosen". reasons lists the failure of each route."""
+
+    def __init__(self, subject, reasons):
+        Exception.__init__(self, "{}: deferred after a temporary failure: {}".format(subject, "; ".join(reasons)))
+        self.url = subject
+        self.status = None
+        self.reasons = list(reasons)
+
+
+def is_transient(err):
+    """Return True when a FetchError may pass on a later run: a network error or time-out (status
+    None), 429, a 5xx status, or 403 from a bioRxiv or medRxiv host (their firewall answers 403
+    when it limits the rate)."""
+    status = err.status
+    if status is None or status == 429 or 500 <= status <= 599:
+        return True
+    return status == 403 and urllib.parse.urlparse(err.url or "").netloc in RXIV_HOSTS
 
 
 def epmc_query(http, query):
@@ -82,35 +106,61 @@ def _try_reader(reader, body, meta):
 
 
 def _rxiv(http, doi, base):
+    """Return (paper_file, None, False) from the bioRxiv or medRxiv JATS file, or (None, reason,
+    transient).
+
+    transient is True when an API request or the JATS download failed for a reason that may pass,
+    or when an API answer is not JSON. Only an answer with an empty collection from each server
+    shows that neither server knows the DOI.
+    """
+    failures, transient = [], False
     for server in ("biorxiv", "medrxiv"):
         try:
             data = http.get(RXIV_DETAILS.format(server, doi)).json()
-        except (FetchError, ValueError):
+        except FetchError as err:
+            failures.append("{} API: {}".format(server, err))
+            transient = transient or is_transient(err)
+            continue
+        except ValueError:
+            failures.append("{} API: the answer is not JSON".format(server))
+            transient = True
             continue
         collection = data.get("collection") or []
         if not collection:
             continue
         jats_url = collection[-1].get("jatsxml")
         if not jats_url:
-            return None, "{} lists no JATS file for {}".format(server, doi)
+            return None, "{} lists no JATS file for {}".format(server, doi), False
         try:
             body = http.get(jats_url).body
         except FetchError as err:
-            return None, str(err)
-        return _try_reader(read_jats, body, dict(base, route=server, source_url=jats_url, text_version="preprint"))
-    return None, "the bioRxiv and medRxiv APIs do not know {}".format(doi)
+            return None, str(err), is_transient(err)
+        result, why = _try_reader(read_jats, body, dict(base, route=server, source_url=jats_url,
+                                                        text_version="preprint"))
+        return result, why, False
+    if failures:
+        return None, "; ".join(failures), transient
+    return None, "the bioRxiv and medRxiv APIs do not know {}".format(doi), False
 
 
 def try_routes(http, paper, person_id):
-    """Return (paper_file, None) from the first route that works, or (None, reasons).
+    """Return (paper_file, None) from the first route that works, or (None, reasons) when every
+    route failed for a permanent reason.
 
-    Raise FetchError when a Europe PMC search failed and no route works. The paper then stays
-    "chosen", because the failed search could have found a PMC ID or a preprint.
+    Raise Deferred when no route works and a route failed for a reason that may pass, or a Europe
+    PMC search failed (it could have found a PMC ID or a preprint). A 500 from the Europe PMC
+    fullTextXML route is permanent: Europe PMC answers 500 for an author manuscript without XML.
     """
-    reasons = []
+    reasons, transient = [], []
+
+    def fail(reason, temporary=False):
+        reasons.append(reason)
+        if temporary:
+            transient.append(reason)
+
     info = epmc_lookup(http, paper)
     if info["failed"]:
-        reasons.append("europepmc lookup: failed")
+        fail("europepmc lookup: failed", True)
     base = {field: paper.get(field) for field in META_FIELDS}
     base["person"] = person_id
     if info["pmcid"]:
@@ -120,41 +170,42 @@ def try_routes(http, paper, person_id):
             try:
                 body = http.get(url, retries=retries).body
             except FetchError as err:
-                reasons.append("{}: {}".format(route, err))
+                fail("{}: {}".format(route, err),
+                     is_transient(err) and not (route == "europepmc" and err.status == 500))
                 continue
             result, why = _try_reader(read_jats, body, dict(base, route=route, source_url=url, text_version=None))
             if result:
                 result["text_version"] = "accepted" if (info["auth_man"] or result.get("jats_manuscript")) else "published"
                 return result, None
-            reasons.append("{}: {}".format(route, why))
+            fail("{}: {}".format(route, why))
     else:
-        reasons.append("pmc: no PMC ID")
+        fail("pmc: no PMC ID")
     doi = info["preprint_doi"]
     if not doi and paper.get("doi") and BIORXIV_DOI.match(paper["doi"]):
         doi = paper["doi"]
     if doi:
-        result, why = _rxiv(http, doi, base)
+        result, why, temporary = _rxiv(http, doi, base)
         if result:
             return result, None
-        reasons.append("preprint: " + why)
+        fail("preprint: " + why, temporary)
     else:
-        reasons.append("preprint: no bioRxiv DOI")
+        fail("preprint: no bioRxiv DOI")
     if paper.get("arxiv_id"):
         url = ARXIV_HTML.format(paper["arxiv_id"])
         try:
             body = http.get(url).body
         except FetchError as err:
-            reasons.append("arxiv: {}".format(err))
+            fail("arxiv: {}".format(err), is_transient(err))
         else:
             result, why = _try_reader(read_arxiv_html, body,
                                       dict(base, route="arxiv-html", source_url=url, text_version="arxiv"))
             if result:
                 return result, None
-            reasons.append("arxiv: " + why)
+            fail("arxiv: " + why)
     else:
-        reasons.append("arxiv: no arXiv ID")
-    if info["failed"]:
-        raise FetchError("europepmc", None, "Europe PMC lookup failed; paper left as chosen")
+        fail("arxiv: no arXiv ID")
+    if transient:
+        raise Deferred(paper.get("work_id"), reasons)
     return None, reasons
 
 
@@ -162,17 +213,26 @@ def fetch_person(http, manifest, manifest_path, data, lookup, only=None, log=Non
     """Fetch every paper with the status "chosen" and save the manifest after each one.
 
     lookup maps a work id to its record, for replacements. only, when given, is a set of work ids;
-    a replacement of one of them joins the set.
+    a replacement of one of them joins the set. A deferred paper stays "chosen" and the loop goes
+    on with the next paper. At the end, raise Deferred that names the person and every deferred
+    paper, so the command exits with 1 and a later run tries those papers again.
     """
     log = log or (lambda message: None)
     counts = {"fetched": 0, "replaced": 0}
+    deferred = []
     while True:
         pending = [p for p in manifest["papers"]
-                   if p["status"] == "chosen" and (only is None or p["work_id"] in only)]
+                   if p["status"] == "chosen" and p["work_id"] not in {w for w, _ in deferred}
+                   and (only is None or p["work_id"] in only)]
         if not pending:
             break
         paper = pending[0]
-        result, reasons = try_routes(http, paper, manifest["person"])
+        try:
+            result, reasons = try_routes(http, paper, manifest["person"])
+        except Deferred as err:
+            deferred.append((paper["work_id"], "; ".join(err.reasons)))
+            log("deferred {}: {}".format(paper["work_id"], "; ".join(err.reasons)))
+            continue
         if result:
             write_json(paper_path(data, manifest["person"], paper["work_id"]), result)
             paper.update({"status": "fetched", "route": result["route"], "text_version": result["text_version"],
@@ -187,6 +247,8 @@ def fetch_person(http, manifest, manifest_path, data, lookup, only=None, log=Non
             log("replaced {} by {}".format(paper["work_id"], new))
         manifest["n_papers"] = count_papers(manifest)
         write_json(manifest_path, manifest)
+    if deferred:
+        raise Deferred(manifest["person"], ["{} ({})".format(w, why) for w, why in deferred])
     return counts
 
 

@@ -103,6 +103,75 @@ class RouteTests(unittest.TestCase):
         self.assertEqual((result["route"], result["text_version"]), ("arxiv-html", "arxiv"))
 
 
+JATS_URL = "https://www.biorxiv.org/content/early/2020/01/01/222222.source.xml"
+DETAILS = ("details/biorxiv/10.1101/222222", {"collection": [{"version": "1", "jatsxml": JATS_URL}]})
+
+
+class TransientTests(unittest.TestCase):
+    def test_which_failures_are_transient(self):
+        cases = [(None, "https://arxiv.org/html/1", True), (429, "https://www.biorxiv.org/x", True),
+                 (503, "https://eutils.ncbi.nlm.nih.gov/x", True), (500, "https://arxiv.org/html/1", True),
+                 (404, "https://www.biorxiv.org/x", False), (403, "https://www.biorxiv.org/x", True),
+                 (403, "https://www.medrxiv.org/x", True), (403, "https://api.biorxiv.org/x", True),
+                 (403, "https://api.medrxiv.org/x", True), (403, "https://www.ebi.ac.uk/x", False),
+                 (400, "https://api.biorxiv.org/x", False)]
+        for status, url, expected in cases:
+            self.assertEqual(lf.is_transient(lh.FetchError(url, status, "x")), expected, (status, url))
+
+    def test_a_biorxiv_jats_429_defers_the_paper(self):
+        http = FakeHttp([NO_HITS, DETAILS, (JATS_URL, lh.FetchError(JATS_URL, 429, "HTTP status 429"))])
+        with self.assertRaises(lf.Deferred) as caught:
+            lf.try_routes(http, paper("W2", preprint_doi="10.1101/222222"), "ada")
+        self.assertTrue(any("429" in r for r in caught.exception.reasons))
+        self.assertIsInstance(caught.exception, lh.FetchError)
+
+    def test_a_failed_preprint_api_defers_the_paper(self):
+        http = FakeHttp([NO_HITS, ("details/biorxiv/", lh.FetchError("https://api.biorxiv.org/d", 503, "down")),
+                         ("details/medrxiv/", {"collection": []})])
+        with self.assertRaises(lf.Deferred) as caught:
+            lf.try_routes(http, paper("W2", preprint_doi="10.1101/222222"), "ada")
+        self.assertFalse(any("do not know" in r for r in caught.exception.reasons))
+
+    def test_a_preprint_api_answer_that_is_not_json_defers_the_paper(self):
+        http = FakeHttp([NO_HITS, ("details/biorxiv/", "<html>busy</html>"), ("details/medrxiv/", {"collection": []})])
+        with self.assertRaises(lf.Deferred):
+            lf.try_routes(http, paper("W2", preprint_doi="10.1101/222222"), "ada")
+
+    def test_an_empty_collection_from_both_apis_is_permanent(self):
+        http = FakeHttp([NO_HITS, ("details/biorxiv/", {"collection": []}), ("details/medrxiv/", {"collection": []})])
+        result, reasons = lf.try_routes(http, paper("W2", preprint_doi="10.1101/222222"), "ada")
+        self.assertIsNone(result)
+        self.assertIn("preprint: the bioRxiv and medRxiv APIs do not know 10.1101/222222", reasons)
+
+    def test_a_europe_pmc_fulltext_500_is_a_normal_route_failure(self):
+        fulltext = "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC1000001/fullTextXML"
+        http = FakeHttp([NO_HITS, ("efetch.fcgi", lh.FetchError("https://eutils.ncbi.nlm.nih.gov/e", 404, "gone")),
+                         ("fullTextXML", lh.FetchError(fulltext, 500, "HTTP status 500"))])
+        result, reasons = lf.try_routes(http, paper("W1", pmcid="PMC1000001"), "ada")
+        self.assertIsNone(result)
+        self.assertTrue(any(r.startswith("europepmc: ") and "500" in r for r in reasons))
+
+    def test_a_europe_pmc_fulltext_503_defers_the_paper(self):
+        fulltext = "https://www.ebi.ac.uk/europepmc/webservices/rest/PMC1000001/fullTextXML"
+        http = FakeHttp([NO_HITS, ("efetch.fcgi", lh.FetchError("https://eutils.ncbi.nlm.nih.gov/e", 404, "gone")),
+                         ("fullTextXML", lh.FetchError(fulltext, 503, "HTTP status 503"))])
+        with self.assertRaises(lf.Deferred):
+            lf.try_routes(http, paper("W1", pmcid="PMC1000001"), "ada")
+
+    def test_an_arxiv_timeout_defers_the_paper(self):
+        http = FakeHttp([NO_HITS, ("arxiv.org/html/", lh.FetchError("https://arxiv.org/html/1901.00001", None, "timed out"))])
+        with self.assertRaises(lf.Deferred):
+            lf.try_routes(http, paper("W4", arxiv_id="1901.00001"), "ben")
+
+    def test_a_transient_failure_does_not_block_a_working_route(self):
+        http = FakeHttp([NO_HITS, ("efetch.fcgi", lh.FetchError("https://eutils.ncbi.nlm.nih.gov/e", 503, "busy")),
+                         ("fullTextXML", lh.FetchError("https://www.ebi.ac.uk/f", 503, "busy")),
+                         ("arxiv.org/html/1901.00001", arxiv_body(700))])
+        result, reasons = lf.try_routes(http, paper("W4", pmcid="PMC1000001", arxiv_id="1901.00001"), "ben")
+        self.assertIsNone(reasons)
+        self.assertEqual(result["route"], "arxiv-html")
+
+
 class LookupTests(unittest.TestCase):
     def test_the_lookup_fills_the_pmcid_the_flag_and_a_matching_preprint(self):
         http = FakeHttp([((SEARCH, q('DOI:"10.1000/a"')), epmc_result(doi="10.1000/A", pmcid="PMC1000009",
@@ -137,11 +206,11 @@ class LookupFailureTests(unittest.TestCase):
         self.assertIsNone(reasons)
         self.assertEqual(result["route"], "ncbi-pmc")
 
-    def test_a_failed_lookup_with_no_working_route_raises(self):
+    def test_a_failed_lookup_with_no_working_route_defers_the_paper(self):
         http = FakeHttp([(SEARCH, lh.FetchError("u", 500, "down"))])
-        with self.assertRaises(lh.FetchError) as caught:
+        with self.assertRaises(lf.Deferred) as caught:
             lf.try_routes(http, paper("W1", doi="10.1000/a"), "ada")
-        self.assertIn("paper left as chosen", str(caught.exception))
+        self.assertIn("europepmc lookup: failed", caught.exception.reasons)
 
 
 class FetchPersonTests(unittest.TestCase):
@@ -202,6 +271,35 @@ class FetchPersonTests(unittest.TestCase):
         saved = lp.read_json(self.path)
         self.assertEqual([p["status"] for p in saved["papers"]], ["fetched", "chosen", "chosen"])
         self.assertEqual(saved["replacements"], [])
+
+    def test_a_paper_that_biorxiv_refuses_for_now_is_deferred_and_the_next_paper_is_fetched(self):
+        records = [rec("W0", preprint_doi="10.1101/222222", year=2000),
+                   rec("W1", pmcid="PMC6000001", year=2001), rec("W2", pmcid="PMC6000002", year=2002)]
+        manifest = ls.build_sample("ada", records)
+        self.assertEqual([p["work_id"] for p in manifest["papers"]], ["W0", "W1", "W2"])
+        http = FakeHttp([NO_HITS, DETAILS, (JATS_URL, lh.FetchError(JATS_URL, 429, "HTTP status 429")),
+                         ("efetch.fcgi?db=pmc&id=600000", jats_body(700))])
+        logged = []
+        with self.assertRaises(lh.FetchError) as caught:
+            lf.fetch_person(http, manifest, self.path, self.data, {r["work_id"]: r for r in records}, log=logged.append)
+        self.assertIsInstance(caught.exception, lf.Deferred)
+        self.assertIn("ada", str(caught.exception))
+        self.assertIn("W0", str(caught.exception))
+        self.assertIn("429", str(caught.exception))
+        self.assertEqual([p["status"] for p in manifest["papers"]], ["chosen", "fetched", "fetched"])
+        self.assertEqual(manifest["replacements"], [])
+        saved = lp.read_json(self.path)
+        self.assertEqual([p["status"] for p in saved["papers"]], ["chosen", "fetched", "fetched"])
+        self.assertTrue(any(line.startswith("deferred W0: ") for line in logged))
+        self.assertEqual(sum(1 for url, _ in http.calls if url == JATS_URL), 1)
+
+    def test_an_api_with_no_record_still_leads_to_a_replacement(self):
+        records = [rec("W0", preprint_doi="10.1101/222222", year=2000)]
+        manifest = ls.build_sample("ada", records)
+        http = FakeHttp([NO_HITS, ("details/", {"collection": []})])
+        counts = lf.fetch_person(http, manifest, self.path, self.data, {"W0": records[0]})
+        self.assertEqual(counts, {"fetched": 0, "replaced": 1})
+        self.assertIn("do not know", manifest["replacements"][0]["reason"])
 
     def test_an_empty_queue_ends_the_loop(self):
         records = [rec("W0")]
