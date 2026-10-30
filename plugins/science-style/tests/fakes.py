@@ -131,3 +131,53 @@ class MapOpener(object):
                     answer = json.dumps(answer)
                 return 200, answer if isinstance(answer, bytes) else answer.encode("utf-8")
         raise urllib.error.HTTPError(url, 404, "not found", {}, None)
+
+
+import lab_text  # noqa: E402
+
+
+def make_paper_file(work_id, person, paragraphs, group="senior", tier="high"):
+    """Return a finished paper file with one introduction section."""
+    paper = lab_text.new_paper({"work_id": work_id, "person": person, "group": group, "tier": tier,
+                                "doi": "10.0000/" + work_id.lower(), "title": "Paper " + work_id})
+    paper["sections"] = [{"heading": "Introduction", "kind": "intro", "paragraphs": list(paragraphs),
+                          "subsections": []}]
+    return lab_text.finish_paper(paper)
+
+
+def make_extraction(paper, checklist, group="senior", attempt=1, run="main"):
+    """Return a valid extraction whose every quote is the first sentence of the paper."""
+    first = next(p for _, _, p in lab_text.iter_paragraphs(paper))
+    sentence = lab_text.split_sentences(first)[0]
+    answers = {}
+    for item in checklist["items"]:
+        if "groups" in item and group not in item["groups"]:
+            answers[item["id"]] = {"not_applicable": True}
+            continue
+        answer = {}
+        for name, spec in item["fields"].items():
+            kind = spec["type"]
+            if kind == "enum":
+                answer[name] = spec["values"][0]
+            elif kind == "enum_list":
+                answer[name] = [spec["values"][0]]
+            elif kind == "objects":
+                entry = {key: values[0] for key, values in spec["keys"].items()}
+                entry["quote"] = sentence
+                answer[name] = [entry]
+            elif kind == "quote":
+                answer[name] = sentence
+            elif kind == "quotes":
+                answer[name] = [sentence]
+            elif kind == "text":
+                answer[name] = "The essay argues one point."
+            elif kind == "texts":
+                answer[name] = ["The first section asks how spores swell."]
+            elif kind == "int":
+                answer[name] = 1
+            elif kind == "strings":
+                answer[name] = ["A heading"]
+        answers[item["id"]] = answer
+    return {"schema": 1, "checklist_version": checklist["version"], "prompt_version": 1,
+            "paper_sha256": paper["sha256"], "work_id": paper["work_id"], "person": paper["person"],
+            "attempt": attempt, "run": run, "answers": answers}
