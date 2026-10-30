@@ -16,7 +16,7 @@ import os
 from lab_paths import PLUGIN_ROOT, read_json
 
 CHECKLIST_PATH = os.path.join(PLUGIN_ROOT, "data", "checklist.json")
-PROMPT_VERSION = 2
+PROMPT_VERSION = 3
 TOP_KEYS = ("schema", "checklist_version", "prompt_version", "paper_sha256", "work_id", "person", "attempt",
             "run", "answers")
 FIELD_TYPES = frozenset(["enum", "enum_list", "objects", "quote", "quotes", "text", "texts", "int", "strings"])

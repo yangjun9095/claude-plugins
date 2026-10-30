@@ -41,13 +41,9 @@ REVISED_SENTENCES = (
     "When the first section has any other kind, for example `results`, the paper has no introduction.",
     "Leave `intro_roles` empty.",
     "Answer `none` to `gap_sentence` and `here_we`.",
-    'When no section of the paper has kind `results`, answer `{"not_applicable": true}` to `results_headings`, '
-    "`results_openings` and `storyline`.",
-    "When any section has kind `results`, fill these three items.",
     "Each section of kind `results` is one results section.",
     "When the paper has one section of kind `results` and it has subsections, each subsection is one results "
     "section instead.",
-    "A section of any other kind is never a results section.",
     "When the results are one section with no subsections, write one line for each new question that the text "
     "answers.",
     "A step that serves the same question gets no line of its own.",
@@ -86,6 +82,42 @@ REVISED_SENTENCES = (
 )
 
 
+VERSION_3_SENTENCES = (
+    "A research paper with no section of kind `results` follows rule 13 instead.",
+    "Its introduction is the opening paragraphs up to the end that rule 13 gives.",
+    "These paragraphs can sit in a section of kind `intro` or `body` that runs on.",
+    "When any section has kind `results`, fill `results_headings`, `results_openings` and `storyline`.",
+    "An essay, a review or a tutorial reports no results of its own.",
+    'For such a paper with no section of kind `results`, answer `{"not_applicable": true}` to these three items.',
+    "Any other paper is a research paper.",
+    "A research paper of group `senior` or `first` can have no section of kind `results`.",
+    "In such a paper, the introduction ends at the first paragraph that reports the paper's own work.",
+    "The headed sections or subsections after it, before the discussion, are its results sections.",
+    "Answer `results_headings`, `results_openings` and `storyline` from them.",
+    "When the paper has no headings after the introduction, treat its paragraphs after the introduction as one "
+    "results section.",
+    "In a paper with a section of kind `results`, a section of any other kind is never a results section.",
+    "A gap says what is not known, what earlier work has not done, or what is still needed.",
+    "A broad challenge of the field is not a gap.",
+    "When several sentences state a gap, choose the gap that the `here_we` sentence answers.",
+    "If the `here_we` sentence answers none of them, choose the first.",
+    "The paragraph that holds the `gap_sentence` quote has the role `gap`.",
+    "The paragraph that holds the `here_we` quote has the role `here-we`.",
+    "Quote wording habits, such as transitions, hedges, evaluative words and framing phrases.",
+    "Never quote the name of a method, a model, a molecule, a quantity or a phenomenon that the paper studies, "
+    "however often it recurs.",
+    "When the widest claim stands in several places, quote it from the abstract.",
+    "When the abstract does not hold it, quote it from the first place in reading order where it appears.",
+    "In an essay or a review, a limit of the work that it reviews does not count.",
+    "A workaround that the authors already applied is not a remedy.",
+    "A sentence passes when a reader with school-level science can follow it.",
+    "Do not quote a sentence that only announces an analogy, or a figure of speech that explains nothing.",
+    "An empty list is a valid answer.",
+    'A sentence such as "We evaluate X" or "We investigate X" is `aim`.',
+    "A sentence that says how the authors did the work is `method first`.",
+)
+
+
 def one_line_card(sentence):
     return "# Ada\n\n## Sample\n\n{}\n".format(sentence)
 
@@ -102,12 +134,21 @@ class PromptTests(unittest.TestCase):
         self.assertEqual(lc.validate_extraction(example, checklist, "senior"), [])
         self.assertEqual(example["prompt_version"], lc.PROMPT_VERSION)
         self.assertEqual(example["checklist_version"], checklist["version"])
+        roles = example["answers"]["intro_roles"]["value"]
+        for item_id, role in (("gap_sentence", "gap"), ("here_we", "here-we")):
+            self.assertEqual(roles[example["answers"][item_id]["paragraph"] - 1], role, item_id)
 
     def test_the_extraction_brief_holds_the_revised_rules_in_short_sentences(self):
         text = " ".join(read(PLUGIN, "prompts", "extract.md").split())
-        for sentence in REVISED_SENTENCES:
+        for sentence in REVISED_SENTENCES + VERSION_3_SENTENCES:
             self.assertIn(sentence, text)
             self.assertLessEqual(len(sentence.split()), 25, sentence)
+
+    def test_the_introduction_rule_points_at_the_rule_for_a_paper_without_a_results_section(self):
+        rules = section(read(PLUGIN, "prompts", "extract.md"), "Rules")
+        by_number = dict(re.findall(r"^(\d+)\. (.*)$", rules, re.M))
+        self.assertIn("follows rule 13 instead", by_number["7"])
+        self.assertTrue(by_number["13"].startswith("A research paper of group `senior` or `first`"))
 
     def test_the_extraction_brief_numbers_its_rules_in_order(self):
         rules = section(read(PLUGIN, "prompts", "extract.md"), "Rules")
