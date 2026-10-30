@@ -1,6 +1,7 @@
 """Tests for lab/lab_http.py. No test uses the network."""
 import os
 import socket
+import ssl
 import sys
 import tempfile
 import unittest
@@ -129,6 +130,14 @@ class HttpTests(unittest.TestCase):
         http, opener = self.make({url: [urllib.error.URLError("down"), socket.timeout("slow"), (200, b"ok")]})
         self.assertEqual(http.get(url).body, b"ok")
         self.assertEqual(len(opener.calls), 3)
+
+    def test_ssl_errors_are_retried_then_raise_fetch_error(self):
+        url = "https://api.biorxiv.org/ssl"
+        http, opener = self.make({url: [ssl.SSLError("eof"), ssl.SSLError("eof")]})
+        with self.assertRaises(lh.FetchError) as ctx:
+            http.get(url, retries=1)
+        self.assertIsNone(ctx.exception.status)
+        self.assertEqual(len(opener.calls), 2)
 
     def test_a_failed_answer_is_not_cached(self):
         url = "https://api.openalex.org/z"

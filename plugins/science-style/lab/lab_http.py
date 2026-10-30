@@ -8,7 +8,6 @@ import hashlib
 import http.client
 import json
 import os
-import socket
 import time
 import urllib.error
 import urllib.parse
@@ -92,7 +91,7 @@ class Http(object):
                 status, body = self.opener(url, {"User-Agent": USER_AGENT}, self.timeout)
             except urllib.error.HTTPError as err:
                 status, body, message = err.code, b"", str(err)
-            except (urllib.error.URLError, socket.timeout, ConnectionError, http.client.HTTPException) as err:
+            except (OSError, http.client.HTTPException) as err:
                 status, body, message = None, b"", str(err)
             if status == 200:
                 self._store(url, body_path, meta_path, body)
