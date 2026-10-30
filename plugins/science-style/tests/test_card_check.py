@@ -246,10 +246,11 @@ class QuoteBypassTests(unittest.TestCase):
         self.assertIn("DOI tag without a quote", failures)
         self.assertFalse(any(f.startswith("number not in the profile data") for f in failures))
 
-    def test_a_quote_of_two_words_fails_and_one_of_three_words_passes(self):
-        failures = check(sig('The phrase "spores swell" (doi:10.0000/fern.1) appears often.'))
-        self.assertIn('quote too short: "spores swell"', failures)
-        self.assertEqual(check(sig('The phrase "Our data do" (doi:10.0000/fern.2) appears often.')), [])
+    def test_a_short_verified_quote_passes(self):
+        quote = {"item": "signature_phrases", "text": "Spores swell.", "doi": "10.0000/fern.4", "work_id": "W4"}
+        profile = dict(PROFILE, quotes=PROFILE["quotes"] + [quote])
+        sentence = 'The phrase "Spores swell." (doi:10.0000/fern.4) appears often.'
+        self.assertEqual(check(sig(sentence), profiles=[profile]), [])
 
 
 class NumberBypassTests(unittest.TestCase):

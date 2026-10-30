@@ -1,7 +1,7 @@
 """Check a card or the principles file against the profile data (spec section 13).
 
-A quote takes the form "text" (doi:10.xxxx/yyyy). Double quotes mark nothing else. A quote has 3 to
-25 words and is a contiguous part of a verified quote in a profile, with the same DOI.
+A quote takes the form "text" (doi:10.xxxx/yyyy). Double quotes mark nothing else. A quote has at
+most 25 words and is a contiguous part of a verified quote in a profile, with the same DOI.
 
 Outside the quotes, every number occurs in the profile data, except the numbers of the phrases
 "per 100" and "per 1,000". A count written "N of M", "N out of M" or "N/M" is a (count,
@@ -19,7 +19,6 @@ PRINCIPLES_HEADINGS = ("Shared moves", "Distinctive moves")
 LIMITS = {"card": {"words": 900, "quotes": 20, "per_doi": 2},
           "principles": {"words": 1200, "quotes": 20, "per_doi": 2}}
 MAX_QUOTE_WORDS = 25
-MIN_QUOTE_WORDS = 3
 UNIT_NUMBERS = frozenset(["100", "1000", "1,000"])
 NUMBER_WORDS = frozenset("""two three four five six seven eight nine ten eleven twelve thirteen fourteen
 fifteen sixteen seventeen eighteen nineteen twenty thirty forty fifty sixty seventy eighty ninety hundred
@@ -177,8 +176,6 @@ def check_text(text, kind, profiles):
     for match in QUOTE.finditer(text):
         quote, doi = match.group(1), match.group(3)
         n_quotes += 1
-        if len(words(quote)) < MIN_QUOTE_WORDS:
-            failures.append('quote too short: "{}"'.format(quote))
         if not doi:
             failures.append('quote without a DOI: "{}"'.format(quote))
             continue
