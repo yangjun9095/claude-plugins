@@ -10,7 +10,7 @@ import unicodedata
 NORMALIZER_VERSION = "1"
 PLACEHOLDERS = ("[CIT]", "[EQ]")
 PAPER_META_FIELDS = ("work_id", "person", "doi", "title", "year", "venue", "tier", "group",
-                     "co_senior", "text_version", "route", "source_url")
+                     "co_senior", "text_version", "text_doi", "route", "source_url")
 ABBREVIATIONS = frozenset("""fig figs eq eqs ref refs no nos vs al approx ca cf resp sec suppl ext
 dr prof st etc e.g i.e""".split())
 

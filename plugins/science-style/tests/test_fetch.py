@@ -172,6 +172,36 @@ class TransientTests(unittest.TestCase):
         self.assertEqual(result["route"], "arxiv-html")
 
 
+class TextDoiTests(unittest.TestCase):
+    def test_a_pmc_text_cites_the_journal_doi(self):
+        http = FakeHttp([NO_HITS, ("efetch.fcgi?db=pmc&id=1000001", jats_body(700, doi="10.1000/A"))])
+        result, _ = lf.try_routes(http, paper("W1", pmcid="PMC1000001", doi="10.1000/a"), "ada")
+        self.assertEqual((result["text_version"], result["text_doi"]), ("published", "10.1000/a"))
+
+    def test_an_arxiv_text_cites_the_arxiv_doi_even_with_a_journal_doi(self):
+        http = FakeHttp([NO_HITS, ("arxiv.org/html/1901.00001", arxiv_body(700))])
+        result, _ = lf.try_routes(http, paper("W4", doi="10.1000/journal.4", arxiv_id="1901.00001"), "ben")
+        self.assertEqual(result["text_doi"], "10.48550/arxiv.1901.00001")
+        self.assertEqual(lf.derive_text_doi("arxiv-html", {"arxiv_id": "Q-BIO/0101001"}), "10.48550/arxiv.q-bio/0101001")
+
+    def test_a_pmc_text_with_a_dated_biorxiv_doi_is_the_preprint(self):
+        own = "10.1101/2020.05.06.000111"
+        http = FakeHttp([NO_HITS, ("efetch.fcgi?db=pmc&id=1000001", jats_body(700))])
+        result, _ = lf.try_routes(http, paper("W1", pmcid="PMC1000001", doi=own), "ada")
+        self.assertEqual((result["route"], result["text_version"], result["text_doi"]), ("ncbi-pmc", "preprint", own))
+
+    def test_a_pmc_text_whose_jats_doi_is_a_dated_biorxiv_doi_is_the_preprint(self):
+        held = "10.1101/2020.05.06.000112"
+        http = FakeHttp([NO_HITS, ("efetch.fcgi?db=pmc&id=1000001", jats_body(700, manuscript=True, doi=held))])
+        result, _ = lf.try_routes(http, paper("W1", pmcid="PMC1000001", doi="10.1000/journal.1"), "ada")
+        self.assertEqual((result["text_version"], result["text_doi"]), ("preprint", held))
+
+    def test_an_undated_biorxiv_doi_on_a_pmc_route_keeps_the_pmc_text_version(self):
+        http = FakeHttp([NO_HITS, ("efetch.fcgi?db=pmc&id=1000001", jats_body(700))])
+        result, _ = lf.try_routes(http, paper("W1", pmcid="PMC1000001", doi="10.1101/123456"), "ada")
+        self.assertEqual((result["text_version"], result["text_doi"]), ("published", "10.1101/123456"))
+
+
 class LookupTests(unittest.TestCase):
     def test_the_lookup_fills_the_pmcid_the_flag_and_a_matching_preprint(self):
         http = FakeHttp([((SEARCH, q('DOI:"10.1000/a"')), epmc_result(doi="10.1000/A", pmcid="PMC1000009",
@@ -300,6 +330,49 @@ class FetchPersonTests(unittest.TestCase):
         counts = lf.fetch_person(http, manifest, self.path, self.data, {"W0": records[0]})
         self.assertEqual(counts, {"fetched": 0, "replaced": 1})
         self.assertIn("do not know", manifest["replacements"][0]["reason"])
+
+    def test_a_preprint_found_by_the_title_search_is_written_back(self):
+        records = [rec("W0", doi="10.1000/fern.0", title="Fern spores swell")]
+        manifest = ls.build_sample("ada", records)
+        jats_url = "https://www.biorxiv.org/content/early/2020/01/01/333333.source.xml"
+        http = FakeHttp([((SEARCH, "SRC%3APPR"), {"resultList": {"result": [
+                             {"doi": "10.1101/333333", "title": "Fern spores swell"}]}}), NO_HITS,
+                         ("details/biorxiv/10.1101/333333", {"collection": [{"jatsxml": jats_url}]}),
+                         (jats_url, jats_body(700))])
+        lf.fetch_person(http, manifest, self.path, self.data, {"W0": records[0]})
+        saved = lp.read_json(self.path)["papers"][0]
+        self.assertEqual((saved["route"], saved["text_version"]), ("biorxiv", "preprint"))
+        self.assertEqual((saved["preprint_doi"], saved["text_doi"]), ("10.1101/333333", "10.1101/333333"))
+        self.assertEqual(lp.read_json(lp.paper_path(self.data, "ada", "W0"))["text_doi"], "10.1101/333333")
+
+    def test_an_arxiv_paper_with_a_journal_doi_records_the_arxiv_doi(self):
+        records = [rec("W0", doi="10.1000/journal.0", arxiv_id="1901.00001")]
+        manifest = ls.build_sample("ada", records)
+        http = FakeHttp([NO_HITS, ("arxiv.org/html/1901.00001", arxiv_body(700))])
+        lf.fetch_person(http, manifest, self.path, self.data, {"W0": records[0]})
+        self.assertEqual(manifest["papers"][0]["text_doi"], "10.48550/arxiv.1901.00001")
+        self.assertIsNone(manifest["papers"][0]["preprint_doi"])
+
+    def test_renormalize_keeps_or_derives_the_text_doi(self):
+        records = [rec("W0", doi="10.1000/journal.0", arxiv_id="1901.00001")]
+        manifest = ls.build_sample("ada", records)
+        cache = os.path.join(self.data, "raw")
+        opener = MapOpener([("arxiv.org/html/1901.00001", arxiv_body(700)), (SEARCH, {"resultList": {"result": []}})])
+        lf.fetch_person(lh.Http(cache, opener=opener, sleep=lambda s: None), manifest, self.path, self.data,
+                        {"W0": records[0]})
+        path = lp.paper_path(self.data, "ada", "W0")
+        os.remove(path)
+        self.assertEqual(lf.renormalize_person(lh.Http(cache, offline=True), manifest, self.data), [])
+        self.assertEqual(lp.read_json(path)["text_doi"], "10.48550/arxiv.1901.00001")
+        old = lp.read_json(path)
+        old["text_doi"] = "10.0000/kept.0"
+        lp.write_json(path, old)
+        del manifest["papers"][0]["text_doi"]
+        lf.renormalize_person(lh.Http(cache, offline=True), manifest, self.data)
+        self.assertEqual(lp.read_json(path)["text_doi"], "10.0000/kept.0")
+        os.remove(path)
+        lf.renormalize_person(lh.Http(cache, offline=True), manifest, self.data)
+        self.assertEqual(lp.read_json(path)["text_doi"], "10.48550/arxiv.1901.00001")
 
     def test_an_empty_queue_ends_the_loop(self):
         records = [rec("W0")]

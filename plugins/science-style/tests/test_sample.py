@@ -102,7 +102,8 @@ class BuildTests(unittest.TestCase):
         paper = manifest["papers"][0]
         self.assertEqual(paper["status"], "chosen")
         self.assertNotIn("authors", paper)
-        self.assertEqual(set(paper), set(ls.MANIFEST_FIELDS) | {"cell", "status", "route", "text_version", "source_url"})
+        self.assertEqual(set(paper), set(ls.MANIFEST_FIELDS) | {"cell", "status", "route", "text_version", "text_doi",
+                                                                "source_url"})
         self.assertEqual(manifest["cells"]["essay/other"]["pool"], 9)
         self.assertEqual(manifest["cells"]["essay/other"]["allocated"], 1)
         self.assertEqual(len(manifest["cells"]["essay/other"]["queue"]), 8)

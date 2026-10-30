@@ -82,14 +82,16 @@ import urllib.error  # noqa: E402
 PARAGRAPH = "Spores swell in water and split along a seam while the coat dries under light."
 
 
-def jats_body(n_words, manuscript=False):
+def jats_body(n_words, manuscript=False, doi=None, article_type="research-article"):
     """Return a JATS document whose introduction has at least n_words words."""
     paragraphs = "".join("<p>{}</p>".format(PARAGRAPH) for _ in range(-(-n_words // 15)))
     mid = '<article-id pub-id-type="manuscript">NIHMS000001</article-id>' if manuscript else ""
-    return ('<?xml version="1.0" encoding="UTF-8"?><pmc-articleset><article article-type="research-article">'
+    if doi:
+        mid += '<article-id pub-id-type="doi">{}</article-id>'.format(doi)
+    return ('<?xml version="1.0" encoding="UTF-8"?><pmc-articleset><article article-type="{}">'
             '<front><article-meta>{}<abstract><p>Spores swell.</p></abstract></article-meta></front>'
             '<body><sec><title>Introduction</title>{}</sec><sec><title>Results</title><p>Spores split.</p></sec>'
-            '</body></article></pmc-articleset>').format(mid, paragraphs).encode("utf-8")
+            '</body></article></pmc-articleset>').format(article_type, mid, paragraphs).encode("utf-8")
 
 
 def arxiv_body(n_words):

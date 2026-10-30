@@ -191,6 +191,30 @@ class QuoteTests(unittest.TestCase):
         unknown = self.candidates({"here_we": quote_of(10)}, dict(preprint, text_version=None))
         self.assertEqual({q["text_version"] for q in unknown}, {None})
 
+    def test_a_quote_cites_the_text_doi_first(self):
+        fetched = dict(meta("W1", doi="10.0000/journal.1"), route="biorxiv", text_version="preprint",
+                       preprint_doi=None, text_doi="https://doi.org/10.1101/333333")
+        quotes = self.candidates({"here_we": quote_of(10)}, fetched)
+        self.assertEqual({q["doi"] for q in quotes}, {"10.1101/333333"})
+
+    def test_an_arxiv_text_with_a_journal_doi_cites_the_arxiv_doi(self):
+        written = dict(meta("W1", doi="10.0000/journal.1", arxiv_id="1901.00001"), route="arxiv-html",
+                       text_version="arxiv", text_doi="10.48550/arxiv.1901.00001")
+        self.assertEqual({q["doi"] for q in self.candidates({"here_we": quote_of(10)}, written)},
+                         {"10.48550/arxiv.1901.00001"})
+        older = dict(written, arxiv_id="1901.00002")
+        del older["text_doi"]
+        self.assertEqual({q["doi"] for q in self.candidates({"here_we": quote_of(10)}, older)},
+                         {"10.48550/arxiv.1901.00002"})
+
+    def test_the_profile_quotes_cite_the_text_doi_of_the_manifest(self):
+        manifest = {"person": "ada", "papers": [dict(meta("W1", doi="10.0000/journal.1", arxiv_id="1901.00001"),
+                                                     route="arxiv-html", text_doi="10.48550/arxiv.1901.00001")]}
+        extraction = make_extraction(make_paper_file("W1", "ada", [PARAGRAPH]), CHECKLIST)
+        profile = la.build_profile(ADA, manifest, {"W1": extraction}, {"W1": ok_check("W1")}, CHECKLIST,
+                                   la.compute_stability([], CHECKLIST), None)
+        self.assertEqual({q["doi"] for q in profile["quotes"]}, {"10.48550/arxiv.1901.00001"})
+
 
 class StabilityTests(unittest.TestCase):
     def setUp(self):

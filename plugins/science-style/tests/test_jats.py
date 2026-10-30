@@ -142,6 +142,15 @@ class ManuscriptTests(unittest.TestCase):
         self.assertEqual((self.paper["work_id"], self.paper["route"], self.paper["person"]),
                          ("W1", "ncbi-pmc", "ada"))
 
+    def test_the_article_doi_is_read_in_lower_case(self):
+        self.assertIsNone(self.paper["article_doi"])
+        doc = (b'<article><front><article-meta><article-id pub-id-type="pmcid">PMC0000002</article-id>'
+               b'<article-id pub-id-type="doi">10.1101/2021.02.03.000222</article-id></article-meta></front>'
+               b'<body><p>Moss dries.</p></body></article>')
+        self.assertEqual(lj.read_jats(doc, META)["article_doi"], "10.1101/2021.02.03.000222")
+        upper = doc.replace(b"10.1101/2021.02.03.000222", b"https://doi.org/10.1000/FERN.9")
+        self.assertEqual(lj.read_jats(upper, META)["article_doi"], "10.1000/fern.9")
+
 
 class ShapeTests(unittest.TestCase):
     def test_unheaded_lead_is_intro_and_descriptive_sections_become_results(self):

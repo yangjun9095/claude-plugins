@@ -7,7 +7,7 @@ JATS names. A run of citations becomes one [CIT] mark and a formula becomes [EQ]
 import re
 import xml.etree.ElementTree as ET
 
-from lab_text import finish_paper, new_paper
+from lab_text import finish_paper, new_paper, normalize_doi
 
 
 class ReaderError(ValueError):
@@ -210,17 +210,27 @@ def read_legends(article):
     return legends
 
 
-def is_manuscript(article):
+def _article_ids(article):
     meta = _child(article, "front")
     meta = _child(meta, "article-meta") if meta is not None else None
-    if meta is None:
-        return False
-    for aid in _children(meta, "article-id"):
+    return _children(meta, "article-id") if meta is not None else []
+
+
+def is_manuscript(article):
+    for aid in _article_ids(article):
         kind = (aid.get("pub-id-type") or "").casefold()
         text = (aid.text or "").strip().casefold()
         if kind in ("manuscript", "mid") or text.startswith("nihms") or text.startswith("ems"):
             return True
     return False
+
+
+def article_doi(article):
+    """Return the DOI that the article metadata names, in lower case, or None."""
+    for aid in _article_ids(article):
+        if (aid.get("pub-id-type") or "").casefold() == "doi":
+            return normalize_doi(aid.text)
+    return None
 
 
 def read_jats(data, meta):
@@ -246,5 +256,6 @@ def read_jats(data, meta):
         infer_results(sections)
     paper = new_paper(meta)
     paper.update({"article_type": article_type, "jats_manuscript": is_manuscript(article),
+                  "article_doi": article_doi(article),
                   "abstract": read_abstract(article), "sections": sections, "legends": read_legends(article)})
     return finish_paper(paper)

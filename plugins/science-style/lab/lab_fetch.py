@@ -13,7 +13,7 @@ import urllib.parse
 from lab_arxiv import read_arxiv_html
 from lab_http import FetchError
 from lab_jats import ReaderError, read_jats
-from lab_paths import paper_path, write_json
+from lab_paths import paper_path, read_json, write_json
 from lab_sample import count_papers, replace
 from lab_text import body_words, normalize_doi, normalize_title
 
@@ -25,8 +25,10 @@ RXIV_DETAILS = "https://api.biorxiv.org/details/{}/{}"
 ARXIV_HTML = "https://arxiv.org/html/{}"
 MIN_BODY_WORDS = 600
 BIORXIV_DOI = re.compile(r"^10\.1101/(?:\d{4}\.\d{2}\.\d{2}\.)?\d{6,}$")
+DATED_RXIV_DOI = re.compile(r"^10\.1101/\d{4}\.\d{2}\.\d{2}\.\d{6,}$")
 META_FIELDS = ("work_id", "doi", "title", "year", "venue", "tier", "group", "co_senior")
 RXIV_HOSTS = frozenset(["www.biorxiv.org", "www.medrxiv.org", "api.biorxiv.org", "api.medrxiv.org"])
+RXIV_ROUTES = ("biorxiv", "medrxiv")
 
 
 class Deferred(FetchError):
@@ -48,6 +50,33 @@ def is_transient(err):
     if status is None or status == 429 or 500 <= status <= 599:
         return True
     return status == 403 and urllib.parse.urlparse(err.url or "").netloc in RXIV_HOSTS
+
+
+def pmc_preprint_doi(paper, article_doi=None):
+    """Return the dated bioRxiv or medRxiv DOI of a PMC text, or None.
+
+    PMC holds some preprints. The JATS article DOI, or the DOI of the paper, is then a dated
+    preprint DOI. The OpenAlex type of the work plays no part.
+    """
+    for doi in (normalize_doi(article_doi), normalize_doi(paper.get("doi"))):
+        if doi and DATED_RXIV_DOI.match(doi):
+            return doi
+    return None
+
+
+def derive_text_doi(route, paper, article_doi=None):
+    """Return the DOI of the text that a route read, or None.
+
+    arxiv-html: 10.48550/arxiv.<arXiv ID> in lower case. biorxiv and medrxiv: the preprint DOI.
+    ncbi-pmc and europepmc: a dated preprint DOI (pmc_preprint_doi), else the DOI of the paper,
+    else the JATS article DOI.
+    """
+    if route == "arxiv-html":
+        return "10.48550/arxiv." + paper["arxiv_id"].lower() if paper.get("arxiv_id") else None
+    if route in RXIV_ROUTES:
+        own = normalize_doi(paper.get("doi"))
+        return normalize_doi(paper.get("preprint_doi")) or (own if own and BIORXIV_DOI.match(own) else None)
+    return pmc_preprint_doi(paper, article_doi) or normalize_doi(paper.get("doi")) or normalize_doi(article_doi)
 
 
 def epmc_query(http, query):
@@ -136,7 +165,7 @@ def _rxiv(http, doi, base):
         except FetchError as err:
             return None, str(err), is_transient(err)
         result, why = _try_reader(read_jats, body, dict(base, route=server, source_url=jats_url,
-                                                        text_version="preprint"))
+                                                        text_version="preprint", text_doi=doi))
         return result, why, False
     if failures:
         return None, "; ".join(failures), transient
@@ -175,7 +204,13 @@ def try_routes(http, paper, person_id):
                 continue
             result, why = _try_reader(read_jats, body, dict(base, route=route, source_url=url, text_version=None))
             if result:
-                result["text_version"] = "accepted" if (info["auth_man"] or result.get("jats_manuscript")) else "published"
+                if pmc_preprint_doi(paper, result.get("article_doi")):
+                    result["text_version"] = "preprint"
+                elif info["auth_man"] or result.get("jats_manuscript"):
+                    result["text_version"] = "accepted"
+                else:
+                    result["text_version"] = "published"
+                result["text_doi"] = derive_text_doi(route, paper, result.get("article_doi"))
                 return result, None
             fail("{}: {}".format(route, why))
     else:
@@ -198,7 +233,8 @@ def try_routes(http, paper, person_id):
             fail("arxiv: {}".format(err), is_transient(err))
         else:
             result, why = _try_reader(read_arxiv_html, body,
-                                      dict(base, route="arxiv-html", source_url=url, text_version="arxiv"))
+                                      dict(base, route="arxiv-html", source_url=url, text_version="arxiv",
+                                           text_doi=derive_text_doi("arxiv-html", paper)))
             if result:
                 return result, None
             fail("arxiv: " + why)
@@ -236,7 +272,9 @@ def fetch_person(http, manifest, manifest_path, data, lookup, only=None, log=Non
         if result:
             write_json(paper_path(data, manifest["person"], paper["work_id"]), result)
             paper.update({"status": "fetched", "route": result["route"], "text_version": result["text_version"],
-                          "source_url": result["source_url"]})
+                          "text_doi": result["text_doi"], "source_url": result["source_url"]})
+            if result["text_version"] == "preprint" and not paper.get("preprint_doi"):
+                paper["preprint_doi"] = result["text_doi"]
             counts["fetched"] += 1
             log("fetched {} by {}".format(paper["work_id"], result["route"]))
         else:
@@ -252,8 +290,19 @@ def fetch_person(http, manifest, manifest_path, data, lookup, only=None, log=Non
     return counts
 
 
+def _old_text_doi(path):
+    """Return the text_doi of an existing paper file, or None."""
+    try:
+        return read_json(path).get("text_doi")
+    except (OSError, ValueError, AttributeError):
+        return None
+
+
 def renormalize_person(http, manifest, data):
-    """Rebuild the paper file of every fetched paper from the cache. Return the failures."""
+    """Rebuild the paper file of every fetched paper from the cache. Return the failures.
+
+    The text_doi comes from the manifest paper, else from the old paper file, else derive_text_doi.
+    """
     failures = []
     for paper in manifest["papers"]:
         if paper["status"] != "fetched":
@@ -267,6 +316,9 @@ def renormalize_person(http, manifest, data):
         except (FetchError, ReaderError) as err:
             failures.append({"work_id": paper["work_id"], "error": str(err)})
             continue
+        path = paper_path(data, manifest["person"], paper["work_id"])
         result["text_version"] = paper["text_version"]
-        write_json(paper_path(data, manifest["person"], paper["work_id"]), result)
+        result["text_doi"] = (paper.get("text_doi") or _old_text_doi(path)
+                              or derive_text_doi(paper["route"], paper, result.get("article_doi")))
+        write_json(path, result)
     return failures

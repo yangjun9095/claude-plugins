@@ -3,8 +3,8 @@ quality report.
 
 A profile counts papers, never sentences: each paper adds one to each closed value it holds. Only
 papers whose check status is "ok" count. Quotes in a profile have at most 25 words, passed the
-quote check, and carry the DOI of the text they come from. A quote read from preprint text cites
-the preprint DOI.
+quote check, and carry the DOI of the text they come from (citation_doi): a quote read from
+preprint text cites the preprint DOI, and a quote read from arXiv HTML cites the arXiv DOI.
 """
 import os
 from collections import Counter
@@ -27,8 +27,16 @@ def quote_doi(meta):
 
 
 def citation_doi(meta):
-    """Return the DOI that a quote from this paper cites: the preprint DOI when the text is the
-    preprint, otherwise the DOI of the paper."""
+    """Return the DOI that a quote from this paper cites: the text_doi that the fetch step wrote.
+
+    A manifest from before text_doi has none. Then an arXiv HTML text cites 10.48550/arxiv.<id>,
+    a preprint text with a preprint DOI cites that DOI, and any other text cites quote_doi(meta).
+    """
+    text_doi = normalize_doi(meta.get("text_doi"))
+    if text_doi:
+        return text_doi
+    if meta.get("route") == "arxiv-html" and meta.get("arxiv_id"):
+        return "10.48550/arxiv." + meta["arxiv_id"].lower()
     if meta.get("text_version") == "preprint":
         preprint = normalize_doi(meta.get("preprint_doi"))
         if preprint:

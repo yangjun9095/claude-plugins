@@ -76,7 +76,8 @@ def draw_cell(papers, k, rng):
 
 def manifest_paper(record, cell):
     paper = {field: record.get(field) for field in MANIFEST_FIELDS}
-    paper.update({"cell": cell, "status": "chosen", "route": None, "text_version": None, "source_url": None})
+    paper.update({"cell": cell, "status": "chosen", "route": None, "text_version": None, "text_doi": None,
+                  "source_url": None})
     return paper
 
 
