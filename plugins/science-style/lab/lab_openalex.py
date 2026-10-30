@@ -121,6 +121,12 @@ def identifiers(work):
     arxiv_id = match.group(1) if match else None
     for location in work.get("locations") or []:
         location = location or {}
+        # OpenAlex gives a bioRxiv location a landing page that is the DOI resolver URL of the preprint.
+        source_name = ((location.get("source") or {}).get("display_name") or "").lower()
+        if not preprint_doi and ("biorxiv" in source_name or "medrxiv" in source_name):
+            landing_doi = normalize_doi(location.get("landing_page_url"))
+            if landing_doi and BIORXIV_DOI.match(landing_doi):
+                preprint_doi = landing_doi
         for url in (location.get("landing_page_url") or "", location.get("pdf_url") or ""):
             found = RXIV_URL.search(url)
             if found and not preprint_doi:

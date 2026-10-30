@@ -155,6 +155,15 @@ class IdentifierTests(unittest.TestCase):
         work = make_work("W1", [ADA_AUTHOR], doi="10.1101/654321", wtype="preprint")
         self.assertEqual(lo.identifiers(work)[2], "10.1101/654321")
 
+    def test_preprint_doi_comes_from_a_biorxiv_location_with_a_doi_landing_url(self):
+        work = make_work("W1", [ADA_AUTHOR], doi="10.1000/fern.1", locations=[
+            {"landing_page_url": "https://doi.org/10.1000/fern.1", "pdf_url": None,
+             "source": {"display_name": "Current Biology"}},
+            {"landing_page_url": "https://doi.org/10.1101/2020.07.21.214387",
+             "pdf_url": "https://www.biorxiv.org/content/biorxiv/early/2020/07/22/2020.07.21.214387.full.pdf",
+             "source": {"display_name": "bioRxiv (Cold Spring Harbor Laboratory)"}}])
+        self.assertEqual(lo.identifiers(work)[2], "10.1101/2020.07.21.214387")
+
     def test_arxiv_from_the_doi_and_from_a_url(self):
         work = make_work("W1", [ADA_AUTHOR], doi="10.48550/arXiv.1901.00001")
         self.assertEqual(lo.identifiers(work)[3], "1901.00001")
