@@ -194,6 +194,19 @@ class PipelineTests(unittest.TestCase):
         self.assertIn("error: cannot read or parse a data file", self.err.getvalue())
         self.assertNotIn("Traceback", self.err.getvalue())
 
+    def test_a_spot_file_with_a_bad_mark_or_no_marks_is_exit_code_2(self):
+        path = os.path.join(lp.ensure_dir(self.data, "spot"), "ada.json")
+        for content, phrase in (({"work_id": "W1", "marks": {"title_form": "correct", "here_we": "right"}}, "here_we: right"),
+                                ({"work_id": "W1"}, '"marks"'), ({"work_id": "W1", "marks": ["correct"]}, '"marks"'),
+                                (["correct"], '"marks"')):
+            lp.write_json(path, content)
+            self.err = io.StringIO()
+            self.assertEqual(self.run_lab("quality", "--pilot"), 2, content)
+            self.assertIn("ada.json", self.err.getvalue())
+            self.assertIn(phrase, self.err.getvalue())
+        lp.write_json(path, {"work_id": "W1", "marks": {"title_form": "correct", "here_we": "wrong", "storyline": "vague"}})
+        self.assertEqual(self.run_lab("quality", "--pilot"), 0)
+
     def test_a_missing_paper_file_is_exit_code_2(self):
         self.fetch_everyone()
         os.remove(lp.paper_path(self.data, "ada", "W1"))

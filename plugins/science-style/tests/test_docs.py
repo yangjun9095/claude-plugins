@@ -119,6 +119,11 @@ class CommandTests(unittest.TestCase):
             self.assertIn(phrase, self.text)
         self.assertNotIn("go on", self.text)
 
+    def test_the_command_states_the_shape_of_a_spot_file(self):
+        self.assertIn('`{"work_id": "...", "marks": {item_id: "correct" | "wrong" | "vague"}}`', self.text)
+        for mark in style_lab.SPOT_MARKS:
+            self.assertIn('"{}"'.format(mark), self.text)
+
     def test_every_subagent_has_an_explicit_model_and_haiku_has_no_task(self):
         self.assertGreaterEqual(self.text.count("model: sonnet"), 3)
         self.assertNotIn("haiku", self.text.lower())

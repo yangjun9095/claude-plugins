@@ -31,7 +31,7 @@ Run the style lab for the people named in `$ARGUMENTS`. The design is in `docs/s
    - For each paper marked `redo`, dispatch a fresh subagent with `model: sonnet` and the attempt number 2, then check again.
    - Dispatch a fresh subagent with `model: sonnet`, the attempt number 2 and the printed errors for each paper marked `invalid`. Then check again.
    - Report a paper that is still invalid after attempt 2, and a paper marked `extraction_failed`.
-9. **Spot check.** Run `style_lab.py select spot <ids>`. Read every answer of each listed paper against the paper file, and write the marks to the spot file of that person.
+9. **Spot check.** Run `style_lab.py select spot <ids>`. Read every answer of each listed paper against the paper file, and write the marks to the spot file of that person. The spot file has the shape `{"work_id": "...", "marks": {item_id: "correct" | "wrong" | "vague"}}`. `style_lab.py quality` exits with 2 when a spot file has no `marks` or holds another mark.
 10. **Profiles.** Run `style_lab.py aggregate <ids>`.
 11. **Cards.** For each person, dispatch one subagent with `model: sonnet` and this brief: read `${CLAUDE_PLUGIN_ROOT}/prompts/card.md` first; then the paths of the profile data, the digest and the card. Run `style_lab.py check-card <person>`. Send a failed card to a fresh writer with the failures, once. Stop and report a second failure.
 12. **Principles and quality.** Write `profiles/principles.md` yourself, following `prompts/principles.md`. Run `style_lab.py check-card principles`, then `style_lab.py quality`.

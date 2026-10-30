@@ -25,6 +25,9 @@ import lab_surface  # noqa: E402
 import lab_venues  # noqa: E402
 
 
+SPOT_MARKS = ("correct", "wrong", "vague")
+
+
 class UsageError(Exception):
     """A usage or input error. main() turns it into exit code 2."""
 
@@ -295,6 +298,21 @@ def cmd_check_card(ctx):
     return 1 if total else 0
 
 
+def read_spot(path):
+    """Return the marks of a spot file, or raise UsageError.
+
+    The file holds {"work_id": "...", "marks": {item_id: "correct" | "wrong" | "vague"}}.
+    """
+    spot = lab_paths.read_json(path)
+    marks = spot.get("marks") if isinstance(spot, dict) else None
+    if not isinstance(marks, dict):
+        raise UsageError('{}: a spot file needs a "marks" object that maps item ids to marks'.format(path))
+    bad = ["{}: {}".format(item_id, mark) for item_id, mark in sorted(marks.items()) if mark not in SPOT_MARKS]
+    if bad:
+        raise UsageError("{}: a mark must be {}; found {}".format(path, ", ".join(SPOT_MARKS), "; ".join(bad)))
+    return marks
+
+
 def cmd_quality(ctx):
     checklist = ctx.checklist()
     manifests = {m["person"]: m for m in _manifests(ctx)}
@@ -305,7 +323,7 @@ def cmd_quality(ctx):
     for person in ctx.people:
         path = os.path.join(ctx.data, "spot", person["id"] + ".json")
         if os.path.exists(path):
-            spot[person["id"]] = lab_paths.read_json(path)["marks"]
+            spot[person["id"]] = read_spot(path)
     report = lab_aggregate.quality_report(profiles, checks, spot, checklist)
     path = os.path.join(lab_paths.profiles_dir(ctx.data, ctx.pilot()), "quality.md")
     with open(path, "w", encoding="utf-8") as handle:
