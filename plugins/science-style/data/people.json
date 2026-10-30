@@ -1,1 +1,26 @@
-{"schema": 1, "people": []}
+{
+  "schema": 1,
+  "people": [
+    {"id": "garcia", "name": "Hernan G. Garcia", "orcid": "0000-0002-5212-3649",
+     "openalex_ids": ["A5087070135", "A5136536694"], "ml_venues": false,
+     "confirmed_by": "orchestrator, 2026-10-30", "note": "two OpenAlex records share the ORCID"},
+    {"id": "royer", "name": "Loic A. Royer", "orcid": "0000-0002-9991-9724",
+     "openalex_ids": ["A5043933183"], "ml_venues": false,
+     "confirmed_by": "orchestrator, 2026-10-30"},
+    {"id": "shendure", "name": "Jay Shendure", "orcid": "0000-0002-1516-1865",
+     "openalex_ids": ["A5083897996"], "ml_venues": false,
+     "confirmed_by": "orchestrator, 2026-10-30", "note": "a second record without ORCID (A5125589944, 310 works) is left out"},
+    {"id": "trapnell", "name": "Cole Trapnell", "orcid": "0000-0002-8105-4347",
+     "openalex_ids": ["A5016854384"], "ml_venues": false,
+     "confirmed_by": "orchestrator, 2026-10-30"},
+    {"id": "pinello", "name": "Luca Pinello", "orcid": "0000-0003-1109-3823",
+     "openalex_ids": ["A5078228499"], "ml_venues": false,
+     "confirmed_by": "orchestrator, 2026-10-30"},
+    {"id": "zou", "name": "James Zou", "orcid": "0000-0001-8880-4764",
+     "openalex_ids": ["A5005779176"], "ml_venues": true,
+     "confirmed_by": "orchestrator, 2026-10-30"},
+    {"id": "rives", "name": "Alexander Rives", "orcid": "0000-0003-2208-0796",
+     "openalex_ids": ["A5029063409"], "ml_venues": true,
+     "confirmed_by": "orchestrator, 2026-10-30"}
+  ]
+}
