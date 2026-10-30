@@ -86,6 +86,13 @@ class HeadingTests(unittest.TestCase):
         for heading, kind in cases.items():
             self.assertEqual(lj.heading_kind(heading), kind, heading)
 
+    def test_heading_kinds_drop_ml_back_matter(self):
+        cases = {"Checklist": "drop", "NeurIPS Paper Checklist": "drop", "Reproducibility Statement": "drop",
+                 "Ethics Statement": "drop", "Broader Impact": "drop", "Impact Statement": "drop",
+                 "Limitations": "other", "Checking the model": "other"}
+        for heading, kind in cases.items():
+            self.assertEqual(lj.heading_kind(heading), kind, heading)
+
     def test_a_methods_section_with_an_ampersand_is_not_inferred_as_results(self):
         paper = lj.read_jats(b"<article><body><sec><title>Introduction</title><p>Moss grows.</p></sec>"
                              b"<sec><title>Moss dries fast</title><p>Moss dried.</p></sec>"

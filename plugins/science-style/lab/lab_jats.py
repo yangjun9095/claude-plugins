@@ -23,7 +23,9 @@ DROP_HEADINGS = ("references", "reference list", "bibliography", "literature cit
                  "author contribution", "competing interest",
                  "declaration of interest", "conflict of interest", "conflicts of interest", "data availability",
                  "code availability", "data and code availability", "materials availability", "supplementary",
-                 "supporting information", "funding", "additional information", "abbreviations")
+                 "supporting information", "funding", "additional information", "abbreviations",
+                 "checklist", "neurips paper checklist", "paper checklist", "reproducibility statement",
+                 "ethics statement", "broader impact", "societal impact", "impact statement")
 KIND_RULES = (("methods", ("method", "materials and method", "material and method", "materials & method",
                            "material & method", "patients and method", "subjects and method", "online method",
                            "star method", "star★method", "star★ method", "experimental procedure",
