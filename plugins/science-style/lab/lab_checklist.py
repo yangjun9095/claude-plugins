@@ -3,18 +3,26 @@
 Each item has fields with a type. Closed types (enum, enum_list, objects) hold values from a fixed
 list, so a script can count them and compare two extractions. An item with "groups" applies only
 to those groups; for any other group its answer is {"not_applicable": true}.
+
+An item may have an "evidence" key. It names a controlling field, and for each value of that field
+it lists what the other fields must hold. The "filled" fields need a non-empty quote, list or
+integer of 1 or more. The "empty" fields need null or an empty list. The "is" fields need one given
+value. The "is_not" fields need any other value. The case "*" covers every value without a case.
 """
 import os
 
 from lab_paths import PLUGIN_ROOT, read_json
 
 CHECKLIST_PATH = os.path.join(PLUGIN_ROOT, "data", "checklist.json")
+PROMPT_VERSION = 1
 TOP_KEYS = ("schema", "checklist_version", "prompt_version", "paper_sha256", "work_id", "person", "attempt",
             "run", "answers")
 FIELD_TYPES = frozenset(["enum", "enum_list", "objects", "quote", "quotes", "text", "texts", "int", "strings"])
 CLOSED_TYPES = frozenset(["enum", "enum_list", "objects"])
 NOT_APPLICABLE = {"not_applicable": True}
 RUNS = ("main", "agreement")
+ANY_VALUE = "*"
+EVIDENCE_RULES = ("filled", "empty", "is", "is_not")
 
 
 class ChecklistError(ValueError):
@@ -35,7 +43,46 @@ def load_checklist(path=CHECKLIST_PATH):
                 raise ChecklistError("{}.{} needs values".format(item["id"], name))
             if spec["type"] == "objects" and not spec.get("keys"):
                 raise ChecklistError("{}.{} needs keys".format(item["id"], name))
+        _check_evidence(item)
     return checklist
+
+
+def _check_evidence(item):
+    """Raise ChecklistError when the evidence rules of an item name an unknown field, value or rule."""
+    evidence = item.get("evidence", {})
+    fields = item["fields"]
+    if not isinstance(evidence, dict):
+        raise ChecklistError("{}: evidence must be an object".format(item["id"]))
+
+    def known(name, where):
+        if name not in fields:
+            raise ChecklistError("{}: evidence names the unknown field {} in {}".format(item["id"], name, where))
+
+    def listed(rule, key, where):
+        names = rule.get(key, [])
+        if not isinstance(names, list):
+            raise ChecklistError("{}: evidence {} in {} must be a list".format(item["id"], key, where))
+        for name in names:
+            known(name, where)
+
+    for control, cases in evidence.items():
+        known(control, "the controlling field")
+        if fields[control]["type"] != "enum" or not isinstance(cases, dict):
+            raise ChecklistError("{}: evidence for {} needs an enum field and an object".format(item["id"], control))
+        for value, rule in cases.items():
+            where = "{}={}".format(control, value)
+            if value != ANY_VALUE and value not in fields[control]["values"]:
+                raise ChecklistError("{}: evidence names the unknown value {} of {}".format(item["id"], value, control))
+            if not isinstance(rule, dict) or set(rule) - set(EVIDENCE_RULES):
+                raise ChecklistError("{}: evidence in {} must use only {}".format(item["id"], where, EVIDENCE_RULES))
+            listed(rule, "filled", where)
+            listed(rule, "empty", where)
+            for key in ("is", "is_not"):
+                for name, wanted in rule.get(key, {}).items():
+                    known(name, where)
+                    if fields[name]["type"] == "enum" and wanted not in fields[name]["values"]:
+                        raise ChecklistError("{}: evidence names the unknown value {} of {}".format(
+                            item["id"], wanted, name))
 
 
 def applies(item, group):
@@ -44,6 +91,22 @@ def applies(item, group):
 
 def _str_list(value):
     return isinstance(value, list) and all(isinstance(v, str) for v in value)
+
+
+def _is_int(value):
+    return isinstance(value, int) and not isinstance(value, bool)
+
+
+def _is_filled(value):
+    if isinstance(value, str):
+        return value.strip() != ""
+    if isinstance(value, list):
+        return len(value) > 0
+    return _is_int(value) and value >= 1
+
+
+def _is_empty(value):
+    return value is None or value == []
 
 
 def _field_errors(item_id, name, spec, value):
@@ -79,18 +142,51 @@ def _field_errors(item_id, name, spec, value):
     if kind == "text":
         return [] if isinstance(value, str) else [where + ": must be a string"]
     if kind == "int":
-        ok = value is None or (isinstance(value, int) and not isinstance(value, bool))
-        return [] if ok else [where + ": must be an integer or null"]
+        return [] if value is None or _is_int(value) else [where + ": must be an integer or null"]
     return [where + ": unknown type"]
+
+
+def _evidence_errors(item, answer):
+    """Return the errors of the evidence rules of an item for one answer."""
+    errors = []
+    for control, cases in item.get("evidence", {}).items():
+        value = answer[control]
+        if value not in item["fields"][control]["values"]:
+            continue
+        rule = cases.get(value, cases.get(ANY_VALUE, {}))
+        when = "when {} is {!r}".format(control, value)
+        for name in rule.get("filled", []):
+            if not _is_filled(answer[name]):
+                errors.append("{}.{}: must be filled {}".format(item["id"], name, when))
+        for name in rule.get("empty", []):
+            if not _is_empty(answer[name]):
+                errors.append("{}.{}: must be null or empty {}".format(item["id"], name, when))
+        for name, wanted in rule.get("is", {}).items():
+            if answer[name] != wanted:
+                errors.append("{}.{}: must be {!r} {}".format(item["id"], name, wanted, when))
+        for name, wanted in rule.get("is_not", {}).items():
+            if answer[name] == wanted:
+                errors.append("{}.{}: must not be {!r} {}".format(item["id"], name, wanted, when))
+    return errors
 
 
 def validate_extraction(extraction, checklist, group):
     """Return the list of rule breaks in an extraction. An empty list means it is valid."""
+    if not isinstance(extraction, dict):
+        return ["extraction is not an object"]
     missing = [key for key in TOP_KEYS if key not in extraction]
     if missing:
         return ["missing keys: " + ", ".join(missing)]
     errors = []
-    if extraction["run"] not in RUNS:
+    for key in ("schema", "checklist_version", "prompt_version", "attempt"):
+        if not _is_int(extraction[key]):
+            errors.append(key + ": must be an integer")
+    if _is_int(extraction["attempt"]) and extraction["attempt"] < 1:
+        errors.append("attempt: must be 1 or more")
+    for key in ("paper_sha256", "work_id", "person", "run"):
+        if not isinstance(extraction[key], str):
+            errors.append(key + ": must be a string")
+    if isinstance(extraction["run"], str) and extraction["run"] not in RUNS:
         errors.append("run must be main or agreement")
     answers = extraction["answers"]
     if not isinstance(answers, dict):
@@ -119,6 +215,8 @@ def validate_extraction(extraction, checklist, group):
         for name, spec in item["fields"].items():
             if name in answer:
                 errors.extend(_field_errors(item["id"], name, spec, answer[name]))
+        if not absent:
+            errors.extend(_evidence_errors(item, answer))
     return errors
 
 

@@ -8,9 +8,11 @@
   {"id": "intro_roles", "question": "What is the role of each introduction paragraph, in order?",
    "fields": {"value": {"type": "enum_list", "values": ["field", "problem", "gap", "prior work", "approach preview", "here-we", "other"]}}},
   {"id": "gap_sentence", "question": "Which sentence states the gap?",
-   "fields": {"value": {"type": "enum", "values": ["present", "none"]}, "paragraph": {"type": "int"}, "quote": {"type": "quote"}}},
+   "fields": {"value": {"type": "enum", "values": ["present", "none"]}, "paragraph": {"type": "int"}, "quote": {"type": "quote"}},
+   "evidence": {"value": {"present": {"filled": ["quote", "paragraph"]}, "none": {"empty": ["quote", "paragraph"]}}}},
   {"id": "here_we", "question": "Which sentence states what this paper does?",
-   "fields": {"value": {"type": "enum", "values": ["present", "none"]}, "paragraph": {"type": "int"}, "quote": {"type": "quote"}}},
+   "fields": {"value": {"type": "enum", "values": ["present", "none"]}, "paragraph": {"type": "int"}, "quote": {"type": "quote"}},
+   "evidence": {"value": {"present": {"filled": ["quote", "paragraph"]}, "none": {"empty": ["quote", "paragraph"]}}}},
   {"id": "results_headings", "question": "What form do the results subheadings take?",
    "fields": {"value": {"type": "enum", "values": ["full-sentence claim", "noun phrase", "question", "none"]}, "headings": {"type": "strings"}}},
   {"id": "results_openings", "question": "How does each results section open, in order?",
@@ -20,9 +22,11 @@
   {"id": "excitement", "question": "Where and how does the paper say a result matters?",
    "fields": {"value": {"type": "objects", "keys": {"marker": ["evaluative word", "first or novelty claim", "scope claim", "implication sentence"], "location": ["title", "abstract", "introduction", "results", "discussion"]}}}},
   {"id": "strongest_claim", "question": "What is the strongest claim, and how is it hedged?",
-   "fields": {"value": {"type": "enum", "values": ["hedged", "unhedged", "none"]}, "quote": {"type": "quote"}, "hedge_quote": {"type": "quote"}}},
+   "fields": {"value": {"type": "enum", "values": ["hedged", "unhedged", "none"]}, "quote": {"type": "quote"}, "hedge_quote": {"type": "quote"}},
+   "evidence": {"value": {"hedged": {"filled": ["quote", "hedge_quote"]}, "unhedged": {"filled": ["quote"], "empty": ["hedge_quote"]}, "none": {"empty": ["quote", "hedge_quote"]}}}},
   {"id": "limitations", "question": "Where and how does the paper state its limits?",
-   "fields": {"placement": {"type": "enum", "values": ["own paragraph", "own section", "inline in results", "inline in discussion", "none"]}, "specificity": {"type": "enum", "values": ["specific with a remedy", "specific", "generic", "none"]}, "quotes": {"type": "quotes"}}},
+   "fields": {"placement": {"type": "enum", "values": ["own paragraph", "own section", "inline in results", "inline in discussion", "none"]}, "specificity": {"type": "enum", "values": ["specific with a remedy", "specific", "generic", "none"]}, "quotes": {"type": "quotes"}},
+   "evidence": {"placement": {"none": {"is": {"specificity": "none"}, "empty": ["quotes"]}, "*": {"is_not": {"specificity": "none"}, "filled": ["quotes"]}}}},
   {"id": "discussion_moves", "question": "Which moves does the discussion make, in order?",
    "fields": {"value": {"type": "enum_list", "values": ["summary", "mechanism", "comparison with prior work", "limitation", "future work", "implication", "other"]}}},
   {"id": "explanations", "question": "Which analogies or plain explanations for non-specialists does the paper use?",
@@ -33,6 +37,7 @@
    "fields": {"quotes": {"type": "quotes"}}},
   {"id": "essay_argument", "question": "For essays only: where is the thesis, how does the argument proceed, and is there a call to action?",
    "groups": ["essay"],
-   "fields": {"thesis_location": {"type": "enum", "values": ["title", "first paragraph", "end of introduction", "later", "none"]}, "argument": {"type": "text"}, "call_to_action": {"type": "enum", "values": ["yes", "no"]}, "quote": {"type": "quote"}}}
+   "fields": {"thesis_location": {"type": "enum", "values": ["title", "first paragraph", "end of introduction", "later", "none"]}, "argument": {"type": "text"}, "call_to_action": {"type": "enum", "values": ["yes", "no"]}, "quote": {"type": "quote"}},
+   "evidence": {"call_to_action": {"yes": {"filled": ["quote"]}, "no": {"empty": ["quote"]}}}}
  ]
 }
