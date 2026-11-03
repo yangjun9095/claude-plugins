@@ -94,7 +94,9 @@ config file).
 
 ## Standard tab vs AI tab on `/security/quality`
 
+These two mappings come from earlier use of the SARIF workflow. Neither one is verified against GitHub documentation.
+
 - **Standard tab** = findings from `python-code-quality.qls` (≈40 rules, conservative).
 - **AI tab** = findings from `python-code-quality-extended.qls` + Copilot-curated subset (the UI filters to a curated set). Includes everything in standard plus additional rules like `py/unused-parameter`, `py/uninitialized-local-variable`, `py/local-shadows-global`.
 
-Both come from the same workflow's SARIF — there's no separate AI scanner.
+The earlier version of this plugin took both tabs from the two SARIF files of one workflow run. Whether a separate AI scanner exists is unverified. Whether the REST API returns the AI tab findings is also unverified.

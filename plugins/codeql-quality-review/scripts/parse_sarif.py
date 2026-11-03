@@ -11,8 +11,7 @@ Output:
       <LABEL>: total findings + count per rule
       detail: rule | path:line | first-80-chars-of-message
 """
-from __future__ import annotations
-
+import io
 import json
 import sys
 from pathlib import Path
@@ -29,7 +28,7 @@ def label_for(path: Path) -> str:
 
 def parse_one(path: Path) -> None:
     try:
-        sarif = json.loads(path.read_text())
+        sarif = json.loads(path.read_text(encoding="utf-8"))
     except FileNotFoundError:
         print(f"=== {label_for(path)}: file not found ({path}) ===")
         return
@@ -39,8 +38,8 @@ def parse_one(path: Path) -> None:
 
     runs = sarif.get("runs", [])
     total = 0
-    by_rule: dict[str, int] = {}
-    detail: list[tuple[str, str, str]] = []
+    by_rule = {}
+    detail = []
     for run in runs:
         for r in run.get("results", []):
             total += 1
@@ -66,7 +65,10 @@ def parse_one(path: Path) -> None:
     print()
 
 
-def main(argv: list[str]) -> int:
+def main(argv):
+    if hasattr(sys.stdout, "buffer"):
+        # Write UTF-8 whatever the locale is. An ASCII locale must not stop the script.
+        sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8", errors="replace")
     if not argv:
         print(__doc__)
         return 1

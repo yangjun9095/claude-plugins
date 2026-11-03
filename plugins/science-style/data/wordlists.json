@@ -1,0 +1,15 @@
+{
+ "version": 1,
+ "hedges": ["may", "might", "could", "suggest", "suggests", "suggested", "likely", "unlikely", "possibly",
+  "possible", "perhaps", "appear", "appears", "appeared", "seem", "seems", "seemed", "potentially",
+  "putative", "presumably", "probably", "indicate", "indicates", "consistent"],
+ "connectives": ["however", "thus", "therefore", "hence", "because", "together", "here", "indeed", "moreover",
+  "furthermore", "instead", "whereas", "although", "surprisingly", "strikingly", "remarkably", "notably",
+  "importantly", "interestingly", "finally", "first", "second", "consequently", "nevertheless"],
+ "irregular_participles": ["shown", "known", "seen", "given", "taken", "made", "found", "done", "drawn", "grown",
+  "held", "kept", "left", "lost", "built", "bound", "brought", "chosen", "driven", "written", "thrown",
+  "spent", "set", "put", "begun", "broken", "shaken", "hidden", "sought", "taught", "thought",
+  "understood", "undertaken", "withdrawn", "worn", "torn", "split", "spread", "shed", "cut", "led", "fed",
+  "read", "sent", "meant", "won", "become", "overcome", "undergone", "arisen", "risen", "forgotten",
+  "frozen", "stolen", "beaten"]
+}
