@@ -1,0 +1,3026 @@
+{
+ "by_cell": {
+  "first/high": 1,
+  "first/other": 2,
+  "senior/high": 5,
+  "senior/other": 3
+ },
+ "by_group": {
+  "first": 3,
+  "senior": 8
+ },
+ "by_tier": {
+  "high": 6,
+  "other": 5
+ },
+ "checklist_version": 2,
+ "distinctive_note": "",
+ "distinctive_pairs": [
+  [
+   "it is",
+   7.71
+  ],
+  [
+   "is possible",
+   6.4
+  ],
+  [
+   "a signal",
+   6.26
+  ],
+  [
+   "will be",
+   5.29
+  ],
+  [
+   "possible to",
+   5.05
+  ],
+  [
+   "the signal",
+   5.01
+  ],
+  [
+   "the following",
+   4.91
+  ],
+  [
+   "in particular",
+   4.66
+  ],
+  [
+   "base pairs",
+   3.63
+  ],
+  [
+   "signal and",
+   3.55
+  ],
+  [
+   "the classification",
+   3.41
+  ],
+  [
+   "can be",
+   3.36
+  ],
+  [
+   "given a",
+   3.34
+  ],
+  [
+   "to analyze",
+   3.29
+  ],
+  [
+   "in silico",
+   3.27
+  ],
+  [
+   "regulatory activity",
+   3.24
+  ],
+  [
+   "order to",
+   3.2
+  ],
+  [
+   "representation of",
+   3.14
+  ],
+  [
+   "in order",
+   3.12
+  ],
+  [
+   "a particular",
+   3.12
+  ]
+ ],
+ "distinctive_words": [
+  [
+   "signal",
+   12.4
+  ],
+  [
+   "editing",
+   10.38
+  ],
+  [
+   "kernel",
+   8.78
+  ],
+  [
+   "step",
+   7.43
+  ],
+  [
+   "nucleosome",
+   7.14
+  ],
+  [
+   "nucleosomes",
+   6.07
+  ],
+  [
+   "it",
+   6.05
+  ],
+  [
+   "analysis",
+   6.03
+  ],
+  [
+   "plasmid",
+   5.93
+  ],
+  [
+   "tree",
+   5.82
+  ],
+  [
+   "ml",
+   5.68
+  ],
+  [
+   "particular",
+   5.31
+  ],
+  [
+   "user",
+   5.26
+  ],
+  [
+   "intervals",
+   5.2
+  ],
+  [
+   "files",
+   5.19
+  ],
+  [
+   "classification",
+   5.16
+  ],
+  [
+   "called",
+   5.07
+  ],
+  [
+   "run",
+   4.97
+  ],
+  [
+   "library",
+   4.92
+  ],
+  [
+   "crispr",
+   4.8
+  ],
+  [
+   "interval",
+   4.8
+  ],
+  [
+   "following",
+   4.75
+  ],
+  [
+   "targeting",
+   4.63
+  ],
+  [
+   "threshold",
+   4.43
+  ],
+  [
+   "is",
+   4.37
+  ],
+  [
+   "specificity",
+   4.35
+  ],
+  [
+   "cas9",
+   4.35
+  ],
+  [
+   "cell-type",
+   4.34
+  ],
+  [
+   "randomness",
+   4.25
+  ],
+  [
+   "primers",
+   4.24
+  ]
+ ],
+ "items": {
+  "abstract_moves": {
+   "value": {
+    "all": {
+     "approach": 8,
+     "context": 7,
+     "gap": 7,
+     "implication": 7,
+     "other": 3,
+     "result": 6
+    },
+    "by_group": {
+     "first": {
+      "approach": 2,
+      "context": 2,
+      "gap": 2,
+      "implication": 2,
+      "other": 1,
+      "result": 1
+     },
+     "senior": {
+      "approach": 6,
+      "context": 5,
+      "gap": 5,
+      "implication": 5,
+      "other": 2,
+      "result": 5
+     }
+    },
+    "by_tier": {
+     "high": {
+      "approach": 4,
+      "context": 3,
+      "gap": 4,
+      "implication": 4,
+      "other": 1,
+      "result": 3
+     },
+     "other": {
+      "approach": 4,
+      "context": 4,
+      "gap": 3,
+      "implication": 3,
+      "other": 2,
+      "result": 3
+     }
+    },
+    "first": {
+     "context": 7,
+     "gap": 1
+    },
+    "last": {
+     "implication": 4,
+     "other": 3,
+     "result": 1
+    },
+    "n": 11,
+    "n_by_group": {
+     "first": 3,
+     "senior": 8
+    },
+    "n_by_tier": {
+     "high": 6,
+     "other": 5
+    }
+   }
+  },
+  "discussion_moves": {
+   "value": {
+    "all": {
+     "comparison with prior work": 4,
+     "future work": 6,
+     "implication": 7,
+     "limitation": 5,
+     "mechanism": 2,
+     "other": 2,
+     "summary": 7
+    },
+    "by_group": {
+     "first": {
+      "comparison with prior work": 1,
+      "implication": 1,
+      "mechanism": 1,
+      "summary": 1
+     },
+     "senior": {
+      "comparison with prior work": 3,
+      "future work": 6,
+      "implication": 6,
+      "limitation": 5,
+      "mechanism": 1,
+      "other": 2,
+      "summary": 6
+     }
+    },
+    "by_tier": {
+     "high": {
+      "comparison with prior work": 1,
+      "future work": 3,
+      "implication": 3,
+      "limitation": 3,
+      "other": 1,
+      "summary": 3
+     },
+     "other": {
+      "comparison with prior work": 3,
+      "future work": 3,
+      "implication": 4,
+      "limitation": 2,
+      "mechanism": 2,
+      "other": 1,
+      "summary": 4
+     }
+    },
+    "first": {
+     "other": 1,
+     "summary": 6
+    },
+    "last": {
+     "future work": 1,
+     "implication": 5,
+     "other": 1
+    },
+    "n": 11,
+    "n_by_group": {
+     "first": 3,
+     "senior": 8
+    },
+    "n_by_tier": {
+     "high": 6,
+     "other": 5
+    }
+   }
+  },
+  "essay_argument": {
+   "call_to_action": {
+    "all": {},
+    "by_group": {},
+    "by_tier": {},
+    "n": 0,
+    "n_by_group": {},
+    "n_by_tier": {}
+   },
+   "thesis_location": {
+    "all": {},
+    "by_group": {},
+    "by_tier": {},
+    "n": 0,
+    "n_by_group": {},
+    "n_by_tier": {}
+   }
+  },
+  "excitement": {
+   "value.location": {
+    "all": {
+     "abstract": 8,
+     "discussion": 7,
+     "introduction": 9,
+     "results": 11
+    },
+    "by_group": {
+     "first": {
+      "abstract": 2,
+      "discussion": 1,
+      "introduction": 2,
+      "results": 3
+     },
+     "senior": {
+      "abstract": 6,
+      "discussion": 6,
+      "introduction": 7,
+      "results": 8
+     }
+    },
+    "by_tier": {
+     "high": {
+      "abstract": 4,
+      "discussion": 3,
+      "introduction": 6,
+      "results": 6
+     },
+     "other": {
+      "abstract": 4,
+      "discussion": 4,
+      "introduction": 3,
+      "results": 5
+     }
+    },
+    "n": 11,
+    "n_by_group": {
+     "first": 3,
+     "senior": 8
+    },
+    "n_by_tier": {
+     "high": 6,
+     "other": 5
+    }
+   },
+   "value.marker": {
+    "all": {
+     "evaluative word": 9,
+     "first or novelty claim": 9,
+     "implication sentence": 11,
+     "scope claim": 11
+    },
+    "by_group": {
+     "first": {
+      "evaluative word": 2,
+      "first or novelty claim": 1,
+      "implication sentence": 3,
+      "scope claim": 3
+     },
+     "senior": {
+      "evaluative word": 7,
+      "first or novelty claim": 8,
+      "implication sentence": 8,
+      "scope claim": 8
+     }
+    },
+    "by_tier": {
+     "high": {
+      "evaluative word": 6,
+      "first or novelty claim": 5,
+      "implication sentence": 6,
+      "scope claim": 6
+     },
+     "other": {
+      "evaluative word": 3,
+      "first or novelty claim": 4,
+      "implication sentence": 5,
+      "scope claim": 5
+     }
+    },
+    "n": 11,
+    "n_by_group": {
+     "first": 3,
+     "senior": 8
+    },
+    "n_by_tier": {
+     "high": 6,
+     "other": 5
+    }
+   }
+  },
+  "figure_reference": {
+   "value": {
+    "all": {
+     "mixed": 1,
+     "result then reference": 10
+    },
+    "by_group": {
+     "first": {
+      "result then reference": 3
+     },
+     "senior": {
+      "mixed": 1,
+      "result then reference": 7
+     }
+    },
+    "by_tier": {
+     "high": {
+      "result then reference": 6
+     },
+     "other": {
+      "mixed": 1,
+      "result then reference": 4
+     }
+    },
+    "n": 11,
+    "n_by_group": {
+     "first": 3,
+     "senior": 8
+    },
+    "n_by_tier": {
+     "high": 6,
+     "other": 5
+    }
+   }
+  },
+  "gap_sentence": {
+   "value": {
+    "all": {
+     "none": 1,
+     "present": 10
+    },
+    "by_group": {
+     "first": {
+      "none": 1,
+      "present": 2
+     },
+     "senior": {
+      "present": 8
+     }
+    },
+    "by_tier": {
+     "high": {
+      "present": 6
+     },
+     "other": {
+      "none": 1,
+      "present": 4
+     }
+    },
+    "n": 11,
+    "n_by_group": {
+     "first": 3,
+     "senior": 8
+    },
+    "n_by_tier": {
+     "high": 6,
+     "other": 5
+    }
+   }
+  },
+  "here_we": {
+   "value": {
+    "all": {
+     "none": 1,
+     "present": 10
+    },
+    "by_group": {
+     "first": {
+      "present": 3
+     },
+     "senior": {
+      "none": 1,
+      "present": 7
+     }
+    },
+    "by_tier": {
+     "high": {
+      "present": 6
+     },
+     "other": {
+      "none": 1,
+      "present": 4
+     }
+    },
+    "n": 11,
+    "n_by_group": {
+     "first": 3,
+     "senior": 8
+    },
+    "n_by_tier": {
+     "high": 6,
+     "other": 5
+    }
+   }
+  },
+  "intro_roles": {
+   "value": {
+    "all": {
+     "approach preview": 2,
+     "field": 6,
+     "gap": 6,
+     "here-we": 10,
+     "other": 2,
+     "prior work": 3,
+     "problem": 3,
+     "result preview": 5
+    },
+    "by_group": {
+     "first": {
+      "field": 1,
+      "here-we": 3,
+      "problem": 1,
+      "result preview": 1
+     },
+     "senior": {
+      "approach preview": 2,
+      "field": 5,
+      "gap": 6,
+      "here-we": 7,
+      "other": 2,
+      "prior work": 3,
+      "problem": 2,
+      "result preview": 4
+     }
+    },
+    "by_tier": {
+     "high": {
+      "approach preview": 2,
+      "field": 4,
+      "gap": 3,
+      "here-we": 6,
+      "other": 1,
+      "prior work": 3,
+      "problem": 1,
+      "result preview": 2
+     },
+     "other": {
+      "field": 2,
+      "gap": 3,
+      "here-we": 4,
+      "other": 1,
+      "problem": 2,
+      "result preview": 3
+     }
+    },
+    "first": {
+     "field": 6,
+     "gap": 1,
+     "here-we": 4
+    },
+    "last": {
+     "approach preview": 1,
+     "gap": 1,
+     "here-we": 4,
+     "other": 1,
+     "result preview": 4
+    },
+    "n": 11,
+    "n_by_group": {
+     "first": 3,
+     "senior": 8
+    },
+    "n_by_tier": {
+     "high": 6,
+     "other": 5
+    }
+   }
+  },
+  "limitations": {
+   "placement": {
+    "all": {
+     "inline in discussion": 3,
+     "inline in methods": 1,
+     "inline in results": 1,
+     "none": 3,
+     "own paragraph": 2,
+     "own section": 1
+    },
+    "by_group": {
+     "first": {
+      "inline in methods": 1,
+      "none": 2
+     },
+     "senior": {
+      "inline in discussion": 3,
+      "inline in results": 1,
+      "none": 1,
+      "own paragraph": 2,
+      "own section": 1
+     }
+    },
+    "by_tier": {
+     "high": {
+      "inline in discussion": 2,
+      "none": 2,
+      "own paragraph": 1,
+      "own section": 1
+     },
+     "other": {
+      "inline in discussion": 1,
+      "inline in methods": 1,
+      "inline in results": 1,
+      "none": 1,
+      "own paragraph": 1
+     }
+    },
+    "n": 11,
+    "n_by_group": {
+     "first": 3,
+     "senior": 8
+    },
+    "n_by_tier": {
+     "high": 6,
+     "other": 5
+    }
+   },
+   "specificity": {
+    "all": {
+     "none": 3,
+     "specific": 3,
+     "specific with a remedy": 5
+    },
+    "by_group": {
+     "first": {
+      "none": 2,
+      "specific": 1
+     },
+     "senior": {
+      "none": 1,
+      "specific": 2,
+      "specific with a remedy": 5
+     }
+    },
+    "by_tier": {
+     "high": {
+      "none": 2,
+      "specific": 1,
+      "specific with a remedy": 3
+     },
+     "other": {
+      "none": 1,
+      "specific": 2,
+      "specific with a remedy": 2
+     }
+    },
+    "n": 11,
+    "n_by_group": {
+     "first": 3,
+     "senior": 8
+    },
+    "n_by_tier": {
+     "high": 6,
+     "other": 5
+    }
+   }
+  },
+  "results_headings": {
+   "value": {
+    "all": {
+     "full-sentence claim": 2,
+     "none": 3,
+     "noun phrase": 6
+    },
+    "by_group": {
+     "first": {
+      "none": 1,
+      "noun phrase": 2
+     },
+     "senior": {
+      "full-sentence claim": 2,
+      "none": 2,
+      "noun phrase": 4
+     }
+    },
+    "by_tier": {
+     "high": {
+      "full-sentence claim": 2,
+      "none": 2,
+      "noun phrase": 2
+     },
+     "other": {
+      "none": 1,
+      "noun phrase": 4
+     }
+    },
+    "n": 11,
+    "n_by_group": {
+     "first": 3,
+     "senior": 8
+    },
+    "n_by_tier": {
+     "high": 6,
+     "other": 5
+    }
+   }
+  },
+  "results_openings": {
+   "value": {
+    "all": {
+     "aim": 7,
+     "method first": 11
+    },
+    "by_group": {
+     "first": {
+      "aim": 2,
+      "method first": 3
+     },
+     "senior": {
+      "aim": 5,
+      "method first": 8
+     }
+    },
+    "by_tier": {
+     "high": {
+      "aim": 3,
+      "method first": 6
+     },
+     "other": {
+      "aim": 4,
+      "method first": 5
+     }
+    },
+    "first": {
+     "aim": 1,
+     "method first": 10
+    },
+    "last": {
+     "aim": 6,
+     "method first": 5
+    },
+    "n": 11,
+    "n_by_group": {
+     "first": 3,
+     "senior": 8
+    },
+    "n_by_tier": {
+     "high": 6,
+     "other": 5
+    }
+   }
+  },
+  "strongest_claim": {
+   "value": {
+    "all": {
+     "hedged": 3,
+     "unhedged": 8
+    },
+    "by_group": {
+     "first": {
+      "unhedged": 3
+     },
+     "senior": {
+      "hedged": 3,
+      "unhedged": 5
+     }
+    },
+    "by_tier": {
+     "high": {
+      "hedged": 1,
+      "unhedged": 5
+     },
+     "other": {
+      "hedged": 2,
+      "unhedged": 3
+     }
+    },
+    "n": 11,
+    "n_by_group": {
+     "first": 3,
+     "senior": 8
+    },
+    "n_by_tier": {
+     "high": 6,
+     "other": 5
+    }
+   }
+  },
+  "title_form": {
+   "value": {
+    "all": {
+     "claim": 3,
+     "method name": 6,
+     "topic": 2
+    },
+    "by_group": {
+     "first": {
+      "method name": 3
+     },
+     "senior": {
+      "claim": 3,
+      "method name": 3,
+      "topic": 2
+     }
+    },
+    "by_tier": {
+     "high": {
+      "claim": 3,
+      "method name": 2,
+      "topic": 1
+     },
+     "other": {
+      "method name": 4,
+      "topic": 1
+     }
+    },
+    "n": 11,
+    "n_by_group": {
+     "first": 3,
+     "senior": 8
+    },
+    "n_by_tier": {
+     "high": 6,
+     "other": 5
+    }
+   }
+  }
+ },
+ "left_out": [],
+ "n_fetched": 11,
+ "n_left_out": 0,
+ "n_papers": 11,
+ "name": "Luca Pinello",
+ "papers_used": [
+  "W1757773592",
+  "W2152336584",
+  "W2470801200",
+  "W2797336915",
+  "W2915459742",
+  "W2952602201",
+  "W3094551997",
+  "W4311748008",
+  "W4385544378",
+  "W4415419572",
+  "W7116978255"
+ ],
+ "person": "pinello",
+ "quotes": [
+  {
+   "doi": "10.48550/arxiv.1107.5349",
+   "field": "quote",
+   "item": "gap_sentence",
+   "text": "The main motivation of this study was to develop a new high scalable methodology in order to extract shape information from one-dimensional signals.",
+   "text_version": "arxiv",
+   "work_id": "W1757773592"
+  },
+  {
+   "doi": "10.48550/arxiv.1107.5349",
+   "field": "quote",
+   "item": "here_we",
+   "text": "This thesis presents a new methodology called Multi Layer Analysis (MLA)",
+   "text_version": "arxiv",
+   "work_id": "W1757773592"
+  },
+  {
+   "doi": "10.48550/arxiv.1107.5349",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "The next section presents two machine learning techniques in which the MLA can be promiscuously integrated.",
+   "text_version": "arxiv",
+   "work_id": "W1757773592"
+  },
+  {
+   "doi": "10.48550/arxiv.1107.5349",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "It will be presented this approach in the next chapter where a rule that well characterizes a biological structure (the nucleosomes) will be defined.",
+   "text_version": "arxiv",
+   "work_id": "W1757773592"
+  },
+  {
+   "doi": "10.48550/arxiv.1107.5349",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "It will be shown an example of this approach on chapter [EQ] where a randomness test that exploits this idea will be presented.",
+   "text_version": "arxiv",
+   "work_id": "W1757773592"
+  },
+  {
+   "doi": "10.48550/arxiv.1107.5349",
+   "field": "value",
+   "item": "excitement",
+   "text": "This thesis presents a new methodology called Multi Layer Analysis (MLA)",
+   "text_version": "arxiv",
+   "work_id": "W1757773592"
+  },
+  {
+   "doi": "10.48550/arxiv.1107.5349",
+   "field": "value",
+   "item": "excitement",
+   "text": "this has strong implications since it establishes a connection between the class of algorithms that process one dimensional signals",
+   "text_version": "arxiv",
+   "work_id": "W1757773592"
+  },
+  {
+   "doi": "10.48550/arxiv.1107.5349",
+   "field": "value",
+   "item": "excitement",
+   "text": "This is a fundamental point because it allows to analyze more complex organisms.",
+   "text_version": "arxiv",
+   "work_id": "W1757773592"
+  },
+  {
+   "doi": "10.48550/arxiv.1107.5349",
+   "field": "value",
+   "item": "excitement",
+   "text": "creates a new and important connection between two fundamental classes of algorithms",
+   "text_version": "arxiv",
+   "work_id": "W1757773592"
+  },
+  {
+   "doi": "10.48550/arxiv.1107.5349",
+   "field": "value",
+   "item": "excitement",
+   "text": "Thus, it can be used as tool in the field of data analysis.",
+   "text_version": "arxiv",
+   "work_id": "W1757773592"
+  },
+  {
+   "doi": "10.48550/arxiv.1107.5349",
+   "field": "value",
+   "item": "excitement",
+   "text": "The MLA is more accurate and robust in comparison to a naive methodology",
+   "text_version": "arxiv",
+   "work_id": "W1757773592"
+  },
+  {
+   "doi": "10.48550/arxiv.1107.5349",
+   "field": "value",
+   "item": "excitement",
+   "text": "Remarkably, comparing MLA and [EQ] on the data coming from recently developed deep sequencing approach",
+   "text_version": "arxiv",
+   "work_id": "W1757773592"
+  },
+  {
+   "doi": "10.48550/arxiv.1107.5349",
+   "field": "value",
+   "item": "excitement",
+   "text": "These analysis indicate that the integration of the [EQ] and MLA could improve the overall classification.",
+   "text_version": "arxiv",
+   "work_id": "W1757773592"
+  },
+  {
+   "doi": "10.48550/arxiv.1107.5349",
+   "field": "value",
+   "item": "excitement",
+   "text": "This result is really important because it makes possible the application of particular transformations on a one-dimensional signal",
+   "text_version": "arxiv",
+   "work_id": "W1757773592"
+  },
+  {
+   "doi": "10.48550/arxiv.1107.5349",
+   "field": "value",
+   "item": "excitement",
+   "text": "MLA can be fruitfully applied on problems that involve the processing of one-dimensional signals, such as Geology, Biomedicine, Biology and other disciplines",
+   "text_version": "arxiv",
+   "work_id": "W1757773592"
+  },
+  {
+   "doi": "10.48550/arxiv.1107.5349",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "Thus, it can be used as tool in the field of data analysis.",
+   "text_version": "arxiv",
+   "work_id": "W1757773592"
+  },
+  {
+   "doi": "10.48550/arxiv.1107.5349",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "In general the interval representation is lossy because it can only keep a subset of points of [EQ] that form the intervals in [EQ]",
+   "text_version": "arxiv",
+   "work_id": "W1757773592"
+  },
+  {
+   "doi": "10.48550/arxiv.1107.5349",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "It is obvious that the number of threshold operations strongly depends on the signal shape.",
+   "text_version": "arxiv",
+   "work_id": "W1757773592"
+  },
+  {
+   "doi": "10.48550/arxiv.1107.5349",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "as a solution to this problem it could be possible to use the Fourier Transform and apply this methodology on the spectra of the signal",
+   "text_version": "arxiv",
+   "work_id": "W1757773592"
+  },
+  {
+   "doi": "10.48550/arxiv.1107.5349",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "MLA does not fully agree with [EQ] on the linkers patterns",
+   "text_version": "arxiv",
+   "work_id": "W1757773592"
+  },
+  {
+   "doi": "10.48550/arxiv.1107.5349",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "For example, the concept of tree is appropriate if we think in the scale of meters, while the concept of leaf requires a finer scale.",
+   "text_version": "arxiv",
+   "work_id": "W1757773592"
+  },
+  {
+   "doi": "10.48550/arxiv.1107.5349",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "For example the human being organizes his time using seconds, hours, days, weeks, months, years reflecting the multi-scale dynamic of the solar system",
+   "text_version": "arxiv",
+   "work_id": "W1757773592"
+  },
+  {
+   "doi": "10.48550/arxiv.1107.5349",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "RNA in the form of mRNA acts as a messenger and delivers information from the cell nucleus (where DNA is located) to the cytoplasm.",
+   "text_version": "arxiv",
+   "work_id": "W1757773592"
+  },
+  {
+   "doi": "10.48550/arxiv.1107.5349",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "The DNA bases are complementary: a C always pairs with a G and an A with a T.",
+   "text_version": "arxiv",
+   "work_id": "W1757773592"
+  },
+  {
+   "doi": "10.48550/arxiv.1107.5349",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "it is possible to",
+   "text_version": "arxiv",
+   "work_id": "W1757773592"
+  },
+  {
+   "doi": "10.48550/arxiv.1107.5349",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "In other words",
+   "text_version": "arxiv",
+   "work_id": "W1757773592"
+  },
+  {
+   "doi": "10.48550/arxiv.1107.5349",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "For this reason",
+   "text_version": "arxiv",
+   "work_id": "W1757773592"
+  },
+  {
+   "doi": "10.48550/arxiv.1107.5349",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "In particular",
+   "text_version": "arxiv",
+   "work_id": "W1757773592"
+  },
+  {
+   "doi": "10.1186/1471-2105-12-408",
+   "field": "quote",
+   "item": "gap_sentence",
+   "text": "A guide is needed for developing sequence-based prediction models.",
+   "text_version": "published",
+   "work_id": "W2152336584"
+  },
+  {
+   "doi": "10.1186/1471-2105-12-408",
+   "field": "quote",
+   "item": "here_we",
+   "text": "To this end, here we present a simple approach to quantify sequence specificity based on the frequency distribution of k-mers.",
+   "text_version": "published",
+   "work_id": "W2152336584"
+  },
+  {
+   "doi": "10.1186/1471-2105-12-408",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "In the following we will show that our method indeed performs well for real data.",
+   "text_version": "published",
+   "work_id": "W2152336584"
+  },
+  {
+   "doi": "10.1186/1471-2105-12-408",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "it is unclear how TF is recruited to the other 65% of the targets",
+   "text_version": "published",
+   "work_id": "W2152336584"
+  },
+  {
+   "doi": "10.1186/1471-2105-12-408",
+   "field": "value",
+   "item": "excitement",
+   "text": "to our knowledge, they have not been used to quantify sequence specificity",
+   "text_version": "published",
+   "work_id": "W2152336584"
+  },
+  {
+   "doi": "10.1186/1471-2105-12-408",
+   "field": "value",
+   "item": "excitement",
+   "text": "Our method provides a unified framework for quantifying DNA sequence specificity and serves as a guide for development of sequence-based prediction models.",
+   "text_version": "published",
+   "work_id": "W2152336584"
+  },
+  {
+   "doi": "10.1186/1471-2105-12-408",
+   "field": "value",
+   "item": "excitement",
+   "text": "Surprisingly, we found that the MIM value for motif-absent targets is almost indistinguishable from motif-present targets",
+   "text_version": "published",
+   "work_id": "W2152336584"
+  },
+  {
+   "doi": "10.1186/1471-2105-12-408",
+   "field": "value",
+   "item": "excitement",
+   "text": "Interestingly, the value for H1 cells is much higher than any other cell line",
+   "text_version": "published",
+   "work_id": "W2152336584"
+  },
+  {
+   "doi": "10.1186/1471-2105-12-408",
+   "field": "value",
+   "item": "excitement",
+   "text": "Our approach does not make any assumptions regarding motif presence, providing a more versatile tool for sequence analysis.",
+   "text_version": "published",
+   "work_id": "W2152336584"
+  },
+  {
+   "doi": "10.1186/1471-2105-12-408",
+   "field": "value",
+   "item": "excitement",
+   "text": "The information can be used as a guide to systematically investigate the regulatory mechanisms for a wide variety of biological processes.",
+   "text_version": "published",
+   "work_id": "W2152336584"
+  },
+  {
+   "doi": "10.1186/1471-2105-12-408",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "The information can be used as a guide to systematically investigate the regulatory mechanisms for a wide variety of biological processes.",
+   "text_version": "published",
+   "work_id": "W2152336584"
+  },
+  {
+   "doi": "10.1186/1471-2105-12-408",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "Recognizing the limited resolution of the estimated pdf, we did not distinguish p-values that are smaller than 0.001.",
+   "text_version": "published",
+   "work_id": "W2152336584"
+  },
+  {
+   "doi": "10.1186/1471-2105-12-408",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "to our knowledge",
+   "text_version": "published",
+   "work_id": "W2152336584"
+  },
+  {
+   "doi": "10.1186/1471-2105-12-408",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "suggesting that",
+   "text_version": "published",
+   "work_id": "W2152336584"
+  },
+  {
+   "doi": "10.1186/1471-2105-12-408",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Surprisingly, we",
+   "text_version": "published",
+   "work_id": "W2152336584"
+  },
+  {
+   "doi": "10.1186/1471-2105-12-408",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "indeed",
+   "text_version": "published",
+   "work_id": "W2152336584"
+  },
+  {
+   "doi": "10.1038/nbt.3583",
+   "field": "quote",
+   "item": "gap_sentence",
+   "text": "to date no standard analytic tool has been developed to systematically enumerate and visualize these events",
+   "text_version": "accepted",
+   "work_id": "W2470801200"
+  },
+  {
+   "doi": "10.1038/nbt.3583",
+   "field": "quote",
+   "item": "here_we",
+   "text": "To solve these issues with an aim to standardize data analysis, we developed CRISPResso as a robust and easy-to-use computational pipeline",
+   "text_version": "accepted",
+   "work_id": "W2470801200"
+  },
+  {
+   "doi": "10.1038/nbt.3583",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "We initially assessed the performance and limitations of CRISPResso by performing simulations with various genome editing outcomes",
+   "text_version": "accepted",
+   "work_id": "W2470801200"
+  },
+  {
+   "doi": "10.1038/nbt.3583",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "Then we applied CRISPResso to experimental paired end deep sequencing data",
+   "text_version": "accepted",
+   "work_id": "W2470801200"
+  },
+  {
+   "doi": "10.1038/nbt.3583",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "In addition, the CRISPResso suite accommodates single or pooled amplicon deep sequencing and WGS datasets and allows the direct comparison of individual experiments.",
+   "text_version": "accepted",
+   "work_id": "W2470801200"
+  },
+  {
+   "doi": "10.1038/nbt.3583",
+   "field": "value",
+   "item": "excitement",
+   "text": "we developed CRISPResso as a robust and easy-to-use computational pipeline",
+   "text_version": "accepted",
+   "work_id": "W2470801200"
+  },
+  {
+   "doi": "10.1038/nbt.3583",
+   "field": "value",
+   "item": "excitement",
+   "text": "as well as comprehensive evaluation of effects on coding sequences, noncoding elements and selected off-target sites",
+   "text_version": "accepted",
+   "work_id": "W2470801200"
+  },
+  {
+   "doi": "10.1038/nbt.3583",
+   "field": "value",
+   "item": "excitement",
+   "text": "CRISPResso offers several notable features",
+   "text_version": "accepted",
+   "work_id": "W2470801200"
+  },
+  {
+   "doi": "10.1038/nbt.3583",
+   "field": "value",
+   "item": "excitement",
+   "text": "even in the presence of sequencing errors, robustly and accurately recovers editing events with a negligible false positive rate (<=0.1%)",
+   "text_version": "accepted",
+   "work_id": "W2470801200"
+  },
+  {
+   "doi": "10.1038/nbt.3583",
+   "field": "value",
+   "item": "excitement",
+   "text": "for standardizing and streamlining analyses that currently require development of custom in-house algorithms",
+   "text_version": "accepted",
+   "work_id": "W2470801200"
+  },
+  {
+   "doi": "10.1038/nbt.3583",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "CRISPResso enables accurate quantification and visualization of CRISPR-Cas9 outcomes",
+   "text_version": "accepted",
+   "work_id": "W2470801200"
+  },
+  {
+   "doi": "10.1038/nbt.3583",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "In addition",
+   "text_version": "accepted",
+   "work_id": "W2470801200"
+  },
+  {
+   "doi": "10.1038/nbt.3583",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "as well as",
+   "text_version": "accepted",
+   "work_id": "W2470801200"
+  },
+  {
+   "doi": "10.1038/nprot.2018.005",
+   "field": "quote",
+   "item": "gap_sentence",
+   "text": "these tools are typically developed in isolation, without features for facile integration with one another",
+   "text_version": "accepted",
+   "work_id": "W2797336915"
+  },
+  {
+   "doi": "10.1038/nprot.2018.005",
+   "field": "quote",
+   "item": "here_we",
+   "text": "Here, we offer a protocol to integrate robust, publicly available tools for the design, execution, and analysis of CRISPR genome-editing experiments.",
+   "text_version": "accepted",
+   "work_id": "W2797336915"
+  },
+  {
+   "doi": "10.1038/nprot.2018.005",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "Troubleshooting advice can be found in Table 3.",
+   "text_version": "accepted",
+   "work_id": "W2797336915"
+  },
+  {
+   "doi": "10.1038/nprot.2018.005",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "As a reference for assessment of a pooled CRISPR screen experiment, data are provided from two separate saturating mutagenesis experiments",
+   "text_version": "accepted",
+   "work_id": "W2797336915"
+  },
+  {
+   "doi": "10.1038/nprot.2018.005",
+   "field": "value",
+   "item": "excitement",
+   "text": "genome-editing experiments offer enormous potential for the evaluation of genomic loci",
+   "text_version": "accepted",
+   "work_id": "W2797336915"
+  },
+  {
+   "doi": "10.1038/nprot.2018.005",
+   "field": "value",
+   "item": "excitement",
+   "text": "Here, we present a protocol that describes in detail both the computational and benchtop implementation",
+   "text_version": "accepted",
+   "work_id": "W2797336915"
+  },
+  {
+   "doi": "10.1038/nprot.2018.005",
+   "field": "value",
+   "item": "excitement",
+   "text": "This protocol allows for design and execution of arrayed and pooled CRISPR experiments in 4–5 weeks by non-experts",
+   "text_version": "accepted",
+   "work_id": "W2797336915"
+  },
+  {
+   "doi": "10.1038/nprot.2018.005",
+   "field": "value",
+   "item": "excitement",
+   "text": "CRISPOR offers several unique advantages for designing sgRNAs for genome-editing experiments.",
+   "text_version": "accepted",
+   "work_id": "W2797336915"
+  },
+  {
+   "doi": "10.1038/nprot.2018.005",
+   "field": "value",
+   "item": "excitement",
+   "text": "saturating mutagenesis of noncoding elements, or any other targeting strategies",
+   "text_version": "accepted",
+   "work_id": "W2797336915"
+  },
+  {
+   "doi": "10.1038/nprot.2018.005",
+   "field": "value",
+   "item": "excitement",
+   "text": "demonstrates reproducibility of the experimental results using this procedure across multiple studies",
+   "text_version": "accepted",
+   "work_id": "W2797336915"
+  },
+  {
+   "doi": "10.1038/nprot.2018.005",
+   "field": "value",
+   "item": "excitement",
+   "text": "Taken together, these saturating mutagenesis pooled screen experiments suggest that functional sequence exists within the BCL11A enhancer.",
+   "text_version": "accepted",
+   "work_id": "W2797336915"
+  },
+  {
+   "doi": "10.1038/nprot.2018.005",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "analysis of pooled screens for gene targeting, saturating mutagenesis of noncoding elements, or any other targeting strategies",
+   "text_version": "accepted",
+   "work_id": "W2797336915"
+  },
+  {
+   "doi": "10.1038/nprot.2018.005",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "experimental validation provides the definitive analysis of on-target and off-target mutagenesis",
+   "text_version": "accepted",
+   "work_id": "W2797336915"
+  },
+  {
+   "doi": "10.1038/nprot.2018.005",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "CRISPOR does not offer the ability to design repair templates for HDR experiments.",
+   "text_version": "accepted",
+   "work_id": "W2797336915"
+  },
+  {
+   "doi": "10.1038/nprot.2018.005",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Notably,",
+   "text_version": "accepted",
+   "work_id": "W2797336915"
+  },
+  {
+   "doi": "10.1038/nprot.2018.005",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Taken together,",
+   "text_version": "accepted",
+   "work_id": "W2797336915"
+  },
+  {
+   "doi": "10.1038/nprot.2018.005",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "oftentimes",
+   "text_version": "accepted",
+   "work_id": "W2797336915"
+  },
+  {
+   "doi": "10.1038/nprot.2018.005",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "As a reference for assessment of",
+   "text_version": "accepted",
+   "work_id": "W2797336915"
+  },
+  {
+   "doi": "10.1038/s41587-019-0032-3",
+   "field": "quote",
+   "item": "gap_sentence",
+   "text": "to facilitate the analysis of data that would be difficult to handle with existing tools[CIT]",
+   "text_version": "accepted",
+   "work_id": "W2915459742"
+  },
+  {
+   "doi": "10.1038/s41587-019-0032-3",
+   "field": "quote",
+   "item": "here_we",
+   "text": "Here, we present a substantially updated version of our CRISPResso tool[CIT]",
+   "text_version": "accepted",
+   "work_id": "W2915459742"
+  },
+  {
+   "doi": "10.1038/s41587-019-0032-3",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "In cases where the genome editing target contains more than one allele (for example when heterozygous SNPs are present)",
+   "text_version": "accepted",
+   "work_id": "W2915459742"
+  },
+  {
+   "doi": "10.1038/s41587-019-0032-3",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "To study putative off-targets, it is often necessary to analyze large-scale pooled sequencing datasets",
+   "text_version": "accepted",
+   "work_id": "W2915459742"
+  },
+  {
+   "doi": "10.1038/s41587-019-0032-3",
+   "field": "value",
+   "item": "excitement",
+   "text": "Here, we present a substantially updated version of our CRISPResso tool[CIT]",
+   "text_version": "accepted",
+   "work_id": "W2915459742"
+  },
+  {
+   "doi": "10.1038/s41587-019-0032-3",
+   "field": "value",
+   "item": "excitement",
+   "text": "CRISPResso2 introduces five key innovations",
+   "text_version": "accepted",
+   "work_id": "W2915459742"
+  },
+  {
+   "doi": "10.1038/s41587-019-0032-3",
+   "field": "value",
+   "item": "excitement",
+   "text": "Ultra-fast processing time",
+   "text_version": "accepted",
+   "work_id": "W2915459742"
+  },
+  {
+   "doi": "10.1038/s41587-019-0032-3",
+   "field": "value",
+   "item": "excitement",
+   "text": "to enable users to analyze, visualize and compare results from hundreds of genome editing experiments using batch functionality",
+   "text_version": "accepted",
+   "work_id": "W2915459742"
+  },
+  {
+   "doi": "10.1038/s41587-019-0032-3",
+   "field": "value",
+   "item": "excitement",
+   "text": "so that an experiment analyzed using modern high-throughput sequencing technologies can be processed in under a minute",
+   "text_version": "accepted",
+   "work_id": "W2915459742"
+  },
+  {
+   "doi": "10.1038/s41587-019-0032-3",
+   "field": "value",
+   "item": "excitement",
+   "text": "CRISPResso2 is a software tool for the comprehensive analysis, visualization and comparison of sequencing data from genome editing experiments",
+   "text_version": "accepted",
+   "work_id": "W2915459742"
+  },
+  {
+   "doi": "10.1038/s41587-019-0032-3",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "CRISPResso2 accurately recovered editing events with a negligible false-positive rate (<0.01) limited only by current sequencing technologies",
+   "text_version": "accepted",
+   "work_id": "W2915459742"
+  },
+  {
+   "doi": "10.1038/s41587-019-0032-3",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "In addition",
+   "text_version": "accepted",
+   "work_id": "W2915459742"
+  },
+  {
+   "doi": "10.1038/s41587-019-0032-3",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "intuitive",
+   "text_version": "accepted",
+   "work_id": "W2915459742"
+  },
+  {
+   "doi": "10.1101/199067",
+   "field": "quote",
+   "item": "here_we",
+   "text": "Here we provide an implementation of this strategy that automatically integrates multiple data types in an easy to use command line software.",
+   "text_version": "preprint",
+   "work_id": "W2952602201"
+  },
+  {
+   "doi": "10.1101/199067",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "We applied the Haystack pipeline to data from the Roadmap Epigenomics Project",
+   "text_version": "preprint",
+   "work_id": "W2952602201"
+  },
+  {
+   "doi": "10.1101/199067",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "To facilitate the use of Haystack by prospective users without access to a computational facility",
+   "text_version": "preprint",
+   "work_id": "W2952602201"
+  },
+  {
+   "doi": "10.1101/199067",
+   "field": "value",
+   "item": "excitement",
+   "text": "Our approach is generally applicable to any epigenetic mark and provides an important tool to investigate cell-type identity",
+   "text_version": "preprint",
+   "work_id": "W2952602201"
+  },
+  {
+   "doi": "10.1101/199067",
+   "field": "value",
+   "item": "excitement",
+   "text": "These precomputed results may be used as an independent resource for functional annotation of the human genome.",
+   "text_version": "preprint",
+   "work_id": "W2952602201"
+  },
+  {
+   "doi": "10.1101/199067",
+   "field": "value",
+   "item": "excitement",
+   "text": "This analysis provides a valuable resource for researchers interested in in identifying functional elements in the human genome",
+   "text_version": "preprint",
+   "work_id": "W2952602201"
+  },
+  {
+   "doi": "10.1101/199067",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "Our approach is generally applicable to any epigenetic mark",
+   "text_version": "preprint",
+   "work_id": "W2952602201"
+  },
+  {
+   "doi": "10.1101/199067",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Additionally, we make available",
+   "text_version": "preprint",
+   "work_id": "W2952602201"
+  },
+  {
+   "doi": "10.1101/199067",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Earlier we showed that",
+   "text_version": "preprint",
+   "work_id": "W2952602201"
+  },
+  {
+   "doi": "10.1101/199067",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "To facilitate the use of",
+   "text_version": "preprint",
+   "work_id": "W2952602201"
+  },
+  {
+   "doi": "10.1101/199067",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "unprecedented opportunities",
+   "text_version": "preprint",
+   "work_id": "W2952602201"
+  },
+  {
+   "doi": "10.1186/s13059-020-02174-1",
+   "field": "quote",
+   "item": "gap_sentence",
+   "text": "tools to quantify the relative abundance of CRISPR-introduced disease drivers at the single-cell level, particularly in the context of multiplexed gene editing, are currently lacking.",
+   "text_version": "published",
+   "work_id": "W3094551997"
+  },
+  {
+   "doi": "10.1186/s13059-020-02174-1",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "As a prelude to multiplex gene editing, control experiments were performed to assess single LOF cell lines.",
+   "text_version": "published",
+   "work_id": "W3094551997"
+  },
+  {
+   "doi": "10.1186/s13059-020-02174-1",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "Zygosity of the edited gene targets was evaluated by calculating the frequency of the second most frequent allele.",
+   "text_version": "published",
+   "work_id": "W3094551997"
+  },
+  {
+   "doi": "10.1186/s13059-020-02174-1",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "In order to generate multiple CRISPR edits in the same cell, cells were transduced with a pool of lentivirus for all six targets",
+   "text_version": "published",
+   "work_id": "W3094551997"
+  },
+  {
+   "doi": "10.1186/s13059-020-02174-1",
+   "field": "value",
+   "item": "excitement",
+   "text": "Our approach reliably quantifies mutational co-occurrences, zygosity status, and the occurrence of Cas9 edits at single-cell resolution.",
+   "text_version": "published",
+   "work_id": "W3094551997"
+  },
+  {
+   "doi": "10.1186/s13059-020-02174-1",
+   "field": "value",
+   "item": "excitement",
+   "text": "thus confirming the applicability of our tools to the functional evaluation of novel cancer drivers",
+   "text_version": "published",
+   "work_id": "W3094551997"
+  },
+  {
+   "doi": "10.1186/s13059-020-02174-1",
+   "field": "value",
+   "item": "excitement",
+   "text": "our method allows assessment of a larger number of cells (> 3000/sample), across multiple Cas9-target loci",
+   "text_version": "published",
+   "work_id": "W3094551997"
+  },
+  {
+   "doi": "10.1186/s13059-020-02174-1",
+   "field": "value",
+   "item": "excitement",
+   "text": "our novel platform uniquely provides the opportunity to study mutational co-occurrences at the single-cell level",
+   "text_version": "published",
+   "work_id": "W3094551997"
+  },
+  {
+   "doi": "10.1186/s13059-020-02174-1",
+   "field": "value",
+   "item": "excitement",
+   "text": "We do not envision problems in scaling up this platform to the testing of hundreds or thousands of gene edits",
+   "text_version": "published",
+   "work_id": "W3094551997"
+  },
+  {
+   "doi": "10.1186/s13059-020-02174-1",
+   "field": "value",
+   "item": "excitement",
+   "text": "supports the use of our multiplexed genome editing system to study the co-dependence and interaction of multiple disease-associated lesions",
+   "text_version": "published",
+   "work_id": "W3094551997"
+  },
+  {
+   "doi": "10.1186/s13059-020-02174-1",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "We do not envision problems in scaling up this platform to the testing of hundreds or thousands of gene edits",
+   "text_version": "published",
+   "work_id": "W3094551997"
+  },
+  {
+   "doi": "10.1186/s13059-020-02174-1",
+   "field": "hedge_quote",
+   "item": "strongest_claim",
+   "text": "may represent a potential limitation for analysis when utilizing currently available pipelines",
+   "text_version": "published",
+   "work_id": "W3094551997"
+  },
+  {
+   "doi": "10.1186/s13059-020-02174-1",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "the required sequence coverage (~ 30× coverage per amplicon per cell) may represent a potential limitation for analysis when utilizing currently available pipelines",
+   "text_version": "published",
+   "work_id": "W3094551997"
+  },
+  {
+   "doi": "10.1186/s13059-020-02174-1",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "weaker drivers may be selected against both in the process of in vitro culture, or during in vivo passaging",
+   "text_version": "published",
+   "work_id": "W3094551997"
+  },
+  {
+   "doi": "10.1186/s13059-020-02174-1",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "In order to",
+   "text_version": "published",
+   "work_id": "W3094551997"
+  },
+  {
+   "doi": "10.1186/s13059-020-02174-1",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "thus confirming",
+   "text_version": "published",
+   "work_id": "W3094551997"
+  },
+  {
+   "doi": "10.1186/s13059-020-02174-1",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Despite these advances",
+   "text_version": "published",
+   "work_id": "W3094551997"
+  },
+  {
+   "doi": "10.1186/s13059-020-02174-1",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "uniquely provides the opportunity",
+   "text_version": "published",
+   "work_id": "W3094551997"
+  },
+  {
+   "doi": "10.1038/s41588-022-01257-y",
+   "field": "quote",
+   "item": "gap_sentence",
+   "text": "In addition, these methods ignore bulges between RNA:DNA hybrids, cannot efficiently model alternative haplotypes and indels, and require extensive computational skills to utilize.",
+   "text_version": "accepted",
+   "work_id": "W4311748008"
+  },
+  {
+   "doi": "10.1038/s41588-022-01257-y",
+   "field": "quote",
+   "item": "here_we",
+   "text": "Here we substantially extend this work by developing CRISPRme, a tool to aid gRNA design with added support for haplotype-aware off-target enumeration",
+   "text_version": "accepted",
+   "work_id": "W4311748008"
+  },
+  {
+   "doi": "10.1038/s41588-022-01257-y",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "We tested CRISPRme with a gRNA (#1617) targeting a GATA1 binding motif at the +58 erythroid enhancer of BCL11A",
+   "text_version": "accepted",
+   "work_id": "W4311748008"
+  },
+  {
+   "doi": "10.1038/s41588-022-01257-y",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "To examine the pervasiveness of alternative allele off-target potential, we evaluated an additional 13 gRNAs",
+   "text_version": "accepted",
+   "work_id": "W4311748008"
+  },
+  {
+   "doi": "10.1038/s41588-022-01257-y",
+   "field": "value",
+   "item": "excitement",
+   "text": "We expect that variant-aware off-target assessment will become integral to therapeutic genome editing evaluation",
+   "text_version": "accepted",
+   "work_id": "W4311748008"
+  },
+  {
+   "doi": "10.1038/s41588-022-01257-y",
+   "field": "value",
+   "item": "excitement",
+   "text": "provide a powerful approach for comprehensive off-target nomination",
+   "text_version": "accepted",
+   "work_id": "W4311748008"
+  },
+  {
+   "doi": "10.1038/s41588-022-01257-y",
+   "field": "value",
+   "item": "excitement",
+   "text": "This report illustrates how genetic variants should be considered as modifiers of gene editing outcomes.",
+   "text_version": "accepted",
+   "work_id": "W4311748008"
+  },
+  {
+   "doi": "10.1038/s41588-022-01257-y",
+   "field": "value",
+   "item": "excitement",
+   "text": "We predict that the most likely off-target site, overlooked by prior analyses, is introduced by a variant common in African-ancestry individuals",
+   "text_version": "accepted",
+   "work_id": "W4311748008"
+  },
+  {
+   "doi": "10.1038/s41588-022-01257-y",
+   "field": "value",
+   "item": "excitement",
+   "text": "Furthermore, we demonstrate that allele-specific off-target potential is widespread across various nucleic acid targeting therapeutic strategies.",
+   "text_version": "accepted",
+   "work_id": "W4311748008"
+  },
+  {
+   "doi": "10.1038/s41588-022-01257-y",
+   "field": "value",
+   "item": "excitement",
+   "text": "None of these alternative allele-specific off-target sites were described in the original manuscripts reporting the editing strategies and off-target analyses.",
+   "text_version": "accepted",
+   "work_id": "W4311748008"
+  },
+  {
+   "doi": "10.1038/s41588-022-01257-y",
+   "field": "value",
+   "item": "excitement",
+   "text": "Our results highlight that allele-specific off-target editing potential is not equally distributed across all ancestral groups, but especially concentrated in those of African ancestry",
+   "text_version": "accepted",
+   "work_id": "W4311748008"
+  },
+  {
+   "doi": "10.1038/s41588-022-01257-y",
+   "field": "value",
+   "item": "excitement",
+   "text": "all humans could potentially be susceptible to such an effect",
+   "text_version": "accepted",
+   "work_id": "W4311748008"
+  },
+  {
+   "doi": "10.1038/s41588-022-01257-y",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "all humans could potentially be susceptible to such an effect",
+   "text_version": "accepted",
+   "work_id": "W4311748008"
+  },
+  {
+   "doi": "10.1038/s41588-022-01257-y",
+   "field": "hedge_quote",
+   "item": "strongest_claim",
+   "text": "could potentially",
+   "text_version": "accepted",
+   "work_id": "W4311748008"
+  },
+  {
+   "doi": "10.1038/s41588-022-01257-y",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "A limitation of current tools including CRISPRme is that potential off-targets cannot be enumerated based on structural variants",
+   "text_version": "accepted",
+   "work_id": "W4311748008"
+  },
+  {
+   "doi": "10.1038/s41588-022-01257-y",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "Future extensions of CRISPRme based on new data structures such as graph genomes[CIT] could enable these complex searches and improve their efficiency.",
+   "text_version": "accepted",
+   "work_id": "W4311748008"
+  },
+  {
+   "doi": "10.1038/s41588-022-01257-y",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Notably,",
+   "text_version": "accepted",
+   "work_id": "W4311748008"
+  },
+  {
+   "doi": "10.1038/s41588-022-01257-y",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Importantly,",
+   "text_version": "accepted",
+   "work_id": "W4311748008"
+  },
+  {
+   "doi": "10.1038/s41588-022-01257-y",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Of note,",
+   "text_version": "accepted",
+   "work_id": "W4311748008"
+  },
+  {
+   "doi": "10.1038/s41588-022-01257-y",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Here we demonstrate",
+   "text_version": "accepted",
+   "work_id": "W4311748008"
+  },
+  {
+   "doi": "10.1038/s41588-022-01257-y",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "to our knowledge only two",
+   "text_version": "accepted",
+   "work_id": "W4311748008"
+  },
+  {
+   "doi": "10.1101/2022.09.14.508036",
+   "field": "quote",
+   "item": "gap_sentence",
+   "text": "Single-cell multi-omic assays can jointly profile gene expression and chromatin accessibility[CIT], but they are still yet to be utilized for mechanistic insights in GRN inference.",
+   "text_version": "preprint",
+   "work_id": "W4385544378"
+  },
+  {
+   "doi": "10.1101/2022.09.14.508036",
+   "field": "quote",
+   "item": "here_we",
+   "text": "Here we propose Dictys to address these challenges and to take advantage of recent multi-omics technologies",
+   "text_version": "preprint",
+   "work_id": "W4385544378"
+  },
+  {
+   "doi": "10.1101/2022.09.14.508036",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "To demonstrate the utility of Dictys in developmental contexts, we obtained a human blood dataset",
+   "text_version": "preprint",
+   "work_id": "W4385544378"
+  },
+  {
+   "doi": "10.1101/2022.09.14.508036",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "Next, we sought to demonstrate how Dictys could refine GRN inference by leveraging recent joint transcriptome-chromatin accessibility data.",
+   "text_version": "preprint",
+   "work_id": "W4385544378"
+  },
+  {
+   "doi": "10.1101/2022.09.14.508036",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "Therefore, we developed five benchmarks to evaluate the quality of the inferred GRNs comprehensively and quantitatively on the aforementioned blood and skin datasets",
+   "text_version": "preprint",
+   "work_id": "W4385544378"
+  },
+  {
+   "doi": "10.1101/2022.09.14.508036",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "To showcase this analysis in hematopoiesis[CIT], we first inferred pseudo-time trajectories for three developmental lineages",
+   "text_version": "preprint",
+   "work_id": "W4385544378"
+  },
+  {
+   "doi": "10.1101/2022.09.14.508036",
+   "field": "value",
+   "item": "excitement",
+   "text": "Dictys improves GRN reconstruction accuracy and reproducibility and enables the inference and comparative analysis of context specific and dynamic GRNs across developmental contexts",
+   "text_version": "preprint",
+   "work_id": "W4385544378"
+  },
+  {
+   "doi": "10.1101/2022.09.14.508036",
+   "field": "value",
+   "item": "excitement",
+   "text": "network analyses recover unique insights in human blood and mouse skin development",
+   "text_version": "preprint",
+   "work_id": "W4385544378"
+  },
+  {
+   "doi": "10.1101/2022.09.14.508036",
+   "field": "value",
+   "item": "excitement",
+   "text": "Its dynamic network visualizations enable time-resolved discovery and investigation of developmental driver TFs and their regulated targets.",
+   "text_version": "preprint",
+   "work_id": "W4385544378"
+  },
+  {
+   "doi": "10.1101/2022.09.14.508036",
+   "field": "value",
+   "item": "excitement",
+   "text": "by rediscovering known key regulators and by uncovering and prioritizing novel regulator candidates and their target genes",
+   "text_version": "preprint",
+   "work_id": "W4385544378"
+  },
+  {
+   "doi": "10.1101/2022.09.14.508036",
+   "field": "value",
+   "item": "excitement",
+   "text": "In all these evaluation metrics, Dictys consistently outperformed existing methods on both datasets",
+   "text_version": "preprint",
+   "work_id": "W4385544378"
+  },
+  {
+   "doi": "10.1101/2022.09.14.508036",
+   "field": "value",
+   "item": "excitement",
+   "text": "Dictys demonstrated superior performance in P-value, R2, and the number of significant TFs",
+   "text_version": "preprint",
+   "work_id": "W4385544378"
+  },
+  {
+   "doi": "10.1101/2022.09.14.508036",
+   "field": "value",
+   "item": "excitement",
+   "text": "This demonstrates that cell-type specific GRNs could identify regulation marker TFs and their regulatory programs beyond mean expression-based analyses.",
+   "text_version": "preprint",
+   "work_id": "W4385544378"
+  },
+  {
+   "doi": "10.1101/2022.09.14.508036",
+   "field": "value",
+   "item": "excitement",
+   "text": "The above analyses were generalizable to other hematopoetic lineages.",
+   "text_version": "preprint",
+   "work_id": "W4385544378"
+  },
+  {
+   "doi": "10.1101/2022.09.14.508036",
+   "field": "value",
+   "item": "excitement",
+   "text": "Dictys is a versatile tool for a wide range of GRN studies and application scenarios from inference to analysis and visualization.",
+   "text_version": "preprint",
+   "work_id": "W4385544378"
+  },
+  {
+   "doi": "10.1101/2022.09.14.508036",
+   "field": "value",
+   "item": "excitement",
+   "text": "Importantly, Dictys uncovered biological insights in blood and skin systems not captured by current single-cell analyses based on mean expression changes and/or cell clusters.",
+   "text_version": "preprint",
+   "work_id": "W4385544378"
+  },
+  {
+   "doi": "10.1101/2022.09.14.508036",
+   "field": "value",
+   "item": "excitement",
+   "text": "providing a much broader scope than individual gene expression for future biological discovery and investigation",
+   "text_version": "preprint",
+   "work_id": "W4385544378"
+  },
+  {
+   "doi": "10.1101/2022.09.14.508036",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "Dictys is a versatile tool for a wide range of GRN studies and application scenarios from inference to analysis and visualization.",
+   "text_version": "preprint",
+   "work_id": "W4385544378"
+  },
+  {
+   "doi": "10.1101/2022.09.14.508036",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "However, our method does not consider nonlinearity, non-steady-state, or mechanistic models.",
+   "text_version": "preprint",
+   "work_id": "W4385544378"
+  },
+  {
+   "doi": "10.1101/2022.09.14.508036",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "TF binding prediction accuracy can be limited by cell count and by the lack of direct single-cell measurements from biochemical/chromatin binding assays.",
+   "text_version": "preprint",
+   "work_id": "W4385544378"
+  },
+  {
+   "doi": "10.1101/2022.09.14.508036",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "Evaluation of GRN inference methods remains difficult with limited quality and quantity of gold standards.",
+   "text_version": "preprint",
+   "work_id": "W4385544378"
+  },
+  {
+   "doi": "10.1101/2022.09.14.508036",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "In total,",
+   "text_version": "preprint",
+   "work_id": "W4385544378"
+  },
+  {
+   "doi": "10.1101/2022.09.14.508036",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Notably,",
+   "text_version": "preprint",
+   "work_id": "W4385544378"
+  },
+  {
+   "doi": "10.1101/2022.09.14.508036",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Importantly,",
+   "text_version": "preprint",
+   "work_id": "W4385544378"
+  },
+  {
+   "doi": "10.1101/2022.09.14.508036",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Taken together,",
+   "text_version": "preprint",
+   "work_id": "W4385544378"
+  },
+  {
+   "doi": "10.1101/2022.09.14.508036",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "As expected,",
+   "text_version": "preprint",
+   "work_id": "W4385544378"
+  },
+  {
+   "doi": "10.1101/2025.10.21.683786",
+   "field": "quote",
+   "item": "gap_sentence",
+   "text": "pipeline-umi-amplicon enables UMI consensus generation but lacks CRISPR-specific mutational classification",
+   "text_version": "preprint",
+   "work_id": "W4415419572"
+  },
+  {
+   "doi": "10.1101/2025.10.21.683786",
+   "field": "quote",
+   "item": "here_we",
+   "text": "Here we present CRISPRLungo, a comprehensive analysis pipeline specifically designed for long-read amplicon sequencing of CRISPR-edited samples.",
+   "text_version": "preprint",
+   "work_id": "W4415419572"
+  },
+  {
+   "doi": "10.1101/2025.10.21.683786",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "To ensure CRISPRLungo achieves optimal performance across diverse experimental conditions, we systematically evaluated and refined four critical components of the pipeline",
+   "text_version": "preprint",
+   "work_id": "W4415419572"
+  },
+  {
+   "doi": "10.1101/2025.10.21.683786",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "Having established CRISPRLungo’s superior performance on simulated data, we next evaluated its ability to analyze real experimental datasets.",
+   "text_version": "preprint",
+   "work_id": "W4415419572"
+  },
+  {
+   "doi": "10.1101/2025.10.21.683786",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "To address this challenge, we developed an additional module for CRISPRLungo to enable read classification based on allele-specific sequence features.",
+   "text_version": "preprint",
+   "work_id": "W4415419572"
+  },
+  {
+   "doi": "10.1101/2025.10.21.683786",
+   "field": "value",
+   "item": "excitement",
+   "text": "CRISPRLungo outperforms existing approaches in both accuracy and read recovery",
+   "text_version": "preprint",
+   "work_id": "W4415419572"
+  },
+  {
+   "doi": "10.1101/2025.10.21.683786",
+   "field": "value",
+   "item": "excitement",
+   "text": "identify previously undetected structural variant edits such as inversions in published CRISPR datasets",
+   "text_version": "preprint",
+   "work_id": "W4415419572"
+  },
+  {
+   "doi": "10.1101/2025.10.21.683786",
+   "field": "value",
+   "item": "excitement",
+   "text": "making advanced long-read analysis accessible to researchers regardless of computational expertise",
+   "text_version": "preprint",
+   "work_id": "W4415419572"
+  },
+  {
+   "doi": "10.1101/2025.10.21.683786",
+   "field": "value",
+   "item": "excitement",
+   "text": "CRISPRLungo accurately detects CRISPR-induced mutations, including small indels, large deletions, insertions, and critically, inversions, a mutation type overlooked by existing tools.",
+   "text_version": "preprint",
+   "work_id": "W4415419572"
+  },
+  {
+   "doi": "10.1101/2025.10.21.683786",
+   "field": "value",
+   "item": "excitement",
+   "text": "CRISPRLungo detected inversion events at a frequency of 0.15 ± 0.17%, mutations that were completely missed by the original analysis",
+   "text_version": "preprint",
+   "work_id": "W4415419572"
+  },
+  {
+   "doi": "10.1101/2025.10.21.683786",
+   "field": "value",
+   "item": "excitement",
+   "text": "A key innovation of our web tool is that all computational analyses occur entirely within the user’s browser",
+   "text_version": "preprint",
+   "work_id": "W4415419572"
+  },
+  {
+   "doi": "10.1101/2025.10.21.683786",
+   "field": "value",
+   "item": "excitement",
+   "text": "Collectively, these comprehensive validations demonstrate that CRISPRLungo outperforms existing approaches in both accuracy and mutation coverage, particularly for complex events such as inversions",
+   "text_version": "preprint",
+   "work_id": "W4415419572"
+  },
+  {
+   "doi": "10.1101/2025.10.21.683786",
+   "field": "value",
+   "item": "excitement",
+   "text": "establishing it as a valuable tool for extensive characterization of CRISPR editing outcomes across diverse experimental contexts",
+   "text_version": "preprint",
+   "work_id": "W4415419572"
+  },
+  {
+   "doi": "10.1101/2025.10.21.683786",
+   "field": "value",
+   "item": "excitement",
+   "text": "These findings establish that CRISPRLungo enables high-resolution, allele-specific analysis of gene editing in complex heterozygous patient samples",
+   "text_version": "preprint",
+   "work_id": "W4415419572"
+  },
+  {
+   "doi": "10.1101/2025.10.21.683786",
+   "field": "value",
+   "item": "excitement",
+   "text": "We expect CRISPRLungo to establish a new standard for long-read sequencing analysis in CRISPR genome editing, supporting both experimental research and therapeutic development.",
+   "text_version": "preprint",
+   "work_id": "W4415419572"
+  },
+  {
+   "doi": "10.1101/2025.10.21.683786",
+   "field": "value",
+   "item": "excitement",
+   "text": "Importantly, CRISPRLungo eliminates the need for individual laboratories to develop custom analysis pipelines, saving substantial time and resources while improving reproducibility across the field.",
+   "text_version": "preprint",
+   "work_id": "W4415419572"
+  },
+  {
+   "doi": "10.1101/2025.10.21.683786",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "We expect CRISPRLungo to establish a new standard for long-read sequencing analysis in CRISPR genome editing",
+   "text_version": "preprint",
+   "work_id": "W4415419572"
+  },
+  {
+   "doi": "10.1101/2025.10.21.683786",
+   "field": "hedge_quote",
+   "item": "strongest_claim",
+   "text": "We expect",
+   "text_version": "preprint",
+   "work_id": "W4415419572"
+  },
+  {
+   "doi": "10.1101/2025.10.21.683786",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "However, we acknowledge that real experimental conditions may introduce additional biases not explicitly captured in our models.",
+   "text_version": "preprint",
+   "work_id": "W4415419572"
+  },
+  {
+   "doi": "10.1101/2025.10.21.683786",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "Future improvements to primer design, incorporating allele-discriminating bases at both termini, would further enhance specificity in allele-resolved editing quantification.",
+   "text_version": "preprint",
+   "work_id": "W4415419572"
+  },
+  {
+   "doi": "10.1101/2025.10.21.683786",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "Due to computational limitations of browser environments, resource-intensive tasks such as UMI-based consensus generation are currently not supported in the web tool.",
+   "text_version": "preprint",
+   "work_id": "W4415419572"
+  },
+  {
+   "doi": "10.1101/2025.10.21.683786",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "This lack of resolution prevents researchers from accurately quantifying editing efficiency, as unedited and edited reads are conflated.",
+   "text_version": "preprint",
+   "work_id": "W4415419572"
+  },
+  {
+   "doi": "10.1101/2025.10.21.683786",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "This design eliminates complex installations and, more importantly prevents data uploads, ensuring data privacy.",
+   "text_version": "preprint",
+   "work_id": "W4415419572"
+  },
+  {
+   "doi": "10.1101/2025.10.21.683786",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Importantly,",
+   "text_version": "preprint",
+   "work_id": "W4415419572"
+  },
+  {
+   "doi": "10.1101/2025.10.21.683786",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Critically,",
+   "text_version": "preprint",
+   "work_id": "W4415419572"
+  },
+  {
+   "doi": "10.1101/2025.10.21.683786",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "By contrast,",
+   "text_version": "preprint",
+   "work_id": "W4415419572"
+  },
+  {
+   "doi": "10.1101/2025.10.21.683786",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "previously undetected",
+   "text_version": "preprint",
+   "work_id": "W4415419572"
+  },
+  {
+   "doi": "10.1101/2025.10.21.683786",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Collectively,",
+   "text_version": "preprint",
+   "work_id": "W4415419572"
+  },
+  {
+   "doi": "10.1038/s41588-025-02441-6",
+   "field": "quote",
+   "item": "here_we",
+   "text": "To overcome these challenges, we introduce DNA-Diffusion, a conditional diffusion model for designing context-specific DNA regulatory sequences.",
+   "text_version": "accepted",
+   "work_id": "W7116978255"
+  },
+  {
+   "doi": "10.1038/s41588-025-02441-6",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "This evidence suggested that our model could generate highly active and specific regulatory elements capable of precise gene modulation in silico.",
+   "text_version": "accepted",
+   "work_id": "W7116978255"
+  },
+  {
+   "doi": "10.1038/s41588-025-02441-6",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "We developed a framework to select DNA-Diffusion sequences along two dimensions: “signal intensity” and “signal specificity” (Fig. 4a).",
+   "text_version": "accepted",
+   "work_id": "W7116978255"
+  },
+  {
+   "doi": "10.1038/s41588-025-02441-6",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "These results underscore DNA-Diffusion’s potential to generate functionally active, cell-type-specific regulatory elements beyond naturally occurring genomic counterparts.",
+   "text_version": "accepted",
+   "work_id": "W7116978255"
+  },
+  {
+   "doi": "10.1038/s41588-025-02441-6",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "Specifically, we targeted the locus of Axin-related Protein 2 (AXIN2), a gene often silenced in leukemic B-cells.",
+   "text_version": "accepted",
+   "work_id": "W7116978255"
+  },
+  {
+   "doi": "10.1038/s41588-025-02441-6",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "We systematically benchmarked DNA-Diffusion against other leading approaches for regulatory element design including GANs and CNN-based regressors[CIT].",
+   "text_version": "accepted",
+   "work_id": "W7116978255"
+  },
+  {
+   "doi": "10.1038/s41588-025-02441-6",
+   "field": "value",
+   "item": "excitement",
+   "text": "This work establishes DNA-Diffusion as a powerful tool for engineering compact, highly specific regulatory elements crucial for advancing gene therapies and understanding gene regulation.",
+   "text_version": "accepted",
+   "work_id": "W7116978255"
+  },
+  {
+   "doi": "10.1038/s41588-025-02441-6",
+   "field": "value",
+   "item": "excitement",
+   "text": "Critically, we validated their regulatory function in native genomic context using EXTRA-seq[CIT]",
+   "text_version": "accepted",
+   "work_id": "W7116978255"
+  },
+  {
+   "doi": "10.1038/s41588-025-02441-6",
+   "field": "value",
+   "item": "excitement",
+   "text": "Remarkably, all top 3 sequences ranked by CAGE IS Score group strongly reactivated AXIN2 (Fig. 6f, Supplementary Fig. 18).",
+   "text_version": "accepted",
+   "work_id": "W7116978255"
+  },
+  {
+   "doi": "10.1038/s41588-025-02441-6",
+   "field": "value",
+   "item": "excitement",
+   "text": "This pattern holds consistently across all three actively expressing loci (GATA1, HNF4A, and CD19).",
+   "text_version": "accepted",
+   "work_id": "W7116978255"
+  },
+  {
+   "doi": "10.1038/s41588-025-02441-6",
+   "field": "value",
+   "item": "excitement",
+   "text": "This optimization approach opens exciting opportunities for targeted gene regulation and the development of therapeutic strategies.",
+   "text_version": "accepted",
+   "work_id": "W7116978255"
+  },
+  {
+   "doi": "10.1038/s41588-025-02441-6",
+   "field": "value",
+   "item": "excitement",
+   "text": "To our knowledge, this is the first DDPM-based DNA diffusion model validated with both large-scale reporter assays and direct modification of an endogenous locus.",
+   "text_version": "accepted",
+   "work_id": "W7116978255"
+  },
+  {
+   "doi": "10.1038/s41588-025-02441-6",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "This work establishes DNA-Diffusion as a powerful tool for engineering compact, highly specific regulatory elements crucial for advancing gene therapies and understanding gene regulation.",
+   "text_version": "accepted",
+   "work_id": "W7116978255"
+  },
+  {
+   "doi": "10.1038/s41588-025-02441-6",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "In addition, its reliance on binarized labels for DHS peaks could be improved by incorporating continuous measures of chromatin activity.",
+   "text_version": "accepted",
+   "work_id": "W7116978255"
+  },
+  {
+   "doi": "10.1038/s41588-025-02441-6",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "As shown in Figure 5b, randomly sampled DNA-Diffusion sequences exhibit similar activities to endogenous DHS elements, with enhanced signals emerging only after computational pre-selection.",
+   "text_version": "accepted",
+   "work_id": "W7116978255"
+  },
+  {
+   "doi": "10.1038/s41588-025-02441-6",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Taken together,",
+   "text_version": "accepted",
+   "work_id": "W7116978255"
+  },
+  {
+   "doi": "10.1038/s41588-025-02441-6",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "These findings demonstrate",
+   "text_version": "accepted",
+   "work_id": "W7116978255"
+  },
+  {
+   "doi": "10.1038/s41588-025-02441-6",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "These results underscore",
+   "text_version": "accepted",
+   "work_id": "W7116978255"
+  },
+  {
+   "doi": "10.1038/s41588-025-02441-6",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "consistently outperformed",
+   "text_version": "accepted",
+   "work_id": "W7116978255"
+  },
+  {
+   "doi": "10.1038/s41588-025-02441-6",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Remarkably,",
+   "text_version": "accepted",
+   "work_id": "W7116978255"
+  },
+  {
+   "doi": "10.1038/s41588-025-02441-6",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Importantly,",
+   "text_version": "accepted",
+   "work_id": "W7116978255"
+  }
+ ],
+ "schema": 1,
+ "stability": {
+  "abstract_moves": {
+   "agreement": 0.898,
+   "pairs": 23,
+   "stable": true
+  },
+  "discussion_moves": {
+   "agreement": 0.747,
+   "pairs": 23,
+   "stable": true
+  },
+  "essay_argument": {
+   "agreement": 1.0,
+   "pairs": 1,
+   "stable": true
+  },
+  "excitement": {
+   "agreement": 0.65,
+   "pairs": 23,
+   "stable": false
+  },
+  "figure_reference": {
+   "agreement": 1.0,
+   "pairs": 23,
+   "stable": true
+  },
+  "gap_sentence": {
+   "agreement": 0.957,
+   "pairs": 23,
+   "stable": true
+  },
+  "here_we": {
+   "agreement": 1.0,
+   "pairs": 23,
+   "stable": true
+  },
+  "intro_roles": {
+   "agreement": 0.887,
+   "pairs": 23,
+   "stable": true
+  },
+  "limitations": {
+   "agreement": 0.783,
+   "pairs": 23,
+   "stable": true
+  },
+  "results_headings": {
+   "agreement": 1.0,
+   "pairs": 21,
+   "stable": true
+  },
+  "results_openings": {
+   "agreement": 0.94,
+   "pairs": 21,
+   "stable": true
+  },
+  "strongest_claim": {
+   "agreement": 0.957,
+   "pairs": 23,
+   "stable": true
+  },
+  "title_form": {
+   "agreement": 0.957,
+   "pairs": 23,
+   "stable": true
+  }
+ },
+ "surface": {
+  "citations_per_sentence": 0.156,
+  "connectives_per_1000": [
+   [
+    "first",
+    0.9
+   ],
+   [
+    "here",
+    0.89
+   ],
+   [
+    "however",
+    0.84
+   ],
+   [
+    "because",
+    0.66
+   ],
+   [
+    "although",
+    0.46
+   ],
+   [
+    "finally",
+    0.36
+   ],
+   [
+    "second",
+    0.36
+   ],
+   [
+    "together",
+    0.36
+   ],
+   [
+    "therefore",
+    0.34
+   ],
+   [
+    "instead",
+    0.25
+   ],
+   [
+    "importantly",
+    0.18
+   ],
+   [
+    "thus",
+    0.16
+   ],
+   [
+    "consequently",
+    0.15
+   ],
+   [
+    "furthermore",
+    0.15
+   ],
+   [
+    "moreover",
+    0.15
+   ],
+   [
+    "notably",
+    0.15
+   ],
+   [
+    "indeed",
+    0.11
+   ],
+   [
+    "whereas",
+    0.1
+   ],
+   [
+    "interestingly",
+    0.05
+   ],
+   [
+    "remarkably",
+    0.03
+   ],
+   [
+    "surprisingly",
+    0.03
+   ],
+   [
+    "hence",
+    0.02
+   ]
+  ],
+  "figure_refs_per_paragraph": 0.423,
+  "first_person_share": 0.126,
+  "hedge_words": [
+   [
+    "possible",
+    116
+   ],
+   [
+    "may",
+    68
+   ],
+   [
+    "could",
+    47
+   ],
+   [
+    "consistent",
+    14
+   ],
+   [
+    "likely",
+    14
+   ],
+   [
+    "putative",
+    13
+   ],
+   [
+    "might",
+    6
+   ],
+   [
+    "suggested",
+    6
+   ],
+   [
+    "indicate",
+    5
+   ],
+   [
+    "suggest",
+    5
+   ],
+   [
+    "indicates",
+    3
+   ],
+   [
+    "seems",
+    3
+   ],
+   [
+    "suggests",
+    3
+   ],
+   [
+    "appears",
+    2
+   ],
+   [
+    "potentially",
+    2
+   ],
+   [
+    "unlikely",
+    2
+   ],
+   [
+    "appear",
+    1
+   ],
+   [
+    "appeared",
+    1
+   ],
+   [
+    "probably",
+    1
+   ]
+  ],
+  "hedges_per_1000": 5.11,
+  "n_paragraphs": 922,
+  "n_sentences": 2717,
+  "n_words": 61006,
+  "numbers_per_sentence": 0.615,
+  "opener_pairs": [
+   [
+    "in this",
+    50
+   ],
+   [
+    "in particular",
+    39
+   ],
+   [
+    "in the",
+    39
+   ],
+   [
+    "it is",
+    34
+   ],
+   [
+    "critical step",
+    32
+   ],
+   [
+    "in addition",
+    27
+   ],
+   [
+    "for example",
+    25
+   ],
+   [
+    "here we",
+    21
+   ],
+   [
+    "in fact",
+    17
+   ],
+   [
+    "the main",
+    16
+   ]
+  ],
+  "openers": [
+   [
+    "the",
+    294
+   ],
+   [
+    "in",
+    272
+   ],
+   [
+    "this",
+    171
+   ],
+   [
+    "we",
+    97
+   ],
+   [
+    "for",
+    80
+   ],
+   [
+    "to",
+    79
+   ],
+   [
+    "a",
+    57
+   ],
+   [
+    "it",
+    56
+   ],
+   [
+    "these",
+    44
+   ],
+   [
+    "as",
+    38
+   ],
+   [
+    "critical",
+    37
+   ],
+   [
+    "here",
+    35
+   ],
+   [
+    "if",
+    34
+   ],
+   [
+    "however",
+    31
+   ],
+   [
+    "where",
+    27
+   ]
+  ],
+  "paragraph_sentences": {
+   "mean": 2.95,
+   "median": 2.0,
+   "n": 922,
+   "p90": 7.0
+  },
+  "passive_share": 0.329,
+  "questions_per_100": 1.07,
+  "sentence_length": {
+   "mean": 22.45,
+   "median": 21.0,
+   "n": 2717,
+   "p90": 37.0
+  },
+  "sentence_length_by_kind": {
+   "abstract": {
+    "mean": 22.56,
+    "median": 20.0,
+    "n": 57,
+    "p90": 37.0
+   },
+   "discussion": {
+    "mean": 22.73,
+    "median": 21.0,
+    "n": 127,
+    "p90": 34.0
+   },
+   "intro": {
+    "mean": 23.77,
+    "median": 22.0,
+    "n": 313,
+    "p90": 37.0
+   },
+   "other": {
+    "mean": 28.34,
+    "median": 26.0,
+    "n": 94,
+    "p90": 47.0
+   },
+   "results": {
+    "mean": 21.98,
+    "median": 20.0,
+    "n": 2126,
+    "p90": 37.0
+   }
+  }
+ },
+ "surface_papers": 11,
+ "text_versions": {
+  "accepted": 5,
+  "arxiv": 1,
+  "preprint": 3,
+  "published": 2
+ },
+ "unverified": {},
+ "years": {
+  "first": 2011,
+  "last": 2025
+ }
+}

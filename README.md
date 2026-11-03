@@ -66,6 +66,30 @@ Generates a polished `.pptx` slide deck from session artifacts. Builds on `prep-
 
 **Relationship to `prep-report`:** Use `/prep-report` when you want a markdown outline only. Use `/generate-slides` when you want a ready-to-present PPTX file with embedded figures.
 
+### `generate-slides-minimal`
+
+Builds a `.pptx` deck from the message of a talk. Each slide has a sentence headline over one visual. A design linter checks the finished deck, and each rule carries an evidence tier.
+
+- The command asks for one message and at most three take-homes before it drafts the outline.
+- Six layouts: title, roadmap, assertion-evidence, big number, take-home and backup.
+- Speaker notes are drafts, on by default. `--no-notes` switches them off.
+- Three audience profiles (`peers`, `lab-meeting`, `general`) and an optional render check.
+- The principles and the research notes sit in `references/`.
+
+**Usage:**
+
+```
+/generate-slides-minimal 15min                            # a talk of 15 minutes
+/generate-slides-minimal 12 slides --profile lab-meeting  # 12 main slides
+/generate-slides-minimal 20min --theme dark --no-notes    # dark theme, no notes
+```
+
+**Install:** `/plugin install generate-slides-minimal@yangjun9095-plugins`
+
+**Requires:** `python-pptx`, `PyYAML` and Pillow (installed on first use). The deck names the font Avenir Light.
+
+**Relationship to `generate-slides`:** The v1 plugin stays unchanged and independent. Use `/generate-slides` for a quick deck in the older style. Use `/generate-slides-minimal` for a deck that follows the research notes and passes the linter. See [the plugin README](plugins/generate-slides-minimal/README.md).
+
 ### `figure-style`
 
 Enforce publication-quality figure styling with an automated verification harness. Activates on demand — zero context cost when not in use.
@@ -93,13 +117,15 @@ Sync preflight, a prose audit and an ask-before-edit hook for LaTeX manuscripts 
 
 **Install:** `/plugin install overleaf-manuscript@yangjun9095-plugins`
 
-### `plain-prose`
+### `science-style`
 
-Finds the patterns that large language models often write in LaTeX, Markdown and plain-text manuscripts, and proposes plain rewrites. A script finds the patterns and checks each rewrite, and you approve by group before any file changes. The plugin makes no claim about detectors of artificial intelligence (AI) text or about authorship. See the [plugin README](plugins/plain-prose/README.md).
+The style lab finds open-access papers of chosen scientists, extracts how each person writes, and publishes one checked profile per person. A writing skill that uses the profiles comes in a later version.
 
-**Usage:** `/plain-prose main.tex` (add `--report-only` to see the findings and stop)
+- Finds papers through OpenAlex by ORCID and fetches open full texts from PubMed Central, Europe PMC, bioRxiv and arXiv
+- Keeps every full text in a scratch folder outside the repository
+- Checks every quote against its paper and every number in a card against the profile data
 
-**Install:** `/plugin install plain-prose@yangjun9095-plugins`
+**Usage:** `/style-lab <person ids> --pilot`, then `/style-lab all`
 
 ## Archived
 

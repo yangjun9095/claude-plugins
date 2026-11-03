@@ -1,0 +1,7 @@
+# Profile for lab meetings. It lists only the numbers that differ from peers.
+# The baseline in default.yaml supplies every other number and every tier.
+
+lint:
+  words_per_slide: {warn: 40, error: 60}
+  body_font: {warn_below: 18, secondary_warn_below: 18}
+  slide_count: {per_minute: 1.5}

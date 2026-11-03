@@ -1,0 +1,11 @@
+# Dark theme. The accent colors are the "Biohub Purple" palette, checked for
+# contrast on the dark background (spec section 5).
+# The accent is its brand violet. The accent_ink is a lighter violet for text.
+
+colors:
+  background: "#14111F"
+  text: "#F3F0FA"
+  muted: "#9A92B3"
+  accent: "#9D7BFF"
+  accent_ink: "#B79BFF"
+  context: "#6E6788"

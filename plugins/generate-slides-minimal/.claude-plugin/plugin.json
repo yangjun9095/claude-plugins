@@ -1,0 +1,13 @@
+{
+  "name": "generate-slides-minimal",
+  "version": "0.1.0",
+  "description": "Build a .pptx deck from a message and a story spine, with sentence headlines over one visual, draft speaker notes, and a design linter that labels each rule with its evidence tier.",
+  "author": {
+    "name": "Yang Joon Kim",
+    "url": "https://github.com/yangjun9095"
+  },
+  "homepage": "https://github.com/yangjun9095/claude-plugins",
+  "repository": "https://github.com/yangjun9095/claude-plugins",
+  "license": "MIT",
+  "keywords": ["slides", "pptx", "presentation", "assertion-evidence", "linter"]
+}
