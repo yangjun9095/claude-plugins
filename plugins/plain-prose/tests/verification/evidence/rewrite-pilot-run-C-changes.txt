@@ -1,0 +1,239 @@
+words: 3352 before, 3240 after.
+
+flagged findings by family (before -> after):
+  vocabulary-excess      7 -> 0
+  vocabulary-density     13 -> 0
+  figurative-load        1 -> 0
+  binary-contrast        2 -> 0
+  importance-puffery     1 -> 0
+  participial-benefit    1 -> 0
+  weasel-attribution     4 -> 0
+  fake-strong-verb       1 -> 0
+  recap-opener           5 -> 0
+  colon-reveal           2 -> 0
+  rhetorical-question    4 -> 0
+  assistant-residue      4 -> 0
+  hedge-stack            6 -> 0
+  repeated-openers       4 -> 0
+  staccato-run           4 -> 0
+
+masked spans: identical (83).
+numbers: identical (258).
+
+changed sentences: 54 (38 reworded, 16 deleted, 0 added).
+
+[1]
+  before: Pressure rose. Leaves stiffened. Stomata shut.
+  after:  Pressure rose, leaves stiffened and stomata shut.
+
+[2]
+  before: The Dunmar-1 pathway plays a crucial role in the survival of Kestrel-6 yeast under heat stress (n = 12 cultures).
+  after:  The Dunmar-1 pathway contributes to the survival of Kestrel-6 yeast under heat stress (n = 12 cultures).
+
+[3]
+  before: The Hollin kinase acts as a powerful driver of the pathway.
+  after:  The Hollin kinase drives the pathway.
+
+[4]
+  before: These findings could possibly suggest that Tavo regulates root hair length.
+  after:  These findings suggest that Tavo regulates root hair length.
+
+[5]
+  before: The effect might perhaps be larger in older plants, although we measured only plants younger than 30 days (n = 44).
+  after:  The effect might be larger in older plants, although we measured only plants younger than 30 days (n = 44).
+
+[6]
+  before: Taken together, the two mutants suggest that Tavo acts throughout root development while Marlin-2 acts only early.
+  after:  The two mutants suggest that Tavo acts throughout root development while Marlin-2 acts only early.
+
+[7]
+  before: It is worth noting that Ostrel lichen thalli leverage stored sugars to restart photosynthesis after rewetting.
+  after:  It is worth noting that Ostrel lichen thalli use stored sugars to restart photosynthesis after rewetting.
+
+[8]
+  before: Several studies suggest that moss growth could potentially respond to blue light in other species.
+  after:  Moss growth could respond to blue light in other species [citation needed from the author].
+
+[9]
+  before: Recent work indicates that Marlin-2 homologs may possibly act in the same pathway.
+  after:  Recent work indicates that Marlin-2 homologs may act in the same pathway.
+
+[10]
+  before: Seeds were stratified at 4 C for 14 days, ensuring uniform germination across all lines.
+  after:  Seeds were stratified at 4 C for 14 days.
+
+[11]
+  before: How does the moss do this?
+  after:  (none: the sentence is deleted)
+
+[12]
+  before: It keeps its photosystems intact during drying (Fig. 6).
+  after:  The moss recovers because it keeps its photosystems intact during drying (Fig. 6).
+
+[13]
+  before: This finding is of paramount importance for understanding moss development.
+  after:  This finding is important for understanding moss development.
+
+[14]
+  before: The finding was dramatic: Tavo binding fell by 80\% when this site was mutated (Fig. 8B).
+  after:  Tavo binding fell by 80\% when this site was mutated (Fig. 8B).
+
+[15]
+  before: Flux fell.
+  after:  (none: the sentence is deleted)
+
+[16]
+  before: Pores closed.
+  after:  (none: the sentence is deleted)
+
+[17]
+  before: Leaves curled within 6 h.
+  after:  Flux fell and pores closed; leaves curled within 6 h.
+
+[18]
+  before: In summary, these data show that pore closure comes before leaf curl in Veldt fern (n = 20 fronds; Fig. 10).
+  after:  These data show that pore closure comes before leaf curl in Veldt fern (n = 20 fronds; Fig. 10).
+
+[19]
+  before: What drives this steady rise?
+  after:  (none: the sentence is deleted)
+
+[20]
+  before: The stomata open in a fixed order across the leaf (Fig. 3C).
+  after:  The steady rise occurs because the stomata open in a fixed order across the leaf (Fig. 3C).
+
+[21]
+  before: We delve into how the Hollin kinase shapes the response of Kestrel-6 yeast to osmotic stress (n = 18 cultures).
+  after:  We examine how the Hollin kinase shapes the response of Kestrel-6 yeast to osmotic stress (n = 18 cultures).
+
+[22]
+  before: These data weave a tapestry of responses that differ between strains and between doses.
+  after:  These data show responses that differ between strains and between doses.
+
+[23]
+  before: Marlin-2 may possibly limit the stress response by binding Tavo (Fig. 5).
+  after:  Marlin-2 may limit the stress response by binding Tavo (Fig. 5).
+
+[24]
+  before: As of my last knowledge update, I cannot confirm the exact density of the beetle population.
+  after:  (none: the sentence is deleted)
+
+[25]
+  before: Counts rose.
+  after:  (none: the sentence is deleted)
+
+[26]
+  before: They peaked.
+  after:  (none: the sentence is deleted)
+
+[27]
+  before: They fell in week 12.
+  after:  Counts rose, peaked and fell in week 12.
+
+[28]
+  before: The ring-flux assay underscores the intricate link between sap pressure and leaf curl in Veldt fern (Fig. 2).
+  after:  The ring-flux assay shows a link between sap pressure and leaf curl in Veldt fern (Fig. 2).
+
+[29]
+  before: Moss mats dried out.
+  after:  Moss mats dried out, shrank and curled.
+
+[30]
+  before: Moss mats shrank.
+  after:  (none: the sentence is deleted)
+
+[31]
+  before: Moss mats curled.
+  after:  (none: the sentence is deleted)
+
+[32]
+  before: Moss mats recovered after rain, and the recovery took 36 h (n = 18 mats).
+  after:  They recovered after rain, and the recovery took 36 h (n = 18 mats).
+
+[33]
+  before: Taken together, the kinase seems to act upstream of Dunmar-1, although these data do not show a direct interaction.
+  after:  The kinase seems to act upstream of Dunmar-1, although these data do not show a direct interaction.
+
+[34]
+  before: Sure, here is a polished version of your Results paragraph.
+  after:  (none: the sentence is deleted)
+
+[35]
+  before: I hope this helps.
+  after:  (none: the sentence is deleted)
+
+[36]
+  before: The Tavo mutant lost its root hairs.
+  after:  (none: the sentence is deleted)
+
+[37]
+  before: The Tavo mutant failed to take up phosphate.
+  after:  It lost its root hairs and failed to take up phosphate.
+
+[38]
+  before: The answer was simple: the mutant lacks the transporter that loads phosphate into the root (Fig. 12).
+  after:  The mutant lacks the transporter that loads phosphate into the root (Fig. 12).
+
+[39]
+  before: Does Tavo activate Brix-3 directly?
+  after:  (none: the sentence is deleted)
+
+[40]
+  before: Our time course cannot answer this, because we sampled only at 2-h intervals and we have no binding data.
+  after:  Our time course cannot show whether Tavo activates Brix-3 directly, because we sampled only at 2-h intervals and we have no binding data.
+
+[41]
+  before: Overall, these results indicate that the delay depends on cell number (Fig. 9).
+  after:  These results indicate that the delay depends on cell number (Fig. 9).
+
+[42]
+  before: Marlin-2 expression may potentially increase at 40 C in the heat-shocked moss (Fig. 3).
+  after:  Marlin-2 expression may increase at 40 C in the heat-shocked moss (Fig. 3).
+
+[43]
+  before: This comprehensive study utilizes a robust panel of 12 Marlin-2 mutants to facilitate a deeper understanding of root growth.
+  after:  This study uses a panel of 12 Marlin-2 mutants to examine root growth.
+
+[44]
+  before: The groundbreaking assay offers crucial insights, and the results unveil a myriad of effects on growth (Table 1).
+  after:  The results of the assay show many effects on growth (Table 1).
+
+[45]
+  before: Many researchers believe that nitrogen limits moss growth in alpine bogs.
+  after:  Nitrogen may limit moss growth in alpine bogs [citation needed from the author].
+
+[46]
+  before: Each trap held a different bait.
+  after:  (none: the sentence is deleted)
+
+[47]
+  before: Each trap sat in a different habitat.
+  after:  (none: the sentence is deleted)
+
+[48]
+  before: Each trap was emptied on a different day.
+  after:  Each trap held a different bait, sat in a different habitat and was emptied on a different day.
+
+[49]
+  before: The delay in budding is not a sign of slow growth but a reprogramming of the bud clock.
+  after:  The delay in budding is a reprogramming of the bud clock.
+
+[50]
+  before: So what limits release at higher speeds?
+  after:  (none: the sentence is deleted)
+
+[51]
+  before: The annulus cells run out of stored tension.
+  after:  The annulus cells run out of stored tension, which limits release at higher speeds.
+
+[52]
+  before: Here we embark on an exploration of how Tarn voles respond to cold (n = 20 per group).
+  after:  Here we examine how Tarn voles respond to cold (n = 20 per group).
+
+[53]
+  before: Body temperature fell by 2.1 C in the cold group, which is not a failure of heat production but a controlled drop.
+  after:  Body temperature fell by 2.1 C in the cold group, which is a controlled drop.
+
+[54]
+  before: Taken together, these results illustrate the multifaceted nature of the response.
+  after:  These results show that body temperature and metabolic rate both respond to cold.

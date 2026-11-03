@@ -1,0 +1,10 @@
+{
+  "name": "plain-prose",
+  "version": "0.1.0",
+  "description": "Find LLM-style patterns in LaTeX, Markdown and plain-text manuscripts and propose plain rewrites that the author approves.",
+  "author": {"name": "Yang Joon Kim", "url": "https://github.com/yangjun9095"},
+  "homepage": "https://github.com/yangjun9095/claude-plugins",
+  "repository": "https://github.com/yangjun9095/claude-plugins",
+  "license": "MIT",
+  "keywords": ["writing", "manuscript", "latex", "style", "editing"]
+}

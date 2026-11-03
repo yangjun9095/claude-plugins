@@ -1,0 +1,45 @@
+examples/made-up-manuscript.tex:14:49: vocabulary-excess: T1: flag: "delve" (Replace the style word with the plain word, or with the fact that the word stands for.)
+examples/made-up-manuscript.tex:14:64: vocabulary-excess: T1: flag: "intricate" (Replace the style word with the plain word, or with the fact that the word stands for.)
+examples/made-up-manuscript.tex:21:14: figurative-load: T3: flag: "cornerstone" (Replace the figure with the literal term for the relation that the figure names.)
+examples/made-up-manuscript.tex:21:92: weasel-attribution: T2: flag: "Studies show" (Name the source with a citation. With no source, state the claim as your own or delete it. Never add a citation.)
+examples/made-up-manuscript.tex:21:163: throat-clearing: T2: flag: "It is worth noting" (Delete the opener and start with the claim.)
+examples/made-up-manuscript.tex:23:17: binary-contrast: T2: flag: "not just a stress response but" (State the positive claim once. Drop the denied half unless a reader holds that view or a test addressed it.)
+examples/made-up-manuscript.tex:23:77: importance-puffery: T2: flag: "plays a pivotal role" (Replace the praise with the measured result or the cited fact that supports it.)
+examples/made-up-manuscript.tex:23:85: vocabulary-excess: T1: flag: "pivotal" (Replace the style word with the plain word, or with the fact that the word stands for.)
+examples/made-up-manuscript.tex:31:1: throat-clearing: T2: flag: "In this section, we describe" (Delete the opener and start with the claim.)
+examples/made-up-manuscript.tex:45:28: participial-benefit: T1: flag: ", ensuring" (Move the clause into its own sentence with a subject and a verb. Delete it when it states a benefit that the data do not show.)
+examples/made-up-manuscript.tex:45:94: fake-strong-verb: T2: flag: "stands as a" (Use the verb that names the action, or use `is`.)
+examples/made-up-manuscript.tex:59:30: staccato-run: T2: flag: "Death followed at 48 h." (Join three or more fragments into one or two sentences. Put the new fact last.)
+examples/made-up-manuscript.tex:61:64: repeated-openers: T2: flag: "The mutant failed to bind Tavo." (Merge the sentences, or put the old information first so that each opener differs for a reason.)
+examples/made-up-manuscript.tex:63:45: rhetorical-question: T3: flag: "Why does Tavo limit growth?" (State the answer as a statement.)
+examples/made-up-manuscript.tex:63:104: colon-reveal: T3: flag: "The result was clear: T" (State the finding as the main clause.)
+examples/made-up-manuscript.tex:63:164: hedge-stack: T3: flag: "may possibly" (Keep the one hedge that the data support. Delete the other hedge word.)
+examples/made-up-manuscript.tex:67:1: assistant-residue: T2: flag: "Certainly!" (Delete the whole span and tell the author to check the sentences that followed it.)
+examples/made-up-manuscript.tex:67:12: assistant-residue: T2: flag: "Here is the revised" (Delete the whole span and tell the author to check the sentences that followed it.)
+examples/made-up-manuscript.tex:69:1: recap-opener: T2: flag: "Overall," (Delete the opener word and keep the statement when it draws a new inference.)
+examples/made-up-manuscript.tex:69:87: vocabulary-density: T1: flag: "robust" (Replace the style word with the plain word, or with the fact that the word stands for.)
+examples/made-up-manuscript.tex:69:106: vocabulary-density: T1: flag: "comprehensive" (Replace the style word with the plain word, or with the fact that the word stands for.)
+examples/made-up-manuscript.tex:69:144: vocabulary-density: T1: flag: "utilize" (Replace the style word with the plain word, or with the fact that the word stands for.)
+examples/made-up-manuscript.tex:69:179: vocabulary-density: T1: flag: "crucial" (Replace the style word with the plain word, or with the fact that the word stands for.)
+examples/made-up-manuscript.tex:69:203: vocabulary-density: T1: flag: "leverage" (Replace the style word with the plain word, or with the fact that the word stands for.)
+examples/made-up-manuscript.tex:69:287: em-dash: T1: info: "---" (Use commas or parentheses for an aside, a period for a second clause and a colon for a list.)
+examples/made-up-manuscript.tex:71:1: recap-opener: T2: flag: "Taken together," (Delete the opener word and keep the statement when it draws a new inference.)
+examples/made-up-manuscript.tex: 577 words, 25 flagged, 1 info
+  vocabulary-excess: 3 hits, 5.20 per 1000 words
+  vocabulary-density: 5 hits, 8.67 per 1000 words
+  figurative-load: 1 hits, 1.73 per 1000 words
+  binary-contrast: 1 hits, 1.73 per 1000 words
+  importance-puffery: 1 hits, 1.73 per 1000 words
+  participial-benefit: 1 hits, 1.73 per 1000 words
+  weasel-attribution: 1 hits, 1.73 per 1000 words
+  fake-strong-verb: 1 hits, 1.73 per 1000 words
+  throat-clearing: 2 hits, 3.47 per 1000 words
+  recap-opener: 2 hits, 3.47 per 1000 words
+  em-dash: 1 hits, 1.73 per 1000 words
+  colon-reveal: 1 hits, 1.73 per 1000 words
+  rhetorical-question: 1 hits, 1.73 per 1000 words
+  assistant-residue: 2 hits, 3.47 per 1000 words
+  hedge-stack: 1 hits, 1.73 per 1000 words
+  repeated-openers: 1 hits, 1.73 per 1000 words
+  staccato-run: 1 hits, 1.73 per 1000 words
+flagged: 25 info: 1
