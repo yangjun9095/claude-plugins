@@ -288,15 +288,29 @@ def cmd_check_quotes(ctx):
     return 1 if bad else 0
 
 
-def _manifests(ctx):
-    paths = [ctx.manifest_path(p["id"]) for p in ctx.people]
+def _manifests(ctx, people=None):
+    """Return the manifests that exist for people (default: every entry of the registry)."""
+    paths = [ctx.manifest_path(p["id"]) for p in (ctx.people if people is None else people)]
     return [lab_paths.read_json(path) for path in paths if os.path.exists(path)]
 
 
 def cmd_aggregate(ctx):
+    """Write the profile data of each chosen entry.
+
+    The stability of an individual uses the extraction pairs of individuals only, so a team never
+    changes it. The stability of a team uses the pairs of the team and of every individual.
+    """
     checklist = ctx.checklist()
-    stability = lab_aggregate.compute_stability(lab_aggregate.collect_pairs(ctx.data, _manifests(ctx), checklist),
-                                                checklist)
+    stabilities = {}
+
+    def stability_of(person):
+        key = person["id"] if lab_registry.is_team(person) else None
+        if key not in stabilities:
+            people = ctx.individuals() + ([person] if key else [])
+            pairs = lab_aggregate.collect_pairs(ctx.data, _manifests(ctx, people), checklist)
+            stabilities[key] = lab_aggregate.compute_stability(pairs, checklist)
+        return stabilities[key]
+
     surface_dir = lab_paths.stage_dir(ctx.data, ctx.pilot(), "surface")
     digest_dir = lab_paths.stage_dir(ctx.data, ctx.pilot(), "digest")
     for person in ctx.selected():
@@ -309,7 +323,8 @@ def cmd_aggregate(ctx):
                 extractions[paper["work_id"]] = lab_paths.read_json(path)
         surface_path = os.path.join(surface_dir, person["id"] + ".json")
         surface = lab_paths.read_json(surface_path) if os.path.exists(surface_path) else None
-        profile = lab_aggregate.build_profile(person, manifest, extractions, checks, checklist, stability, surface)
+        profile = lab_aggregate.build_profile(person, manifest, extractions, checks, checklist,
+                                              stability_of(person), surface)
         lab_paths.write_json_guarded(ctx.profile_path(person["id"]), profile, force=ctx.args.force)
         digest = lab_aggregate.build_digest(person["id"], manifest, extractions, checklist, profile["papers_used"])
         lab_paths.write_json(os.path.join(digest_dir, person["id"] + ".json"), digest)

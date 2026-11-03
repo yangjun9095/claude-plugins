@@ -464,6 +464,59 @@ class TeamPipelineTests(unittest.TestCase):
         with open(os.path.join(self.data, "pilot", "profiles", "quality.md"), encoding="utf-8") as handle:
             self.assertIn(TEAM["name"], handle.read())
 
+    def write_extractions(self, person, work_ids, differ=False):
+        """Write the main and the agreement extraction of each paper. With differ, the agreement run
+        answers each closed enum field with its second value, where that value keeps the answer valid."""
+        checklist = lab_checklist.load_checklist()
+        for wid in work_ids:
+            paper = lp.read_json(lp.paper_path(self.data, person, wid))
+            lp.write_json(lp.extraction_path(self.data, person, wid),
+                          make_extraction(paper, checklist, group=paper["group"]))
+            other = make_extraction(paper, checklist, group=paper["group"], run="agreement")
+            if differ:
+                for item in checklist["items"]:
+                    answer = other["answers"].get(item["id"])
+                    for name, spec in item["fields"].items():
+                        if spec["type"] == "enum" and len(spec["values"]) > 1 and isinstance(answer, dict) \
+                                and name in answer:
+                            kept = answer[name]
+                            answer[name] = spec["values"][1]
+                            if lab_checklist.validate_extraction(other, checklist, paper["group"]):
+                                answer[name] = kept
+            lp.write_json(lp.extraction_path(self.data, person, wid, "agreement"), other)
+
+    def stability_of(self, person):
+        return lp.read_json(os.path.join(self.data, "pilot", "profiles", person + ".json"))["stability"]
+
+    def test_the_stability_of_an_individual_ignores_the_pairs_of_a_team(self):
+        self.fetch_everyone()
+        for person, ids in (("ada", ["W1"]), ("ben", ["W4", "W7"]), ("cal", ["W6"])):
+            self.write_extractions(person, ids)
+        self.assertEqual(self.run_lab("aggregate", "ada", "--pilot"), 0)
+        before = self.stability_of("ada")
+        item = next(i for i, entry in sorted(before.items()) if entry["pairs"])
+        self.assertEqual(before[item]["pairs"], 4)
+        self.assertEqual(before[item]["agreement"], 1.0)
+        self.write_extractions("ada-ben", ["W4", "W7"], differ=True)
+        self.assertEqual(self.run_lab("aggregate", "ada", "--pilot"), 0)
+        self.assertEqual(self.stability_of("ada"), before)
+        self.assertEqual(self.run_lab("aggregate", "--all", "--pilot"), 0)
+        for person in ("ada", "ben", "cal"):
+            self.assertEqual(self.stability_of(person), before, person)
+
+    def test_the_stability_of_a_team_uses_its_own_pairs_and_those_of_the_individuals(self):
+        self.fetch_everyone()
+        for person, ids in (("ada", ["W1"]), ("ben", ["W4", "W7"]), ("cal", ["W6"])):
+            self.write_extractions(person, ids)
+        self.write_extractions("ada-ben", ["W4", "W7"], differ=True)
+        self.assertEqual(self.run_lab("aggregate", "ada", "ada-ben", "--pilot"), 0)
+        individual, team = self.stability_of("ada"), self.stability_of("ada-ben")
+        lowered = [i for i, entry in sorted(team.items()) if entry["agreement"] is not None and entry["agreement"] < 1.0]
+        self.assertTrue(lowered)
+        for item in lowered:
+            self.assertEqual((individual[item]["pairs"], team[item]["pairs"]), (4, 6), item)
+            self.assertEqual(individual[item]["agreement"], 1.0, item)
+
     def test_the_principles_check_uses_the_profiles_of_individuals_only(self):
         folder = lp.ensure_dir(self.data, "pilot", "profiles")
         for person in ("ada", "ben", "ada-ben"):
