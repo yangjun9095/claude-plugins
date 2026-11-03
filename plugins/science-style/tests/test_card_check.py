@@ -346,5 +346,71 @@ class NumberBypassTests(unittest.TestCase):
         self.assertNotIn("1", found)
 
 
+PAPER_LIST = """## Papers
+
+The card rests on these 12 papers.
+
+- Spores swell in water. Cell, 2012. doi:10.0000/fern.1 (published text)
+- Coats split along a seam: a "zip" model, 100% of 7 cases. Cell Systems, 2020. doi:10.1101/500002 (preprint text)
+- Does moss dry on rocks? no venue, 2008. doi:10.0000/fern.2 (published text)
+"""
+
+
+class PapersSectionTests(unittest.TestCase):
+    def test_a_card_with_a_paper_list_passes(self):
+        self.assertEqual(check(CARD + "\n" + PAPER_LIST), [])
+
+    def test_the_paper_list_adds_no_failure_for_years_dois_numbers_quotes_or_percentages(self):
+        failures = check(CARD + "\n" + PAPER_LIST)
+        for phrase in ("number not in the profile data", "percentage", "quote", "DOI tag", "write numbers as digits",
+                       "count not in the profile data"):
+            self.assertFalse([f for f in failures if phrase in f], phrase)
+
+    def test_the_words_of_the_paper_list_do_not_count_toward_the_limit(self):
+        long_list = PAPER_LIST + "".join("- Paper {} title with many words in it. Cell, 2012. doi:10.0000/x{} "
+                                         "(published text)\n".format(i, i) for i in range(200))
+        self.assertGreater(len(long_list.split()), cc.LIMITS["card"]["words"])
+        self.assertEqual(check(CARD + "\n" + long_list), [])
+
+    def test_a_number_outside_the_paper_list_still_fails(self):
+        failures = check(CARD.replace("uses 12 papers", "uses 73 papers") + "\n" + PAPER_LIST)
+        self.assertIn("number not in the profile data: 73", failures)
+
+    def test_a_quote_before_the_paper_list_is_still_checked(self):
+        failures = check(CARD.replace("Plain comparisons", '"Spores fly at night" (doi:10.0000/fern.2) Plain') +
+                         "\n" + PAPER_LIST)
+        self.assertTrue(any(f.startswith("quote not among the verified quotes") for f in failures))
+
+    def test_a_missing_heading_before_the_paper_list_still_fails(self):
+        failures = check(CARD.replace("## Caveats", "## Notes") + "\n" + PAPER_LIST)
+        self.assertTrue(any("headings must be" in f for f in failures))
+
+    def test_the_papers_heading_before_caveats_fails(self):
+        moved = CARD.replace("## Caveats", PAPER_LIST + "\n## Caveats")
+        failures = check(moved)
+        self.assertTrue(failures)
+        self.assertTrue(any("## Papers" in f and "last" in f for f in failures))
+
+    def test_the_papers_heading_followed_by_another_heading_fails(self):
+        failures = check(CARD + "\n" + PAPER_LIST + "\n## Notes\n\nA note.\n")
+        self.assertTrue(any("## Papers" in f and "last" in f for f in failures))
+
+    def test_two_papers_sections_fail(self):
+        failures = check(CARD + "\n" + PAPER_LIST + "\n" + PAPER_LIST)
+        self.assertTrue(any("## Papers" in f and "last" in f for f in failures))
+
+    def test_a_papers_heading_with_trailing_spaces_counts(self):
+        self.assertEqual(check(CARD + "\n" + PAPER_LIST.replace("## Papers", "## Papers  ", 1)), [])
+
+    def test_a_heading_that_only_starts_with_papers_is_another_heading(self):
+        failures = check(CARD + "\n## Papers and notes\n\nText.\n")
+        self.assertTrue(any("headings must be" in f for f in failures))
+
+    def test_the_principles_check_ignores_the_paper_list_too(self):
+        text = ("# Principles\n\n## Shared moves\n9 of 12 titles state a claim.\n\n"
+                "## Distinctive moves\nPlain text.\n\n" + PAPER_LIST)
+        self.assertEqual(check(text, kind="principles"), [])
+
+
 if __name__ == "__main__":
     unittest.main()

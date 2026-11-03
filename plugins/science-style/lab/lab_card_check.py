@@ -6,6 +6,9 @@ most 25 words and is a contiguous part of a verified quote in a profile, with th
 Outside the quotes, every number occurs in the profile data, except the numbers of the phrases
 "per 100" and "per 1,000". A count written "N of M", "N out of M" or "N/M" is a (count,
 denominator) pair of one profile. The text writes numbers as digits and states no percentage.
+
+The script `references` adds the section `## Papers` at the end of a card. Every check ignores the
+text from the line `## Papers` to the end, and the section must be the last level-2 heading.
 """
 import math
 import re
@@ -16,6 +19,7 @@ from lab_text import normalize_for_match, words
 CARD_HEADINGS = ("Sample", "Storyline", "Introduction", "Results", "Excitement", "Limitations", "Discussion",
                  "Sentences and words", "Signature moves", "Caveats")
 PRINCIPLES_HEADINGS = ("Shared moves", "Distinctive moves")
+PAPERS_HEADING = "## Papers"
 LIMITS = {"card": {"words": 900, "quotes": 20, "per_doi": 2},
           "principles": {"words": 1200, "quotes": 20, "per_doi": 2}}
 MAX_QUOTE_WORDS = 25
@@ -167,11 +171,31 @@ def _number_word_failures(prose):
     return found
 
 
+def papers_offset(text):
+    """Return the offset of the first line that is the heading `## Papers`, or None."""
+    offset = 0
+    for line in text.splitlines(True):
+        if line.rstrip() == PAPERS_HEADING:
+            return offset
+        offset += len(line)
+    return None
+
+
 def check_text(text, kind, profiles):
-    """Return the failures of a card (kind "card") or a principles file (kind "principles")."""
+    """Return the failures of a card (kind "card") or a principles file (kind "principles").
+
+    The text from the line `## Papers` to the end is the paper list that `references` writes. No check
+    reads it, except that no other level-2 heading may follow its heading.
+    """
     failures = []
     text = text.replace("\u201c", '"').replace("\u201d", '"')
     limits = LIMITS[kind]
+    cut = papers_offset(text)
+    if cut is not None:
+        if any(line.startswith("## ") for line in text[cut:].splitlines()[1:]):
+            failures.append("the heading {} must be the last level-2 heading, and it may stand once".format(
+                PAPERS_HEADING))
+        text = text[:cut]
     expected = CARD_HEADINGS if kind == "card" else PRINCIPLES_HEADINGS
     headings = tuple(line[3:].strip() for line in text.splitlines() if line.startswith("## "))
     if headings != expected:

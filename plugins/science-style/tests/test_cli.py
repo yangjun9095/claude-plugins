@@ -185,6 +185,71 @@ class PipelineTests(unittest.TestCase):
         self.assertEqual(self.run_lab("check-quotes", "ada", "--pilot"), 1)
         self.assertIn("ada: 3 papers checked", self.out.getvalue())
 
+    def build_profiles(self):
+        self.fetch_everyone()
+        checklist = lab_checklist.load_checklist()
+        for person, ids in (("ada", ["W1", "W2", "W3"]), ("ben", ["W4", "W5"])):
+            for wid in ids:
+                paper = lp.read_json(lp.paper_path(self.data, person, wid))
+                lp.write_json(lp.extraction_path(self.data, person, wid),
+                              make_extraction(paper, checklist, group=paper["group"]))
+        self.assertEqual(self.run_lab("aggregate", "--all", "--pilot"), 0)
+
+    def write_card(self, person):
+        profile = lp.read_json(os.path.join(self.data, "pilot", "profiles", person + ".json"))
+        path = os.path.join(self.data, "pilot", "profiles", person + ".md")
+        with open(path, "w", encoding="utf-8") as handle:
+            handle.write(card_for(profile))
+        return path
+
+    def read(self, path):
+        with open(path, encoding="utf-8") as handle:
+            return handle.read()
+
+    def test_references_adds_the_paper_list_after_the_card_check(self):
+        self.build_profiles()
+        path = self.write_card("ada")
+        card = self.read(path)
+        self.assertEqual(self.run_lab("check-card", "ada", "--pilot"), 0)
+        self.assertEqual(self.run_lab("references", "ada", "--pilot"), 0)
+        self.assertIn("ada: 3 papers listed", self.out.getvalue())
+        text = self.read(path)
+        self.assertTrue(text.startswith(card))
+        self.assertEqual(text.count("## Papers"), 1)
+        self.assertTrue(text[len(card):].lstrip("\n").startswith("## Papers\n\nThe card rests on these 3 papers.\n"))
+        lines = [line for line in text.splitlines() if line.startswith("- ")]
+        self.assertEqual([line.split(".")[0] for line in lines],
+                         ["- Moss dries on rocks", "- Spores swell in water", "- Coats split along a seam"])
+        self.assertTrue(all(line.endswith(" text)") and " doi:" in line for line in lines))
+        self.assertEqual(self.run_lab("check-card", "ada", "--pilot"), 0)
+        self.assertEqual(self.run_lab("references", "ada", "--pilot"), 0)
+        self.assertEqual(self.read(path), text)
+
+    def test_references_writes_nothing_outside_the_pilot_folder(self):
+        self.build_profiles()
+        self.write_card("ada")
+        self.assertEqual(self.run_lab("references", "ada", "--pilot"), 0)
+        self.assertFalse(os.path.exists(os.path.join(lp.PLUGIN_ROOT, "profiles", "ada.md")))
+
+    def test_references_needs_a_card_a_profile_and_a_known_person(self):
+        self.build_profiles()
+        self.assertEqual(self.run_lab("references", "ada", "--pilot"), 2)
+        self.assertIn("ada.md", self.err.getvalue())
+        self.assertEqual(self.run_lab("references", "nobody", "--pilot"), 2)
+        self.assertEqual(self.run_lab("references", "--pilot"), 2)
+        self.write_card("ada")
+        os.remove(os.path.join(self.data, "pilot", "profiles", "ada.json"))
+        self.err = io.StringIO()
+        self.assertEqual(self.run_lab("references", "ada", "--pilot"), 2)
+        self.assertIn("run aggregate first", self.err.getvalue())
+
+    def test_references_changes_no_card_when_one_target_fails(self):
+        self.build_profiles()
+        path = self.write_card("ada")
+        card = self.read(path)
+        self.assertEqual(self.run_lab("references", "--all", "--pilot"), 2)
+        self.assertEqual(self.read(path), card)
+
     def test_a_truncated_manifest_is_exit_code_2(self):
         folder = lp.ensure_dir(self.data, "pilot", "manifests")
         with open(os.path.join(folder, "ada.json"), "w", encoding="utf-8") as handle:
@@ -387,6 +452,13 @@ class TeamPipelineTests(unittest.TestCase):
         self.assertEqual(profile["name"], TEAM["name"])
         with open(os.path.join(self.data, "pilot", "profiles", "ada-ben.md"), "w", encoding="utf-8") as handle:
             handle.write(card_for(profile))
+        self.assertEqual(self.run_lab("check-card", "ada-ben", "--pilot"), 0)
+        self.assertEqual(self.run_lab("references", "ada-ben", "--pilot"), 0)
+        with open(os.path.join(self.data, "pilot", "profiles", "ada-ben.md"), encoding="utf-8") as handle:
+            lines = [line for line in handle.read().splitlines() if line.startswith("- ")]
+        self.assertEqual(len(lines), 2)
+        self.assertTrue(lines[0].startswith("- A shared atlas of ferns. Cell Systems, 2018. doi:10.0000/w4 ("))
+        self.assertTrue(lines[1].startswith("- Ferns and mosses compared. Nature Genetics, 2020. doi:10.0000/w7 ("))
         self.assertEqual(self.run_lab("check-card", "ada-ben", "--pilot"), 0)
         self.assertEqual(self.run_lab("quality", "--pilot"), 0)
         with open(os.path.join(self.data, "pilot", "profiles", "quality.md"), encoding="utf-8") as handle:

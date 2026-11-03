@@ -32,6 +32,7 @@ In Claude Code, run `/style-lab <person ids> --pilot` for a pilot, then `/style-
 | `check-quotes` | Checks every quote of every extraction against its paper. |
 | `aggregate` | Writes the profile data. |
 | `check-card` | Checks a card or the principles file against the profile data. |
+| `references` | Adds the list of the papers behind a card as the last section, `## Papers`. |
 | `quality` | Writes `profiles/quality.md`. |
 | `status` | Shows the state of each person. |
 

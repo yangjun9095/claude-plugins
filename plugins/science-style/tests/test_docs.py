@@ -258,6 +258,30 @@ class TeamDocumentTests(unittest.TestCase):
         self.assertIn("shendure-trapnell", read(PLUGIN, "README.md"))
 
 
+PAPERS_SENTENCE = "The script adds the `## Papers` section after the check, so do not write it."
+
+
+class PapersDocumentTests(unittest.TestCase):
+    def test_the_card_brief_says_that_the_script_adds_the_papers_section(self):
+        text = " ".join(read(PLUGIN, "prompts", "card.md").split())
+        self.assertIn(PAPERS_SENTENCE, text)
+        self.assertLessEqual(len(PAPERS_SENTENCE.split()), 20)
+
+    def test_the_card_brief_does_not_list_papers_among_its_headings(self):
+        text = read(PLUGIN, "prompts", "card.md")
+        self.assertEqual(text.count("`## Papers`"), 1)
+        self.assertNotIn("11. `## Papers`", text)
+
+    def test_the_command_runs_references_after_the_card_check(self):
+        text = read(PLUGIN, "commands", "style-lab.md")
+        step = re.search(r"^\d+\. \*\*Cards\.\*\*.*$", text, re.M).group(0)
+        self.assertIn("style_lab.py references <person>", step)
+        self.assertLess(step.index("style_lab.py check-card <person>"), step.index("style_lab.py references <person>"))
+
+    def test_the_readme_lists_the_references_step(self):
+        self.assertIn("| `references` |", read(PLUGIN, "README.md"))
+
+
 class CommandTests(unittest.TestCase):
     def setUp(self):
         self.text = read(PLUGIN, "commands", "style-lab.md")

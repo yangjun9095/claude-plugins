@@ -19,6 +19,7 @@ import lab_http  # noqa: E402
 import lab_openalex  # noqa: E402
 import lab_paths  # noqa: E402
 import lab_quotes  # noqa: E402
+import lab_references  # noqa: E402
 import lab_registry  # noqa: E402
 import lab_sample  # noqa: E402
 import lab_surface  # noqa: E402
@@ -55,7 +56,8 @@ def build_parser():
                             ("fetch", "fetch the full texts"), ("normalize", "rebuild paper files from the cache"),
                             ("surface", "measure the surface layer"), ("select", "list the agreement or spot set"),
                             ("check-quotes", "check the quotes of the extractions"),
-                            ("aggregate", "write the profile data")):
+                            ("aggregate", "write the profile data"),
+                            ("references", "add the list of papers to the end of cards")):
         commands[name] = sub.add_parser(name, help=help_text)
         if name == "select":
             commands[name].add_argument("kind", choices=("agreement", "spot"))
@@ -344,6 +346,31 @@ def cmd_check_card(ctx):
     return 1 if total else 0
 
 
+def cmd_references(ctx):
+    """Write the section `## Papers` at the end of each chosen card.
+
+    The command checks every target before it writes, so an error leaves every card as it was.
+    """
+    work = []
+    for person in ctx.selected():
+        manifest = ctx.load_manifest(person["id"])
+        if not os.path.exists(ctx.profile_path(person["id"])):
+            raise UsageError("no profile for {}: run aggregate first".format(person["id"]))
+        card = ctx.profile_path(person["id"], ".md")
+        if not os.path.exists(card):
+            raise UsageError("no file " + card)
+        profile = lab_paths.read_json(ctx.profile_path(person["id"]))
+        try:
+            lab_references.papers_section(manifest, profile)
+        except lab_references.ReferencesError as exc:
+            raise UsageError("{}: {}".format(person["id"], exc))
+        work.append((person["id"], card, manifest, profile))
+    for person_id, card, manifest, profile in work:
+        count = lab_references.update_card(card, manifest, profile)
+        ctx.say("{}: {} papers listed".format(person_id, count))
+    return 0
+
+
 def read_spot(path):
     """Return the marks of a spot file, or raise UsageError.
 
@@ -397,7 +424,7 @@ def cmd_status(ctx):
 HANDLERS = {"candidates": cmd_candidates, "discover": cmd_discover, "sample": cmd_sample, "fetch": cmd_fetch,
             "normalize": cmd_normalize, "surface": cmd_surface, "select": cmd_select,
             "check-quotes": cmd_check_quotes, "aggregate": cmd_aggregate, "check-card": cmd_check_card,
-            "quality": cmd_quality, "status": cmd_status}
+            "references": cmd_references, "quality": cmd_quality, "status": cmd_status}
 
 
 def main(argv=None, http_factory=None, environ=None, out=None, err=None):

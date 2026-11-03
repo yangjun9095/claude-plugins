@@ -30,7 +30,7 @@ A team card names its members in the title line, and its Caveats say that the ca
 7. Write a DOI tag only right after its quote. Do not quote a paper whose DOI contains a parenthesis. Choose a quote from another paper.
 8. Use at most 2 quotes from one paper and at most 20 quotes in the card.
 9. Keep the card to at most 900 words. Aim for about 800 words. The check counts the headings and the quotes.
-10. Use no level-2 heading other than the ten above. Do not number list items.
+10. Use no level-2 heading other than the ten above. Do not number list items. The script adds the `## Papers` section after the check, so do not write it.
 11. When the `stability` of an item says `"stable": false`, state no pattern from that item. Say that the checklist could not measure it reliably.
 12. When `stable` is `null`, the item had no agreement pairs. State no pattern from it. Storyline, explanations and signature_phrases have no stability entry; you may describe them.
 13. When `distinctive_note` is not empty, say in `## Sentences and words` that the distinctive words could not be computed, and why. Give the reason in words. Do not repeat a number from the note.
