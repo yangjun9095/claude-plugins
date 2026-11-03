@@ -1,6 +1,6 @@
 ---
 name: science-write
-description: Use when drafting or revising a manuscript section, an abstract, a blog post or grant text and the author asks to follow the writing habits of a scientist that the science-style lab profiled (Garcia, Royer, Shendure, Trapnell, Pinello, Zou, Rives), or the principles they share.
+description: Use when drafting or revising a manuscript section, an abstract, a blog post or grant text and the author asks to follow the writing habits of a scientist that the science-style lab profiled (Garcia, Royer, Shendure, Trapnell, Pinello, Zou, Rives), the joint papers of Shendure and Trapnell, or the principles they share.
 ---
 
 # Science write (prototype)
