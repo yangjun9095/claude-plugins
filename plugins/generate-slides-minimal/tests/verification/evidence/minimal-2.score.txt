@@ -1,0 +1,28 @@
+settings: profile=peers minutes=12 theme=light notes=on
+findings:
+slide 2: title-sentence: warn: T3: the title has 22 words; use 6 to 20 words
+ghost deck:
+slide 1: The Osprey score picks designs that bind Target T
+slide 2: The Osprey score picked designs that bound Target T: the hit rate rose from 20 percent to 70 percent across four rounds.
+slide 3: Only 20 percent of Round 1 designs bound Target T.
+slide 4: The Osprey score ranks each design before the assay.
+slide 5: The hit rate rose from 20 percent in Round 1 to 70 percent in Round 4.
+slide 6: Binding signal rose with the Osprey score across the 40 designs.
+slide 7: Designed peptides beat control peptides on all five targets.
+slide 8: The Batched pipeline cost 41 units per design against 100 for the Manual pipeline.
+slide 9: Three results support the message of this talk.
+slide 10: The reference design gave a stronger signal at each higher concentration.
+slide 11: The longest peptide gave 24.9 au and the shortest gave 60.6 au.
+words per slide:
+slide 1: 6 words
+slide 2: 17 words
+slide 3: 14 words
+slide 4: 16 words
+slide 5: 4 words
+slide 6: 11 words
+slide 7: 6 words
+slide 8: 5 words
+slide 9: 51 words
+slide 10: 7 words
+slide 11: 10 words
+errors: 0 warnings: 1

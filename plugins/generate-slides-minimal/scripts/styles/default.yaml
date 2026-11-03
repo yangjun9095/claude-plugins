@@ -1,0 +1,77 @@
+# Default values for generate-slides-minimal.
+# The loader merges this file first, then the theme, then the profile,
+# then the project file slide-style-minimal.yaml.
+# Sizes are in points. Layout values are in inches on a 13.333 x 7.5 slide.
+
+typography:
+  body_font: "Avenir Light"
+  code_font: "PT Mono"
+  title_size: 28
+  body_size: 24
+  callout_size: 20
+  source_size: 12
+  big_number_size: 96
+  label_size: 24
+
+layout:
+  slide_width: 13.333
+  slide_height: 7.5
+  margin: 0.8
+  title_top: 0.3
+  title_height: 0.95
+  content_top: 1.5
+  content_bottom: 6.7
+  evidence_width: 7.7
+  evidence_height: 5.2
+  callout_left: 8.95
+  rule_width: 0.03
+
+style:
+  use_bold: false
+
+colors:
+  # The Okabe-Ito palette. A theme file does not change it.
+  data_palette:
+    - "#000000"
+    - "#E69F00"
+    - "#56B4E9"
+    - "#009E73"
+    - "#F0E442"
+    - "#0072B2"
+    - "#D55E00"
+    - "#CC79A7"
+  # Grey for context data.
+  context: "#9CA3AF"
+
+# The lint baseline. It holds the numbers of the peers profile.
+# A profile file lists only the numbers that differ from this baseline.
+# Each rule has a tier, the evidence grade from
+# references/research-notes/measurable.md.
+#   T1  a standard or a study backs the number.
+#   T2  a named source states the number and cites no evidence.
+#   T3  folklore, derived by the author, or no source.
+lint:
+  title_words: {min: 6, max: 20, tier: T3}
+  words_per_slide: {warn: 25, error: 40, tier: T3}
+  bullets_per_list: {max: 4, tier: T2}
+  lists_per_slide: {max: 1, tier: T2}
+  objects_per_slide: {max: 6, tier: T2}
+  lines_per_paragraph: {max: 2, tier: T2}
+  body_font: {error_below: 18, warn_below: 24, secondary_warn_below: 20, tier: T2}
+  take_home_words: {max_claim: 15, max_baseline: 15, tier: T3}
+  title_font: {warn_below: 28, tier: T2}
+  source_font: {warn_below: 12, tier: T3}
+  fonts_per_slide: {families: 2, sizes: 3, tier: T2}
+  text_contrast: {error_below: 3.0, warn_below: 4.5, large_text_pt: 18, tier: T1}
+  mark_contrast: {warn_below: 3.0, tier: T1}
+  inside_slide: {tier: T3}
+  margin: {warn_below_in: 0.5, tier: T3}
+  aspect: {ratio: 1.7778, tolerance: 0.01, tier: T2}
+  picture_ppi: {warn_below: 144, tier: T3}
+  alt_text: {tier: T2}
+  slide_count: {per_minute: 1.0, tier: T2}
+  take_homes: {max: 3, tier: T2}
+  roadmap_sections: {max: 5, tier: T2}
+  notes: {redundancy_above: 0.8, tier: T3}
+  title_unique: {tier: T2}
+  red_green: {tier: T2}

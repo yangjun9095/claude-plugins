@@ -1,0 +1,12 @@
+slide 1: The Osprey score picks designs that bind Target T
+slide 2: A score that ranks designs before the assay helps only if high scores mean binding
+slide 3: The Kestrel assay scored 40 filtered designs, and a hit is a signal of at least 50 au
+slide 4: The hit rate rose from 20 percent to 70 percent in four rounds
+slide 5: All 6 designs with an Osprey score of 9 or higher were hits
+slide 6: On Target C the designed set beat the control, 80 percent to 10 percent
+slide 7: The Batched pipeline cost 41 units per design, against 100 units for the Manual pipeline
+slide 8: The study ran once on one plate layout, and the controls were not matched for length
+slide 9: The next run repeats the assay on a second plate layout with length-matched controls
+slide 10: Three results support the message: the hit rate rose, the designs beat the control, the cost fell
+slide 11: Backup: At 60 minutes the reference design read 94.5 au at 25 uM and 27.7 au at 1 uM
+slide 12: Backup: Binding signal fell with peptide length, 24.9 au at 40 residues and 60.6 au at 8 residues

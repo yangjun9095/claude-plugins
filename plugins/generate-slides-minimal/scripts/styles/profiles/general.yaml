@@ -1,0 +1,15 @@
+# Profile for a general audience. It lists only the numbers that differ from peers.
+# The baseline in default.yaml supplies every other number and every tier.
+
+lint:
+  words_per_slide: {warn: 15, error: 25}
+  body_font: {warn_below: 28, secondary_warn_below: 24}
+  objects_per_slide: {max: 4}
+
+# The general floors for body text (28 pt) and secondary text (24 pt) are above the default sizes of the helpers.
+# The helpers read these three sizes, so a deck that they build from this profile meets the floors.
+# The label of a big number is primary text, so it takes the body floor.
+typography:
+  body_size: 28
+  callout_size: 24
+  label_size: 28

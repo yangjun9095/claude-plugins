@@ -1,0 +1,15 @@
+slide 1: The Osprey score picks designs that bind Target T
+slide 2: A score helps only if its top-ranked designs bind Target T in the assay
+slide 3: Each design gets an Osprey score, passes the Mallard filter, and is assayed
+slide 4: The Kestrel assay reads binding at 60 minutes, and a hit needs at least 50 au
+slide 5: Three comparisons carry the result, and each one has its own baseline
+slide 6: The hit rate rose from 20 percent in Round 1 to 70 percent in Round 4
+slide 7: Designs with higher Osprey scores gave hits more often
+slide 8: On Target C the designed set beat the control, 80 percent to 10 percent
+slide 9: The Batched pipeline cost 41 units per design against 100 for the Manual pipeline
+slide 10: One plate layout and unmatched control lengths limit what these results show
+slide 11: The next test needs a second plate layout and length-matched controls
+slide 12: Higher Osprey scores gave more hits, and the hit rate rose from 20 to 70 percent
+slide 13: Longer peptides gave lower binding signals in the Heron set
+slide 14: Higher Osprey scores went with higher melting temperatures
+slide 15: Expression yield ranged from 9 mg/L for Design 5 to 44 mg/L for Design 4
