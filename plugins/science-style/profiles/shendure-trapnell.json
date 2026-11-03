@@ -1,0 +1,4533 @@
+{
+ "by_cell": {
+  "senior/high": 12,
+  "senior/other": 3
+ },
+ "by_group": {
+  "senior": 15
+ },
+ "by_tier": {
+  "high": 12,
+  "other": 3
+ },
+ "checklist_version": 2,
+ "distinctive_note": "",
+ "distinctive_pairs": [
+  [
+   "single cell",
+   10.33
+  ],
+  [
+   "supplementary fig",
+   9.08
+  ],
+  [
+   "data fig",
+   7.85
+  ],
+  [
+   "of cells",
+   7.62
+  ],
+  [
+   "extended data",
+   7.5
+  ],
+  [
+   "e g",
+   5.46
+  ],
+  [
+   "fig supplementary",
+   5.35
+  ],
+  [
+   "each cell",
+   5.3
+  ],
+  [
+   "we identified",
+   5.24
+  ],
+  [
+   "cells and",
+   5.23
+  ],
+  [
+   "supplementary table",
+   5.15
+  ],
+  [
+   "cells in",
+   5.07
+  ],
+  [
+   "sought to",
+   4.83
+  ],
+  [
+   "changes in",
+   4.82
+  ],
+  [
+   "cells were",
+   4.73
+  ],
+  [
+   "enriched for",
+   4.4
+  ],
+  [
+   "cells with",
+   4.35
+  ],
+  [
+   "consistent with",
+   4.17
+  ],
+  [
+   "that were",
+   4.14
+  ],
+  [
+   "of single",
+   3.92
+  ]
+ ],
+ "distinctive_words": [
+  [
+   "cells",
+   22.33
+  ],
+  [
+   "cell",
+   21.87
+  ],
+  [
+   "were",
+   13.84
+  ],
+  [
+   "types",
+   12.61
+  ],
+  [
+   "fig",
+   11.48
+  ],
+  [
+   "mouse",
+   11.04
+  ],
+  [
+   "genes",
+   11.0
+  ],
+  [
+   "chromatin",
+   10.18
+  ],
+  [
+   "type",
+   10.09
+  ],
+  [
+   "accessibility",
+   9.64
+  ],
+  [
+   "trajectory",
+   8.37
+  ],
+  [
+   "supplementary",
+   7.76
+  ],
+  [
+   "single",
+   7.64
+  ],
+  [
+   "differentiation",
+   7.63
+  ],
+  [
+   "identified",
+   7.23
+  ],
+  [
+   "perturbation",
+   6.98
+  ],
+  [
+   "markers",
+   6.86
+  ],
+  [
+   "organs",
+   6.42
+  ],
+  [
+   "profiles",
+   6.39
+  ],
+  [
+   "vs",
+   6.38
+  ],
+  [
+   "major",
+   6.25
+  ],
+  [
+   "expressed",
+   6.16
+  ],
+  [
+   "cluster",
+   6.04
+  ],
+  [
+   "enriched",
+   5.97
+  ],
+  [
+   "changes",
+   5.97
+  ],
+  [
+   "linked",
+   5.76
+  ],
+  [
+   "extended",
+   5.67
+  ],
+  [
+   "trajectories",
+   5.61
+  ],
+  [
+   "perturbations",
+   5.48
+  ],
+  [
+   "experiment",
+   5.44
+  ]
+ ],
+ "items": {
+  "abstract_moves": {
+   "value": {
+    "all": {
+     "approach": 15,
+     "context": 15,
+     "gap": 10,
+     "implication": 11,
+     "result": 14
+    },
+    "by_group": {
+     "senior": {
+      "approach": 15,
+      "context": 15,
+      "gap": 10,
+      "implication": 11,
+      "result": 14
+     }
+    },
+    "by_tier": {
+     "high": {
+      "approach": 12,
+      "context": 12,
+      "gap": 8,
+      "implication": 9,
+      "result": 11
+     },
+     "other": {
+      "approach": 3,
+      "context": 3,
+      "gap": 2,
+      "implication": 2,
+      "result": 3
+     }
+    },
+    "first": {
+     "context": 15
+    },
+    "last": {
+     "approach": 2,
+     "implication": 11,
+     "result": 2
+    },
+    "n": 15,
+    "n_by_group": {
+     "senior": 15
+    },
+    "n_by_tier": {
+     "high": 12,
+     "other": 3
+    }
+   }
+  },
+  "discussion_moves": {
+   "value": {
+    "all": {
+     "comparison with prior work": 10,
+     "future work": 13,
+     "implication": 14,
+     "limitation": 12,
+     "mechanism": 6,
+     "other": 2,
+     "summary": 13
+    },
+    "by_group": {
+     "senior": {
+      "comparison with prior work": 10,
+      "future work": 13,
+      "implication": 14,
+      "limitation": 12,
+      "mechanism": 6,
+      "other": 2,
+      "summary": 13
+     }
+    },
+    "by_tier": {
+     "high": {
+      "comparison with prior work": 7,
+      "future work": 10,
+      "implication": 11,
+      "limitation": 9,
+      "mechanism": 3,
+      "other": 2,
+      "summary": 10
+     },
+     "other": {
+      "comparison with prior work": 3,
+      "future work": 3,
+      "implication": 3,
+      "limitation": 3,
+      "mechanism": 3,
+      "summary": 3
+     }
+    },
+    "first": {
+     "comparison with prior work": 2,
+     "other": 1,
+     "summary": 11
+    },
+    "last": {
+     "future work": 8,
+     "implication": 4,
+     "limitation": 1,
+     "mechanism": 1
+    },
+    "n": 15,
+    "n_by_group": {
+     "senior": 15
+    },
+    "n_by_tier": {
+     "high": 12,
+     "other": 3
+    }
+   }
+  },
+  "essay_argument": {
+   "call_to_action": {
+    "all": {},
+    "by_group": {},
+    "by_tier": {},
+    "n": 0,
+    "n_by_group": {},
+    "n_by_tier": {}
+   },
+   "thesis_location": {
+    "all": {},
+    "by_group": {},
+    "by_tier": {},
+    "n": 0,
+    "n_by_group": {},
+    "n_by_tier": {}
+   }
+  },
+  "excitement": {
+   "value.location": {
+    "all": {
+     "abstract": 14,
+     "discussion": 14,
+     "introduction": 9,
+     "results": 15
+    },
+    "by_group": {
+     "senior": {
+      "abstract": 14,
+      "discussion": 14,
+      "introduction": 9,
+      "results": 15
+     }
+    },
+    "by_tier": {
+     "high": {
+      "abstract": 11,
+      "discussion": 11,
+      "introduction": 7,
+      "results": 12
+     },
+     "other": {
+      "abstract": 3,
+      "discussion": 3,
+      "introduction": 2,
+      "results": 3
+     }
+    },
+    "n": 15,
+    "n_by_group": {
+     "senior": 15
+    },
+    "n_by_tier": {
+     "high": 12,
+     "other": 3
+    }
+   },
+   "value.marker": {
+    "all": {
+     "evaluative word": 15,
+     "first or novelty claim": 9,
+     "implication sentence": 14,
+     "scope claim": 13
+    },
+    "by_group": {
+     "senior": {
+      "evaluative word": 15,
+      "first or novelty claim": 9,
+      "implication sentence": 14,
+      "scope claim": 13
+     }
+    },
+    "by_tier": {
+     "high": {
+      "evaluative word": 12,
+      "first or novelty claim": 7,
+      "implication sentence": 11,
+      "scope claim": 11
+     },
+     "other": {
+      "evaluative word": 3,
+      "first or novelty claim": 2,
+      "implication sentence": 3,
+      "scope claim": 2
+     }
+    },
+    "n": 15,
+    "n_by_group": {
+     "senior": 15
+    },
+    "n_by_tier": {
+     "high": 12,
+     "other": 3
+    }
+   }
+  },
+  "figure_reference": {
+   "value": {
+    "all": {
+     "result then reference": 15
+    },
+    "by_group": {
+     "senior": {
+      "result then reference": 15
+     }
+    },
+    "by_tier": {
+     "high": {
+      "result then reference": 12
+     },
+     "other": {
+      "result then reference": 3
+     }
+    },
+    "n": 15,
+    "n_by_group": {
+     "senior": 15
+    },
+    "n_by_tier": {
+     "high": 12,
+     "other": 3
+    }
+   }
+  },
+  "gap_sentence": {
+   "value": {
+    "all": {
+     "none": 1,
+     "present": 14
+    },
+    "by_group": {
+     "senior": {
+      "none": 1,
+      "present": 14
+     }
+    },
+    "by_tier": {
+     "high": {
+      "none": 1,
+      "present": 11
+     },
+     "other": {
+      "present": 3
+     }
+    },
+    "n": 15,
+    "n_by_group": {
+     "senior": 15
+    },
+    "n_by_tier": {
+     "high": 12,
+     "other": 3
+    }
+   }
+  },
+  "here_we": {
+   "value": {
+    "all": {
+     "none": 4,
+     "present": 11
+    },
+    "by_group": {
+     "senior": {
+      "none": 4,
+      "present": 11
+     }
+    },
+    "by_tier": {
+     "high": {
+      "none": 4,
+      "present": 8
+     },
+     "other": {
+      "present": 3
+     }
+    },
+    "n": 15,
+    "n_by_group": {
+     "senior": 15
+    },
+    "n_by_tier": {
+     "high": 12,
+     "other": 3
+    }
+   }
+  },
+  "intro_roles": {
+   "value": {
+    "all": {
+     "approach preview": 4,
+     "field": 8,
+     "gap": 13,
+     "here-we": 11,
+     "other": 1,
+     "prior work": 4,
+     "problem": 2,
+     "result preview": 3
+    },
+    "by_group": {
+     "senior": {
+      "approach preview": 4,
+      "field": 8,
+      "gap": 13,
+      "here-we": 11,
+      "other": 1,
+      "prior work": 4,
+      "problem": 2,
+      "result preview": 3
+     }
+    },
+    "by_tier": {
+     "high": {
+      "approach preview": 3,
+      "field": 6,
+      "gap": 10,
+      "here-we": 8,
+      "other": 1,
+      "prior work": 2,
+      "problem": 1,
+      "result preview": 1
+     },
+     "other": {
+      "approach preview": 1,
+      "field": 2,
+      "gap": 3,
+      "here-we": 3,
+      "prior work": 2,
+      "problem": 1,
+      "result preview": 2
+     }
+    },
+    "first": {
+     "field": 8,
+     "gap": 6
+    },
+    "last": {
+     "approach preview": 2,
+     "gap": 2,
+     "here-we": 5,
+     "other": 1,
+     "prior work": 2,
+     "result preview": 2
+    },
+    "n": 15,
+    "n_by_group": {
+     "senior": 15
+    },
+    "n_by_tier": {
+     "high": 12,
+     "other": 3
+    }
+   }
+  },
+  "limitations": {
+   "placement": {
+    "all": {
+     "inline in body": 2,
+     "inline in discussion": 3,
+     "inline in results": 4,
+     "own paragraph": 4,
+     "own section": 2
+    },
+    "by_group": {
+     "senior": {
+      "inline in body": 2,
+      "inline in discussion": 3,
+      "inline in results": 4,
+      "own paragraph": 4,
+      "own section": 2
+     }
+    },
+    "by_tier": {
+     "high": {
+      "inline in body": 2,
+      "inline in discussion": 2,
+      "inline in results": 2,
+      "own paragraph": 4,
+      "own section": 2
+     },
+     "other": {
+      "inline in discussion": 1,
+      "inline in results": 2
+     }
+    },
+    "n": 15,
+    "n_by_group": {
+     "senior": 15
+    },
+    "n_by_tier": {
+     "high": 12,
+     "other": 3
+    }
+   },
+   "specificity": {
+    "all": {
+     "specific": 2,
+     "specific with a remedy": 13
+    },
+    "by_group": {
+     "senior": {
+      "specific": 2,
+      "specific with a remedy": 13
+     }
+    },
+    "by_tier": {
+     "high": {
+      "specific": 2,
+      "specific with a remedy": 10
+     },
+     "other": {
+      "specific with a remedy": 3
+     }
+    },
+    "n": 15,
+    "n_by_group": {
+     "senior": 15
+    },
+    "n_by_tier": {
+     "high": 12,
+     "other": 3
+    }
+   }
+  },
+  "results_headings": {
+   "value": {
+    "all": {
+     "full-sentence claim": 3,
+     "none": 3,
+     "noun phrase": 9
+    },
+    "by_group": {
+     "senior": {
+      "full-sentence claim": 3,
+      "none": 3,
+      "noun phrase": 9
+     }
+    },
+    "by_tier": {
+     "high": {
+      "full-sentence claim": 1,
+      "none": 3,
+      "noun phrase": 8
+     },
+     "other": {
+      "full-sentence claim": 2,
+      "noun phrase": 1
+     }
+    },
+    "n": 15,
+    "n_by_group": {
+     "senior": 15
+    },
+    "n_by_tier": {
+     "high": 12,
+     "other": 3
+    }
+   }
+  },
+  "results_openings": {
+   "value": {
+    "all": {
+     "aim": 12,
+     "method first": 15,
+     "result first": 6
+    },
+    "by_group": {
+     "senior": {
+      "aim": 12,
+      "method first": 15,
+      "result first": 6
+     }
+    },
+    "by_tier": {
+     "high": {
+      "aim": 9,
+      "method first": 12,
+      "result first": 4
+     },
+     "other": {
+      "aim": 3,
+      "method first": 3,
+      "result first": 2
+     }
+    },
+    "first": {
+     "aim": 9,
+     "method first": 6
+    },
+    "last": {
+     "aim": 8,
+     "method first": 5,
+     "result first": 2
+    },
+    "n": 15,
+    "n_by_group": {
+     "senior": 15
+    },
+    "n_by_tier": {
+     "high": 12,
+     "other": 3
+    }
+   }
+  },
+  "strongest_claim": {
+   "value": {
+    "all": {
+     "hedged": 12,
+     "unhedged": 3
+    },
+    "by_group": {
+     "senior": {
+      "hedged": 12,
+      "unhedged": 3
+     }
+    },
+    "by_tier": {
+     "high": {
+      "hedged": 10,
+      "unhedged": 2
+     },
+     "other": {
+      "hedged": 2,
+      "unhedged": 1
+     }
+    },
+    "n": 15,
+    "n_by_group": {
+     "senior": 15
+    },
+    "n_by_tier": {
+     "high": 12,
+     "other": 3
+    }
+   }
+  },
+  "title_form": {
+   "value": {
+    "all": {
+     "claim": 3,
+     "method name": 2,
+     "topic": 10
+    },
+    "by_group": {
+     "senior": {
+      "claim": 3,
+      "method name": 2,
+      "topic": 10
+     }
+    },
+    "by_tier": {
+     "high": {
+      "claim": 2,
+      "method name": 2,
+      "topic": 8
+     },
+     "other": {
+      "claim": 1,
+      "topic": 2
+     }
+    },
+    "n": 15,
+    "n_by_group": {
+     "senior": 15
+    },
+    "n_by_tier": {
+     "high": 12,
+     "other": 3
+    }
+   }
+  }
+ },
+ "left_out": [],
+ "n_fetched": 15,
+ "n_left_out": 0,
+ "n_papers": 15,
+ "name": "Jay Shendure and Cole Trapnell (joint papers)",
+ "papers_used": [
+  "W1492083415",
+  "W2653530754",
+  "W2736547131",
+  "W2889236955",
+  "W2916020270",
+  "W2971378659",
+  "W3015971553",
+  "W3103797259",
+  "W3176766013",
+  "W4306810133",
+  "W4388694332",
+  "W4389304038",
+  "W4391824133",
+  "W4407194510",
+  "W4410728597"
+ ],
+ "person": "shendure-trapnell",
+ "quotes": [
+  {
+   "doi": "10.1126/science.aab1601",
+   "field": "quote",
+   "item": "gap_sentence",
+   "text": "However, we presently lack technologies for genome-wide, single-cell characterization of chromatin state.",
+   "text_version": "accepted",
+   "work_id": "W1492083415"
+  },
+  {
+   "doi": "10.1126/science.aab1601",
+   "field": "quote",
+   "item": "here_we",
+   "text": "Here, we adapt the concept of combinatorial indexing to intact nuclei, to acquire data from thousands of single cells without requiring their individualized processing",
+   "text_version": "accepted",
+   "work_id": "W1492083415"
+  },
+  {
+   "doi": "10.1126/science.aab1601",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "We next sought to distinguish single cells from the same species.",
+   "text_version": "accepted",
+   "work_id": "W1492083415"
+  },
+  {
+   "doi": "10.1126/science.aab1601",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "We next examined whether single cells within a heterogeneous mixture could be clustered in an unsupervised manner.",
+   "text_version": "accepted",
+   "work_id": "W1492083415"
+  },
+  {
+   "doi": "10.1126/science.aab1601",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "We next linked differentially accessible sites defined from single cells to the genes they potentially regulate",
+   "text_version": "accepted",
+   "work_id": "W1492083415"
+  },
+  {
+   "doi": "10.1126/science.aab1601",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "To optimize combinatorial cellular indexing, we tested twelve conditions on three days, always with GM12878/HL-60 mixtures.",
+   "text_version": "accepted",
+   "work_id": "W1492083415"
+  },
+  {
+   "doi": "10.1126/science.aab1601",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "To evaluate cell-to-cell variation within a cell type, we took the subset of cells classified as GM12878 and repeated latent semantic indexing",
+   "text_version": "accepted",
+   "work_id": "W1492083415"
+  },
+  {
+   "doi": "10.1126/science.aab1601",
+   "field": "value",
+   "item": "excitement",
+   "text": "a scalable method that may accelerate progress towards a human cell atlas",
+   "text_version": "accepted",
+   "work_id": "W1492083415"
+  },
+  {
+   "doi": "10.1126/science.aab1601",
+   "field": "value",
+   "item": "excitement",
+   "text": "strikingly enriched for HL-60 sites (P-value = 2.2×10−15)",
+   "text_version": "accepted",
+   "work_id": "W1492083415"
+  },
+  {
+   "doi": "10.1126/science.aab1601",
+   "field": "value",
+   "item": "excitement",
+   "text": "Importantly, at the level of single cells, chromatin accessibility is a nearly binary phenomenon",
+   "text_version": "accepted",
+   "work_id": "W1492083415"
+  },
+  {
+   "doi": "10.1126/science.aab1601",
+   "field": "value",
+   "item": "excitement",
+   "text": "These results indicate that even within an apparently homogeneous cell type, we are able to identify subsets of cells with differences in their regulatory landscape",
+   "text_version": "accepted",
+   "work_id": "W1492083415"
+  },
+  {
+   "doi": "10.1126/science.aab1601",
+   "field": "value",
+   "item": "excitement",
+   "text": "single-cell chromatin accessibility mapping may require far fewer reads per single cell in order to define cell types, relative to single-cell RNA-seq",
+   "text_version": "accepted",
+   "work_id": "W1492083415"
+  },
+  {
+   "doi": "10.1126/science.aab1601",
+   "field": "value",
+   "item": "excitement",
+   "text": "this method’s simplicity and scalability may accelerate the characterization of complex tissues containing myriad cell types as well as dynamic processes such as differentiation",
+   "text_version": "accepted",
+   "work_id": "W1492083415"
+  },
+  {
+   "doi": "10.1126/science.aab1601",
+   "field": "value",
+   "item": "excitement",
+   "text": "Our combinatorial cellular indexing scheme could feasibly be scaled to collect data from ~17,280 cells per experiment",
+   "text_version": "accepted",
+   "work_id": "W1492083415"
+  },
+  {
+   "doi": "10.1126/science.aab1601",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "with a scalable method that may accelerate progress towards a human cell atlas",
+   "text_version": "accepted",
+   "work_id": "W1492083415"
+  },
+  {
+   "doi": "10.1126/science.aab1601",
+   "field": "hedge_quote",
+   "item": "strongest_claim",
+   "text": "may accelerate progress",
+   "text_version": "accepted",
+   "work_id": "W1492083415"
+  },
+  {
+   "doi": "10.1126/science.aab1601",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "Some fraction of these may be spurious overlaps, but this provides an upper bound on the number of DHSs for which we recovered usage information.",
+   "text_version": "accepted",
+   "work_id": "W1492083415"
+  },
+  {
+   "doi": "10.1126/science.aab1601",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "Although the DHS-gene linkages are imperfect",
+   "text_version": "accepted",
+   "work_id": "W1492083415"
+  },
+  {
+   "doi": "10.1126/science.aab1601",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "although reproducibility of these patterns across biological replicates was modest (Fig. S22)",
+   "text_version": "accepted",
+   "work_id": "W1492083415"
+  },
+  {
+   "doi": "10.1126/science.aab1601",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "Given the sparsity of the data, identifying pairs of co-accessible DNA elements within individual loci is statistically challenging and merits further development.",
+   "text_version": "accepted",
+   "work_id": "W1492083415"
+  },
+  {
+   "doi": "10.1126/science.aab1601",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "Because the overwhelming majority of nuclei pass through a unique combination of wells, they are ‘compartmentalized’ by the unique barcode combination that they receive.",
+   "text_version": "accepted",
+   "work_id": "W1492083415"
+  },
+  {
+   "doi": "10.1126/science.aab1601",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "If each barcode combination represents either a mouse or human nucleus, then its corresponding reads should map overwhelmingly to either the mouse or human genome.",
+   "text_version": "accepted",
+   "work_id": "W1492083415"
+  },
+  {
+   "doi": "10.1126/science.aab1601",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "We next",
+   "text_version": "accepted",
+   "work_id": "W1492083415"
+  },
+  {
+   "doi": "10.1126/science.aab1601",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "was again strongly enriched",
+   "text_version": "accepted",
+   "work_id": "W1492083415"
+  },
+  {
+   "doi": "10.1126/science.aab1601",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Importantly,",
+   "text_version": "accepted",
+   "work_id": "W1492083415"
+  },
+  {
+   "doi": "10.1126/science.aab1601",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "we observe",
+   "text_version": "accepted",
+   "work_id": "W1492083415"
+  },
+  {
+   "doi": "10.1101/155473",
+   "field": "quote",
+   "item": "gap_sentence",
+   "text": "we lack a quantitative understanding of how changes in chromatin accessibility relate to changes in the expression of nearby genes",
+   "text_version": "preprint",
+   "work_id": "W2653530754"
+  },
+  {
+   "doi": "10.1101/155473",
+   "field": "quote",
+   "item": "here_we",
+   "text": "Here, we describe Cicero, an algorithm that links distal regulatory elements to their target genes",
+   "text_version": "preprint",
+   "work_id": "W2653530754"
+  },
+  {
+   "doi": "10.1101/155473",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "Globally, however, changes in promoter accessibility correlated poorly with changes in expression (Figure 1F).",
+   "text_version": "preprint",
+   "work_id": "W2653530754"
+  },
+  {
+   "doi": "10.1101/155473",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "We sought to exploit patterns of co-accessibility between distal regulatory elements and promoters to build a genome-wide cis-regulatory map from sci-ATAC-seq data.",
+   "text_version": "preprint",
+   "work_id": "W2653530754"
+  },
+  {
+   "doi": "10.1101/155473",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "We hypothesized that CCANs linked by Cicero constitute “chromatin hubs”.",
+   "text_version": "preprint",
+   "work_id": "W2653530754"
+  },
+  {
+   "doi": "10.1101/155473",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "We asked whether co-accessible sites are closer together in the nucleus than unlinked sites at similar distances in the linear genome.",
+   "text_version": "preprint",
+   "work_id": "W2653530754"
+  },
+  {
+   "doi": "10.1101/155473",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "prompted us to investigate whether they might also be associated with other DNA binding protein complexes",
+   "text_version": "preprint",
+   "work_id": "W2653530754"
+  },
+  {
+   "doi": "10.1101/155473",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "The physical proximity of co-accessible sites suggested that recruitment of histone-modifying enzymes to one site might nucleate changes in others.",
+   "text_version": "preprint",
+   "work_id": "W2653530754"
+  },
+  {
+   "doi": "10.1101/155473",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "We next asked whether Cicero co-accessibility could be used to predict changes in gene expression.",
+   "text_version": "preprint",
+   "work_id": "W2653530754"
+  },
+  {
+   "doi": "10.1101/155473",
+   "field": "value",
+   "item": "excitement",
+   "text": "constitutes a powerful new approach for elucidating the architecture, grammar and mechanisms of cis-regulation on a genome-wide basis",
+   "text_version": "preprint",
+   "work_id": "W2653530754"
+  },
+  {
+   "doi": "10.1101/155473",
+   "field": "value",
+   "item": "excitement",
+   "text": "potentially serving as the initial sites of recruitment of chromatin remodeling and histone-modifying enzymes",
+   "text_version": "preprint",
+   "work_id": "W2653530754"
+  },
+  {
+   "doi": "10.1101/155473",
+   "field": "value",
+   "item": "excitement",
+   "text": "The algorithm can therefore be applied to any cell type and organism for which a sequenced genome and single cell chromatin accessibility data are available.",
+   "text_version": "preprint",
+   "work_id": "W2653530754"
+  },
+  {
+   "doi": "10.1101/155473",
+   "field": "value",
+   "item": "excitement",
+   "text": "that was strikingly similar to the trajectory constructed from single cell transcriptome data (Figure 1B)",
+   "text_version": "preprint",
+   "work_id": "W2653530754"
+  },
+  {
+   "doi": "10.1101/155473",
+   "field": "value",
+   "item": "excitement",
+   "text": "Interestingly, however, two sites very near MYH3 (marked with asterixes) opened substantially earlier in pseudotime than the others",
+   "text_version": "preprint",
+   "work_id": "W2653530754"
+  },
+  {
+   "doi": "10.1101/155473",
+   "field": "value",
+   "item": "excitement",
+   "text": "This augmented model markedly improved our ability to predict changes in expression",
+   "text_version": "preprint",
+   "work_id": "W2653530754"
+  },
+  {
+   "doi": "10.1101/155473",
+   "field": "value",
+   "item": "excitement",
+   "text": "Maps obtained through the application of Cicero may advance our quantitative understanding of the logic of gene regulation in eukaryotic genomes",
+   "text_version": "preprint",
+   "work_id": "W2653530754"
+  },
+  {
+   "doi": "10.1101/155473",
+   "field": "value",
+   "item": "excitement",
+   "text": "such regulatory maps will be essential for understanding the epigenetic basis of each cell type’s gene expression program, both in health and disease",
+   "text_version": "preprint",
+   "work_id": "W2653530754"
+  },
+  {
+   "doi": "10.1101/155473",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "The algorithm can therefore be applied to any cell type and organism for which a sequenced genome and single cell chromatin accessibility data are available.",
+   "text_version": "preprint",
+   "work_id": "W2653530754"
+  },
+  {
+   "doi": "10.1101/155473",
+   "field": "hedge_quote",
+   "item": "strongest_claim",
+   "text": "Cicero can in principle work on complex mixtures of different cell types",
+   "text_version": "preprint",
+   "work_id": "W2653530754"
+  },
+  {
+   "doi": "10.1101/155473",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "Although these potentially correspond to interstitial fibroblasts that we failed to filter",
+   "text_version": "preprint",
+   "work_id": "W2653530754"
+  },
+  {
+   "doi": "10.1101/155473",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "However, this model explained only 26% of variation in H3K27 acetylation.",
+   "text_version": "preprint",
+   "work_id": "W2653530754"
+  },
+  {
+   "doi": "10.1101/155473",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "preserving local patterns of co-accessibility at the expense of very long range ones",
+   "text_version": "preprint",
+   "work_id": "W2653530754"
+  },
+  {
+   "doi": "10.1101/155473",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "but more sophisticated machine learning approaches might make better use of Cicero’s regulatory maps",
+   "text_version": "preprint",
+   "work_id": "W2653530754"
+  },
+  {
+   "doi": "10.1101/155473",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "organizes individual cells using machine learning according to their progress through a biological process such as cell differentiation",
+   "text_version": "preprint",
+   "work_id": "W2653530754"
+  },
+  {
+   "doi": "10.1101/155473",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "a spatial configuration wherein distal DNA regulatory elements are looped into the vicinity of their target genes",
+   "text_version": "preprint",
+   "work_id": "W2653530754"
+  },
+  {
+   "doi": "10.1101/155473",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "two variables are partially correlated when they remain correlated even after the effects of all other variables in the matrix are excluded",
+   "text_version": "preprint",
+   "work_id": "W2653530754"
+  },
+  {
+   "doi": "10.1101/155473",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Taken together",
+   "text_version": "preprint",
+   "work_id": "W2653530754"
+  },
+  {
+   "doi": "10.1101/155473",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "We hypothesized that",
+   "text_version": "preprint",
+   "work_id": "W2653530754"
+  },
+  {
+   "doi": "10.1101/155473",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "strikingly similar",
+   "text_version": "preprint",
+   "work_id": "W2653530754"
+  },
+  {
+   "doi": "10.1101/155473",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "markedly improved",
+   "text_version": "preprint",
+   "work_id": "W2653530754"
+  },
+  {
+   "doi": "10.1101/155473",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Altogether,",
+   "text_version": "preprint",
+   "work_id": "W2653530754"
+  },
+  {
+   "doi": "10.1038/nature25981",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "To determine the identity of each cell clade, we compared accessible regions to 3,841 developmental enhancers[CIT]",
+   "text_version": "accepted",
+   "work_id": "W2736547131"
+  },
+  {
+   "doi": "10.1038/nature25981",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "To validate in silico sorting and clade assignments, we used FACS to isolate myogenic mesoderm and neuronal nuclei from 6-8hr embryos[CIT] to ~98% purity.",
+   "text_version": "accepted",
+   "work_id": "W2736547131"
+  },
+  {
+   "doi": "10.1038/nature25981",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "To capture finer granularity across these dynamic transitions, we applied t-distributed stochastic neighbor embedding (t-SNE)[CIT]",
+   "text_version": "accepted",
+   "work_id": "W2736547131"
+  },
+  {
+   "doi": "10.1038/nature25981",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "To evaluate this temporal ordering more formally, we employed a graph-based method to arrange single cell data into a developmental trajectory[CIT].",
+   "text_version": "accepted",
+   "work_id": "W2736547131"
+  },
+  {
+   "doi": "10.1038/nature25981",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "Applying t-SNE to the later time points, during lineage commitment (6-8hrs) and differentiation (10-12hrs), revealed a fine-grained map of cell clusters",
+   "text_version": "accepted",
+   "work_id": "W2736547131"
+  },
+  {
+   "doi": "10.1038/nature25981",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "To determine if elements exhibiting tissue-specific chromatin accessibility corresponded to bona fide tissue-specific enhancers, we experimentally tested 31 elements in transgenic embryos.",
+   "text_version": "accepted",
+   "work_id": "W2736547131"
+  },
+  {
+   "doi": "10.1038/nature25981",
+   "field": "value",
+   "item": "excitement",
+   "text": "Overall, our results demonstrate the power of shotgun single cell profiling of embryos to resolve dynamic changes in the chromatin landscape during development",
+   "text_version": "accepted",
+   "work_id": "W2736547131"
+  },
+  {
+   "doi": "10.1038/nature25981",
+   "field": "value",
+   "item": "excitement",
+   "text": "The data show striking similarity both globally",
+   "text_version": "accepted",
+   "work_id": "W2736547131"
+  },
+  {
+   "doi": "10.1038/nature25981",
+   "field": "value",
+   "item": "excitement",
+   "text": "Notably, the trajectory split cells into three major branches that were consistent with our annotations of the major germ layers",
+   "text_version": "accepted",
+   "work_id": "W2736547131"
+  },
+  {
+   "doi": "10.1038/nature25981",
+   "field": "value",
+   "item": "excitement",
+   "text": "Interestingly, two of the developmentally early clusters were sex-biased",
+   "text_version": "accepted",
+   "work_id": "W2736547131"
+  },
+  {
+   "doi": "10.1038/nature25981",
+   "field": "value",
+   "item": "excitement",
+   "text": "this is highly reminiscent of the mesendoderm lineage in C. elegans[CIT], sea urchins[CIT], and vertebrates[CIT]",
+   "text_version": "accepted",
+   "work_id": "W2736547131"
+  },
+  {
+   "doi": "10.1038/nature25981",
+   "field": "value",
+   "item": "excitement",
+   "text": "sci-ATAC-seq can identify regulatory regions specifically accessible in spatially refined subsets of cells, without the need for FACS sorting",
+   "text_version": "accepted",
+   "work_id": "W2736547131"
+  },
+  {
+   "doi": "10.1038/nature25981",
+   "field": "value",
+   "item": "excitement",
+   "text": "Surprisingly, given the simple selection strategy, 94% (29/31) of tested regions function as developmental enhancers in vivo",
+   "text_version": "accepted",
+   "work_id": "W2736547131"
+  },
+  {
+   "doi": "10.1038/nature25981",
+   "field": "value",
+   "item": "excitement",
+   "text": "the power of sci-ATAC-seq to elucidate not only the developmental dynamics of chromatin accessibility, but also for the large-scale prediction of in vivo enhancer activity",
+   "text_version": "accepted",
+   "work_id": "W2736547131"
+  },
+  {
+   "doi": "10.1038/nature25981",
+   "field": "value",
+   "item": "excitement",
+   "text": "a powerful resource for future investigations",
+   "text_version": "accepted",
+   "work_id": "W2736547131"
+  },
+  {
+   "doi": "10.1038/nature25981",
+   "field": "value",
+   "item": "excitement",
+   "text": "has the potential to unlock how an organism’s genome encodes its development",
+   "text_version": "accepted",
+   "work_id": "W2736547131"
+  },
+  {
+   "doi": "10.1038/nature25981",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "to uncover the cis-regulatory programs of metazoan germ layers and cell types",
+   "text_version": "accepted",
+   "work_id": "W2736547131"
+  },
+  {
+   "doi": "10.1038/nature25981",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "The sparsity of data from single cell molecular profiling technologies, including sci-ATAC-seq, remains a challenge.",
+   "text_version": "accepted",
+   "work_id": "W2736547131"
+  },
+  {
+   "doi": "10.1038/nature25981",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "increasing the number of reads per cell will increase the granularity at which chromatin accessibility can be explored",
+   "text_version": "accepted",
+   "work_id": "W2736547131"
+  },
+  {
+   "doi": "10.1038/nature25981",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "With our current strategy, ~12% of cell barcodes are expected to represent aggregates of 2+ cells.",
+   "text_version": "accepted",
+   "work_id": "W2736547131"
+  },
+  {
+   "doi": "10.1038/nature25981",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "collisions are likely to be more effectively overcome by additional rounds of combinatorial indexing[CIT], which would also increase throughput",
+   "text_version": "accepted",
+   "work_id": "W2736547131"
+  },
+  {
+   "doi": "10.1038/nature25981",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "where one cell barcode represents the nuclear contents of two cells",
+   "text_version": "accepted",
+   "work_id": "W2736547131"
+  },
+  {
+   "doi": "10.1038/nature25981",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "as collisions are expected to be twice as complex on average as barcodes that truly represent an individual cell",
+   "text_version": "accepted",
+   "work_id": "W2736547131"
+  },
+  {
+   "doi": "10.1038/nature25981",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Altogether,",
+   "text_version": "accepted",
+   "work_id": "W2736547131"
+  },
+  {
+   "doi": "10.1038/nature25981",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "reminiscent of",
+   "text_version": "accepted",
+   "work_id": "W2736547131"
+  },
+  {
+   "doi": "10.1038/nature25981",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Conversely,",
+   "text_version": "accepted",
+   "work_id": "W2736547131"
+  },
+  {
+   "doi": "10.1126/science.aau0730",
+   "field": "quote",
+   "item": "gap_sentence",
+   "text": "However, to date, nucleic acid ‘co-assays’ rely on physically isolating each cell, limiting their throughput to a few cells per study",
+   "text_version": "accepted",
+   "work_id": "W2889236955"
+  },
+  {
+   "doi": "10.1126/science.aau0730",
+   "field": "quote",
+   "item": "here_we",
+   "text": "Here we describe sci-CAR, which jointly profiles single cell chromatin accessibility and mRNA in a scalable fashion.",
+   "text_version": "accepted",
+   "work_id": "W2889236955"
+  },
+  {
+   "doi": "10.1126/science.aau0730",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "To confirm that paired profiles truly derived from the same cells, we asked whether cells from mixed human-mouse wells were consistently assigned",
+   "text_version": "accepted",
+   "work_id": "W2889236955"
+  },
+  {
+   "doi": "10.1126/science.aau0730",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "We next examined the time course of GR activation.",
+   "text_version": "accepted",
+   "work_id": "W2889236955"
+  },
+  {
+   "doi": "10.1126/science.aau0730",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "We exploited the co-assay to examine the dynamics of chromatin accessibility across RNA-defined pseudotime",
+   "text_version": "accepted",
+   "work_id": "W2889236955"
+  },
+  {
+   "doi": "10.1126/science.aau0730",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "However, little is known about the epigenetic landscapes that underlie these cell type-specific gene expression programs.",
+   "text_version": "accepted",
+   "work_id": "W2889236955"
+  },
+  {
+   "doi": "10.1126/science.aau0730",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "We therefore sought to leverage the co-assay aspect of these data to recover the chromatin landscapes of individual cell types.",
+   "text_version": "accepted",
+   "work_id": "W2889236955"
+  },
+  {
+   "doi": "10.1126/science.aau0730",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "We sought to link distal cis-regulatory elements to their target genes based on the covariance of chromatin accessibility and gene expression",
+   "text_version": "accepted",
+   "work_id": "W2889236955"
+  },
+  {
+   "doi": "10.1126/science.aau0730",
+   "field": "value",
+   "item": "excitement",
+   "text": "has the potential to reveal causal regulatory relationships and to enrich the utility of organism-scale single cell atlases",
+   "text_version": "accepted",
+   "work_id": "W2889236955"
+  },
+  {
+   "doi": "10.1126/science.aau0730",
+   "field": "value",
+   "item": "excitement",
+   "text": "Reassuringly, cells from co-assay plates and single-assay plates of either type were intermixed",
+   "text_version": "accepted",
+   "work_id": "W2889236955"
+  },
+  {
+   "doi": "10.1126/science.aau0730",
+   "field": "value",
+   "item": "excitement",
+   "text": "New marker genes were identified, such as Daam2 for renal pericytes and Calcr for collecting duct intercalated cell B",
+   "text_version": "accepted",
+   "work_id": "W2889236955"
+  },
+  {
+   "doi": "10.1126/science.aau0730",
+   "field": "value",
+   "item": "excitement",
+   "text": "Overall, these analyses illustrate how co-assay data can be leveraged to overcome the relative sparsity of single cell ATAC-seq data",
+   "text_version": "accepted",
+   "work_id": "W2889236955"
+  },
+  {
+   "doi": "10.1126/science.aau0730",
+   "field": "value",
+   "item": "excitement",
+   "text": "Links between distal cis-regulatory elements and their target genes can be useful for explaining differential expression across cell types.",
+   "text_version": "accepted",
+   "work_id": "W2889236955"
+  },
+  {
+   "doi": "10.1126/science.aau0730",
+   "field": "value",
+   "item": "excitement",
+   "text": "Our analyses illustrate the advantages of a single cell co-assay over assays that solely profile transcription or chromatin accessibility.",
+   "text_version": "accepted",
+   "work_id": "W2889236955"
+  },
+  {
+   "doi": "10.1126/science.aau0730",
+   "field": "value",
+   "item": "excitement",
+   "text": "With 384 × 384 × 384 sci-CAR, one could potentially co-assay millions of single cells per experiment.",
+   "text_version": "accepted",
+   "work_id": "W2889236955"
+  },
+  {
+   "doi": "10.1126/science.aau0730",
+   "field": "value",
+   "item": "excitement",
+   "text": "sci-CAR expands the potential of combinatorial indexing for scalably profiling single cell molecular phenotypes",
+   "text_version": "accepted",
+   "work_id": "W2889236955"
+  },
+  {
+   "doi": "10.1126/science.aau0730",
+   "field": "value",
+   "item": "excitement",
+   "text": "A longer-term goal is to adapt single cell combinatorial indexing to span the Central Dogma",
+   "text_version": "accepted",
+   "work_id": "W2889236955"
+  },
+  {
+   "doi": "10.1126/science.aau0730",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "The concurrent profiling of multiple classes of molecules, e.g. RNA and DNA, within single cells has the potential to reveal causal regulatory relationships",
+   "text_version": "accepted",
+   "work_id": "W2889236955"
+  },
+  {
+   "doi": "10.1126/science.aau0730",
+   "field": "hedge_quote",
+   "item": "strongest_claim",
+   "text": "has the potential to",
+   "text_version": "accepted",
+   "work_id": "W2889236955"
+  },
+  {
+   "doi": "10.1126/science.aau0730",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "suggesting we may be insufficiently powered to detect DE at many genes with DA promoters",
+   "text_version": "accepted",
+   "work_id": "W2889236955"
+  },
+  {
+   "doi": "10.1126/science.aau0730",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "A limitation of sci-CAR is the sparsity of the resulting data, particularly with respect to chromatin accessibility.",
+   "text_version": "accepted",
+   "work_id": "W2889236955"
+  },
+  {
+   "doi": "10.1126/science.aau0730",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "This can potentially be overcome in the future through protocol optimizations, particularly of crosslinking conditions.",
+   "text_version": "accepted",
+   "work_id": "W2889236955"
+  },
+  {
+   "doi": "10.1126/science.aau0730",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "these data remain correlative and involve a minority of DE genes and DA elements",
+   "text_version": "accepted",
+   "work_id": "W2889236955"
+  },
+  {
+   "doi": "10.1126/science.aau0730",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "Because the barcodes introduced to RNA-seq and ATAC-seq libraries correspond to specific wells, we can link the mRNA and chromatin accessibility profiles of individual cells.",
+   "text_version": "accepted",
+   "work_id": "W2889236955"
+  },
+  {
+   "doi": "10.1126/science.aau0730",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "activates glucocorticoid receptor (GR), which binds to thousands of locations across the genome, altering the expression of hundreds of genes",
+   "text_version": "accepted",
+   "work_id": "W2889236955"
+  },
+  {
+   "doi": "10.1126/science.aau0730",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "For comparison, a similar analysis",
+   "text_version": "accepted",
+   "work_id": "W2889236955"
+  },
+  {
+   "doi": "10.1126/science.aau0730",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "well-correlated",
+   "text_version": "accepted",
+   "work_id": "W2889236955"
+  },
+  {
+   "doi": "10.1126/science.aau0730",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "sought to",
+   "text_version": "accepted",
+   "work_id": "W2889236955"
+  },
+  {
+   "doi": "10.1126/science.aau0730",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "potentially",
+   "text_version": "accepted",
+   "work_id": "W2889236955"
+  },
+  {
+   "doi": "10.1038/s41586-019-0969-x",
+   "field": "quote",
+   "item": "gap_sentence",
+   "text": "they are mostly restricted to adult organs, and do not attempt to characterize the emergence and dynamics of cell types during development",
+   "text_version": "accepted",
+   "work_id": "W2916020270"
+  },
+  {
+   "doi": "10.1038/s41586-019-0969-x",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "We subjected the 2,058,652 single cell transcriptomes to Louvain clustering and t-SNE visualization",
+   "text_version": "accepted",
+   "work_id": "W2916020270"
+  },
+  {
+   "doi": "10.1038/s41586-019-0969-x",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "To investigate a subtype in more detail, we focused on the AER",
+   "text_version": "accepted",
+   "work_id": "W2916020270"
+  },
+  {
+   "doi": "10.1038/s41586-019-0969-x",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "We next sought to investigate the developmental trajectories that cell types traverse during mammalian organogenesis.",
+   "text_version": "accepted",
+   "work_id": "W2916020270"
+  },
+  {
+   "doi": "10.1038/s41586-019-0969-x",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "To investigate a developmental process in greater detail, we focused on developing muscle",
+   "text_version": "accepted",
+   "work_id": "W2916020270"
+  },
+  {
+   "doi": "10.1038/s41586-019-0969-x",
+   "field": "value",
+   "item": "excitement",
+   "text": "Mammalian organogenesis is an astonishing process.",
+   "text_version": "accepted",
+   "work_id": "W2916020270"
+  },
+  {
+   "doi": "10.1038/s41586-019-0969-x",
+   "field": "value",
+   "item": "excitement",
+   "text": "provides a global view of developmental processes during this critical window",
+   "text_version": "accepted",
+   "work_id": "W2916020270"
+  },
+  {
+   "doi": "10.1038/s41586-019-0969-x",
+   "field": "value",
+   "item": "excitement",
+   "text": "The vast majority of these markers are novel.",
+   "text_version": "accepted",
+   "work_id": "W2916020270"
+  },
+  {
+   "doi": "10.1038/s41586-019-0969-x",
+   "field": "value",
+   "item": "excitement",
+   "text": "Reassuringly, cells from replicate embryos of the same developmental stage were similarly distributed, whereas cells from different stages were not",
+   "text_version": "accepted",
+   "work_id": "W2916020270"
+  },
+  {
+   "doi": "10.1038/s41586-019-0969-x",
+   "field": "value",
+   "item": "excitement",
+   "text": "Nonetheless, the atlases unquestionably inform one another",
+   "text_version": "accepted",
+   "work_id": "W2916020270"
+  },
+  {
+   "doi": "10.1038/s41586-019-0969-x",
+   "field": "value",
+   "item": "excitement",
+   "text": "Notably, our sensitivity to detect cell types and subtypes in this study was dependent on the large number of cells profiled",
+   "text_version": "accepted",
+   "work_id": "W2916020270"
+  },
+  {
+   "doi": "10.1038/s41586-019-0969-x",
+   "field": "value",
+   "item": "excitement",
+   "text": "we developed a new version of Monocle",
+   "text_version": "accepted",
+   "work_id": "W2916020270"
+  },
+  {
+   "doi": "10.1038/s41586-019-0969-x",
+   "field": "value",
+   "item": "excitement",
+   "text": "With sci-RNA-seq3, we introduce a technical framework for individual labs to generate datasets corresponding to millions of single cells.",
+   "text_version": "accepted",
+   "work_id": "W2916020270"
+  },
+  {
+   "doi": "10.1038/s41586-019-0969-x",
+   "field": "value",
+   "item": "excitement",
+   "text": "These data constitute a potentially foundational resource for the mammalian developmental biology field.",
+   "text_version": "accepted",
+   "work_id": "W2916020270"
+  },
+  {
+   "doi": "10.1038/s41586-019-0969-x",
+   "field": "value",
+   "item": "excitement",
+   "text": "We anticipate that ‘whole organism’ sc-RNA-seq will empower reverse genetics",
+   "text_version": "accepted",
+   "work_id": "W2916020270"
+  },
+  {
+   "doi": "10.1038/s41586-019-0969-x",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "profiling of small mammals will be essential for identifying the inevitable gaps in any efforts to generate a comprehensive atlas of human cell types",
+   "text_version": "accepted",
+   "work_id": "W2916020270"
+  },
+  {
+   "doi": "10.1038/s41586-019-0969-x",
+   "field": "hedge_quote",
+   "item": "strongest_claim",
+   "text": "seems likely",
+   "text_version": "accepted",
+   "work_id": "W2916020270"
+  },
+  {
+   "doi": "10.1038/s41586-019-0969-x",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "A limitation is that only ~7% of cells entering the experiment were ultimately profiled",
+   "text_version": "accepted",
+   "work_id": "W2916020270"
+  },
+  {
+   "doi": "10.1038/s41586-019-0969-x",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "MOCA has limitations.",
+   "text_version": "accepted",
+   "work_id": "W2916020270"
+  },
+  {
+   "doi": "10.1038/s41586-019-0969-x",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "First, although not sequenced to saturation, the cell-by-gene matrix is sparse.",
+   "text_version": "accepted",
+   "work_id": "W2916020270"
+  },
+  {
+   "doi": "10.1038/s41586-019-0969-x",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "it is possible that we are missing extremely rare cell types",
+   "text_version": "accepted",
+   "work_id": "W2916020270"
+  },
+  {
+   "doi": "10.1038/s41586-019-0969-x",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "Second, although we are reasonably confident in our annotations, they should be regarded as preliminary.",
+   "text_version": "accepted",
+   "work_id": "W2916020270"
+  },
+  {
+   "doi": "10.1038/s41586-019-0969-x",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "additional experiments (e.g. in situ analyses of marker genes) will be necessary to resolve ambiguities",
+   "text_version": "accepted",
+   "work_id": "W2916020270"
+  },
+  {
+   "doi": "10.1038/s41586-019-0969-x",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "Nuclei from each embryo were isolated and deposited to different wells, such that the first index identified the originating embryo of any given cell.",
+   "text_version": "accepted",
+   "work_id": "W2916020270"
+  },
+  {
+   "doi": "10.1038/s41586-019-0969-x",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "our depth of profiling is equivalent to 3–80% of the cellular content of an individual mouse embryo",
+   "text_version": "accepted",
+   "work_id": "W2916020270"
+  },
+  {
+   "doi": "10.1038/s41586-019-0969-x",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Nonetheless,",
+   "text_version": "accepted",
+   "work_id": "W2916020270"
+  },
+  {
+   "doi": "10.1038/s41586-019-0969-x",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "readily",
+   "text_version": "accepted",
+   "work_id": "W2916020270"
+  },
+  {
+   "doi": "10.1038/s41586-019-0969-x",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "the view that",
+   "text_version": "accepted",
+   "work_id": "W2916020270"
+  },
+  {
+   "doi": "10.1038/s41586-019-0969-x",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "We next",
+   "text_version": "accepted",
+   "work_id": "W2916020270"
+  },
+  {
+   "doi": "10.1038/s41588-019-0489-5",
+   "field": "quote",
+   "item": "gap_sentence",
+   "text": "it remains unclear whether or not cells exist in functionally discrete states during EMT",
+   "text_version": "accepted",
+   "work_id": "W2971378659"
+  },
+  {
+   "doi": "10.1038/s41588-019-0489-5",
+   "field": "quote",
+   "item": "here_we",
+   "text": "Here, we apply single-cell RNA sequencing (scRNA-seq) coupled with unsupervised machine learning techniques[CIT] to analyze a “pseudospatial”[CIT] model of EMT",
+   "text_version": "accepted",
+   "work_id": "W2971378659"
+  },
+  {
+   "doi": "10.1038/s41588-019-0489-5",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "we sought to understand how this phenotype changes in response to a strong inducer of EMT",
+   "text_version": "accepted",
+   "work_id": "W2971378659"
+  },
+  {
+   "doi": "10.1038/s41588-019-0489-5",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "We reasoned that certain regulators control passage through parts of the EMT continuum",
+   "text_version": "accepted",
+   "work_id": "W2971378659"
+  },
+  {
+   "doi": "10.1038/s41588-019-0489-5",
+   "field": "value",
+   "item": "excitement",
+   "text": "reconciles opposing views of the program that controls EMT",
+   "text_version": "accepted",
+   "work_id": "W2971378659"
+  },
+  {
+   "doi": "10.1038/s41588-019-0489-5",
+   "field": "value",
+   "item": "excitement",
+   "text": "Characterizing the nature of intermediate EMT would have an immediate impact on our understanding of disease.",
+   "text_version": "accepted",
+   "work_id": "W2971378659"
+  },
+  {
+   "doi": "10.1038/s41588-019-0489-5",
+   "field": "value",
+   "item": "excitement",
+   "text": "Interestingly, only MET and ITGAV did so during spontaneous and TGF-β-driven EMT.",
+   "text_version": "accepted",
+   "work_id": "W2971378659"
+  },
+  {
+   "doi": "10.1038/s41588-019-0489-5",
+   "field": "value",
+   "item": "excitement",
+   "text": "Taken together, these analyses suggest that the waves of gene regulation that occur during EMT in vitro occur to varying extents in vivo.",
+   "text_version": "accepted",
+   "work_id": "W2971378659"
+  },
+  {
+   "doi": "10.1038/s41588-019-0489-5",
+   "field": "value",
+   "item": "excitement",
+   "text": "constitutes a powerful approach for identifying upstream signals of pathways that regulate cellular phenotypes",
+   "text_version": "accepted",
+   "work_id": "W2971378659"
+  },
+  {
+   "doi": "10.1038/s41588-019-0489-5",
+   "field": "value",
+   "item": "excitement",
+   "text": "this methodology will shed light on the genetic architecture that governs not just EMT but diverse biological processes in development and disease",
+   "text_version": "accepted",
+   "work_id": "W2971378659"
+  },
+  {
+   "doi": "10.1038/s41588-019-0489-5",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "will inform ongoing debates surrounding the definitions of cell type and state and the delineation of human cellular ontology",
+   "text_version": "accepted",
+   "work_id": "W2971378659"
+  },
+  {
+   "doi": "10.1038/s41588-019-0489-5",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "raising the possibility that we failed to capture some discrete, physiologically important “stages” of EMT",
+   "text_version": "accepted",
+   "work_id": "W2971378659"
+  },
+  {
+   "doi": "10.1038/s41588-019-0489-5",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "making it difficult to pinpoint which drive signaling at each point on the continuum",
+   "text_version": "accepted",
+   "work_id": "W2971378659"
+  },
+  {
+   "doi": "10.1038/s41588-019-0489-5",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "cells dissolve strong contacts and leave organized sheets",
+   "text_version": "accepted",
+   "work_id": "W2971378659"
+  },
+  {
+   "doi": "10.1038/s41588-019-0489-5",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "analogous to how cells proceed asynchronously through temporal processes such as differentiation",
+   "text_version": "accepted",
+   "work_id": "W2971378659"
+  },
+  {
+   "doi": "10.1038/s41588-019-0489-5",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Taken together, these analyses suggest",
+   "text_version": "accepted",
+   "work_id": "W2971378659"
+  },
+  {
+   "doi": "10.1038/s41588-019-0489-5",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Conversely,",
+   "text_version": "accepted",
+   "work_id": "W2971378659"
+  },
+  {
+   "doi": "10.1038/s41588-019-0489-5",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "consistent with",
+   "text_version": "accepted",
+   "work_id": "W2971378659"
+  },
+  {
+   "doi": "10.1038/s41587-020-0480-9",
+   "field": "quote",
+   "item": "gap_sentence",
+   "text": "nearly all such methods deliver only a static snapshot of each cell",
+   "text_version": "accepted",
+   "work_id": "W3015971553"
+  },
+  {
+   "doi": "10.1038/s41587-020-0480-9",
+   "field": "quote",
+   "item": "here_we",
+   "text": "Here we describe a technique, sci-fate, to measure the dynamics of gene expression in large numbers of single cells",
+   "text_version": "accepted",
+   "work_id": "W3015971553"
+  },
+  {
+   "doi": "10.1038/s41587-020-0480-9",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "To investigate the transcriptional dynamics of cortisol response[CIT], we applied sci-fate to an in vitro model",
+   "text_version": "accepted",
+   "work_id": "W3015971553"
+  },
+  {
+   "doi": "10.1038/s41587-020-0480-9",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "Multiple dynamic gene regulatory processes are concurrently underway in this in vitro system",
+   "text_version": "accepted",
+   "work_id": "W3015971553"
+  },
+  {
+   "doi": "10.1038/s41587-020-0480-9",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "We next sought to develop a strategy to use sci-fate data to infer the past transcriptional state of each cell",
+   "text_version": "accepted",
+   "work_id": "W3015971553"
+  },
+  {
+   "doi": "10.1038/s41587-020-0480-9",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "We next sought to evaluate whether the distribution of cell state transitions inferred by sci-fate are consistent with the expected dynamics.",
+   "text_version": "accepted",
+   "work_id": "W3015971553"
+  },
+  {
+   "doi": "10.1038/s41587-020-0480-9",
+   "field": "value",
+   "item": "excitement",
+   "text": "We anticipate that sci-fate will be broadly applicable to quantitatively characterize transcriptional dynamics in diverse systems.",
+   "text_version": "accepted",
+   "work_id": "W3015971553"
+  },
+  {
+   "doi": "10.1038/s41587-020-0480-9",
+   "field": "value",
+   "item": "excitement",
+   "text": "The methods described here may be broadly applicable to quantitatively characterize transcriptional dynamics in diverse systems.",
+   "text_version": "accepted",
+   "work_id": "W3015971553"
+  },
+  {
+   "doi": "10.1038/s41587-020-0480-9",
+   "field": "value",
+   "item": "excitement",
+   "text": "Notably, the expression levels of TFs such as E2F1 were more highly correlated with the levels of newly synthesized than overall target gene mRNAs",
+   "text_version": "accepted",
+   "work_id": "W3015971553"
+  },
+  {
+   "doi": "10.1038/s41587-020-0480-9",
+   "field": "value",
+   "item": "excitement",
+   "text": "A key contrast with conventional pseudotime is that with sci-fate, each cell is now characterized not only by its present state",
+   "text_version": "accepted",
+   "work_id": "W3015971553"
+  },
+  {
+   "doi": "10.1038/s41587-020-0480-9",
+   "field": "value",
+   "item": "excitement",
+   "text": "it should already be possible to profile newly synthesized mRNA is >1 million cells per experiment",
+   "text_version": "accepted",
+   "work_id": "W3015971553"
+  },
+  {
+   "doi": "10.1038/s41587-020-0480-9",
+   "field": "value",
+   "item": "excitement",
+   "text": "Sci-fate can be broadly applied to most in vitro systems to quantitatively characterize cell state dynamics within short time windows",
+   "text_version": "accepted",
+   "work_id": "W3015971553"
+  },
+  {
+   "doi": "10.1038/s41587-020-0480-9",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "We anticipate that sci-fate will be broadly applicable to quantitatively characterize transcriptional dynamics in diverse systems.",
+   "text_version": "accepted",
+   "work_id": "W3015971553"
+  },
+  {
+   "doi": "10.1038/s41587-020-0480-9",
+   "field": "hedge_quote",
+   "item": "strongest_claim",
+   "text": "We anticipate that",
+   "text_version": "accepted",
+   "work_id": "W3015971553"
+  },
+  {
+   "doi": "10.1038/s41587-020-0480-9",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "A major limitation of sci-fate is that 4sU labeling experiments are generally performed within in vitro cell culture models.",
+   "text_version": "accepted",
+   "work_id": "W3015971553"
+  },
+  {
+   "doi": "10.1038/s41587-020-0480-9",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "our simplifying assumption that gene-specific degradation rates are constant across our DEX time course might not be a good choice in other systems",
+   "text_version": "accepted",
+   "work_id": "W3015971553"
+  },
+  {
+   "doi": "10.1038/s41587-020-0480-9",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "we remain in need of methods for measuring mRNA degradation rates in single cells",
+   "text_version": "accepted",
+   "work_id": "W3015971553"
+  },
+  {
+   "doi": "10.1038/s41587-020-0480-9",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "most cells pass through a unique combination of wells, such that their contents are marked by a unique combination of barcodes",
+   "text_version": "accepted",
+   "work_id": "W3015971553"
+  },
+  {
+   "doi": "10.1038/s41587-020-0480-9",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "In this framework, A can be regarded as the parent state of B.",
+   "text_version": "accepted",
+   "work_id": "W3015971553"
+  },
+  {
+   "doi": "10.1038/s41587-020-0480-9",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "We next sought to",
+   "text_version": "accepted",
+   "work_id": "W3015971553"
+  },
+  {
+   "doi": "10.1038/s41587-020-0480-9",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "As expected,",
+   "text_version": "accepted",
+   "work_id": "W3015971553"
+  },
+  {
+   "doi": "10.1038/s41587-020-0480-9",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "As a control,",
+   "text_version": "accepted",
+   "work_id": "W3015971553"
+  },
+  {
+   "doi": "10.1038/s41587-020-0480-9",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Of note,",
+   "text_version": "accepted",
+   "work_id": "W3015971553"
+  },
+  {
+   "doi": "10.1126/science.aba7721",
+   "field": "quote",
+   "item": "gap_sentence",
+   "text": "Several challenges have historically limited the study of developing human tissues at the molecular level.",
+   "text_version": "accepted",
+   "work_id": "W3103797259"
+  },
+  {
+   "doi": "10.1126/science.aba7721",
+   "field": "quote",
+   "item": "here_we",
+   "text": "we set out to generate single cell atlases of both gene expression and chromatin accessibility using diverse human tissues obtained during midgestation",
+   "text_version": "accepted",
+   "work_id": "W3103797259"
+  },
+  {
+   "doi": "10.1126/science.aba7721",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "To identify cell subtypes, we performed unsupervised clustering on main cell types with >1,000 cells in any given tissue.",
+   "text_version": "accepted",
+   "work_id": "W3103797259"
+  },
+  {
+   "doi": "10.1126/science.aba7721",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "We next sought to integrate data and compare cell types across all 15 organs.",
+   "text_version": "accepted",
+   "work_id": "W3103797259"
+  },
+  {
+   "doi": "10.1126/science.aba7721",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "Further below, we leverage integration with a mouse atlas of organogenesis [CIT] to investigate the conserved program of blood cell specification",
+   "text_version": "accepted",
+   "work_id": "W3103797259"
+  },
+  {
+   "doi": "10.1126/science.aba7721",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "As a second analysis of a single class of cells across many organs, we reclustered 89,291 endothelial cells (ECs)",
+   "text_version": "accepted",
+   "work_id": "W3103797259"
+  },
+  {
+   "doi": "10.1126/science.aba7721",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "To again leverage the mouse, we sought to integrate these human fetal data with a mouse organogenesis cell atlas (MOCA)",
+   "text_version": "accepted",
+   "work_id": "W3103797259"
+  },
+  {
+   "doi": "10.1126/science.aba7721",
+   "field": "value",
+   "item": "excitement",
+   "text": "which surprisingly included the adrenal gland",
+   "text_version": "accepted",
+   "work_id": "W3103797259"
+  },
+  {
+   "doi": "10.1126/science.aba7721",
+   "field": "value",
+   "item": "excitement",
+   "text": "These data comprise a rich resource for the exploration of in vivo human gene expression in diverse tissues and cell types.",
+   "text_version": "accepted",
+   "work_id": "W3103797259"
+  },
+  {
+   "doi": "10.1126/science.aba7721",
+   "field": "value",
+   "item": "excitement",
+   "text": "single cell atlases generated from developing tissues could broadly inform our basic understanding of human biology",
+   "text_version": "accepted",
+   "work_id": "W3103797259"
+  },
+  {
+   "doi": "10.1126/science.aba7721",
+   "field": "value",
+   "item": "excitement",
+   "text": "to our knowledge, the vast majority of observed markers have not been identified in prior studies",
+   "text_version": "accepted",
+   "work_id": "W3103797259"
+  },
+  {
+   "doi": "10.1126/science.aba7721",
+   "field": "value",
+   "item": "excitement",
+   "text": "we also observed EEPs, CEPs and megakaryocyte progenitors in the adrenal gland, in every sample studied",
+   "text_version": "accepted",
+   "work_id": "W3103797259"
+  },
+  {
+   "doi": "10.1126/science.aba7721",
+   "field": "value",
+   "item": "excitement",
+   "text": "An additional surprise, at least to us, was the ease with which we were able to integrate single cell profiles",
+   "text_version": "accepted",
+   "work_id": "W3103797259"
+  },
+  {
+   "doi": "10.1126/science.aba7721",
+   "field": "value",
+   "item": "excitement",
+   "text": "we hope that this atlas will enable a better understanding of the molecular and cellular basis of both rare and common disorders of human development",
+   "text_version": "accepted",
+   "work_id": "W3103797259"
+  },
+  {
+   "doi": "10.1126/science.aba7721",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "we hope that this atlas will enable a better understanding of the molecular and cellular basis of both rare and common disorders of human development",
+   "text_version": "accepted",
+   "work_id": "W3103797259"
+  },
+  {
+   "doi": "10.1126/science.aba7721",
+   "field": "hedge_quote",
+   "item": "strongest_claim",
+   "text": "we hope",
+   "text_version": "accepted",
+   "work_id": "W3103797259"
+  },
+  {
+   "doi": "10.1126/science.aba7721",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "Important limitations of these datasets include non-uniform sampling (i.e. more cells profiled in some organs than others), missing tissues",
+   "text_version": "accepted",
+   "work_id": "W3103797259"
+  },
+  {
+   "doi": "10.1126/science.aba7721",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "both cell type and subtype annotations made here should be considered preliminary and subject to revision",
+   "text_version": "accepted",
+   "work_id": "W3103797259"
+  },
+  {
+   "doi": "10.1126/science.aba7721",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "the somewhat narrow window of midgestational human development studied here will be complemented by additional atlases of earlier and later timepoints",
+   "text_version": "accepted",
+   "work_id": "W3103797259"
+  },
+  {
+   "doi": "10.1126/science.aba7721",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "By the end of the tenth week, the embryo has acquired its basic form, and is termed a fetus.",
+   "text_version": "accepted",
+   "work_id": "W3103797259"
+  },
+  {
+   "doi": "10.1126/science.aba7721",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "Relative to embryonic and fetal tissues, adult tissues are dominated by differentiated cells, and many cell states are not represented.",
+   "text_version": "accepted",
+   "work_id": "W3103797259"
+  },
+  {
+   "doi": "10.1126/science.aba7721",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "the assertion that all living things consist of cells and that the cell is the most basic unit of life",
+   "text_version": "accepted",
+   "work_id": "W3103797259"
+  },
+  {
+   "doi": "10.1126/science.aba7721",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "As expected,",
+   "text_version": "accepted",
+   "work_id": "W3103797259"
+  },
+  {
+   "doi": "10.1126/science.aba7721",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Of note,",
+   "text_version": "accepted",
+   "work_id": "W3103797259"
+  },
+  {
+   "doi": "10.1126/science.aba7721",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "We next sought to",
+   "text_version": "accepted",
+   "work_id": "W3103797259"
+  },
+  {
+   "doi": "10.1126/science.aba7721",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "readily",
+   "text_version": "accepted",
+   "work_id": "W3103797259"
+  },
+  {
+   "doi": "10.1126/science.abb9536",
+   "field": "quote",
+   "item": "gap_sentence",
+   "text": "However, a key limitation of most single cell molecular profiling methods is that they operate on disaggregated cells or nuclei.",
+   "text_version": "accepted",
+   "work_id": "W3176766013"
+  },
+  {
+   "doi": "10.1126/science.abb9536",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "We applied sci-Space to profile fourteen sagittal sections derived from two E14.0 mouse embryos (C57BL/6N).",
+   "text_version": "accepted",
+   "work_id": "W3176766013"
+  },
+  {
+   "doi": "10.1126/science.abb9536",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "To quantify the consequences of this limitation, we spatially aggregated transcriptomes from sci-Space nuclei, effectively creating a “mock-STC” dataset.",
+   "text_version": "accepted",
+   "work_id": "W3176766013"
+  },
+  {
+   "doi": "10.1126/science.abb9536",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "To systematically examine these data for spatially patterned, cell type-specific gene expression across the E14.0 embryo, we quantified spatial autocorrelation",
+   "text_version": "accepted",
+   "work_id": "W3176766013"
+  },
+  {
+   "doi": "10.1126/science.abb9536",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "To ask how each cell type’s transcriptome varied globally across the embryo",
+   "text_version": "accepted",
+   "work_id": "W3176766013"
+  },
+  {
+   "doi": "10.1126/science.abb9536",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "To explore how spatial context might relate to gene expression heterogeneity in a developing cell lineage, we focused on radial glia and neurons.",
+   "text_version": "accepted",
+   "work_id": "W3176766013"
+  },
+  {
+   "doi": "10.1126/science.abb9536",
+   "field": "value",
+   "item": "excitement",
+   "text": "We identify thousands of genes exhibiting anatomically patterned expression",
+   "text_version": "accepted",
+   "work_id": "W3176766013"
+  },
+  {
+   "doi": "10.1126/science.abb9536",
+   "field": "value",
+   "item": "excitement",
+   "text": "Looking forward, we anticipate sci-Space will facilitate the construction of spatially-resolved single cell atlases of mammalian development.",
+   "text_version": "accepted",
+   "work_id": "W3176766013"
+  },
+  {
+   "doi": "10.1126/science.abb9536",
+   "field": "value",
+   "item": "excitement",
+   "text": "Reassuringly, these E14.0 data integrated well with both datasets",
+   "text_version": "accepted",
+   "work_id": "W3176766013"
+  },
+  {
+   "doi": "10.1126/science.abb9536",
+   "field": "value",
+   "item": "excitement",
+   "text": "represents a key advantage over STC methods",
+   "text_version": "accepted",
+   "work_id": "W3176766013"
+  },
+  {
+   "doi": "10.1126/science.abb9536",
+   "field": "value",
+   "item": "excitement",
+   "text": "Our data also identify a third major pattern of migration",
+   "text_version": "accepted",
+   "work_id": "W3176766013"
+  },
+  {
+   "doi": "10.1126/science.abb9536",
+   "field": "value",
+   "item": "excitement",
+   "text": "Nonetheless, sci-Space fills a need not addressed by other technologies.",
+   "text_version": "accepted",
+   "work_id": "W3176766013"
+  },
+  {
+   "doi": "10.1126/science.abb9536",
+   "field": "value",
+   "item": "excitement",
+   "text": "will facilitate the construction of a set of highly time- and space-resolved 4-dimensional atlases of gene expression across mammalian development",
+   "text_version": "accepted",
+   "work_id": "W3176766013"
+  },
+  {
+   "doi": "10.1126/science.abb9536",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "Looking forward, we anticipate sci-Space will facilitate the construction of spatially-resolved single cell atlases of mammalian development.",
+   "text_version": "accepted",
+   "work_id": "W3176766013"
+  },
+  {
+   "doi": "10.1126/science.abb9536",
+   "field": "hedge_quote",
+   "item": "strongest_claim",
+   "text": "we anticipate",
+   "text_version": "accepted",
+   "work_id": "W3176766013"
+  },
+  {
+   "doi": "10.1126/science.abb9536",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "The spatial resolution of sci-Space is presently limited by the patterned array of hashing oligos, here to approximately 200 microns.",
+   "text_version": "accepted",
+   "work_id": "W3176766013"
+  },
+  {
+   "doi": "10.1126/science.abb9536",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "sci-Space is unlikely to detect effects arising from interactions between adjacent cells",
+   "text_version": "accepted",
+   "work_id": "W3176766013"
+  },
+  {
+   "doi": "10.1126/science.abb9536",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "increasing spot density and decreasing spot size are a straightforward path to increasing resolution",
+   "text_version": "accepted",
+   "work_id": "W3176766013"
+  },
+  {
+   "doi": "10.1126/science.abb9536",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "spatial autocorrelation--the degree to which the cells expressing a given gene are spatially proximate",
+   "text_version": "accepted",
+   "work_id": "W3176766013"
+  },
+  {
+   "doi": "10.1126/science.abb9536",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "the boundaries of spots have no natural correspondence to the boundaries of cells",
+   "text_version": "accepted",
+   "work_id": "W3176766013"
+  },
+  {
+   "doi": "10.1126/science.abb9536",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "each spot can include RNA from multiple cells and/or portions of cells",
+   "text_version": "accepted",
+   "work_id": "W3176766013"
+  },
+  {
+   "doi": "10.1126/science.abb9536",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "we obtain a “survey”, rather than achieving dense measurements",
+   "text_version": "accepted",
+   "work_id": "W3176766013"
+  },
+  {
+   "doi": "10.1126/science.abb9536",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Reassuringly,",
+   "text_version": "accepted",
+   "work_id": "W3176766013"
+  },
+  {
+   "doi": "10.1126/science.abb9536",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "As such,",
+   "text_version": "accepted",
+   "work_id": "W3176766013"
+  },
+  {
+   "doi": "10.1126/science.abb9536",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "we anticipate",
+   "text_version": "accepted",
+   "work_id": "W3176766013"
+  },
+  {
+   "doi": "10.1038/s41596-022-00752-0",
+   "field": "quote",
+   "item": "gap_sentence",
+   "text": "Nonetheless, the underlying protocol remains cumbersome.",
+   "text_version": "accepted",
+   "work_id": "W4306810133"
+  },
+  {
+   "doi": "10.1038/s41596-022-00752-0",
+   "field": "quote",
+   "item": "here_we",
+   "text": "Here, we describe the culmination of extensive efforts to simplify and optimize the protocol, enabling the transcriptional profiling of previously difficult tissues.",
+   "text_version": "accepted",
+   "work_id": "W4306810133"
+  },
+  {
+   "doi": "10.1038/s41596-022-00752-0",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "although to apply the protocol to cells, one need only omit the lysis step; see “Limitations” section below",
+   "text_version": "accepted",
+   "work_id": "W4306810133"
+  },
+  {
+   "doi": "10.1038/s41596-022-00752-0",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "we have drastically reduced the cost of conducting these experiments as compared with the original protocol",
+   "text_version": "accepted",
+   "work_id": "W4306810133"
+  },
+  {
+   "doi": "10.1038/s41596-022-00752-0",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "see the “Tiny-Sci” section for alternative nuclei isolation and fixing steps",
+   "text_version": "accepted",
+   "work_id": "W4306810133"
+  },
+  {
+   "doi": "10.1038/s41596-022-00752-0",
+   "field": "value",
+   "item": "excitement",
+   "text": "faster, higher yield, more robust, and more sensitive, than the original sci-RNA-seq3 protocol",
+   "text_version": "accepted",
+   "work_id": "W4306810133"
+  },
+  {
+   "doi": "10.1038/s41596-022-00752-0",
+   "field": "value",
+   "item": "excitement",
+   "text": "such that Tiny-Sci extends the range of sci-RNA-seq3 to samples for which only small amounts of tissue are available",
+   "text_version": "accepted",
+   "work_id": "W4306810133"
+  },
+  {
+   "doi": "10.1038/s41596-022-00752-0",
+   "field": "value",
+   "item": "excitement",
+   "text": "The differences were stark",
+   "text_version": "accepted",
+   "work_id": "W4306810133"
+  },
+  {
+   "doi": "10.1038/s41596-022-00752-0",
+   "field": "value",
+   "item": "excitement",
+   "text": "the change to DEPC alone has had the biggest impact on sci-RNA-seq3 success",
+   "text_version": "accepted",
+   "work_id": "W4306810133"
+  },
+  {
+   "doi": "10.1038/s41596-022-00752-0",
+   "field": "value",
+   "item": "excitement",
+   "text": "we have drastically reduced the cost of conducting these experiments as compared with the original protocol",
+   "text_version": "accepted",
+   "work_id": "W4306810133"
+  },
+  {
+   "doi": "10.1038/s41596-022-00752-0",
+   "field": "value",
+   "item": "excitement",
+   "text": "Other single cell techniques may benefit from the nuclei preparation and fixation method presented here",
+   "text_version": "accepted",
+   "work_id": "W4306810133"
+  },
+  {
+   "doi": "10.1038/s41596-022-00752-0",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "Other single cell techniques may benefit from the nuclei preparation and fixation method presented here",
+   "text_version": "accepted",
+   "work_id": "W4306810133"
+  },
+  {
+   "doi": "10.1038/s41596-022-00752-0",
+   "field": "hedge_quote",
+   "item": "strongest_claim",
+   "text": "may benefit",
+   "text_version": "accepted",
+   "work_id": "W4306810133"
+  },
+  {
+   "doi": "10.1038/s41596-022-00752-0",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "Of course, a drawback is that one loses cytoplasmic transcripts.",
+   "text_version": "accepted",
+   "work_id": "W4306810133"
+  },
+  {
+   "doi": "10.1038/s41596-022-00752-0",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "although we note that we have not characterized how the subsequent buffers impact cell integrity",
+   "text_version": "accepted",
+   "work_id": "W4306810133"
+  },
+  {
+   "doi": "10.1038/s41596-022-00752-0",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "For such protocols, one might try using DSS (disuccinimidyl suberate) instead",
+   "text_version": "accepted",
+   "work_id": "W4306810133"
+  },
+  {
+   "doi": "10.1038/s41596-022-00752-0",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "When methanol is used on its own, this results in large, unusable clumps of hundreds of nuclei at the end of the protocol.",
+   "text_version": "accepted",
+   "work_id": "W4306810133"
+  },
+  {
+   "doi": "10.1038/s41596-022-00752-0",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "Tissue is dissociated by simply smashing it on dry ice",
+   "text_version": "accepted",
+   "work_id": "W4306810133"
+  },
+  {
+   "doi": "10.1038/s41596-022-00752-0",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "cell lysis is a “universal” means of freeing nuclei",
+   "text_version": "accepted",
+   "work_id": "W4306810133"
+  },
+  {
+   "doi": "10.1038/s41596-022-00752-0",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "In our hands,",
+   "text_version": "accepted",
+   "work_id": "W4306810133"
+  },
+  {
+   "doi": "10.1038/s41596-022-00752-0",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Of note,",
+   "text_version": "accepted",
+   "work_id": "W4306810133"
+  },
+  {
+   "doi": "10.1038/s41596-022-00752-0",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "simply",
+   "text_version": "accepted",
+   "work_id": "W4306810133"
+  },
+  {
+   "doi": "10.1038/s41586-023-06720-2",
+   "field": "quote",
+   "item": "gap_sentence",
+   "text": "These challenges have, until now, limited analyses to few genetic perturbations in comparatively less complex animals or at early stages of development.",
+   "text_version": "published",
+   "work_id": "W4388694332"
+  },
+  {
+   "doi": "10.1038/s41586-023-06720-2",
+   "field": "quote",
+   "item": "here_we",
+   "text": "Here, we describe the application of these three technologies to zebrafish",
+   "text_version": "published",
+   "work_id": "W4388694332"
+  },
+  {
+   "doi": "10.1038/s41586-023-06720-2",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "these variance estimates serve as important bases for our statistical assessment of perturbation-induced cell type abundance changes",
+   "text_version": "published",
+   "work_id": "W4388694332"
+  },
+  {
+   "doi": "10.1038/s41586-023-06720-2",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "We then scaled up our approach to profile many different genetic perturbations spanning multiple timepoints during embryogenesis",
+   "text_version": "published",
+   "work_id": "W4388694332"
+  },
+  {
+   "doi": "10.1038/s41586-023-06720-2",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "To identify the transcriptional responses of each cell type to genetic perturbation, we performed differential gene expression tests to complement the differential abundance analysis.",
+   "text_version": "published",
+   "work_id": "W4388694332"
+  },
+  {
+   "doi": "10.1038/s41586-023-06720-2",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "Disentangling these unique scenarios may not be possible from snapshots of normal development, regardless of the resolution of the data.",
+   "text_version": "published",
+   "work_id": "W4388694332"
+  },
+  {
+   "doi": "10.1038/s41586-023-06720-2",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "we targeted two highly conserved transcription factors essential for its development: noto and tbxta",
+   "text_version": "published",
+   "work_id": "W4388694332"
+  },
+  {
+   "doi": "10.1038/s41586-023-06720-2",
+   "field": "value",
+   "item": "excitement",
+   "text": "identified a group of brachyury-independent cells with strikingly similar transcriptomes to notochord sheath cells",
+   "text_version": "published",
+   "work_id": "W4388694332"
+  },
+  {
+   "doi": "10.1038/s41586-023-06720-2",
+   "field": "value",
+   "item": "excitement",
+   "text": "will enable mapping of the genetic dependencies of zebrafish cell types",
+   "text_version": "published",
+   "work_id": "W4388694332"
+  },
+  {
+   "doi": "10.1038/s41586-023-06720-2",
+   "field": "value",
+   "item": "excitement",
+   "text": "filling a major gap in existing zebrafish atlases",
+   "text_version": "published",
+   "work_id": "W4388694332"
+  },
+  {
+   "doi": "10.1038/s41586-023-06720-2",
+   "field": "value",
+   "item": "excitement",
+   "text": "our scalable approach is flexible, comprehensive, cost-effective and more uniform than conventional phenotyping strategies",
+   "text_version": "published",
+   "work_id": "W4388694332"
+  },
+  {
+   "doi": "10.1038/s41586-023-06720-2",
+   "field": "value",
+   "item": "excitement",
+   "text": "the apparent and unexpected ‘recovery’ of notochord cells in tbxta crispants",
+   "text_version": "published",
+   "work_id": "W4388694332"
+  },
+  {
+   "doi": "10.1038/s41586-023-06720-2",
+   "field": "value",
+   "item": "excitement",
+   "text": "our whole-embryo, single-cell measurements across time now enable a comprehensive view of candidate targets for these key transcription factors",
+   "text_version": "published",
+   "work_id": "W4388694332"
+  },
+  {
+   "doi": "10.1038/s41586-023-06720-2",
+   "field": "value",
+   "item": "excitement",
+   "text": "The unprecedented depth of replication in the experiment, with at least 16 embryos per genotype",
+   "text_version": "published",
+   "work_id": "W4388694332"
+  },
+  {
+   "doi": "10.1038/s41586-023-06720-2",
+   "field": "value",
+   "item": "excitement",
+   "text": "a finding that provides new clues about the origins of the vertebrate skull",
+   "text_version": "published",
+   "work_id": "W4388694332"
+  },
+  {
+   "doi": "10.1038/s41586-023-06720-2",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "will enable mapping of the genetic dependencies of zebrafish cell types, while also addressing longstanding challenges in developmental genetics",
+   "text_version": "published",
+   "work_id": "W4388694332"
+  },
+  {
+   "doi": "10.1038/s41586-023-06720-2",
+   "field": "hedge_quote",
+   "item": "strongest_claim",
+   "text": "We anticipate that",
+   "text_version": "published",
+   "work_id": "W4388694332"
+  },
+  {
+   "doi": "10.1038/s41586-023-06720-2",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "Our method is not without limitations for future research to address.",
+   "text_version": "published",
+   "work_id": "W4388694332"
+  },
+  {
+   "doi": "10.1038/s41586-023-06720-2",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "profiling larger organisms that may contain billions to trillions of cells may be infeasible",
+   "text_version": "published",
+   "work_id": "W4388694332"
+  },
+  {
+   "doi": "10.1038/s41586-023-06720-2",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "low levels of mosaicism in F0 crispants are a concern",
+   "text_version": "published",
+   "work_id": "W4388694332"
+  },
+  {
+   "doi": "10.1038/s41586-023-06720-2",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "An ideal assay would capture both the single-cell transcriptome and the perturbed genetic allele",
+   "text_version": "published",
+   "work_id": "W4388694332"
+  },
+  {
+   "doi": "10.1038/s41586-023-06720-2",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "each timepoint was a pool of embryos, thus masking heterogeneity between individuals",
+   "text_version": "published",
+   "work_id": "W4388694332"
+  },
+  {
+   "doi": "10.1038/s41586-023-06720-2",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "profiling cells from many samples is only marginally more expensive than profiling a similar number of cells from few specimens",
+   "text_version": "published",
+   "work_id": "W4388694332"
+  },
+  {
+   "doi": "10.1038/s41586-023-06720-2",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "A high-value Gi indicates a perturbed cell is surrounded by other cells with the same perturbation",
+   "text_version": "published",
+   "work_id": "W4388694332"
+  },
+  {
+   "doi": "10.1038/s41586-023-06720-2",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Together, these results show",
+   "text_version": "published",
+   "work_id": "W4388694332"
+  },
+  {
+   "doi": "10.1038/s41586-023-06720-2",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Consistent with previous studies",
+   "text_version": "published",
+   "work_id": "W4388694332"
+  },
+  {
+   "doi": "10.1038/s41586-023-06720-2",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "We next sought to",
+   "text_version": "published",
+   "work_id": "W4388694332"
+  },
+  {
+   "doi": "10.1038/s41586-023-06720-2",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "offering new hypotheses",
+   "text_version": "published",
+   "work_id": "W4388694332"
+  },
+  {
+   "doi": "10.1038/s41586-023-06720-2",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Taken together, our results demonstrate",
+   "text_version": "published",
+   "work_id": "W4388694332"
+  },
+  {
+   "doi": "10.1101/2023.03.05.531201",
+   "field": "quote",
+   "item": "gap_sentence",
+   "text": "it is often prohibitively expensive to perform these experiments on more than a few samples",
+   "text_version": "preprint",
+   "work_id": "W4389304038"
+  },
+  {
+   "doi": "10.1101/2023.03.05.531201",
+   "field": "quote",
+   "item": "here_we",
+   "text": "Here, we extend the sciPlex multiplexing platform to combinatorial indexing-based chromatin accessibility profiling within single cells.",
+   "text_version": "preprint",
+   "work_id": "W4389304038"
+  },
+  {
+   "doi": "10.1101/2023.03.05.531201",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "We therefore sought to apply sciPlex-ATAC-seq to resolve chromatin profiles at single cell resolution in the context of a multi-compound chemical perturbation experiment.",
+   "text_version": "preprint",
+   "work_id": "W4389304038"
+  },
+  {
+   "doi": "10.1101/2023.03.05.531201",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "We next applied an unsupervised, graph learning approach",
+   "text_version": "preprint",
+   "work_id": "W4389304038"
+  },
+  {
+   "doi": "10.1101/2023.03.05.531201",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "Investigating heterogeneous cell mixtures from each of many conditions necessitates a platform which easily scales beyond 10,000–100,000 cells.",
+   "text_version": "preprint",
+   "work_id": "W4389304038"
+  },
+  {
+   "doi": "10.1101/2023.03.05.531201",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "To investigate chemical immunosuppression of allogeneic T-cell activation, we next combined high-throughput chemical screening with cultured mixed lymphocyte reactions",
+   "text_version": "preprint",
+   "work_id": "W4389304038"
+  },
+  {
+   "doi": "10.1101/2023.03.05.531201",
+   "field": "value",
+   "item": "excitement",
+   "text": "Here we describe a novel approach, sciPlex-ATAC-seq",
+   "text_version": "preprint",
+   "work_id": "W4389304038"
+  },
+  {
+   "doi": "10.1101/2023.03.05.531201",
+   "field": "value",
+   "item": "excitement",
+   "text": "enabling the concurrent profiling of chromatin accessibility within single nuclei from virtually unlimited specimens or experimental conditions",
+   "text_version": "preprint",
+   "work_id": "W4389304038"
+  },
+  {
+   "doi": "10.1101/2023.03.05.531201",
+   "field": "value",
+   "item": "excitement",
+   "text": "Strikingly, the dosages of Dex treatments were often misidentified",
+   "text_version": "preprint",
+   "work_id": "W4389304038"
+  },
+  {
+   "doi": "10.1101/2023.03.05.531201",
+   "field": "value",
+   "item": "excitement",
+   "text": "Interestingly, the vast majority of differentially accessible sites were specific to just one compound",
+   "text_version": "preprint",
+   "work_id": "W4389304038"
+  },
+  {
+   "doi": "10.1101/2023.03.05.531201",
+   "field": "value",
+   "item": "excitement",
+   "text": "Counterintuitively, more SAHA-affected sites exhibited a sustained loss",
+   "text_version": "preprint",
+   "work_id": "W4389304038"
+  },
+  {
+   "doi": "10.1101/2023.03.05.531201",
+   "field": "value",
+   "item": "excitement",
+   "text": "illustrating that sciPlex-ATAC3 can detect meaningful cell type composition changes in heterogeneous specimens",
+   "text_version": "preprint",
+   "work_id": "W4389304038"
+  },
+  {
+   "doi": "10.1101/2023.03.05.531201",
+   "field": "value",
+   "item": "excitement",
+   "text": "sciPlex-ATAC-seq highlights the underlying contribution of chromatin, often within non-coding regions, in governing cellular response to chemical perturbation",
+   "text_version": "preprint",
+   "work_id": "W4389304038"
+  },
+  {
+   "doi": "10.1101/2023.03.05.531201",
+   "field": "value",
+   "item": "excitement",
+   "text": "increasing the scale of sciPlex-ATAC-seq experiments simply requires additional single stranded DNA oligos",
+   "text_version": "preprint",
+   "work_id": "W4389304038"
+  },
+  {
+   "doi": "10.1101/2023.03.05.531201",
+   "field": "value",
+   "item": "excitement",
+   "text": "the core technology is immediately applicable to a wide variety of biological applications aimed at exploring large parameter spaces",
+   "text_version": "preprint",
+   "work_id": "W4389304038"
+  },
+  {
+   "doi": "10.1101/2023.03.05.531201",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "together these results support a general requirement for the turnover of histone acetylation in maintaining proper nucleosome organization",
+   "text_version": "preprint",
+   "work_id": "W4389304038"
+  },
+  {
+   "doi": "10.1101/2023.03.05.531201",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "Notably, sciPlex-ATAC-seq is not without limitations.",
+   "text_version": "preprint",
+   "work_id": "W4389304038"
+  },
+  {
+   "doi": "10.1101/2023.03.05.531201",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "Extensive handling between barcoding reactions results in low overall nuclei yields (5–10%), and thus requires ample starting material.",
+   "text_version": "preprint",
+   "work_id": "W4389304038"
+  },
+  {
+   "doi": "10.1101/2023.03.05.531201",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "omitting FACS-based sorting in sciPlex-ATAC3 to enhance nuclei recovery may lower data quality and increase sequencing costs",
+   "text_version": "preprint",
+   "work_id": "W4389304038"
+  },
+  {
+   "doi": "10.1101/2023.03.05.531201",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "Our analysis was limited to broad immune cell types, but resolving effects on T-lymphocyte subtypes will be crucial",
+   "text_version": "preprint",
+   "work_id": "W4389304038"
+  },
+  {
+   "doi": "10.1101/2023.03.05.531201",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "The ability to pool many samples for parallel processing should reduce the potential for batch-to-batch variation",
+   "text_version": "preprint",
+   "work_id": "W4389304038"
+  },
+  {
+   "doi": "10.1101/2023.03.05.531201",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Ultimately,",
+   "text_version": "preprint",
+   "work_id": "W4389304038"
+  },
+  {
+   "doi": "10.1101/2023.03.05.531201",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Moreover,",
+   "text_version": "preprint",
+   "work_id": "W4389304038"
+  },
+  {
+   "doi": "10.1101/2023.03.05.531201",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "We therefore sought to",
+   "text_version": "preprint",
+   "work_id": "W4389304038"
+  },
+  {
+   "doi": "10.1101/2023.03.05.531201",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Together, these results point to",
+   "text_version": "preprint",
+   "work_id": "W4389304038"
+  },
+  {
+   "doi": "10.1101/2023.03.05.531201",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Taken together, these results demonstrate",
+   "text_version": "preprint",
+   "work_id": "W4389304038"
+  },
+  {
+   "doi": "10.1101/2023.04.05.535726",
+   "field": "quote",
+   "item": "gap_sentence",
+   "text": "these studies did not examine later stages of prenatal development",
+   "text_version": "preprint",
+   "work_id": "W4391824133"
+  },
+  {
+   "doi": "10.1101/2023.04.05.535726",
+   "field": "quote",
+   "item": "here_we",
+   "text": "Here we set out to deeply profile the molecular states of single nuclei derived from precisely staged mouse embryos",
+   "text_version": "preprint",
+   "work_id": "W4391824133"
+  },
+  {
+   "doi": "10.1101/2023.04.05.535726",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "We next sought to leverage this single cell timelapse of mouse development from gastrula to pup to perform deeper dives",
+   "text_version": "preprint",
+   "work_id": "W4391824133"
+  },
+  {
+   "doi": "10.1101/2023.04.05.535726",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "In the previous section, we considered aspects of the axial (notochord) and paraxial (somite-forming) mesoderm.",
+   "text_version": "preprint",
+   "work_id": "W4391824133"
+  },
+  {
+   "doi": "10.1101/2023.04.05.535726",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "We return to this observation in the final section of the manuscript.",
+   "text_version": "preprint",
+   "work_id": "W4391824133"
+  },
+  {
+   "doi": "10.1101/2023.04.05.535726",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "In the next two sections, we turn from the mesoderm to the neuroectoderm, first considering the retina and then neuronal diversification more broadly.",
+   "text_version": "preprint",
+   "work_id": "W4391824133"
+  },
+  {
+   "doi": "10.1101/2023.04.05.535726",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "the temporal resolution, breadth and depth of data reported here creates an opportunity to refine and extend a tree",
+   "text_version": "preprint",
+   "work_id": "W4391824133"
+  },
+  {
+   "doi": "10.1101/2023.04.05.535726",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "Here, in the course of similarly annotating the zygote-to-pup cell type tree shown in Fig. 6g, we sought to take a more nuanced approach.",
+   "text_version": "preprint",
+   "work_id": "W4391824133"
+  },
+  {
+   "doi": "10.1101/2023.04.05.535726",
+   "field": "value",
+   "item": "excitement",
+   "text": "Remarkably, the most dramatic shifts in transcriptional state are observed in a restricted set of cell types in the hours immediately following birth",
+   "text_version": "preprint",
+   "work_id": "W4391824133"
+  },
+  {
+   "doi": "10.1101/2023.04.05.535726",
+   "field": "value",
+   "item": "excitement",
+   "text": "presumably underlie the massive changes in physiology that must accompany the successful transition of a placental mammal to extrauterine life",
+   "text_version": "preprint",
+   "work_id": "W4391824133"
+  },
+  {
+   "doi": "10.1101/2023.04.05.535726",
+   "field": "value",
+   "item": "excitement",
+   "text": "a rooted tree of cell type relationships that spans mouse development from zygote to pup",
+   "text_version": "preprint",
+   "work_id": "W4391824133"
+  },
+  {
+   "doi": "10.1101/2023.04.05.535726",
+   "field": "value",
+   "item": "excitement",
+   "text": "The resulting dataset greatly improves upon our previously reported single cell atlas of early organogenesis in the mouse",
+   "text_version": "preprint",
+   "work_id": "W4391824133"
+  },
+  {
+   "doi": "10.1101/2023.04.05.535726",
+   "field": "value",
+   "item": "excitement",
+   "text": "Surprisingly, we find that birth (E18.75 → P0) is associated with a dramatic shift in transcriptional state in a restricted subset of cell types.",
+   "text_version": "preprint",
+   "work_id": "W4391824133"
+  },
+  {
+   "doi": "10.1101/2023.04.05.535726",
+   "field": "value",
+   "item": "excitement",
+   "text": "our studies provide a framework for exploring the entirety of mammalian embryogenesis, from single cell zygote to newborn pup",
+   "text_version": "preprint",
+   "work_id": "W4391824133"
+  },
+  {
+   "doi": "10.1101/2023.04.05.535726",
+   "field": "value",
+   "item": "excitement",
+   "text": "We observe striking contrasts in gene expression between NMPs derived from earlier (0–12 somites) vs. later (14–34 somites) embryos",
+   "text_version": "preprint",
+   "work_id": "W4391824133"
+  },
+  {
+   "doi": "10.1101/2023.04.05.535726",
+   "field": "value",
+   "item": "excitement",
+   "text": "Strikingly, the CMZ appears to give rise to a second wave of pigment epithelium in the perinatal period",
+   "text_version": "preprint",
+   "work_id": "W4391824133"
+  },
+  {
+   "doi": "10.1101/2023.04.05.535726",
+   "field": "value",
+   "item": "excitement",
+   "text": "However, for many cell types, the difference was extreme, consistent with dramatic changes in a transcriptional state upon birth.",
+   "text_version": "preprint",
+   "work_id": "W4391824133"
+  },
+  {
+   "doi": "10.1101/2023.04.05.535726",
+   "field": "value",
+   "item": "excitement",
+   "text": "the largest surprise to us was the discovery of rapid changes in transcriptional state in a restricted subset of cell types",
+   "text_version": "preprint",
+   "work_id": "W4391824133"
+  },
+  {
+   "doi": "10.1101/2023.04.05.535726",
+   "field": "value",
+   "item": "excitement",
+   "text": "our single dataset is equivalent to about 30% of the aggregated corpus of the Human Cell Atlas Data Portal",
+   "text_version": "preprint",
+   "work_id": "W4391824133"
+  },
+  {
+   "doi": "10.1101/2023.04.05.535726",
+   "field": "value",
+   "item": "excitement",
+   "text": "We envision that the methods described here can also be applied to postnatal timepoints at the scale of the entire organism",
+   "text_version": "preprint",
+   "work_id": "W4391824133"
+  },
+  {
+   "doi": "10.1101/2023.04.05.535726",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "presumably underlie the massive changes in physiology that must accompany the successful transition of a placental mammal to extrauterine life",
+   "text_version": "preprint",
+   "work_id": "W4391824133"
+  },
+  {
+   "doi": "10.1101/2023.04.05.535726",
+   "field": "hedge_quote",
+   "item": "strongest_claim",
+   "text": "presumably",
+   "text_version": "preprint",
+   "work_id": "W4391824133"
+  },
+  {
+   "doi": "10.1101/2023.04.05.535726",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "These annotations are preliminary, and subject to refinement or correction",
+   "text_version": "preprint",
+   "work_id": "W4391824133"
+  },
+  {
+   "doi": "10.1101/2023.04.05.535726",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "even with the large number of nuclei profiled here, our “cellular coverage” of the embryo remains modest",
+   "text_version": "preprint",
+   "work_id": "W4391824133"
+  },
+  {
+   "doi": "10.1101/2023.04.05.535726",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "although lineage analysis would be necessary to confirm this",
+   "text_version": "preprint",
+   "work_id": "W4391824133"
+  },
+  {
+   "doi": "10.1101/2023.04.05.535726",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "The exact amount of time that lapsed between the birth of the vaginally birthed pups and their harvesting was not precisely captured",
+   "text_version": "preprint",
+   "work_id": "W4391824133"
+  },
+  {
+   "doi": "10.1101/2023.04.05.535726",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "both cell type annotations and the tree structure itself almost certainly contain errors",
+   "text_version": "preprint",
+   "work_id": "W4391824133"
+  },
+  {
+   "doi": "10.1101/2023.04.05.535726",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "yielding “snapshots” that must be pieced together analogous to a timelapse movie",
+   "text_version": "preprint",
+   "work_id": "W4391824133"
+  },
+  {
+   "doi": "10.1101/2023.04.05.535726",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "Inevitably, there are tradeoffs between the span of development studied and both the frame rate and resolution of the snapshots taken.",
+   "text_version": "preprint",
+   "work_id": "W4391824133"
+  },
+  {
+   "doi": "10.1101/2023.04.05.535726",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "In this framing, a low proportion of neighbors from different timepoints corresponds to a relatively abrupt change in transcriptional state.",
+   "text_version": "preprint",
+   "work_id": "W4391824133"
+  },
+  {
+   "doi": "10.1101/2023.04.05.535726",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Of note,",
+   "text_version": "preprint",
+   "work_id": "W4391824133"
+  },
+  {
+   "doi": "10.1101/2023.04.05.535726",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "We next sought to",
+   "text_version": "preprint",
+   "work_id": "W4391824133"
+  },
+  {
+   "doi": "10.1101/2023.04.05.535726",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "deeper dives",
+   "text_version": "preprint",
+   "work_id": "W4391824133"
+  },
+  {
+   "doi": "10.1101/2023.04.05.535726",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "striking overlap",
+   "text_version": "preprint",
+   "work_id": "W4391824133"
+  },
+  {
+   "doi": "10.1101/2023.04.05.535726",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Taken together, these analyses are consistent with a model",
+   "text_version": "preprint",
+   "work_id": "W4391824133"
+  },
+  {
+   "doi": "10.1016/j.molcel.2025.01.016",
+   "field": "quote",
+   "item": "gap_sentence",
+   "text": "the target substrate(s) for the vast majority of E3s remain unknown",
+   "text_version": "accepted",
+   "work_id": "W4407194510"
+  },
+  {
+   "doi": "10.1016/j.molcel.2025.01.016",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "In principle, this strategy enables many-by-many testing of E3-substrate pairs.",
+   "text_version": "accepted",
+   "work_id": "W4407194510"
+  },
+  {
+   "doi": "10.1016/j.molcel.2025.01.016",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "We next sought to test our ability to detect E3 perturbations that stabilize specific substrates.",
+   "text_version": "accepted",
+   "work_id": "W4407194510"
+  },
+  {
+   "doi": "10.1016/j.molcel.2025.01.016",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "Our results with GATA2 led us to wonder whether proteolytic degradation of short-lived TFs is a general phenomenon.",
+   "text_version": "accepted",
+   "work_id": "W4407194510"
+  },
+  {
+   "doi": "10.1016/j.molcel.2025.01.016",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "these results give us a preliminary sense for the connectivity of the proteolytic regulatory network",
+   "text_version": "accepted",
+   "work_id": "W4407194510"
+  },
+  {
+   "doi": "10.1016/j.molcel.2025.01.016",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "As a more scalable means of orthogonal assessment, we turned to AlphaFold-Multimer",
+   "text_version": "accepted",
+   "work_id": "W4407194510"
+  },
+  {
+   "doi": "10.1016/j.molcel.2025.01.016",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "We next sought to examine selected AlphaFold-Multimer-derived models of COMET-nominated E3-substrate interactions in more detail",
+   "text_version": "accepted",
+   "work_id": "W4407194510"
+  },
+  {
+   "doi": "10.1016/j.molcel.2025.01.016",
+   "field": "value",
+   "item": "excitement",
+   "text": "a framework for testing the role of many E3s in degrading many candidate substrates within a single experiment",
+   "text_version": "accepted",
+   "work_id": "W4407194510"
+  },
+  {
+   "doi": "10.1016/j.molcel.2025.01.016",
+   "field": "value",
+   "item": "excitement",
+   "text": "Our data suggest many E3-substrate relationships are complex rather than 1:1 associations.",
+   "text_version": "accepted",
+   "work_id": "W4407194510"
+  },
+  {
+   "doi": "10.1016/j.molcel.2025.01.016",
+   "field": "value",
+   "item": "excitement",
+   "text": "we consider the practicality of transposing this framework, i.e. computational structural prediction of all possible E3-substrate interactions",
+   "text_version": "accepted",
+   "work_id": "W4407194510"
+  },
+  {
+   "doi": "10.1016/j.molcel.2025.01.016",
+   "field": "value",
+   "item": "excitement",
+   "text": "Surprisingly however, we also observed many perturbation-ORF pairs that resulted in a significant PSI decrease",
+   "text_version": "accepted",
+   "work_id": "W4407194510"
+  },
+  {
+   "doi": "10.1016/j.molcel.2025.01.016",
+   "field": "value",
+   "item": "excitement",
+   "text": "Intriguingly, CTNNBIP1 and SERINC3 are stabilized by knockout of FBXW7 in K562 cells",
+   "text_version": "accepted",
+   "work_id": "W4407194510"
+  },
+  {
+   "doi": "10.1016/j.molcel.2025.01.016",
+   "field": "value",
+   "item": "excitement",
+   "text": "Encouragingly, summary score distributions for the COMET-linked and BioPlex classes were significantly higher than both negative control classes",
+   "text_version": "accepted",
+   "work_id": "W4407194510"
+  },
+  {
+   "doi": "10.1016/j.molcel.2025.01.016",
+   "field": "value",
+   "item": "excitement",
+   "text": "we observe two striking increases in local pLDDT values that precisely coincide with the degrons",
+   "text_version": "accepted",
+   "work_id": "W4407194510"
+  },
+  {
+   "doi": "10.1016/j.molcel.2025.01.016",
+   "field": "value",
+   "item": "excitement",
+   "text": "supports the utility of leveraging AlphaFold-Multimer as a means of degron discovery",
+   "text_version": "accepted",
+   "work_id": "W4407194510"
+  },
+  {
+   "doi": "10.1016/j.molcel.2025.01.016",
+   "field": "value",
+   "item": "excitement",
+   "text": "COMET is highly scalable, with tens-of-thousands of potential E3-substrate pairs assayable in a single experiment.",
+   "text_version": "accepted",
+   "work_id": "W4407194510"
+  },
+  {
+   "doi": "10.1016/j.molcel.2025.01.016",
+   "field": "value",
+   "item": "excitement",
+   "text": "we anticipate that COMET may advance models of proteolytic regulatory networks",
+   "text_version": "accepted",
+   "work_id": "W4407194510"
+  },
+  {
+   "doi": "10.1016/j.molcel.2025.01.016",
+   "field": "value",
+   "item": "excitement",
+   "text": "the COMET-derived linkage of FBXO7 and GATA2 suggests a plausible mechanism for the GWAS association",
+   "text_version": "accepted",
+   "work_id": "W4407194510"
+  },
+  {
+   "doi": "10.1016/j.molcel.2025.01.016",
+   "field": "value",
+   "item": "excitement",
+   "text": "we envision a future in which this framework is inverted",
+   "text_version": "accepted",
+   "work_id": "W4407194510"
+  },
+  {
+   "doi": "10.1016/j.molcel.2025.01.016",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "computational structural prediction of all possible E3-substrate interactions, followed by multiplex experimental validation",
+   "text_version": "accepted",
+   "work_id": "W4407194510"
+  },
+  {
+   "doi": "10.1016/j.molcel.2025.01.016",
+   "field": "hedge_quote",
+   "item": "strongest_claim",
+   "text": "we consider the practicality of transposing this framework",
+   "text_version": "accepted",
+   "work_id": "W4407194510"
+  },
+  {
+   "doi": "10.1016/j.molcel.2025.01.016",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "measured abundances are relative to other proteins in the pool, which makes it challenging to compare effect sizes between different experiments",
+   "text_version": "accepted",
+   "work_id": "W4407194510"
+  },
+  {
+   "doi": "10.1016/j.molcel.2025.01.016",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "This could potentially be mitigated by including protein spike-ins with known abundances",
+   "text_version": "accepted",
+   "work_id": "W4407194510"
+  },
+  {
+   "doi": "10.1016/j.molcel.2025.01.016",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "it is possible that COMET-nominated E3-substrate pairs have an indirect relationship",
+   "text_version": "accepted",
+   "work_id": "W4407194510"
+  },
+  {
+   "doi": "10.1016/j.molcel.2025.01.016",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "there exists the potential for both false negatives and false positives",
+   "text_version": "accepted",
+   "work_id": "W4407194510"
+  },
+  {
+   "doi": "10.1016/j.molcel.2025.01.016",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "knocking out an E3 is only expected to increase the abundance of its target substrate",
+   "text_version": "accepted",
+   "work_id": "W4407194510"
+  },
+  {
+   "doi": "10.1016/j.molcel.2025.01.016",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "We next sought to",
+   "text_version": "accepted",
+   "work_id": "W4407194510"
+  },
+  {
+   "doi": "10.1016/j.molcel.2025.01.016",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Once again,",
+   "text_version": "accepted",
+   "work_id": "W4407194510"
+  },
+  {
+   "doi": "10.1016/j.molcel.2025.01.016",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Altogether, these results show",
+   "text_version": "accepted",
+   "work_id": "W4407194510"
+  },
+  {
+   "doi": "10.1016/j.molcel.2025.01.016",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Surprisingly however,",
+   "text_version": "accepted",
+   "work_id": "W4407194510"
+  },
+  {
+   "doi": "10.1016/j.molcel.2025.01.016",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Interestingly,",
+   "text_version": "accepted",
+   "work_id": "W4407194510"
+  },
+  {
+   "doi": "10.1101/2025.05.23.655669",
+   "field": "quote",
+   "item": "gap_sentence",
+   "text": "this strategy is challenged by the inaccessibility of early in vivo development",
+   "text_version": "preprint",
+   "work_id": "W4410728597"
+  },
+  {
+   "doi": "10.1101/2025.05.23.655669",
+   "field": "quote",
+   "item": "here_we",
+   "text": "Here we set out to leverage EBs to probe the consequences of perturbing each mammalian TF",
+   "text_version": "preprint",
+   "work_id": "W4410728597"
+  },
+  {
+   "doi": "10.1101/2025.05.23.655669",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "Taken together, our results suggest that mouse EBs contain analogues of most major cell fates in early mouse development",
+   "text_version": "preprint",
+   "work_id": "W4410728597"
+  },
+  {
+   "doi": "10.1101/2025.05.23.655669",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "which in retrospect foreshadowed issues with reproducibility that we would encounter in our subsequent experiments",
+   "text_version": "preprint",
+   "work_id": "W4410728597"
+  },
+  {
+   "doi": "10.1101/2025.05.23.655669",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "made it challenging to comprehensively assess reproducibility of effects either across gRNAs in the same experiment or separate experiments",
+   "text_version": "preprint",
+   "work_id": "W4410728597"
+  },
+  {
+   "doi": "10.1101/2025.05.23.655669",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "Towards resolving or at least mitigating these issues, we set out to develop a new system for EB perturbation with two crucial differences.",
+   "text_version": "preprint",
+   "work_id": "W4410728597"
+  },
+  {
+   "doi": "10.1101/2025.05.23.655669",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "As a proof-of-concept of a genetic screen of pooled, sequence-tagged monoclonal EBs, we focused on measuring the effects",
+   "text_version": "preprint",
+   "work_id": "W4410728597"
+  },
+  {
+   "doi": "10.1101/2025.05.23.655669",
+   "field": "value",
+   "item": "excitement",
+   "text": "However, to our surprise, these results were not reproducible across biological replicates.",
+   "text_version": "preprint",
+   "work_id": "W4410728597"
+  },
+  {
+   "doi": "10.1101/2025.05.23.655669",
+   "field": "value",
+   "item": "excitement",
+   "text": "we discovered cellular bottlenecks during EB differentiation that dramatically reduce clonal complexity",
+   "text_version": "preprint",
+   "work_id": "W4410728597"
+  },
+  {
+   "doi": "10.1101/2025.05.23.655669",
+   "field": "value",
+   "item": "excitement",
+   "text": "monoclonal EBs and EB-derived organoids may be powerful tools not only for genetic screens, but also for modeling Mendelian disorders",
+   "text_version": "preprint",
+   "work_id": "W4410728597"
+  },
+  {
+   "doi": "10.1101/2025.05.23.655669",
+   "field": "value",
+   "item": "excitement",
+   "text": "we developed a novel protocol for the efficient production of monoclonally derived, individually barcoded EBs",
+   "text_version": "preprint",
+   "work_id": "W4410728597"
+  },
+  {
+   "doi": "10.1101/2025.05.23.655669",
+   "field": "value",
+   "item": "excitement",
+   "text": "Our results highlight the potential of monoclonal, barcoded EBs as a model system for large-scale genetic screens of early developmental processes",
+   "text_version": "preprint",
+   "work_id": "W4410728597"
+  },
+  {
+   "doi": "10.1101/2025.05.23.655669",
+   "field": "value",
+   "item": "excitement",
+   "text": "Strikingly, when comparing cell type distribution of gRNAs using the chi-square test",
+   "text_version": "preprint",
+   "work_id": "W4410728597"
+  },
+  {
+   "doi": "10.1101/2025.05.23.655669",
+   "field": "value",
+   "item": "excitement",
+   "text": "This revealed a surprising distribution of gRNA genotype frequencies",
+   "text_version": "preprint",
+   "work_id": "W4410728597"
+  },
+  {
+   "doi": "10.1101/2025.05.23.655669",
+   "field": "value",
+   "item": "excitement",
+   "text": "this stochastic, highly non-uniform contribution of clones within EBs dramatically reduces our power",
+   "text_version": "preprint",
+   "work_id": "W4410728597"
+  },
+  {
+   "doi": "10.1101/2025.05.23.655669",
+   "field": "value",
+   "item": "excitement",
+   "text": "Our results demonstrate an additional major disadvantage -- pervasive stochastic clonal skewing",
+   "text_version": "preprint",
+   "work_id": "W4410728597"
+  },
+  {
+   "doi": "10.1101/2025.05.23.655669",
+   "field": "value",
+   "item": "excitement",
+   "text": "This opens the door to comprehensive TF perturbation screens with high coverage across cell types.",
+   "text_version": "preprint",
+   "work_id": "W4410728597"
+  },
+  {
+   "doi": "10.1101/2025.05.23.655669",
+   "field": "value",
+   "item": "excitement",
+   "text": "we envision that this approach may enable scaling of iPSC-derived human organoids",
+   "text_version": "preprint",
+   "work_id": "W4410728597"
+  },
+  {
+   "doi": "10.1101/2025.05.23.655669",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "this approach may enable scaling of iPSC-derived human organoids, facilitating modeling how both common and rare variants shape molecular and cellular phenotypes",
+   "text_version": "preprint",
+   "work_id": "W4410728597"
+  },
+  {
+   "doi": "10.1101/2025.05.23.655669",
+   "field": "hedge_quote",
+   "item": "strongest_claim",
+   "text": "we envision that this approach may enable",
+   "text_version": "preprint",
+   "work_id": "W4410728597"
+  },
+  {
+   "doi": "10.1101/2025.05.23.655669",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "the data was quite noisy, in part due to low gRNA assignment rates and differing transduction rates",
+   "text_version": "preprint",
+   "work_id": "W4410728597"
+  },
+  {
+   "doi": "10.1101/2025.05.23.655669",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "made it challenging to comprehensively assess reproducibility of effects either across gRNAs in the same experiment or separate experiments",
+   "text_version": "preprint",
+   "work_id": "W4410728597"
+  },
+  {
+   "doi": "10.1101/2025.05.23.655669",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "much higher cell coverage per EB or many individual EBs would be needed to reliably detect differences in cell type composition",
+   "text_version": "preprint",
+   "work_id": "W4410728597"
+  },
+  {
+   "doi": "10.1101/2025.05.23.655669",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "Taken together, while the platform is in need of further optimization",
+   "text_version": "preprint",
+   "work_id": "W4410728597"
+  },
+  {
+   "doi": "10.1101/2025.05.23.655669",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "Averaging across large numbers of EBs may help mitigate the consequences of stochastic skewing, but is only practical for smaller libraries.",
+   "text_version": "preprint",
+   "work_id": "W4410728597"
+  },
+  {
+   "doi": "10.1101/2025.05.23.655669",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "are much easier to determine than the succession of molecular and cellular events that give rise to that phenotype",
+   "text_version": "preprint",
+   "work_id": "W4410728597"
+  },
+  {
+   "doi": "10.1101/2025.05.23.655669",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "This screen was ‘mosaic’, in that each aggregate/EB derived from multiple cells that were heterogeneous with respect to their encoded TF perturbation.",
+   "text_version": "preprint",
+   "work_id": "W4410728597"
+  },
+  {
+   "doi": "10.1101/2025.05.23.655669",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "since all cells within the same EB would be expressing the same gRNA",
+   "text_version": "preprint",
+   "work_id": "W4410728597"
+  },
+  {
+   "doi": "10.1101/2025.05.23.655669",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "Mosaic perturbations can be avoided by starting each organoid from a single cell bearing a single perturbation",
+   "text_version": "preprint",
+   "work_id": "W4410728597"
+  },
+  {
+   "doi": "10.1101/2025.05.23.655669",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Of note,",
+   "text_version": "preprint",
+   "work_id": "W4410728597"
+  },
+  {
+   "doi": "10.1101/2025.05.23.655669",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Taken together,",
+   "text_version": "preprint",
+   "work_id": "W4410728597"
+  },
+  {
+   "doi": "10.1101/2025.05.23.655669",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "We next sought to",
+   "text_version": "preprint",
+   "work_id": "W4410728597"
+  },
+  {
+   "doi": "10.1101/2025.05.23.655669",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "seemingly significant",
+   "text_version": "preprint",
+   "work_id": "W4410728597"
+  },
+  {
+   "doi": "10.1101/2025.05.23.655669",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Put another way,",
+   "text_version": "preprint",
+   "work_id": "W4410728597"
+  }
+ ],
+ "schema": 1,
+ "stability": {
+  "abstract_moves": {
+   "agreement": 0.897,
+   "pairs": 26,
+   "stable": true
+  },
+  "discussion_moves": {
+   "agreement": 0.752,
+   "pairs": 26,
+   "stable": true
+  },
+  "essay_argument": {
+   "agreement": 1.0,
+   "pairs": 1,
+   "stable": true
+  },
+  "excitement": {
+   "agreement": 0.656,
+   "pairs": 26,
+   "stable": false
+  },
+  "figure_reference": {
+   "agreement": 1.0,
+   "pairs": 26,
+   "stable": true
+  },
+  "gap_sentence": {
+   "agreement": 0.962,
+   "pairs": 26,
+   "stable": true
+  },
+  "here_we": {
+   "agreement": 1.0,
+   "pairs": 26,
+   "stable": true
+  },
+  "intro_roles": {
+   "agreement": 0.9,
+   "pairs": 26,
+   "stable": true
+  },
+  "limitations": {
+   "agreement": 0.808,
+   "pairs": 26,
+   "stable": true
+  },
+  "results_headings": {
+   "agreement": 1.0,
+   "pairs": 24,
+   "stable": true
+  },
+  "results_openings": {
+   "agreement": 0.948,
+   "pairs": 24,
+   "stable": true
+  },
+  "strongest_claim": {
+   "agreement": 0.962,
+   "pairs": 26,
+   "stable": true
+  },
+  "title_form": {
+   "agreement": 0.962,
+   "pairs": 26,
+   "stable": true
+  }
+ },
+ "surface": {
+  "citations_per_sentence": 0.236,
+  "connectives_per_1000": [
+   [
+    "first",
+    1.32
+   ],
+   [
+    "however",
+    1.18
+   ],
+   [
+    "although",
+    1.05
+   ],
+   [
+    "here",
+    0.98
+   ],
+   [
+    "second",
+    0.8
+   ],
+   [
+    "together",
+    0.56
+   ],
+   [
+    "because",
+    0.41
+   ],
+   [
+    "finally",
+    0.38
+   ],
+   [
+    "furthermore",
+    0.37
+   ],
+   [
+    "thus",
+    0.33
+   ],
+   [
+    "moreover",
+    0.27
+   ],
+   [
+    "whereas",
+    0.24
+   ],
+   [
+    "notably",
+    0.22
+   ],
+   [
+    "therefore",
+    0.19
+   ],
+   [
+    "interestingly",
+    0.16
+   ],
+   [
+    "importantly",
+    0.15
+   ],
+   [
+    "indeed",
+    0.15
+   ],
+   [
+    "instead",
+    0.1
+   ],
+   [
+    "strikingly",
+    0.1
+   ],
+   [
+    "surprisingly",
+    0.06
+   ],
+   [
+    "nevertheless",
+    0.05
+   ],
+   [
+    "remarkably",
+    0.01
+   ]
+  ],
+  "figure_refs_per_paragraph": 1.539,
+  "first_person_share": 0.358,
+  "hedge_words": [
+   [
+    "consistent",
+    81
+   ],
+   [
+    "may",
+    71
+   ],
+   [
+    "could",
+    52
+   ],
+   [
+    "likely",
+    36
+   ],
+   [
+    "might",
+    34
+   ],
+   [
+    "possible",
+    30
+   ],
+   [
+    "potentially",
+    30
+   ],
+   [
+    "putative",
+    27
+   ],
+   [
+    "appear",
+    18
+   ],
+   [
+    "suggests",
+    16
+   ],
+   [
+    "suggest",
+    13
+   ],
+   [
+    "possibly",
+    12
+   ],
+   [
+    "presumably",
+    9
+   ],
+   [
+    "appears",
+    8
+   ],
+   [
+    "appeared",
+    6
+   ],
+   [
+    "suggested",
+    6
+   ],
+   [
+    "perhaps",
+    5
+   ],
+   [
+    "indicate",
+    4
+   ],
+   [
+    "indicates",
+    4
+   ],
+   [
+    "unlikely",
+    3
+   ],
+   [
+    "probably",
+    2
+   ],
+   [
+    "seems",
+    2
+   ],
+   [
+    "seem",
+    1
+   ]
+  ],
+  "hedges_per_1000": 5.95,
+  "n_paragraphs": 729,
+  "n_sentences": 3055,
+  "n_words": 78947,
+  "numbers_per_sentence": 1.241,
+  "opener_pairs": [
+   [
+    "for example",
+    77
+   ],
+   [
+    "in contrast",
+    30
+   ],
+   [
+    "we next",
+    29
+   ],
+   [
+    "we then",
+    29
+   ],
+   [
+    "here we",
+    28
+   ],
+   [
+    "in the",
+    27
+   ],
+   [
+    "of note",
+    24
+   ],
+   [
+    "as a",
+    23
+   ],
+   [
+    "for each",
+    16
+   ],
+   [
+    "in addition",
+    16
+   ]
+  ],
+  "openers": [
+   [
+    "we",
+    278
+   ],
+   [
+    "the",
+    211
+   ],
+   [
+    "for",
+    163
+   ],
+   [
+    "in",
+    146
+   ],
+   [
+    "to",
+    139
+   ],
+   [
+    "as",
+    96
+   ],
+   [
+    "however",
+    79
+   ],
+   [
+    "this",
+    78
+   ],
+   [
+    "a",
+    55
+   ],
+   [
+    "these",
+    55
+   ],
+   [
+    "although",
+    52
+   ],
+   [
+    "of",
+    45
+   ],
+   [
+    "after",
+    33
+   ],
+   [
+    "our",
+    33
+   ],
+   [
+    "here",
+    31
+   ]
+  ],
+  "paragraph_sentences": {
+   "mean": 4.19,
+   "median": 4.0,
+   "n": 729,
+   "p90": 7.0
+  },
+  "passive_share": 0.257,
+  "questions_per_100": 0.29,
+  "sentence_length": {
+   "mean": 25.84,
+   "median": 25.0,
+   "n": 3055,
+   "p90": 41.0
+  },
+  "sentence_length_by_kind": {
+   "abstract": {
+    "mean": 24.71,
+    "median": 22.0,
+    "n": 107,
+    "p90": 40.0
+   },
+   "discussion": {
+    "mean": 28.43,
+    "median": 26.0,
+    "n": 298,
+    "p90": 45.0
+   },
+   "intro": {
+    "mean": 25.84,
+    "median": 25.0,
+    "n": 471,
+    "p90": 39.0
+   },
+   "other": {
+    "mean": 26.72,
+    "median": 25.0,
+    "n": 387,
+    "p90": 42.0
+   },
+   "results": {
+    "mean": 25.29,
+    "median": 24.0,
+    "n": 1792,
+    "p90": 41.0
+   }
+  }
+ },
+ "surface_papers": 15,
+ "text_versions": {
+  "accepted": 10,
+  "preprint": 4,
+  "published": 1
+ },
+ "unverified": {},
+ "years": {
+  "first": 2015,
+  "last": 2025
+ }
+}

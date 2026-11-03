@@ -1,0 +1,526 @@
+{
+ "cells": {
+  "essay/high": {
+   "allocated": 1,
+   "bins": [
+    [
+     "W2910683834"
+    ]
+   ],
+   "pool": 1,
+   "queue": [],
+   "target": 2
+  },
+  "essay/other": {
+   "allocated": 0,
+   "bins": [],
+   "pool": 0,
+   "queue": [],
+   "target": 1
+  },
+  "first/high": {
+   "allocated": 3,
+   "bins": [
+    [
+     "W1479970844"
+    ],
+    [
+     "W2540220299"
+    ],
+    [
+     "W2898348220"
+    ]
+   ],
+   "pool": 3,
+   "queue": [],
+   "target": 3
+  },
+  "first/other": {
+   "allocated": 1,
+   "bins": [
+    [
+     "W1993662860",
+     "W2017248899",
+     "W108008094",
+     "W1977695249",
+     "W2047169183",
+     "W2141207154"
+    ]
+   ],
+   "pool": 6,
+   "queue": [
+    "W108008094",
+    "W1977695249",
+    "W2017248899",
+    "W2141207154",
+    "W1993662860"
+   ],
+   "target": 1
+  },
+  "senior/high": {
+   "allocated": 7,
+   "bins": [
+    [
+     "W2950501364"
+    ],
+    [
+     "W2984014186"
+    ],
+    [
+     "W4220914113"
+    ],
+    [
+     "W4287510106",
+     "W4383879187"
+    ],
+    [
+     "W4399499779"
+    ],
+    [
+     "W4403729907"
+    ],
+    [
+     "W4413495132",
+     "W4413495365"
+    ]
+   ],
+   "pool": 9,
+   "queue": [
+    "W4413495132",
+    "W4287510106"
+   ],
+   "target": 5
+  },
+  "senior/other": {
+   "allocated": 3,
+   "bins": [
+    [
+     "W2914204228",
+     "W3010896723",
+     "W3014721303",
+     "W3035727968",
+     "W3089242265"
+    ],
+    [
+     "W4225595682",
+     "W4323566121",
+     "W4403561159",
+     "W4403990550",
+     "W4416794631",
+     "W7157088286"
+    ],
+    [
+     "W7162943156",
+     "W7166861138",
+     "W7168264868",
+     "W7214114485",
+     "W7222985434",
+     "W7223281292"
+    ]
+   ],
+   "pool": 17,
+   "queue": [
+    "W4416794631",
+    "W4403561159",
+    "W7157088286",
+    "W4323566121",
+    "W4403990550",
+    "W7222985434",
+    "W3014721303",
+    "W3010896723",
+    "W2914204228",
+    "W3089242265",
+    "W7166861138",
+    "W7168264868",
+    "W7214114485",
+    "W7162943156"
+   ],
+   "target": 3
+  }
+ },
+ "n_papers": 10,
+ "papers": [
+  {
+   "arxiv_id": null,
+   "cell": "senior/high",
+   "co_senior": true,
+   "doi": "10.1038/s41592-018-0216-7",
+   "group": "senior",
+   "pmcid": null,
+   "preprint_doi": "10.1101/236463",
+   "route": "biorxiv",
+   "source_url": "https://www.biorxiv.org/content/early/2018/07/03/236463.source.xml",
+   "status": "fetched",
+   "text_doi": "10.1101/236463",
+   "text_version": "preprint",
+   "tier": "high",
+   "title": "Content-aware image restoration: pushing the limits of fluorescence microscopy",
+   "type": "article",
+   "venue": "Nature Methods",
+   "work_id": "W2950501364",
+   "year": 2018
+  },
+  {
+   "arxiv_id": null,
+   "cell": "senior/high",
+   "co_senior": true,
+   "doi": "10.1038/s41592-019-0650-1",
+   "group": "senior",
+   "pmcid": null,
+   "preprint_doi": "10.1101/660704",
+   "route": "biorxiv",
+   "source_url": "https://www.biorxiv.org/content/early/2019/08/22/660704.source.xml",
+   "status": "fetched",
+   "text_doi": "10.1101/660704",
+   "text_version": "preprint",
+   "tier": "high",
+   "title": "CLIJ: GPU-accelerated image processing for everyone",
+   "type": "article",
+   "venue": "Nature Methods",
+   "work_id": "W2984014186",
+   "year": 2019
+  },
+  {
+   "arxiv_id": null,
+   "cell": "senior/high",
+   "co_senior": true,
+   "doi": "10.1038/s41592-022-01417-2",
+   "group": "senior",
+   "pmcid": "PMC9007742",
+   "preprint_doi": null,
+   "route": "ncbi-pmc",
+   "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9007742",
+   "status": "fetched",
+   "text_doi": "10.1038/s41592-022-01417-2",
+   "text_version": "published",
+   "tier": "high",
+   "title": "DaXi—high-resolution, large imaging volume and multi-view single-objective light-sheet microscopy",
+   "type": "article",
+   "venue": "Nature Methods",
+   "work_id": "W4220914113",
+   "year": 2022
+  },
+  {
+   "arxiv_id": null,
+   "cell": "senior/high",
+   "co_senior": false,
+   "doi": "10.1038/s41592-023-01930-y",
+   "group": "senior",
+   "pmcid": null,
+   "preprint_doi": null,
+   "route": null,
+   "source_url": null,
+   "status": "replaced",
+   "text_doi": null,
+   "text_version": null,
+   "tier": "high",
+   "title": "The future of bioimage analysis: a dialog between mind and machine",
+   "type": "article",
+   "venue": "Nature Methods",
+   "work_id": "W4383879187",
+   "year": 2023
+  },
+  {
+   "arxiv_id": null,
+   "cell": "senior/high",
+   "co_senior": false,
+   "doi": "10.1038/s41592-024-02310-w",
+   "group": "senior",
+   "pmcid": null,
+   "preprint_doi": null,
+   "route": null,
+   "source_url": null,
+   "status": "replaced",
+   "text_doi": null,
+   "text_version": null,
+   "tier": "high",
+   "title": "Omega — harnessing the power of large language models for bioimage analysis",
+   "type": "article",
+   "venue": "Nature Methods",
+   "work_id": "W4399499779",
+   "year": 2024
+  },
+  {
+   "arxiv_id": null,
+   "cell": "senior/high",
+   "co_senior": true,
+   "doi": "10.1016/j.cell.2024.09.047",
+   "group": "senior",
+   "pmcid": null,
+   "preprint_doi": null,
+   "route": null,
+   "source_url": null,
+   "status": "replaced",
+   "text_doi": null,
+   "text_version": null,
+   "tier": "high",
+   "title": "A multimodal zebrafish developmental atlas reveals the state-transition dynamics of late-vertebrate pluripotent axial progenitors",
+   "type": "article",
+   "venue": "Cell",
+   "work_id": "W4403729907",
+   "year": 2024
+  },
+  {
+   "arxiv_id": null,
+   "cell": "senior/high",
+   "co_senior": true,
+   "doi": "10.1038/s41592-025-02778-0",
+   "group": "senior",
+   "pmcid": "PMC11398427",
+   "preprint_doi": "10.1101/2024.09.02.610652",
+   "route": "ncbi-pmc",
+   "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=11398427",
+   "status": "fetched",
+   "text_doi": "10.1101/2024.09.02.610652",
+   "text_version": "preprint",
+   "tier": "high",
+   "title": "Ultrack: pushing the limits of cell tracking across biological scales",
+   "type": "article",
+   "venue": "Nature Methods",
+   "work_id": "W4413495365",
+   "year": 2025
+  },
+  {
+   "arxiv_id": "2006.06156",
+   "cell": "senior/other",
+   "co_senior": false,
+   "doi": "10.48550/arxiv.2006.06156",
+   "group": "senior",
+   "pmcid": null,
+   "preprint_doi": null,
+   "route": "arxiv-html",
+   "source_url": "https://arxiv.org/html/2006.06156",
+   "status": "fetched",
+   "text_doi": "10.48550/arxiv.2006.06156",
+   "text_version": "arxiv",
+   "tier": "other",
+   "title": "Image Deconvolution via Noise-Tolerant Self-Supervised Inversion",
+   "type": "preprint",
+   "venue": "arXiv (Cornell University)",
+   "work_id": "W3035727968",
+   "year": 2020
+  },
+  {
+   "arxiv_id": null,
+   "cell": "senior/other",
+   "co_senior": true,
+   "doi": "10.7554/elife.74234",
+   "group": "senior",
+   "pmcid": "PMC8776251",
+   "preprint_doi": "10.1101/2021.04.28.441879",
+   "route": "ncbi-pmc",
+   "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=8776251",
+   "status": "fetched",
+   "text_doi": "10.7554/elife.74234",
+   "text_version": "published",
+   "tier": "other",
+   "title": "ZAF, the first open source fully automated feeder for aquatic facilities",
+   "type": "article",
+   "venue": "eLife",
+   "work_id": "W4225595682",
+   "year": 2021
+  },
+  {
+   "arxiv_id": "2610.31566",
+   "cell": "senior/other",
+   "co_senior": false,
+   "doi": "10.48550/arxiv.2610.31566",
+   "group": "senior",
+   "pmcid": null,
+   "preprint_doi": null,
+   "route": "arxiv-html",
+   "source_url": "https://arxiv.org/html/2610.31566",
+   "status": "fetched",
+   "text_doi": "10.48550/arxiv.2610.31566",
+   "text_version": "arxiv",
+   "tier": "other",
+   "title": "CellTrack-Bench: Microscopic Cell Tracking Benchmark for Vision-Language Models",
+   "type": "preprint",
+   "venue": "arXiv (Cornell University)",
+   "work_id": "W7223281292",
+   "year": 2026
+  },
+  {
+   "arxiv_id": null,
+   "cell": "first/high",
+   "co_senior": false,
+   "doi": "10.1038/nmeth.3372",
+   "group": "first",
+   "pmcid": null,
+   "preprint_doi": null,
+   "route": null,
+   "source_url": null,
+   "status": "replaced",
+   "text_doi": null,
+   "text_version": null,
+   "tier": "high",
+   "title": "ClearVolume: open-source live 3D visualization for light-sheet microscopy",
+   "type": "article",
+   "venue": "Nature Methods",
+   "work_id": "W1479970844",
+   "year": 2015
+  },
+  {
+   "arxiv_id": null,
+   "cell": "first/high",
+   "co_senior": false,
+   "doi": "10.1038/nbt.3708",
+   "group": "first",
+   "pmcid": null,
+   "preprint_doi": null,
+   "route": null,
+   "source_url": null,
+   "status": "replaced",
+   "text_doi": null,
+   "text_version": null,
+   "tier": "high",
+   "title": "Adaptive light-sheet microscopy for long-term, high-resolution imaging in living organisms",
+   "type": "article",
+   "venue": "Nature Biotechnology",
+   "work_id": "W2540220299",
+   "year": 2016
+  },
+  {
+   "arxiv_id": null,
+   "cell": "first/high",
+   "co_senior": false,
+   "doi": "10.1038/s41596-018-0043-4",
+   "group": "first",
+   "pmcid": null,
+   "preprint_doi": null,
+   "route": null,
+   "source_url": null,
+   "status": "replaced",
+   "text_doi": null,
+   "text_version": null,
+   "tier": "high",
+   "title": "A practical guide to adaptive light-sheet microscopy",
+   "type": "article",
+   "venue": "Nature Protocols",
+   "work_id": "W2898348220",
+   "year": 2018
+  },
+  {
+   "arxiv_id": null,
+   "cell": "first/other",
+   "co_senior": false,
+   "doi": "10.1371/journal.pone.0035729",
+   "group": "first",
+   "pmcid": "PMC3377704",
+   "preprint_doi": null,
+   "route": "ncbi-pmc",
+   "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=3377704",
+   "status": "fetched",
+   "text_doi": "10.1371/journal.pone.0035729",
+   "text_version": "published",
+   "tier": "other",
+   "title": "Network Compression as a Quality Measure for Protein Interaction Networks",
+   "type": "article",
+   "venue": "PLoS ONE",
+   "work_id": "W2047169183",
+   "year": 2012
+  },
+  {
+   "arxiv_id": null,
+   "cell": "essay/high",
+   "co_senior": false,
+   "doi": "10.1038/s41592-019-0458-z",
+   "group": "essay",
+   "pmcid": null,
+   "preprint_doi": null,
+   "route": null,
+   "source_url": null,
+   "status": "replaced",
+   "text_doi": null,
+   "text_version": null,
+   "tier": "high",
+   "title": "Applications, promises, and pitfalls of deep learning for fluorescence image reconstruction",
+   "type": "review",
+   "venue": "Nature Methods",
+   "work_id": "W2910683834",
+   "year": 2019
+  },
+  {
+   "arxiv_id": null,
+   "cell": "senior/high",
+   "co_senior": true,
+   "doi": "10.1038/s41592-022-01541-z",
+   "group": "senior",
+   "pmcid": "PMC9349041",
+   "preprint_doi": "10.1101/2021.03.29.437595",
+   "route": "ncbi-pmc",
+   "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=9349041",
+   "status": "fetched",
+   "text_doi": "10.1038/s41592-022-01541-z",
+   "text_version": "published",
+   "tier": "high",
+   "title": "Self-supervised deep learning encodes high-resolution features of protein subcellular localization",
+   "type": "article",
+   "venue": "Nature Methods",
+   "work_id": "W4287510106",
+   "year": 2022
+  },
+  {
+   "arxiv_id": null,
+   "cell": "senior/high",
+   "co_senior": true,
+   "doi": "10.1038/s41592-025-02777-1",
+   "group": "senior",
+   "pmcid": null,
+   "preprint_doi": "10.1101/2024.10.18.618998",
+   "route": "biorxiv",
+   "source_url": "https://www.biorxiv.org/content/early/2025/08/23/2024.10.18.618998.source.xml",
+   "status": "fetched",
+   "text_doi": "10.1101/2024.10.18.618998",
+   "text_version": "preprint",
+   "tier": "high",
+   "title": "inTRACKtive: a web-based tool for interactive cell tracking visualization",
+   "type": "article",
+   "venue": "Nature Methods",
+   "work_id": "W4413495132",
+   "year": 2025
+  }
+ ],
+ "person": "royer",
+ "replacements": [
+  {
+   "reason": "no open full text: pmc: no PMC ID; preprint: no bioRxiv DOI; arxiv: no arXiv ID",
+   "replaced": "W4383879187",
+   "replacement": "W4287510106"
+  },
+  {
+   "reason": "no open full text: pmc: no PMC ID; preprint: no bioRxiv DOI; arxiv: no arXiv ID",
+   "replaced": "W4399499779",
+   "replacement": "W4413495132"
+  },
+  {
+   "reason": "no open full text: pmc: no PMC ID; preprint: no bioRxiv DOI; arxiv: no arXiv ID",
+   "replaced": "W4403729907",
+   "replacement": null
+  },
+  {
+   "reason": "no open full text: pmc: no PMC ID; preprint: no bioRxiv DOI; arxiv: no arXiv ID",
+   "replaced": "W1479970844",
+   "replacement": null
+  },
+  {
+   "reason": "no open full text: pmc: no PMC ID; preprint: no bioRxiv DOI; arxiv: no arXiv ID",
+   "replaced": "W2540220299",
+   "replacement": null
+  },
+  {
+   "reason": "no open full text: pmc: no PMC ID; preprint: no bioRxiv DOI; arxiv: no arXiv ID",
+   "replaced": "W2898348220",
+   "replacement": null
+  },
+  {
+   "reason": "no open full text: pmc: no PMC ID; preprint: no bioRxiv DOI; arxiv: no arXiv ID",
+   "replaced": "W2910683834",
+   "replacement": null
+  }
+ ],
+ "schema": 1,
+ "seed": 20261029,
+ "shortfall": 5,
+ "venues_version": 1
+}

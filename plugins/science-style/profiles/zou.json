@@ -1,0 +1,3204 @@
+{
+ "by_cell": {
+  "essay/other": 1,
+  "first/other": 1,
+  "senior/high": 5,
+  "senior/other": 3
+ },
+ "by_group": {
+  "essay": 1,
+  "first": 1,
+  "senior": 8
+ },
+ "by_tier": {
+  "high": 5,
+  "other": 5
+ },
+ "checklist_version": 2,
+ "distinctive_note": "",
+ "distinctive_pairs": [
+  [
+   "the gap",
+   5.28
+  ],
+  [
+   "patients with",
+   4.32
+  ],
+  [
+   "for human",
+   3.71
+  ],
+  [
+   "when the",
+   3.11
+  ],
+  [
+   "the initial",
+   3.05
+  ],
+  [
+   "the discovery",
+   3.02
+  ],
+  [
+   "dataset and",
+   2.95
+  ],
+  [
+   "is more",
+   2.66
+  ],
+  [
+   "the task",
+   2.66
+  ],
+  [
+   "we further",
+   2.66
+  ],
+  [
+   "the current",
+   2.58
+  ],
+  [
+   "this paper",
+   2.46
+  ],
+  [
+   "optimize the",
+   2.44
+  ],
+  [
+   "future work",
+   2.44
+  ],
+  [
+   "the model’s",
+   2.42
+  ],
+  [
+   "optimizing the",
+   2.35
+  ],
+  [
+   "use in",
+   2.35
+  ],
+  [
+   "focuses on",
+   2.34
+  ],
+  [
+   "the value",
+   2.29
+  ],
+  [
+   "to optimize",
+   2.27
+  ]
+ ],
+ "distinctive_words": [
+  [
+   "neurons",
+   9.25
+  ],
+  [
+   "patients",
+   8.85
+  ],
+  [
+   "gap",
+   8.09
+  ],
+  [
+   "health",
+   6.85
+  ],
+  [
+   "memory",
+   6.63
+  ],
+  [
+   "usage",
+   6.54
+  ],
+  [
+   "value",
+   6.22
+  ],
+  [
+   "cancer",
+   6.16
+  ],
+  [
+   "learning",
+   5.64
+  ],
+  [
+   "modality",
+   5.54
+  ],
+  [
+   "confidence",
+   4.83
+  ],
+  [
+   "task",
+   4.74
+  ],
+  [
+   "drug",
+   4.7
+  ],
+  [
+   "drugs",
+   4.57
+  ],
+  [
+   "optimized",
+   4.39
+  ],
+  [
+   "bias",
+   4.38
+  ],
+  [
+   "performance",
+   4.38
+  ],
+  [
+   "experience",
+   4.35
+  ],
+  [
+   "clinical",
+   4.32
+  ],
+  [
+   "treatments",
+   4.29
+  ],
+  [
+   "human",
+   4.28
+  ],
+  [
+   "embedding",
+   4.26
+  ],
+  [
+   "optimization",
+   4.09
+  ],
+  [
+   "response",
+   3.96
+  ],
+  [
+   "size",
+   3.94
+  ],
+  [
+   "text",
+   3.86
+  ],
+  [
+   "tasks",
+   3.84
+  ],
+  [
+   "incorrect",
+   3.75
+  ],
+  [
+   "optimize",
+   3.75
+  ],
+  [
+   "algorithms",
+   3.63
+  ]
+ ],
+ "items": {
+  "abstract_moves": {
+   "value": {
+    "all": {
+     "approach": 9,
+     "context": 8,
+     "gap": 7,
+     "implication": 5,
+     "other": 1,
+     "result": 9
+    },
+    "by_group": {
+     "essay": {
+      "approach": 1,
+      "context": 1,
+      "gap": 1,
+      "implication": 1
+     },
+     "first": {
+      "approach": 1,
+      "gap": 1,
+      "result": 1
+     },
+     "senior": {
+      "approach": 7,
+      "context": 7,
+      "gap": 5,
+      "implication": 4,
+      "other": 1,
+      "result": 8
+     }
+    },
+    "by_tier": {
+     "high": {
+      "approach": 4,
+      "context": 4,
+      "gap": 3,
+      "implication": 3,
+      "other": 1,
+      "result": 5
+     },
+     "other": {
+      "approach": 5,
+      "context": 4,
+      "gap": 4,
+      "implication": 2,
+      "result": 4
+     }
+    },
+    "first": {
+     "context": 8,
+     "gap": 1,
+     "result": 1
+    },
+    "last": {
+     "approach": 1,
+     "implication": 4,
+     "other": 1,
+     "result": 4
+    },
+    "n": 10,
+    "n_by_group": {
+     "essay": 1,
+     "first": 1,
+     "senior": 8
+    },
+    "n_by_tier": {
+     "high": 5,
+     "other": 5
+    }
+   }
+  },
+  "discussion_moves": {
+   "value": {
+    "all": {
+     "comparison with prior work": 4,
+     "future work": 9,
+     "implication": 9,
+     "limitation": 8,
+     "mechanism": 2,
+     "summary": 10
+    },
+    "by_group": {
+     "essay": {
+      "implication": 1,
+      "limitation": 1,
+      "summary": 1
+     },
+     "first": {
+      "future work": 1,
+      "implication": 1,
+      "limitation": 1,
+      "summary": 1
+     },
+     "senior": {
+      "comparison with prior work": 4,
+      "future work": 8,
+      "implication": 7,
+      "limitation": 6,
+      "mechanism": 2,
+      "summary": 8
+     }
+    },
+    "by_tier": {
+     "high": {
+      "comparison with prior work": 3,
+      "future work": 5,
+      "implication": 5,
+      "limitation": 4,
+      "mechanism": 1,
+      "summary": 5
+     },
+     "other": {
+      "comparison with prior work": 1,
+      "future work": 4,
+      "implication": 4,
+      "limitation": 4,
+      "mechanism": 1,
+      "summary": 5
+     }
+    },
+    "first": {
+     "summary": 10
+    },
+    "last": {
+     "future work": 5,
+     "implication": 5
+    },
+    "n": 10,
+    "n_by_group": {
+     "essay": 1,
+     "first": 1,
+     "senior": 8
+    },
+    "n_by_tier": {
+     "high": 5,
+     "other": 5
+    }
+   }
+  },
+  "essay_argument": {
+   "call_to_action": {
+    "all": {
+     "yes": 1
+    },
+    "by_group": {
+     "essay": {
+      "yes": 1
+     }
+    },
+    "by_tier": {
+     "other": {
+      "yes": 1
+     }
+    },
+    "n": 1,
+    "n_by_group": {
+     "essay": 1
+    },
+    "n_by_tier": {
+     "other": 1
+    }
+   },
+   "thesis_location": {
+    "all": {
+     "end of introduction": 1
+    },
+    "by_group": {
+     "essay": {
+      "end of introduction": 1
+     }
+    },
+    "by_tier": {
+     "other": {
+      "end of introduction": 1
+     }
+    },
+    "n": 1,
+    "n_by_group": {
+     "essay": 1
+    },
+    "n_by_tier": {
+     "other": 1
+    }
+   }
+  },
+  "excitement": {
+   "value.location": {
+    "all": {
+     "abstract": 10,
+     "discussion": 10,
+     "introduction": 9,
+     "results": 9
+    },
+    "by_group": {
+     "essay": {
+      "abstract": 1,
+      "discussion": 1,
+      "introduction": 1
+     },
+     "first": {
+      "abstract": 1,
+      "discussion": 1,
+      "introduction": 1,
+      "results": 1
+     },
+     "senior": {
+      "abstract": 8,
+      "discussion": 8,
+      "introduction": 7,
+      "results": 8
+     }
+    },
+    "by_tier": {
+     "high": {
+      "abstract": 5,
+      "discussion": 5,
+      "introduction": 4,
+      "results": 5
+     },
+     "other": {
+      "abstract": 5,
+      "discussion": 5,
+      "introduction": 5,
+      "results": 4
+     }
+    },
+    "n": 10,
+    "n_by_group": {
+     "essay": 1,
+     "first": 1,
+     "senior": 8
+    },
+    "n_by_tier": {
+     "high": 5,
+     "other": 5
+    }
+   },
+   "value.marker": {
+    "all": {
+     "evaluative word": 9,
+     "first or novelty claim": 8,
+     "implication sentence": 10,
+     "scope claim": 8
+    },
+    "by_group": {
+     "essay": {
+      "evaluative word": 1,
+      "implication sentence": 1,
+      "scope claim": 1
+     },
+     "first": {
+      "first or novelty claim": 1,
+      "implication sentence": 1,
+      "scope claim": 1
+     },
+     "senior": {
+      "evaluative word": 8,
+      "first or novelty claim": 7,
+      "implication sentence": 8,
+      "scope claim": 6
+     }
+    },
+    "by_tier": {
+     "high": {
+      "evaluative word": 5,
+      "first or novelty claim": 5,
+      "implication sentence": 5,
+      "scope claim": 4
+     },
+     "other": {
+      "evaluative word": 4,
+      "first or novelty claim": 3,
+      "implication sentence": 5,
+      "scope claim": 4
+     }
+    },
+    "n": 10,
+    "n_by_group": {
+     "essay": 1,
+     "first": 1,
+     "senior": 8
+    },
+    "n_by_tier": {
+     "high": 5,
+     "other": 5
+    }
+   }
+  },
+  "figure_reference": {
+   "value": {
+    "all": {
+     "mixed": 2,
+     "no figures": 1,
+     "reference then result": 2,
+     "result then reference": 5
+    },
+    "by_group": {
+     "essay": {
+      "no figures": 1
+     },
+     "first": {
+      "result then reference": 1
+     },
+     "senior": {
+      "mixed": 2,
+      "reference then result": 2,
+      "result then reference": 4
+     }
+    },
+    "by_tier": {
+     "high": {
+      "mixed": 2,
+      "reference then result": 1,
+      "result then reference": 2
+     },
+     "other": {
+      "no figures": 1,
+      "reference then result": 1,
+      "result then reference": 3
+     }
+    },
+    "n": 10,
+    "n_by_group": {
+     "essay": 1,
+     "first": 1,
+     "senior": 8
+    },
+    "n_by_tier": {
+     "high": 5,
+     "other": 5
+    }
+   }
+  },
+  "gap_sentence": {
+   "value": {
+    "all": {
+     "none": 1,
+     "present": 9
+    },
+    "by_group": {
+     "essay": {
+      "none": 1
+     },
+     "first": {
+      "present": 1
+     },
+     "senior": {
+      "present": 8
+     }
+    },
+    "by_tier": {
+     "high": {
+      "present": 5
+     },
+     "other": {
+      "none": 1,
+      "present": 4
+     }
+    },
+    "n": 10,
+    "n_by_group": {
+     "essay": 1,
+     "first": 1,
+     "senior": 8
+    },
+    "n_by_tier": {
+     "high": 5,
+     "other": 5
+    }
+   }
+  },
+  "here_we": {
+   "value": {
+    "all": {
+     "present": 10
+    },
+    "by_group": {
+     "essay": {
+      "present": 1
+     },
+     "first": {
+      "present": 1
+     },
+     "senior": {
+      "present": 8
+     }
+    },
+    "by_tier": {
+     "high": {
+      "present": 5
+     },
+     "other": {
+      "present": 5
+     }
+    },
+    "n": 10,
+    "n_by_group": {
+     "essay": 1,
+     "first": 1,
+     "senior": 8
+    },
+    "n_by_tier": {
+     "high": 5,
+     "other": 5
+    }
+   }
+  },
+  "intro_roles": {
+   "value": {
+    "all": {
+     "approach preview": 3,
+     "field": 9,
+     "gap": 7,
+     "here-we": 10,
+     "other": 2,
+     "prior work": 7,
+     "problem": 5,
+     "result preview": 3
+    },
+    "by_group": {
+     "essay": {
+      "field": 1,
+      "here-we": 1,
+      "prior work": 1,
+      "problem": 1
+     },
+     "first": {
+      "gap": 1,
+      "here-we": 1,
+      "prior work": 1,
+      "problem": 1
+     },
+     "senior": {
+      "approach preview": 3,
+      "field": 8,
+      "gap": 6,
+      "here-we": 8,
+      "other": 2,
+      "prior work": 5,
+      "problem": 3,
+      "result preview": 3
+     }
+    },
+    "by_tier": {
+     "high": {
+      "approach preview": 3,
+      "field": 5,
+      "gap": 4,
+      "here-we": 5,
+      "other": 1,
+      "prior work": 3,
+      "problem": 2,
+      "result preview": 2
+     },
+     "other": {
+      "field": 4,
+      "gap": 3,
+      "here-we": 5,
+      "other": 1,
+      "prior work": 4,
+      "problem": 3,
+      "result preview": 1
+     }
+    },
+    "first": {
+     "field": 9,
+     "gap": 1
+    },
+    "last": {
+     "gap": 1,
+     "here-we": 3,
+     "prior work": 2,
+     "problem": 1,
+     "result preview": 3
+    },
+    "n": 10,
+    "n_by_group": {
+     "essay": 1,
+     "first": 1,
+     "senior": 8
+    },
+    "n_by_tier": {
+     "high": 5,
+     "other": 5
+    }
+   }
+  },
+  "limitations": {
+   "placement": {
+    "all": {
+     "inline in body": 1,
+     "inline in discussion": 1,
+     "inline in results": 3,
+     "own paragraph": 5
+    },
+    "by_group": {
+     "essay": {
+      "inline in body": 1
+     },
+     "first": {
+      "own paragraph": 1
+     },
+     "senior": {
+      "inline in discussion": 1,
+      "inline in results": 3,
+      "own paragraph": 4
+     }
+    },
+    "by_tier": {
+     "high": {
+      "inline in discussion": 1,
+      "inline in results": 1,
+      "own paragraph": 3
+     },
+     "other": {
+      "inline in body": 1,
+      "inline in results": 2,
+      "own paragraph": 2
+     }
+    },
+    "n": 10,
+    "n_by_group": {
+     "essay": 1,
+     "first": 1,
+     "senior": 8
+    },
+    "n_by_tier": {
+     "high": 5,
+     "other": 5
+    }
+   },
+   "specificity": {
+    "all": {
+     "specific": 4,
+     "specific with a remedy": 6
+    },
+    "by_group": {
+     "essay": {
+      "specific": 1
+     },
+     "first": {
+      "specific with a remedy": 1
+     },
+     "senior": {
+      "specific": 3,
+      "specific with a remedy": 5
+     }
+    },
+    "by_tier": {
+     "high": {
+      "specific": 2,
+      "specific with a remedy": 3
+     },
+     "other": {
+      "specific": 2,
+      "specific with a remedy": 3
+     }
+    },
+    "n": 10,
+    "n_by_group": {
+     "essay": 1,
+     "first": 1,
+     "senior": 8
+    },
+    "n_by_tier": {
+     "high": 5,
+     "other": 5
+    }
+   }
+  },
+  "results_headings": {
+   "value": {
+    "all": {
+     "noun phrase": 9
+    },
+    "by_group": {
+     "first": {
+      "noun phrase": 1
+     },
+     "senior": {
+      "noun phrase": 8
+     }
+    },
+    "by_tier": {
+     "high": {
+      "noun phrase": 5
+     },
+     "other": {
+      "noun phrase": 4
+     }
+    },
+    "n": 9,
+    "n_by_group": {
+     "first": 1,
+     "senior": 8
+    },
+    "n_by_tier": {
+     "high": 5,
+     "other": 4
+    }
+   }
+  },
+  "results_openings": {
+   "value": {
+    "all": {
+     "aim": 8,
+     "method first": 7,
+     "result first": 4
+    },
+    "by_group": {
+     "first": {
+      "method first": 1
+     },
+     "senior": {
+      "aim": 8,
+      "method first": 6,
+      "result first": 4
+     }
+    },
+    "by_tier": {
+     "high": {
+      "aim": 5,
+      "method first": 3,
+      "result first": 3
+     },
+     "other": {
+      "aim": 3,
+      "method first": 4,
+      "result first": 1
+     }
+    },
+    "first": {
+     "aim": 3,
+     "method first": 5,
+     "result first": 1
+    },
+    "last": {
+     "aim": 3,
+     "method first": 3,
+     "result first": 3
+    },
+    "n": 9,
+    "n_by_group": {
+     "first": 1,
+     "senior": 8
+    },
+    "n_by_tier": {
+     "high": 5,
+     "other": 4
+    }
+   }
+  },
+  "strongest_claim": {
+   "value": {
+    "all": {
+     "hedged": 5,
+     "unhedged": 5
+    },
+    "by_group": {
+     "essay": {
+      "hedged": 1
+     },
+     "first": {
+      "hedged": 1
+     },
+     "senior": {
+      "hedged": 3,
+      "unhedged": 5
+     }
+    },
+    "by_tier": {
+     "high": {
+      "hedged": 2,
+      "unhedged": 3
+     },
+     "other": {
+      "hedged": 3,
+      "unhedged": 2
+     }
+    },
+    "n": 10,
+    "n_by_group": {
+     "essay": 1,
+     "first": 1,
+     "senior": 8
+    },
+    "n_by_tier": {
+     "high": 5,
+     "other": 5
+    }
+   }
+  },
+  "title_form": {
+   "value": {
+    "all": {
+     "claim": 2,
+     "method name": 2,
+     "topic": 6
+    },
+    "by_group": {
+     "essay": {
+      "topic": 1
+     },
+     "first": {
+      "claim": 1
+     },
+     "senior": {
+      "claim": 1,
+      "method name": 2,
+      "topic": 5
+     }
+    },
+    "by_tier": {
+     "high": {
+      "claim": 1,
+      "method name": 2,
+      "topic": 2
+     },
+     "other": {
+      "claim": 1,
+      "topic": 4
+     }
+    },
+    "n": 10,
+    "n_by_group": {
+     "essay": 1,
+     "first": 1,
+     "senior": 8
+    },
+    "n_by_tier": {
+     "high": 5,
+     "other": 5
+    }
+   }
+  }
+ },
+ "left_out": [],
+ "n_fetched": 10,
+ "n_left_out": 0,
+ "n_papers": 10,
+ "name": "James Zou",
+ "papers_used": [
+  "W2545606300",
+  "W2963079702",
+  "W3013692475",
+  "W3158393586",
+  "W4317399163",
+  "W4414581501",
+  "W4415797873",
+  "W7127388167",
+  "W7133217898",
+  "W7133224902"
+ ],
+ "person": "zou",
+ "quotes": [
+  {
+   "doi": "10.1038/ncomms13293",
+   "field": "quote",
+   "item": "gap_sentence",
+   "text": "it is important to quantify the power of large sequencing projects to discover rare functional genetic variants[CIT].",
+   "text_version": "published",
+   "work_id": "W2545606300"
+  },
+  {
+   "doi": "10.1038/ncomms13293",
+   "field": "quote",
+   "item": "here_we",
+   "text": "We developed a new method, UnseenEst, to estimate the frequency distribution of all genetic variants in the population",
+   "text_version": "published",
+   "work_id": "W2545606300"
+  },
+  {
+   "doi": "10.1038/ncomms13293",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "We validated UnseenEst by training it on random 10% of the alleles in ExAC",
+   "text_version": "published",
+   "work_id": "W2545606300"
+  },
+  {
+   "doi": "10.1038/ncomms13293",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "We additionally classified the variants by their biochemical properties (Fig. 1b).",
+   "text_version": "published",
+   "work_id": "W2545606300"
+  },
+  {
+   "doi": "10.1038/ncomms13293",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "We applied UnseenEst to estimate the LoF frequency of genes in the U.S. population (Fig. 1c; Supplementary Fig. 7).",
+   "text_version": "published",
+   "work_id": "W2545606300"
+  },
+  {
+   "doi": "10.1038/ncomms13293",
+   "field": "value",
+   "item": "excitement",
+   "text": "We developed a new algorithm, UnseenEst, and applied it to the exomes of 60,706 individuals",
+   "text_version": "published",
+   "work_id": "W2545606300"
+  },
+  {
+   "doi": "10.1038/ncomms13293",
+   "field": "value",
+   "item": "excitement",
+   "text": "We also estimate that 2,900 genes have loss-of-function frequency of <0.00001 in healthy humans, consistent with very strong intolerance to gene inactivation.",
+   "text_version": "published",
+   "work_id": "W2545606300"
+  },
+  {
+   "doi": "10.1038/ncomms13293",
+   "field": "value",
+   "item": "excitement",
+   "text": "Accurate estimates of these quantities will enable better study design and quantitative evaluation of the potential and limitations of these datasets for precision medicine.",
+   "text_version": "published",
+   "work_id": "W2545606300"
+  },
+  {
+   "doi": "10.1038/ncomms13293",
+   "field": "value",
+   "item": "excitement",
+   "text": "We validated and applied UnseenEst on a significantly larger dataset than was previously explored",
+   "text_version": "published",
+   "work_id": "W2545606300"
+  },
+  {
+   "doi": "10.1038/ncomms13293",
+   "field": "value",
+   "item": "excitement",
+   "text": "These results provide a quantitative framework to evaluate the power and limitations of precision medicine initiatives in discovering rare coding variants.",
+   "text_version": "published",
+   "work_id": "W2545606300"
+  },
+  {
+   "doi": "10.1038/ncomms13293",
+   "field": "value",
+   "item": "excitement",
+   "text": "These estimates indicate that the discovery rates of rare LoF, missense and synonymous variants are far from saturation, even with 500K individuals.",
+   "text_version": "published",
+   "work_id": "W2545606300"
+  },
+  {
+   "doi": "10.1038/ncomms13293",
+   "field": "value",
+   "item": "excitement",
+   "text": "thereby permitting exploration of a substantial fraction of human biological diversity",
+   "text_version": "published",
+   "work_id": "W2545606300"
+  },
+  {
+   "doi": "10.1038/ncomms13293",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "With 500K individuals, we find that we expect to capture 7.5% of all possible loss-of-function variants and 12% of all possible missense variants.",
+   "text_version": "published",
+   "work_id": "W2545606300"
+  },
+  {
+   "doi": "10.1038/ncomms13293",
+   "field": "hedge_quote",
+   "item": "strongest_claim",
+   "text": "we expect to capture",
+   "text_version": "published",
+   "work_id": "W2545606300"
+  },
+  {
+   "doi": "10.1038/ncomms13293",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "Because the census relies on self-reported ethnicity, the match based on genetic ancestry may not be perfect.",
+   "text_version": "published",
+   "work_id": "W2545606300"
+  },
+  {
+   "doi": "10.1038/ncomms13293",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "Adjustment will need to be made for each specific cohort, for example by using a different weighted sampling of the ExAC data.",
+   "text_version": "published",
+   "work_id": "W2545606300"
+  },
+  {
+   "doi": "10.1038/ncomms13293",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "This uncertainty stems from the uncertainty in the frequency distribution of very rare variants, most of which have not been observed in ExAC.",
+   "text_version": "published",
+   "work_id": "W2545606300"
+  },
+  {
+   "doi": "10.1038/ncomms13293",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "This paper focuses on the discovery rate of single-nucleotide variants.",
+   "text_version": "published",
+   "work_id": "W2545606300"
+  },
+  {
+   "doi": "10.1038/ncomms13293",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "Estimating the frequency distribution of genetic variation is closely related to the classic statistics problem of estimating the number of unseen animal species",
+   "text_version": "published",
+   "work_id": "W2545606300"
+  },
+  {
+   "doi": "10.1038/ncomms13293",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "In particular,",
+   "text_version": "published",
+   "work_id": "W2545606300"
+  },
+  {
+   "doi": "10.1038/ncomms13293",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "consistent with",
+   "text_version": "published",
+   "work_id": "W2545606300"
+  },
+  {
+   "doi": "10.1038/ncomms13293",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "We note that",
+   "text_version": "published",
+   "work_id": "W2545606300"
+  },
+  {
+   "doi": "10.1038/ncomms13293",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "We additionally",
+   "text_version": "published",
+   "work_id": "W2545606300"
+  },
+  {
+   "doi": "10.1038/ncomms13293",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "We further applied",
+   "text_version": "published",
+   "work_id": "W2545606300"
+  },
+  {
+   "doi": "10.48550/arxiv.1710.06574",
+   "field": "quote",
+   "item": "gap_sentence",
+   "text": "relatively little is understood about how basic characteristics of the buffer, such as its size, affect the learning dynamics and performance of the agent",
+   "text_version": "arxiv",
+   "work_id": "W2963079702"
+  },
+  {
+   "doi": "10.48550/arxiv.1710.06574",
+   "field": "quote",
+   "item": "here_we",
+   "text": "In this paper, we perform a first rigorous study of how the size of the memory buffer affects the agent’s learning behavior.",
+   "text_version": "arxiv",
+   "work_id": "W2963079702"
+  },
+  {
+   "doi": "10.48550/arxiv.1710.06574",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "Thus we derive an ODE model to simulate the learning process.",
+   "text_version": "arxiv",
+   "work_id": "W2963079702"
+  },
+  {
+   "doi": "10.48550/arxiv.1710.06574",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "we analytically solve the ODEs (7) and (9) to get the learning dynamics and quantify the effects of memory",
+   "text_version": "arxiv",
+   "work_id": "W2963079702"
+  },
+  {
+   "doi": "10.48550/arxiv.1710.06574",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "The analysis from the previous section motivated us to develop a new algorithm",
+   "text_version": "arxiv",
+   "work_id": "W2963079702"
+  },
+  {
+   "doi": "10.48550/arxiv.1710.06574",
+   "field": "value",
+   "item": "excitement",
+   "text": "we perform a first rigorous study of how the size of the memory buffer affects the agent’s learning behavior",
+   "text_version": "arxiv",
+   "work_id": "W2963079702"
+  },
+  {
+   "doi": "10.48550/arxiv.1710.06574",
+   "field": "value",
+   "item": "excitement",
+   "text": "Surprisingly, even in this simple case with no value function model mismatch, memory size has a non-monotonic effect on learning rate.",
+   "text_version": "arxiv",
+   "work_id": "W2963079702"
+  },
+  {
+   "doi": "10.48550/arxiv.1710.06574",
+   "field": "value",
+   "item": "excitement",
+   "text": "We show that even in this very simple setting, the amount of memory kept can substantially affect the agent’s performance",
+   "text_version": "arxiv",
+   "work_id": "W2963079702"
+  },
+  {
+   "doi": "10.48550/arxiv.1710.06574",
+   "field": "value",
+   "item": "excitement",
+   "text": "we propose a simple algorithm for adaptively changing the memory buffer size which achieves consistently good empirical performance",
+   "text_version": "arxiv",
+   "work_id": "W2963079702"
+  },
+  {
+   "doi": "10.48550/arxiv.1710.06574",
+   "field": "value",
+   "item": "excitement",
+   "text": "We note that the dynamical change of memory size from 150,000 also enables the agent to even perform better than the best static result.",
+   "text_version": "arxiv",
+   "work_id": "W2963079702"
+  },
+  {
+   "doi": "10.48550/arxiv.1710.06574",
+   "field": "value",
+   "item": "excitement",
+   "text": "Perhaps surprisingly, the memory size effect is non-monotonic even when there is no model mismatch",
+   "text_version": "arxiv",
+   "work_id": "W2963079702"
+  },
+  {
+   "doi": "10.48550/arxiv.1710.06574",
+   "field": "value",
+   "item": "excitement",
+   "text": "It shows consistent improvements over the current static memory size algorithms in all four settings that we have evaluated.",
+   "text_version": "arxiv",
+   "work_id": "W2963079702"
+  },
+  {
+   "doi": "10.48550/arxiv.1710.06574",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "We show that even in this very simple setting, the amount of memory kept can substantially affect the agent’s performance",
+   "text_version": "arxiv",
+   "work_id": "W2963079702"
+  },
+  {
+   "doi": "10.48550/arxiv.1710.06574",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "This continuous approximation works well when the step size [EQ] is not too large",
+   "text_version": "arxiv",
+   "work_id": "W2963079702"
+  },
+  {
+   "doi": "10.48550/arxiv.1710.06574",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "The simple aER algorithm has a tendency to shrink the memory, but already shows good performance in experiments.",
+   "text_version": "arxiv",
+   "work_id": "W2963079702"
+  },
+  {
+   "doi": "10.48550/arxiv.1710.06574",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "One possible solution is to change the criterion for shrinking the memory buffer to be [EQ]",
+   "text_version": "arxiv",
+   "work_id": "W2963079702"
+  },
+  {
+   "doi": "10.48550/arxiv.1710.06574",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "This paper focused on simple settings in order to derive clean, conceptual insights.",
+   "text_version": "arxiv",
+   "work_id": "W2963079702"
+  },
+  {
+   "doi": "10.48550/arxiv.1710.06574",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "experiences are stored in a memory buffer of certain size; when the buffer is full, oldest memories are discarded",
+   "text_version": "arxiv",
+   "work_id": "W2963079702"
+  },
+  {
+   "doi": "10.48550/arxiv.1710.06574",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "Here the term overshooting describes the phenomenon when some of the weights are updated in the wrong direction.",
+   "text_version": "arxiv",
+   "work_id": "W2963079702"
+  },
+  {
+   "doi": "10.48550/arxiv.1710.06574",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "In standard RL algorithms, an experience is immediately discarded after it’s used for an update.",
+   "text_version": "arxiv",
+   "work_id": "W2963079702"
+  },
+  {
+   "doi": "10.48550/arxiv.1710.06574",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "We note that",
+   "text_version": "arxiv",
+   "work_id": "W2963079702"
+  },
+  {
+   "doi": "10.48550/arxiv.1710.06574",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "We further",
+   "text_version": "arxiv",
+   "work_id": "W2963079702"
+  },
+  {
+   "doi": "10.48550/arxiv.1710.06574",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "In contrast,",
+   "text_version": "arxiv",
+   "work_id": "W2963079702"
+  },
+  {
+   "doi": "10.48550/arxiv.1710.06574",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Perhaps surprisingly,",
+   "text_version": "arxiv",
+   "work_id": "W2963079702"
+  },
+  {
+   "doi": "10.48550/arxiv.1710.06574",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "excellent agreement",
+   "text_version": "arxiv",
+   "work_id": "W2963079702"
+  },
+  {
+   "doi": "10.1038/s41586-020-2145-8",
+   "field": "quote",
+   "item": "gap_sentence",
+   "text": "More precise evaluation of cardiac function is necessary",
+   "text_version": "accepted",
+   "work_id": "W3013692475"
+  },
+  {
+   "doi": "10.1038/s41586-020-2145-8",
+   "field": "quote",
+   "item": "here_we",
+   "text": "we propose EchoNet-Dynamic, an end-to-end deep learning approach for left ventricular labeling and ejection fraction estimation from input echocardiogram videos alone",
+   "text_version": "accepted",
+   "work_id": "W3013692475"
+  },
+  {
+   "doi": "10.1038/s41586-020-2145-8",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "To assess the cross-healthcare system reliability of the model, EchoNet-Dynamic was additionally tested, without any tuning, on an external test dataset",
+   "text_version": "accepted",
+   "work_id": "W3013692475"
+  },
+  {
+   "doi": "10.1038/s41586-020-2145-8",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "To investigate model prediction variability, we performed a prospective study comparing EchoNet-Dynamic’s prediction variation with human measurement variation",
+   "text_version": "accepted",
+   "work_id": "W3013692475"
+  },
+  {
+   "doi": "10.1038/s41586-020-2145-8",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "EchoNet-Dynamic automatically generates segmentations of the left ventricle, which enables clinicians to better understand how it makes predictions.",
+   "text_version": "accepted",
+   "work_id": "W3013692475"
+  },
+  {
+   "doi": "10.1038/s41586-020-2145-8",
+   "field": "value",
+   "item": "excitement",
+   "text": "we present the first video-based deep learning algorithm, EchoNet-Dynamic, that surpasses human expert performance",
+   "text_version": "accepted",
+   "work_id": "W3013692475"
+  },
+  {
+   "doi": "10.1038/s41586-020-2145-8",
+   "field": "value",
+   "item": "excitement",
+   "text": "lays the foundation for precise diagnosis of cardiovascular disease in real-time",
+   "text_version": "accepted",
+   "work_id": "W3013692475"
+  },
+  {
+   "doi": "10.1038/s41586-020-2145-8",
+   "field": "value",
+   "item": "excitement",
+   "text": "we also make publicly available the largest medical video dataset of 10,030 annotated echocardiogram videos",
+   "text_version": "accepted",
+   "work_id": "W3013692475"
+  },
+  {
+   "doi": "10.1038/s41586-020-2145-8",
+   "field": "value",
+   "item": "excitement",
+   "text": "However it has not been previously attempted on medical data given the relative scarcity of labeled medical videos.",
+   "text_version": "accepted",
+   "work_id": "W3013692475"
+  },
+  {
+   "doi": "10.1038/s41586-020-2145-8",
+   "field": "value",
+   "item": "excitement",
+   "text": "EchoNet-Dynamic is the first deep learning model for echocardiogram videos",
+   "text_version": "accepted",
+   "work_id": "W3013692475"
+  },
+  {
+   "doi": "10.1038/s41586-020-2145-8",
+   "field": "value",
+   "item": "excitement",
+   "text": "The results here represent an important step towards automated evaluation of cardiac function from echocardiogram videos through deep learning.",
+   "text_version": "accepted",
+   "work_id": "W3013692475"
+  },
+  {
+   "doi": "10.1038/s41586-020-2145-8",
+   "field": "value",
+   "item": "excitement",
+   "text": "We expect this dataset to greatly facilitate new echocardiogram and medical video-based machine learning work.",
+   "text_version": "accepted",
+   "work_id": "W3013692475"
+  },
+  {
+   "doi": "10.1038/s41586-020-2145-8",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "lays the foundation for precise diagnosis of cardiovascular disease in real-time",
+   "text_version": "accepted",
+   "work_id": "W3013692475"
+  },
+  {
+   "doi": "10.1038/s41586-020-2145-8",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "Our model was trained on videos obtained by trained sonographers at an academic medical center that reflect the variation in that clinical practice.",
+   "text_version": "accepted",
+   "work_id": "W3013692475"
+  },
+  {
+   "doi": "10.1038/s41586-020-2145-8",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "further work needs to be done to understand model performance with input videos of more variable quality and acquisition expertise",
+   "text_version": "accepted",
+   "work_id": "W3013692475"
+  },
+  {
+   "doi": "10.1038/s41586-020-2145-8",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "Some of the difference between model and human evaluation is, in part, a feature of comparing EchoNet-Dynamic’s beat-to-beat evaluation of EF",
+   "text_version": "accepted",
+   "work_id": "W3013692475"
+  },
+  {
+   "doi": "10.1038/s41586-020-2145-8",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Additionally,",
+   "text_version": "accepted",
+   "work_id": "W3013692475"
+  },
+  {
+   "doi": "10.1038/s41586-020-2145-8",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "in part",
+   "text_version": "accepted",
+   "work_id": "W3013692475"
+  },
+  {
+   "doi": "10.1038/s41586-020-2145-8",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "To the best of our knowledge",
+   "text_version": "accepted",
+   "work_id": "W3013692475"
+  },
+  {
+   "doi": "10.1038/s41586-020-2145-8",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "further work",
+   "text_version": "accepted",
+   "work_id": "W3013692475"
+  },
+  {
+   "doi": "10.1038/s41586-020-2145-8",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "To overcome",
+   "text_version": "accepted",
+   "work_id": "W3013692475"
+  },
+  {
+   "doi": "10.1016/j.ebiom.2021.103358",
+   "field": "quote",
+   "item": "here_we",
+   "text": "In this article, we use concrete biomedical examples to illustrate how algorithmic bias and disparity can arise due to inadequate outcome choice",
+   "text_version": "published",
+   "work_id": "W3158393586"
+  },
+  {
+   "doi": "10.1016/j.ebiom.2021.103358",
+   "field": "value",
+   "item": "excitement",
+   "text": "It is critical that these advances in technology broadly benefit diverse populations from around the world.",
+   "text_version": "published",
+   "work_id": "W3158393586"
+  },
+  {
+   "doi": "10.1016/j.ebiom.2021.103358",
+   "field": "value",
+   "item": "excitement",
+   "text": "The expanding use of AI in health and medicine, limited here to data-driven algorithms for making predictions, is promising.",
+   "text_version": "published",
+   "work_id": "W3158393586"
+  },
+  {
+   "doi": "10.1016/j.ebiom.2021.103358",
+   "field": "value",
+   "item": "excitement",
+   "text": "We highlight personalised medicine as an especially salient challenge",
+   "text_version": "published",
+   "work_id": "W3158393586"
+  },
+  {
+   "doi": "10.1016/j.ebiom.2021.103358",
+   "field": "value",
+   "item": "excitement",
+   "text": "The pulse oximeter case exemplifies a broader phenomenon whereby darker-skin data is often underrepresented in evaluations of medical devices, findings, and algorithms.",
+   "text_version": "published",
+   "work_id": "W3158393586"
+  },
+  {
+   "doi": "10.1016/j.ebiom.2021.103358",
+   "field": "value",
+   "item": "excitement",
+   "text": "AI holds tremendous potential to improve many aspects of human health",
+   "text_version": "published",
+   "work_id": "W3158393586"
+  },
+  {
+   "doi": "10.1016/j.ebiom.2021.103358",
+   "field": "value",
+   "item": "excitement",
+   "text": "Clearly, technology alone is not the fix; large social problems that undergird structural inequality need to be addressed [CIT].",
+   "text_version": "published",
+   "work_id": "W3158393586"
+  },
+  {
+   "doi": "10.1016/j.ebiom.2021.103358",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "use examples from precision health to illustrate how bias and health disparity may arise in each stage",
+   "text_version": "published",
+   "work_id": "W3158393586"
+  },
+  {
+   "doi": "10.1016/j.ebiom.2021.103358",
+   "field": "hedge_quote",
+   "item": "strongest_claim",
+   "text": "may arise in each stage",
+   "text_version": "published",
+   "work_id": "W3158393586"
+  },
+  {
+   "doi": "10.1016/j.ebiom.2021.103358",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "This article focuses on statistical AI algorithms; embodied AI (e.g. robotics) may have additional challenges of bias due to physical appearance",
+   "text_version": "published",
+   "work_id": "W3158393586"
+  },
+  {
+   "doi": "10.1016/j.ebiom.2021.103358",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "Only articles published in English between 2000 and 2021 were included.",
+   "text_version": "published",
+   "work_id": "W3158393586"
+  },
+  {
+   "doi": "10.1016/j.ebiom.2021.103358",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "limited here to data-driven algorithms for making predictions",
+   "text_version": "published",
+   "work_id": "W3158393586"
+  },
+  {
+   "doi": "10.1016/j.ebiom.2021.103358",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "Ambient intelligence—where healthcare spaces are fitted with passive, contactless sensors—can assist clinicians and surgeons",
+   "text_version": "published",
+   "work_id": "W3158393586"
+  },
+  {
+   "doi": "10.1016/j.ebiom.2021.103358",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "microbiota—the collection of 100 trillion microbes that live on or within a person's body",
+   "text_version": "published",
+   "work_id": "W3158393586"
+  },
+  {
+   "doi": "10.1016/j.ebiom.2021.103358",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "The problem with devices that use infrared and red light signaling is that these signals interact with skin pigmentation",
+   "text_version": "published",
+   "work_id": "W3158393586"
+  },
+  {
+   "doi": "10.1016/j.ebiom.2021.103358",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "however,",
+   "text_version": "published",
+   "work_id": "W3158393586"
+  },
+  {
+   "doi": "10.1016/j.ebiom.2021.103358",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "We recommend that",
+   "text_version": "published",
+   "work_id": "W3158393586"
+  },
+  {
+   "doi": "10.1016/j.ebiom.2021.103358",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "it is critical that",
+   "text_version": "published",
+   "work_id": "W3158393586"
+  },
+  {
+   "doi": "10.1016/j.ebiom.2021.103358",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "What is needed",
+   "text_version": "published",
+   "work_id": "W3158393586"
+  },
+  {
+   "doi": "10.1016/j.ebiom.2021.103358",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "important step",
+   "text_version": "published",
+   "work_id": "W3158393586"
+  },
+  {
+   "doi": "10.1016/j.ebiom.2021.103358",
+   "field": "quote",
+   "item": "essay_argument",
+   "text": "What is needed now are intersectional analyses in health and medical research.",
+   "text_version": "published",
+   "work_id": "W3158393586"
+  },
+  {
+   "doi": "10.1101/2023.01.17.23284689",
+   "field": "quote",
+   "item": "gap_sentence",
+   "text": "They have only been performed on small sample sizes, a single cancer, or a single drug",
+   "text_version": "preprint",
+   "work_id": "W4317399163"
+  },
+  {
+   "doi": "10.1101/2023.01.17.23284689",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "We next investigate which patient characteristics are associated with increased usage of off-guideline treatments in the FH database.",
+   "text_version": "preprint",
+   "work_id": "W4317399163"
+  },
+  {
+   "doi": "10.1101/2023.01.17.23284689",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "We next conduct case studies to illustrate these three applications.",
+   "text_version": "preprint",
+   "work_id": "W4317399163"
+  },
+  {
+   "doi": "10.1101/2023.01.17.23284689",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "As a case study, we report the FDA approval history of nivolumab for different cancer types in Table 2.",
+   "text_version": "preprint",
+   "work_id": "W4317399163"
+  },
+  {
+   "doi": "10.1101/2023.01.17.23284689",
+   "field": "value",
+   "item": "excitement",
+   "text": "our systematic analysis of large real-world cohorts can identify interesting candidates for potential label expansion",
+   "text_version": "preprint",
+   "work_id": "W4317399163"
+  },
+  {
+   "doi": "10.1101/2023.01.17.23284689",
+   "field": "value",
+   "item": "excitement",
+   "text": "This work demonstrates the power of large-scale computational analysis of real-world data for investigating non-standard cancer treatment usages.",
+   "text_version": "preprint",
+   "work_id": "W4317399163"
+  },
+  {
+   "doi": "10.1101/2023.01.17.23284689",
+   "field": "value",
+   "item": "excitement",
+   "text": "these hormonal agents show promising effectiveness in ovarian cancer",
+   "text_version": "preprint",
+   "work_id": "W4317399163"
+  },
+  {
+   "doi": "10.1101/2023.01.17.23284689",
+   "field": "value",
+   "item": "excitement",
+   "text": "To the authors’ knowledge, the present study is the first large-scale real world data analysis to fill this gap",
+   "text_version": "preprint",
+   "work_id": "W4317399163"
+  },
+  {
+   "doi": "10.1101/2023.01.17.23284689",
+   "field": "value",
+   "item": "excitement",
+   "text": "to showcase the impactful benefit of large-scale systematic analyses of real-world data",
+   "text_version": "preprint",
+   "work_id": "W4317399163"
+  },
+  {
+   "doi": "10.1101/2023.01.17.23284689",
+   "field": "value",
+   "item": "excitement",
+   "text": "Interestingly, younger patients receive more off-guideline usage.",
+   "text_version": "preprint",
+   "work_id": "W4317399163"
+  },
+  {
+   "doi": "10.1101/2023.01.17.23284689",
+   "field": "value",
+   "item": "excitement",
+   "text": "This shows how real-world data analysis could generate hypotheses for clinical trials and potential guideline changes.",
+   "text_version": "preprint",
+   "work_id": "W4317399163"
+  },
+  {
+   "doi": "10.1101/2023.01.17.23284689",
+   "field": "value",
+   "item": "excitement",
+   "text": "To the best of our knowledge, this is the largest study investigating off-label and off-guideline usage of anticancer drugs using real-world data.",
+   "text_version": "preprint",
+   "work_id": "W4317399163"
+  },
+  {
+   "doi": "10.1101/2023.01.17.23284689",
+   "field": "value",
+   "item": "excitement",
+   "text": "This kind of analysis has the potential to provide rapid and quantitative insights into the effectiveness of off-label and off-guideline treatments",
+   "text_version": "preprint",
+   "work_id": "W4317399163"
+  },
+  {
+   "doi": "10.1101/2023.01.17.23284689",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "This work demonstrates the power of large-scale computational analysis of real-world data for investigating non-standard cancer treatment usages.",
+   "text_version": "preprint",
+   "work_id": "W4317399163"
+  },
+  {
+   "doi": "10.1101/2023.01.17.23284689",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "There are several limitations to be further explored in the future.",
+   "text_version": "preprint",
+   "work_id": "W4317399163"
+  },
+  {
+   "doi": "10.1101/2023.01.17.23284689",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "there could be unmeasured confounders in real-world data (e.g. tumor grade for ovarian cancer patients)",
+   "text_version": "preprint",
+   "work_id": "W4317399163"
+  },
+  {
+   "doi": "10.1101/2023.01.17.23284689",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "detailed safety analyses were challenging due to the sparsity of related endpoints in the Flatiron Health database",
+   "text_version": "preprint",
+   "work_id": "W4317399163"
+  },
+  {
+   "doi": "10.1101/2023.01.17.23284689",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "Analysis of drug usage not in accordance with detailed approval and recommendation conditions is an important future direction.",
+   "text_version": "preprint",
+   "work_id": "W4317399163"
+  },
+  {
+   "doi": "10.1101/2023.01.17.23284689",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "cytotoxic chemotherapies have the same overall mechanism of stopping fast reproducing cancer cells",
+   "text_version": "preprint",
+   "work_id": "W4317399163"
+  },
+  {
+   "doi": "10.1101/2023.01.17.23284689",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "patients who are more advanced in their cancer progression, and thus have fewer options, are more likely to be given off-guideline drugs",
+   "text_version": "preprint",
+   "work_id": "W4317399163"
+  },
+  {
+   "doi": "10.1101/2023.01.17.23284689",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "One possible explanation is that clinicians may feel that younger patients can better tolerate off-guideline treatment, which may have more uncertain side effects.",
+   "text_version": "preprint",
+   "work_id": "W4317399163"
+  },
+  {
+   "doi": "10.1101/2023.01.17.23284689",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "Approved labels are often limited in scope[CIT] due to restrictive clinical trial populations[CIT].",
+   "text_version": "preprint",
+   "work_id": "W4317399163"
+  },
+  {
+   "doi": "10.1101/2023.01.17.23284689",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Interestingly,",
+   "text_version": "preprint",
+   "work_id": "W4317399163"
+  },
+  {
+   "doi": "10.1101/2023.01.17.23284689",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "We next",
+   "text_version": "preprint",
+   "work_id": "W4317399163"
+  },
+  {
+   "doi": "10.1101/2023.01.17.23284689",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Consistent with",
+   "text_version": "preprint",
+   "work_id": "W4317399163"
+  },
+  {
+   "doi": "10.1101/2023.01.17.23284689",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "To the best of our knowledge",
+   "text_version": "preprint",
+   "work_id": "W4317399163"
+  },
+  {
+   "doi": "10.1101/2023.01.17.23284689",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Moreover,",
+   "text_version": "preprint",
+   "work_id": "W4317399163"
+  },
+  {
+   "doi": "10.48550/arxiv.2505.18524",
+   "field": "quote",
+   "item": "gap_sentence",
+   "text": "There is no method to automatically design and improve the optimizers to call based on the characteristics of a task.",
+   "text_version": "arxiv",
+   "work_id": "W4414581501"
+  },
+  {
+   "doi": "10.48550/arxiv.2505.18524",
+   "field": "quote",
+   "item": "here_we",
+   "text": "In this work, we explore how to automatically optimize both the structure and the prompt of optimizers.",
+   "text_version": "arxiv",
+   "work_id": "W4414581501"
+  },
+  {
+   "doi": "10.48550/arxiv.2505.18524",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "In this section, we first introduce the theoretical insights behind the meta optimizer.",
+   "text_version": "arxiv",
+   "work_id": "W4414581501"
+  },
+  {
+   "doi": "10.48550/arxiv.2505.18524",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "In the previous two sections, we introduced the meta prompt optimizer and the meta structure optimizer.",
+   "text_version": "arxiv",
+   "work_id": "W4414581501"
+  },
+  {
+   "doi": "10.48550/arxiv.2505.18524",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "In this section, we use the existing optimizers from DSPy and TextGrad as baseline methods.",
+   "text_version": "arxiv",
+   "work_id": "W4414581501"
+  },
+  {
+   "doi": "10.48550/arxiv.2505.18524",
+   "field": "value",
+   "item": "excitement",
+   "text": "The combination of these two significantly improves performance across multiple benchmarks",
+   "text_version": "arxiv",
+   "work_id": "W4414581501"
+  },
+  {
+   "doi": "10.48550/arxiv.2505.18524",
+   "field": "value",
+   "item": "excitement",
+   "text": "we introduce the concept of meta-optimization",
+   "text_version": "arxiv",
+   "work_id": "W4414581501"
+  },
+  {
+   "doi": "10.48550/arxiv.2505.18524",
+   "field": "value",
+   "item": "excitement",
+   "text": "We conducted experiments on multiple benchmarks, and the results demonstrate that our meta-optimized optimizers consistently outperform the existing ones.",
+   "text_version": "arxiv",
+   "work_id": "W4414581501"
+  },
+  {
+   "doi": "10.48550/arxiv.2505.18524",
+   "field": "value",
+   "item": "excitement",
+   "text": "the programs optimized by the meta-optimized optimizers also exhibit interesting properties",
+   "text_version": "arxiv",
+   "work_id": "W4414581501"
+  },
+  {
+   "doi": "10.48550/arxiv.2505.18524",
+   "field": "value",
+   "item": "excitement",
+   "text": "These results demonstrate that our meta-optimized optimizer exhibits strong transferability across models and datasets.",
+   "text_version": "arxiv",
+   "work_id": "W4414581501"
+  },
+  {
+   "doi": "10.48550/arxiv.2505.18524",
+   "field": "value",
+   "item": "excitement",
+   "text": "We believe that optimizing LLM optimizers is a crucial step toward further improving the performance and task alignment capabilities of LLM-driven systems",
+   "text_version": "arxiv",
+   "work_id": "W4414581501"
+  },
+  {
+   "doi": "10.48550/arxiv.2505.18524",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "We believe that optimizing LLM optimizers is a crucial step toward further improving the performance and task alignment capabilities of LLM-driven systems",
+   "text_version": "arxiv",
+   "work_id": "W4414581501"
+  },
+  {
+   "doi": "10.48550/arxiv.2505.18524",
+   "field": "hedge_quote",
+   "item": "strongest_claim",
+   "text": "We believe",
+   "text_version": "arxiv",
+   "work_id": "W4414581501"
+  },
+  {
+   "doi": "10.48550/arxiv.2505.18524",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "our meta optimizer is designed by ourselves, instead of learned by data",
+   "text_version": "arxiv",
+   "work_id": "W4414581501"
+  },
+  {
+   "doi": "10.48550/arxiv.2505.18524",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "there are techniques in the meta learning literature that could be adapted to allow this [CIT]",
+   "text_version": "arxiv",
+   "work_id": "W4414581501"
+  },
+  {
+   "doi": "10.48550/arxiv.2505.18524",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "In this section, we",
+   "text_version": "arxiv",
+   "work_id": "W4414581501"
+  },
+  {
+   "doi": "10.48550/arxiv.2505.18524",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Specifically,",
+   "text_version": "arxiv",
+   "work_id": "W4414581501"
+  },
+  {
+   "doi": "10.48550/arxiv.2505.18524",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "In contrast,",
+   "text_version": "arxiv",
+   "work_id": "W4414581501"
+  },
+  {
+   "doi": "10.48550/arxiv.2505.18524",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Importantly,",
+   "text_version": "arxiv",
+   "work_id": "W4414581501"
+  },
+  {
+   "doi": "10.48550/arxiv.2505.18524",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "worth noting that",
+   "text_version": "arxiv",
+   "work_id": "W4414581501"
+  },
+  {
+   "doi": "10.48550/arxiv.2404.10198",
+   "field": "quote",
+   "item": "gap_sentence",
+   "text": "However, so far there has not been a systematic exploration of a model’s confidence (via logprobs) and the model’s preference for RAG-provided information.",
+   "text_version": "arxiv",
+   "work_id": "W4415797873"
+  },
+  {
+   "doi": "10.48550/arxiv.2404.10198",
+   "field": "quote",
+   "item": "here_we",
+   "text": "We introduce ClashEval, a question-answering benchmark dataset of over 1200 questions spanning six domains that include the relevant contextual document for answering each question.",
+   "text_version": "arxiv",
+   "work_id": "W4415797873"
+  },
+  {
+   "doi": "10.48550/arxiv.2404.10198",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "We further examine how model adherence to context changes when there are more than one document.",
+   "text_version": "arxiv",
+   "work_id": "W4415797873"
+  },
+  {
+   "doi": "10.48550/arxiv.2404.10198",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "We consider the degree of deviation between the model’s prior response and the value contained in the retrieved context (Figure 3).",
+   "text_version": "arxiv",
+   "work_id": "W4415797873"
+  },
+  {
+   "doi": "10.48550/arxiv.2404.10198",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "In Figure 4, we observe a consistent negative relationship between the token probability of the model’s prior answer",
+   "text_version": "arxiv",
+   "work_id": "W4415797873"
+  },
+  {
+   "doi": "10.48550/arxiv.2404.10198",
+   "field": "value",
+   "item": "excitement",
+   "text": "Our results highlight a difficult task and benchmark for LLMs",
+   "text_version": "arxiv",
+   "work_id": "W4415797873"
+  },
+  {
+   "doi": "10.48550/arxiv.2404.10198",
+   "field": "value",
+   "item": "excitement",
+   "text": "We exploit this finding and demonstrate simple methods for improving model accuracy where there is conflicting retrieved content.",
+   "text_version": "arxiv",
+   "work_id": "W4415797873"
+  },
+  {
+   "doi": "10.48550/arxiv.2404.10198",
+   "field": "value",
+   "item": "excitement",
+   "text": "our dataset uniquely tests the LLM’s ability to arbitrate between its own parametric knowledge and the contextual information",
+   "text_version": "arxiv",
+   "work_id": "W4415797873"
+  },
+  {
+   "doi": "10.48550/arxiv.2404.10198",
+   "field": "value",
+   "item": "excitement",
+   "text": "Interestingly, these results suggest that each model has a different prior distribution over truthfulness across each domain.",
+   "text_version": "arxiv",
+   "work_id": "W4415797873"
+  },
+  {
+   "doi": "10.48550/arxiv.2404.10198",
+   "field": "value",
+   "item": "excitement",
+   "text": "these results suggest that probability calibration is a promising approach to reduce prior and context bias deserving further investigation",
+   "text_version": "arxiv",
+   "work_id": "W4415797873"
+  },
+  {
+   "doi": "10.48550/arxiv.2404.10198",
+   "field": "value",
+   "item": "excitement",
+   "text": "provide novel insights into how LLMs arbitrate between their own internal knowledge and contextual information",
+   "text_version": "arxiv",
+   "work_id": "W4415797873"
+  },
+  {
+   "doi": "10.48550/arxiv.2404.10198",
+   "field": "value",
+   "item": "excitement",
+   "text": "even the most advanced LLMs like GPT-4o exhibit a strong context bias",
+   "text_version": "arxiv",
+   "work_id": "W4415797873"
+  },
+  {
+   "doi": "10.48550/arxiv.2404.10198",
+   "field": "value",
+   "item": "excitement",
+   "text": "Resolving the tension between parametric priors and retrieved information is a crucial challenge on the path to safe and trustworthy language models.",
+   "text_version": "arxiv",
+   "work_id": "W4415797873"
+  },
+  {
+   "doi": "10.48550/arxiv.2404.10198",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "Resolving the tension between parametric priors and retrieved information is a crucial challenge on the path to safe and trustworthy language models.",
+   "text_version": "arxiv",
+   "work_id": "W4415797873"
+  },
+  {
+   "doi": "10.48550/arxiv.2404.10198",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "Our analyses have several key limitations.",
+   "text_version": "arxiv",
+   "work_id": "W4415797873"
+  },
+  {
+   "doi": "10.48550/arxiv.2404.10198",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "First, RAG systems can be deployed to many more domains than can be covered by our analyses.",
+   "text_version": "arxiv",
+   "work_id": "W4415797873"
+  },
+  {
+   "doi": "10.48550/arxiv.2404.10198",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "Third, our dataset contains an enriched rate of contextual errors, so the reported metrics are not meant to represent bias rates in the wild.",
+   "text_version": "arxiv",
+   "work_id": "W4415797873"
+  },
+  {
+   "doi": "10.48550/arxiv.2404.10198",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "a dataset that only measures the LLM’s ability to reject wrong context can trivially excel at this task by simply always ignoring the context",
+   "text_version": "arxiv",
+   "work_id": "W4415797873"
+  },
+  {
+   "doi": "10.48550/arxiv.2404.10198",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "a slight modification implies a small tweak to another real name (Rob Greene)",
+   "text_version": "arxiv",
+   "work_id": "W4415797873"
+  },
+  {
+   "doi": "10.48550/arxiv.2404.10198",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Interestingly,",
+   "text_version": "arxiv",
+   "work_id": "W4415797873"
+  },
+  {
+   "doi": "10.48550/arxiv.2404.10198",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "We find that",
+   "text_version": "arxiv",
+   "work_id": "W4415797873"
+  },
+  {
+   "doi": "10.48550/arxiv.2404.10198",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "At its core,",
+   "text_version": "arxiv",
+   "work_id": "W4415797873"
+  },
+  {
+   "doi": "10.48550/arxiv.2602.00986",
+   "field": "quote",
+   "item": "gap_sentence",
+   "text": "they demonstrate that reward-related information can be decoded, but do not characterize how this information is structured within the hidden states",
+   "text_version": "arxiv",
+   "work_id": "W7127388167"
+  },
+  {
+   "doi": "10.48550/arxiv.2602.00986",
+   "field": "quote",
+   "item": "here_we",
+   "text": "we find that the ability of LLM hidden states to predict reward-related information can be attributed to the existence of a small subset of neurons",
+   "text_version": "arxiv",
+   "work_id": "W7127388167"
+  },
+  {
+   "doi": "10.48550/arxiv.2602.00986",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "In this section, we first introduce value neurons, a sparse subset of neurons whose activations encode the model’s expected value of the current state.",
+   "text_version": "arxiv",
+   "work_id": "W7127388167"
+  },
+  {
+   "doi": "10.48550/arxiv.2602.00986",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "In this section, we first introduce dopamine neurons, a sparse subset of neurons whose activations encode temporal-difference (TD) reward prediction errors.",
+   "text_version": "arxiv",
+   "work_id": "W7127388167"
+  },
+  {
+   "doi": "10.48550/arxiv.2602.00986",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "Since value neurons encode value information before any response tokens are generated, they can serve as a lightweight confidence estimator.",
+   "text_version": "arxiv",
+   "work_id": "W7127388167"
+  },
+  {
+   "doi": "10.48550/arxiv.2602.00986",
+   "field": "value",
+   "item": "excitement",
+   "text": "We demonstrate that value neurons are robust and transferable across diverse datasets and models",
+   "text_version": "arxiv",
+   "work_id": "W7127388167"
+  },
+  {
+   "doi": "10.48550/arxiv.2602.00986",
+   "field": "value",
+   "item": "excitement",
+   "text": "dopamine neurons can function as a process reward model (PRM) to guide inference-time search",
+   "text_version": "arxiv",
+   "work_id": "W7127388167"
+  },
+  {
+   "doi": "10.48550/arxiv.2602.00986",
+   "field": "value",
+   "item": "excitement",
+   "text": "Understanding this matters both for mechanistic interpretability, as it clarifies whether reward signals are sparsely encoded",
+   "text_version": "arxiv",
+   "work_id": "W7127388167"
+  },
+  {
+   "doi": "10.48550/arxiv.2602.00986",
+   "field": "value",
+   "item": "excitement",
+   "text": "zeroing out value neurons causes catastrophic degradation, far exceeding Magnitude and Wanda",
+   "text_version": "arxiv",
+   "work_id": "W7127388167"
+  },
+  {
+   "doi": "10.48550/arxiv.2602.00986",
+   "field": "value",
+   "item": "excitement",
+   "text": "we believe the reward subsystem offers a useful lens for understanding LLM reasoning",
+   "text_version": "arxiv",
+   "work_id": "W7127388167"
+  },
+  {
+   "doi": "10.48550/arxiv.2602.00986",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "we believe the reward subsystem offers a useful lens for understanding LLM reasoning",
+   "text_version": "arxiv",
+   "work_id": "W7127388167"
+  },
+  {
+   "doi": "10.48550/arxiv.2602.00986",
+   "field": "hedge_quote",
+   "item": "strongest_claim",
+   "text": "we believe",
+   "text_version": "arxiv",
+   "work_id": "W7127388167"
+  },
+  {
+   "doi": "10.48550/arxiv.2602.00986",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "The arguments below are intended as motivation, not as rigorous proof.",
+   "text_version": "arxiv",
+   "work_id": "W7127388167"
+  },
+  {
+   "doi": "10.48550/arxiv.2602.00986",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "To be clear, this argument does not prove that these neurons must be sparse.",
+   "text_version": "arxiv",
+   "work_id": "W7127388167"
+  },
+  {
+   "doi": "10.48550/arxiv.2602.00986",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "the experiments in this section evaluate value neurons at the initial input position [EQ], which is inherently challenging and results in moderate absolute AUC values",
+   "text_version": "arxiv",
+   "work_id": "W7127388167"
+  },
+  {
+   "doi": "10.48550/arxiv.2602.00986",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "the model initially lacks confidence but ultimately solves the problem correctly",
+   "text_version": "arxiv",
+   "work_id": "W7127388167"
+  },
+  {
+   "doi": "10.48550/arxiv.2602.00986",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "the model begins with high confidence but commits an error mid-reasoning, and the neuron displays a trough at the exact moment the logical flaw occurs",
+   "text_version": "arxiv",
+   "work_id": "W7127388167"
+  },
+  {
+   "doi": "10.48550/arxiv.2602.00986",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "As shown in",
+   "text_version": "arxiv",
+   "work_id": "W7127388167"
+  },
+  {
+   "doi": "10.48550/arxiv.2602.00986",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "As illustrated in",
+   "text_version": "arxiv",
+   "work_id": "W7127388167"
+  },
+  {
+   "doi": "10.48550/arxiv.2602.00986",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "In this section, we first introduce",
+   "text_version": "arxiv",
+   "work_id": "W7127388167"
+  },
+  {
+   "doi": "10.48550/arxiv.2602.00986",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Using simple probing",
+   "text_version": "arxiv",
+   "work_id": "W7127388167"
+  },
+  {
+   "doi": "10.48550/arxiv.2602.00986",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "This demonstrates that",
+   "text_version": "arxiv",
+   "work_id": "W7127388167"
+  },
+  {
+   "doi": "10.48550/arxiv.2203.02053",
+   "field": "quote",
+   "item": "gap_sentence",
+   "text": "but also on random noise inputs and random weights, which is not captured in previous work.",
+   "text_version": "arxiv",
+   "work_id": "W7133217898"
+  },
+  {
+   "doi": "10.48550/arxiv.2203.02053",
+   "field": "quote",
+   "item": "here_we",
+   "text": "This paper provides a three-part explanation for the modality gap phenomenon.",
+   "text_version": "arxiv",
+   "work_id": "W7133217898"
+  },
+  {
+   "doi": "10.48550/arxiv.2203.02053",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "Here, we theoretically investigate the cone effect phenomenon.",
+   "text_version": "arxiv",
+   "work_id": "W7133217898"
+  },
+  {
+   "doi": "10.48550/arxiv.2203.02053",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "Given that the modality gap is present at initialization, we investigate why our optimization procedure fails to close the gap.",
+   "text_version": "arxiv",
+   "work_id": "W7133217898"
+  },
+  {
+   "doi": "10.48550/arxiv.2203.02053",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "We study whether changing the gap will affect CLIP (ViT-B/16)’s performances on various downstream tasks",
+   "text_version": "arxiv",
+   "work_id": "W7133217898"
+  },
+  {
+   "doi": "10.48550/arxiv.2203.02053",
+   "field": "value",
+   "item": "excitement",
+   "text": "We present modality gap, an intriguing geometric phenomenon of the representation space of multi-modal models.",
+   "text_version": "arxiv",
+   "work_id": "W7133217898"
+  },
+  {
+   "doi": "10.48550/arxiv.2203.02053",
+   "field": "value",
+   "item": "excitement",
+   "text": "Our experiments further demonstrate that varying the modality gap distance has a significant impact in improving the model’s downstream zero-shot classification performance and fairness.",
+   "text_version": "arxiv",
+   "work_id": "W7133217898"
+  },
+  {
+   "doi": "10.48550/arxiv.2203.02053",
+   "field": "value",
+   "item": "excitement",
+   "text": "To the best of our knowledge, we demonstrate a general modality gap phenomenon for the first time.",
+   "text_version": "arxiv",
+   "work_id": "W7133217898"
+  },
+  {
+   "doi": "10.48550/arxiv.2203.02053",
+   "field": "value",
+   "item": "excitement",
+   "text": "We show that this phenomenon holds across a wide spectrum of multi-modal models, covering texts, natural images, videos, medical images, and amino-acid sequences.",
+   "text_version": "arxiv",
+   "work_id": "W7133217898"
+  },
+  {
+   "doi": "10.48550/arxiv.2203.02053",
+   "field": "value",
+   "item": "excitement",
+   "text": "By simply modifying the gap’s distance, we can improve CLIP’s zero-shot performance and fairness.",
+   "text_version": "arxiv",
+   "work_id": "W7133217898"
+  },
+  {
+   "doi": "10.48550/arxiv.2203.02053",
+   "field": "value",
+   "item": "excitement",
+   "text": "Our analyses also provide new insights on the cone effect, which we show is a general phenomenon for deep neural networks.",
+   "text_version": "arxiv",
+   "work_id": "W7133217898"
+  },
+  {
+   "doi": "10.48550/arxiv.2203.02053",
+   "field": "value",
+   "item": "excitement",
+   "text": "Together these experiments suggest that the cone effect reflects a more general inductive bias of deep networks than might be previously appreciated.",
+   "text_version": "arxiv",
+   "work_id": "W7133217898"
+  },
+  {
+   "doi": "10.48550/arxiv.2203.02053",
+   "field": "value",
+   "item": "excitement",
+   "text": "It is encouraging that a simple gap offsetting approach can lead to a consistent bias reduction across all races",
+   "text_version": "arxiv",
+   "work_id": "W7133217898"
+  },
+  {
+   "doi": "10.48550/arxiv.2203.02053",
+   "field": "value",
+   "item": "excitement",
+   "text": "Interestingly, having larger gap can help some fairness and zero-shot learning applications.",
+   "text_version": "arxiv",
+   "work_id": "W7133217898"
+  },
+  {
+   "doi": "10.48550/arxiv.2203.02053",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "In model initialization, we show empirically and theoretically that the representation of a common deep neural network is restricted to a narrow cone.",
+   "text_version": "arxiv",
+   "work_id": "W7133217898"
+  },
+  {
+   "doi": "10.48550/arxiv.2203.02053",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "Although the mismatch here is simulated, in practice mismatched data are common (e.g., hard-to-differentiate images/captions or annotation errors).",
+   "text_version": "arxiv",
+   "work_id": "W7133217898"
+  },
+  {
+   "doi": "10.48550/arxiv.2203.02053",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "Further analyzing the connection between normalization and the cone effect is an interesting direction of future work.",
+   "text_version": "arxiv",
+   "work_id": "W7133217898"
+  },
+  {
+   "doi": "10.48550/arxiv.2203.02053",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "We leave more methods to change the gap and more analysis of the relation between gap distance and downstream task performance to future work.",
+   "text_version": "arxiv",
+   "work_id": "W7133217898"
+  },
+  {
+   "doi": "10.48550/arxiv.2203.02053",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "Systematic analysis of the impact of the gap on applications is an important direction of future work.",
+   "text_version": "arxiv",
+   "work_id": "W7133217898"
+  },
+  {
+   "doi": "10.48550/arxiv.2203.02053",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "one can perform “zero-shot” visual classification by simply providing the names of the visual categories to be recognized",
+   "text_version": "arxiv",
+   "work_id": "W7133217898"
+  },
+  {
+   "doi": "10.48550/arxiv.2203.02053",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "In 2D, arccos(0.56)=55.94°, indicating that a cosine similarity of 0.56 can “occupy” 55.94°/360°=15.53% of the 2D unit circle.",
+   "text_version": "arxiv",
+   "work_id": "W7133217898"
+  },
+  {
+   "doi": "10.48550/arxiv.2203.02053",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Interestingly,",
+   "text_version": "arxiv",
+   "work_id": "W7133217898"
+  },
+  {
+   "doi": "10.48550/arxiv.2203.02053",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Together, these results show",
+   "text_version": "arxiv",
+   "work_id": "W7133217898"
+  },
+  {
+   "doi": "10.48550/arxiv.2203.02053",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "is an interesting direction of future work",
+   "text_version": "arxiv",
+   "work_id": "W7133217898"
+  },
+  {
+   "doi": "10.48550/arxiv.2203.02053",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "These results indicate that",
+   "text_version": "arxiv",
+   "work_id": "W7133217898"
+  },
+  {
+   "doi": "10.48550/arxiv.2203.02053",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "In other words,",
+   "text_version": "arxiv",
+   "work_id": "W7133217898"
+  },
+  {
+   "doi": "10.48550/arxiv.2202.05983",
+   "field": "quote",
+   "item": "gap_sentence",
+   "text": "Typically, these algorithms are designed and optimized to minimize loss using standard training objectives independent of the human end user.",
+   "text_version": "arxiv",
+   "work_id": "W7133224902"
+  },
+  {
+   "doi": "10.48550/arxiv.2202.05983",
+   "field": "quote",
+   "item": "here_we",
+   "text": "In this paper, we question this premise and ask whether a joint optimization of the entire human-AI system is possible.",
+   "text_version": "arxiv",
+   "work_id": "W7133224902"
+  },
+  {
+   "doi": "10.48550/arxiv.2202.05983",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "We verify our simulation results across the four previously described tasks",
+   "text_version": "arxiv",
+   "work_id": "W7133224902"
+  },
+  {
+   "doi": "10.48550/arxiv.2202.05983",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "Moreover, we can largely confirm our simulation results.",
+   "text_version": "arxiv",
+   "work_id": "W7133224902"
+  },
+  {
+   "doi": "10.48550/arxiv.2202.05983",
+   "field": "value",
+   "item": "excitement",
+   "text": "Our findings suggest the importance of jointly optimizing the human-AI system as opposed to the standard paradigm of optimizing the AI model alone.",
+   "text_version": "arxiv",
+   "work_id": "W7133224902"
+  },
+  {
+   "doi": "10.48550/arxiv.2202.05983",
+   "field": "value",
+   "item": "excitement",
+   "text": "these are some of the first results using an empirically validated model for human behavior to optimize AI performance",
+   "text_version": "arxiv",
+   "work_id": "W7133224902"
+  },
+  {
+   "doi": "10.48550/arxiv.2202.05983",
+   "field": "value",
+   "item": "excitement",
+   "text": "These results suggest there is merit to jointly optimizing human-AI systems and that an optimal AI algorithm may not be optimal for human use.",
+   "text_version": "arxiv",
+   "work_id": "W7133224902"
+  },
+  {
+   "doi": "10.48550/arxiv.2202.05983",
+   "field": "value",
+   "item": "excitement",
+   "text": "Accuracy and confidence increased due to the modified advice across nearly all tasks.",
+   "text_version": "arxiv",
+   "work_id": "W7133224902"
+  },
+  {
+   "doi": "10.48550/arxiv.2202.05983",
+   "field": "value",
+   "item": "excitement",
+   "text": "Another interesting finding is that tasks with higher advice accuracy (Art and Cities) exhibit larger increases in accuracy and confidence.",
+   "text_version": "arxiv",
+   "work_id": "W7133224902"
+  },
+  {
+   "doi": "10.48550/arxiv.2202.05983",
+   "field": "value",
+   "item": "excitement",
+   "text": "These results highlight the importance of recognizing that AI, when deployed in collaborative systems, should not be optimized in isolation.",
+   "text_version": "arxiv",
+   "work_id": "W7133224902"
+  },
+  {
+   "doi": "10.48550/arxiv.2202.05983",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "Our findings suggest the importance of jointly optimizing the human-AI system as opposed to the standard paradigm of optimizing the AI model alone.",
+   "text_version": "arxiv",
+   "work_id": "W7133224902"
+  },
+  {
+   "doi": "10.48550/arxiv.2202.05983",
+   "field": "hedge_quote",
+   "item": "strongest_claim",
+   "text": "Our findings suggest",
+   "text_version": "arxiv",
+   "work_id": "W7133224902"
+  },
+  {
+   "doi": "10.48550/arxiv.2202.05983",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "Our work has several limitations that would be interesting to address in future studies.",
+   "text_version": "arxiv",
+   "work_id": "W7133224902"
+  },
+  {
+   "doi": "10.48550/arxiv.2202.05983",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "we considered tasks where advice accuracy generally exceeded individual human performance and did not evaluate expert tasks",
+   "text_version": "arxiv",
+   "work_id": "W7133224902"
+  },
+  {
+   "doi": "10.48550/arxiv.2202.05983",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "we can create a robust model for human behavior (e.g., with confidence intervals etc.)",
+   "text_version": "arxiv",
+   "work_id": "W7133224902"
+  },
+  {
+   "doi": "10.48550/arxiv.2202.05983",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "this places the AI in a similar category as lab tests or other exams a doctor may order to aid in diagnosis",
+   "text_version": "arxiv",
+   "work_id": "W7133224902"
+  },
+  {
+   "doi": "10.48550/arxiv.2202.05983",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "we can view modifying AI advice as a nudge for the human user",
+   "text_version": "arxiv",
+   "work_id": "W7133224902"
+  },
+  {
+   "doi": "10.48550/arxiv.2202.05983",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "the user may not fully absorb the import of 0.7 since humans are not great at intuitive probability",
+   "text_version": "arxiv",
+   "work_id": "W7133224902"
+  },
+  {
+   "doi": "10.48550/arxiv.2202.05983",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "In particular,",
+   "text_version": "arxiv",
+   "work_id": "W7133224902"
+  },
+  {
+   "doi": "10.48550/arxiv.2202.05983",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Note that",
+   "text_version": "arxiv",
+   "work_id": "W7133224902"
+  },
+  {
+   "doi": "10.48550/arxiv.2202.05983",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "These results suggest",
+   "text_version": "arxiv",
+   "work_id": "W7133224902"
+  }
+ ],
+ "schema": 1,
+ "stability": {
+  "abstract_moves": {
+   "agreement": 0.898,
+   "pairs": 23,
+   "stable": true
+  },
+  "discussion_moves": {
+   "agreement": 0.747,
+   "pairs": 23,
+   "stable": true
+  },
+  "essay_argument": {
+   "agreement": 1.0,
+   "pairs": 1,
+   "stable": true
+  },
+  "excitement": {
+   "agreement": 0.65,
+   "pairs": 23,
+   "stable": false
+  },
+  "figure_reference": {
+   "agreement": 1.0,
+   "pairs": 23,
+   "stable": true
+  },
+  "gap_sentence": {
+   "agreement": 0.957,
+   "pairs": 23,
+   "stable": true
+  },
+  "here_we": {
+   "agreement": 1.0,
+   "pairs": 23,
+   "stable": true
+  },
+  "intro_roles": {
+   "agreement": 0.887,
+   "pairs": 23,
+   "stable": true
+  },
+  "limitations": {
+   "agreement": 0.783,
+   "pairs": 23,
+   "stable": true
+  },
+  "results_headings": {
+   "agreement": 1.0,
+   "pairs": 21,
+   "stable": true
+  },
+  "results_openings": {
+   "agreement": 0.94,
+   "pairs": 21,
+   "stable": true
+  },
+  "strongest_claim": {
+   "agreement": 0.957,
+   "pairs": 23,
+   "stable": true
+  },
+  "title_form": {
+   "agreement": 0.957,
+   "pairs": 23,
+   "stable": true
+  }
+ },
+ "surface": {
+  "citations_per_sentence": 0.201,
+  "connectives_per_1000": [
+   [
+    "first",
+    1.38
+   ],
+   [
+    "however",
+    1.21
+   ],
+   [
+    "here",
+    1.18
+   ],
+   [
+    "because",
+    0.69
+   ],
+   [
+    "finally",
+    0.37
+   ],
+   [
+    "interestingly",
+    0.32
+   ],
+   [
+    "moreover",
+    0.32
+   ],
+   [
+    "second",
+    0.32
+   ],
+   [
+    "together",
+    0.32
+   ],
+   [
+    "thus",
+    0.29
+   ],
+   [
+    "although",
+    0.26
+   ],
+   [
+    "therefore",
+    0.26
+   ],
+   [
+    "furthermore",
+    0.23
+   ],
+   [
+    "instead",
+    0.2
+   ],
+   [
+    "indeed",
+    0.14
+   ],
+   [
+    "whereas",
+    0.12
+   ],
+   [
+    "importantly",
+    0.09
+   ],
+   [
+    "hence",
+    0.06
+   ],
+   [
+    "notably",
+    0.06
+   ],
+   [
+    "surprisingly",
+    0.06
+   ],
+   [
+    "consequently",
+    0.03
+   ]
+  ],
+  "figure_refs_per_paragraph": 0.388,
+  "first_person_share": 0.359,
+  "hedge_words": [
+   [
+    "may",
+    56
+   ],
+   [
+    "likely",
+    29
+   ],
+   [
+    "could",
+    22
+   ],
+   [
+    "possible",
+    19
+   ],
+   [
+    "consistent",
+    16
+   ],
+   [
+    "suggest",
+    12
+   ],
+   [
+    "indicates",
+    9
+   ],
+   [
+    "suggests",
+    9
+   ],
+   [
+    "might",
+    7
+   ],
+   [
+    "potentially",
+    6
+   ],
+   [
+    "indicate",
+    3
+   ],
+   [
+    "perhaps",
+    2
+   ],
+   [
+    "seem",
+    2
+   ],
+   [
+    "suggested",
+    2
+   ],
+   [
+    "appear",
+    1
+   ],
+   [
+    "presumably",
+    1
+   ]
+  ],
+  "hedges_per_1000": 5.64,
+  "n_paragraphs": 366,
+  "n_sentences": 1616,
+  "n_words": 34772,
+  "numbers_per_sentence": 0.408,
+  "opener_pairs": [
+   [
+    "for example",
+    32
+   ],
+   [
+    "in this",
+    25
+   ],
+   [
+    "as shown",
+    13
+   ],
+   [
+    "in particular",
+    12
+   ],
+   [
+    "here we",
+    11
+   ],
+   [
+    "this is",
+    11
+   ],
+   [
+    "we also",
+    11
+   ],
+   [
+    "in addition",
+    10
+   ],
+   [
+    "in contrast",
+    10
+   ],
+   [
+    "it is",
+    10
+   ]
+  ],
+  "openers": [
+   [
+    "we",
+    203
+   ],
+   [
+    "the",
+    168
+   ],
+   [
+    "in",
+    118
+   ],
+   [
+    "this",
+    76
+   ],
+   [
+    "for",
+    72
+   ],
+   [
+    "to",
+    50
+   ],
+   [
+    "our",
+    43
+   ],
+   [
+    "as",
+    38
+   ],
+   [
+    "however",
+    29
+   ],
+   [
+    "these",
+    29
+   ],
+   [
+    "here",
+    28
+   ],
+   [
+    "a",
+    21
+   ],
+   [
+    "it",
+    21
+   ],
+   [
+    "while",
+    16
+   ],
+   [
+    "with",
+    15
+   ]
+  ],
+  "paragraph_sentences": {
+   "mean": 4.42,
+   "median": 4.0,
+   "n": 366,
+   "p90": 8.0
+  },
+  "passive_share": 0.239,
+  "questions_per_100": 0.37,
+  "sentence_length": {
+   "mean": 21.52,
+   "median": 20.0,
+   "n": 1616,
+   "p90": 34.0
+  },
+  "sentence_length_by_kind": {
+   "abstract": {
+    "mean": 23.1,
+    "median": 23.0,
+    "n": 83,
+    "p90": 34.0
+   },
+   "discussion": {
+    "mean": 23.44,
+    "median": 22.0,
+    "n": 157,
+    "p90": 37.0
+   },
+   "intro": {
+    "mean": 22.72,
+    "median": 21.5,
+    "n": 374,
+    "p90": 34.0
+   },
+   "other": {
+    "mean": 19.87,
+    "median": 19.0,
+    "n": 225,
+    "p90": 32.0
+   },
+   "results": {
+    "mean": 20.86,
+    "median": 20.0,
+    "n": 777,
+    "p90": 33.0
+   }
+  }
+ },
+ "surface_papers": 10,
+ "text_versions": {
+  "accepted": 1,
+  "arxiv": 6,
+  "preprint": 1,
+  "published": 2
+ },
+ "unverified": {},
+ "years": {
+  "first": 2016,
+  "last": 2026
+ }
+}

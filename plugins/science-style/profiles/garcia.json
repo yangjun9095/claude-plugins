@@ -1,0 +1,4096 @@
+{
+ "by_cell": {
+  "essay/other": 2,
+  "first/high": 1,
+  "first/other": 2,
+  "senior/high": 5,
+  "senior/other": 4
+ },
+ "by_group": {
+  "essay": 2,
+  "first": 3,
+  "senior": 9
+ },
+ "by_tier": {
+  "high": 6,
+  "other": 8
+ },
+ "checklist_version": 2,
+ "distinctive_note": "",
+ "distinctive_pairs": [
+  [
+   "of transcription",
+   8.69
+  ],
+  [
+   "binding sites",
+   8.36
+  ],
+  [
+   "transcription factor",
+   7.62
+  ],
+  [
+   "rate of",
+   7.18
+  ],
+  [
+   "the early",
+   6.88
+  ],
+  [
+   "binding site",
+   6.74
+  ],
+  [
+   "the promoter",
+   6.7
+  ],
+  [
+   "rna polymerase",
+   6.49
+  ],
+  [
+   "the transcriptional",
+   6.4
+  ],
+  [
+   "the transcription",
+   6.25
+  ],
+  [
+   "the embryo",
+   6.22
+  ],
+  [
+   "the rate",
+   6.16
+  ],
+  [
+   "gene expression",
+   6.08
+  ],
+  [
+   "of active",
+   5.97
+  ],
+  [
+   "a result",
+   5.7
+  ],
+  [
+   "in fig",
+   5.55
+  ],
+  [
+   "of mrna",
+   5.5
+  ],
+  [
+   "shown in",
+   5.39
+  ],
+  [
+   "it possible",
+   5.32
+  ],
+  [
+   "the fraction",
+   5.12
+  ]
+ ],
+ "distinctive_words": [
+  [
+   "transcription",
+   17.4
+  ],
+  [
+   "transcriptional",
+   15.42
+  ],
+  [
+   "binding",
+   11.49
+  ],
+  [
+   "nuclei",
+   10.49
+  ],
+  [
+   "mrna",
+   10.11
+  ],
+  [
+   "rate",
+   9.46
+  ],
+  [
+   "dynamics",
+   9.34
+  ],
+  [
+   "repression",
+   9.22
+  ],
+  [
+   "promoter",
+   8.72
+  ],
+  [
+   "molecules",
+   8.37
+  ],
+  [
+   "polymerase",
+   8.34
+  ],
+  [
+   "factor",
+   7.97
+  ],
+  [
+   "embryo",
+   7.86
+  ],
+  [
+   "time",
+   7.77
+  ],
+  [
+   "the",
+   7.68
+  ],
+  [
+   "of",
+   7.37
+  ],
+  [
+   "fluorescence",
+   7.13
+  ],
+  [
+   "regulatory",
+   7.08
+  ],
+  [
+   "quantitative",
+   6.96
+  ],
+  [
+   "constructs",
+   6.64
+  ],
+  [
+   "fluorescent",
+   6.6
+  ],
+  [
+   "expression",
+   6.47
+  ],
+  [
+   "loading",
+   6.42
+  ],
+  [
+   "reporter",
+   6.39
+  ],
+  [
+   "elongation",
+   6.33
+  ],
+  [
+   "window",
+   6.28
+  ],
+  [
+   "constant",
+   6.22
+  ],
+  [
+   "theoretical",
+   6.12
+  ],
+  [
+   "concentrations",
+   6.11
+  ],
+  [
+   "regulation",
+   6.06
+  ]
+ ],
+ "items": {
+  "abstract_moves": {
+   "value": {
+    "all": {
+     "approach": 14,
+     "context": 13,
+     "gap": 11,
+     "implication": 12,
+     "result": 11
+    },
+    "by_group": {
+     "essay": {
+      "approach": 2,
+      "context": 2,
+      "gap": 1,
+      "implication": 2
+     },
+     "first": {
+      "approach": 3,
+      "context": 3,
+      "gap": 2,
+      "implication": 3,
+      "result": 2
+     },
+     "senior": {
+      "approach": 9,
+      "context": 8,
+      "gap": 8,
+      "implication": 7,
+      "result": 9
+     }
+    },
+    "by_tier": {
+     "high": {
+      "approach": 6,
+      "context": 6,
+      "gap": 6,
+      "implication": 5,
+      "result": 6
+     },
+     "other": {
+      "approach": 8,
+      "context": 7,
+      "gap": 5,
+      "implication": 7,
+      "result": 5
+     }
+    },
+    "first": {
+     "context": 12,
+     "gap": 2
+    },
+    "last": {
+     "approach": 1,
+     "implication": 11,
+     "result": 2
+    },
+    "n": 14,
+    "n_by_group": {
+     "essay": 2,
+     "first": 3,
+     "senior": 9
+    },
+    "n_by_tier": {
+     "high": 6,
+     "other": 8
+    }
+   }
+  },
+  "discussion_moves": {
+   "value": {
+    "all": {
+     "comparison with prior work": 11,
+     "future work": 14,
+     "implication": 14,
+     "limitation": 11,
+     "mechanism": 10,
+     "other": 2,
+     "summary": 14
+    },
+    "by_group": {
+     "essay": {
+      "future work": 2,
+      "implication": 2,
+      "other": 1,
+      "summary": 2
+     },
+     "first": {
+      "comparison with prior work": 2,
+      "future work": 3,
+      "implication": 3,
+      "limitation": 2,
+      "mechanism": 2,
+      "summary": 3
+     },
+     "senior": {
+      "comparison with prior work": 9,
+      "future work": 9,
+      "implication": 9,
+      "limitation": 9,
+      "mechanism": 8,
+      "other": 1,
+      "summary": 9
+     }
+    },
+    "by_tier": {
+     "high": {
+      "comparison with prior work": 6,
+      "future work": 6,
+      "implication": 6,
+      "limitation": 6,
+      "mechanism": 6,
+      "summary": 6
+     },
+     "other": {
+      "comparison with prior work": 5,
+      "future work": 8,
+      "implication": 8,
+      "limitation": 5,
+      "mechanism": 4,
+      "other": 2,
+      "summary": 8
+     }
+    },
+    "first": {
+     "comparison with prior work": 7,
+     "other": 1,
+     "summary": 6
+    },
+    "last": {
+     "future work": 5,
+     "implication": 9
+    },
+    "n": 14,
+    "n_by_group": {
+     "essay": 2,
+     "first": 3,
+     "senior": 9
+    },
+    "n_by_tier": {
+     "high": 6,
+     "other": 8
+    }
+   }
+  },
+  "essay_argument": {
+   "call_to_action": {
+    "all": {
+     "no": 1,
+     "yes": 1
+    },
+    "by_group": {
+     "essay": {
+      "no": 1,
+      "yes": 1
+     }
+    },
+    "by_tier": {
+     "other": {
+      "no": 1,
+      "yes": 1
+     }
+    },
+    "n": 2,
+    "n_by_group": {
+     "essay": 2
+    },
+    "n_by_tier": {
+     "other": 2
+    }
+   },
+   "thesis_location": {
+    "all": {
+     "end of introduction": 2
+    },
+    "by_group": {
+     "essay": {
+      "end of introduction": 2
+     }
+    },
+    "by_tier": {
+     "other": {
+      "end of introduction": 2
+     }
+    },
+    "n": 2,
+    "n_by_group": {
+     "essay": 2
+    },
+    "n_by_tier": {
+     "other": 2
+    }
+   }
+  },
+  "excitement": {
+   "value.location": {
+    "all": {
+     "abstract": 14,
+     "discussion": 14,
+     "introduction": 11,
+     "results": 10
+    },
+    "by_group": {
+     "essay": {
+      "abstract": 2,
+      "discussion": 2,
+      "introduction": 1
+     },
+     "first": {
+      "abstract": 3,
+      "discussion": 3,
+      "introduction": 1,
+      "results": 2
+     },
+     "senior": {
+      "abstract": 9,
+      "discussion": 9,
+      "introduction": 9,
+      "results": 8
+     }
+    },
+    "by_tier": {
+     "high": {
+      "abstract": 6,
+      "discussion": 6,
+      "introduction": 5,
+      "results": 6
+     },
+     "other": {
+      "abstract": 8,
+      "discussion": 8,
+      "introduction": 6,
+      "results": 4
+     }
+    },
+    "n": 14,
+    "n_by_group": {
+     "essay": 2,
+     "first": 3,
+     "senior": 9
+    },
+    "n_by_tier": {
+     "high": 6,
+     "other": 8
+    }
+   },
+   "value.marker": {
+    "all": {
+     "evaluative word": 13,
+     "first or novelty claim": 10,
+     "implication sentence": 14,
+     "scope claim": 13
+    },
+    "by_group": {
+     "essay": {
+      "evaluative word": 2,
+      "first or novelty claim": 2,
+      "implication sentence": 2,
+      "scope claim": 1
+     },
+     "first": {
+      "evaluative word": 3,
+      "first or novelty claim": 1,
+      "implication sentence": 3,
+      "scope claim": 3
+     },
+     "senior": {
+      "evaluative word": 8,
+      "first or novelty claim": 7,
+      "implication sentence": 9,
+      "scope claim": 9
+     }
+    },
+    "by_tier": {
+     "high": {
+      "evaluative word": 6,
+      "first or novelty claim": 6,
+      "implication sentence": 6,
+      "scope claim": 6
+     },
+     "other": {
+      "evaluative word": 7,
+      "first or novelty claim": 4,
+      "implication sentence": 8,
+      "scope claim": 7
+     }
+    },
+    "n": 14,
+    "n_by_group": {
+     "essay": 2,
+     "first": 3,
+     "senior": 9
+    },
+    "n_by_tier": {
+     "high": 6,
+     "other": 8
+    }
+   }
+  },
+  "figure_reference": {
+   "value": {
+    "all": {
+     "mixed": 2,
+     "result then reference": 12
+    },
+    "by_group": {
+     "essay": {
+      "result then reference": 2
+     },
+     "first": {
+      "mixed": 1,
+      "result then reference": 2
+     },
+     "senior": {
+      "mixed": 1,
+      "result then reference": 8
+     }
+    },
+    "by_tier": {
+     "high": {
+      "result then reference": 6
+     },
+     "other": {
+      "mixed": 2,
+      "result then reference": 6
+     }
+    },
+    "n": 14,
+    "n_by_group": {
+     "essay": 2,
+     "first": 3,
+     "senior": 9
+    },
+    "n_by_tier": {
+     "high": 6,
+     "other": 8
+    }
+   }
+  },
+  "gap_sentence": {
+   "value": {
+    "all": {
+     "none": 2,
+     "present": 12
+    },
+    "by_group": {
+     "essay": {
+      "none": 1,
+      "present": 1
+     },
+     "first": {
+      "none": 1,
+      "present": 2
+     },
+     "senior": {
+      "present": 9
+     }
+    },
+    "by_tier": {
+     "high": {
+      "none": 1,
+      "present": 5
+     },
+     "other": {
+      "none": 1,
+      "present": 7
+     }
+    },
+    "n": 14,
+    "n_by_group": {
+     "essay": 2,
+     "first": 3,
+     "senior": 9
+    },
+    "n_by_tier": {
+     "high": 6,
+     "other": 8
+    }
+   }
+  },
+  "here_we": {
+   "value": {
+    "all": {
+     "none": 1,
+     "present": 13
+    },
+    "by_group": {
+     "essay": {
+      "present": 2
+     },
+     "first": {
+      "none": 1,
+      "present": 2
+     },
+     "senior": {
+      "present": 9
+     }
+    },
+    "by_tier": {
+     "high": {
+      "none": 1,
+      "present": 5
+     },
+     "other": {
+      "present": 8
+     }
+    },
+    "n": 14,
+    "n_by_group": {
+     "essay": 2,
+     "first": 3,
+     "senior": 9
+    },
+    "n_by_tier": {
+     "high": 6,
+     "other": 8
+    }
+   }
+  },
+  "intro_roles": {
+   "value": {
+    "all": {
+     "approach preview": 4,
+     "field": 11,
+     "gap": 12,
+     "here-we": 13,
+     "prior work": 8,
+     "problem": 6,
+     "result preview": 4
+    },
+    "by_group": {
+     "essay": {
+      "field": 1,
+      "gap": 1,
+      "here-we": 2,
+      "problem": 1
+     },
+     "first": {
+      "approach preview": 1,
+      "field": 1,
+      "gap": 2,
+      "here-we": 2,
+      "prior work": 1,
+      "problem": 1
+     },
+     "senior": {
+      "approach preview": 3,
+      "field": 9,
+      "gap": 9,
+      "here-we": 9,
+      "prior work": 7,
+      "problem": 4,
+      "result preview": 4
+     }
+    },
+    "by_tier": {
+     "high": {
+      "approach preview": 1,
+      "field": 5,
+      "gap": 5,
+      "here-we": 5,
+      "prior work": 3,
+      "problem": 2,
+      "result preview": 1
+     },
+     "other": {
+      "approach preview": 3,
+      "field": 6,
+      "gap": 7,
+      "here-we": 8,
+      "prior work": 5,
+      "problem": 4,
+      "result preview": 3
+     }
+    },
+    "first": {
+     "field": 11,
+     "gap": 1,
+     "here-we": 1
+    },
+    "last": {
+     "approach preview": 1,
+     "here-we": 7,
+     "problem": 1,
+     "result preview": 4
+    },
+    "n": 14,
+    "n_by_group": {
+     "essay": 2,
+     "first": 3,
+     "senior": 9
+    },
+    "n_by_tier": {
+     "high": 6,
+     "other": 8
+    }
+   }
+  },
+  "limitations": {
+   "placement": {
+    "all": {
+     "inline in body": 2,
+     "inline in discussion": 3,
+     "inline in results": 1,
+     "none": 1,
+     "own paragraph": 6,
+     "own section": 1
+    },
+    "by_group": {
+     "essay": {
+      "inline in body": 1,
+      "none": 1
+     },
+     "first": {
+      "inline in body": 1,
+      "inline in discussion": 2
+     },
+     "senior": {
+      "inline in discussion": 1,
+      "inline in results": 1,
+      "own paragraph": 6,
+      "own section": 1
+     }
+    },
+    "by_tier": {
+     "high": {
+      "inline in discussion": 1,
+      "inline in results": 1,
+      "own paragraph": 4
+     },
+     "other": {
+      "inline in body": 2,
+      "inline in discussion": 2,
+      "none": 1,
+      "own paragraph": 2,
+      "own section": 1
+     }
+    },
+    "n": 14,
+    "n_by_group": {
+     "essay": 2,
+     "first": 3,
+     "senior": 9
+    },
+    "n_by_tier": {
+     "high": 6,
+     "other": 8
+    }
+   },
+   "specificity": {
+    "all": {
+     "none": 1,
+     "specific": 2,
+     "specific with a remedy": 11
+    },
+    "by_group": {
+     "essay": {
+      "none": 1,
+      "specific": 1
+     },
+     "first": {
+      "specific": 1,
+      "specific with a remedy": 2
+     },
+     "senior": {
+      "specific with a remedy": 9
+     }
+    },
+    "by_tier": {
+     "high": {
+      "specific with a remedy": 6
+     },
+     "other": {
+      "none": 1,
+      "specific": 2,
+      "specific with a remedy": 5
+     }
+    },
+    "n": 14,
+    "n_by_group": {
+     "essay": 2,
+     "first": 3,
+     "senior": 9
+    },
+    "n_by_tier": {
+     "high": 6,
+     "other": 8
+    }
+   }
+  },
+  "results_headings": {
+   "value": {
+    "all": {
+     "full-sentence claim": 8,
+     "none": 1,
+     "noun phrase": 2
+    },
+    "by_group": {
+     "first": {
+      "full-sentence claim": 1,
+      "none": 1
+     },
+     "senior": {
+      "full-sentence claim": 7,
+      "noun phrase": 2
+     }
+    },
+    "by_tier": {
+     "high": {
+      "full-sentence claim": 4,
+      "none": 1,
+      "noun phrase": 1
+     },
+     "other": {
+      "full-sentence claim": 4,
+      "noun phrase": 1
+     }
+    },
+    "n": 11,
+    "n_by_group": {
+     "first": 2,
+     "senior": 9
+    },
+    "n_by_tier": {
+     "high": 6,
+     "other": 5
+    }
+   }
+  },
+  "results_openings": {
+   "value": {
+    "all": {
+     "aim": 11,
+     "method first": 6,
+     "question": 3,
+     "result first": 1
+    },
+    "by_group": {
+     "first": {
+      "aim": 2,
+      "method first": 1
+     },
+     "senior": {
+      "aim": 9,
+      "method first": 5,
+      "question": 3,
+      "result first": 1
+     }
+    },
+    "by_tier": {
+     "high": {
+      "aim": 6,
+      "method first": 2,
+      "question": 1,
+      "result first": 1
+     },
+     "other": {
+      "aim": 5,
+      "method first": 4,
+      "question": 2
+     }
+    },
+    "first": {
+     "aim": 9,
+     "method first": 2
+    },
+    "last": {
+     "aim": 8,
+     "method first": 2,
+     "result first": 1
+    },
+    "n": 11,
+    "n_by_group": {
+     "first": 2,
+     "senior": 9
+    },
+    "n_by_tier": {
+     "high": 6,
+     "other": 5
+    }
+   }
+  },
+  "strongest_claim": {
+   "value": {
+    "all": {
+     "hedged": 6,
+     "unhedged": 8
+    },
+    "by_group": {
+     "essay": {
+      "unhedged": 2
+     },
+     "first": {
+      "hedged": 1,
+      "unhedged": 2
+     },
+     "senior": {
+      "hedged": 5,
+      "unhedged": 4
+     }
+    },
+    "by_tier": {
+     "high": {
+      "hedged": 3,
+      "unhedged": 3
+     },
+     "other": {
+      "hedged": 3,
+      "unhedged": 5
+     }
+    },
+    "n": 14,
+    "n_by_group": {
+     "essay": 2,
+     "first": 3,
+     "senior": 9
+    },
+    "n_by_tier": {
+     "high": 6,
+     "other": 8
+    }
+   }
+  },
+  "title_form": {
+   "value": {
+    "all": {
+     "claim": 8,
+     "method name": 1,
+     "topic": 5
+    },
+    "by_group": {
+     "essay": {
+      "topic": 2
+     },
+     "first": {
+      "claim": 2,
+      "topic": 1
+     },
+     "senior": {
+      "claim": 6,
+      "method name": 1,
+      "topic": 2
+     }
+    },
+    "by_tier": {
+     "high": {
+      "claim": 4,
+      "method name": 1,
+      "topic": 1
+     },
+     "other": {
+      "claim": 4,
+      "topic": 4
+     }
+    },
+    "n": 14,
+    "n_by_group": {
+     "essay": 2,
+     "first": 3,
+     "senior": 9
+    },
+    "n_by_tier": {
+     "high": 6,
+     "other": 8
+    }
+   }
+  }
+ },
+ "left_out": [],
+ "n_fetched": 14,
+ "n_left_out": 0,
+ "n_papers": 14,
+ "name": "Hernan G. Garcia",
+ "papers_used": [
+  "W1591883772",
+  "W2021312680",
+  "W2128043711",
+  "W2131946590",
+  "W2294037744",
+  "W2799839105",
+  "W2998186233",
+  "W3161918438",
+  "W3190621122",
+  "W4312095802",
+  "W4318167001",
+  "W4384344021",
+  "W4390649768",
+  "W7147036867"
+ ],
+ "person": "garcia",
+ "quotes": [
+  {
+   "doi": "10.48550/arxiv.0708.1899",
+   "field": "quote",
+   "item": "gap_sentence",
+   "text": "drive home the need for a useful introduction to statistical mechanics for life scientists",
+   "text_version": "arxiv",
+   "work_id": "W1591883772"
+  },
+  {
+   "doi": "10.48550/arxiv.0708.1899",
+   "field": "quote",
+   "item": "here_we",
+   "text": "The goal of this paper is to use simple model problems to illustrate how equilibrium ideas can be exploited to examine biologically interesting case studies.",
+   "text_version": "arxiv",
+   "work_id": "W1591883772"
+  },
+  {
+   "doi": "10.48550/arxiv.0708.1899",
+   "field": "value",
+   "item": "excitement",
+   "text": "Statistical mechanics is one of the most powerful and elegant tools in the quantitative sciences.",
+   "text_version": "arxiv",
+   "work_id": "W1591883772"
+  },
+  {
+   "doi": "10.48550/arxiv.0708.1899",
+   "field": "value",
+   "item": "excitement",
+   "text": "The power of statistical mechanics is not limited to traditional physical and chemical problems",
+   "text_version": "arxiv",
+   "work_id": "W1591883772"
+  },
+  {
+   "doi": "10.48550/arxiv.0708.1899",
+   "field": "value",
+   "item": "excitement",
+   "text": "there are a surprisingly large number of instances when the time scales conspire to make the equilibrium approach a reasonable starting point",
+   "text_version": "arxiv",
+   "work_id": "W1591883772"
+  },
+  {
+   "doi": "10.48550/arxiv.0708.1899",
+   "field": "value",
+   "item": "excitement",
+   "text": "the calculus of equilibrium as embodied in statistical mechanics still turns out to be an exceedingly useful tool for the study of living systems",
+   "text_version": "arxiv",
+   "work_id": "W1591883772"
+  },
+  {
+   "doi": "10.48550/arxiv.0708.1899",
+   "field": "value",
+   "item": "excitement",
+   "text": "a feeling for microstates and how to assign them probabilities will go a long way toward demystifying statistical mechanics",
+   "text_version": "arxiv",
+   "work_id": "W1591883772"
+  },
+  {
+   "doi": "10.48550/arxiv.0708.1899",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "We describe how statistical mechanics is part of the quantitative toolkit that is needed to respond to such data.",
+   "text_version": "arxiv",
+   "work_id": "W1591883772"
+  },
+  {
+   "doi": "10.48550/arxiv.0708.1899",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "A note of caution is that this model is overly simplistic since there is a continuum of different binding energies for the nonspecific sites [CIT]",
+   "text_version": "arxiv",
+   "work_id": "W1591883772"
+  },
+  {
+   "doi": "10.48550/arxiv.0708.1899",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "In reality some ion channels have been shown to exist in more than two states.",
+   "text_version": "arxiv",
+   "work_id": "W1591883772"
+  },
+  {
+   "doi": "10.48550/arxiv.0708.1899",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "Although this is admittedly oversimplified",
+   "text_version": "arxiv",
+   "work_id": "W1591883772"
+  },
+  {
+   "doi": "10.48550/arxiv.0708.1899",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "transcription factors and other proteins serve as molecular gatekeepers, letting RNA polymerase bind at the appropriate time",
+   "text_version": "arxiv",
+   "work_id": "W1591883772"
+  },
+  {
+   "doi": "10.48550/arxiv.0708.1899",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "Stated differently, the macroscopically observed state will be that state which can be realized in the largest number of microscopic states.",
+   "text_version": "arxiv",
+   "work_id": "W1591883772"
+  },
+  {
+   "doi": "10.48550/arxiv.0708.1899",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "when the next ligand binds, it finds an altered protein interface and hence experiences a different binding energy",
+   "text_version": "arxiv",
+   "work_id": "W1591883772"
+  },
+  {
+   "doi": "10.48550/arxiv.0708.1899",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "There is a corresponding central equation in statistical mechanics which can also be introduced axiomatically.",
+   "text_version": "arxiv",
+   "work_id": "W1591883772"
+  },
+  {
+   "doi": "10.48550/arxiv.0708.1899",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "It is the job of statistical mechanics to assign probabilities to all of these different ways (the distinct “microstates”) of arranging the system.",
+   "text_version": "arxiv",
+   "work_id": "W1591883772"
+  },
+  {
+   "doi": "10.48550/arxiv.0708.1899",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "When the operon is “on”, the bacterium produces the enzymes necessary to import and digest lactose.",
+   "text_version": "arxiv",
+   "work_id": "W1591883772"
+  },
+  {
+   "doi": "10.48550/arxiv.0708.1899",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "she put this box on an overhead projector and shook it, repeatedly demonstrating the different microstates available to “ligands in solution”",
+   "text_version": "arxiv",
+   "work_id": "W1591883772"
+  },
+  {
+   "doi": "10.48550/arxiv.0708.1899",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "In particular,",
+   "text_version": "arxiv",
+   "work_id": "W1591883772"
+  },
+  {
+   "doi": "10.48550/arxiv.0708.1899",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "we argue",
+   "text_version": "arxiv",
+   "work_id": "W1591883772"
+  },
+  {
+   "doi": "10.48550/arxiv.0708.1899",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "As a result,",
+   "text_version": "arxiv",
+   "work_id": "W1591883772"
+  },
+  {
+   "doi": "10.48550/arxiv.0708.1899",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "all-important",
+   "text_version": "arxiv",
+   "work_id": "W1591883772"
+  },
+  {
+   "doi": "10.48550/arxiv.0708.1899",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "We are now poised",
+   "text_version": "arxiv",
+   "work_id": "W1591883772"
+  },
+  {
+   "doi": "10.48550/arxiv.0708.1899",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "our favorite",
+   "text_version": "arxiv",
+   "work_id": "W1591883772"
+  },
+  {
+   "doi": "10.1016/j.tig.2014.06.002",
+   "field": "quote",
+   "item": "gap_sentence",
+   "text": "it has proven challenging to assess transcriptional events with the quantitative rigor achieved in organisms grown in laboratory culture.",
+   "text_version": "accepted",
+   "work_id": "W2021312680"
+  },
+  {
+   "doi": "10.1016/j.tig.2014.06.002",
+   "field": "quote",
+   "item": "here_we",
+   "text": "Here, we highlight some of the advantages of examining gene expression in Drosophila and briefly review some recent examples of quantitative studies",
+   "text_version": "accepted",
+   "work_id": "W2021312680"
+  },
+  {
+   "doi": "10.1016/j.tig.2014.06.002",
+   "field": "value",
+   "item": "excitement",
+   "text": "Here we review some of these advances in early Drosophila development, which bring the embryo on par with its single-celled counterparts.",
+   "text_version": "accepted",
+   "work_id": "W2021312680"
+  },
+  {
+   "doi": "10.1016/j.tig.2014.06.002",
+   "field": "value",
+   "item": "excitement",
+   "text": "we highlight some initial applications that lead to fundamental new insights about molecular transcription processes",
+   "text_version": "accepted",
+   "work_id": "W2021312680"
+  },
+  {
+   "doi": "10.1016/j.tig.2014.06.002",
+   "field": "value",
+   "item": "excitement",
+   "text": "Recent advances now endow the study of Drosophila embryos with the same quantitative rigor achieved in studies of cultured cells.",
+   "text_version": "accepted",
+   "work_id": "W2021312680"
+  },
+  {
+   "doi": "10.1016/j.tig.2014.06.002",
+   "field": "value",
+   "item": "excitement",
+   "text": "fly embryos are set to lead to profound new molecular insights regarding transcriptional regulation",
+   "text_version": "accepted",
+   "work_id": "W2021312680"
+  },
+  {
+   "doi": "10.1016/j.tig.2014.06.002",
+   "field": "value",
+   "item": "excitement",
+   "text": "Among the more striking findings has been that, at least for cells grown in culture, gene expression is exceedingly variable",
+   "text_version": "accepted",
+   "work_id": "W2021312680"
+  },
+  {
+   "doi": "10.1016/j.tig.2014.06.002",
+   "field": "value",
+   "item": "excitement",
+   "text": "The ability to monitor transcription in real time will provide the first rigorous quantitative test of these models.",
+   "text_version": "accepted",
+   "work_id": "W2021312680"
+  },
+  {
+   "doi": "10.1016/j.tig.2014.06.002",
+   "field": "value",
+   "item": "excitement",
+   "text": "The study of transcription in an intact developing organism opens new possibilities that simply cannot be addressed in unicellular systems.",
+   "text_version": "accepted",
+   "work_id": "W2021312680"
+  },
+  {
+   "doi": "10.1016/j.tig.2014.06.002",
+   "field": "value",
+   "item": "excitement",
+   "text": "we are undoubtedly at the brink of a new set of mechanistic insights",
+   "text_version": "accepted",
+   "work_id": "W2021312680"
+  },
+  {
+   "doi": "10.1016/j.tig.2014.06.002",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "bringing real opportunities for novel mechanistic insights into the fundamental processes governing transcription across phyla.",
+   "text_version": "accepted",
+   "work_id": "W2021312680"
+  },
+  {
+   "doi": "10.1016/j.tig.2014.06.002",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "The process of development, or the “experiment”, takes place without the intervention of the experimenter.",
+   "text_version": "accepted",
+   "work_id": "W2021312680"
+  },
+  {
+   "doi": "10.1016/j.tig.2014.06.002",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "The positioning of the nuclear layer facilitates imaging by minimizing specimen thickness in a geometrically simple arrangement.",
+   "text_version": "accepted",
+   "work_id": "W2021312680"
+  },
+  {
+   "doi": "10.1016/j.tig.2014.06.002",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "in the absence of membranes, variable mRNA production in an individual nucleus is averaged both in space and time between neighbors",
+   "text_version": "accepted",
+   "work_id": "W2021312680"
+  },
+  {
+   "doi": "10.1016/j.tig.2014.06.002",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "quantitative rigor",
+   "text_version": "accepted",
+   "work_id": "W2021312680"
+  },
+  {
+   "doi": "10.1016/j.tig.2014.06.002",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "using the embryo as a laboratory",
+   "text_version": "accepted",
+   "work_id": "W2021312680"
+  },
+  {
+   "doi": "10.1016/j.tig.2014.06.002",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "new insights",
+   "text_version": "accepted",
+   "work_id": "W2021312680"
+  },
+  {
+   "doi": "10.1016/j.tig.2014.06.002",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "at long last",
+   "text_version": "accepted",
+   "work_id": "W2021312680"
+  },
+  {
+   "doi": "10.1016/j.tig.2014.06.002",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "exciting",
+   "text_version": "accepted",
+   "work_id": "W2021312680"
+  },
+  {
+   "doi": "10.1016/j.cub.2013.08.054",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "To validate that these fluorescence dynamics faithfully recapitulate actual transcription we measure the rate of transcript elongation in live embryos.",
+   "text_version": "accepted",
+   "work_id": "W2128043711"
+  },
+  {
+   "doi": "10.1016/j.cub.2013.08.054",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "Our live imaging approach gives us the opportunity to determine the microscopic dynamics of transcription that lead to the formation of macroscopic pattern boundaries.",
+   "text_version": "accepted",
+   "work_id": "W2128043711"
+  },
+  {
+   "doi": "10.1016/j.cub.2013.08.054",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "Therefore an additional regulatory mechanism that serves as an amplifier for the dynamic range of the final gene expression boundary is necessary.",
+   "text_version": "accepted",
+   "work_id": "W2128043711"
+  },
+  {
+   "doi": "10.1016/j.cub.2013.08.054",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "The mechanism of this amplifier is revealed by quantifying the number of nuclei in which transcription is detected as a function of AP position.",
+   "text_version": "accepted",
+   "work_id": "W2128043711"
+  },
+  {
+   "doi": "10.1016/j.cub.2013.08.054",
+   "field": "value",
+   "item": "excitement",
+   "text": "In vivo transcriptional dynamics have long been approached in single-celled organisms [CIT], but never in a multicellular developmental context.",
+   "text_version": "accepted",
+   "work_id": "W2128043711"
+  },
+  {
+   "doi": "10.1016/j.cub.2013.08.054",
+   "field": "value",
+   "item": "excitement",
+   "text": "developmental patterns are not just the consequence of reproducible transcriptional dynamics in individual nuclei, but are the result of averaging expression over space and time",
+   "text_version": "accepted",
+   "work_id": "W2128043711"
+  },
+  {
+   "doi": "10.1016/j.cub.2013.08.054",
+   "field": "value",
+   "item": "excitement",
+   "text": "Interestingly, the fraction of active nuclei at the posterior end",
+   "text_version": "accepted",
+   "work_id": "W2128043711"
+  },
+  {
+   "doi": "10.1016/j.cub.2013.08.054",
+   "field": "value",
+   "item": "excitement",
+   "text": "Such a regulatory strategy is not restricted to a syncytial blastoderm, where all nuclei share a common cytoplasm.",
+   "text_version": "accepted",
+   "work_id": "W2128043711"
+  },
+  {
+   "doi": "10.1016/j.cub.2013.08.054",
+   "field": "value",
+   "item": "excitement",
+   "text": "This approach can be extended to other reporter constructs and to endogenous genes in Drosophila and in other multicellular organisms.",
+   "text_version": "accepted",
+   "work_id": "W2128043711"
+  },
+  {
+   "doi": "10.1016/j.cub.2013.08.054",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "developmental patterns are not just the consequence of reproducible transcriptional dynamics in individual nuclei, but are the result of averaging expression over space and time",
+   "text_version": "accepted",
+   "work_id": "W2128043711"
+  },
+  {
+   "doi": "10.1016/j.cub.2013.08.054",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "Furthermore, this mechanism has no clear analogue in single-cell systems and its molecular basis remains unclear.",
+   "text_version": "accepted",
+   "work_id": "W2128043711"
+  },
+  {
+   "doi": "10.1016/j.cub.2013.08.054",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "A systematic screen in mutant backgrounds will be required in order to uncover which molecular species is responsible for this stochastic regulation.",
+   "text_version": "accepted",
+   "work_id": "W2128043711"
+  },
+  {
+   "doi": "10.1016/j.cub.2013.08.054",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "how the dynamics of the wild-type hb boundary compares to the dynamics observed in the context of the simple construct addressed in this work",
+   "text_version": "accepted",
+   "work_id": "W2128043711"
+  },
+  {
+   "doi": "10.1016/j.cub.2013.08.054",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "suggesting that",
+   "text_version": "accepted",
+   "work_id": "W2128043711"
+  },
+  {
+   "doi": "10.1016/j.cub.2013.08.054",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "consistent with",
+   "text_version": "accepted",
+   "work_id": "W2128043711"
+  },
+  {
+   "doi": "10.1016/j.cub.2013.08.054",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "In contrast",
+   "text_version": "accepted",
+   "work_id": "W2128043711"
+  },
+  {
+   "doi": "10.1016/j.cub.2013.08.054",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Thus,",
+   "text_version": "accepted",
+   "work_id": "W2128043711"
+  },
+  {
+   "doi": "10.1016/j.cub.2013.08.054",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Interestingly,",
+   "text_version": "accepted",
+   "work_id": "W2128043711"
+  },
+  {
+   "doi": "10.1016/j.celrep.2012.06.004",
+   "field": "quote",
+   "item": "gap_sentence",
+   "text": "As a result, such quantitative descriptions of transcriptional regulation are at least potentially incomplete",
+   "text_version": "accepted",
+   "work_id": "W2131946590"
+  },
+  {
+   "doi": "10.1016/j.celrep.2012.06.004",
+   "field": "quote",
+   "item": "here_we",
+   "text": "In the remainder of the study, we demonstrate a form of modulation in transcriptional regulation that is at odds with the traditional operator occupancy viewpoint",
+   "text_version": "accepted",
+   "work_id": "W2131946590"
+  },
+  {
+   "doi": "10.1016/j.celrep.2012.06.004",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "a direct prediction of this hypothesis is that Lac repressor does not completely inhibit the formation of stable RNA polymerase-promoter complexes when bound at −50",
+   "text_version": "accepted",
+   "work_id": "W2131946590"
+  },
+  {
+   "doi": "10.1016/j.celrep.2012.06.004",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "We will assume this mechanism to further explore repression when the operator is located at −50.",
+   "text_version": "accepted",
+   "work_id": "W2131946590"
+  },
+  {
+   "doi": "10.1016/j.celrep.2012.06.004",
+   "field": "value",
+   "item": "excitement",
+   "text": "Surprisingly, we find that operators with a weaker binding affinity can yield higher repression levels than stronger operators.",
+   "text_version": "accepted",
+   "work_id": "W2131946590"
+  },
+  {
+   "doi": "10.1016/j.celrep.2012.06.004",
+   "field": "value",
+   "item": "excitement",
+   "text": "implying a new layer of sequence dependence that must be confronted in the quantitative understanding of gene expression",
+   "text_version": "accepted",
+   "work_id": "W2131946590"
+  },
+  {
+   "doi": "10.1016/j.celrep.2012.06.004",
+   "field": "value",
+   "item": "excitement",
+   "text": "it is both intriguing and surprising that the data for different operators saturates at different levels",
+   "text_version": "accepted",
+   "work_id": "W2131946590"
+  },
+  {
+   "doi": "10.1016/j.celrep.2012.06.004",
+   "field": "value",
+   "item": "excitement",
+   "text": "modulation of transcription factor activity by the DNA sequence of its binding site may well be a much more general phenomenon",
+   "text_version": "accepted",
+   "work_id": "W2131946590"
+  },
+  {
+   "doi": "10.1016/j.celrep.2012.06.004",
+   "field": "value",
+   "item": "excitement",
+   "text": "Thus, knowing the list of operators and their strengths is not sufficient to predict the input-output function of a promoter.",
+   "text_version": "accepted",
+   "work_id": "W2131946590"
+  },
+  {
+   "doi": "10.1016/j.celrep.2012.06.004",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "modulation of transcription factor activity by the DNA sequence of its binding site may well be a much more general phenomenon",
+   "text_version": "accepted",
+   "work_id": "W2131946590"
+  },
+  {
+   "doi": "10.1016/j.celrep.2012.06.004",
+   "field": "hedge_quote",
+   "item": "strongest_claim",
+   "text": "may well be",
+   "text_version": "accepted",
+   "work_id": "W2131946590"
+  },
+  {
+   "doi": "10.1016/j.celrep.2012.06.004",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "our model cannot determine if the effect is due to a direct contact between repressor and RNA polymerase",
+   "text_version": "accepted",
+   "work_id": "W2131946590"
+  },
+  {
+   "doi": "10.1016/j.celrep.2012.06.004",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "A detailed analysis of specific repressors will be necessary to determine how widespread the effects observed here may be.",
+   "text_version": "accepted",
+   "work_id": "W2131946590"
+  },
+  {
+   "doi": "10.1016/j.celrep.2012.06.004",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "MarA regulated promoters may be good candidate systems to further investigate the generality of our findings in bacterial gene regulation.",
+   "text_version": "accepted",
+   "work_id": "W2131946590"
+  },
+  {
+   "doi": "10.1016/j.celrep.2012.06.004",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "It is important to note, however, that the data obtained with the operator at +11 could also accommodate a saturating behavior.",
+   "text_version": "accepted",
+   "work_id": "W2131946590"
+  },
+  {
+   "doi": "10.1016/j.celrep.2012.06.004",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "the role of operators is simply to act as docking sites for transcription factors, recruiting them to the promoter region",
+   "text_version": "accepted",
+   "work_id": "W2131946590"
+  },
+  {
+   "doi": "10.1016/j.celrep.2012.06.004",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "a strong operator, a site on the DNA that binds the transcription factor tightly",
+   "text_version": "accepted",
+   "work_id": "W2131946590"
+  },
+  {
+   "doi": "10.1016/j.celrep.2012.06.004",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "the promoter region, the sequence of DNA immediately upstream of genes, where RNA polymerase binds",
+   "text_version": "accepted",
+   "work_id": "W2131946590"
+  },
+  {
+   "doi": "10.1016/j.celrep.2012.06.004",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "By way of contrast",
+   "text_version": "accepted",
+   "work_id": "W2131946590"
+  },
+  {
+   "doi": "10.1016/j.celrep.2012.06.004",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "In order to",
+   "text_version": "accepted",
+   "work_id": "W2131946590"
+  },
+  {
+   "doi": "10.1016/j.celrep.2012.06.004",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "As a result",
+   "text_version": "accepted",
+   "work_id": "W2131946590"
+  },
+  {
+   "doi": "10.1016/j.celrep.2012.06.004",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "is at odds with",
+   "text_version": "accepted",
+   "work_id": "W2131946590"
+  },
+  {
+   "doi": "10.1039/c6ib00006a",
+   "field": "quote",
+   "item": "here_we",
+   "text": "In this review we feature some of our favorite examples of how this synthetic biology toolbox has advanced our understanding of diverse phenomena",
+   "text_version": "accepted",
+   "work_id": "W2294037744"
+  },
+  {
+   "doi": "10.1039/c6ib00006a",
+   "field": "value",
+   "item": "excitement",
+   "text": "we present various exciting examples of how synthetic biology can be used to simplify biological systems",
+   "text_version": "accepted",
+   "work_id": "W2294037744"
+  },
+  {
+   "doi": "10.1039/c6ib00006a",
+   "field": "value",
+   "item": "excitement",
+   "text": "Here, synthetic biology goes beyond previous efforts to engineer nature and becomes a tool to bend nature to understand it.",
+   "text_version": "accepted",
+   "work_id": "W2294037744"
+  },
+  {
+   "doi": "10.1039/c6ib00006a",
+   "field": "value",
+   "item": "excitement",
+   "text": "In all of these examples, synthetic biology provides the opportunity to turn cells into the equivalent of a test tube",
+   "text_version": "accepted",
+   "work_id": "W2294037744"
+  },
+  {
+   "doi": "10.1039/c6ib00006a",
+   "field": "value",
+   "item": "excitement",
+   "text": "The ability to manipulate the genomes of living organisms of all kinds is a stunning advance",
+   "text_version": "accepted",
+   "work_id": "W2294037744"
+  },
+  {
+   "doi": "10.1039/c6ib00006a",
+   "field": "value",
+   "item": "excitement",
+   "text": "We argue that synthetic biology is poised to help explore some of biology’s deepest aspects as well.",
+   "text_version": "accepted",
+   "work_id": "W2294037744"
+  },
+  {
+   "doi": "10.1039/c6ib00006a",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "biological phenomena can be subject to the same quantitative and predictive understanding that physics has afforded in the context of inanimate matter",
+   "text_version": "accepted",
+   "work_id": "W2294037744"
+  },
+  {
+   "doi": "10.1039/c6ib00006a",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "falls way short of giving a scholarly survey of the many exciting contributions from the recent literature",
+   "text_version": "accepted",
+   "work_id": "W2294037744"
+  },
+  {
+   "doi": "10.1039/c6ib00006a",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "knowing the initial velocity and rotation rate of a flipped coin would allow us to predict heads or tails",
+   "text_version": "accepted",
+   "work_id": "W2294037744"
+  },
+  {
+   "doi": "10.1039/c6ib00006a",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "In our view",
+   "text_version": "accepted",
+   "work_id": "W2294037744"
+  },
+  {
+   "doi": "10.1039/c6ib00006a",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "bend nature to understand it",
+   "text_version": "accepted",
+   "work_id": "W2294037744"
+  },
+  {
+   "doi": "10.1039/c6ib00006a",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "hydrogen atom",
+   "text_version": "accepted",
+   "work_id": "W2294037744"
+  },
+  {
+   "doi": "10.1039/c6ib00006a",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Indeed,",
+   "text_version": "accepted",
+   "work_id": "W2294037744"
+  },
+  {
+   "doi": "10.1039/c6ib00006a",
+   "field": "quote",
+   "item": "essay_argument",
+   "text": "we hope that some readers will be inspired to find new ways not to attack “real” biological problems, but rather to make “unreal” biological systems",
+   "text_version": "accepted",
+   "work_id": "W2294037744"
+  },
+  {
+   "doi": "10.1016/j.cell.2018.03.069",
+   "field": "quote",
+   "item": "gap_sentence",
+   "text": "Thus, fluorescent protein maturation kinetics remains a major hindrance to the live imaging of cell-fate decisions during embryonic development",
+   "text_version": "accepted",
+   "work_id": "W2799839105"
+  },
+  {
+   "doi": "10.1016/j.cell.2018.03.069",
+   "field": "quote",
+   "item": "here_we",
+   "text": "Here we present a novel genetically encoded tagging technique for visualizing transcription factor spatiotemporal dynamics in development by overcoming the slow kinetics of fluorescent-protein maturation.",
+   "text_version": "accepted",
+   "work_id": "W2799839105"
+  },
+  {
+   "doi": "10.1016/j.cell.2018.03.069",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "After confirming that LlamaTags accurately report the concentration dynamics of transcription factor patterns in live Drosophila embryos",
+   "text_version": "accepted",
+   "work_id": "W2799839105"
+  },
+  {
+   "doi": "10.1016/j.cell.2018.03.069",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "This coupling between transcription and protein concentration in neighboring nuclei provides evidence of inter-nuclear communication in the fly syncytium",
+   "text_version": "accepted",
+   "work_id": "W2799839105"
+  },
+  {
+   "doi": "10.1016/j.cell.2018.03.069",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "The coupling measured between nuclei in Ftz is presumably mediated by the diffusion of mRNA, protein, or both through the syncytium of the early embryo.",
+   "text_version": "accepted",
+   "work_id": "W2799839105"
+  },
+  {
+   "doi": "10.1016/j.cell.2018.03.069",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "To demonstrate the ability of LlamaTags to reveal the link between input transcription factor concentration and the transcription of target genes",
+   "text_version": "accepted",
+   "work_id": "W2799839105"
+  },
+  {
+   "doi": "10.1016/j.cell.2018.03.069",
+   "field": "value",
+   "item": "excitement",
+   "text": "Here we pioneer a protein tag, LlamaTag, which circumvents this maturation limit by binding mature fluorescent proteins",
+   "text_version": "accepted",
+   "work_id": "W2799839105"
+  },
+  {
+   "doi": "10.1016/j.cell.2018.03.069",
+   "field": "value",
+   "item": "excitement",
+   "text": "we discovered stochastic bursts in the concentration of transcription factors that are correlated with bursts in transcription",
+   "text_version": "accepted",
+   "work_id": "W2799839105"
+  },
+  {
+   "doi": "10.1016/j.cell.2018.03.069",
+   "field": "value",
+   "item": "excitement",
+   "text": "we speculate that this inter-nuclear signaling is an important mechanism for coordinating gene expression to delineate straight and sharp boundaries of gene expression",
+   "text_version": "accepted",
+   "work_id": "W2799839105"
+  },
+  {
+   "doi": "10.1016/j.cell.2018.03.069",
+   "field": "value",
+   "item": "excitement",
+   "text": "Thus, LlamaTags now make it possible to visualize the flow of information along the central dogma in live embryos.",
+   "text_version": "accepted",
+   "work_id": "W2799839105"
+  },
+  {
+   "doi": "10.1016/j.cell.2018.03.069",
+   "field": "value",
+   "item": "excitement",
+   "text": "Here we present a novel genetically encoded tagging technique for visualizing transcription factor spatiotemporal dynamics in development by overcoming the slow kinetics of fluorescent-protein maturation.",
+   "text_version": "accepted",
+   "work_id": "W2799839105"
+  },
+  {
+   "doi": "10.1016/j.cell.2018.03.069",
+   "field": "value",
+   "item": "excitement",
+   "text": "Nanobodies are extremely versatile and present significant advantages over previous technologies for quantifying transcription factor dynamics in live embryos",
+   "text_version": "accepted",
+   "work_id": "W2799839105"
+  },
+  {
+   "doi": "10.1016/j.cell.2018.03.069",
+   "field": "value",
+   "item": "excitement",
+   "text": "Thus, LlamaTags are a versatile tool to quantify how developmental programs are deployed in real time, at the single-cell level, in live embryos.",
+   "text_version": "accepted",
+   "work_id": "W2799839105"
+  },
+  {
+   "doi": "10.1016/j.cell.2018.03.069",
+   "field": "value",
+   "item": "excitement",
+   "text": "these data also constitute the first direct visualization of the transcription and protein production of a single gene in a live embryo",
+   "text_version": "accepted",
+   "work_id": "W2799839105"
+  },
+  {
+   "doi": "10.1016/j.cell.2018.03.069",
+   "field": "value",
+   "item": "excitement",
+   "text": "Surprisingly, in a small subset of nuclei (5 out of 553), we also observed Ftz protein in the absence of transcription",
+   "text_version": "accepted",
+   "work_id": "W2799839105"
+  },
+  {
+   "doi": "10.1016/j.cell.2018.03.069",
+   "field": "value",
+   "item": "excitement",
+   "text": "We speculate that the “kick start” effect revealed by our live imaging may be a general mechanism for delineating straight boundaries of gene expression",
+   "text_version": "accepted",
+   "work_id": "W2799839105"
+  },
+  {
+   "doi": "10.1016/j.cell.2018.03.069",
+   "field": "value",
+   "item": "excitement",
+   "text": "we speculate that this “kick start” mechanism may be a general strategy for delineating straight and sharp boundaries of gene expression",
+   "text_version": "accepted",
+   "work_id": "W2799839105"
+  },
+  {
+   "doi": "10.1016/j.cell.2018.03.069",
+   "field": "value",
+   "item": "excitement",
+   "text": "Thus, while it is possible to implement previous tagging technologies to study transcription factor patterns in development, LlamaTags are a superior alternative.",
+   "text_version": "accepted",
+   "work_id": "W2799839105"
+  },
+  {
+   "doi": "10.1016/j.cell.2018.03.069",
+   "field": "value",
+   "item": "excitement",
+   "text": "We envision that LlamaTags can be readily applied to a broad range of model organisms amenable to transgenic control and live imaging.",
+   "text_version": "accepted",
+   "work_id": "W2799839105"
+  },
+  {
+   "doi": "10.1016/j.cell.2018.03.069",
+   "field": "value",
+   "item": "excitement",
+   "text": "will open the door to quantifying the flow of information along regulatory networks in development writ large",
+   "text_version": "accepted",
+   "work_id": "W2799839105"
+  },
+  {
+   "doi": "10.1016/j.cell.2018.03.069",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "we speculate that this inter-nuclear signaling is an important mechanism for coordinating gene expression to delineate straight and sharp boundaries of gene expression",
+   "text_version": "accepted",
+   "work_id": "W2799839105"
+  },
+  {
+   "doi": "10.1016/j.cell.2018.03.069",
+   "field": "hedge_quote",
+   "item": "strongest_claim",
+   "text": "we speculate",
+   "text_version": "accepted",
+   "work_id": "W2799839105"
+  },
+  {
+   "doi": "10.1016/j.cell.2018.03.069",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "Although LlamaTags cannot differentiate between mature and immature eGFP",
+   "text_version": "accepted",
+   "work_id": "W2799839105"
+  },
+  {
+   "doi": "10.1016/j.cell.2018.03.069",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "The linear fit in Figure 2E also reveals an offset in the LlamaTag signal with respect to immunostaining (non-zero y-intercept).",
+   "text_version": "accepted",
+   "work_id": "W2799839105"
+  },
+  {
+   "doi": "10.1016/j.cell.2018.03.069",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "Note that these equations do not account for the diffusion of GFP between nuclei.",
+   "text_version": "accepted",
+   "work_id": "W2799839105"
+  },
+  {
+   "doi": "10.1016/j.cell.2018.03.069",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "it will be necessary to analyze data such as those shown in Figures 7C and 7D with yet-to-be-developed computational methods",
+   "text_version": "accepted",
+   "work_id": "W2799839105"
+  },
+  {
+   "doi": "10.1016/j.cell.2018.03.069",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "the fusion protein of interest has already degraded by the time the reporter begins to fluoresce",
+   "text_version": "accepted",
+   "work_id": "W2799839105"
+  },
+  {
+   "doi": "10.1016/j.cell.2018.03.069",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "the rate of protein synthesis exceeds that of degradation, leading to a sustained increase in Ftz levels",
+   "text_version": "accepted",
+   "work_id": "W2799839105"
+  },
+  {
+   "doi": "10.1016/j.cell.2018.03.069",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "LlamaTags make it possible to",
+   "text_version": "accepted",
+   "work_id": "W2799839105"
+  },
+  {
+   "doi": "10.1016/j.cell.2018.03.069",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "We speculate that",
+   "text_version": "accepted",
+   "work_id": "W2799839105"
+  },
+  {
+   "doi": "10.1016/j.cell.2018.03.069",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "at the single-cell level",
+   "text_version": "accepted",
+   "work_id": "W2799839105"
+  },
+  {
+   "doi": "10.1016/j.cell.2018.03.069",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "versatile",
+   "text_version": "accepted",
+   "work_id": "W2799839105"
+  },
+  {
+   "doi": "10.1016/j.cell.2018.03.069",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Thus,",
+   "text_version": "accepted",
+   "work_id": "W2799839105"
+  },
+  {
+   "doi": "10.1073/pnas.1912500117",
+   "field": "quote",
+   "item": "gap_sentence",
+   "text": "the connection between this output rate and the resulting cytoplasmic patterns of mRNA has remained largely unexplored",
+   "text_version": "published",
+   "work_id": "W2998186233"
+  },
+  {
+   "doi": "10.1073/pnas.1912500117",
+   "field": "quote",
+   "item": "here_we",
+   "text": "In this work, we investigated how single-cell transcriptional activity leads to the formation of stripe 2 of the widely studied even-skipped (eve) gene",
+   "text_version": "published",
+   "work_id": "W2998186233"
+  },
+  {
+   "doi": "10.1073/pnas.1912500117",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "Thus, measuring how each quantity is regulated across the stripe allows us to predict their relative contributions to pattern formation.",
+   "text_version": "published",
+   "work_id": "W2998186233"
+  },
+  {
+   "doi": "10.1073/pnas.1912500117",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "Are the binary and analog control strategies driven by distinct molecular mechanisms, or are they different manifestations of the same underlying process?",
+   "text_version": "published",
+   "work_id": "W2998186233"
+  },
+  {
+   "doi": "10.1073/pnas.1912500117",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "we next sought to uncover the molecular mechanism by which the binary regulation of the transcriptional time window is implemented",
+   "text_version": "published",
+   "work_id": "W2998186233"
+  },
+  {
+   "doi": "10.1073/pnas.1912500117",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "The contradictory trends observed in the stripe center and flanks indicated that entry into transcriptional quiescence might involve processes not captured within the bursting model",
+   "text_version": "published",
+   "work_id": "W2998186233"
+  },
+  {
+   "doi": "10.1073/pnas.1912500117",
+   "field": "value",
+   "item": "excitement",
+   "text": "control of the window of time over which each nucleus transcribes even-skipped plays a critical role in stripe formation",
+   "text_version": "published",
+   "work_id": "W2998186233"
+  },
+  {
+   "doi": "10.1073/pnas.1912500117",
+   "field": "value",
+   "item": "excitement",
+   "text": "Strikingly, however, we discovered that this analog control of the transcription rate is insufficient to quantitatively recapitulate the cytoplasmic mRNA stripe pattern.",
+   "text_version": "published",
+   "work_id": "W2998186233"
+  },
+  {
+   "doi": "10.1073/pnas.1912500117",
+   "field": "value",
+   "item": "excitement",
+   "text": "showcasing the potential for theoretical modeling and biological numeracy to yield additional biological insights when coupled with precise and quantitative experimental observation",
+   "text_version": "published",
+   "work_id": "W2998186233"
+  },
+  {
+   "doi": "10.1073/pnas.1912500117",
+   "field": "value",
+   "item": "excitement",
+   "text": "Thus the differential duration of transcriptional activity comprises a necessary element of any quantitative description of pattern formation.",
+   "text_version": "published",
+   "work_id": "W2998186233"
+  },
+  {
+   "doi": "10.1073/pnas.1912500117",
+   "field": "value",
+   "item": "excitement",
+   "text": "our cpHMM algorithm is not limited to the eve stripe 2 system and should prove useful to infer the underlying regulatory kinetics of any gene",
+   "text_version": "published",
+   "work_id": "W2998186233"
+  },
+  {
+   "doi": "10.1073/pnas.1912500117",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "Thus the differential duration of transcriptional activity comprises a necessary element of any quantitative description of pattern formation.",
+   "text_version": "published",
+   "work_id": "W2998186233"
+  },
+  {
+   "doi": "10.1073/pnas.1912500117",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "We also observe that certain aspects of the system remain beyond the scope of our model.",
+   "text_version": "published",
+   "work_id": "W2998186233"
+  },
+  {
+   "doi": "10.1073/pnas.1912500117",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "could make it possible to deplete repressors from the nucleus after transcriptional quiescence to determine whether this quiescent state is reversible",
+   "text_version": "published",
+   "work_id": "W2998186233"
+  },
+  {
+   "doi": "10.1073/pnas.1912500117",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "While we cannot rule out the possibility that Hunchback acts indirectly",
+   "text_version": "published",
+   "work_id": "W2998186233"
+  },
+  {
+   "doi": "10.1073/pnas.1912500117",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "it will be critical to move beyond spatiotemporal averages for transcription factor inputs",
+   "text_version": "published",
+   "work_id": "W2998186233"
+  },
+  {
+   "doi": "10.1073/pnas.1912500117",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "akin to an on/off switch that dictates whether a nucleus is transcriptionally active or quiescent",
+   "text_version": "published",
+   "work_id": "W2998186233"
+  },
+  {
+   "doi": "10.1073/pnas.1912500117",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "individual nuclei transcribe at the same average rate regardless of their position along the stripe, but for different lengths of time",
+   "text_version": "published",
+   "work_id": "W2998186233"
+  },
+  {
+   "doi": "10.1073/pnas.1912500117",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "we discovered that",
+   "text_version": "published",
+   "work_id": "W2998186233"
+  },
+  {
+   "doi": "10.1073/pnas.1912500117",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "biological numeracy",
+   "text_version": "published",
+   "work_id": "W2998186233"
+  },
+  {
+   "doi": "10.1073/pnas.1912500117",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "We note that",
+   "text_version": "published",
+   "work_id": "W2998186233"
+  },
+  {
+   "doi": "10.1073/pnas.1912500117",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Strikingly, however,",
+   "text_version": "published",
+   "work_id": "W2998186233"
+  },
+  {
+   "doi": "10.1371/journal.pcbi.1008999",
+   "field": "quote",
+   "item": "gap_sentence",
+   "text": "Despite the great promise of MS2 and PP7, using these techniques to comprehensively analyze the transcription cycle is hindered",
+   "text_version": "published",
+   "work_id": "W3161918438"
+  },
+  {
+   "doi": "10.1371/journal.pcbi.1008999",
+   "field": "quote",
+   "item": "here_we",
+   "text": "Here, we present a method for analyzing live-imaging data from the MS2 and PP7 techniques in order to dynamically characterize the steps",
+   "text_version": "published",
+   "work_id": "W3161918438"
+  },
+  {
+   "doi": "10.1371/journal.pcbi.1008999",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "We developed a statistical framework to estimate transcription-cycle parameters (Fig 1A) from fluorescence signals.",
+   "text_version": "published",
+   "work_id": "W3161918438"
+  },
+  {
+   "doi": "10.1371/journal.pcbi.1008999",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "After validating the accuracy of our inference method in inferring transcription initiation, elongation, and cleavage dynamics using simulated data",
+   "text_version": "published",
+   "work_id": "W3161918438"
+  },
+  {
+   "doi": "10.1371/journal.pcbi.1008999",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "Next, we investigated the ability of our inference approach to report on the elongation rate velon.",
+   "text_version": "published",
+   "work_id": "W3161918438"
+  },
+  {
+   "doi": "10.1371/journal.pcbi.1008999",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "Finally, we inferred values of the cleavage time τcleave.",
+   "text_version": "published",
+   "work_id": "W3161918438"
+  },
+  {
+   "doi": "10.1371/journal.pcbi.1008999",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "the simultaneous nature of the inference afforded us the unprecedented ability to investigate single-cell correlations between transcription-cycle parameters",
+   "text_version": "published",
+   "work_id": "W3161918438"
+  },
+  {
+   "doi": "10.1371/journal.pcbi.1008999",
+   "field": "value",
+   "item": "excitement",
+   "text": "we describe a novel application of Bayesian inference techniques to simultaneously infer the effective parameters of the transcription cycle",
+   "text_version": "published",
+   "work_id": "W3161918438"
+  },
+  {
+   "doi": "10.1371/journal.pcbi.1008999",
+   "field": "value",
+   "item": "excitement",
+   "text": "We further illustrate the power of this technique by uncovering a novel mechanistic connection between RNA polymerase density and nascent RNA cleavage efficiency.",
+   "text_version": "published",
+   "work_id": "W3161918438"
+  },
+  {
+   "doi": "10.1371/journal.pcbi.1008999",
+   "field": "value",
+   "item": "excitement",
+   "text": "whereby we discovered a surprising correlation of cleavage rates with nascent transcript densities",
+   "text_version": "published",
+   "work_id": "W3161918438"
+  },
+  {
+   "doi": "10.1371/journal.pcbi.1008999",
+   "field": "value",
+   "item": "excitement",
+   "text": "the simultaneous nature of the inference afforded us the unprecedented ability to investigate single-cell correlations between transcription-cycle parameters",
+   "text_version": "published",
+   "work_id": "W3161918438"
+  },
+  {
+   "doi": "10.1371/journal.pcbi.1008999",
+   "field": "value",
+   "item": "excitement",
+   "text": "we discovered an unreported modulation of the cleavage time with respect to embryo position",
+   "text_version": "published",
+   "work_id": "W3161918438"
+  },
+  {
+   "doi": "10.1371/journal.pcbi.1008999",
+   "field": "value",
+   "item": "excitement",
+   "text": "it can be readily applied to other genes and organisms in which MS2 and PP7 have been already implemented",
+   "text_version": "published",
+   "work_id": "W3161918438"
+  },
+  {
+   "doi": "10.1371/journal.pcbi.1008999",
+   "field": "value",
+   "item": "excitement",
+   "text": "our approach makes it possible to shed light on the regulatory mechanisms in play during each step of the transcription cycle in individual, living cells",
+   "text_version": "published",
+   "work_id": "W3161918438"
+  },
+  {
+   "doi": "10.1371/journal.pcbi.1008999",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "our analysis strategy will be of broad applicability to the quantitative and molecular in vivo dissection of the transcription cycle",
+   "text_version": "published",
+   "work_id": "W3161918438"
+  },
+  {
+   "doi": "10.1371/journal.pcbi.1008999",
+   "field": "hedge_quote",
+   "item": "strongest_claim",
+   "text": "we envision that",
+   "text_version": "published",
+   "work_id": "W3161918438"
+  },
+  {
+   "doi": "10.1371/journal.pcbi.1008999",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "One important caveat of our method is the failure to account for genes that undergo transcriptional bursting",
+   "text_version": "published",
+   "work_id": "W3161918438"
+  },
+  {
+   "doi": "10.1371/journal.pcbi.1008999",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "While this assumption is a crude simplification, it nevertheless allows us to infer effective average transcription cycle parameters.",
+   "text_version": "published",
+   "work_id": "W3161918438"
+  },
+  {
+   "doi": "10.1371/journal.pcbi.1008999",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "Although we currently cannot entirely separate biological variability from experimental noise with our data and inference method",
+   "text_version": "published",
+   "work_id": "W3161918438"
+  },
+  {
+   "doi": "10.1371/journal.pcbi.1008999",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "makes it possible to",
+   "text_version": "published",
+   "work_id": "W3161918438"
+  },
+  {
+   "doi": "10.1371/journal.pcbi.1008999",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Crucially,",
+   "text_version": "published",
+   "work_id": "W3161918438"
+  },
+  {
+   "doi": "10.1371/journal.pcbi.1008999",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Interestingly,",
+   "text_version": "published",
+   "work_id": "W3161918438"
+  },
+  {
+   "doi": "10.1371/journal.pcbi.1008999",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "we speculate that",
+   "text_version": "published",
+   "work_id": "W3161918438"
+  },
+  {
+   "doi": "10.1038/s41477-021-00976-0",
+   "field": "quote",
+   "item": "gap_sentence",
+   "text": "However, research into the equally diverse and important gene regulatory aspects of plant development and physiology has remained relatively isolated from these technological breakthroughs.",
+   "text_version": "accepted",
+   "work_id": "W3190621122"
+  },
+  {
+   "doi": "10.1038/s41477-021-00976-0",
+   "field": "quote",
+   "item": "here_we",
+   "text": "Here we bridged this technological gap by developing and implementing the PP7 and MS2 technologies for labeling nascent RNA",
+   "text_version": "accepted",
+   "work_id": "W3190621122"
+  },
+  {
+   "doi": "10.1038/s41477-021-00976-0",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "we next generated stably transformed lines of Arabidopsis carrying PCP-GFP and a PP7 reporter construct driven by the promoter of the stress-inducible HSP101 gene",
+   "text_version": "accepted",
+   "work_id": "W3190621122"
+  },
+  {
+   "doi": "10.1038/s41477-021-00976-0",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "We sought to bridge this gap between single-cell and tissue-wide transcriptional dynamics by tracking individual nuclei",
+   "text_version": "accepted",
+   "work_id": "W3190621122"
+  },
+  {
+   "doi": "10.1038/s41477-021-00976-0",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "How do tissue-level patterns of mRNA arise from the transcriptional activities of individual cells?",
+   "text_version": "accepted",
+   "work_id": "W3190621122"
+  },
+  {
+   "doi": "10.1038/s41477-021-00976-0",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "What are the molecular sources of this cell-to-cell variability in the amount of mRNA produced (Figure 5C)?",
+   "text_version": "accepted",
+   "work_id": "W3190621122"
+  },
+  {
+   "doi": "10.1038/s41477-021-00976-0",
+   "field": "value",
+   "item": "excitement",
+   "text": "plant tissues respond to external signals by modulating the number of cells engaged in transcription rather than the transcription rate of active cells",
+   "text_version": "accepted",
+   "work_id": "W3190621122"
+  },
+  {
+   "doi": "10.1038/s41477-021-00976-0",
+   "field": "value",
+   "item": "excitement",
+   "text": "Taken together, our results demonstrate that it is now possible to quantitatively study the dynamics of transcriptional programs in single cells of living plants.",
+   "text_version": "accepted",
+   "work_id": "W3190621122"
+  },
+  {
+   "doi": "10.1038/s41477-021-00976-0",
+   "field": "value",
+   "item": "excitement",
+   "text": "We uncovered previously unknown modes of gene regulation in plants",
+   "text_version": "accepted",
+   "work_id": "W3190621122"
+  },
+  {
+   "doi": "10.1038/s41477-021-00976-0",
+   "field": "value",
+   "item": "excitement",
+   "text": "Further, we determined how these regulatory layers give rise to a surprising level of cellular heterogeneity.",
+   "text_version": "accepted",
+   "work_id": "W3190621122"
+  },
+  {
+   "doi": "10.1038/s41477-021-00976-0",
+   "field": "value",
+   "item": "excitement",
+   "text": "We envision that this approach will open new avenues of inquiry in plant cell and developmental biology.",
+   "text_version": "accepted",
+   "work_id": "W3190621122"
+  },
+  {
+   "doi": "10.1038/s41477-021-00976-0",
+   "field": "value",
+   "item": "excitement",
+   "text": "A striking feature of the single-cell response is the existence of a reproducible fraction of nuclei that does not show detectable expression",
+   "text_version": "accepted",
+   "work_id": "W3190621122"
+  },
+  {
+   "doi": "10.1038/s41477-021-00976-0",
+   "field": "value",
+   "item": "excitement",
+   "text": "we have shown, to our knowledge for the first time, that it is possible to count the number of RNAP molecules actively transcribing individual alleles",
+   "text_version": "accepted",
+   "work_id": "W3190621122"
+  },
+  {
+   "doi": "10.1038/s41477-021-00976-0",
+   "field": "value",
+   "item": "excitement",
+   "text": "the PP7 and MS2 methods introduced here close a critical technological gap in plant biology",
+   "text_version": "accepted",
+   "work_id": "W3190621122"
+  },
+  {
+   "doi": "10.1038/s41477-021-00976-0",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "plant tissues respond to external signals by modulating the number of cells engaged in transcription rather than the transcription rate of active cells",
+   "text_version": "accepted",
+   "work_id": "W3190621122"
+  },
+  {
+   "doi": "10.1038/s41477-021-00976-0",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "Lacking single-polymerase resolution currently limits the applicability of MS2 and PP7 to genes transcribed at relatively high rates.",
+   "text_version": "accepted",
+   "work_id": "W3190621122"
+  },
+  {
+   "doi": "10.1038/s41477-021-00976-0",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "imaging deep into tissues with the resolution necessary to resolve diffraction-limited spots remains a challenge, particularly in plants",
+   "text_version": "accepted",
+   "work_id": "W3190621122"
+  },
+  {
+   "doi": "10.1038/s41477-021-00976-0",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "Advances such as multiphoton imaging, lattice light-sheet microscopy, and adaptive optics will overcome this limitation",
+   "text_version": "accepted",
+   "work_id": "W3190621122"
+  },
+  {
+   "doi": "10.1038/s41477-021-00976-0",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "the random integration of transgenes in plants makes it challenging to dissect the role(s) of regulatory sequences at their endogenous genomic locations",
+   "text_version": "accepted",
+   "work_id": "W3190621122"
+  },
+  {
+   "doi": "10.1038/s41477-021-00976-0",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "transcriptional control could work like a switch, where the fraction of actively transcribing cells is modulated across the tissue",
+   "text_version": "accepted",
+   "work_id": "W3190621122"
+  },
+  {
+   "doi": "10.1038/s41477-021-00976-0",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "when an individual cell transcribes, it tends to do so, on average, at a characteristic, relatively stable level regardless of induction time",
+   "text_version": "accepted",
+   "work_id": "W3190621122"
+  },
+  {
+   "doi": "10.1038/s41477-021-00976-0",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "the time under stress modulates the tissue-wide transcription rate by increasing the probability that each individual cell engages in transcription",
+   "text_version": "accepted",
+   "work_id": "W3190621122"
+  },
+  {
+   "doi": "10.1038/s41477-021-00976-0",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "to our knowledge",
+   "text_version": "accepted",
+   "work_id": "W3190621122"
+  },
+  {
+   "doi": "10.1038/s41477-021-00976-0",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "We envision that",
+   "text_version": "accepted",
+   "work_id": "W3190621122"
+  },
+  {
+   "doi": "10.1038/s41477-021-00976-0",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Interestingly,",
+   "text_version": "accepted",
+   "work_id": "W3190621122"
+  },
+  {
+   "doi": "10.1038/s41477-021-00976-0",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "making it possible to",
+   "text_version": "accepted",
+   "work_id": "W3190621122"
+  },
+  {
+   "doi": "10.7554/elife.73395",
+   "field": "quote",
+   "item": "gap_sentence",
+   "text": "higher-order interactions such as those described in our example by the [EQ] and [EQ] terms had only been demonstrated in archeae [CIT] and bacteria [CIT]",
+   "text_version": "published",
+   "work_id": "W4312095802"
+  },
+  {
+   "doi": "10.7554/elife.73395",
+   "field": "quote",
+   "item": "here_we",
+   "text": "In this paper, we sought to test whether an iterative and predictive approach, such as that outlined in Figure 1, was possible",
+   "text_version": "published",
+   "work_id": "W4312095802"
+  },
+  {
+   "doi": "10.7554/elife.73395",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "With this theoretical framework in hand, we experimentally tested the predictions of this model.",
+   "text_version": "published",
+   "work_id": "W4312095802"
+  },
+  {
+   "doi": "10.7554/elife.73395",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "With these theoretical models and our experimental platform in hand, we designed a set of synthetic enhancer constructs",
+   "text_version": "published",
+   "work_id": "W4312095802"
+  },
+  {
+   "doi": "10.7554/elife.73395",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "Next, we asked whether our model recapitulates gene expression for the hunchback P2 enhancer with a one-Runt binding site",
+   "text_version": "published",
+   "work_id": "W4312095802"
+  },
+  {
+   "doi": "10.7554/elife.73395",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "Could the parameters inferred in the preceding section be used to accurately predict repression in the presence of two Runt binding sites?",
+   "text_version": "published",
+   "work_id": "W4312095802"
+  },
+  {
+   "doi": "10.7554/elife.73395",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "Building on our success in deploying thermodynamic models to explain repression by one- and two-Runt binding sites, we investigated repression by three-Runt binding sites.",
+   "text_version": "published",
+   "work_id": "W4312095802"
+  },
+  {
+   "doi": "10.7554/elife.73395",
+   "field": "value",
+   "item": "excitement",
+   "text": "This higher-order cooperativity captures the combinatorial complexity underlying eukaryotic transcriptional regulation and cannot be determined from simpler regulatory architectures",
+   "text_version": "published",
+   "work_id": "W4312095802"
+  },
+  {
+   "doi": "10.7554/elife.73395",
+   "field": "value",
+   "item": "excitement",
+   "text": "they also provide a concrete theoretical framework for quantifying the complexities behind eukaryotic transcriptional control",
+   "text_version": "published",
+   "work_id": "W4312095802"
+  },
+  {
+   "doi": "10.7554/elife.73395",
+   "field": "value",
+   "item": "excitement",
+   "text": "Notably, unrepressed transcription rates varied significantly across synthetic enhancers (Figure 4A).",
+   "text_version": "published",
+   "work_id": "W4312095802"
+  },
+  {
+   "doi": "10.7554/elife.73395",
+   "field": "value",
+   "item": "excitement",
+   "text": "Interestingly, our initial dissection of constructs containing various combinations of Runt binding sites",
+   "text_version": "published",
+   "work_id": "W4312095802"
+  },
+  {
+   "doi": "10.7554/elife.73395",
+   "field": "value",
+   "item": "excitement",
+   "text": "Our discovery of higher-order cooperativity in the action of multiple Runt molecules opens up new avenues to uncover the molecular nature of this phenomenon.",
+   "text_version": "published",
+   "work_id": "W4312095802"
+  },
+  {
+   "doi": "10.7554/elife.73395",
+   "field": "value",
+   "item": "excitement",
+   "text": "Overall, the work presented here establishes a framework for systematically and quantitatively studying repression in the early fly embryo.",
+   "text_version": "published",
+   "work_id": "W4312095802"
+  },
+  {
+   "doi": "10.7554/elife.73395",
+   "field": "value",
+   "item": "excitement",
+   "text": "We anticipate that a similar approach could be used to dissect repression along the dorso-ventral axis of the embryo",
+   "text_version": "published",
+   "work_id": "W4312095802"
+  },
+  {
+   "doi": "10.7554/elife.73395",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "This higher-order cooperativity captures the combinatorial complexity underlying eukaryotic transcriptional regulation and cannot be determined from simpler regulatory architectures",
+   "text_version": "published",
+   "work_id": "W4312095802"
+  },
+  {
+   "doi": "10.7554/elife.73395",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "even though the work presented here has relied exclusively on thermodynamic models",
+   "text_version": "published",
+   "work_id": "W4312095802"
+  },
+  {
+   "doi": "10.7554/elife.73395",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "our data cannot differentiate among those models",
+   "text_version": "published",
+   "work_id": "W4312095802"
+  },
+  {
+   "doi": "10.7554/elife.73395",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "it will be interesting to determine whether, when our data is viewed through the lens of these non-equilibrium models, invoking higher-order cooperativity is still necessary",
+   "text_version": "published",
+   "work_id": "W4312095802"
+  },
+  {
+   "doi": "10.7554/elife.73395",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "Like the proverbial elephant that can be fit with four parameters [CIT], experiments with endogenous enhancers typically contain enough parameters",
+   "text_version": "published",
+   "work_id": "W4312095802"
+  },
+  {
+   "doi": "10.7554/elife.73395",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "As a result,",
+   "text_version": "published",
+   "work_id": "W4312095802"
+  },
+  {
+   "doi": "10.7554/elife.73395",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Note that",
+   "text_version": "published",
+   "work_id": "W4312095802"
+  },
+  {
+   "doi": "10.7554/elife.73395",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Thus,",
+   "text_version": "published",
+   "work_id": "W4312095802"
+  },
+  {
+   "doi": "10.7554/elife.73395",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "we sought to",
+   "text_version": "published",
+   "work_id": "W4312095802"
+  },
+  {
+   "doi": "10.7554/elife.73395",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "call for",
+   "text_version": "published",
+   "work_id": "W4312095802"
+  },
+  {
+   "doi": "10.1016/j.cels.2022.12.008",
+   "field": "quote",
+   "item": "gap_sentence",
+   "text": "However, it remains unclear whether this feature constitutes a regulatory ‘knob’ or whether inactive loci are artifacts of experimental detection thresholds.",
+   "text_version": "accepted",
+   "work_id": "W4318167001"
+  },
+  {
+   "doi": "10.1016/j.cels.2022.12.008",
+   "field": "quote",
+   "item": "here_we",
+   "text": "Here we sought to use synthetic minimal promoter-proximal enhancers to challenge our integrated model of transcriptional control",
+   "text_version": "accepted",
+   "work_id": "W4318167001"
+  },
+  {
+   "doi": "10.1016/j.cels.2022.12.008",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "These predictions constitute hypotheses that we experimentally tested throughout the remainder of this work.",
+   "text_version": "accepted",
+   "work_id": "W4318167001"
+  },
+  {
+   "doi": "10.1016/j.cels.2022.12.008",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "Thus, we have established an experimental platform and quantitative metrics for Dorsal activity that enable us to engage in a dialogue between experiment and theory.",
+   "text_version": "accepted",
+   "work_id": "W4318167001"
+  },
+  {
+   "doi": "10.1016/j.cels.2022.12.008",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "We therefore conclude that the decision to transcribe made by each locus is an additional regulatory strategy controlled by Dorsal.",
+   "text_version": "accepted",
+   "work_id": "W4318167001"
+  },
+  {
+   "doi": "10.1016/j.cels.2022.12.008",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "Having established that transcriptionally inactive promoters mostly constitute a separate population from transcriptionally active promoters (Fig. 5)",
+   "text_version": "accepted",
+   "work_id": "W4318167001"
+  },
+  {
+   "doi": "10.1016/j.cels.2022.12.008",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "As a next step in our theoretical dissection, we tested the performance of our theoretical model in explaining the rate of transcription",
+   "text_version": "accepted",
+   "work_id": "W4318167001"
+  },
+  {
+   "doi": "10.1016/j.cels.2022.12.008",
+   "field": "value",
+   "item": "excitement",
+   "text": "its transcriptional onset time can be explained by a simple model where the promoter traverses multiple kinetic barriers before transcription can ensue",
+   "text_version": "accepted",
+   "work_id": "W4318167001"
+  },
+  {
+   "doi": "10.1016/j.cels.2022.12.008",
+   "field": "value",
+   "item": "excitement",
+   "text": "provides quantitative evidence supporting a unified model of transcriptional regulation in eukaryotes",
+   "text_version": "accepted",
+   "work_id": "W4318167001"
+  },
+  {
+   "doi": "10.1016/j.cels.2022.12.008",
+   "field": "value",
+   "item": "excitement",
+   "text": "our work demonstrates the feasibility of using minimal synthetic enhancers to engage in a dialogue between theory and experiment",
+   "text_version": "accepted",
+   "work_id": "W4318167001"
+  },
+  {
+   "doi": "10.1016/j.cels.2022.12.008",
+   "field": "value",
+   "item": "excitement",
+   "text": "Thus, our results provide strong evidence that inactive loci are not artifacts of the detection limit of our imaging technique.",
+   "text_version": "accepted",
+   "work_id": "W4318167001"
+  },
+  {
+   "doi": "10.1016/j.cels.2022.12.008",
+   "field": "value",
+   "item": "excitement",
+   "text": "We therefore conclude that the decision to transcribe made by each locus is an additional regulatory strategy controlled by Dorsal.",
+   "text_version": "accepted",
+   "work_id": "W4318167001"
+  },
+  {
+   "doi": "10.1016/j.cels.2022.12.008",
+   "field": "value",
+   "item": "excitement",
+   "text": "Here we augmented previous synthetic approaches by quantifying the real-time action of minimal enhancers with one binding site for the Dorsal activator",
+   "text_version": "accepted",
+   "work_id": "W4318167001"
+  },
+  {
+   "doi": "10.1016/j.cels.2022.12.008",
+   "field": "value",
+   "item": "excitement",
+   "text": "our surprising observation of a basal level of transcription in the presence of even extremely weak binding sites",
+   "text_version": "accepted",
+   "work_id": "W4318167001"
+  },
+  {
+   "doi": "10.1016/j.cels.2022.12.008",
+   "field": "value",
+   "item": "excitement",
+   "text": "we have developed a minimal synthetic enhancer system that has shed light on fundamental assumptions about transcription in development",
+   "text_version": "accepted",
+   "work_id": "W4318167001"
+  },
+  {
+   "doi": "10.1016/j.cels.2022.12.008",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "provides quantitative evidence supporting a unified model of transcriptional regulation in eukaryotes",
+   "text_version": "accepted",
+   "work_id": "W4318167001"
+  },
+  {
+   "doi": "10.1016/j.cels.2022.12.008",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "However, this false-negative rate is likely an underestimation.",
+   "text_version": "accepted",
+   "work_id": "W4318167001"
+  },
+  {
+   "doi": "10.1016/j.cels.2022.12.008",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "the sparse and noisy nature of our data makes it challenging to draw confident conclusions from the fits",
+   "text_version": "accepted",
+   "work_id": "W4318167001"
+  },
+  {
+   "doi": "10.1016/j.cels.2022.12.008",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "it likely does not capture all the complexity of long-range distal enhancers",
+   "text_version": "accepted",
+   "work_id": "W4318167001"
+  },
+  {
+   "doi": "10.1016/j.cels.2022.12.008",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "As a result, our statistics were limited such that it was not possible to perform an unequivocal test of the thermodynamic model",
+   "text_version": "accepted",
+   "work_id": "W4318167001"
+  },
+  {
+   "doi": "10.1016/j.cels.2022.12.008",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "genetic approaches to increase Dorsal dosage in the embryos similar to those recently applied to flatten the Bicoid gradient might be necessary",
+   "text_version": "accepted",
+   "work_id": "W4318167001"
+  },
+  {
+   "doi": "10.1016/j.cels.2022.12.008",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "a model in which multiple parallel switches need to be flipped on for transcription to ensue",
+   "text_version": "accepted",
+   "work_id": "W4318167001"
+  },
+  {
+   "doi": "10.1016/j.cels.2022.12.008",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "We note that",
+   "text_version": "accepted",
+   "work_id": "W4318167001"
+  },
+  {
+   "doi": "10.1016/j.cels.2022.12.008",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "As a result,",
+   "text_version": "accepted",
+   "work_id": "W4318167001"
+  },
+  {
+   "doi": "10.1016/j.cels.2022.12.008",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "It is important to note that",
+   "text_version": "accepted",
+   "work_id": "W4318167001"
+  },
+  {
+   "doi": "10.1016/j.cels.2022.12.008",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "engage in a dialogue between theory and experiment",
+   "text_version": "accepted",
+   "work_id": "W4318167001"
+  },
+  {
+   "doi": "10.1016/j.cub.2023.06.060",
+   "field": "quote",
+   "item": "gap_sentence",
+   "text": "relatively little quantitative data exist to confirm bistability in gene expression modules within developing embryos",
+   "text_version": "accepted",
+   "work_id": "W4384344021"
+  },
+  {
+   "doi": "10.1016/j.cub.2023.06.060",
+   "field": "quote",
+   "item": "here_we",
+   "text": "Here, we characterize the [EQ] autoregulatory module in vivo through quantitative real-time measurements in living fruit fly embryos.",
+   "text_version": "accepted",
+   "work_id": "W4384344021"
+  },
+  {
+   "doi": "10.1016/j.cub.2023.06.060",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "This transition between the early and autoregulatory elements occurs while binary cell states are being established (Figure 2).",
+   "text_version": "accepted",
+   "work_id": "W4384344021"
+  },
+  {
+   "doi": "10.1016/j.cub.2023.06.060",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "The fact that Ftz can exhibit a high state at one point in time does not imply that this high state will persist",
+   "text_version": "accepted",
+   "work_id": "W4384344021"
+  },
+  {
+   "doi": "10.1016/j.cub.2023.06.060",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "The first step toward testing our model is to obtain numerical values for the parameters.",
+   "text_version": "accepted",
+   "work_id": "W4384344021"
+  },
+  {
+   "doi": "10.1016/j.cub.2023.06.060",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "Therefore, a critical test for the accuracy of the model is whether it can predict Ftz expression state at gastrulation.",
+   "text_version": "accepted",
+   "work_id": "W4384344021"
+  },
+  {
+   "doi": "10.1016/j.cub.2023.06.060",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "It is therefore conceivable that some cells transiently express high Ftz at gastrulation without committing to stably expressing high Ftz in the long term.",
+   "text_version": "accepted",
+   "work_id": "W4384344021"
+  },
+  {
+   "doi": "10.1016/j.cub.2023.06.060",
+   "field": "value",
+   "item": "excitement",
+   "text": "we discovered that Ftz concentration alone is insufficient to activate the autoregulatory element",
+   "text_version": "accepted",
+   "work_id": "W4384344021"
+  },
+  {
+   "doi": "10.1016/j.cub.2023.06.060",
+   "field": "value",
+   "item": "excitement",
+   "text": "provides a framework for the quantitative dissection of cellular decision-making",
+   "text_version": "accepted",
+   "work_id": "W4384344021"
+  },
+  {
+   "doi": "10.1016/j.cub.2023.06.060",
+   "field": "value",
+   "item": "excitement",
+   "text": "evidence for the bistability of a genetic module based on these molecular interactions in an intact multicellular organism has not yet been demonstrated",
+   "text_version": "accepted",
+   "work_id": "W4384344021"
+  },
+  {
+   "doi": "10.1016/j.cub.2023.06.060",
+   "field": "value",
+   "item": "excitement",
+   "text": "thereby validating a long-standing hypothesis in developmental and systems biology that bistability underlies cell fate determination",
+   "text_version": "accepted",
+   "work_id": "W4384344021"
+  },
+  {
+   "doi": "10.1016/j.cub.2023.06.060",
+   "field": "value",
+   "item": "excitement",
+   "text": "Particularly noteworthy is that the initial amount of early protein [EQ] is not the strongest predictor of fate.",
+   "text_version": "accepted",
+   "work_id": "W4384344021"
+  },
+  {
+   "doi": "10.1016/j.cub.2023.06.060",
+   "field": "value",
+   "item": "excitement",
+   "text": "One of our central discoveries is that [EQ] autoregulation is triggered at a specific developmental time",
+   "text_version": "accepted",
+   "work_id": "W4384344021"
+  },
+  {
+   "doi": "10.1016/j.cub.2023.06.060",
+   "field": "value",
+   "item": "excitement",
+   "text": "is not limited to fruit flies, but might also be widely adopted during development in other organisms",
+   "text_version": "accepted",
+   "work_id": "W4384344021"
+  },
+  {
+   "doi": "10.1016/j.cub.2023.06.060",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "is not limited to fruit flies, but might also be widely adopted during development in other organisms",
+   "text_version": "accepted",
+   "work_id": "W4384344021"
+  },
+  {
+   "doi": "10.1016/j.cub.2023.06.060",
+   "field": "hedge_quote",
+   "item": "strongest_claim",
+   "text": "we speculate that",
+   "text_version": "accepted",
+   "work_id": "W4384344021"
+  },
+  {
+   "doi": "10.1016/j.cub.2023.06.060",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "The results presented in this work were derived from experiments paired with mathematical analysis of our theoretical model.",
+   "text_version": "accepted",
+   "work_id": "W4384344021"
+  },
+  {
+   "doi": "10.1016/j.cub.2023.06.060",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "experiments where Ftz initial conditions are altered through, for example, heat shock or optogenetic approaches",
+   "text_version": "accepted",
+   "work_id": "W4384344021"
+  },
+  {
+   "doi": "10.1016/j.cub.2023.06.060",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "A basic assumption of the approach employed here is that the behavior of the whole network can be predicted from the behavior of the parts",
+   "text_version": "accepted",
+   "work_id": "W4384344021"
+  },
+  {
+   "doi": "10.1016/j.cub.2023.06.060",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "The majority of classification errors were derived from a single embryo",
+   "text_version": "accepted",
+   "work_id": "W4384344021"
+  },
+  {
+   "doi": "10.1016/j.cub.2023.06.060",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "Under this framework, cells roll down valleys in a predetermined landscape to adopt their ultimate fates.",
+   "text_version": "accepted",
+   "work_id": "W4384344021"
+  },
+  {
+   "doi": "10.1016/j.cub.2023.06.060",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "In the simplest case, where a decision is made between two alternative developmental fates, the memory module is binary and referred to as a switch.",
+   "text_version": "accepted",
+   "work_id": "W4384344021"
+  },
+  {
+   "doi": "10.1016/j.cub.2023.06.060",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "By following arrows throughout the phase portrait, we can qualitatively predict where the trajectory will travel.",
+   "text_version": "accepted",
+   "work_id": "W4384344021"
+  },
+  {
+   "doi": "10.1016/j.cub.2023.06.060",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "Attractors are stable, meaning that if concentrations are perturbed slightly away from the attractor, they will return to the attractor.",
+   "text_version": "accepted",
+   "work_id": "W4384344021"
+  },
+  {
+   "doi": "10.1016/j.cub.2023.06.060",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "It is important to note",
+   "text_version": "accepted",
+   "work_id": "W4384344021"
+  },
+  {
+   "doi": "10.1016/j.cub.2023.06.060",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "we speculate that",
+   "text_version": "accepted",
+   "work_id": "W4384344021"
+  },
+  {
+   "doi": "10.1016/j.cub.2023.06.060",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Particularly noteworthy is that",
+   "text_version": "accepted",
+   "work_id": "W4384344021"
+  },
+  {
+   "doi": "10.1016/j.cub.2023.06.060",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "dialogue between theory and experiment",
+   "text_version": "accepted",
+   "work_id": "W4384344021"
+  },
+  {
+   "doi": "10.1016/j.cub.2023.06.060",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "the best of our knowledge",
+   "text_version": "accepted",
+   "work_id": "W4384344021"
+  },
+  {
+   "doi": "10.1101/2024.01.03.574108",
+   "field": "quote",
+   "item": "gap_sentence",
+   "text": "However, similar measurements have yet to be achieved in a living, intact vertebrate.",
+   "text_version": "preprint",
+   "work_id": "W4390649768"
+  },
+  {
+   "doi": "10.1101/2024.01.03.574108",
+   "field": "quote",
+   "item": "here_we",
+   "text": "Here, we report the establishment of the MS2 system in transgenic zebrafish",
+   "text_version": "preprint",
+   "work_id": "W4390649768"
+  },
+  {
+   "doi": "10.1101/2024.01.03.574108",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "We then turned to studying the behavior of her1 transcription at tissue and single-cell scales.",
+   "text_version": "preprint",
+   "work_id": "W4390649768"
+  },
+  {
+   "doi": "10.1101/2024.01.03.574108",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "Exploiting the unique power of the MS2 system, we next investigated transcriptional dynamics in single cells",
+   "text_version": "preprint",
+   "work_id": "W4390649768"
+  },
+  {
+   "doi": "10.1101/2024.01.03.574108",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "To shed light on the mechanism by which Her1 regulates its own transcriptional bursting",
+   "text_version": "preprint",
+   "work_id": "W4390649768"
+  },
+  {
+   "doi": "10.1101/2024.01.03.574108",
+   "field": "value",
+   "item": "excitement",
+   "text": "Our measurements challenge the traditional view of smooth clock oscillations",
+   "text_version": "preprint",
+   "work_id": "W4390649768"
+  },
+  {
+   "doi": "10.1101/2024.01.03.574108",
+   "field": "value",
+   "item": "excitement",
+   "text": "can reveal unexpected features of gene regulation",
+   "text_version": "preprint",
+   "work_id": "W4390649768"
+  },
+  {
+   "doi": "10.1101/2024.01.03.574108",
+   "field": "value",
+   "item": "excitement",
+   "text": "we discovered that, in contrast to the smooth cycles of protein levels observed with fluorescent protein fusions in all vertebrate systems studied to date",
+   "text_version": "preprint",
+   "work_id": "W4390649768"
+  },
+  {
+   "doi": "10.1101/2024.01.03.574108",
+   "field": "value",
+   "item": "excitement",
+   "text": "presents new measurements that challenge the existing paradigm of somitogenesis",
+   "text_version": "preprint",
+   "work_id": "W4390649768"
+  },
+  {
+   "doi": "10.1101/2024.01.03.574108",
+   "field": "value",
+   "item": "excitement",
+   "text": "our observed transcriptional dynamics are strikingly sharp and discrete",
+   "text_version": "preprint",
+   "work_id": "W4390649768"
+  },
+  {
+   "doi": "10.1101/2024.01.03.574108",
+   "field": "value",
+   "item": "excitement",
+   "text": "to our knowledge, a first in any intact vertebrate animal",
+   "text_version": "preprint",
+   "work_id": "W4390649768"
+  },
+  {
+   "doi": "10.1101/2024.01.03.574108",
+   "field": "value",
+   "item": "excitement",
+   "text": "our finding highlights the power of the MS2 system in being able to reveal novel dynamical features of gene regulation",
+   "text_version": "preprint",
+   "work_id": "W4390649768"
+  },
+  {
+   "doi": "10.1101/2024.01.03.574108",
+   "field": "value",
+   "item": "excitement",
+   "text": "these findings suggest that transcriptional bursting may in fact be a common feature of genetic oscillators",
+   "text_version": "preprint",
+   "work_id": "W4390649768"
+  },
+  {
+   "doi": "10.1101/2024.01.03.574108",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "transcriptional bursting may in fact be a common feature of genetic oscillators",
+   "text_version": "preprint",
+   "work_id": "W4390649768"
+  },
+  {
+   "doi": "10.1101/2024.01.03.574108",
+   "field": "hedge_quote",
+   "item": "strongest_claim",
+   "text": "these findings suggest that",
+   "text_version": "preprint",
+   "work_id": "W4390649768"
+  },
+  {
+   "doi": "10.1101/2024.01.03.574108",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "one potential caveat to this result is the possibility that the 4 copies of the her1-MS2 reporter construct inserted during transgenesis",
+   "text_version": "preprint",
+   "work_id": "W4390649768"
+  },
+  {
+   "doi": "10.1101/2024.01.03.574108",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "it is unclear to what extent one can compare the amplitude of our MS2 signals from different nuclei",
+   "text_version": "preprint",
+   "work_id": "W4390649768"
+  },
+  {
+   "doi": "10.1101/2024.01.03.574108",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "Exploring alternative promoters with less variability for driving MCP expression will be a useful future endeavor.",
+   "text_version": "preprint",
+   "work_id": "W4390649768"
+  },
+  {
+   "doi": "10.1101/2024.01.03.574108",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "we likely underestimate the frequency of stochastic bursting within individual Her1 protein oscillations",
+   "text_version": "preprint",
+   "work_id": "W4390649768"
+  },
+  {
+   "doi": "10.1101/2024.01.03.574108",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "somites—morphological segments that prefigure the bones and muscles of the adult",
+   "text_version": "preprint",
+   "work_id": "W4390649768"
+  },
+  {
+   "doi": "10.1101/2024.01.03.574108",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "The intensity of the resulting fluorescent spot is proportional to the number of RNA polymerase molecules actively transcribing the gene.",
+   "text_version": "preprint",
+   "work_id": "W4390649768"
+  },
+  {
+   "doi": "10.1101/2024.01.03.574108",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "The active interval, also known as burst duration, is the length of time that the promoter is in the ON state.",
+   "text_version": "preprint",
+   "work_id": "W4390649768"
+  },
+  {
+   "doi": "10.1101/2024.01.03.574108",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Taken together, these results demonstrate",
+   "text_version": "preprint",
+   "work_id": "W4390649768"
+  },
+  {
+   "doi": "10.1101/2024.01.03.574108",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "All together, these observations demonstrate",
+   "text_version": "preprint",
+   "work_id": "W4390649768"
+  },
+  {
+   "doi": "10.1101/2024.01.03.574108",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "dialogue between theory and experiment",
+   "text_version": "preprint",
+   "work_id": "W4390649768"
+  },
+  {
+   "doi": "10.1101/2024.01.03.574108",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Further,",
+   "text_version": "preprint",
+   "work_id": "W4390649768"
+  },
+  {
+   "doi": "10.1101/2024.12.17.629042",
+   "field": "quote",
+   "item": "gap_sentence",
+   "text": "These measures often assume that base pairs contribute independently to gene expression",
+   "text_version": "preprint",
+   "work_id": "W7147036867"
+  },
+  {
+   "doi": "10.1101/2024.12.17.629042",
+   "field": "quote",
+   "item": "here_we",
+   "text": "In this study, we address the challenges of finding binding sites and developing predictive models",
+   "text_version": "preprint",
+   "work_id": "W7147036867"
+  },
+  {
+   "doi": "10.1101/2024.12.17.629042",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "Using this optimized architecture, we independently trained 95 convolutional neural networks, one for each operon in our dataset.",
+   "text_version": "preprint",
+   "work_id": "W7147036867"
+  },
+  {
+   "doi": "10.1101/2024.12.17.629042",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "we deemed the gene expression predictions made by the trained DARSI models to be reliable",
+   "text_version": "preprint",
+   "work_id": "W7147036867"
+  },
+  {
+   "doi": "10.1101/2024.12.17.629042",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "We next leveraged the predictive power of our networks to identify transcription factor binding sites within unmapped regulatory regions.",
+   "text_version": "preprint",
+   "work_id": "W7147036867"
+  },
+  {
+   "doi": "10.1101/2024.12.17.629042",
+   "field": "value",
+   "item": "excitement",
+   "text": "DARSI predicted novel unmapped binding sites, paving the way for future experimental efforts to confirm the existence of these binding sites",
+   "text_version": "preprint",
+   "work_id": "W7147036867"
+  },
+  {
+   "doi": "10.1101/2024.12.17.629042",
+   "field": "value",
+   "item": "excitement",
+   "text": "DARSI generates experimentally actionable predictions that can feed iterations of the theory-experiment cycle",
+   "text_version": "preprint",
+   "work_id": "W7147036867"
+  },
+  {
+   "doi": "10.1101/2024.12.17.629042",
+   "field": "value",
+   "item": "excitement",
+   "text": "by introducing a novel computational framework, the Deep Learning Adaptive Regulatory Sequence Identifier (DARSI)",
+   "text_version": "preprint",
+   "work_id": "W7147036867"
+  },
+  {
+   "doi": "10.1101/2024.12.17.629042",
+   "field": "value",
+   "item": "excitement",
+   "text": "the convolutional neural network architecture within DARSI can be used to augment analyses of gene expression MRPA data",
+   "text_version": "preprint",
+   "work_id": "W7147036867"
+  },
+  {
+   "doi": "10.1101/2024.12.17.629042",
+   "field": "value",
+   "item": "excitement",
+   "text": "reveal regulatory features overlooked by traditional methods",
+   "text_version": "preprint",
+   "work_id": "W7147036867"
+  },
+  {
+   "doi": "10.1101/2024.12.17.629042",
+   "field": "value",
+   "item": "excitement",
+   "text": "These findings establish DARSI, and convolutional neural networks more in general, as a valuable platform for advancing experimental studies of regulatory architectures.",
+   "text_version": "preprint",
+   "work_id": "W7147036867"
+  },
+  {
+   "doi": "10.1101/2024.12.17.629042",
+   "field": "value",
+   "item": "excitement",
+   "text": "the DARSI framework is broadly applicable to differential expression datasets across both bacterial and eukaryotic systems",
+   "text_version": "preprint",
+   "work_id": "W7147036867"
+  },
+  {
+   "doi": "10.1101/2024.12.17.629042",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "DARSI could be adapted for other phenotypic analyses, uncovering causal links and axes of variation in sequence-to-phenotype relationships",
+   "text_version": "preprint",
+   "work_id": "W7147036867"
+  },
+  {
+   "doi": "10.1101/2024.12.17.629042",
+   "field": "hedge_quote",
+   "item": "strongest_claim",
+   "text": "could be adapted",
+   "text_version": "preprint",
+   "work_id": "W7147036867"
+  },
+  {
+   "doi": "10.1101/2024.12.17.629042",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "it is important to acknowledge their limitations, particularly when applied to discrete variables like base pair identity",
+   "text_version": "preprint",
+   "work_id": "W7147036867"
+  },
+  {
+   "doi": "10.1101/2024.12.17.629042",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "will have to stem from future experiments aimed at validating hypothesized binding sites",
+   "text_version": "preprint",
+   "work_id": "W7147036867"
+  },
+  {
+   "doi": "10.1101/2024.12.17.629042",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "it does not predict the specific transcription factors that bind to these hypothetical sites",
+   "text_version": "preprint",
+   "work_id": "W7147036867"
+  },
+  {
+   "doi": "10.1101/2024.12.17.629042",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "the efficacy of DARSI depends heavily on the quality and scale of its training data",
+   "text_version": "preprint",
+   "work_id": "W7147036867"
+  },
+  {
+   "doi": "10.1101/2024.12.17.629042",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "For example, a neural network can be trained to classify images between those featuring a dog and those not featuring a dog",
+   "text_version": "preprint",
+   "work_id": "W7147036867"
+  },
+  {
+   "doi": "10.1101/2024.12.17.629042",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "A saliency map is a heat map that reports on how important each pixel within an image was in making the decision",
+   "text_version": "preprint",
+   "work_id": "W7147036867"
+  },
+  {
+   "doi": "10.1101/2024.12.17.629042",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "we would expect pixels that fall within the dog to carry more information than those pixels that are in the background of the image",
+   "text_version": "preprint",
+   "work_id": "W7147036867"
+  },
+  {
+   "doi": "10.1101/2024.12.17.629042",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "makes it possible to",
+   "text_version": "preprint",
+   "work_id": "W7147036867"
+  },
+  {
+   "doi": "10.1101/2024.12.17.629042",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Notably,",
+   "text_version": "preprint",
+   "work_id": "W7147036867"
+  },
+  {
+   "doi": "10.1101/2024.12.17.629042",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "It is important to note that",
+   "text_version": "preprint",
+   "work_id": "W7147036867"
+  },
+  {
+   "doi": "10.1101/2024.12.17.629042",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "As a result,",
+   "text_version": "preprint",
+   "work_id": "W7147036867"
+  }
+ ],
+ "schema": 1,
+ "stability": {
+  "abstract_moves": {
+   "agreement": 0.898,
+   "pairs": 23,
+   "stable": true
+  },
+  "discussion_moves": {
+   "agreement": 0.747,
+   "pairs": 23,
+   "stable": true
+  },
+  "essay_argument": {
+   "agreement": 1.0,
+   "pairs": 1,
+   "stable": true
+  },
+  "excitement": {
+   "agreement": 0.65,
+   "pairs": 23,
+   "stable": false
+  },
+  "figure_reference": {
+   "agreement": 1.0,
+   "pairs": 23,
+   "stable": true
+  },
+  "gap_sentence": {
+   "agreement": 0.957,
+   "pairs": 23,
+   "stable": true
+  },
+  "here_we": {
+   "agreement": 1.0,
+   "pairs": 23,
+   "stable": true
+  },
+  "intro_roles": {
+   "agreement": 0.887,
+   "pairs": 23,
+   "stable": true
+  },
+  "limitations": {
+   "agreement": 0.783,
+   "pairs": 23,
+   "stable": true
+  },
+  "results_headings": {
+   "agreement": 1.0,
+   "pairs": 21,
+   "stable": true
+  },
+  "results_openings": {
+   "agreement": 0.94,
+   "pairs": 21,
+   "stable": true
+  },
+  "strongest_claim": {
+   "agreement": 0.957,
+   "pairs": 23,
+   "stable": true
+  },
+  "title_form": {
+   "agreement": 0.957,
+   "pairs": 23,
+   "stable": true
+  }
+ },
+ "surface": {
+  "citations_per_sentence": 0.285,
+  "connectives_per_1000": [
+   [
+    "thus",
+    1.54
+   ],
+   [
+    "however",
+    1.36
+   ],
+   [
+    "here",
+    1.05
+   ],
+   [
+    "first",
+    0.87
+   ],
+   [
+    "second",
+    0.45
+   ],
+   [
+    "although",
+    0.43
+   ],
+   [
+    "because",
+    0.43
+   ],
+   [
+    "finally",
+    0.38
+   ],
+   [
+    "indeed",
+    0.37
+   ],
+   [
+    "instead",
+    0.35
+   ],
+   [
+    "therefore",
+    0.32
+   ],
+   [
+    "together",
+    0.27
+   ],
+   [
+    "interestingly",
+    0.17
+   ],
+   [
+    "furthermore",
+    0.13
+   ],
+   [
+    "hence",
+    0.13
+   ],
+   [
+    "whereas",
+    0.13
+   ],
+   [
+    "importantly",
+    0.12
+   ],
+   [
+    "moreover",
+    0.11
+   ],
+   [
+    "notably",
+    0.1
+   ],
+   [
+    "nevertheless",
+    0.08
+   ],
+   [
+    "consequently",
+    0.06
+   ],
+   [
+    "surprisingly",
+    0.06
+   ],
+   [
+    "remarkably",
+    0.02
+   ],
+   [
+    "strikingly",
+    0.02
+   ]
+  ],
+  "figure_refs_per_paragraph": 1.333,
+  "first_person_share": 0.382,
+  "hedge_words": [
+   [
+    "possible",
+    123
+   ],
+   [
+    "could",
+    113
+   ],
+   [
+    "consistent",
+    44
+   ],
+   [
+    "may",
+    42
+   ],
+   [
+    "might",
+    33
+   ],
+   [
+    "suggests",
+    27
+   ],
+   [
+    "indicates",
+    16
+   ],
+   [
+    "suggest",
+    16
+   ],
+   [
+    "suggested",
+    14
+   ],
+   [
+    "potentially",
+    13
+   ],
+   [
+    "appear",
+    11
+   ],
+   [
+    "likely",
+    11
+   ],
+   [
+    "appears",
+    10
+   ],
+   [
+    "perhaps",
+    10
+   ],
+   [
+    "indicate",
+    9
+   ],
+   [
+    "presumably",
+    7
+   ],
+   [
+    "possibly",
+    5
+   ],
+   [
+    "seem",
+    5
+   ],
+   [
+    "unlikely",
+    3
+   ],
+   [
+    "appeared",
+    2
+   ],
+   [
+    "putative",
+    1
+   ],
+   [
+    "seemed",
+    1
+   ],
+   [
+    "seems",
+    1
+   ]
+  ],
+  "hedges_per_1000": 6.17,
+  "n_paragraphs": 603,
+  "n_sentences": 2994,
+  "n_words": 83743,
+  "numbers_per_sentence": 0.49,
+  "opener_pairs": [
+   [
+    "as a",
+    61
+   ],
+   [
+    "for example",
+    58
+   ],
+   [
+    "in this",
+    51
+   ],
+   [
+    "in the",
+    31
+   ],
+   [
+    "here we",
+    25
+   ],
+   [
+    "as shown",
+    23
+   ],
+   [
+    "in addition",
+    23
+   ],
+   [
+    "in contrast",
+    23
+   ],
+   [
+    "in particular",
+    23
+   ],
+   [
+    "in order",
+    21
+   ]
+  ],
+  "openers": [
+   [
+    "the",
+    275
+   ],
+   [
+    "in",
+    246
+   ],
+   [
+    "we",
+    216
+   ],
+   [
+    "this",
+    172
+   ],
+   [
+    "to",
+    148
+   ],
+   [
+    "as",
+    134
+   ],
+   [
+    "however",
+    102
+   ],
+   [
+    "thus",
+    99
+   ],
+   [
+    "these",
+    98
+   ],
+   [
+    "for",
+    97
+   ],
+   [
+    "our",
+    67
+   ],
+   [
+    "a",
+    59
+   ],
+   [
+    "here",
+    52
+   ],
+   [
+    "while",
+    41
+   ],
+   [
+    "further",
+    39
+   ]
+  ],
+  "paragraph_sentences": {
+   "mean": 4.97,
+   "median": 4.0,
+   "n": 603,
+   "p90": 9.0
+  },
+  "passive_share": 0.292,
+  "questions_per_100": 0.8,
+  "sentence_length": {
+   "mean": 27.97,
+   "median": 26.0,
+   "n": 2994,
+   "p90": 43.0
+  },
+  "sentence_length_by_kind": {
+   "abstract": {
+    "mean": 26.7,
+    "median": 26.0,
+    "n": 94,
+    "p90": 39.0
+   },
+   "discussion": {
+    "mean": 29.72,
+    "median": 28.0,
+    "n": 507,
+    "p90": 44.0
+   },
+   "intro": {
+    "mean": 29.7,
+    "median": 28.0,
+    "n": 301,
+    "p90": 44.0
+   },
+   "other": {
+    "mean": 26.27,
+    "median": 24.0,
+    "n": 795,
+    "p90": 41.0
+   },
+   "results": {
+    "mean": 28.02,
+    "median": 26.0,
+    "n": 1297,
+    "p90": 43.0
+   }
+  }
+ },
+ "surface_papers": 14,
+ "text_versions": {
+  "accepted": 8,
+  "arxiv": 1,
+  "preprint": 2,
+  "published": 3
+ },
+ "unverified": {},
+ "years": {
+  "first": 2007,
+  "last": 2026
+ }
+}
