@@ -34,3 +34,22 @@ Sentences average 27.97 words per sentence: 26.7 in abstracts and 29.72 in discu
 
 ## Caveats
 The text versions are accepted in 8 of 14 papers, published in 3 of 14 papers, preprint in 2 of 14 papers, and arXiv in 1 of 14 papers. The card leaves out 0 of 14 papers. The essay group has 2 of 14 papers, so its counts rest on few papers. Trainees draft most senior-author papers, so the card describes the papers of the person's group.
+
+## Papers
+
+The card rests on these 14 papers.
+
+- A First Exposure to Statistical Mechanics for Life Scientists. arXiv (Cornell University), 2007. doi:10.48550/arxiv.0708.1899 (arxiv text)
+- Operator Sequence Alters Gene Expression Independently of Transcription Factor Occupancy in Bacteria. Cell Reports, 2012. doi:10.1016/j.celrep.2012.06.004 (accepted text)
+- Quantitative Imaging of Transcription in Living Drosophila Embryos Links Polymerase Activity to Patterning. Current Biology, 2013. doi:10.1016/j.cub.2013.08.054 (accepted text)
+- The embryo as a laboratory: quantifying transcription in Drosophila. Trends in Genetics, 2014. doi:10.1016/j.tig.2014.06.002 (accepted text)
+- Using synthetic biology to make cells tomorrow's test tubes. Integrative Biology, 2016. doi:10.1039/c6ib00006a (accepted text)
+- LlamaTags: A Versatile Tool to Image Transcription Factor Dynamics in Live Embryos. Cell, 2018. doi:10.1016/j.cell.2018.03.069 (accepted text)
+- Multimodal transcriptional control of pattern formation in embryonic development. Proceedings of the National Academy of Sciences, 2019. doi:10.1073/pnas.1912500117 (published text)
+- Quantitative imaging of RNA polymerase II activity in plants reveals the single-cell basis of tissue-wide transcriptional dynamics. Nature Plants, 2021. doi:10.1038/s41477-021-00976-0 (accepted text)
+- Real-time single-cell characterization of the eukaryotic transcription cycle reveals correlations between RNA initiation, elongation, and cleavage. PLoS Computational Biology, 2021. doi:10.1371/journal.pcbi.1008999 (published text)
+- Predictive modeling reveals that higher-order cooperativity drives transcriptional repression in a synthetic developmental enhancer. eLife, 2022. doi:10.7554/elife.73395 (published text)
+- A bistable autoregulatory module in the developing embryo commits cells to binary expression fates. Current Biology, 2023. doi:10.1016/j.cub.2023.06.060 (accepted text)
+- Minimal synthetic enhancers reveal control of the probability of transcriptional engagement and its timing by a morphogen gradient. Cell Systems, 2023. doi:10.1016/j.cels.2022.12.008 (accepted text)
+- Predictive modeling of gene expression and localization of DNA binding site using deep convolutional neural networks. PLoS Computational Biology, 2026. doi:10.1101/2024.12.17.629042 (preprint text)
+- Single-cell transcriptional dynamics in a living vertebrate. Cell Systems, 2026. doi:10.1101/2024.01.03.574108 (preprint text)

@@ -58,3 +58,22 @@ Distinctive words are genes, cells, expression, signaling, trajectory, single-ce
 ## Caveats
 
 The card reads the text versions listed in Sample, so wording can differ from the final print. No papers were left out (0 of 14 papers). Trainees draft most senior-author papers, so the card describes the papers of the person's group.
+
+## Papers
+
+The card rests on these 14 papers.
+
+- How to map billions of short reads onto genomes. Nature Biotechnology, 2009. doi:10.1038/nbt0509-455 (accepted text)
+- TopHat: discovering splice junctions with RNA-Seq. Bioinformatics, 2009. doi:10.1093/bioinformatics/btp120 (published text)
+- Transcript assembly and quantification by RNA-Seq reveals unannotated transcripts and isoform switching during cell differentiation. Nature Biotechnology, 2010. doi:10.1038/nbt.1621 (accepted text)
+- Differential analysis of gene regulation at transcript resolution with RNA-seq. Nature Biotechnology, 2012. doi:10.1038/nbt.2450 (accepted text)
+- Single-cell transcriptome sequencing: recent advances and remaining challenges. F1000Research, 2016. doi:10.12688/f1000research.7223.1 (published text)
+- Chromatin accessibility dynamics of myogenesis at single cell resolution. bioRxiv (Cold Spring Harbor Laboratory), 2017. doi:10.1101/155473 (preprint text)
+- Reversed graph embedding resolves complex single-cell trajectories. Nature Methods, 2017. doi:10.1038/nmeth.4402 (accepted text)
+- Single-cell mRNA quantification and differential analysis with Census. Nature Methods, 2017. doi:10.1038/nmeth.4150 (accepted text)
+- Single-Cell Multi-omics: An Engine for New Quantitative Models of Gene Regulation. Trends in Genetics, 2018. doi:10.1016/j.tig.2018.06.001 (accepted text)
+- A pooled single-cell genetic screen identifies regulatory checkpoints in the continuum of the epithelial-to-mesenchymal transition. Nature Genetics, 2019. doi:10.1038/s41588-019-0489-5 (accepted text)
+- Inferring Causal Gene Regulatory Networks from Coupled Single-Cell Expression Dynamics Using Scribe. Cell Systems, 2020. doi:10.1016/j.cels.2020.02.003 (accepted text)
+- Trajectory analysis quantifies transcriptional plasticity during macrophage polarization. Scientific Reports, 2020. doi:10.1038/s41598-020-68766-w (published text)
+- Embryo-scale reverse genetics at single-cell resolution. Nature, 2023. doi:10.1038/s41586-023-06720-2 (published text)
+- Embryo-scale single-cell chemical transcriptomics reveals dependencies between cell types and signaling pathways. bioRxiv (Cold Spring Harbor Laboratory), 2025. doi:10.1101/2025.04.03.646423 (preprint text)

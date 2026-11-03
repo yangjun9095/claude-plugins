@@ -50,3 +50,18 @@ The distinctive words follow the topics of the 10 papers: neurons, patients, gap
 ## Caveats
 
 The arXiv text covers 6 of 10 papers, so the wording can differ from the final print. The profile left out 0 of 10 papers. The checklist could not measure the excitement item reliably. Trainees draft most senior-author papers, so the card describes the papers of the person's group.
+
+## Papers
+
+The card rests on these 10 papers.
+
+- Quantifying unobserved protein-coding variants in human populations provides a roadmap for large-scale sequencing projects. Nature Communications, 2016. doi:10.1038/ncomms13293 (published text)
+- The Effects of Memory Replay in Reinforcement Learning. Allerton Conference on Communication, Control, and Computing, 2018. doi:10.48550/arxiv.1710.06574 (arxiv text)
+- Video-based AI for beat-to-beat assessment of cardiac function. Nature, 2020. doi:10.1038/s41586-020-2145-8 (accepted text)
+- Ensuring that biomedical AI benefits diverse populations. EBioMedicine, 2021. doi:10.1016/j.ebiom.2021.103358 (published text)
+- Mind the Gap: Understanding the Modality Gap in Multi-Modal Contrastive Representation Learning. neural information processing systems, 2022. doi:10.48550/arxiv.2203.02053 (arxiv text)
+- Uncalibrated Models Can Improve Human-AI Collaboration. neural information processing systems, 2022. doi:10.48550/arxiv.2202.05983 (arxiv text)
+- Systematic analysis of off-label and off-guideline cancer therapy usage in a real-world cohort of 153,122 U.S. patients. medRxiv, 2023. doi:10.1101/2023.01.17.23284689 (preprint text)
+- ClashEval: Quantifying the tug-of-war between an LLM’s internal prior and external evidence. neural information processing systems, 2024. doi:10.48550/arxiv.2404.10198 (arxiv text)
+- metaTextGrad: Automatically optimizing language model optimizers. neural information processing systems, 2025. doi:10.48550/arxiv.2505.18524 (arxiv text)
+- Sparse Reward Subsystem in Large Language Models. arXiv (Cornell University), 2026. doi:10.48550/arxiv.2602.00986 (arxiv text)

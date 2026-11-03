@@ -49,3 +49,20 @@ The distinctive words follow the topic: language, structure, protein, sequences,
 ## Caveats
 
 The card uses the text versions named in the Sample section. The profile left out 0 of 12 papers. Only 1 of 12 papers has the first-author group, so the card does not compare groups. The checklist could not measure the excitement item reliably. Trainees draft most senior-author papers, so the card describes the papers of the person's group.
+
+## Papers
+
+The card rests on these 12 papers.
+
+- Energy-based models for atomic-resolution protein conformations. arXiv (Cornell University), 2020. doi:10.48550/arxiv.2004.13167 (arxiv text)
+- Transformer protein language models are unsupervised structure learners. bioRxiv (Cold Spring Harbor Laboratory), 2020. doi:10.1101/2020.12.15.422761 (preprint text)
+- Biological structure and function emerge from scaling unsupervised learning to 250 million protein sequences. Proceedings of the National Academy of Sciences, 2021. doi:10.1073/pnas.2016239118 (published text)
+- Language models enable zero-shot prediction of the effects of mutations on protein function. bioRxiv (Cold Spring Harbor Laboratory), 2021. doi:10.1101/2021.07.09.450648 (preprint text)
+- MSA Transformer. bioRxiv (Cold Spring Harbor Laboratory), 2021. doi:10.1101/2021.02.12.430858 (preprint text)
+- Neural Potts Model. bioRxiv (Cold Spring Harbor Laboratory), 2021. doi:10.1101/2021.04.08.439084 (preprint text)
+- A high-level programming language for generative protein design. bioRxiv (Cold Spring Harbor Laboratory), 2022. doi:10.1101/2022.12.21.521526 (preprint text)
+- Language models generalize beyond natural proteins. bioRxiv (Cold Spring Harbor Laboratory), 2022. doi:10.1101/2022.12.21.521521 (preprint text)
+- Learning inverse folding from millions of predicted structures. bioRxiv (Cold Spring Harbor Laboratory), 2022. doi:10.1101/2022.04.10.487779 (preprint text)
+- Evolutionary-scale prediction of atomic-level protein structure with a language model. Science, 2023. doi:10.1101/2022.07.20.500902 (preprint text)
+- Simulating 500 million years of evolution with a language model. Science, 2025. doi:10.1101/2024.07.01.600583 (preprint text)
+- Language Modeling Materializes a World Model of Protein Biology. bioRxiv (Cold Spring Harbor Laboratory), 2026. doi:10.64898/2026.06.03.729735 (preprint text)

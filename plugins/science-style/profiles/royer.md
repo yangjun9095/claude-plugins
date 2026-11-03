@@ -61,3 +61,18 @@ The distinctive words are topic words of imaging and tracking: tracking, image, 
 The card uses preprint text for 4 of 10 papers and arXiv text for 2 of 10 papers, and that wording can differ from the published paper. The card left out 0 of 10 papers.
 
 The checklist could not measure the excitement item reliably, so that section holds no pattern. The first-author group holds 1 of 10 papers, so the card cannot compare groups. Trainees draft most senior-author papers, so the card describes the papers of the person's group.
+
+## Papers
+
+The card rests on these 10 papers.
+
+- Network Compression as a Quality Measure for Protein Interaction Networks. PLoS ONE, 2012. doi:10.1371/journal.pone.0035729 (published text)
+- Content-aware image restoration: pushing the limits of fluorescence microscopy. Nature Methods, 2018. doi:10.1101/236463 (preprint text)
+- CLIJ: GPU-accelerated image processing for everyone. Nature Methods, 2019. doi:10.1101/660704 (preprint text)
+- Image Deconvolution via Noise-Tolerant Self-Supervised Inversion. arXiv (Cornell University), 2020. doi:10.48550/arxiv.2006.06156 (arxiv text)
+- ZAF, the first open source fully automated feeder for aquatic facilities. eLife, 2021. doi:10.7554/elife.74234 (published text)
+- DaXi—high-resolution, large imaging volume and multi-view single-objective light-sheet microscopy. Nature Methods, 2022. doi:10.1038/s41592-022-01417-2 (published text)
+- Self-supervised deep learning encodes high-resolution features of protein subcellular localization. Nature Methods, 2022. doi:10.1038/s41592-022-01541-z (published text)
+- inTRACKtive: a web-based tool for interactive cell tracking visualization. Nature Methods, 2025. doi:10.1101/2024.10.18.618998 (preprint text)
+- Ultrack: pushing the limits of cell tracking across biological scales. Nature Methods, 2025. doi:10.1101/2024.09.02.610652 (preprint text)
+- CellTrack-Bench: Microscopic Cell Tracking Benchmark for Vision-Language Models. arXiv (Cornell University), 2026. doi:10.48550/arxiv.2610.31566 (arxiv text)

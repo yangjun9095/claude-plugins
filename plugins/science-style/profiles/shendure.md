@@ -52,3 +52,20 @@ Sentences start most often with we, the, in, for and this. For example is the mo
 ## Caveats
 
 The card uses accepted manuscripts, published versions and preprints, in the counts given under Sample. The card leaves out 0 of 12 papers. The results items cover 9 of 12 papers, because the 3 essay papers do not enter them. The checklist could not measure the excitement item reliably, so the card states no pattern from it. Trainees draft most senior-author papers, so the card describes the papers of the person's group.
+
+## Papers
+
+The card rests on these 12 papers.
+
+- Computational discovery of sense-antisense transcription in the human and mouse genomes. Genome biology, 2002. doi:10.1186/gb-2002-3-9-research0044 (published text)
+- Parallel, tag-directed assembly of locally derived short sequence reads. Nature Methods, 2010. doi:10.1038/nmeth.1416 (accepted text)
+- The expanding scope of DNA sequencing. Nature Biotechnology, 2012. doi:10.1038/nbt.2421 (accepted text)
+- Chromosome-scale scaffolding of de novo genome assemblies based on chromatin interactions. Nature Biotechnology, 2013. doi:10.1038/nbt.2727 (accepted text)
+- Primate evolution of the recombination regulator PRDM9. Nature Communications, 2014. doi:10.1038/ncomms5370 (accepted text)
+- Understanding Spatial Genome Organization: Methods and Insights. Genomics Proteomics & Bioinformatics, 2016. doi:10.1016/j.gpb.2016.01.002 (published text)
+- Functional characterization of enhancer evolution in the primate lineage. Genome biology, 2018. doi:10.1186/s13059-018-1473-6 (published text)
+- Multiplex assessment of protein variant abundance by massively parallel sequencing. Nature Genetics, 2018. doi:10.1038/s41588-018-0122-z (accepted text)
+- Cryptic transmission of SARS-CoV-2 in Washington state. Science, 2020. doi:10.1101/2020.04.02.20051417 (preprint text)
+- Towards a comprehensive catalogue of validated and target-linked human enhancers. Nature Reviews Genetics, 2020. doi:10.1038/s41576-019-0209-0 (accepted text)
+- Evolutionary transfer learning enables organism-wide inference of mammalian enhancer landscapes. no venue, 2026. doi:10.64898/2026.04.07.717039 (preprint text)
+- The proteomic landscape and temporal dynamics of human and mouse gastruloid development. Nature Cell Biology, 2026. doi:10.1038/s41556-026-01937-5 (published text)

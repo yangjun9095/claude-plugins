@@ -63,3 +63,19 @@ Papers benchmark against existing tools: "Dictys consistently outperformed exist
 The profile left out 0 of 11 papers. The text versions appear under Sample. Quotes from the Haystack and Dictys papers carry preprint DOIs.
 
 The checklist could not measure the excitement item reliably, so the card states no pattern for it. The first-author counts rest on 3 of 11 papers. Trainees draft most senior-author papers, so the card describes the papers of the person's group.
+
+## Papers
+
+The card rests on these 11 papers.
+
+- A motif-independent metric for DNA sequence specificity. BMC Bioinformatics, 2011. doi:10.1186/1471-2105-12-408 (published text)
+- Multi Layer Analysis. arXiv (Cornell University), 2011. doi:10.48550/arxiv.1107.5349 (arxiv text)
+- Analyzing CRISPR genome-editing experiments with CRISPResso. Nature Biotechnology, 2016. doi:10.1038/nbt.3583 (accepted text)
+- Haystack: systematic analysis of the variation of epigenetic states and cell-type specific regulatory elements. Bioinformatics, 2018. doi:10.1101/199067 (preprint text)
+- Integrated design, execution, and analysis of arrayed and pooled CRISPR genome-editing experiments. Nature Protocols, 2018. doi:10.1038/nprot.2018.005 (accepted text)
+- CRISPResso2 provides accurate and rapid genome editing sequence analysis. Nature Biotechnology, 2019. doi:10.1038/s41587-019-0032-3 (accepted text)
+- High throughput single-cell detection of multiplex CRISPR-edited gene modifications. Genome biology, 2020. doi:10.1186/s13059-020-02174-1 (published text)
+- Human genetic diversity alters off-target outcomes of therapeutic gene editing. Nature Genetics, 2022. doi:10.1038/s41588-022-01257-y (accepted text)
+- Dictys: dynamic gene regulatory network dissects developmental continuum with single-cell multiomics. Nature Methods, 2023. doi:10.1101/2022.09.14.508036 (preprint text)
+- Analyzing long-read CRISPR experiments with CRISPRLungo. bioRxiv (Cold Spring Harbor Laboratory), 2025. doi:10.1101/2025.10.21.683786 (preprint text)
+- Designing synthetic regulatory elements using the generative AI framework DNA-Diffusion. Nature Genetics, 2025. doi:10.1038/s41588-025-02441-6 (accepted text)
