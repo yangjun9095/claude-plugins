@@ -1,13 +1,18 @@
-# CodeQL Quality SARIF as artifact
+# CodeQL Quality SARIF as artifact (fallback)
 #
 # Runs CodeQL with the Python code-quality and code-quality-extended query
 # suites and uploads the resulting SARIFs as downloadable workflow artifacts.
-# Bypasses GitHub's REST API gap for /security/quality findings (Standard +
-# AI tabs), which are not exposed via /code-scanning/alerts.
 #
-# Doesn't upload to GitHub's code-scanning UI — the existing default-setup
-# CodeQL workflow (if any) continues unchanged. Self-contained: delete this
-# file to disable.
+# The codeql-quality-review plugin reads findings from the GitHub REST API
+# first (GET /repos/{owner}/{repo}/code-quality/findings). It uses this
+# workflow as a fallback in four cases: the host is GitHub Enterprise
+# Server, the API does not return the findings of the AI tab (unverified),
+# the user passes --fallback, or the API returns 403 or 404 and the user
+# chooses the fallback. A 503 from the API never starts the fallback.
+#
+# The workflow does not upload to the code scanning UI. The existing
+# default-setup CodeQL workflow (if any) continues unchanged. To disable
+# the fallback, delete this file.
 #
 # Trigger: manual only (workflow_dispatch). Run on demand when you need to
 # see actual Code Quality findings.
