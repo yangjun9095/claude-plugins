@@ -1,4 +1,5 @@
 """Tests for lab/lab_openalex.py. All people and papers in this file are made up."""
+import copy
 import os
 import sys
 import unittest
@@ -263,6 +264,191 @@ class SharedTests(unittest.TestCase):
     def test_a_paper_of_one_person_stays(self):
         record = classify(make_work("W9", others(2) + [ADA_AUTHOR]))[0]
         self.assertEqual(lo.owner_of(record, [ADA, BEN]), "ada")
+
+
+TEAM = {"id": "ada-ben", "name": "Ada Quill and Ben Rowan (joint papers)", "members": ["ada", "ben"],
+        "confirmed_by": "test"}
+ADA_SIGNED = author("A1", ADA["orcid"])
+BEN_SIGNED = author("A2", BEN["orcid"])
+
+
+def member_works(*works):
+    """Return the discovery dict of Ada and of Ben for the same OpenAlex works, as discover builds them."""
+    out = []
+    for person in (ADA, BEN):
+        kept, dropped = [], []
+        for work in works:
+            record, reason = lo.classify(work, person, VENUES)
+            if record:
+                kept.append(record)
+            else:
+                dropped.append({"work_id": lo.short_id(work["id"]), "title": work["title"], "type": work["type"],
+                                "reason": reason})
+        papers, merged = lo.merge_preprints(kept)
+        out.append({"schema": 1, "person": person["id"], "orcid": person["orcid"], "n_works": len(works),
+                    "papers": papers, "dropped": dropped, "merged": merged})
+    return out
+
+
+def team_of(*works):
+    return lo.team_works(TEAM, member_works(*works), [ADA, BEN])
+
+
+class TeamWorksTests(unittest.TestCase):
+    def test_a_paper_with_both_members_and_one_last_author_is_kept_as_senior(self):
+        work = make_work("W1", others(2) + [ADA_SIGNED, BEN_SIGNED], title="A joint atlas", doi="10.1000/j1",
+                         venue="Cell Systems", year=2018, pmcid="PMC5000001")
+        result = team_of(work)
+        self.assertEqual([p["work_id"] for p in result["papers"]], ["W1"])
+        paper = result["papers"][0]
+        self.assertEqual(paper["group"], "senior")
+        self.assertEqual((paper["tier"], paper["venue"], paper["doi"], paper["pmcid"]),
+                         ("high", "Cell Systems", "10.1000/j1", "PMC5000001"))
+        self.assertEqual(result["dropped"], [])
+
+    def test_the_result_has_the_shape_of_an_individual_works_file(self):
+        result = team_of(make_work("W1", others(2) + [ADA_SIGNED, BEN_SIGNED]))
+        self.assertEqual(sorted(result), ["dropped", "merged", "n_works", "papers", "person", "schema"])
+        self.assertEqual((result["schema"], result["person"], result["n_works"]), (1, "ada-ben", 1))
+        self.assertEqual(result["merged"], [])
+
+    def test_a_paper_that_one_member_drops_as_middle_author_is_kept_from_the_other_file(self):
+        work = make_work("W2", others(1) + [ADA_SIGNED] + others(1, 95) + [BEN_SIGNED], title="Ada in the middle")
+        ada_file, ben_file = member_works(work)
+        self.assertEqual(ada_file["papers"], [])
+        self.assertEqual([p["work_id"] for p in ben_file["papers"]], ["W2"])
+        result = lo.team_works(TEAM, [ada_file, ben_file], [ADA, BEN])
+        self.assertEqual([p["work_id"] for p in result["papers"]], ["W2"])
+        self.assertEqual(result["papers"][0]["group"], "senior")
+
+    def test_a_first_author_record_becomes_senior_when_the_other_member_is_last(self):
+        work = make_work("W3", [ADA_SIGNED] + others(2) + [BEN_SIGNED], title="Ada leads, Ben is last")
+        ada_file, ben_file = member_works(work)
+        self.assertEqual(ada_file["papers"][0]["group"], "first")
+        result = lo.team_works(TEAM, [ada_file, ben_file], [ADA, BEN])
+        self.assertEqual([(p["work_id"], p["group"]) for p in result["papers"]], [("W3", "senior")])
+
+    def test_a_corresponding_member_who_is_not_first_counts_as_senior(self):
+        work = make_work("W4", others(1) + [author("A1", ADA["orcid"], True)] + others(2, 95) + [BEN_SIGNED] + others(1, 97),
+                         title="Ada corresponds")
+        result = team_of(work)
+        self.assertEqual([p["work_id"] for p in result["papers"]], ["W4"])
+
+    def test_a_paper_where_no_member_is_last_or_corresponding_is_dropped(self):
+        work = make_work("W5", [ADA_SIGNED] + others(2) + [BEN_SIGNED] + others(2, 95), title="Neither leads")
+        ada_file, ben_file = member_works(work)
+        self.assertEqual(ben_file["papers"], [])
+        result = lo.team_works(TEAM, [ada_file, ben_file], [ADA, BEN])
+        self.assertEqual(result["papers"], [])
+        self.assertEqual(result["dropped"][0]["work_id"], "W5")
+        self.assertEqual(result["dropped"][0]["reason"], "no member is last or corresponding author")
+        self.assertEqual(result["n_works"], 1)
+
+    def test_a_paper_of_one_member_alone_is_dropped(self):
+        work = make_work("W6", others(2) + [ADA_SIGNED], title="Ada alone")
+        result = team_of(work)
+        self.assertEqual(result["papers"], [])
+        self.assertEqual([(d["work_id"], d["reason"]) for d in result["dropped"]],
+                         [("W6", "not every member is in the author list")])
+
+    def test_a_paper_in_both_files_appears_once(self):
+        work = make_work("W7", [ADA_SIGNED] + others(2) + [BEN_SIGNED])
+        files = member_works(work)
+        self.assertEqual([len(f["papers"]) for f in files], [1, 1])
+        result = lo.team_works(TEAM, files, [ADA, BEN])
+        self.assertEqual(len(result["papers"]), 1)
+        self.assertEqual(result["n_works"], 1)
+
+    def test_papers_are_sorted_by_year_then_work_id(self):
+        late = make_work("W9", others(2) + [ADA_SIGNED, BEN_SIGNED], title="Late", year=2022)
+        early = make_work("W8", others(2) + [ADA_SIGNED, BEN_SIGNED], title="Early", year=2011)
+        result = team_of(late, early)
+        self.assertEqual([p["work_id"] for p in result["papers"]], ["W8", "W9"])
+
+    def test_a_preprint_and_its_journal_paper_merge_across_the_member_files(self):
+        journal = make_work("W11", others(2) + [ADA_SIGNED, BEN_SIGNED], title="Fern Spores Swell", doi="10.1000/f",
+                            year=2016)
+        preprint = make_work("W10", others(2) + [ADA_SIGNED, BEN_SIGNED], title="Fern spores swell",
+                             wtype="preprint", venue="bioRxiv", doi="10.1101/933333", year=2015)
+        ada_file, ben_file = member_works(journal, preprint)
+        ada_file["papers"] = [p for p in ada_file["papers"] if p["work_id"] == "W10"]
+        ben_file["papers"] = [p for p in ben_file["papers"] if p["work_id"] == "W11"]
+        result = lo.team_works(TEAM, [ada_file, ben_file], [ADA, BEN])
+        self.assertEqual([p["work_id"] for p in result["papers"]], ["W11"])
+        self.assertEqual(result["papers"][0]["preprint_doi"], "10.1101/933333")
+        self.assertEqual(result["merged"], [{"kept": "W11", "merged": "W10", "title": "Fern spores swell"}])
+
+    def test_the_merges_of_the_members_carry_over_for_kept_papers_only(self):
+        journal = make_work("W13", [ADA_SIGNED] + others(2) + [BEN_SIGNED], title="Moss Dries", doi="10.1000/m",
+                            year=2016)
+        preprint = make_work("W12", [ADA_SIGNED] + others(2) + [BEN_SIGNED], title="Moss dries", wtype="preprint",
+                             venue="bioRxiv", doi="10.1101/944444", year=2015)
+        lone = make_work("W15", others(2) + [ADA_SIGNED], title="Lone Rock", doi="10.1000/lr", year=2017)
+        lone_preprint = make_work("W14", others(2) + [ADA_SIGNED], title="Lone rock", wtype="preprint",
+                                  venue="bioRxiv", doi="10.1101/955555", year=2016)
+        ada_file, ben_file = member_works(journal, preprint, lone, lone_preprint)
+        self.assertEqual(sorted(m["kept"] for m in ada_file["merged"]), ["W13", "W15"])
+        result = lo.team_works(TEAM, [ada_file, ben_file], [ADA, BEN])
+        self.assertEqual([p["work_id"] for p in result["papers"]], ["W13"])
+        self.assertEqual([(m["kept"], m["merged"]) for m in result["merged"]], [("W13", "W12")])
+
+    def test_an_identifier_that_only_the_second_file_holds_is_filled_in(self):
+        work = make_work("W16", others(2) + [ADA_SIGNED, BEN_SIGNED], title="Ferns", doi="10.1000/fe")
+        ada_file, ben_file = member_works(work)
+        ben_file["papers"][0]["pmcid"] = "PMC5000016"
+        ben_file["papers"][0]["arxiv_id"] = "2101.00016"
+        result = lo.team_works(TEAM, [ada_file, ben_file], [ADA, BEN])
+        paper = result["papers"][0]
+        self.assertEqual((paper["pmcid"], paper["arxiv_id"]), ("PMC5000016", "2101.00016"))
+
+    def test_the_position_fields_describe_the_most_senior_member(self):
+        work = make_work("W17", [ADA_SIGNED] + others(2) + [BEN_SIGNED], title="Ada first, Ben last")
+        paper = team_of(work)["papers"][0]
+        self.assertEqual((paper["position"], paper["author_index"], paper["n_authors"]), ("last", 3, 4))
+
+    def test_co_senior_is_true_only_for_a_corresponding_author_outside_the_team(self):
+        inside = make_work("W18", others(2) + [author("A1", ADA["orcid"], True), author("A2", BEN["orcid"], True)],
+                           title="Both correspond")
+        outside = make_work("W19", [author("A90", None, True)] + others(1, 91) + [ADA_SIGNED, BEN_SIGNED],
+                            title="A third author corresponds")
+        papers = {p["work_id"]: p for p in team_of(inside, outside)["papers"]}
+        self.assertFalse(papers["W18"]["co_senior"])
+        self.assertTrue(papers["W19"]["co_senior"])
+
+    def test_the_member_files_stay_unchanged(self):
+        work = make_work("W20", [ADA_SIGNED] + others(2) + [BEN_SIGNED], title="Unchanged")
+        files = member_works(work)
+        before = copy.deepcopy(files)
+        lo.team_works(TEAM, files, [ADA, BEN])
+        self.assertEqual(files, before)
+
+    def test_a_team_of_three_needs_all_three_members(self):
+        cal = {"id": "cal", "name": "Cal Moss", "orcid": "0000-0000-0000-0003", "openalex_ids": ["A3"],
+               "ml_venues": False, "confirmed_by": "test"}
+        three = dict(TEAM, id="trio", members=["ada", "ben", "cal"])
+        work = make_work("W21", others(2) + [ADA_SIGNED, BEN_SIGNED], title="Two of three")
+        files = member_works(work)
+        result = lo.team_works(three, files, [ADA, BEN, cal])
+        self.assertEqual(result["papers"], [])
+        self.assertEqual(result["dropped"][0]["reason"], "not every member is in the author list")
+
+
+class SharedWithTeamsTests(unittest.TestCase):
+    def test_assign_shared_leaves_a_team_alone(self):
+        work = make_work("W22", others(3) + [author("A1", ADA["orcid"], True), author("A2", BEN["orcid"], True)])
+        team_paper = dict(classify(work)[0])
+        discoveries = {"ada": {"papers": [classify(work)[0]], "dropped": []},
+                       "ben": {"papers": [lo.classify(work, BEN, VENUES)[0]], "dropped": []},
+                       "ada-ben": {"papers": [team_paper], "dropped": []}}
+        lo.assign_shared(discoveries, [ADA, BEN, TEAM])
+        self.assertEqual([r["work_id"] for r in discoveries["ben"]["papers"]], ["W22"])
+        self.assertEqual(discoveries["ada"]["papers"], [])
+        self.assertEqual([r["work_id"] for r in discoveries["ada-ben"]["papers"]], ["W22"])
+        self.assertEqual(discoveries["ada-ben"]["dropped"], [])
+
+    def test_a_team_never_owns_a_paper(self):
+        record = classify(make_work("W23", [ADA_SIGNED] + others(2) + [BEN_SIGNED]))[0]
+        self.assertEqual(lo.owner_of(record, [TEAM, ADA, BEN]), "ben")
 
 
 def page(results, count=None):

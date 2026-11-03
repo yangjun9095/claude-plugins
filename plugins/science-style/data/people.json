@@ -21,6 +21,9 @@
      "confirmed_by": "orchestrator, 2026-10-30"},
     {"id": "rives", "name": "Alexander Rives", "orcid": "0000-0003-2208-0796",
      "openalex_ids": ["A5029063409"], "ml_venues": true,
-     "confirmed_by": "orchestrator, 2026-10-30"}
+     "confirmed_by": "orchestrator, 2026-10-30"},
+    {"id": "shendure-trapnell", "name": "Jay Shendure and Cole Trapnell (joint papers)",
+     "members": ["shendure", "trapnell"], "confirmed_by": "orchestrator, 2026-11-03",
+     "note": "papers that list both and where one of them is last or corresponding author"}
   ]
 }

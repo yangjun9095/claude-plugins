@@ -11,8 +11,8 @@ This skill is a prototype. It reads the style cards that the lab wrote on 2026-1
 
 ## Before you write
 
-1. Get three facts from the request, or ask for them in one question: the genre (manuscript section, abstract, blog post or grant aim), the section, and the card (a person id from `<plugin>/data/people.json`, or `principles`).
-2. Read `<plugin>/profiles/principles.md`. For a person, also read `<plugin>/profiles/<id>.md`. Read `<plugin>/profiles/<id>.json` only to check a count.
+1. Get three facts from the request, or ask for them in one question: the genre (manuscript section, abstract, blog post or grant aim), the section, and the card (a person id or a team id from `<plugin>/data/people.json`, or `principles`). A team card describes the joint papers of its members.
+2. Read `<plugin>/profiles/principles.md`. For a person or a team, also read `<plugin>/profiles/<id>.md`. Read `<plugin>/profiles/<id>.json` only to check a count.
 3. Take the moves from the card sections that fit the text:
 
    | Text | Card sections |

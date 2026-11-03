@@ -2,11 +2,13 @@
 
 Discovery finds works by ORCID and by every OpenAlex author ID in the registry entry, because one
 person can have two OpenAlex records. Each kept work becomes a record with one group: essay,
-senior or first. Shared papers go to one person only (assign_shared).
+senior or first. Shared papers go to one person only (assign_shared). A team is built from the
+works files of its members (team_works) and makes no request.
 """
 import re
 import urllib.parse
 
+from lab_registry import is_team
 from lab_text import normalize_doi, normalize_title
 from lab_venues import is_essay_venue, tier_of
 
@@ -233,9 +235,11 @@ def _rank(brief, index):
 
 def owner_of(record, people):
     """Return the id of the person who may draw the paper: last author, then a corresponding
-    author, then the first author. Registry order breaks a tie."""
+    author, then the first author. Registry order breaks a tie. A team never owns a paper."""
     best = None
     for order, person in enumerate(people):
+        if is_team(person):
+            continue
         index = person_index(record["authors"], person)
         if index is None:
             continue
@@ -248,9 +252,12 @@ def owner_of(record, people):
 def assign_shared(discoveries, people):
     """Move each shared paper to the dropped list of every person except its owner.
 
-    discoveries maps a person id to a discovery dict. The function changes it and returns it.
+    discoveries maps a person id to a discovery dict. The function changes it and returns it. It
+    skips the teams in people: their papers stay as they are.
     """
     for person in people:
+        if is_team(person):
+            continue
         discovery = discoveries[person["id"]]
         keep = []
         for record in discovery["papers"]:
@@ -281,3 +288,92 @@ def discover(http, person, venues):
     return {"schema": 1, "person": person["id"], "orcid": person["orcid"],
             "venues_version": venues.get("version"), "n_works": len(works),
             "papers": papers, "dropped": dropped, "merged": merged}
+
+
+NOT_EVERY_MEMBER = "not every member is in the author list"
+NO_SENIOR_MEMBER = "no member is last or corresponding author"
+FILL_FIELDS = ("pmcid", "preprint_doi", "arxiv_id")
+
+
+def _senior_member(record, members_people):
+    """Return the index in record["authors"] of the most senior member, or None.
+
+    A member is senior as the last or sole author, or as a corresponding author who is not first. The
+    last author ranks above a corresponding author. Member order breaks a tie. The function returns
+    None when a member is missing from the author list or no member is senior.
+    """
+    best = None
+    for order, person in enumerate(members_people):
+        index = person_index(record["authors"], person)
+        if index is None:
+            return None
+        key = (_rank(record["authors"], index), order)
+        if best is None or key < best[0]:
+            best = (key, index)
+    return best[1] if best and best[0][0] <= 1 else None
+
+
+def team_record(record, members_people):
+    """Return (record, None) for a team paper, or (None, reason) for a paper that does not qualify.
+
+    The paper qualifies when the author list holds every member and at least one member is the last
+    author or a corresponding author who is not first. The team record is a copy of the member record
+    with the group "senior". The position fields describe the most senior member. co_senior is true
+    when an author outside the team is a corresponding author.
+    """
+    authors = record["authors"]
+    if any(person_index(authors, person) is None for person in members_people):
+        return None, NOT_EVERY_MEMBER
+    index = _senior_member(record, members_people)
+    if index is None:
+        return None, NO_SENIOR_MEMBER
+    out = dict(record)
+    inside = {person_index(authors, person) for person in members_people}
+    out.update({
+        "group": "senior", "position": position_name(index, len(authors)), "author_index": index,
+        "n_authors": len(authors), "is_corresponding": authors[index]["corresponding"],
+        "co_senior": any(entry["corresponding"] for i, entry in enumerate(authors) if i not in inside),
+    })
+    return out, None
+
+
+def team_works(team, member_works, members_people):
+    """Return the discovery of a team from the discoveries of its members. It makes no request.
+
+    member_works holds the discovery dict of each member and members_people the registry entries,
+    both in member order. The function takes every kept paper of the members, once for each work id.
+    A paper with every member in its author list and a senior member (see team_record) becomes a team
+    paper. The group of a team paper is "senior". Venue, tier and identifiers come from the record of
+    the first member that holds the paper, and an identifier that only a later member holds fills a
+    gap. The result has the shape of discover: schema, person, n_works, papers, dropped and merged.
+    """
+    records, order = {}, []
+    for works in member_works:
+        for record in works["papers"]:
+            wid = record["work_id"]
+            if wid not in records:
+                records[wid] = dict(record)
+                order.append(wid)
+                continue
+            for field in FILL_FIELDS:
+                if not records[wid].get(field) and record.get(field):
+                    records[wid][field] = record[field]
+    kept, dropped = [], []
+    for wid in order:
+        record, reason = team_record(records[wid], members_people)
+        if record:
+            kept.append(record)
+        else:
+            dropped.append({"work_id": wid, "title": records[wid]["title"][:200], "type": records[wid]["type"],
+                            "reason": reason})
+    papers, merged = merge_preprints(kept)
+    seen = {(m["kept"], m["merged"]) for m in merged}
+    wanted = {p["work_id"] for p in papers}
+    for works in member_works:
+        for item in works.get("merged", []):
+            if item["kept"] in wanted and (item["kept"], item["merged"]) not in seen:
+                seen.add((item["kept"], item["merged"]))
+                merged.append(dict(item))
+    dropped.sort(key=lambda d: d["work_id"])
+    return {"schema": 1, "person": team["id"], "n_works": len(order), "papers": papers,
+            "dropped": dropped, "merged": merged}

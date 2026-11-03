@@ -12,6 +12,10 @@ The style lab finds open-access papers of chosen scientists and extracts how eac
 
 Set `STYLE_LAB_DATA` to a scratch folder outside the repository before any step. Every downloaded full text, paper file and extraction stays in that folder. The scripts refuse a folder inside the git worktree.
 
+## People and teams
+
+The registry `data/people.json` holds individuals and teams. An individual has an ORCID and OpenAlex author IDs. A team lists `members`, the ids of at least 2 individuals, and stands for their joint papers: the papers that list every member and where one member is the last author or a corresponding author who is not first. The registry holds one team, `shendure-trapnell`. A team card is built, checked and published like a person card. The principles use individuals only.
+
 ## Run the lab
 
 In Claude Code, run `/style-lab <person ids> --pilot` for a pilot, then `/style-lab all`. The command runs the steps below and dispatches the subagents.

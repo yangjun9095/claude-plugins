@@ -230,6 +230,34 @@ class PromptTests(unittest.TestCase):
         self.assertEqual([f for f in failures if f.startswith("write numbers as digits")], [])
 
 
+TEAM_CARD_SENTENCE = ("A team card names its members in the title line, and its Caveats say that the card "
+                      "describes the joint papers of those members.")
+PRINCIPLES_TEAM_SENTENCE = "Use the profiles of individuals only and skip every team profile."
+SKILL_TEAM_SENTENCE = "a person id or a team id from `<plugin>/data/people.json`"
+
+
+class TeamDocumentTests(unittest.TestCase):
+    def test_the_card_brief_says_how_a_team_card_differs(self):
+        text = " ".join(read(PLUGIN, "prompts", "card.md").split())
+        self.assertIn(TEAM_CARD_SENTENCE, text)
+        self.assertLessEqual(len(TEAM_CARD_SENTENCE.split()), 25)
+
+    def test_the_principles_brief_uses_individuals_only(self):
+        text = " ".join(read(PLUGIN, "prompts", "principles.md").split())
+        self.assertIn(PRINCIPLES_TEAM_SENTENCE, text)
+
+    def test_the_skill_accepts_a_person_id_or_a_team_id(self):
+        text = " ".join(read(PLUGIN, "skills", "science-write", "SKILL.md").split())
+        self.assertIn(SKILL_TEAM_SENTENCE, text)
+
+    def test_the_command_and_the_readme_describe_teams(self):
+        for path in (("commands", "style-lab.md"), ("README.md",)):
+            text = read(PLUGIN, *path)
+            self.assertIn("team", text, path)
+            self.assertIn("members", text, path)
+        self.assertIn("shendure-trapnell", read(PLUGIN, "README.md"))
+
+
 class CommandTests(unittest.TestCase):
     def setUp(self):
         self.text = read(PLUGIN, "commands", "style-lab.md")

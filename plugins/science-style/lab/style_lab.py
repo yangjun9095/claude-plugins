@@ -98,11 +98,19 @@ class Context(object):
         return getattr(self.args, "pilot", False)
 
     def selected(self):
+        """Return the chosen entries: the individuals first, then the teams, each in the given order."""
         if getattr(self.args, "all", False):
-            return list(self.people)
-        if not self.args.people:
+            chosen = list(self.people)
+        elif not self.args.people:
             raise UsageError("name at least one person, or give --all")
-        return [lab_registry.get_person(self.people, pid) for pid in self.args.people]
+        else:
+            chosen = [lab_registry.get_person(self.people, pid) for pid in self.args.people]
+        return ([p for p in chosen if not lab_registry.is_team(p)]
+                + [p for p in chosen if lab_registry.is_team(p)])
+
+    def individuals(self):
+        """Return the individual entries of the registry, in registry order."""
+        return [p for p in self.people if not lab_registry.is_team(p)]
 
     def manifest_path(self, person_id):
         return os.path.join(lab_paths.manifests_dir(self.data, self.pilot()), person_id + ".json")
@@ -129,9 +137,19 @@ def cmd_candidates(ctx):
 
 def cmd_discover(ctx):
     venues = lab_venues.load_venues(ctx.args.venues)
-    http = ctx.http(refresh=ctx.args.refresh)
-    for person in ctx.selected():
-        result = lab_openalex.discover(http, person, venues)
+    chosen = ctx.selected()
+    http = None
+    for person in chosen:
+        if lab_registry.is_team(person):
+            members = lab_registry.team_members(ctx.people, person)
+            missing = [m["id"] for m in members if not os.path.exists(lab_paths.works_path(ctx.data, m["id"]))]
+            if missing:
+                raise UsageError("run discover first for the members of {}: {}".format(person["id"], ", ".join(missing)))
+            member_works = [lab_paths.read_json(lab_paths.works_path(ctx.data, m["id"])) for m in members]
+            result = lab_openalex.team_works(person, member_works, members)
+        else:
+            http = http or ctx.http(refresh=ctx.args.refresh)
+            result = lab_openalex.discover(http, person, venues)
         lab_paths.write_json(lab_paths.works_path(ctx.data, person["id"]), result)
         ctx.say("{}: {} works, {} papers, {} dropped, {} merged".format(
             person["id"], result["n_works"], len(result["papers"]), len(result["dropped"]), len(result["merged"])))
@@ -140,16 +158,21 @@ def cmd_discover(ctx):
 
 def cmd_sample(ctx):
     venues = lab_venues.load_venues(ctx.args.venues)
-    missing = [p["id"] for p in ctx.people if not os.path.exists(lab_paths.works_path(ctx.data, p["id"]))]
+    individuals = ctx.individuals()
+    chosen = ctx.selected()
+    needed = individuals + [p for p in chosen if lab_registry.is_team(p)]
+    missing = [p["id"] for p in needed if not os.path.exists(lab_paths.works_path(ctx.data, p["id"]))]
     if missing:
         raise UsageError("run discover first for: " + ", ".join(missing))
-    chosen = ctx.selected()
     for person in chosen:
         path = ctx.manifest_path(person["id"])
         if os.path.exists(path) and not ctx.args.force:
             raise UsageError("{} exists; give --force to replace it".format(path))
-    discoveries = {p["id"]: lab_paths.read_json(lab_paths.works_path(ctx.data, p["id"])) for p in ctx.people}
-    lab_openalex.assign_shared(discoveries, ctx.people)
+    discoveries = {p["id"]: lab_paths.read_json(lab_paths.works_path(ctx.data, p["id"])) for p in individuals}
+    lab_openalex.assign_shared(discoveries, individuals)
+    for person in chosen:
+        if lab_registry.is_team(person):
+            discoveries[person["id"]] = lab_paths.read_json(lab_paths.works_path(ctx.data, person["id"]))
     for person in chosen:
         manifest = lab_sample.build_sample(person["id"], discoveries[person["id"]]["papers"], seed=ctx.args.seed,
                                            venues_version=venues.get("version"))
@@ -194,24 +217,46 @@ def _fetched(manifest):
 
 
 def cmd_surface(ctx):
+    """Write the surface file of each chosen entry.
+
+    The comparison of distinctive words for individuals uses individuals only, so a team never
+    changes their files. A team meets the individuals who are not its members, and the command
+    writes only the file of the team.
+    """
     wordlists = lab_surface.load_wordlists(ctx.args.wordlists)
-    selected = [person["id"] for person in ctx.selected()]
+    selected = ctx.selected()
     manifests = {m["person"]: m for m in _manifests(ctx)}
-    for person_id in selected:
-        if person_id not in manifests:
-            raise UsageError("no manifest for {}: run sample first".format(person_id))
-    papers_by_person = {}
-    for person_id, manifest in manifests.items():
-        papers_by_person[person_id] = [lab_paths.read_json(lab_paths.paper_path(ctx.data, person_id, p["work_id"]))
-                                       for p in _fetched(manifest)]
+    for person in selected:
+        if person["id"] not in manifests:
+            raise UsageError("no manifest for {}: run sample first".format(person["id"]))
+    team_ids = {p["id"] for p in ctx.people if lab_registry.is_team(p)}
+    read = {}
+
+    def papers_of(person_id):
+        if person_id not in read:
+            read[person_id] = [lab_paths.read_json(lab_paths.paper_path(ctx.data, person_id, p["work_id"]))
+                               for p in _fetched(manifests[person_id])]
+        return read[person_id]
+
     folder = lab_paths.stage_dir(ctx.data, ctx.pilot(), "surface")
-    for person_id, result in sorted(lab_surface.run_surface(papers_by_person, wordlists).items()):
-        if person_id not in selected:
-            continue
-        lab_paths.write_json(os.path.join(folder, person_id + ".json"), result)
-        note = "; " + result["distinctive_note"] if result["distinctive_note"] else ""
-        ctx.say("{}: {} papers, {} sentences{}".format(person_id, result["n_papers"],
-                                                       result["pooled"]["n_sentences"], note))
+
+    def write(results, wanted):
+        for person_id, result in sorted(results.items()):
+            if person_id not in wanted:
+                continue
+            lab_paths.write_json(os.path.join(folder, person_id + ".json"), result)
+            note = "; " + result["distinctive_note"] if result["distinctive_note"] else ""
+            ctx.say("{}: {} papers, {} sentences{}".format(person_id, result["n_papers"],
+                                                           result["pooled"]["n_sentences"], note))
+
+    chosen = [p["id"] for p in selected if p["id"] not in team_ids]
+    if chosen:
+        everyone = {pid: papers_of(pid) for pid in manifests if pid not in team_ids}
+        write(lab_surface.run_surface(everyone, wordlists), chosen)
+    for team in (p for p in selected if p["id"] in team_ids):
+        others = {pid: papers_of(pid) for pid in manifests if pid not in team_ids and pid not in team["members"]}
+        others[team["id"]] = papers_of(team["id"])
+        write(lab_surface.run_surface(others, wordlists), [team["id"]])
     return 0
 
 
@@ -271,8 +316,9 @@ def cmd_aggregate(ctx):
     return 0
 
 
-def _profiles(ctx):
-    paths = [ctx.profile_path(p["id"]) for p in ctx.people]
+def _profiles(ctx, individuals_only=False):
+    people = ctx.individuals() if individuals_only else ctx.people
+    paths = [ctx.profile_path(p["id"]) for p in people]
     return [lab_paths.read_json(path) for path in paths if os.path.exists(path)]
 
 
@@ -280,7 +326,7 @@ def cmd_check_card(ctx):
     total = 0
     for target in ctx.args.targets:
         if target == "principles":
-            kind, profiles = "principles", _profiles(ctx)
+            kind, profiles = "principles", _profiles(ctx, individuals_only=True)
         else:
             lab_registry.get_person(ctx.people, target)
             if not os.path.exists(ctx.profile_path(target)):

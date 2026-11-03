@@ -86,6 +86,99 @@ class RegistryTests(unittest.TestCase):
             lr.get_person([ADA], "zed")
 
 
+BEN = dict(ADA, id="ben", name="Ben Rowan", orcid="0000-0000-0000-0002", openalex_ids=["A2"])
+TEAM = {"id": "ada-ben", "name": "Ada Quill and Ben Rowan (joint papers)", "members": ["ada", "ben"],
+        "confirmed_by": "test", "note": "papers that list both"}
+
+
+class TeamRegistryTests(unittest.TestCase):
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(self.tmp.cleanup)
+        self.path = os.path.join(self.tmp.name, "people.json")
+
+    def write(self, people):
+        with open(self.path, "w", encoding="utf-8") as handle:
+            json.dump({"schema": 1, "people": people}, handle)
+
+    def test_a_team_loads_in_registry_order(self):
+        self.write([ADA, BEN, TEAM])
+        people = lr.load_registry(self.path)
+        self.assertEqual([p["id"] for p in people], ["ada", "ben", "ada-ben"])
+        self.assertEqual(people[2]["members"], ["ada", "ben"])
+
+    def test_a_team_may_come_before_its_members(self):
+        self.write([TEAM, ADA, BEN])
+        self.assertEqual([p["id"] for p in lr.load_registry(self.path)], ["ada-ben", "ada", "ben"])
+
+    def test_a_team_without_a_note_loads(self):
+        self.write([ADA, BEN, {k: v for k, v in TEAM.items() if k != "note"}])
+        lr.load_registry(self.path)
+
+    def test_is_team(self):
+        self.assertTrue(lr.is_team(TEAM))
+        self.assertFalse(lr.is_team(ADA))
+        self.assertFalse(lr.is_team("ada"))
+        self.assertFalse(lr.is_team(None))
+
+    def test_check_entry_accepts_a_team_and_rejects_a_malformed_one(self):
+        lr.check_entry(TEAM)
+        bad = [
+            {k: v for k, v in TEAM.items() if k != "confirmed_by"},
+            {k: v for k, v in TEAM.items() if k != "name"},
+            dict(TEAM, id="Ada Ben"),
+            dict(TEAM, id=7),
+            dict(TEAM, members="ada"),
+            dict(TEAM, members=["ada"]),
+            dict(TEAM, members=[]),
+            dict(TEAM, members=["ada", "ada"]),
+            dict(TEAM, members=["ada", 2]),
+            dict(TEAM, orcid="0000-0000-0000-0003"),
+            dict(TEAM, openalex_ids=["A3"]),
+        ]
+        for entry in bad:
+            with self.subTest(entry=entry):
+                with self.assertRaises(lr.RegistryError):
+                    lr.check_entry(entry)
+
+    def test_check_entry_checks_the_members_against_a_given_registry(self):
+        by_id = {p["id"]: p for p in (ADA, BEN, TEAM)}
+        lr.check_entry(TEAM, by_id)
+        with self.assertRaises(lr.RegistryError):
+            lr.check_entry(dict(TEAM, members=["ada", "zed"]), by_id)
+
+    def test_bad_teams_fail_to_load(self):
+        nest = {"id": "outer", "name": "Outer", "members": ["ada", "ada-ben"], "confirmed_by": "test"}
+        cases = {
+            "unknown member": [ADA, BEN, dict(TEAM, members=["ada", "zed"])],
+            "repeated member": [ADA, BEN, dict(TEAM, members=["ada", "ben", "ada"])],
+            "one member": [ADA, BEN, dict(TEAM, members=["ada"])],
+            "member is a team": [ADA, BEN, TEAM, nest],
+            "team is its own member": [ADA, BEN, dict(TEAM, members=["ada", "ada-ben"])],
+            "repeated id": [ADA, BEN, TEAM, dict(TEAM)],
+            "id of a person": [ADA, BEN, dict(TEAM, id="ada")],
+        }
+        for label, people in cases.items():
+            with self.subTest(label):
+                self.write(people)
+                with self.assertRaises(lr.RegistryError):
+                    lr.load_registry(self.path)
+
+    def test_team_members_returns_the_entries_in_member_order(self):
+        people = [ADA, BEN, TEAM]
+        self.assertEqual([p["id"] for p in lr.team_members(people, dict(TEAM, members=["ben", "ada"]))],
+                         ["ben", "ada"])
+
+    def test_the_shipped_registry_holds_the_team_of_shendure_and_trapnell(self):
+        people = lr.load_registry()
+        team = lr.get_person(people, "shendure-trapnell")
+        self.assertTrue(lr.is_team(team))
+        self.assertEqual(team["members"], ["shendure", "trapnell"])
+        self.assertEqual(people[-1]["id"], "shendure-trapnell")
+        self.assertNotIn("orcid", team)
+        self.assertNotIn("openalex_ids", team)
+
+
 class VenueTests(unittest.TestCase):
     def setUp(self):
         self.venues = lv.load_venues()

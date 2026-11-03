@@ -1,6 +1,6 @@
 # Brief: principles file
 
-The orchestrator writes `profiles/principles.md` from the 7 profiles. It is at most 1,200 words.
+The orchestrator writes `profiles/principles.md` from the 7 profiles. It is at most 1,200 words. Use the profiles of individuals only and skip every team profile.
 
 ## Shape
 

@@ -214,6 +214,201 @@ class PipelineTests(unittest.TestCase):
         self.assertIn("error: cannot read or parse a data file", self.err.getvalue())
 
 
+CAL = {"id": "cal", "name": "Cal Moss", "orcid": "0000-0000-0000-0003", "openalex_ids": ["A3"],
+       "ml_venues": False, "confirmed_by": "test"}
+TEAM = {"id": "ada-ben", "name": "Ada Quill and Ben Rowan (joint papers)", "members": ["ada", "ben"],
+        "confirmed_by": "test"}
+
+
+def team_world():
+    """Ada and Ben share W4 (both corresponding, Ben last) and W7 (Ada first, Ben last). Cal has W6."""
+    w1 = make_work("W1", [author("A90"), author("A1", ADA["orcid"])], title="Spores swell in water", venue="Cell",
+                   doi="10.0000/w1", pmcid="PMC5000001", year=2012)
+    w4 = make_work("W4", [author("A93"), author("A1", ADA["orcid"], True), author("A2", BEN["orcid"], True)],
+                   title="A shared atlas of ferns", venue="Cell Systems", doi="10.0000/w4", pmcid="PMC5000004",
+                   year=2018)
+    w7 = make_work("W7", [author("A1", ADA["orcid"]), author("A96"), author("A2", BEN["orcid"])],
+                   title="Ferns and mosses compared", venue="Nature Genetics", doi="10.0000/w7", pmcid="PMC5000007",
+                   year=2020)
+    w6 = make_work("W6", [author("A95"), author("A3", CAL["orcid"])], title="Lichen grows on stone", venue="Cell",
+                   doi="10.0000/w6", pmcid="PMC5000006", year=2016)
+    return FakeHttp([
+        (("author.orcid:" + ADA["orcid"],), page([w1, w4, w7])),
+        (("author.orcid:" + BEN["orcid"],), page([w4, w7])),
+        (("author.orcid:" + CAL["orcid"],), page([w6])),
+        (("author.id:",), page([])),
+        ("efetch.fcgi?db=pmc&id=500000", jats_body(700)),
+    ])
+
+
+class TeamPipelineTests(unittest.TestCase):
+    def setUp(self):
+        self.tmp = tempfile.TemporaryDirectory()
+        self.addCleanup(self.tmp.cleanup)
+        self.data = os.path.join(self.tmp.name, "data")
+        os.makedirs(self.data)
+        self.registry = os.path.join(self.tmp.name, "people.json")
+        with open(self.registry, "w", encoding="utf-8") as handle:
+            json.dump({"schema": 1, "people": [TEAM, ADA, BEN, CAL]}, handle)
+        self.http = team_world()
+        self.out = io.StringIO()
+        self.err = io.StringIO()
+
+    def run_lab(self, *argv):
+        return style_lab.main(["--registry", self.registry] + list(argv), http_factory=lambda cache, **kw: self.http,
+                              environ={"STYLE_LAB_DATA": self.data}, out=self.out, err=self.err)
+
+    def pilot_manifest(self, person):
+        return lp.read_json(os.path.join(self.data, "pilot", "manifests", person + ".json"))
+
+    def fetch_everyone(self):
+        self.assertEqual(self.run_lab("discover", "--all"), 0)
+        self.assertEqual(self.run_lab("sample", "--all", "--pilot"), 0)
+        self.assertEqual(self.run_lab("fetch", "--all", "--pilot"), 0)
+
+    def test_discover_all_runs_the_individuals_first_and_the_team_makes_no_request(self):
+        self.assertEqual(self.run_lab("discover", "--all"), 0)
+        for person in ("ada", "ben", "cal", "ada-ben"):
+            self.assertTrue(os.path.exists(lp.works_path(self.data, person)), person)
+        lines = [line.split(":")[0] for line in self.out.getvalue().splitlines()]
+        self.assertEqual(lines, ["ada", "ben", "cal", "ada-ben"])
+        team = lp.read_json(lp.works_path(self.data, "ada-ben"))
+        self.assertEqual(team["person"], "ada-ben")
+        self.assertEqual([p["work_id"] for p in team["papers"]], ["W4", "W7"])
+        self.assertEqual([p["group"] for p in team["papers"]], ["senior", "senior"])
+        calls = len(self.http.calls)
+        self.http = FakeHttp([])
+        self.assertEqual(self.run_lab("discover", "ada-ben"), 0)
+        self.assertEqual(self.http.calls, [])
+        self.assertGreater(calls, 0)
+        self.assertIn("ada-ben: 3 works, 2 papers, 1 dropped, 0 merged", self.out.getvalue())
+        self.assertEqual([(d["work_id"], d["reason"]) for d in team["dropped"]],
+                         [("W1", "not every member is in the author list")])
+
+    def test_the_papers_of_a_team_also_stay_in_the_works_file_of_each_member(self):
+        self.assertEqual(self.run_lab("discover", "--all"), 0)
+        ada = lp.read_json(lp.works_path(self.data, "ada"))
+        ben = lp.read_json(lp.works_path(self.data, "ben"))
+        self.assertEqual(sorted(p["work_id"] for p in ada["papers"]), ["W1", "W4", "W7"])
+        self.assertEqual(sorted(p["work_id"] for p in ben["papers"]), ["W4", "W7"])
+
+    def test_a_team_needs_the_works_files_of_its_members(self):
+        self.assertEqual(self.run_lab("discover", "ada-ben"), 2)
+        self.assertIn("run discover first for the members of ada-ben: ada, ben", self.err.getvalue())
+        self.assertFalse(os.path.exists(lp.works_path(self.data, "ada-ben")))
+
+    def test_a_team_is_built_after_its_members_even_when_named_first(self):
+        self.assertEqual(self.run_lab("discover", "ada-ben", "ada", "ben"), 0)
+        self.assertEqual([p["work_id"] for p in lp.read_json(lp.works_path(self.data, "ada-ben"))["papers"]],
+                         ["W4", "W7"])
+
+    def test_sample_gives_the_shared_papers_to_ben_and_to_the_team(self):
+        self.assertEqual(self.run_lab("discover", "--all"), 0)
+        self.assertEqual(self.run_lab("sample", "--all", "--pilot"), 0)
+        self.assertEqual(sorted(p["work_id"] for p in self.pilot_manifest("ada")["papers"]), ["W1"])
+        self.assertEqual(sorted(p["work_id"] for p in self.pilot_manifest("ben")["papers"]), ["W4", "W7"])
+        team = self.pilot_manifest("ada-ben")
+        self.assertEqual(team["person"], "ada-ben")
+        self.assertEqual(sorted(p["work_id"] for p in team["papers"]), ["W4", "W7"])
+        self.assertEqual(team["n_papers"], 2)
+
+    def test_sample_of_an_individual_does_not_need_the_works_file_of_the_team(self):
+        for person in ("ada", "ben", "cal"):
+            self.assertEqual(self.run_lab("discover", person), 0)
+        self.assertEqual(self.run_lab("sample", "ada", "--pilot"), 0)
+        self.assertEqual(self.run_lab("sample", "ada-ben", "--pilot"), 2)
+        self.assertIn("run discover first for: ada-ben", self.err.getvalue())
+
+    def test_sample_needs_the_works_file_of_every_individual_for_a_team_too(self):
+        for person in ("ada", "ben"):
+            self.assertEqual(self.run_lab("discover", person), 0)
+        self.assertEqual(self.run_lab("discover", "ada-ben"), 0)
+        self.assertEqual(self.run_lab("sample", "ada-ben", "--pilot"), 2)
+        self.assertIn("run discover first for: cal", self.err.getvalue())
+
+    def test_fetch_normalize_and_status_work_for_a_team_id(self):
+        self.fetch_everyone()
+        team = self.pilot_manifest("ada-ben")
+        self.assertEqual({p["work_id"]: p["status"] for p in team["papers"]}, {"W4": "fetched", "W7": "fetched"})
+        self.assertTrue(os.path.exists(lp.paper_path(self.data, "ada-ben", "W4")))
+        self.assertEqual(lp.read_json(lp.paper_path(self.data, "ada-ben", "W4"))["person"], "ada-ben")
+        self.assertEqual(self.run_lab("normalize", "ada-ben", "--pilot"), 0)
+        self.assertEqual(self.run_lab("status", "--pilot"), 0)
+        self.assertIn("ada-ben: works 2, sample 2, fetched 2", self.out.getvalue())
+
+    def test_surface_of_individuals_leaves_the_team_out_and_the_team_meets_the_other_people(self):
+        self.fetch_everyone()
+        seen = []
+        real = lab_surface.run_surface
+
+        def spy(papers_by_person, wordlists):
+            seen.append(sorted(papers_by_person))
+            return real(papers_by_person, wordlists)
+
+        with mock.patch.object(lab_surface, "run_surface", spy):
+            self.assertEqual(self.run_lab("surface", "--all", "--pilot"), 0)
+        self.assertEqual(seen, [["ada", "ben", "cal"], ["ada-ben", "cal"]])
+        folder = os.path.join(self.data, "pilot", "surface")
+        self.assertEqual(sorted(os.listdir(folder)), ["ada-ben.json", "ada.json", "ben.json", "cal.json"])
+
+    def test_the_surface_files_of_individuals_do_not_depend_on_the_team(self):
+        self.fetch_everyone()
+        self.assertEqual(self.run_lab("surface", "--all", "--pilot"), 0)
+        folder = os.path.join(self.data, "pilot", "surface")
+        papers = {person: [lp.read_json(lp.paper_path(self.data, person, p["work_id"]))
+                           for p in self.pilot_manifest(person)["papers"]] for person in ("ada", "ben", "cal")}
+        expected = lab_surface.run_surface(papers, lab_surface.load_wordlists())
+        for person in ("ada", "ben", "cal"):
+            self.assertEqual(lp.read_json(os.path.join(folder, person + ".json")), expected[person], person)
+
+    def test_surface_of_a_team_writes_only_the_file_of_the_team(self):
+        self.fetch_everyone()
+        self.assertEqual(self.run_lab("surface", "--all", "--pilot"), 0)
+        folder = os.path.join(self.data, "pilot", "surface")
+        before = {n: lp.read_json(os.path.join(folder, n)) for n in os.listdir(folder)}
+        lp.write_json(os.path.join(folder, "ada.json"), {"sentinel": True})
+        before["ada.json"] = {"sentinel": True}
+        self.assertEqual(self.run_lab("surface", "ada-ben", "--pilot"), 0)
+        after = {n: lp.read_json(os.path.join(folder, n)) for n in os.listdir(folder)}
+        self.assertEqual(after, before)
+
+    def test_a_team_card_goes_through_aggregate_and_check_card_like_a_person_card(self):
+        self.fetch_everyone()
+        self.assertEqual(self.run_lab("surface", "--all", "--pilot"), 0)
+        checklist = lab_checklist.load_checklist()
+        for wid in ("W4", "W7"):
+            paper = lp.read_json(lp.paper_path(self.data, "ada-ben", wid))
+            lp.write_json(lp.extraction_path(self.data, "ada-ben", wid),
+                          make_extraction(paper, checklist, group=paper["group"]))
+        self.assertEqual(self.run_lab("check-quotes", "ada-ben", "--pilot"), 0)
+        self.assertEqual(self.run_lab("aggregate", "ada-ben", "--pilot"), 0)
+        profile = lp.read_json(os.path.join(self.data, "pilot", "profiles", "ada-ben.json"))
+        self.assertEqual((profile["person"], profile["n_papers"]), ("ada-ben", 2))
+        self.assertEqual(profile["name"], TEAM["name"])
+        with open(os.path.join(self.data, "pilot", "profiles", "ada-ben.md"), "w", encoding="utf-8") as handle:
+            handle.write(card_for(profile))
+        self.assertEqual(self.run_lab("check-card", "ada-ben", "--pilot"), 0)
+        self.assertEqual(self.run_lab("quality", "--pilot"), 0)
+        with open(os.path.join(self.data, "pilot", "profiles", "quality.md"), encoding="utf-8") as handle:
+            self.assertIn(TEAM["name"], handle.read())
+
+    def test_the_principles_check_uses_the_profiles_of_individuals_only(self):
+        folder = lp.ensure_dir(self.data, "pilot", "profiles")
+        for person in ("ada", "ben", "ada-ben"):
+            lp.write_json(os.path.join(folder, person + ".json"), {"person": person, "quotes": []})
+        with open(os.path.join(folder, "principles.md"), "w", encoding="utf-8") as handle:
+            handle.write("# Principles\n")
+        seen = []
+
+        def spy(text, kind, profiles):
+            seen.append((kind, [p["person"] for p in profiles]))
+            return []
+
+        with mock.patch.object(lab_card_check, "check_text", spy):
+            self.assertEqual(self.run_lab("check-card", "principles", "--pilot"), 0)
+        self.assertEqual(seen, [("principles", ["ada", "ben"])])
+
+
 class ExitCodeTests(unittest.TestCase):
     def test_usage_errors_are_exit_code_2(self):
         out, err = io.StringIO(), io.StringIO()

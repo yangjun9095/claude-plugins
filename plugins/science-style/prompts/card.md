@@ -17,6 +17,8 @@ The card starts with `# <name>` and has these headings, in this order:
 9. `## Signature moves`: the habits that recur in this person's papers, each with one quote.
 10. `## Caveats`: the text versions used, the papers left out, and this sentence or one like it: trainees draft most senior-author papers, so the card describes the papers of the person's group.
 
+A team card names its members in the title line, and its Caveats say that the card describes the joint papers of those members.
+
 ## Rules
 
 1. Take every count from the profile data, as "N of M". M is the `n` of the field, the `n_by_group` or `n_by_tier` value for one group or tier, or `n_papers` for the Sample split. For the papers left out, write `n_left_out` of `n_fetched` papers.
