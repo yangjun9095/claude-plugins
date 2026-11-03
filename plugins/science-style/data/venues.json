@@ -1,0 +1,12 @@
+{
+ "version": 1,
+ "high_exact": ["Science", "Nature", "Cell", "Science Translational Medicine", "Science Immunology",
+  "Science Robotics", "Science Signaling", "Cell Systems", "Cell Genomics", "Molecular Cell",
+  "Developmental Cell", "Cell Stem Cell", "Current Biology", "Neuron", "Immunity", "Cancer Cell",
+  "Cell Metabolism", "Cell Host & Microbe", "Cell Chemical Biology"],
+ "high_prefix": ["Nature"],
+ "high_prefix_exclude": ["Nature Communications", "Nature Precedings"],
+ "ml_high": ["Advances in Neural Information Processing Systems", "Neural Information Processing Systems",
+  "International Conference on Machine Learning", "International Conference on Learning Representations"],
+ "essay_prefix": ["Nature Reviews", "Trends in", "Current Opinion in", "Annual Review of"]
+}

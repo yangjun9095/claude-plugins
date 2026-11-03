@@ -1,0 +1,562 @@
+{
+ "cells": {
+  "essay/high": {
+   "allocated": 1,
+   "bins": [
+    [
+     "W4400179279"
+    ]
+   ],
+   "pool": 1,
+   "queue": [],
+   "target": 2
+  },
+  "essay/other": {
+   "allocated": 2,
+   "bins": [
+    [
+     "W2288153033"
+    ],
+    [
+     "W2831482487",
+     "W3021026392"
+    ]
+   ],
+   "pool": 3,
+   "queue": [
+    "W3021026392"
+   ],
+   "target": 1
+  },
+  "first/high": {
+   "allocated": 3,
+   "bins": [
+    [
+     "W1995078504"
+    ],
+    [
+     "W2141458291",
+     "W2100305481"
+    ],
+    [
+     "W2166820820",
+     "W1984883254"
+    ]
+   ],
+   "pool": 5,
+   "queue": [
+    "W1984883254",
+    "W2100305481"
+   ],
+   "target": 3
+  },
+  "first/other": {
+   "allocated": 1,
+   "bins": [
+    [
+     "W1977512185",
+     "W2097065948",
+     "W2182594872"
+    ]
+   ],
+   "pool": 3,
+   "queue": [
+    "W2182594872",
+    "W1977512185"
+   ],
+   "target": 1
+  },
+  "senior/high": {
+   "allocated": 5,
+   "bins": [
+    [
+     "W1965085562",
+     "W2195967731",
+     "W2582033455"
+    ],
+    [
+     "W2747877289",
+     "W2887694579",
+     "W2950261377"
+    ],
+    [
+     "W2951520489",
+     "W2910248657",
+     "W2971378659"
+    ],
+    [
+     "W2971398276",
+     "W2993905360",
+     "W3010569643"
+    ],
+    [
+     "W3176766013",
+     "W4388520190",
+     "W4388694332",
+     "W4391234592"
+    ]
+   ],
+   "pool": 16,
+   "queue": [
+    "W1965085562",
+    "W4388520190",
+    "W2195967731",
+    "W2971398276",
+    "W2951520489",
+    "W2910248657",
+    "W3176766013",
+    "W2887694579",
+    "W4391234592",
+    "W2950261377",
+    "W2993905360"
+   ],
+   "target": 5
+  },
+  "senior/other": {
+   "allocated": 3,
+   "bins": [
+    [
+     "W2098832713",
+     "W2270296902",
+     "W2178888844",
+     "W2653530754",
+     "W2888111433",
+     "W2911328426",
+     "W3014040695"
+    ],
+    [
+     "W3045478644",
+     "W3160967436",
+     "W3163744458",
+     "W4280504300",
+     "W4290040180",
+     "W4385697698",
+     "W4388190202"
+    ],
+    [
+     "W4389304038",
+     "W4400487252",
+     "W4401883582",
+     "W4409027211",
+     "W4409174694",
+     "W4408217694",
+     "W4409172629",
+     "W4409172717"
+    ]
+   ],
+   "pool": 22,
+   "queue": [
+    "W4409174694",
+    "W3045478644",
+    "W2911328426",
+    "W4409172717",
+    "W2098832713",
+    "W4389304038",
+    "W3160967436",
+    "W2888111433",
+    "W3014040695",
+    "W4385697698",
+    "W4409172629",
+    "W4388190202",
+    "W4401883582",
+    "W4409027211",
+    "W4280504300",
+    "W4290040180",
+    "W2270296902",
+    "W4400487252",
+    "W2178888844"
+   ],
+   "target": 3
+  }
+ },
+ "n_papers": 14,
+ "papers": [
+  {
+   "arxiv_id": null,
+   "cell": "senior/high",
+   "co_senior": false,
+   "doi": "10.1038/nmeth.4150",
+   "group": "senior",
+   "pmcid": "PMC5330805",
+   "preprint_doi": null,
+   "route": "ncbi-pmc",
+   "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=5330805",
+   "status": "fetched",
+   "text_doi": "10.1038/nmeth.4150",
+   "text_version": "accepted",
+   "tier": "high",
+   "title": "Single-cell mRNA quantification and differential analysis with Census",
+   "type": "article",
+   "venue": "Nature Methods",
+   "work_id": "W2582033455",
+   "year": 2017
+  },
+  {
+   "arxiv_id": null,
+   "cell": "senior/high",
+   "co_senior": false,
+   "doi": "10.1038/nmeth.4402",
+   "group": "senior",
+   "pmcid": "PMC5764547",
+   "preprint_doi": "10.1101/110668",
+   "route": "ncbi-pmc",
+   "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=5764547",
+   "status": "fetched",
+   "text_doi": "10.1038/nmeth.4402",
+   "text_version": "accepted",
+   "tier": "high",
+   "title": "Reversed graph embedding resolves complex single-cell trajectories",
+   "type": "article",
+   "venue": "Nature Methods",
+   "work_id": "W2747877289",
+   "year": 2017
+  },
+  {
+   "arxiv_id": null,
+   "cell": "senior/high",
+   "co_senior": false,
+   "doi": "10.1038/s41588-019-0489-5",
+   "group": "senior",
+   "pmcid": "PMC6756480",
+   "preprint_doi": null,
+   "route": "ncbi-pmc",
+   "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=6756480",
+   "status": "fetched",
+   "text_doi": "10.1038/s41588-019-0489-5",
+   "text_version": "accepted",
+   "tier": "high",
+   "title": "A pooled single-cell genetic screen identifies regulatory checkpoints in the continuum of the epithelial-to-mesenchymal transition",
+   "type": "article",
+   "venue": "Nature Genetics",
+   "work_id": "W2971378659",
+   "year": 2019
+  },
+  {
+   "arxiv_id": null,
+   "cell": "senior/high",
+   "co_senior": true,
+   "doi": "10.1016/j.cels.2020.02.003",
+   "group": "senior",
+   "pmcid": "PMC7223477",
+   "preprint_doi": "10.1101/426981",
+   "route": "ncbi-pmc",
+   "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=7223477",
+   "status": "fetched",
+   "text_doi": "10.1016/j.cels.2020.02.003",
+   "text_version": "accepted",
+   "tier": "high",
+   "title": "Inferring Causal Gene Regulatory Networks from Coupled Single-Cell Expression Dynamics Using Scribe",
+   "type": "article",
+   "venue": "Cell Systems",
+   "work_id": "W3010569643",
+   "year": 2020
+  },
+  {
+   "arxiv_id": null,
+   "cell": "senior/high",
+   "co_senior": true,
+   "doi": "10.1038/s41586-023-06720-2",
+   "group": "senior",
+   "pmcid": "PMC10665197",
+   "preprint_doi": null,
+   "route": "ncbi-pmc",
+   "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=10665197",
+   "status": "fetched",
+   "text_doi": "10.1038/s41586-023-06720-2",
+   "text_version": "published",
+   "tier": "high",
+   "title": "Embryo-scale reverse genetics at single-cell resolution",
+   "type": "article",
+   "venue": "Nature",
+   "work_id": "W4388694332",
+   "year": 2023
+  },
+  {
+   "arxiv_id": null,
+   "cell": "senior/other",
+   "co_senior": false,
+   "doi": "10.1101/155473",
+   "group": "senior",
+   "pmcid": null,
+   "preprint_doi": "10.1101/155473",
+   "route": "biorxiv",
+   "source_url": "https://www.biorxiv.org/content/early/2017/06/26/155473.source.xml",
+   "status": "fetched",
+   "text_doi": "10.1101/155473",
+   "text_version": "preprint",
+   "tier": "other",
+   "title": "Chromatin accessibility dynamics of myogenesis at single cell resolution",
+   "type": "preprint",
+   "venue": "bioRxiv (Cold Spring Harbor Laboratory)",
+   "work_id": "W2653530754",
+   "year": 2017
+  },
+  {
+   "arxiv_id": null,
+   "cell": "senior/other",
+   "co_senior": false,
+   "doi": "10.17504/protocols.io.buxdnxi6",
+   "group": "senior",
+   "pmcid": null,
+   "preprint_doi": null,
+   "route": null,
+   "source_url": null,
+   "status": "replaced",
+   "text_doi": null,
+   "text_version": null,
+   "tier": "other",
+   "title": "3-level sci RNA-Seq with FACS v1",
+   "type": "preprint",
+   "venue": null,
+   "work_id": "W3163744458",
+   "year": 2021
+  },
+  {
+   "arxiv_id": "2411.15309",
+   "cell": "senior/other",
+   "co_senior": true,
+   "doi": "10.1089/zeb.2024.0175",
+   "group": "senior",
+   "pmcid": "PMC12167839",
+   "preprint_doi": null,
+   "route": null,
+   "source_url": null,
+   "status": "replaced",
+   "text_doi": null,
+   "text_version": null,
+   "tier": "other",
+   "title": "An Improved, High-Yield Method for Isolating Nuclei from Individual Zebrafish Embryos for Single-Nucleus RNA Sequencing",
+   "type": "article",
+   "venue": "Zebrafish",
+   "work_id": "W4408217694",
+   "year": 2025
+  },
+  {
+   "arxiv_id": null,
+   "cell": "first/high",
+   "co_senior": false,
+   "doi": "10.1038/nbt0509-455",
+   "group": "first",
+   "pmcid": "PMC2836519",
+   "preprint_doi": null,
+   "route": "ncbi-pmc",
+   "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=2836519",
+   "status": "fetched",
+   "text_doi": "10.1038/nbt0509-455",
+   "text_version": "accepted",
+   "tier": "high",
+   "title": "How to map billions of short reads onto genomes",
+   "type": "article",
+   "venue": "Nature Biotechnology",
+   "work_id": "W1995078504",
+   "year": 2009
+  },
+  {
+   "arxiv_id": null,
+   "cell": "first/high",
+   "co_senior": false,
+   "doi": "10.1038/nbt.1621",
+   "group": "first",
+   "pmcid": "PMC3146043",
+   "preprint_doi": null,
+   "route": "ncbi-pmc",
+   "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=3146043",
+   "status": "fetched",
+   "text_doi": "10.1038/nbt.1621",
+   "text_version": "accepted",
+   "tier": "high",
+   "title": "Transcript assembly and quantification by RNA-Seq reveals unannotated transcripts and isoform switching during cell differentiation",
+   "type": "article",
+   "venue": "Nature Biotechnology",
+   "work_id": "W2141458291",
+   "year": 2010
+  },
+  {
+   "arxiv_id": null,
+   "cell": "first/high",
+   "co_senior": false,
+   "doi": "10.1038/nbt.2450",
+   "group": "first",
+   "pmcid": "PMC3869392",
+   "preprint_doi": null,
+   "route": "ncbi-pmc",
+   "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=3869392",
+   "status": "fetched",
+   "text_doi": "10.1038/nbt.2450",
+   "text_version": "accepted",
+   "tier": "high",
+   "title": "Differential analysis of gene regulation at transcript resolution with RNA-seq",
+   "type": "article",
+   "venue": "Nature Biotechnology",
+   "work_id": "W2166820820",
+   "year": 2012
+  },
+  {
+   "arxiv_id": null,
+   "cell": "first/other",
+   "co_senior": false,
+   "doi": "10.1093/bioinformatics/btp120",
+   "group": "first",
+   "pmcid": "PMC2672628",
+   "preprint_doi": null,
+   "route": "ncbi-pmc",
+   "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=2672628",
+   "status": "fetched",
+   "text_doi": "10.1093/bioinformatics/btp120",
+   "text_version": "published",
+   "tier": "other",
+   "title": "TopHat: discovering splice junctions with RNA-Seq",
+   "type": "article",
+   "venue": "Bioinformatics",
+   "work_id": "W2097065948",
+   "year": 2009
+  },
+  {
+   "arxiv_id": null,
+   "cell": "essay/high",
+   "co_senior": false,
+   "doi": "10.1038/s41576-024-00750-w",
+   "group": "essay",
+   "pmcid": null,
+   "preprint_doi": null,
+   "route": null,
+   "source_url": null,
+   "status": "replaced",
+   "text_doi": null,
+   "text_version": null,
+   "tier": "high",
+   "title": "Revealing gene function with statistical inference at single-cell resolution",
+   "type": "review",
+   "venue": "Nature Reviews Genetics",
+   "work_id": "W4400179279",
+   "year": 2024
+  },
+  {
+   "arxiv_id": null,
+   "cell": "essay/other",
+   "co_senior": false,
+   "doi": "10.12688/f1000research.7223.1",
+   "group": "essay",
+   "pmcid": "PMC4758375",
+   "preprint_doi": null,
+   "route": "ncbi-pmc",
+   "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=4758375",
+   "status": "fetched",
+   "text_doi": "10.12688/f1000research.7223.1",
+   "text_version": "published",
+   "tier": "other",
+   "title": "Single-cell transcriptome sequencing: recent advances and remaining challenges",
+   "type": "review",
+   "venue": "F1000Research",
+   "work_id": "W2288153033",
+   "year": 2016
+  },
+  {
+   "arxiv_id": null,
+   "cell": "essay/other",
+   "co_senior": false,
+   "doi": "10.1016/j.tig.2018.06.001",
+   "group": "essay",
+   "pmcid": "PMC6097890",
+   "preprint_doi": null,
+   "route": "ncbi-pmc",
+   "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=6097890",
+   "status": "fetched",
+   "text_doi": "10.1016/j.tig.2018.06.001",
+   "text_version": "accepted",
+   "tier": "other",
+   "title": "Single-Cell Multi-omics: An Engine for New Quantitative Models of Gene Regulation",
+   "type": "review",
+   "venue": "Trends in Genetics",
+   "work_id": "W2831482487",
+   "year": 2018
+  },
+  {
+   "arxiv_id": null,
+   "cell": "senior/other",
+   "co_senior": false,
+   "doi": "10.1038/s41598-020-68766-w",
+   "group": "senior",
+   "pmcid": "PMC7378057",
+   "preprint_doi": null,
+   "route": "ncbi-pmc",
+   "source_url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?db=pmc&id=7378057",
+   "status": "fetched",
+   "text_doi": "10.1038/s41598-020-68766-w",
+   "text_version": "published",
+   "tier": "other",
+   "title": "Trajectory analysis quantifies transcriptional plasticity during macrophage polarization",
+   "type": "article",
+   "venue": "Scientific Reports",
+   "work_id": "W3045478644",
+   "year": 2020
+  },
+  {
+   "arxiv_id": null,
+   "cell": "senior/other",
+   "co_senior": false,
+   "doi": "10.17504/protocols.io.e6nvw14ywlmk/v2",
+   "group": "senior",
+   "pmcid": null,
+   "preprint_doi": null,
+   "route": null,
+   "source_url": null,
+   "status": "replaced",
+   "text_doi": null,
+   "text_version": null,
+   "tier": "other",
+   "title": "Bead Beating Zebrafish Dissociation and Hashing with BS3/Methanol v2",
+   "type": "preprint",
+   "venue": null,
+   "work_id": "W4409174694",
+   "year": 2024
+  },
+  {
+   "arxiv_id": null,
+   "cell": "senior/other",
+   "co_senior": false,
+   "doi": "10.1101/2025.04.03.646423",
+   "group": "senior",
+   "pmcid": "PMC11996465",
+   "preprint_doi": "10.1101/2025.04.03.646423",
+   "route": "biorxiv",
+   "source_url": "https://www.biorxiv.org/content/early/2025/04/03/2025.04.03.646423.source.xml",
+   "status": "fetched",
+   "text_doi": "10.1101/2025.04.03.646423",
+   "text_version": "preprint",
+   "tier": "other",
+   "title": "Embryo-scale single-cell chemical transcriptomics reveals dependencies between cell types and signaling pathways",
+   "type": "preprint",
+   "venue": "bioRxiv (Cold Spring Harbor Laboratory)",
+   "work_id": "W4409172717",
+   "year": 2025
+  }
+ ],
+ "person": "trapnell",
+ "replacements": [
+  {
+   "reason": "no open full text: pmc: no PMC ID; preprint: no bioRxiv DOI; arxiv: no arXiv ID",
+   "replaced": "W3163744458",
+   "replacement": "W3045478644"
+  },
+  {
+   "reason": "no open full text: ncbi-pmc: body has 0 words, fewer than 600; europepmc: https://www.ebi.ac.uk/europepmc/webservices/rest/PMC12167839/fullTextXML (500): HTTP Error 500: ; preprint: no bioRxiv DOI; arxiv: https://arxiv.org/html/2411.15309 (404): HTTP Error 404: Not Found",
+   "replaced": "W4408217694",
+   "replacement": "W4409174694"
+  },
+  {
+   "reason": "no open full text: pmc: no PMC ID; preprint: no bioRxiv DOI; arxiv: no arXiv ID",
+   "replaced": "W4400179279",
+   "replacement": null
+  },
+  {
+   "reason": "no open full text: pmc: no PMC ID; preprint: no bioRxiv DOI; arxiv: no arXiv ID",
+   "replaced": "W4409174694",
+   "replacement": "W4409172717"
+  }
+ ],
+ "schema": 1,
+ "seed": 20261029,
+ "shortfall": 1,
+ "venues_version": 1
+}
