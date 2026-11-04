@@ -26,8 +26,8 @@
     {
       "name": "scientific-figure",
       "source": "./plugins/scientific-figure",
-      "description": "Build or rebuild a publication figure from a draft, a description, or a results section \u2014 claim-first design, build-time data assertions, and an independent second-model review. Pairs with figure-style.",
-      "version": "1.0.0"
+      "description": "Build or rebuild a publication figure from a draft, a description, or a results section \u2014 claim-first design, build-time data assertions, and an independent second-model review; the figure-main-style skill composes a main figure from finished panels. Pairs with figure-style.",
+      "version": "1.1.0"
     },
     {
       "name": "meeting-distill",

@@ -44,6 +44,28 @@ scripts/style_template.py       the locked style module; extends figure-style
 scripts/codex_review.sh         independent peer review of a rendered panel
 scripts/verify_figures.py       the gate
 scripts/assemble.py             vector-preserving panel composition
+skills/figure-main-style/       compose a main figure from finished panels (below)
+```
+
+## Skill: figure-main-style
+
+Composes one main figure from finished panel PDFs, in the taste measured on 7 exemplar figures
+from the Royer, Garcia and Shendure labs. Panels stay at 100% and vector. The skill sets one type
+ladder, one letter style and one meaning per hue across panels, moves sentences, methods and
+caveats into a legend draft, and checks the page with a script and a second model.
+
+```
+skills/figure-main-style/SKILL.md                     the method
+skills/figure-main-style/references/measured-taste.md the exemplar ranges, rules and open questions
+skills/figure-main-style/scripts/compose_figure.py    layout-driven composer; sets letters, redacts listed text
+skills/figure-main-style/scripts/check_main_figure.py measures a figure against the exemplar ranges
+skills/figure-main-style/scripts/review_figure.sh     Codex referee for a whole figure
+```
+
+The tools need Python 3.8+ with PyMuPDF and numpy. Run the tests from the skill folder:
+
+```
+python -m unittest discover -s tests
 ```
 
 ## What it was built from
