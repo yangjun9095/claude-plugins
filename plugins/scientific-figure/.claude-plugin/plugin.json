@@ -1,6 +1,6 @@
 {
   "name": "scientific-figure",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Build or rebuild a publication figure from a draft, a description, or a results section — claim-first design, build-time data assertions, and an independent second-model review",
   "author": {
     "name": "Yang Joon Kim",
