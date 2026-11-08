@@ -57,7 +57,7 @@ caveats into a legend draft, and checks the page with a script and a second mode
 ```
 skills/figure-main-style/SKILL.md                     the method
 skills/figure-main-style/references/measured-taste.md the exemplar ranges, rules and open questions
-skills/figure-main-style/scripts/compose_figure.py    layout-driven composer; sets letters, redacts listed text
+skills/figure-main-style/scripts/compose_figure.py    layout-driven composer; sets letters, redacts listed text, refuses a clip that cuts ink, subsets fonts
 skills/figure-main-style/scripts/check_main_figure.py measures a figure against the exemplar ranges
 skills/figure-main-style/scripts/review_figure.sh     Codex referee for a whole figure
 ```
