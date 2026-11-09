@@ -311,8 +311,9 @@ class TestPlacement(ComposeBase):
 
     def test_margin_and_gap(self):
         clip = [0, 0, 78, 40]
-        self.compose([[{"file": "panel_b.pdf", "clip_mm": clip}, {"file": "panel_c.pdf", "clip_mm": clip}],
-                      [{"file": "panel_b.pdf", "clip_mm": clip}]],
+        self.compose([[{"file": "panel_b.pdf", "clip_mm": clip, "allow_ink_cut": True},
+                       {"file": "panel_c.pdf", "clip_mm": clip, "allow_ink_cut": True}],
+                      [{"file": "panel_b.pdf", "clip_mm": clip, "allow_ink_cut": True}]],
                      margin_mm=3, gap_mm=4)
         side = self.sidecar()
         xs = [p["x_mm"] for p in side["panels"]]
@@ -325,7 +326,8 @@ class TestPlacement(ComposeBase):
     def test_row_gap_and_col_gap_are_separate(self):
         # Two panels of 78 mm per row: 78 + 6 + 78 = 162 mm. The rows are 40 mm tall, 3 mm apart.
         clip = [0, 0, 78, 40]
-        row = [{"file": "panel_b.pdf", "clip_mm": clip}, {"file": "panel_c.pdf", "clip_mm": clip}]
+        row = [{"file": "panel_b.pdf", "clip_mm": clip, "allow_ink_cut": True},
+               {"file": "panel_c.pdf", "clip_mm": clip, "allow_ink_cut": True}]
         self.compose([row, row], gap_mm=5, row_gap_mm=3, col_gap_mm=6)
         side = self.sidecar()
         self.assertEqual([round(p["x_mm"], 2) for p in side["panels"]], [0.0, 84.0, 0.0, 84.0])
@@ -336,7 +338,8 @@ class TestPlacement(ComposeBase):
 
     def test_each_gap_defaults_to_gap_mm(self):
         clip = [0, 0, 78, 40]
-        row = [{"file": "panel_b.pdf", "clip_mm": clip}, {"file": "panel_c.pdf", "clip_mm": clip}]
+        row = [{"file": "panel_b.pdf", "clip_mm": clip, "allow_ink_cut": True},
+               {"file": "panel_c.pdf", "clip_mm": clip, "allow_ink_cut": True}]
         self.compose([row, row], gap_mm=4, row_gap_mm=1)
         side = self.sidecar()
         self.assertEqual([round(p["x_mm"], 2) for p in side["panels"]], [0.0, 82.0, 0.0, 82.0])
@@ -375,7 +378,7 @@ class TestPlacement(ComposeBase):
             self.assertIn("'%s' must" % list(bad)[0], proc.stderr)
 
     def test_clip_changes_the_placed_size(self):
-        self.compose([[{"file": "panel_b.pdf", "clip_mm": [0, 0, 40, 30]}]])
+        self.compose([[{"file": "panel_b.pdf", "clip_mm": [0, 0, 40, 30], "allow_ink_cut": True}]])
         panel = self.sidecar()["panels"][0]
         self.assertAlmostEqual(panel["w_mm"], 40.0, delta=0.05)
         self.assertAlmostEqual(panel["h_mm"], 30.0, delta=0.05)
@@ -383,7 +386,7 @@ class TestPlacement(ComposeBase):
 
     def test_clip_crops_the_content(self):
         none = {"position": "none"}
-        self.compose([[{"file": "panel_right.pdf", "clip_mm": [0, 0, 40, 30]}]], letters=none)
+        self.compose([[{"file": "panel_right.pdf", "clip_mm": [0, 0, 40, 30], "allow_ink_cut": True}]], letters=none)
         self.assertEqual(ink_pixels(self.figure()), 0)
         self.compose([[{"file": "panel_right.pdf", "clip_mm": [40, 0, 80, 30]}]], letters=none)
         self.assertGreater(ink_pixels(self.figure()), 0)
@@ -396,6 +399,216 @@ class TestPlacement(ComposeBase):
         self.assertTrue(os.path.exists(made))
         for ext in (".pdf", ".png", ".layout.json"):
             os.remove(os.path.join(self.dir, "rel_out" + ext))
+
+
+class TestClipInk(ComposeBase):
+    def clip_panel(self, ink=(), text=None):
+        """Invent a panel with central ink and optional marks outside the clip."""
+        with fitz.open() as doc:
+            page = doc.new_page(width=40 * MM, height=40 * MM)
+            for box in [(18, 18, 22, 22)] + list(ink):
+                page.draw_rect(fitz.Rect(*(v * MM for v in box)), fill=(0, 0, 0), color=None)
+            if text:
+                page.insert_text((15 * MM, 6 * MM), text, fontsize=7)
+            doc.save(self.p("panel_clip.pdf"))
+
+    def clip_layout(self, **options):
+        panel = {"file": "panel_clip.pdf", "clip_mm": [10, 10, 30, 30], "letter": "Q"}
+        panel.update(options)
+        return self.layout([[panel]], letters={"position": "above"})
+
+    def clip_plan(self, **options):
+        return compose_figure.build_plan(compose_figure.load_layout(self.clip_layout(**options)), self.dir)
+
+    def test_clip_cut_names_each_ink_strip(self):
+        marks = {"top": (2, 2, 4, 4), "bottom": (36, 36, 38, 38),
+                 "left": (2, 18, 4, 20), "right": (36, 18, 38, 20)}
+        for strips in [(name,) for name in marks] + [tuple(marks)]:
+            with self.subTest(strips=strips):
+                self.clip_panel(ink=[marks[name] for name in strips])
+                with self.assertRaises(compose_figure.LayoutError) as caught:
+                    self.clip_plan()
+                self.assertEqual(len(caught.exception.messages), 1)
+                message = caught.exception.messages[0]
+                self.assertIn("panel Q (panel_clip.pdf)", message)
+                for name in strips:
+                    self.assertRegex(message, name + r"[^0-9]*[1-9][0-9]* pixels")
+                for name in set(marks) - set(strips):
+                    self.assertNotIn(name, message)
+                self.assertIn("clip_mm [10.0, 10.0, 30.0, 30.0]", message)
+                self.assertTrue(message.endswith(
+                    'widen clip_mm, or set "allow_ink_cut": true on this panel if the cut is deliberate, '
+                    'for example an old letter drawn as outlines, which remove_letter cannot erase.'))
+        with self.assertRaises(compose_figure.LayoutError):
+            self.clip_plan(allow_ink_cut=False)
+
+    def test_clip_cut_reports_one_message_per_panel(self):
+        self.clip_panel(ink=[(2, 2, 4, 4), (36, 18, 38, 20)])
+        path = self.layout([[{"file": "panel_clip.pdf", "clip_mm": [10, 10, 30, 30], "letter": letter}
+                             for letter in ("Q", "R")]], letters={"position": "above"})
+        with self.assertRaises(compose_figure.LayoutError) as caught:
+            compose_figure.build_plan(compose_figure.load_layout(path), self.dir)
+        self.assertEqual(len(caught.exception.messages), 2)
+        for letter, message in zip(("Q", "R"), caught.exception.messages):
+            self.assertIn("panel %s (panel_clip.pdf)" % letter, message)
+            self.assertIn("top", message)
+            self.assertIn("right", message)
+
+    def test_clip_with_only_white_outside_passes(self):
+        self.clip_panel()
+        for clip in ([10, 10, 30, 30], [0, 0, 40, 40]):
+            with self.subTest(clip=clip):
+                plan = self.clip_plan(clip_mm=clip)
+                self.assertEqual(plan.notes, [])
+                self.assertFalse(plan.panels[0].allow_ink_cut)
+                self.assertNotIn("allow_ink_cut", compose_figure.sidecar_data(plan)["panels"][0])
+                compose_figure.build_pdf(plan, self.out_pdf)
+                self.assertGreater(ink_pixels(self.figure()), 0)
+
+    def test_allow_ink_cut_builds_with_note_and_sidecar(self):
+        self.clip_panel(ink=[(2, 18, 4, 20), (36, 18, 38, 20)])
+        plan = self.clip_plan(allow_ink_cut=True)
+        self.assertEqual(len(plan.notes), 1)
+        note = plan.notes[0]
+        self.assertTrue(note.startswith("NOTE: "))
+        self.assertIn("panel Q (panel_clip.pdf)", note)
+        for strip in ("left", "right"):
+            self.assertRegex(note, strip + r"[^0-9]*[1-9][0-9]* pixels")
+        self.assertIn(note, compose_figure.report_lines(plan))
+        self.assertIs(compose_figure.sidecar_data(plan)["panels"][0]["allow_ink_cut"], True)
+        compose_figure.build_pdf(plan, self.out_pdf)
+        self.assertGreater(ink_pixels(self.figure()), 0)
+
+    def test_allow_ink_cut_requires_bool(self):
+        for value in (1, 0, "true", None, [], {}):
+            with self.subTest(value=value):
+                with self.assertRaisesRegex(compose_figure.LayoutError, "allow_ink_cut.*must be true or false"):
+                    compose_figure.load_layout(self.clip_layout(allow_ink_cut=value))
+
+    def test_remove_text_outside_clip_is_not_ink(self):
+        self.clip_panel(text="ERASE")
+        with self.assertRaisesRegex(compose_figure.LayoutError, "top"):
+            self.clip_plan()
+        plan = self.clip_plan(remove_text=["ERASE"])
+        self.assertEqual(plan.panels[0].removed, ["ERASE"])
+        self.assertEqual(plan.notes, [])
+
+    def test_remove_letter_outside_clip_is_not_ink(self):
+        self.clip_panel(text="a")
+        with self.assertRaisesRegex(compose_figure.LayoutError, "top"):
+            self.clip_plan()
+        plan = self.clip_plan(remove_letter="a")
+        self.assertEqual(plan.panels[0].removed, ["a"])
+        self.assertEqual(plan.notes, [])
+
+    def test_rotated_clip_checks_prepared_coordinates(self):
+        options = {"file": "panel_rotate90.pdf", "clip_mm": [0, 0, 30, 40]}
+        with self.assertRaisesRegex(compose_figure.LayoutError, "panel Q.*right"):
+            self.clip_plan(**options)
+        plan = self.clip_plan(remove_text=["KEEP"], **options)
+        self.assertEqual(plan.panels[0].rotation_removed, 90)
+        self.assertEqual(plan.notes, [])
+
+
+@unittest.skipIf(MPL_FONTS is None, "matplotlib is not installed")
+class TestFontSubsetting(ComposeBase):
+    def font_layout(self):
+        self.font_file = os.path.join(MPL_FONTS, "DejaVuSans.ttf")
+        return self.layout([[{"file": "panel_b.pdf", "letter": "Q", "label": "Sample"}]],
+                           letters={"position": "above", "font_file": self.font_file})
+
+    def font_plan(self):
+        return compose_figure.build_plan(compose_figure.load_layout(self.font_layout()), self.dir)
+
+    def embedded_letter_font(self, doc):
+        fonts = [font for font in doc[0].get_fonts() if font[4] == "PanelLetterFont"]
+        self.assertEqual(len(fonts), 1)
+        data = doc.extract_font(fonts[0][0])[-1]
+        self.assertTrue(data)
+        return data
+
+    def test_embedded_letter_font_is_smaller_than_font_file(self):
+        warnings = compose_figure.build_pdf(self.font_plan(), self.out_pdf)
+        with fitz.open(self.out_pdf) as doc:
+            self.assertLess(len(self.embedded_letter_font(doc)), os.path.getsize(self.font_file))
+        self.assertEqual(warnings, [])
+
+    def test_subset_render_is_pixel_identical_at_150_dpi(self):
+        plan = self.font_plan()
+        whole_pdf = os.path.join(self.out_dir, "whole.pdf")
+        with mock.patch.object(fitz.Document, "subset_fonts", return_value=None):
+            compose_figure.build_pdf(plan, whole_pdf)
+        compose_figure.build_pdf(plan, self.out_pdf)
+        with fitz.open(whole_pdf) as whole, fitz.open(self.out_pdf) as subset:
+            before = whole[0].get_pixmap(dpi=150, alpha=False)
+            after = subset[0].get_pixmap(dpi=150, alpha=False)
+            self.assertEqual((before.width, before.height, before.n), (after.width, after.height, after.n))
+            self.assertTrue(before.samples == after.samples, "subsetting changed rendered pixels")
+            self.assertGreater(len(self.embedded_letter_font(whole)), len(self.embedded_letter_font(subset)))
+
+    def test_import_error_keeps_pdf_and_returns_warning(self):
+        plan = self.font_plan()
+        with mock.patch.object(fitz.Document, "subset_fonts", side_effect=ImportError("missing fontTools")):
+            warnings = compose_figure.build_pdf(plan, self.out_pdf)
+        self.assertEqual(warnings, ["the fonts are embedded whole; install fontTools to subset them: missing fontTools"])
+        with fitz.open(self.out_pdf) as doc:
+            self.assertEqual(doc.page_count, 1)
+            self.assertIn("LABEL-B", doc[0].get_text())
+            self.assertEqual(len(self.embedded_letter_font(doc)), os.path.getsize(self.font_file))
+        self.assertEqual(os.listdir(self.out_dir), ["figure.pdf"])
+
+    def test_other_subset_error_preserves_unmodified_pdf(self):
+        def broken_subset(doc, *args, **kwargs):
+            doc[0].insert_text((20, 20), "UNWANTED")
+            doc.new_page()
+            raise RuntimeError("subset failed after a partial change")
+
+        plan = self.font_plan()
+        with mock.patch.object(fitz.Document, "subset_fonts", broken_subset):
+            warnings = compose_figure.build_pdf(plan, self.out_pdf)
+        self.assertEqual(len(warnings), 1)
+        self.assertIn("fonts are embedded whole", warnings[0])
+        self.assertIn("subset failed after a partial change", warnings[0])
+        with fitz.open(self.out_pdf) as doc:
+            self.assertEqual(doc.page_count, 1)
+            self.assertNotIn("UNWANTED", doc[0].get_text())
+            self.assertEqual(len(self.embedded_letter_font(doc)), os.path.getsize(self.font_file))
+
+    def test_pdf_is_replaced_atomically_from_same_directory(self):
+        plan = self.font_plan()
+        replace = os.replace
+        for error in (None, ImportError("missing fontTools")):
+            with self.subTest(error=error):
+                make_panel(self.out_pdf, 40, 40, "ORIGINAL")
+                before = sha256(self.out_pdf)
+
+                def checked_replace(source, destination):
+                    self.assertEqual(os.path.abspath(destination), os.path.abspath(self.out_pdf))
+                    self.assertEqual(os.path.dirname(os.path.abspath(source)), self.out_dir)
+                    self.assertNotEqual(os.path.abspath(source), os.path.abspath(destination))
+                    self.assertEqual(sha256(destination), before)
+                    with fitz.open(source) as doc:
+                        self.assertIn("LABEL-B", doc[0].get_text())
+                    replace(source, destination)
+
+                with mock.patch.object(fitz.Document, "subset_fonts", side_effect=error), \
+                        mock.patch.object(compose_figure.os, "replace", side_effect=checked_replace) as replaced:
+                    compose_figure.build_pdf(plan, self.out_pdf)
+                replaced.assert_called_once()
+                self.assertEqual(os.listdir(self.out_dir), ["figure.pdf"])
+
+    def test_cli_prints_subset_warning_before_wrote(self):
+        path = self.font_layout()
+        output = io.StringIO()
+        with mock.patch.object(fitz.Document, "subset_fonts", side_effect=ImportError("missing fontTools")), \
+                contextlib.redirect_stdout(output):
+            status = compose_figure.main([path, "--out", self.out_pdf, "--no-png"])
+        self.assertEqual(status, 0)
+        lines = output.getvalue().splitlines()
+        warning = "WARNING: the fonts are embedded whole; install fontTools to subset them: missing fontTools"
+        self.assertIn(warning, lines)
+        self.assertLess(lines.index(warning), next(i for i, line in enumerate(lines) if line.startswith("Wrote:")))
+        self.assertTrue(os.path.isfile(self.out_pdf))
 
 
 class TestLetters(ComposeBase):
@@ -453,7 +666,7 @@ class TestLetters(ComposeBase):
         self.assertRegex(warnings[0], r"leave a \d+\.\d \S \d+\.\d mm corner free")
 
     def test_corner_check_reads_the_clip(self):
-        proc = self.compose([[{"file": "panel_ink.pdf", "clip_mm": [10, 0, 82.5, 40]}]])
+        proc = self.compose([[{"file": "panel_ink.pdf", "clip_mm": [10, 0, 82.5, 40], "allow_ink_cut": True}]])
         self.assertNotIn("corner free", proc.stdout)
 
     def test_above_does_not_check_the_corner(self):
@@ -788,7 +1001,7 @@ class TestRotatedPages(ComposeBase):
         for got, want in zip(box, (11.3, 7.0, 14.6, 13.6)):
             self.assertAlmostEqual(got, want, delta=1.0)
         # The left 30 mm hold no ink.
-        proc = self.run_cli(self.rotated_layout(clip_mm=[0, 0, 30, 40]))
+        proc = self.run_cli(self.rotated_layout(clip_mm=[0, 0, 30, 40], allow_ink_cut=True))
         self.assertEqual(proc.returncode, 0, proc.stderr)
         self.assertEqual(ink_pixels(self.figure()), 0)
 

@@ -23,6 +23,7 @@ import logging
 import math
 import os
 import sys
+import tempfile
 from collections import Counter
 from dataclasses import dataclass, field
 from typing import Any, Dict, List, Optional
@@ -47,7 +48,7 @@ TOP_KEYS = {"width_mm", "max_height_mm", "gap_mm", "row_gap_mm", "col_gap_mm", "
 LETTER_KEYS = {"position", "size_pt", "font_file", "case", "clearance_mm",
                "label_gap_mm", "label_font_file", "label_size_pt"}
 ROW_KEYS = {"panels"}
-PANEL_KEYS = {"file", "clip_mm", "letter", "label", "scale", "remove_text", "remove_letter"}
+PANEL_KEYS = {"file", "clip_mm", "allow_ink_cut", "letter", "label", "scale", "remove_text", "remove_letter"}
 
 EPILOG = """\
 layout keys (JSON; every length is in mm):
@@ -83,6 +84,8 @@ layout keys (JSON; every length is in mm):
   panel          {"file": "panel_a.pdf"} with these optional keys:
     clip_mm        [left, top, right, bottom] in mm from the panel page's
                    top-left. The panel's size is then the size of the clip.
+    allow_ink_cut  true permits ink outside clip_mm after text removal and
+                   records a NOTE. Default false: cutting ink is an error.
     letter         text of the panel letter. "" sets no letter on this panel
                    and does not use up a letter of the sequence. Default: the
                    next letter of a, b, c ... in reading order.
@@ -235,6 +238,9 @@ def validate_layout(data):
                 if clip[2] <= clip[0] or clip[3] <= clip[1]:
                     raise LayoutError("'clip_mm' in %s must have right > left and bottom > top" % where)
             letter = panel.get("letter")
+            allow_ink_cut = panel.get("allow_ink_cut", False)
+            if not isinstance(allow_ink_cut, bool):
+                raise LayoutError("'allow_ink_cut' in %s must be true or false" % where)
             if letter is not None and not isinstance(letter, str):
                 raise LayoutError("'letter' in %s must be a string" % where)
             label = panel.get("label")
@@ -255,6 +261,7 @@ def validate_layout(data):
                         "The composer places panels at 100%%." % (where, panel["file"]))
                 scale = _number(scale, "'scale' in %s" % where, positive=True)
             out_row.append({"file": panel["file"], "clip_mm": clip,
+                            "allow_ink_cut": allow_ink_cut,
                             "letter_spec": letter, "label": label or "", "scale": scale,
                             "remove_text": list(remove_text), "remove_letter": remove_letter or ""})
         out["rows"].append(out_row)
@@ -384,6 +391,7 @@ class Panel:
     letter_top_mm: Optional[float] = None
     letter_baseline_mm: Optional[float] = None
     label_x_mm: Optional[float] = None
+    allow_ink_cut: bool = False
 
     @property
     def short_name(self):
@@ -637,7 +645,7 @@ def build_plan(layout, base_dir):
             panels.append(Panel(row=r, index=i, file=raw["file"], path=path, clip_mm=raw["clip_mm"],
                                 letter_spec=raw["letter_spec"], scale_spec=raw["scale"],
                                 label_spec=raw["label"], remove_text=raw["remove_text"],
-                                remove_letter=raw["remove_letter"]))
+                                remove_letter=raw["remove_letter"], allow_ink_cut=raw["allow_ink_cut"]))
         rows.append(Row(index=r, panels=panels))
     all_panels = [p for row in rows for p in row.panels]
     _assign_letters(all_panels, position, letters["case"], warnings)
@@ -663,16 +671,38 @@ def build_plan(layout, base_dir):
                 warnings.append("%s has %d pages; the composer places page 1 only."
                                 % (panel.long_name, doc.page_count))
             page_w, page_h = doc[0].rect.width / MM, doc[0].rect.height / MM
+            if panel.clip_mm is not None:
+                left, top, right, bottom = panel.clip_mm
+                if left < -TOL_MM or top < -TOL_MM or right > page_w + TOL_MM or bottom > page_h + TOL_MM:
+                    raise LayoutError("'clip_mm' of %s lies outside the %.1f x %.1f mm page"
+                                      % (panel.long_name, page_w, page_h))
+                page = doc[0]
+                bounds, clip = page.rect, panel.clip_rect_pt()
+                strips = [
+                    ("top", fitz.Rect(bounds.x0, bounds.y0, bounds.x1, clip.y0)),
+                    ("bottom", fitz.Rect(bounds.x0, clip.y1, bounds.x1, bounds.y1)),
+                    ("left", fitz.Rect(bounds.x0, clip.y0, clip.x0, clip.y1)),
+                    ("right", fitz.Rect(clip.x1, clip.y0, bounds.x1, clip.y1)),
+                ]
+                cut = []
+                for name, rect in strips:
+                    ink = count_ink(page, rect)
+                    if ink:
+                        cut.append("%s: %d pixels" % (name, ink))
+                if cut:
+                    message = "%s has ink outside clip_mm %s (%s)" % (
+                        panel.long_name, panel.clip_mm, ", ".join(cut))
+                    if panel.allow_ink_cut:
+                        notes.append("NOTE: " + message + '; allowed by "allow_ink_cut": true.')
+                    else:
+                        errors.append(message + '; widen clip_mm, or set "allow_ink_cut": true on this panel '
+                                      'if the cut is deliberate, for example an old letter drawn as outlines, '
+                                      'which remove_letter cannot erase.')
+                panel.src_w_mm, panel.src_h_mm = right - left, bottom - top
+            else:
+                panel.src_w_mm, panel.src_h_mm = page_w, page_h
         finally:
             doc.close()
-        if panel.clip_mm is not None:
-            left, top, right, bottom = panel.clip_mm
-            if left < -TOL_MM or top < -TOL_MM or right > page_w + TOL_MM or bottom > page_h + TOL_MM:
-                raise LayoutError("'clip_mm' of %s lies outside the %.1f x %.1f mm page"
-                                  % (panel.long_name, page_w, page_h))
-            panel.src_w_mm, panel.src_h_mm = right - left, bottom - top
-        else:
-            panel.src_w_mm, panel.src_h_mm = page_w, page_h
         panel.scale = panel.scale_spec if panel.scale_spec is not None else 1.0
         panel.w_mm, panel.h_mm = panel.src_w_mm * panel.scale, panel.src_h_mm * panel.scale
         if abs(panel.scale - 1.0) > 1e-9:
@@ -802,9 +832,8 @@ def report_lines(plan):
                          % (panel.long_name, panel.rotation_removed))
     for warning in plan.warnings:
         lines.append("WARNING: " + warning)
-    if plan.any_scaled:
-        lines.extend(plan.notes)
-    else:
+    lines.extend(plan.notes)
+    if not plan.any_scaled:
         lines.append("Panels placed at 100%: type sizes are the panels' own.")
     return lines
 
@@ -831,6 +860,8 @@ def sidecar_data(plan):
             "label_x_mm": rnd(panel.label_x_mm),
             "removed_text": list(panel.removed),
         })
+        if panel.allow_ink_cut:
+            panels[-1]["allow_ink_cut"] = True
     return {
         "page_mm": {"width": rnd(plan.width_mm), "height": rnd(plan.height_mm)},
         "row_gap_mm": rnd(plan.row_gap_mm),
@@ -848,10 +879,12 @@ def sidecar_data(plan):
 
 
 def build_pdf(plan, out_pdf):
-    """Draw the panels and letters on one page and save it. Panels stay vector."""
+    """Compose and atomically save a vector PDF with subset fonts. Return any warnings."""
     doc = fitz.open()
     page = doc.new_page(width=plan.width_mm * MM, height=plan.height_mm * MM)
     sources = []
+    warnings = []
+    temporary = None
     try:
         for panel in plan.panels:
             src = open_prepared(panel)
@@ -871,11 +904,29 @@ def build_pdf(plan, out_pdf):
                     page.insert_text((panel.label_x_mm * MM, panel.letter_baseline_mm * MM),
                                      panel.label, fontname=label_fontname,
                                      fontsize=plan.letters["label_size_pt"], color=(0, 0, 0))
-        doc.save(out_pdf, garbage=4, deflate=True)
+        with tempfile.NamedTemporaryFile(dir=os.path.dirname(os.path.abspath(out_pdf)),
+                                         prefix=".compose_", suffix=".pdf", delete=False) as handle:
+            temporary = handle.name
+        # Keep the whole-font PDF on disk in case subsetting changes the document
+        # before raising. Only a completed file replaces the destination.
+        doc.save(temporary, garbage=4, deflate=True)
+        try:
+            doc.subset_fonts()
+        except ImportError as err:
+            warnings.append("the fonts are embedded whole; install fontTools to subset them: %s" % err)
+        except Exception as err:
+            warnings.append("the fonts are embedded whole; subsetting failed: %s" % err)
+        else:
+            doc.save(temporary, garbage=4, deflate=True)
+        os.replace(temporary, out_pdf)
+        temporary = None
     finally:
         for src in sources:
             src.close()
         doc.close()
+        if temporary is not None:
+            os.unlink(temporary)
+    return warnings
 
 
 def write_png(pdf_path, png_path, dpi):
@@ -962,7 +1013,8 @@ def main(argv=None):
     try:
         folder = os.path.dirname(os.path.abspath(out_pdf))
         os.makedirs(folder, exist_ok=True)
-        build_pdf(plan, out_pdf)
+        for warning in build_pdf(plan, out_pdf):
+            print("WARNING: " + warning)
         written = [out_pdf]
         if not args.no_png:
             write_png(out_pdf, stem + ".png", args.png_dpi)
