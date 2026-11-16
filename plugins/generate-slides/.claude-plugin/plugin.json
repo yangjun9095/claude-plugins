@@ -1,0 +1,12 @@
+{
+  "name": "generate-slides",
+  "version": "1.0.0",
+  "description": "Generate PPTX slide decks from session artifacts with interactive outline brainstorming, then programmatic generation via python-pptx",
+  "author": {
+    "name": "Yang Joon Kim",
+    "url": "https://github.com/yangjun9095"
+  },
+  "repository": "https://github.com/yangjun9095/claude-plugins",
+  "license": "MIT",
+  "keywords": ["slides", "powerpoint", "pptx", "presentation", "data-analysis", "figures", "python-pptx"]
+}

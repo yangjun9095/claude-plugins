@@ -1,0 +1,3384 @@
+{
+ "by_cell": {
+  "first/other": 1,
+  "senior/high": 6,
+  "senior/other": 3
+ },
+ "by_group": {
+  "first": 1,
+  "senior": 9
+ },
+ "by_tier": {
+  "high": 6,
+  "other": 4
+ },
+ "checklist_version": 2,
+ "distinctive_note": "",
+ "distinctive_pairs": [
+  [
+   "the relative",
+   3.79
+  ],
+  [
+   "the sample",
+   3.72
+  ],
+  [
+   "a network",
+   3.69
+  ],
+  [
+   "field of",
+   3.42
+  ],
+  [
+   "temporal resolution",
+   3.31
+  ],
+  [
+   "false positives",
+   3.22
+  ],
+  [
+   "the image",
+   3.19
+  ],
+  [
+   "resolution and",
+   2.84
+  ],
+  [
+   "interactions are",
+   2.7
+  ],
+  [
+   "network and",
+   2.7
+  ],
+  [
+   "users to",
+   2.66
+  ],
+  [
+   "positives and",
+   2.64
+  ],
+  [
+   "training data",
+   2.61
+  ],
+  [
+   "ground truth",
+   2.58
+  ],
+  [
+   "interactions with",
+   2.58
+  ],
+  [
+   "networks are",
+   2.49
+  ],
+  [
+   "see methods",
+   2.48
+  ],
+  [
+   "manually curated",
+   2.44
+  ],
+  [
+   "supplementary file",
+   2.43
+  ],
+  [
+   "the noise",
+   2.41
+  ]
+ ],
+ "distinctive_words": [
+  [
+   "tracking",
+   12.29
+  ],
+  [
+   "image",
+   11.56
+  ],
+  [
+   "imaging",
+   9.4
+  ],
+  [
+   "images",
+   9.26
+  ],
+  [
+   "networks",
+   8.4
+  ],
+  [
+   "segmentation",
+   8.01
+  ],
+  [
+   "localization",
+   7.12
+  ],
+  [
+   "relative",
+   6.56
+  ],
+  [
+   "care",
+   6.22
+  ],
+  [
+   "network",
+   6.01
+  ],
+  [
+   "datasets",
+   5.63
+  ],
+  [
+   "quality",
+   5.4
+  ],
+  [
+   "microscopy",
+   5.38
+  ],
+  [
+   "frames",
+   5.01
+  ],
+  [
+   "speed",
+   4.85
+  ],
+  [
+   "scanning",
+   4.74
+  ],
+  [
+   "video",
+   4.41
+  ],
+  [
+   "interface",
+   4.32
+  ],
+  [
+   "zebrafish",
+   4.23
+  ],
+  [
+   "interactions",
+   4.21
+  ],
+  [
+   "false",
+   4.16
+  ],
+  [
+   "users",
+   4.1
+  ],
+  [
+   "resolution",
+   4.08
+  ],
+  [
+   "track",
+   3.83
+  ],
+  [
+   "acquired",
+   3.79
+  ],
+  [
+   "benchmark",
+   3.61
+  ],
+  [
+   "pca",
+   3.61
+  ],
+  [
+   "manually",
+   3.6
+  ],
+  [
+   "segments",
+   3.6
+  ],
+  [
+   "and",
+   3.56
+  ]
+ ],
+ "items": {
+  "abstract_moves": {
+   "value": {
+    "all": {
+     "approach": 10,
+     "context": 8,
+     "gap": 5,
+     "implication": 4,
+     "other": 2,
+     "result": 8
+    },
+    "by_group": {
+     "first": {
+      "approach": 1,
+      "context": 1,
+      "gap": 1,
+      "implication": 1,
+      "result": 1
+     },
+     "senior": {
+      "approach": 9,
+      "context": 7,
+      "gap": 4,
+      "implication": 3,
+      "other": 2,
+      "result": 7
+     }
+    },
+    "by_tier": {
+     "high": {
+      "approach": 6,
+      "context": 5,
+      "gap": 2,
+      "implication": 2,
+      "other": 1,
+      "result": 5
+     },
+     "other": {
+      "approach": 4,
+      "context": 3,
+      "gap": 3,
+      "implication": 2,
+      "other": 1,
+      "result": 3
+     }
+    },
+    "first": {
+     "approach": 2,
+     "context": 8
+    },
+    "last": {
+     "approach": 2,
+     "implication": 4,
+     "other": 2,
+     "result": 2
+    },
+    "n": 10,
+    "n_by_group": {
+     "first": 1,
+     "senior": 9
+    },
+    "n_by_tier": {
+     "high": 6,
+     "other": 4
+    }
+   }
+  },
+  "discussion_moves": {
+   "value": {
+    "all": {
+     "comparison with prior work": 4,
+     "future work": 6,
+     "implication": 8,
+     "limitation": 6,
+     "mechanism": 1,
+     "other": 2,
+     "summary": 9
+    },
+    "by_group": {
+     "first": {
+      "comparison with prior work": 1,
+      "implication": 1,
+      "limitation": 1,
+      "mechanism": 1,
+      "other": 1,
+      "summary": 1
+     },
+     "senior": {
+      "comparison with prior work": 3,
+      "future work": 6,
+      "implication": 7,
+      "limitation": 5,
+      "other": 1,
+      "summary": 8
+     }
+    },
+    "by_tier": {
+     "high": {
+      "comparison with prior work": 3,
+      "future work": 4,
+      "implication": 5,
+      "limitation": 4,
+      "summary": 5
+     },
+     "other": {
+      "comparison with prior work": 1,
+      "future work": 2,
+      "implication": 3,
+      "limitation": 2,
+      "mechanism": 1,
+      "other": 2,
+      "summary": 4
+     }
+    },
+    "first": {
+     "summary": 9
+    },
+    "last": {
+     "future work": 2,
+     "implication": 7
+    },
+    "n": 10,
+    "n_by_group": {
+     "first": 1,
+     "senior": 9
+    },
+    "n_by_tier": {
+     "high": 6,
+     "other": 4
+    }
+   }
+  },
+  "essay_argument": {
+   "call_to_action": {
+    "all": {},
+    "by_group": {},
+    "by_tier": {},
+    "n": 0,
+    "n_by_group": {},
+    "n_by_tier": {}
+   },
+   "thesis_location": {
+    "all": {},
+    "by_group": {},
+    "by_tier": {},
+    "n": 0,
+    "n_by_group": {},
+    "n_by_tier": {}
+   }
+  },
+  "excitement": {
+   "value.location": {
+    "all": {
+     "abstract": 10,
+     "discussion": 9,
+     "introduction": 6,
+     "results": 10
+    },
+    "by_group": {
+     "first": {
+      "abstract": 1,
+      "discussion": 1,
+      "results": 1
+     },
+     "senior": {
+      "abstract": 9,
+      "discussion": 8,
+      "introduction": 6,
+      "results": 9
+     }
+    },
+    "by_tier": {
+     "high": {
+      "abstract": 6,
+      "discussion": 5,
+      "introduction": 4,
+      "results": 6
+     },
+     "other": {
+      "abstract": 4,
+      "discussion": 4,
+      "introduction": 2,
+      "results": 4
+     }
+    },
+    "n": 10,
+    "n_by_group": {
+     "first": 1,
+     "senior": 9
+    },
+    "n_by_tier": {
+     "high": 6,
+     "other": 4
+    }
+   },
+   "value.marker": {
+    "all": {
+     "evaluative word": 10,
+     "first or novelty claim": 8,
+     "implication sentence": 9,
+     "scope claim": 9
+    },
+    "by_group": {
+     "first": {
+      "evaluative word": 1,
+      "first or novelty claim": 1,
+      "implication sentence": 1,
+      "scope claim": 1
+     },
+     "senior": {
+      "evaluative word": 9,
+      "first or novelty claim": 7,
+      "implication sentence": 8,
+      "scope claim": 8
+     }
+    },
+    "by_tier": {
+     "high": {
+      "evaluative word": 6,
+      "first or novelty claim": 5,
+      "implication sentence": 6,
+      "scope claim": 6
+     },
+     "other": {
+      "evaluative word": 4,
+      "first or novelty claim": 3,
+      "implication sentence": 3,
+      "scope claim": 3
+     }
+    },
+    "n": 10,
+    "n_by_group": {
+     "first": 1,
+     "senior": 9
+    },
+    "n_by_tier": {
+     "high": 6,
+     "other": 4
+    }
+   }
+  },
+  "figure_reference": {
+   "value": {
+    "all": {
+     "mixed": 2,
+     "result then reference": 8
+    },
+    "by_group": {
+     "first": {
+      "mixed": 1
+     },
+     "senior": {
+      "mixed": 1,
+      "result then reference": 8
+     }
+    },
+    "by_tier": {
+     "high": {
+      "result then reference": 6
+     },
+     "other": {
+      "mixed": 2,
+      "result then reference": 2
+     }
+    },
+    "n": 10,
+    "n_by_group": {
+     "first": 1,
+     "senior": 9
+    },
+    "n_by_tier": {
+     "high": 6,
+     "other": 4
+    }
+   }
+  },
+  "gap_sentence": {
+   "value": {
+    "all": {
+     "present": 10
+    },
+    "by_group": {
+     "first": {
+      "present": 1
+     },
+     "senior": {
+      "present": 9
+     }
+    },
+    "by_tier": {
+     "high": {
+      "present": 6
+     },
+     "other": {
+      "present": 4
+     }
+    },
+    "n": 10,
+    "n_by_group": {
+     "first": 1,
+     "senior": 9
+    },
+    "n_by_tier": {
+     "high": 6,
+     "other": 4
+    }
+   }
+  },
+  "here_we": {
+   "value": {
+    "all": {
+     "none": 2,
+     "present": 8
+    },
+    "by_group": {
+     "first": {
+      "present": 1
+     },
+     "senior": {
+      "none": 2,
+      "present": 7
+     }
+    },
+    "by_tier": {
+     "high": {
+      "none": 1,
+      "present": 5
+     },
+     "other": {
+      "none": 1,
+      "present": 3
+     }
+    },
+    "n": 10,
+    "n_by_group": {
+     "first": 1,
+     "senior": 9
+    },
+    "n_by_tier": {
+     "high": 6,
+     "other": 4
+    }
+   }
+  },
+  "intro_roles": {
+   "value": {
+    "all": {
+     "approach preview": 4,
+     "field": 6,
+     "gap": 7,
+     "here-we": 8,
+     "other": 1,
+     "prior work": 4,
+     "problem": 3,
+     "result preview": 1
+    },
+    "by_group": {
+     "first": {
+      "approach preview": 1,
+      "here-we": 1,
+      "prior work": 1
+     },
+     "senior": {
+      "approach preview": 3,
+      "field": 6,
+      "gap": 7,
+      "here-we": 7,
+      "other": 1,
+      "prior work": 3,
+      "problem": 3,
+      "result preview": 1
+     }
+    },
+    "by_tier": {
+     "high": {
+      "approach preview": 2,
+      "field": 5,
+      "gap": 5,
+      "here-we": 5,
+      "prior work": 2,
+      "problem": 3,
+      "result preview": 1
+     },
+     "other": {
+      "approach preview": 2,
+      "field": 1,
+      "gap": 2,
+      "here-we": 3,
+      "other": 1,
+      "prior work": 2
+     }
+    },
+    "first": {
+     "field": 6,
+     "gap": 1,
+     "here-we": 2,
+     "problem": 1
+    },
+    "last": {
+     "approach preview": 3,
+     "gap": 2,
+     "here-we": 4,
+     "prior work": 1
+    },
+    "n": 10,
+    "n_by_group": {
+     "first": 1,
+     "senior": 9
+    },
+    "n_by_tier": {
+     "high": 6,
+     "other": 4
+    }
+   }
+  },
+  "limitations": {
+   "placement": {
+    "all": {
+     "inline in body": 2,
+     "inline in discussion": 1,
+     "inline in methods": 1,
+     "inline in results": 2,
+     "own paragraph": 4
+    },
+    "by_group": {
+     "first": {
+      "inline in results": 1
+     },
+     "senior": {
+      "inline in body": 2,
+      "inline in discussion": 1,
+      "inline in methods": 1,
+      "inline in results": 1,
+      "own paragraph": 4
+     }
+    },
+    "by_tier": {
+     "high": {
+      "inline in body": 2,
+      "own paragraph": 4
+     },
+     "other": {
+      "inline in discussion": 1,
+      "inline in methods": 1,
+      "inline in results": 2
+     }
+    },
+    "n": 10,
+    "n_by_group": {
+     "first": 1,
+     "senior": 9
+    },
+    "n_by_tier": {
+     "high": 6,
+     "other": 4
+    }
+   },
+   "specificity": {
+    "all": {
+     "specific": 5,
+     "specific with a remedy": 5
+    },
+    "by_group": {
+     "first": {
+      "specific": 1
+     },
+     "senior": {
+      "specific": 4,
+      "specific with a remedy": 5
+     }
+    },
+    "by_tier": {
+     "high": {
+      "specific": 3,
+      "specific with a remedy": 3
+     },
+     "other": {
+      "specific": 2,
+      "specific with a remedy": 2
+     }
+    },
+    "n": 10,
+    "n_by_group": {
+     "first": 1,
+     "senior": 9
+    },
+    "n_by_tier": {
+     "high": 6,
+     "other": 4
+    }
+   }
+  },
+  "results_headings": {
+   "value": {
+    "all": {
+     "full-sentence claim": 1,
+     "none": 3,
+     "noun phrase": 6
+    },
+    "by_group": {
+     "first": {
+      "full-sentence claim": 1
+     },
+     "senior": {
+      "none": 3,
+      "noun phrase": 6
+     }
+    },
+    "by_tier": {
+     "high": {
+      "none": 2,
+      "noun phrase": 4
+     },
+     "other": {
+      "full-sentence claim": 1,
+      "none": 1,
+      "noun phrase": 2
+     }
+    },
+    "n": 10,
+    "n_by_group": {
+     "first": 1,
+     "senior": 9
+    },
+    "n_by_tier": {
+     "high": 6,
+     "other": 4
+    }
+   }
+  },
+  "results_openings": {
+   "value": {
+    "all": {
+     "aim": 8,
+     "method first": 6,
+     "question": 2,
+     "result first": 5
+    },
+    "by_group": {
+     "first": {
+      "method first": 1,
+      "question": 1,
+      "result first": 1
+     },
+     "senior": {
+      "aim": 8,
+      "method first": 5,
+      "question": 1,
+      "result first": 4
+     }
+    },
+    "by_tier": {
+     "high": {
+      "aim": 6,
+      "method first": 3,
+      "question": 1,
+      "result first": 3
+     },
+     "other": {
+      "aim": 2,
+      "method first": 3,
+      "question": 1,
+      "result first": 2
+     }
+    },
+    "first": {
+     "aim": 5,
+     "method first": 4,
+     "result first": 1
+    },
+    "last": {
+     "aim": 4,
+     "method first": 2,
+     "result first": 4
+    },
+    "n": 10,
+    "n_by_group": {
+     "first": 1,
+     "senior": 9
+    },
+    "n_by_tier": {
+     "high": 6,
+     "other": 4
+    }
+   }
+  },
+  "strongest_claim": {
+   "value": {
+    "all": {
+     "hedged": 4,
+     "unhedged": 6
+    },
+    "by_group": {
+     "first": {
+      "unhedged": 1
+     },
+     "senior": {
+      "hedged": 4,
+      "unhedged": 5
+     }
+    },
+    "by_tier": {
+     "high": {
+      "hedged": 3,
+      "unhedged": 3
+     },
+     "other": {
+      "hedged": 1,
+      "unhedged": 3
+     }
+    },
+    "n": 10,
+    "n_by_group": {
+     "first": 1,
+     "senior": 9
+    },
+    "n_by_tier": {
+     "high": 6,
+     "other": 4
+    }
+   }
+  },
+  "title_form": {
+   "value": {
+    "all": {
+     "claim": 1,
+     "method name": 8,
+     "topic": 1
+    },
+    "by_group": {
+     "first": {
+      "topic": 1
+     },
+     "senior": {
+      "claim": 1,
+      "method name": 8
+     }
+    },
+    "by_tier": {
+     "high": {
+      "claim": 1,
+      "method name": 5
+     },
+     "other": {
+      "method name": 3,
+      "topic": 1
+     }
+    },
+    "n": 10,
+    "n_by_group": {
+     "first": 1,
+     "senior": 9
+    },
+    "n_by_tier": {
+     "high": 6,
+     "other": 4
+    }
+   }
+  }
+ },
+ "left_out": [],
+ "n_fetched": 10,
+ "n_left_out": 0,
+ "n_papers": 10,
+ "name": "Loic A. Royer",
+ "papers_used": [
+  "W2047169183",
+  "W2950501364",
+  "W2984014186",
+  "W3035727968",
+  "W4220914113",
+  "W4225595682",
+  "W4287510106",
+  "W4413495132",
+  "W4413495365",
+  "W7223281292"
+ ],
+ "person": "royer",
+ "quotes": [
+  {
+   "doi": "10.1371/journal.pone.0035729",
+   "field": "quote",
+   "item": "gap_sentence",
+   "text": "Consequently the problem of assessing the quality and coverage of protein interaction networks remains largely open.",
+   "text_version": "published",
+   "work_id": "W2047169183"
+  },
+  {
+   "doi": "10.1371/journal.pone.0035729",
+   "field": "quote",
+   "item": "here_we",
+   "text": "we propose to quantify the richness in patterns and structure of different protein interaction datasets and investigate how this relates to quality",
+   "text_version": "published",
+   "work_id": "W2047169183"
+  },
+  {
+   "doi": "10.1371/journal.pone.0035729",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "First we validate the link between relative compression rate and network quality as previously defined.",
+   "text_version": "published",
+   "work_id": "W2047169183"
+  },
+  {
+   "doi": "10.1371/journal.pone.0035729",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "Next, we will discuss in detail how the different experimental methods influence the relative compressibility of available large-scale interactomes.",
+   "text_version": "published",
+   "work_id": "W2047169183"
+  },
+  {
+   "doi": "10.1371/journal.pone.0035729",
+   "field": "value",
+   "item": "excitement",
+   "text": "this new measure is a proxy for both sensitivity and specificity",
+   "text_version": "published",
+   "work_id": "W2047169183"
+  },
+  {
+   "doi": "10.1371/journal.pone.0035729",
+   "field": "value",
+   "item": "excitement",
+   "text": "Importantly, we show that relative compressibility is independent of the network topology",
+   "text_version": "published",
+   "work_id": "W2047169183"
+  },
+  {
+   "doi": "10.1371/journal.pone.0035729",
+   "field": "value",
+   "item": "excitement",
+   "text": "independently of the system from which the network is derived and independently of the model considered for false positives and false negatives",
+   "text_version": "published",
+   "work_id": "W2047169183"
+  },
+  {
+   "doi": "10.1371/journal.pone.0035729",
+   "field": "value",
+   "item": "excitement",
+   "text": "Remarkably, for Gavin's network, the highest relative compression rate is found for a minimum confidence score",
+   "text_version": "published",
+   "work_id": "W2047169183"
+  },
+  {
+   "doi": "10.1371/journal.pone.0035729",
+   "field": "value",
+   "item": "excitement",
+   "text": "Surprisingly, interactions of very high confidence (above [EQ]) are detrimental to the relative compressibility.",
+   "text_version": "published",
+   "work_id": "W2047169183"
+  },
+  {
+   "doi": "10.1371/journal.pone.0035729",
+   "field": "value",
+   "item": "excitement",
+   "text": "a relative compressibility between [EQ] and [EQ] is a signature of networks derived from complex systems whose structure is completely and accurately known",
+   "text_version": "published",
+   "work_id": "W2047169183"
+  },
+  {
+   "doi": "10.1371/journal.pone.0035729",
+   "field": "value",
+   "item": "excitement",
+   "text": "As a consequence, network compressibility offers new insights into network topology.",
+   "text_version": "published",
+   "work_id": "W2047169183"
+  },
+  {
+   "doi": "10.1371/journal.pone.0035729",
+   "field": "value",
+   "item": "excitement",
+   "text": "This shows that Y2H networks can be rich in structure and patterns when sensitivity issues are overcome.",
+   "text_version": "published",
+   "work_id": "W2047169183"
+  },
+  {
+   "doi": "10.1371/journal.pone.0035729",
+   "field": "value",
+   "item": "excitement",
+   "text": "Overall, relative compressibility is a new measure for comparing networks by their information content",
+   "text_version": "published",
+   "work_id": "W2047169183"
+  },
+  {
+   "doi": "10.1371/journal.pone.0035729",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "this new measure is a proxy for both sensitivity and specificity",
+   "text_version": "published",
+   "work_id": "W2047169183"
+  },
+  {
+   "doi": "10.1371/journal.pone.0035729",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "the small increase of Ito full must be interpreted with caution",
+   "text_version": "published",
+   "work_id": "W2047169183"
+  },
+  {
+   "doi": "10.1371/journal.pone.0035729",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "There may well be differences in quality between these networks for which we dont have independent evidence.",
+   "text_version": "published",
+   "work_id": "W2047169183"
+  },
+  {
+   "doi": "10.1371/journal.pone.0035729",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "In the absence of at least one complete and accurate interactome map it is difficult to estimate the range of true relative compression rates.",
+   "text_version": "published",
+   "work_id": "W2047169183"
+  },
+  {
+   "doi": "10.1371/journal.pone.0035729",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "Hence, with the current data, network compressibility cannot shed light on the question whether more complex organisms have more complex networks.",
+   "text_version": "published",
+   "work_id": "W2047169183"
+  },
+  {
+   "doi": "10.1371/journal.pone.0035729",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "it should be noted that the method does not rate individual interactions, but it simply measures the structure of the global network",
+   "text_version": "published",
+   "work_id": "W2047169183"
+  },
+  {
+   "doi": "10.1371/journal.pone.0035729",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "In computing, compression algorithms identify patterns in data and use these patterns to obtain compact representations, thus reducing data size.",
+   "text_version": "published",
+   "work_id": "W2047169183"
+  },
+  {
+   "doi": "10.1371/journal.pone.0035729",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "Lossless compression algorithms are reversible: the compressed representation is sufficient to recover the original data.",
+   "text_version": "published",
+   "work_id": "W2047169183"
+  },
+  {
+   "doi": "10.1371/journal.pone.0035729",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "For example, a compression rate of 70% means that among 100 edges in the original network, only 30 edges remain after compression.",
+   "text_version": "published",
+   "work_id": "W2047169183"
+  },
+  {
+   "doi": "10.1371/journal.pone.0035729",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "it should be noted that",
+   "text_version": "published",
+   "work_id": "W2047169183"
+  },
+  {
+   "doi": "10.1371/journal.pone.0035729",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Overall, we observe that",
+   "text_version": "published",
+   "work_id": "W2047169183"
+  },
+  {
+   "doi": "10.1371/journal.pone.0035729",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "This shows that",
+   "text_version": "published",
+   "work_id": "W2047169183"
+  },
+  {
+   "doi": "10.1371/journal.pone.0035729",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "markedly different",
+   "text_version": "published",
+   "work_id": "W2047169183"
+  },
+  {
+   "doi": "10.1101/236463",
+   "field": "quote",
+   "item": "gap_sentence",
+   "text": "the direct application of DL methods to image restoration tasks in fluorescence microscopy is complicated by the absence of training data sets",
+   "text_version": "preprint",
+   "work_id": "W2950501364"
+  },
+  {
+   "doi": "10.1101/236463",
+   "field": "quote",
+   "item": "here_we",
+   "text": "we present a solution to the problem of missing training data for DL in fluorescence microscopy by developing strategies to generate such data",
+   "text_version": "preprint",
+   "work_id": "W2950501364"
+  },
+  {
+   "doi": "10.1101/236463",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "Therefore, we investigated whether image pairs useful for training can be obtained also by computationally modifying existing microscopy images.",
+   "text_version": "preprint",
+   "work_id": "W2950501364"
+  },
+  {
+   "doi": "10.1101/236463",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "Having seen the potential of using semi-synthetic training data for CARE, we next investigated whether reasonable restorations can be achieved from synthetic image data alone",
+   "text_version": "preprint",
+   "work_id": "W2950501364"
+  },
+  {
+   "doi": "10.1101/236463",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "However, as for any image processing method, the issue of reliability of results needs to be addressed.",
+   "text_version": "preprint",
+   "work_id": "W2950501364"
+  },
+  {
+   "doi": "10.1101/236463",
+   "field": "value",
+   "item": "excitement",
+   "text": "image restoration based on deep learning extends the range of biological phenomena observable by microscopy",
+   "text_version": "preprint",
+   "work_id": "W2950501364"
+  },
+  {
+   "doi": "10.1101/236463",
+   "field": "value",
+   "item": "excitement",
+   "text": "On seven concrete examples we demonstrate how microscopy images can be restored even if 60-fold fewer photons are used during acquisition",
+   "text_version": "preprint",
+   "work_id": "W2950501364"
+  },
+  {
+   "doi": "10.1101/236463",
+   "field": "value",
+   "item": "excitement",
+   "text": "trained content-aware restoration (CARE) networks produce results that were previously unobtainable",
+   "text_version": "preprint",
+   "work_id": "W2950501364"
+  },
+  {
+   "doi": "10.1101/236463",
+   "field": "value",
+   "item": "excitement",
+   "text": "providing the first practical framework for live-cell imaging of S. mediterranea",
+   "text_version": "preprint",
+   "work_id": "W2950501364"
+  },
+  {
+   "doi": "10.1101/236463",
+   "field": "value",
+   "item": "excitement",
+   "text": "exhibit a dramatically improved resolution, revealing structures imperceptible in the widefield images",
+   "text_version": "preprint",
+   "work_id": "W2950501364"
+  },
+  {
+   "doi": "10.1101/236463",
+   "field": "value",
+   "item": "excitement",
+   "text": "CARE networks perform remarkably well on a wide range of image restoration tasks, opening new avenues for biological observations",
+   "text_version": "preprint",
+   "work_id": "W2950501364"
+  },
+  {
+   "doi": "10.1101/236463",
+   "field": "value",
+   "item": "excitement",
+   "text": "this method can be applied to any already acquired data set",
+   "text_version": "preprint",
+   "work_id": "W2950501364"
+  },
+  {
+   "doi": "10.1101/236463",
+   "field": "value",
+   "item": "excitement",
+   "text": "Application of CARE to raw images significantly expands the realm of observable biological phenomena.",
+   "text_version": "preprint",
+   "work_id": "W2950501364"
+  },
+  {
+   "doi": "10.1101/236463",
+   "field": "value",
+   "item": "excitement",
+   "text": "will open new windows into the inner workings of biological systems across scales",
+   "text_version": "preprint",
+   "work_id": "W2950501364"
+  },
+  {
+   "doi": "10.1101/236463",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "will open new windows into the inner workings of biological systems across scales",
+   "text_version": "preprint",
+   "work_id": "W2950501364"
+  },
+  {
+   "doi": "10.1101/236463",
+   "field": "hedge_quote",
+   "item": "strongest_claim",
+   "text": "We predict that",
+   "text_version": "preprint",
+   "work_id": "W2950501364"
+  },
+  {
+   "doi": "10.1101/236463",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "the proposed isotropic restoration relies on the implicit assumption that structures of interest do appear in arbitrary orientations",
+   "text_version": "preprint",
+   "work_id": "W2950501364"
+  },
+  {
+   "doi": "10.1101/236463",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "CARE cannot be used if ground-truth can neither be physically acquired nor synthetically generated.",
+   "text_version": "preprint",
+   "work_id": "W2950501364"
+  },
+  {
+   "doi": "10.1101/236463",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "The synthetic generation of training data could, in general, benefit from recent advances in computer vision, such as generative adversarial networks (GANs) [CIT].",
+   "text_version": "preprint",
+   "work_id": "W2950501364"
+  },
+  {
+   "doi": "10.1101/236463",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "When applying a network to data it was not trained for, results are likely to suffer in quality",
+   "text_version": "preprint",
+   "work_id": "W2950501364"
+  },
+  {
+   "doi": "10.1101/236463",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "Intuitively, narrow distributions signify high confidence, whereas broad distributions indicate low confidence pixel predictions.",
+   "text_version": "preprint",
+   "work_id": "W2950501364"
+  },
+  {
+   "doi": "10.1101/236463",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "To a human observer, strong flicker in such videos highlights the areas where the uncertainty of image restorations is high.",
+   "text_version": "preprint",
+   "work_id": "W2950501364"
+  },
+  {
+   "doi": "10.1101/236463",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "It employs large multi-layered neural networks that compute results after being trained on annotated example data",
+   "text_version": "preprint",
+   "work_id": "W2950501364"
+  },
+  {
+   "doi": "10.1101/236463",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "Intuitively, a method that leverages available knowledge about the data at hand ought to reach superior restoration results.",
+   "text_version": "preprint",
+   "work_id": "W2950501364"
+  },
+  {
+   "doi": "10.1101/236463",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "one must make trade-offs, for example, sacrificing signal-to-noise ratio by reducing exposure time in order to gain imaging speed",
+   "text_version": "preprint",
+   "work_id": "W2950501364"
+  },
+  {
+   "doi": "10.1101/236463",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Taken together,",
+   "text_version": "preprint",
+   "work_id": "W2950501364"
+  },
+  {
+   "doi": "10.1101/236463",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "The results show that",
+   "text_version": "preprint",
+   "work_id": "W2950501364"
+  },
+  {
+   "doi": "10.1101/236463",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "previously unseen",
+   "text_version": "preprint",
+   "work_id": "W2950501364"
+  },
+  {
+   "doi": "10.1101/236463",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Intuitively,",
+   "text_version": "preprint",
+   "work_id": "W2950501364"
+  },
+  {
+   "doi": "10.1101/660704",
+   "field": "quote",
+   "item": "gap_sentence",
+   "text": "Therefore, typical workflows consisting of core ImageJ operations do not take advantage of GPUs.",
+   "text_version": "preprint",
+   "work_id": "W2984014186"
+  },
+  {
+   "doi": "10.1101/660704",
+   "field": "quote",
+   "item": "here_we",
+   "text": "To address this issue we developed a flexible and reusable platform for GPU-acceleration in Fiji.",
+   "text_version": "preprint",
+   "work_id": "W2984014186"
+  },
+  {
+   "doi": "10.1101/660704",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "We then asked how much faster GPU-accelerated versions of individual operations run compared to their counterparts on the central processing unit (CPU).",
+   "text_version": "preprint",
+   "work_id": "W2984014186"
+  },
+  {
+   "doi": "10.1101/660704",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "we determined how much the output of the GPU-based workflow and the corresponding CPU-based workflow were different",
+   "text_version": "preprint",
+   "work_id": "W2984014186"
+  },
+  {
+   "doi": "10.1101/660704",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "The whole time lapse was processed on our laptop within 2 hours and 44 minutes using ImageJ and 11 minutes using CLIJ.",
+   "text_version": "preprint",
+   "work_id": "W2984014186"
+  },
+  {
+   "doi": "10.1101/660704",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "Key feature of CLIJ is that it does not require any GPU programming skills, or specialized hardware to be executed.",
+   "text_version": "preprint",
+   "work_id": "W2984014186"
+  },
+  {
+   "doi": "10.1101/660704",
+   "field": "value",
+   "item": "excitement",
+   "text": "Graphics processing units (GPU) allow image processing at unprecedented speed.",
+   "text_version": "preprint",
+   "work_id": "W2984014186"
+  },
+  {
+   "doi": "10.1101/660704",
+   "field": "value",
+   "item": "excitement",
+   "text": "speed up image processing in Fiji by factor 10 and more using high-end GPU hardware and on affordable mobile computers with built-in GPUs",
+   "text_version": "preprint",
+   "work_id": "W2984014186"
+  },
+  {
+   "doi": "10.1101/660704",
+   "field": "value",
+   "item": "excitement",
+   "text": "excluding compilation time and file input/output time from the time measurement suggests that real-time image analysis becomes feasible",
+   "text_version": "preprint",
+   "work_id": "W2984014186"
+  },
+  {
+   "doi": "10.1101/660704",
+   "field": "value",
+   "item": "excitement",
+   "text": "We tested CLIJ successfully on GPU-hardware from major vendors (Intel, AMD, Nvidia) and operating systems (Windows, MacOS, Linux).",
+   "text_version": "preprint",
+   "work_id": "W2984014186"
+  },
+  {
+   "doi": "10.1101/660704",
+   "field": "value",
+   "item": "excitement",
+   "text": "In summary, CLIJ makes it possible to speed up image processing workflows in Fiji to reduce processing time from hours to minutes.",
+   "text_version": "preprint",
+   "work_id": "W2984014186"
+  },
+  {
+   "doi": "10.1101/660704",
+   "field": "value",
+   "item": "excitement",
+   "text": "Furthermore, CLIJ allows general purpose realtime image processing, e.g. for smart microscopy applications.",
+   "text_version": "preprint",
+   "work_id": "W2984014186"
+  },
+  {
+   "doi": "10.1101/660704",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "Freely programmable workflows can speed up image processing in Fiji by factor 10 and more",
+   "text_version": "preprint",
+   "work_id": "W2984014186"
+  },
+  {
+   "doi": "10.1101/660704",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "all measured runtimes depend on the executed workflow, the image data it is applied on, and the GPU hardware and its drivers",
+   "text_version": "preprint",
+   "work_id": "W2984014186"
+  },
+  {
+   "doi": "10.1101/660704",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "While these differences may in practice be negligible (Suppl. Figure 6, Suppl. Video 1), we think users should be aware that they exist.",
+   "text_version": "preprint",
+   "work_id": "W2984014186"
+  },
+  {
+   "doi": "10.1101/660704",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "GPUs can do certain operations faster because they have many more processing cores then regular CPUs",
+   "text_version": "preprint",
+   "work_id": "W2984014186"
+  },
+  {
+   "doi": "10.1101/660704",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "the data and the compiled program have to be first pushed to GPU memory, and later data have to be pulled back to CPU memory",
+   "text_version": "preprint",
+   "work_id": "W2984014186"
+  },
+  {
+   "doi": "10.1101/660704",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Furthermore,",
+   "text_version": "preprint",
+   "work_id": "W2984014186"
+  },
+  {
+   "doi": "10.1101/660704",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "We would like to note that",
+   "text_version": "preprint",
+   "work_id": "W2984014186"
+  },
+  {
+   "doi": "10.1101/660704",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "We then asked",
+   "text_version": "preprint",
+   "work_id": "W2984014186"
+  },
+  {
+   "doi": "10.1101/660704",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "staggering amounts",
+   "text_version": "preprint",
+   "work_id": "W2984014186"
+  },
+  {
+   "doi": "10.1101/660704",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Thus, these results show that",
+   "text_version": "preprint",
+   "work_id": "W2984014186"
+  },
+  {
+   "doi": "10.48550/arxiv.2006.06156",
+   "field": "quote",
+   "item": "gap_sentence",
+   "text": "the assumptions inherent to the priors are often simplistic and cannot capture the full complexity of real data",
+   "text_version": "arxiv",
+   "work_id": "W3035727968"
+  },
+  {
+   "doi": "10.48550/arxiv.2006.06156",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "However, here we are interested in the baseline performance in the purely self-supervised case.",
+   "text_version": "arxiv",
+   "work_id": "W3035727968"
+  },
+  {
+   "doi": "10.48550/arxiv.2006.06156",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "We compare our Self-Supervised Inversion (SSI) approach with standard inversion algorithms such as Lucy-Richardson (LR) deconvolution [CIT]",
+   "text_version": "arxiv",
+   "work_id": "W3035727968"
+  },
+  {
+   "doi": "10.48550/arxiv.2006.06156",
+   "field": "value",
+   "item": "excitement",
+   "text": "We propose a general framework for solving inverse problems in the presence of noise",
+   "text_version": "arxiv",
+   "work_id": "W3035727968"
+  },
+  {
+   "doi": "10.48550/arxiv.2006.06156",
+   "field": "value",
+   "item": "excitement",
+   "text": "Overall, we find that Self-Supervised Inversion achieves the best performance across all metrics evaluated",
+   "text_version": "arxiv",
+   "work_id": "W3035727968"
+  },
+  {
+   "doi": "10.48550/arxiv.2006.06156",
+   "field": "value",
+   "item": "excitement",
+   "text": "The SMI metric is novel and is designed to directly measure image fidelity in the frequency domain",
+   "text_version": "arxiv",
+   "work_id": "W3035727968"
+  },
+  {
+   "doi": "10.48550/arxiv.2006.06156",
+   "field": "value",
+   "item": "excitement",
+   "text": "We were pleased to observe that SSI without masking",
+   "text_version": "arxiv",
+   "work_id": "W3035727968"
+  },
+  {
+   "doi": "10.48550/arxiv.2006.06156",
+   "field": "value",
+   "item": "excitement",
+   "text": "Our theory is general: it applies to any reasonably posed inverse problem",
+   "text_version": "arxiv",
+   "work_id": "W3035727968"
+  },
+  {
+   "doi": "10.48550/arxiv.2006.06156",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "We propose a general framework for solving inverse problems in the presence of noise",
+   "text_version": "arxiv",
+   "work_id": "W3035727968"
+  },
+  {
+   "doi": "10.48550/arxiv.2006.06156",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "Adding more adequate training instances or simply training on larger images would certainly help as the deep learning literature attests [CIT].",
+   "text_version": "arxiv",
+   "work_id": "W3035727968"
+  },
+  {
+   "doi": "10.48550/arxiv.2006.06156",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "complex images where each image patch is distinct will not fare well with content aware methods [CIT]",
+   "text_version": "arxiv",
+   "work_id": "W3035727968"
+  },
+  {
+   "doi": "10.48550/arxiv.2006.06156",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "The less redundancy the more training data will be needed.",
+   "text_version": "arxiv",
+   "work_id": "W3035727968"
+  },
+  {
+   "doi": "10.48550/arxiv.2006.06156",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "As expected, CNN based methods have long training times but are capable of nearly instantaneous inference",
+   "text_version": "arxiv",
+   "work_id": "W3035727968"
+  },
+  {
+   "doi": "10.48550/arxiv.2006.06156",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "Due to the stochastic nature of neural network training we observe occasional failed runs that lead to noticeable checker-board artifacts.",
+   "text_version": "arxiv",
+   "work_id": "W3035727968"
+  },
+  {
+   "doi": "10.48550/arxiv.2006.06156",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "self-supervised learning refers to training a machine learning model without ground truth, solely on the basis of the observed image’s statistical structure",
+   "text_version": "arxiv",
+   "work_id": "W3035727968"
+  },
+  {
+   "doi": "10.48550/arxiv.2006.06156",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "Since sharpness only manifests itself along the edges of an image, whereas noise is present everywhere",
+   "text_version": "arxiv",
+   "work_id": "W3035727968"
+  },
+  {
+   "doi": "10.48550/arxiv.2006.06156",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "low-iteration reconstructions are less sensitive to noise whereas high-iteration reconstructions are sharper but also noisier",
+   "text_version": "arxiv",
+   "work_id": "W3035727968"
+  },
+  {
+   "doi": "10.48550/arxiv.2006.06156",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "In the following we",
+   "text_version": "arxiv",
+   "work_id": "W3035727968"
+  },
+  {
+   "doi": "10.48550/arxiv.2006.06156",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Yet,",
+   "text_version": "arxiv",
+   "work_id": "W3035727968"
+  },
+  {
+   "doi": "10.48550/arxiv.2006.06156",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "pleased to observe",
+   "text_version": "arxiv",
+   "work_id": "W3035727968"
+  },
+  {
+   "doi": "10.48550/arxiv.2006.06156",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "As expected,",
+   "text_version": "arxiv",
+   "work_id": "W3035727968"
+  },
+  {
+   "doi": "10.48550/arxiv.2006.06156",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "à la",
+   "text_version": "arxiv",
+   "work_id": "W3035727968"
+  },
+  {
+   "doi": "10.1038/s41592-022-01417-2",
+   "field": "quote",
+   "item": "gap_sentence",
+   "text": "full NA detection imaging has only been demonstrated with high magnification systems (×100 and ×60), for a limited field of view up to 200 μm[CIT]",
+   "text_version": "published",
+   "work_id": "W4220914113"
+  },
+  {
+   "doi": "10.1038/s41592-022-01417-2",
+   "field": "quote",
+   "item": "here_we",
+   "text": "we present DaXi: a new single-objective design that is capable of imaging large samples",
+   "text_version": "published",
+   "work_id": "W4220914113"
+  },
+  {
+   "doi": "10.1038/s41592-022-01417-2",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "Our next challenge was the choice of scan method.",
+   "text_version": "published",
+   "work_id": "W4220914113"
+  },
+  {
+   "doi": "10.1038/s41592-022-01417-2",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "With the large imaging volume achieved, we are ready to image large samples.",
+   "text_version": "published",
+   "work_id": "W4220914113"
+  },
+  {
+   "doi": "10.1038/s41592-022-01417-2",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "Our last consideration was to ensure ease and flexibility of sample mounting",
+   "text_version": "published",
+   "work_id": "W4220914113"
+  },
+  {
+   "doi": "10.1038/s41592-022-01417-2",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "We first measured the optical performance of our instrument.",
+   "text_version": "published",
+   "work_id": "W4220914113"
+  },
+  {
+   "doi": "10.1038/s41592-022-01417-2",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "Last, the inverted configuration of the microscope is compatible with multi-well imaging that facilitates sequential imaging of multiple samples.",
+   "text_version": "published",
+   "work_id": "W4220914113"
+  },
+  {
+   "doi": "10.1038/s41592-022-01417-2",
+   "field": "value",
+   "item": "excitement",
+   "text": "We demonstrate the speed, field of view, resolution and versatility of our instrument by imaging various systems",
+   "text_version": "published",
+   "work_id": "W4220914113"
+  },
+  {
+   "doi": "10.1038/s41592-022-01417-2",
+   "field": "value",
+   "item": "excitement",
+   "text": "we present DaXi: a new single-objective design that is capable of imaging large samples",
+   "text_version": "published",
+   "work_id": "W4220914113"
+  },
+  {
+   "doi": "10.1038/s41592-022-01417-2",
+   "field": "value",
+   "item": "excitement",
+   "text": "we introduce a new fast three-dimensional (3D) scanning modality",
+   "text_version": "published",
+   "work_id": "W4220914113"
+  },
+  {
+   "doi": "10.1038/s41592-022-01417-2",
+   "field": "value",
+   "item": "excitement",
+   "text": "LS3 is key to acquiring such large volumes at high quality.",
+   "text_version": "published",
+   "work_id": "W4220914113"
+  },
+  {
+   "doi": "10.1038/s41592-022-01417-2",
+   "field": "value",
+   "item": "excitement",
+   "text": "Our lens configuration considerably simplifies microscope design and increases its versatility",
+   "text_version": "published",
+   "work_id": "W4220914113"
+  },
+  {
+   "doi": "10.1038/s41592-022-01417-2",
+   "field": "value",
+   "item": "excitement",
+   "text": "many applications in developmental biology require the ability to track cells and follow lineages of the whole animal",
+   "text_version": "published",
+   "work_id": "W4220914113"
+  },
+  {
+   "doi": "10.1038/s41592-022-01417-2",
+   "field": "value",
+   "item": "excitement",
+   "text": "the simultaneous imaging of the nine samples was very reliable and provided extremely good resolution",
+   "text_version": "published",
+   "work_id": "W4220914113"
+  },
+  {
+   "doi": "10.1038/s41592-022-01417-2",
+   "field": "value",
+   "item": "excitement",
+   "text": "Crucially, DaXi achieves this performance without forcing unconventional sample mounting procedures on the user",
+   "text_version": "published",
+   "work_id": "W4220914113"
+  },
+  {
+   "doi": "10.1038/s41592-022-01417-2",
+   "field": "value",
+   "item": "excitement",
+   "text": "these features will allow investigators to precisely follow cell fate and lineages with improved accuracy",
+   "text_version": "published",
+   "work_id": "W4220914113"
+  },
+  {
+   "doi": "10.1038/s41592-022-01417-2",
+   "field": "value",
+   "item": "excitement",
+   "text": "Many of the concepts introduced in this paper are also applicable to other imaging modalities.",
+   "text_version": "published",
+   "work_id": "W4220914113"
+  },
+  {
+   "doi": "10.1038/s41592-022-01417-2",
+   "field": "value",
+   "item": "excitement",
+   "text": "we expect the microscope described here to be broadly adopted by researchers and applied to a wide range of multi-scale and high-throughput imaging applications",
+   "text_version": "published",
+   "work_id": "W4220914113"
+  },
+  {
+   "doi": "10.1038/s41592-022-01417-2",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "Many of the concepts introduced in this paper are also applicable to other imaging modalities.",
+   "text_version": "published",
+   "work_id": "W4220914113"
+  },
+  {
+   "doi": "10.1038/s41592-022-01417-2",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "Some aberrations remain in the optical system that mostly originate from the primary objective.",
+   "text_version": "published",
+   "work_id": "W4220914113"
+  },
+  {
+   "doi": "10.1038/s41592-022-01417-2",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "Future designs that incorporate a deformable mirror could potentially correct system aberrations and further improve the PSF.",
+   "text_version": "published",
+   "work_id": "W4220914113"
+  },
+  {
+   "doi": "10.1038/s41592-022-01417-2",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "The spatial resolution of the microscope can be further improved through adaptive optics[CIT] to correct both the system and sample-induced aberration.",
+   "text_version": "published",
+   "work_id": "W4220914113"
+  },
+  {
+   "doi": "10.1038/s41592-022-01417-2",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "However, this reduces the duty cycle of the excitation, which could restrict its suitability for long-term live-sample imaging.",
+   "text_version": "published",
+   "work_id": "W4220914113"
+  },
+  {
+   "doi": "10.1038/s41592-022-01417-2",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "a long scanning range as the sample is imaged one plane at a time",
+   "text_version": "published",
+   "work_id": "W4220914113"
+  },
+  {
+   "doi": "10.1038/s41592-022-01417-2",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "single-objective light-sheet microscopes let users reuse standard sample mounting protocols already developed for standard microscope systems",
+   "text_version": "published",
+   "work_id": "W4220914113"
+  },
+  {
+   "doi": "10.1038/s41592-022-01417-2",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "Sample holding stability during imaging mainly comes from the gravity of the sample itself as well as agarose viscosity.",
+   "text_version": "published",
+   "work_id": "W4220914113"
+  },
+  {
+   "doi": "10.1038/s41592-022-01417-2",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "uncompromised",
+   "text_version": "published",
+   "work_id": "W4220914113"
+  },
+  {
+   "doi": "10.1038/s41592-022-01417-2",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "at the cost of",
+   "text_version": "published",
+   "work_id": "W4220914113"
+  },
+  {
+   "doi": "10.1038/s41592-022-01417-2",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "We note that",
+   "text_version": "published",
+   "work_id": "W4220914113"
+  },
+  {
+   "doi": "10.1038/s41592-022-01417-2",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Moreover,",
+   "text_version": "published",
+   "work_id": "W4220914113"
+  },
+  {
+   "doi": "10.7554/elife.74234",
+   "field": "quote",
+   "item": "gap_sentence",
+   "text": "However, there is no open access and fully automated solution currently available.",
+   "text_version": "published",
+   "work_id": "W4225595682"
+  },
+  {
+   "doi": "10.7554/elife.74234",
+   "field": "quote",
+   "item": "here_we",
+   "text": "we present ZAF (Zebrafish Automated Feeding) which satisfies all these requirements for automatic feeding of zebrafish",
+   "text_version": "published",
+   "work_id": "W4225595682"
+  },
+  {
+   "doi": "10.7554/elife.74234",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "We introduce two affordable and easy to build automatic feeding systems: ZAF and ZAF+ (Video 1).",
+   "text_version": "published",
+   "work_id": "W4225595682"
+  },
+  {
+   "doi": "10.7554/elife.74234",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "It was important to evaluate the impact of ZAF feeding versus manual feeding on fish health and fecundity.",
+   "text_version": "published",
+   "work_id": "W4225595682"
+  },
+  {
+   "doi": "10.7554/elife.74234",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "it lacks precise control of food distribution to individual tanks",
+   "text_version": "published",
+   "work_id": "W4225595682"
+  },
+  {
+   "doi": "10.7554/elife.74234",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "To overcome this problem, ZAF+ was created to control food flow both spatially and temporally by adding valves upstream of each tank",
+   "text_version": "published",
+   "work_id": "W4225595682"
+  },
+  {
+   "doi": "10.7554/elife.74234",
+   "field": "value",
+   "item": "excitement",
+   "text": "Importantly, the design is modular and can be scaled to meet different user needs.",
+   "text_version": "published",
+   "work_id": "W4225595682"
+  },
+  {
+   "doi": "10.7554/elife.74234",
+   "field": "value",
+   "item": "excitement",
+   "text": "Both ZAF and ZAF+ are adaptable to any laboratory environment",
+   "text_version": "published",
+   "work_id": "W4225595682"
+  },
+  {
+   "doi": "10.7554/elife.74234",
+   "field": "value",
+   "item": "excitement",
+   "text": "our results show that ZAF and ZAF+ do not adversely affect zebrafish culture, enabling fully automatic feeding for any aquatic facility",
+   "text_version": "published",
+   "work_id": "W4225595682"
+  },
+  {
+   "doi": "10.7554/elife.74234",
+   "field": "value",
+   "item": "excitement",
+   "text": "which satisfies all these requirements for automatic feeding of zebrafish as well as for any similar aquatic model organism",
+   "text_version": "published",
+   "work_id": "W4225595682"
+  },
+  {
+   "doi": "10.7554/elife.74234",
+   "field": "value",
+   "item": "excitement",
+   "text": "Thus, ZAF+ is a viable solution for full feeding automation in aquatic facilities.",
+   "text_version": "published",
+   "work_id": "W4225595682"
+  },
+  {
+   "doi": "10.7554/elife.74234",
+   "field": "value",
+   "item": "excitement",
+   "text": "Importantly, ZAFs can easily be adapted to all commercially available aquatic facilities.",
+   "text_version": "published",
+   "work_id": "W4225595682"
+  },
+  {
+   "doi": "10.7554/elife.74234",
+   "field": "value",
+   "item": "excitement",
+   "text": "Interestingly, our devices can be easily adapted to behavioral studies",
+   "text_version": "published",
+   "work_id": "W4225595682"
+  },
+  {
+   "doi": "10.7554/elife.74234",
+   "field": "value",
+   "item": "excitement",
+   "text": "we hope that by releasing ZAF as an open access project we will empower a large community of users to build their own ZAFs",
+   "text_version": "published",
+   "work_id": "W4225595682"
+  },
+  {
+   "doi": "10.7554/elife.74234",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "enabling fully automatic feeding for any aquatic facility",
+   "text_version": "published",
+   "work_id": "W4225595682"
+  },
+  {
+   "doi": "10.7554/elife.74234",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "While we did not directly test breeding",
+   "text_version": "published",
+   "work_id": "W4225595682"
+  },
+  {
+   "doi": "10.7554/elife.74234",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "Another solution could be to build two devices, one for adult and another one for small fry.",
+   "text_version": "published",
+   "work_id": "W4225595682"
+  },
+  {
+   "doi": "10.7554/elife.74234",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "While ZAF is easy to build, it does not offer control over food distribution per tank.",
+   "text_version": "published",
+   "work_id": "W4225595682"
+  },
+  {
+   "doi": "10.7554/elife.74234",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "Automated feeding is most easily performed with dry food",
+   "text_version": "published",
+   "work_id": "W4225595682"
+  },
+  {
+   "doi": "10.7554/elife.74234",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "For optimal performance, we do recommend manual cleaning or replacing of the tubes every 10 weeks.",
+   "text_version": "published",
+   "work_id": "W4225595682"
+  },
+  {
+   "doi": "10.7554/elife.74234",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "a servo motor rotates a food canister to dispense food into a container directly filled with water",
+   "text_version": "published",
+   "work_id": "W4225595682"
+  },
+  {
+   "doi": "10.7554/elife.74234",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "This food-water mixture is then distributed to the tanks using pumps and a manifold tubing system.",
+   "text_version": "published",
+   "work_id": "W4225595682"
+  },
+  {
+   "doi": "10.7554/elife.74234",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "the quick distribution of food and water mix, to avoid pellets dissolution in water and loss of nutrients",
+   "text_version": "published",
+   "work_id": "W4225595682"
+  },
+  {
+   "doi": "10.7554/elife.74234",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Importantly,",
+   "text_version": "published",
+   "work_id": "W4225595682"
+  },
+  {
+   "doi": "10.7554/elife.74234",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "we hope",
+   "text_version": "published",
+   "work_id": "W4225595682"
+  },
+  {
+   "doi": "10.7554/elife.74234",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Additionally,",
+   "text_version": "published",
+   "work_id": "W4225595682"
+  },
+  {
+   "doi": "10.7554/elife.74234",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Overall,",
+   "text_version": "published",
+   "work_id": "W4225595682"
+  },
+  {
+   "doi": "10.7554/elife.74234",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Taken together,",
+   "text_version": "published",
+   "work_id": "W4225595682"
+  },
+  {
+   "doi": "10.1038/s41592-022-01541-z",
+   "field": "quote",
+   "item": "gap_sentence",
+   "text": "While successful, these approaches suffer from potential biases, as manual annotation imposes our own preconceptions.",
+   "text_version": "published",
+   "work_id": "W4287510106"
+  },
+  {
+   "doi": "10.1038/s41592-022-01541-z",
+   "field": "quote",
+   "item": "here_we",
+   "text": "Here, we present the development, validation and use of cytoself, a deep learning-based approach for fully self-supervised protein localization profiling and clustering.",
+   "text_version": "published",
+   "work_id": "W4287510106"
+  },
+  {
+   "doi": "10.1038/s41592-022-01541-z",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "To evaluate the impact of different aspects of our model on its clustering performance, we conducted an ablation study.",
+   "text_version": "published",
+   "work_id": "W4287510106"
+  },
+  {
+   "doi": "10.1038/s41592-022-01541-z",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "To demonstrate this, we asked whether cytoself could resolve subtle localization differences that are not present in image-derived manual annotations",
+   "text_version": "published",
+   "work_id": "W4287510106"
+  },
+  {
+   "doi": "10.1038/s41592-022-01541-z",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "Can we dissect and understand the features that make up these representations and interpret their meaning?",
+   "text_version": "published",
+   "work_id": "W4287510106"
+  },
+  {
+   "doi": "10.1038/s41592-022-01541-z",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "We next asked whether feature spectra could be used to predict the localizations of proteins not present in our training data.",
+   "text_version": "published",
+   "work_id": "W4287510106"
+  },
+  {
+   "doi": "10.1038/s41592-022-01541-z",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "Can cytoself make reasonable protein localization predictions for images from datasets other than OpenCell?",
+   "text_version": "published",
+   "work_id": "W4287510106"
+  },
+  {
+   "doi": "10.1038/s41592-022-01541-z",
+   "field": "value",
+   "item": "excitement",
+   "text": "reveals a highly resolved protein localization atlas that recapitulates major scales of cellular organization",
+   "text_version": "published",
+   "work_id": "W4287510106"
+  },
+  {
+   "doi": "10.1038/s41592-022-01541-z",
+   "field": "value",
+   "item": "excitement",
+   "text": "The key innovation is a pretext task",
+   "text_version": "published",
+   "work_id": "W4287510106"
+  },
+  {
+   "doi": "10.1038/s41592-022-01541-z",
+   "field": "value",
+   "item": "excitement",
+   "text": "the single most important component of cytoself, in terms of clustering performance, is the protein identification pretext task",
+   "text_version": "published",
+   "work_id": "W4287510106"
+  },
+  {
+   "doi": "10.1038/s41592-022-01541-z",
+   "field": "value",
+   "item": "excitement",
+   "text": "a notable advantage that widens the applicability of our approach and greatly simplifies the experimental design",
+   "text_version": "published",
+   "work_id": "W4287510106"
+  },
+  {
+   "doi": "10.1038/s41592-022-01541-z",
+   "field": "value",
+   "item": "excitement",
+   "text": "This demonstrates that self-supervised approaches are not limited by ground-truth annotations and can reveal subtle differences in protein localization not explicitly present in existing databases.",
+   "text_version": "published",
+   "work_id": "W4287510106"
+  },
+  {
+   "doi": "10.1038/s41592-022-01541-z",
+   "field": "value",
+   "item": "excitement",
+   "text": "This shows that our model manages to predict protein localization even under conditions that were not directly included for training.",
+   "text_version": "published",
+   "work_id": "W4287510106"
+  },
+  {
+   "doi": "10.1038/s41592-022-01541-z",
+   "field": "value",
+   "item": "excitement",
+   "text": "cytoself will be an invaluable tool to make preliminary functional predictions for unknown or poorly studied proteins",
+   "text_version": "published",
+   "work_id": "W4287510106"
+  },
+  {
+   "doi": "10.1038/s41592-022-01541-z",
+   "field": "hedge_quote",
+   "item": "strongest_claim",
+   "text": "We envision that",
+   "text_version": "published",
+   "work_id": "W4287510106"
+  },
+  {
+   "doi": "10.1038/s41592-022-01541-z",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "we trained our model using two-dimensional (2D) maximum-intensity z-projections and have not yet leveraged the full three-dimensional (3D) confocal images available in the OpenCell[CIT] dataset",
+   "text_version": "published",
+   "work_id": "W4287510106"
+  },
+  {
+   "doi": "10.1038/s41592-022-01541-z",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "More fundamentally, notable conceptual improvements will require an improved self-supervised model that explicitly disentangles cellular heterogeneity from localization diversity[CIT].",
+   "text_version": "published",
+   "work_id": "W4287510106"
+  },
+  {
+   "doi": "10.1038/s41592-022-01541-z",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "For example, when two proteins have identical localization, it is impossible to resolve the identity of the tagged proteins from images alone.",
+   "text_version": "published",
+   "work_id": "W4287510106"
+  },
+  {
+   "doi": "10.1038/s41592-022-01541-z",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "solely on the basis of",
+   "text_version": "published",
+   "work_id": "W4287510106"
+  },
+  {
+   "doi": "10.1038/s41592-022-01541-z",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Overall,",
+   "text_version": "published",
+   "work_id": "W4287510106"
+  },
+  {
+   "doi": "10.1038/s41592-022-01541-z",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "that is,",
+   "text_version": "published",
+   "work_id": "W4287510106"
+  },
+  {
+   "doi": "10.1038/s41592-022-01541-z",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Indeed,",
+   "text_version": "published",
+   "work_id": "W4287510106"
+  },
+  {
+   "doi": "10.1038/s41592-022-01541-z",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "To demonstrate this,",
+   "text_version": "published",
+   "work_id": "W4287510106"
+  },
+  {
+   "doi": "10.1038/s41592-022-01541-z",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "We next asked whether",
+   "text_version": "published",
+   "work_id": "W4287510106"
+  },
+  {
+   "doi": "10.1101/2024.10.18.618998",
+   "field": "quote",
+   "item": "gap_sentence",
+   "text": "most of these approaches require native software, have limited 3D support, or are intended for the curation of tracks",
+   "text_version": "preprint",
+   "work_id": "W4413495132"
+  },
+  {
+   "doi": "10.1101/2024.10.18.618998",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "We used inTRACKtive to create the Virtual Embryo Zoo (embryozoo.org), an online resource that showcases the highest-quality tracked light-sheet microscopy datasets of developing embryos",
+   "text_version": "preprint",
+   "work_id": "W4413495132"
+  },
+  {
+   "doi": "10.1101/2024.10.18.618998",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "In addition to selecting and tracing individual cells, the platform allows users to color cells based on any provided attribute.",
+   "text_version": "preprint",
+   "work_id": "W4413495132"
+  },
+  {
+   "doi": "10.1101/2024.10.18.618998",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "Technically, inTRACKtive is built using modern web technologies, including TypeScript, React, and three.js, with Vite as the bundler and Vercel for deployment.",
+   "text_version": "preprint",
+   "work_id": "W4413495132"
+  },
+  {
+   "doi": "10.1101/2024.10.18.618998",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "One exciting possibility is the incorporation of imaging data alongside cell-tracking results.",
+   "text_version": "preprint",
+   "work_id": "W4413495132"
+  },
+  {
+   "doi": "10.1101/2024.10.18.618998",
+   "field": "value",
+   "item": "excitement",
+   "text": "We introduce inTRACKtive, an innovative web-based tool for interactive visualization and sharing of large 3D cell tracking datasets",
+   "text_version": "preprint",
+   "work_id": "W4413495132"
+  },
+  {
+   "doi": "10.1101/2024.10.18.618998",
+   "field": "value",
+   "item": "excitement",
+   "text": "By providing easy access to complex tracking datasets, inTRACKtive offers a versatile, interactive, collaborative tool for developmental biology.",
+   "text_version": "preprint",
+   "work_id": "W4413495132"
+  },
+  {
+   "doi": "10.1101/2024.10.18.618998",
+   "field": "value",
+   "item": "excitement",
+   "text": "This allows for effortless collaboration and dissemination of results, when the dataset is located on a publicly accessible server.",
+   "text_version": "preprint",
+   "work_id": "W4413495132"
+  },
+  {
+   "doi": "10.1101/2024.10.18.618998",
+   "field": "value",
+   "item": "excitement",
+   "text": "inTRACKtive is an ideal tool for crafting custom celltracking visualizations.",
+   "text_version": "preprint",
+   "work_id": "W4413495132"
+  },
+  {
+   "doi": "10.1101/2024.10.18.618998",
+   "field": "value",
+   "item": "excitement",
+   "text": "One key innovation is the use of a specialized cell tracking format based on Zarr[CIT]",
+   "text_version": "preprint",
+   "work_id": "W4413495132"
+  },
+  {
+   "doi": "10.1101/2024.10.18.618998",
+   "field": "value",
+   "item": "excitement",
+   "text": "visualize tracking data acquired with any 2D (example[CIT]) or 3D microscopy modality from which tracking data can be obtained, from organoids down to single molecules",
+   "text_version": "preprint",
+   "work_id": "W4413495132"
+  },
+  {
+   "doi": "10.1101/2024.10.18.618998",
+   "field": "value",
+   "item": "excitement",
+   "text": "inTRACKtive has the potential to become a valuable resource to the cell and developmental biology community and beyond",
+   "text_version": "preprint",
+   "work_id": "W4413495132"
+  },
+  {
+   "doi": "10.1101/2024.10.18.618998",
+   "field": "value",
+   "item": "excitement",
+   "text": "inTRACKtive offers a unique, browser-based playground for interacting with state-of-the-art microscopy tracking datasets.",
+   "text_version": "preprint",
+   "work_id": "W4413495132"
+  },
+  {
+   "doi": "10.1101/2024.10.18.618998",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "visualize tracking data acquired with any 2D (example[CIT]) or 3D microscopy modality from which tracking data can be obtained, from organoids down to single molecules",
+   "text_version": "preprint",
+   "work_id": "W4413495132"
+  },
+  {
+   "doi": "10.1101/2024.10.18.618998",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "While this functionality is not yet available directly in inTRACKtive",
+   "text_version": "preprint",
+   "work_id": "W4413495132"
+  },
+  {
+   "doi": "10.1101/2024.10.18.618998",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "Another area for development is further customization of track visualization and analysis of the selected tracks.",
+   "text_version": "preprint",
+   "work_id": "W4413495132"
+  },
+  {
+   "doi": "10.1101/2024.10.18.618998",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "when the dataset is located on a publicly accessible server",
+   "text_version": "preprint",
+   "work_id": "W4413495132"
+  },
+  {
+   "doi": "10.1101/2024.10.18.618998",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "The platform operates entirely in a web browser, requiring no software installation or manual data downloads, making it easily accessible to any user.",
+   "text_version": "preprint",
+   "work_id": "W4413495132"
+  },
+  {
+   "doi": "10.1101/2024.10.18.618998",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "In addition, users can share their exact viewing configuration - complete with view settings, zoom levels, and selected cells - simply by sharing a link.",
+   "text_version": "preprint",
+   "work_id": "W4413495132"
+  },
+  {
+   "doi": "10.1101/2024.10.18.618998",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "In addition,",
+   "text_version": "preprint",
+   "work_id": "W4413495132"
+  },
+  {
+   "doi": "10.1101/2024.10.18.618998",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "eliminating the need for",
+   "text_version": "preprint",
+   "work_id": "W4413495132"
+  },
+  {
+   "doi": "10.1101/2024.10.18.618998",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "state-of-the-art",
+   "text_version": "preprint",
+   "work_id": "W4413495132"
+  },
+  {
+   "doi": "10.1101/2024.10.18.618998",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "is an ideal",
+   "text_version": "preprint",
+   "work_id": "W4413495132"
+  },
+  {
+   "doi": "10.1101/2024.10.18.618998",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "unprecedented",
+   "text_version": "preprint",
+   "work_id": "W4413495132"
+  },
+  {
+   "doi": "10.1101/2024.10.18.618998",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "seamlessly",
+   "text_version": "preprint",
+   "work_id": "W4413495132"
+  },
+  {
+   "doi": "10.1101/2024.09.02.610652",
+   "field": "quote",
+   "item": "gap_sentence",
+   "text": "existing methods in this category are constrained by their inability to utilize arbitrary segmentation inputs,[CIT]",
+   "text_version": "preprint",
+   "work_id": "W4413495365"
+  },
+  {
+   "doi": "10.1101/2024.09.02.610652",
+   "field": "quote",
+   "item": "here_we",
+   "text": "To address these challenges, we developed Ultrack, a robust and scalable method for large-scale cell tracking that excels even under segmentation uncertainty.",
+   "text_version": "preprint",
+   "work_id": "W4413495365"
+  },
+  {
+   "doi": "10.1101/2024.09.02.610652",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "As demonstrated in the previous section, off-the-shelf segmentation models face challenges when datasets deviate significantly from the training distribution.",
+   "text_version": "preprint",
+   "work_id": "W4413495365"
+  },
+  {
+   "doi": "10.1101/2024.09.02.610652",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "we next evaluated Ultrack’s performance on one of the most demanding applications in bioimage analysis",
+   "text_version": "preprint",
+   "work_id": "W4413495365"
+  },
+  {
+   "doi": "10.1101/2024.09.02.610652",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "Encouraged by Ultrack’s performance on the CTC, we developed a higher-fidelity ground truth dataset that could overcome these limitations",
+   "text_version": "preprint",
+   "work_id": "W4413495365"
+  },
+  {
+   "doi": "10.1101/2024.09.02.610652",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "To demonstrate Ultrack’s scalability and performance on massive datasets, we employed it to recover cell lineages of nuclear-labeled zebrafish embryos",
+   "text_version": "preprint",
+   "work_id": "W4413495365"
+  },
+  {
+   "doi": "10.1101/2024.09.02.610652",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "To evaluate Ultrack’s performance in such a context, we chose the zebrafish neuromast as our model system",
+   "text_version": "preprint",
+   "work_id": "W4413495365"
+  },
+  {
+   "doi": "10.1101/2024.09.02.610652",
+   "field": "value",
+   "item": "excitement",
+   "text": "Ultrack achieves state-of-the-art performance on the Cell Tracking Challenge and demonstrates superior accuracy",
+   "text_version": "preprint",
+   "work_id": "W4413495365"
+  },
+  {
+   "doi": "10.1101/2024.09.02.610652",
+   "field": "value",
+   "item": "excitement",
+   "text": "we propose an approach to tracking validation via dual-channel sparse labeling that enables high-fidelity ground truth generation",
+   "text_version": "preprint",
+   "work_id": "W4413495365"
+  },
+  {
+   "doi": "10.1101/2024.09.02.610652",
+   "field": "value",
+   "item": "excitement",
+   "text": "we introduce a novel dual-channel sparse labeling approach that enables the generation of high-fidelity ground truth for tracking validation",
+   "text_version": "preprint",
+   "work_id": "W4413495365"
+  },
+  {
+   "doi": "10.1101/2024.09.02.610652",
+   "field": "value",
+   "item": "excitement",
+   "text": "Ultrack can accelerate research in developmental biology, cancer research, and regenerative medicine",
+   "text_version": "preprint",
+   "work_id": "W4413495365"
+  },
+  {
+   "doi": "10.1101/2024.09.02.610652",
+   "field": "value",
+   "item": "excitement",
+   "text": "To our knowledge, no other study has reported the fully automatic segmentation and tracking of cells in this complex 3D organ for extended time-periods.",
+   "text_version": "preprint",
+   "work_id": "W4413495365"
+  },
+  {
+   "doi": "10.1101/2024.09.02.610652",
+   "field": "value",
+   "item": "excitement",
+   "text": "This scalability and versatility make Ultrack a powerful tool for analyzing large-scale developmental processes at unprecedented resolution and scale.",
+   "text_version": "preprint",
+   "work_id": "W4413495365"
+  },
+  {
+   "doi": "10.1101/2024.09.02.610652",
+   "field": "value",
+   "item": "excitement",
+   "text": "This approach is not limited to label-free imaging such as quantitative phase imaging but extends to virtually any imaging method",
+   "text_version": "preprint",
+   "work_id": "W4413495365"
+  },
+  {
+   "doi": "10.1101/2024.09.02.610652",
+   "field": "value",
+   "item": "excitement",
+   "text": "has the potential to accelerate research across a wide range of biological disciplines",
+   "text_version": "preprint",
+   "work_id": "W4413495365"
+  },
+  {
+   "doi": "10.1101/2024.09.02.610652",
+   "field": "value",
+   "item": "excitement",
+   "text": "Ultrack opens new avenues for investigating complex cellular behaviors, tissue dynamics, and developmental processes at unprecedented scales and resolutions.",
+   "text_version": "preprint",
+   "work_id": "W4413495365"
+  },
+  {
+   "doi": "10.1101/2024.09.02.610652",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "has the potential to accelerate research across a wide range of biological disciplines",
+   "text_version": "preprint",
+   "work_id": "W4413495365"
+  },
+  {
+   "doi": "10.1101/2024.09.02.610652",
+   "field": "hedge_quote",
+   "item": "strongest_claim",
+   "text": "has the potential",
+   "text_version": "preprint",
+   "work_id": "W4413495365"
+  },
+  {
+   "doi": "10.1101/2024.09.02.610652",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "Despite all of this, Ultrack has its limitations, as the segmentation hypotheses are only as good as the provided foreground and contour maps.",
+   "text_version": "preprint",
+   "work_id": "W4413495365"
+  },
+  {
+   "doi": "10.1101/2024.09.02.610652",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "when provided with an overwhelming number of incorrect segmentations or systematic errors that are consistent over time, the ILP optimization might favor erroneous segments",
+   "text_version": "preprint",
+   "work_id": "W4413495365"
+  },
+  {
+   "doi": "10.1101/2024.09.02.610652",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "By inverting the latter, we obtain an image where boundaries have higher intensity values than cell interiors.",
+   "text_version": "preprint",
+   "work_id": "W4413495365"
+  },
+  {
+   "doi": "10.1101/2024.09.02.610652",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "meaning that for a period of approximately 1 hour of development (60 frames), half of the tracks are completely error-free",
+   "text_version": "preprint",
+   "work_id": "W4413495365"
+  },
+  {
+   "doi": "10.1101/2024.09.02.610652",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "These results demonstrate",
+   "text_version": "preprint",
+   "work_id": "W4413495365"
+  },
+  {
+   "doi": "10.1101/2024.09.02.610652",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "To demonstrate",
+   "text_version": "preprint",
+   "work_id": "W4413495365"
+  },
+  {
+   "doi": "10.1101/2024.09.02.610652",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "this key feature of Ultrack",
+   "text_version": "preprint",
+   "work_id": "W4413495365"
+  },
+  {
+   "doi": "10.1101/2024.09.02.610652",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "eliminating the need for",
+   "text_version": "preprint",
+   "work_id": "W4413495365"
+  },
+  {
+   "doi": "10.1101/2024.09.02.610652",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "unprecedented",
+   "text_version": "preprint",
+   "work_id": "W4413495365"
+  },
+  {
+   "doi": "10.48550/arxiv.2610.31566",
+   "field": "quote",
+   "item": "gap_sentence",
+   "text": "Although such events are rare and more prone to error, the overall tracking performance can mask them.",
+   "text_version": "arxiv",
+   "work_id": "W7223281292"
+  },
+  {
+   "doi": "10.48550/arxiv.2610.31566",
+   "field": "quote",
+   "item": "here_we",
+   "text": "To validate this novel paradigm for cell tracking, we built CellTrack-Bench from 15 cell-tracking datasets across four imaging modalities.",
+   "text_version": "arxiv",
+   "work_id": "W7223281292"
+  },
+  {
+   "doi": "10.48550/arxiv.2610.31566",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "Can VLMs repair tracker output?",
+   "text_version": "arxiv",
+   "work_id": "W7223281292"
+  },
+  {
+   "doi": "10.48550/arxiv.2610.31566",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "Can VLMs prioritize human review?",
+   "text_version": "arxiv",
+   "work_id": "W7223281292"
+  },
+  {
+   "doi": "10.48550/arxiv.2610.31566",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "Proximity resistance is the hardest challenge.",
+   "text_version": "arxiv",
+   "work_id": "W7223281292"
+  },
+  {
+   "doi": "10.48550/arxiv.2610.31566",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "The three tasks are related but have different roles.",
+   "text_version": "arxiv",
+   "work_id": "W7223281292"
+  },
+  {
+   "doi": "10.48550/arxiv.2610.31566",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "Moreover, through a fixed inference budget, we measured how effectively a model can complete the task within a reasonable amount of time.",
+   "text_version": "arxiv",
+   "work_id": "W7223281292"
+  },
+  {
+   "doi": "10.48550/arxiv.2610.31566",
+   "field": "value",
+   "item": "excitement",
+   "text": "we created a new benchmark, CellTrack-Bench",
+   "text_version": "arxiv",
+   "work_id": "W7223281292"
+  },
+  {
+   "doi": "10.48550/arxiv.2610.31566",
+   "field": "value",
+   "item": "excitement",
+   "text": "To validate this novel paradigm for cell tracking",
+   "text_version": "arxiv",
+   "work_id": "W7223281292"
+  },
+  {
+   "doi": "10.48550/arxiv.2610.31566",
+   "field": "value",
+   "item": "excitement",
+   "text": "Proximity resistance is the hardest challenge.",
+   "text_version": "arxiv",
+   "work_id": "W7223281292"
+  },
+  {
+   "doi": "10.48550/arxiv.2610.31566",
+   "field": "value",
+   "item": "excitement",
+   "text": "This shows that finding links to review is a separate skill.",
+   "text_version": "arxiv",
+   "work_id": "W7223281292"
+  },
+  {
+   "doi": "10.48550/arxiv.2610.31566",
+   "field": "value",
+   "item": "excitement",
+   "text": "Our results suggest that advanced VLMs possess abilities that go beyond mere geometric tricks.",
+   "text_version": "arxiv",
+   "work_id": "W7223281292"
+  },
+  {
+   "doi": "10.48550/arxiv.2610.31566",
+   "field": "value",
+   "item": "excitement",
+   "text": "for now, VLMs are better used as reasoning modules in the cell-tracking pipeline rather than as substitutes for specialized trackers",
+   "text_version": "arxiv",
+   "work_id": "W7223281292"
+  },
+  {
+   "doi": "10.48550/arxiv.2610.31566",
+   "field": "value",
+   "item": "excitement",
+   "text": "We expect our CellTrack-Bench to serve as an evaluation setting for developing VLMs capable of cognitive reasoning about complex biological events",
+   "text_version": "arxiv",
+   "work_id": "W7223281292"
+  },
+  {
+   "doi": "10.48550/arxiv.2610.31566",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "for now, VLMs are better used as reasoning modules in the cell-tracking pipeline rather than as substitutes for specialized trackers",
+   "text_version": "arxiv",
+   "work_id": "W7223281292"
+  },
+  {
+   "doi": "10.48550/arxiv.2610.31566",
+   "field": "hedge_quote",
+   "item": "strongest_claim",
+   "text": "these facts suggest that",
+   "text_version": "arxiv",
+   "work_id": "W7223281292"
+  },
+  {
+   "doi": "10.48550/arxiv.2610.31566",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "even though it does not independently identify c1 as being better than c8",
+   "text_version": "arxiv",
+   "work_id": "W7223281292"
+  },
+  {
+   "doi": "10.48550/arxiv.2610.31566",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "it is comparable, but not identical, to full-sequence CTC LNK",
+   "text_version": "arxiv",
+   "work_id": "W7223281292"
+  },
+  {
+   "doi": "10.48550/arxiv.2610.31566",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "low tracker scores do not indicate anything about their full-sequence performance",
+   "text_version": "arxiv",
+   "work_id": "W7223281292"
+  },
+  {
+   "doi": "10.48550/arxiv.2610.31566",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "This is analogous to a scenario where an annotator is fixing the tracking mistakes.",
+   "text_version": "arxiv",
+   "work_id": "W7223281292"
+  },
+  {
+   "doi": "10.48550/arxiv.2610.31566",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "because objects are almost identical, can be divided, and quickly undergo morphological changes, unlike objects in natural images (e.g., cars, pedestrians)",
+   "text_version": "arxiv",
+   "work_id": "W7223281292"
+  },
+  {
+   "doi": "10.48550/arxiv.2610.31566",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "cells do not move much until a cell-state change takes place",
+   "text_version": "arxiv",
+   "work_id": "W7223281292"
+  },
+  {
+   "doi": "10.48550/arxiv.2610.31566",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "In cell linking, the model directly predicts the correspondence between cells in two consecutive frames.",
+   "text_version": "arxiv",
+   "work_id": "W7223281292"
+  },
+  {
+   "doi": "10.48550/arxiv.2610.31566",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Taken together,",
+   "text_version": "arxiv",
+   "work_id": "W7223281292"
+  },
+  {
+   "doi": "10.48550/arxiv.2610.31566",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "In contrast,",
+   "text_version": "arxiv",
+   "work_id": "W7223281292"
+  },
+  {
+   "doi": "10.48550/arxiv.2610.31566",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Therefore,",
+   "text_version": "arxiv",
+   "work_id": "W7223281292"
+  },
+  {
+   "doi": "10.48550/arxiv.2610.31566",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "suggest that",
+   "text_version": "arxiv",
+   "work_id": "W7223281292"
+  }
+ ],
+ "schema": 1,
+ "stability": {
+  "abstract_moves": {
+   "agreement": 0.898,
+   "pairs": 23,
+   "stable": true
+  },
+  "discussion_moves": {
+   "agreement": 0.747,
+   "pairs": 23,
+   "stable": true
+  },
+  "essay_argument": {
+   "agreement": 1.0,
+   "pairs": 1,
+   "stable": true
+  },
+  "excitement": {
+   "agreement": 0.65,
+   "pairs": 23,
+   "stable": false
+  },
+  "figure_reference": {
+   "agreement": 1.0,
+   "pairs": 23,
+   "stable": true
+  },
+  "gap_sentence": {
+   "agreement": 0.957,
+   "pairs": 23,
+   "stable": true
+  },
+  "here_we": {
+   "agreement": 1.0,
+   "pairs": 23,
+   "stable": true
+  },
+  "intro_roles": {
+   "agreement": 0.887,
+   "pairs": 23,
+   "stable": true
+  },
+  "limitations": {
+   "agreement": 0.783,
+   "pairs": 23,
+   "stable": true
+  },
+  "results_headings": {
+   "agreement": 1.0,
+   "pairs": 21,
+   "stable": true
+  },
+  "results_openings": {
+   "agreement": 0.94,
+   "pairs": 21,
+   "stable": true
+  },
+  "strongest_claim": {
+   "agreement": 0.957,
+   "pairs": 23,
+   "stable": true
+  },
+  "title_form": {
+   "agreement": 0.957,
+   "pairs": 23,
+   "stable": true
+  }
+ },
+ "surface": {
+  "citations_per_sentence": 0.235,
+  "connectives_per_1000": [
+   [
+    "however",
+    1.31
+   ],
+   [
+    "first",
+    1.05
+   ],
+   [
+    "thus",
+    1.03
+   ],
+   [
+    "because",
+    0.95
+   ],
+   [
+    "therefore",
+    0.8
+   ],
+   [
+    "moreover",
+    0.62
+   ],
+   [
+    "second",
+    0.54
+   ],
+   [
+    "here",
+    0.49
+   ],
+   [
+    "together",
+    0.49
+   ],
+   [
+    "instead",
+    0.44
+   ],
+   [
+    "finally",
+    0.41
+   ],
+   [
+    "furthermore",
+    0.36
+   ],
+   [
+    "whereas",
+    0.33
+   ],
+   [
+    "indeed",
+    0.28
+   ],
+   [
+    "hence",
+    0.26
+   ],
+   [
+    "importantly",
+    0.21
+   ],
+   [
+    "consequently",
+    0.13
+   ],
+   [
+    "although",
+    0.08
+   ],
+   [
+    "interestingly",
+    0.08
+   ],
+   [
+    "notably",
+    0.05
+   ],
+   [
+    "remarkably",
+    0.05
+   ],
+   [
+    "nevertheless",
+    0.03
+   ],
+   [
+    "surprisingly",
+    0.03
+   ]
+  ],
+  "figure_refs_per_paragraph": 0.87,
+  "first_person_share": 0.318,
+  "hedge_words": [
+   [
+    "could",
+    27
+   ],
+   [
+    "may",
+    14
+   ],
+   [
+    "possible",
+    14
+   ],
+   [
+    "suggests",
+    13
+   ],
+   [
+    "likely",
+    12
+   ],
+   [
+    "might",
+    10
+   ],
+   [
+    "potentially",
+    8
+   ],
+   [
+    "appear",
+    6
+   ],
+   [
+    "consistent",
+    5
+   ],
+   [
+    "indicate",
+    5
+   ],
+   [
+    "probably",
+    5
+   ],
+   [
+    "indicates",
+    4
+   ],
+   [
+    "suggest",
+    3
+   ],
+   [
+    "perhaps",
+    2
+   ],
+   [
+    "possibly",
+    2
+   ],
+   [
+    "seems",
+    1
+   ],
+   [
+    "unlikely",
+    1
+   ]
+  ],
+  "hedges_per_1000": 3.39,
+  "n_paragraphs": 324,
+  "n_sentences": 1692,
+  "n_words": 38991,
+  "numbers_per_sentence": 0.517,
+  "opener_pairs": [
+   [
+    "for example",
+    30
+   ],
+   [
+    "in the",
+    21
+   ],
+   [
+    "this is",
+    16
+   ],
+   [
+    "in contrast",
+    15
+   ],
+   [
+    "we also",
+    15
+   ],
+   [
+    "in this",
+    14
+   ],
+   [
+    "as shown",
+    10
+   ],
+   [
+    "however the",
+    9
+   ],
+   [
+    "this approach",
+    9
+   ],
+   [
+    "to address",
+    9
+   ]
+  ],
+  "openers": [
+   [
+    "the",
+    172
+   ],
+   [
+    "we",
+    168
+   ],
+   [
+    "this",
+    131
+   ],
+   [
+    "in",
+    112
+   ],
+   [
+    "for",
+    72
+   ],
+   [
+    "to",
+    70
+   ],
+   [
+    "however",
+    46
+   ],
+   [
+    "our",
+    35
+   ],
+   [
+    "these",
+    32
+   ],
+   [
+    "as",
+    31
+   ],
+   [
+    "while",
+    27
+   ],
+   [
+    "moreover",
+    24
+   ],
+   [
+    "a",
+    20
+   ],
+   [
+    "it",
+    20
+   ],
+   [
+    "therefore",
+    18
+   ]
+  ],
+  "paragraph_sentences": {
+   "mean": 5.22,
+   "median": 4.0,
+   "n": 324,
+   "p90": 10.0
+  },
+  "passive_share": 0.233,
+  "questions_per_100": 0.59,
+  "sentence_length": {
+   "mean": 23.04,
+   "median": 22.0,
+   "n": 1692,
+   "p90": 35.0
+  },
+  "sentence_length_by_kind": {
+   "abstract": {
+    "mean": 23.16,
+    "median": 22.0,
+    "n": 62,
+    "p90": 36.0
+   },
+   "discussion": {
+    "mean": 23.45,
+    "median": 22.0,
+    "n": 253,
+    "p90": 35.0
+   },
+   "intro": {
+    "mean": 23.1,
+    "median": 22.0,
+    "n": 301,
+    "p90": 35.0
+   },
+   "other": {
+    "mean": 20.97,
+    "median": 19.0,
+    "n": 239,
+    "p90": 36.0
+   },
+   "results": {
+    "mean": 23.48,
+    "median": 22.0,
+    "n": 837,
+    "p90": 36.0
+   }
+  }
+ },
+ "surface_papers": 10,
+ "text_versions": {
+  "arxiv": 2,
+  "preprint": 4,
+  "published": 4
+ },
+ "unverified": {},
+ "years": {
+  "first": 2012,
+  "last": 2026
+ }
+}

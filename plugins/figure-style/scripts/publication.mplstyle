@@ -1,0 +1,74 @@
+# publication.mplstyle — Clean, publication-quality defaults
+# Apply with: plt.style.use("path/to/publication.mplstyle")
+# or via figure_helpers.apply_style()
+
+# ── Figure ──────────────────────────────────────────────
+# Compact sizing: small fonts (8/6pt) → smaller figures look crisp
+figure.figsize:     4, 3
+figure.dpi:         150
+figure.facecolor:   white
+figure.edgecolor:   white
+figure.autolayout:  True
+savefig.dpi:        300
+savefig.bbox:       tight
+savefig.pad_inches: 0.05
+savefig.facecolor:  white
+
+# ── Font ────────────────────────────────────────────────
+font.family:        sans-serif
+font.sans-serif:    Avenir Light, Avenir, Arial, Helvetica, DejaVu Sans
+font.size:          6
+mathtext.default:   regular
+pdf.fonttype:       42
+ps.fonttype:        42
+
+# ── Axes ────────────────────────────────────────────────
+axes.titlesize:     8
+axes.titleweight:   normal
+axes.titlepad:      4
+axes.labelsize:     6
+axes.labelpad:      3
+axes.labelweight:   normal
+axes.linewidth:     0.4
+axes.edgecolor:     333333
+axes.facecolor:     white
+axes.grid:          False
+axes.spines.top:    False
+axes.spines.right:  False
+axes.prop_cycle:    cycler('color', ['036DEA', 'E6550D', '31A354', '756BB1', 'E7298A', '66C2A5', 'FC8D62', '8DA0CB'])
+
+# ── Ticks ───────────────────────────────────────────────
+xtick.labelsize:    6
+ytick.labelsize:    6
+xtick.major.size:   3
+ytick.major.size:   3
+xtick.major.width:  0.4
+ytick.major.width:  0.4
+xtick.minor.size:   1.5
+ytick.minor.size:   1.5
+xtick.direction:    out
+ytick.direction:    out
+xtick.color:        333333
+ytick.color:        333333
+
+# ── Legend ───────────────────────────────────────────────
+legend.fontsize:    6
+legend.frameon:     False
+legend.loc:         best
+legend.handlelength: 1.0
+legend.handletextpad: 0.4
+
+# ── Lines & Markers ────────────────────────────────────
+lines.linewidth:    1.0
+lines.markersize:   3
+scatter.marker:     o
+
+# ── Grid (OFF — no gridlines allowed) ──────────────────
+grid.linewidth:     0
+
+# ── Patches / bars ─────────────────────────────────────
+patch.edgecolor:    333333
+patch.linewidth:    0.3
+
+# ── Images (heatmaps) ──────────────────────────────────
+image.cmap:         viridis

@@ -1,0 +1,4199 @@
+{
+ "by_cell": {
+  "essay/other": 2,
+  "first/high": 3,
+  "first/other": 1,
+  "senior/high": 5,
+  "senior/other": 3
+ },
+ "by_group": {
+  "essay": 2,
+  "first": 4,
+  "senior": 8
+ },
+ "by_tier": {
+  "high": 8,
+  "other": 6
+ },
+ "checklist_version": 2,
+ "distinctive_note": "",
+ "distinctive_pairs": [
+  [
+   "cell types",
+   7.34
+  ],
+  [
+   "single cell",
+   5.84
+  ],
+  [
+   "changes in",
+   5.8
+  ],
+  [
+   "of genes",
+   5.13
+  ],
+  [
+   "each cell",
+   4.96
+  ],
+  [
+   "loss of",
+   4.73
+  ],
+  [
+   "genes with",
+   4.46
+  ],
+  [
+   "gene expression",
+   4.38
+  ],
+  [
+   "the trajectory",
+   4.34
+  ],
+  [
+   "of cells",
+   4.22
+  ],
+  [
+   "expression of",
+   4.03
+  ],
+  [
+   "genes in",
+   3.94
+  ],
+  [
+   "the genes",
+   3.94
+  ],
+  [
+   "gene regulation",
+   3.93
+  ],
+  [
+   "genes that",
+   3.76
+  ],
+  [
+   "et al",
+   3.55
+  ],
+  [
+   "of cell",
+   3.44
+  ],
+  [
+   "of sites",
+   3.29
+  ],
+  [
+   "cells at",
+   3.23
+  ],
+  [
+   "that were",
+   3.08
+  ]
+ ],
+ "distinctive_words": [
+  [
+   "genes",
+   13.44
+  ],
+  [
+   "cells",
+   11.84
+  ],
+  [
+   "cell",
+   11.52
+  ],
+  [
+   "expression",
+   9.53
+  ],
+  [
+   "signaling",
+   9.27
+  ],
+  [
+   "trajectory",
+   8.63
+  ],
+  [
+   "single-cell",
+   7.47
+  ],
+  [
+   "changes",
+   7.12
+  ],
+  [
+   "gene",
+   6.87
+  ],
+  [
+   "causal",
+   6.8
+  ],
+  [
+   "differentiation",
+   6.79
+  ],
+  [
+   "expressed",
+   6.51
+  ],
+  [
+   "counts",
+   6.41
+  ],
+  [
+   "pathways",
+   6.31
+  ],
+  [
+   "transcript",
+   6.17
+  ],
+  [
+   "types",
+   6.04
+  ],
+  [
+   "differential",
+   5.97
+  ],
+  [
+   "splice",
+   5.84
+  ],
+  [
+   "distal",
+   5.8
+  ],
+  [
+   "trajectories",
+   5.66
+  ],
+  [
+   "transcripts",
+   5.55
+  ],
+  [
+   "type",
+   5.27
+  ],
+  [
+   "regulator",
+   5.04
+  ],
+  [
+   "pathway",
+   4.94
+  ],
+  [
+   "phenotypes",
+   4.8
+  ],
+  [
+   "epithelial",
+   4.72
+  ],
+  [
+   "read",
+   4.71
+  ],
+  [
+   "mesoderm",
+   4.61
+  ],
+  [
+   "phenotype",
+   4.57
+  ],
+  [
+   "transcriptome",
+   4.52
+  ]
+ ],
+ "items": {
+  "abstract_moves": {
+   "value": {
+    "all": {
+     "approach": 13,
+     "context": 13,
+     "gap": 7,
+     "implication": 10,
+     "result": 11
+    },
+    "by_group": {
+     "essay": {
+      "approach": 1,
+      "context": 2,
+      "implication": 2
+     },
+     "first": {
+      "approach": 4,
+      "context": 4,
+      "gap": 1,
+      "implication": 3,
+      "result": 3
+     },
+     "senior": {
+      "approach": 8,
+      "context": 7,
+      "gap": 6,
+      "implication": 5,
+      "result": 8
+     }
+    },
+    "by_tier": {
+     "high": {
+      "approach": 8,
+      "context": 7,
+      "gap": 3,
+      "implication": 5,
+      "result": 7
+     },
+     "other": {
+      "approach": 5,
+      "context": 6,
+      "gap": 4,
+      "implication": 5,
+      "result": 4
+     }
+    },
+    "first": {
+     "approach": 1,
+     "context": 13
+    },
+    "last": {
+     "approach": 1,
+     "implication": 10,
+     "result": 3
+    },
+    "n": 14,
+    "n_by_group": {
+     "essay": 2,
+     "first": 4,
+     "senior": 8
+    },
+    "n_by_tier": {
+     "high": 8,
+     "other": 6
+    }
+   }
+  },
+  "discussion_moves": {
+   "value": {
+    "all": {
+     "comparison with prior work": 9,
+     "future work": 13,
+     "implication": 13,
+     "limitation": 10,
+     "mechanism": 7,
+     "other": 3,
+     "summary": 12
+    },
+    "by_group": {
+     "essay": {
+      "future work": 1,
+      "implication": 2,
+      "limitation": 1,
+      "other": 1,
+      "summary": 2
+     },
+     "first": {
+      "comparison with prior work": 2,
+      "future work": 4,
+      "implication": 3,
+      "limitation": 2,
+      "summary": 2
+     },
+     "senior": {
+      "comparison with prior work": 7,
+      "future work": 8,
+      "implication": 8,
+      "limitation": 7,
+      "mechanism": 7,
+      "other": 2,
+      "summary": 8
+     }
+    },
+    "by_tier": {
+     "high": {
+      "comparison with prior work": 5,
+      "future work": 8,
+      "implication": 7,
+      "limitation": 5,
+      "mechanism": 4,
+      "summary": 6
+     },
+     "other": {
+      "comparison with prior work": 4,
+      "future work": 5,
+      "implication": 6,
+      "limitation": 5,
+      "mechanism": 3,
+      "other": 3,
+      "summary": 6
+     }
+    },
+    "first": {
+     "comparison with prior work": 1,
+     "implication": 2,
+     "limitation": 1,
+     "mechanism": 1,
+     "other": 2,
+     "summary": 7
+    },
+    "last": {
+     "future work": 7,
+     "implication": 6,
+     "limitation": 1
+    },
+    "n": 14,
+    "n_by_group": {
+     "essay": 2,
+     "first": 4,
+     "senior": 8
+    },
+    "n_by_tier": {
+     "high": 8,
+     "other": 6
+    }
+   }
+  },
+  "essay_argument": {
+   "call_to_action": {
+    "all": {
+     "no": 1,
+     "yes": 1
+    },
+    "by_group": {
+     "essay": {
+      "no": 1,
+      "yes": 1
+     }
+    },
+    "by_tier": {
+     "other": {
+      "no": 1,
+      "yes": 1
+     }
+    },
+    "n": 2,
+    "n_by_group": {
+     "essay": 2
+    },
+    "n_by_tier": {
+     "other": 2
+    }
+   },
+   "thesis_location": {
+    "all": {
+     "end of introduction": 2
+    },
+    "by_group": {
+     "essay": {
+      "end of introduction": 2
+     }
+    },
+    "by_tier": {
+     "other": {
+      "end of introduction": 2
+     }
+    },
+    "n": 2,
+    "n_by_group": {
+     "essay": 2
+    },
+    "n_by_tier": {
+     "other": 2
+    }
+   }
+  },
+  "excitement": {
+   "value.location": {
+    "all": {
+     "abstract": 12,
+     "discussion": 13,
+     "introduction": 11,
+     "results": 12
+    },
+    "by_group": {
+     "essay": {
+      "abstract": 2,
+      "discussion": 2,
+      "introduction": 2
+     },
+     "first": {
+      "abstract": 3,
+      "discussion": 3,
+      "introduction": 2,
+      "results": 4
+     },
+     "senior": {
+      "abstract": 7,
+      "discussion": 8,
+      "introduction": 7,
+      "results": 8
+     }
+    },
+    "by_tier": {
+     "high": {
+      "abstract": 6,
+      "discussion": 7,
+      "introduction": 6,
+      "results": 8
+     },
+     "other": {
+      "abstract": 6,
+      "discussion": 6,
+      "introduction": 5,
+      "results": 4
+     }
+    },
+    "n": 14,
+    "n_by_group": {
+     "essay": 2,
+     "first": 4,
+     "senior": 8
+    },
+    "n_by_tier": {
+     "high": 8,
+     "other": 6
+    }
+   },
+   "value.marker": {
+    "all": {
+     "evaluative word": 14,
+     "first or novelty claim": 8,
+     "implication sentence": 12,
+     "scope claim": 10
+    },
+    "by_group": {
+     "essay": {
+      "evaluative word": 2,
+      "implication sentence": 2
+     },
+     "first": {
+      "evaluative word": 4,
+      "first or novelty claim": 4,
+      "implication sentence": 2,
+      "scope claim": 2
+     },
+     "senior": {
+      "evaluative word": 8,
+      "first or novelty claim": 4,
+      "implication sentence": 8,
+      "scope claim": 8
+     }
+    },
+    "by_tier": {
+     "high": {
+      "evaluative word": 8,
+      "first or novelty claim": 5,
+      "implication sentence": 7,
+      "scope claim": 7
+     },
+     "other": {
+      "evaluative word": 6,
+      "first or novelty claim": 3,
+      "implication sentence": 5,
+      "scope claim": 3
+     }
+    },
+    "n": 14,
+    "n_by_group": {
+     "essay": 2,
+     "first": 4,
+     "senior": 8
+    },
+    "n_by_tier": {
+     "high": 8,
+     "other": 6
+    }
+   }
+  },
+  "figure_reference": {
+   "value": {
+    "all": {
+     "mixed": 1,
+     "result then reference": 13
+    },
+    "by_group": {
+     "essay": {
+      "result then reference": 2
+     },
+     "first": {
+      "mixed": 1,
+      "result then reference": 3
+     },
+     "senior": {
+      "result then reference": 8
+     }
+    },
+    "by_tier": {
+     "high": {
+      "result then reference": 8
+     },
+     "other": {
+      "mixed": 1,
+      "result then reference": 5
+     }
+    },
+    "n": 14,
+    "n_by_group": {
+     "essay": 2,
+     "first": 4,
+     "senior": 8
+    },
+    "n_by_tier": {
+     "high": 8,
+     "other": 6
+    }
+   }
+  },
+  "gap_sentence": {
+   "value": {
+    "all": {
+     "none": 1,
+     "present": 13
+    },
+    "by_group": {
+     "essay": {
+      "none": 1,
+      "present": 1
+     },
+     "first": {
+      "present": 4
+     },
+     "senior": {
+      "present": 8
+     }
+    },
+    "by_tier": {
+     "high": {
+      "present": 8
+     },
+     "other": {
+      "none": 1,
+      "present": 5
+     }
+    },
+    "n": 14,
+    "n_by_group": {
+     "essay": 2,
+     "first": 4,
+     "senior": 8
+    },
+    "n_by_tier": {
+     "high": 8,
+     "other": 6
+    }
+   }
+  },
+  "here_we": {
+   "value": {
+    "all": {
+     "none": 1,
+     "present": 13
+    },
+    "by_group": {
+     "essay": {
+      "present": 2
+     },
+     "first": {
+      "none": 1,
+      "present": 3
+     },
+     "senior": {
+      "present": 8
+     }
+    },
+    "by_tier": {
+     "high": {
+      "none": 1,
+      "present": 7
+     },
+     "other": {
+      "present": 6
+     }
+    },
+    "n": 14,
+    "n_by_group": {
+     "essay": 2,
+     "first": 4,
+     "senior": 8
+    },
+    "n_by_tier": {
+     "high": 8,
+     "other": 6
+    }
+   }
+  },
+  "intro_roles": {
+   "value": {
+    "all": {
+     "approach preview": 4,
+     "field": 7,
+     "gap": 12,
+     "here-we": 13,
+     "prior work": 5,
+     "problem": 5,
+     "result preview": 1
+    },
+    "by_group": {
+     "essay": {
+      "approach preview": 1,
+      "gap": 1,
+      "here-we": 2,
+      "prior work": 1
+     },
+     "first": {
+      "approach preview": 1,
+      "field": 3,
+      "gap": 3,
+      "here-we": 3,
+      "prior work": 1,
+      "problem": 2
+     },
+     "senior": {
+      "approach preview": 2,
+      "field": 4,
+      "gap": 8,
+      "here-we": 8,
+      "prior work": 3,
+      "problem": 3,
+      "result preview": 1
+     }
+    },
+    "by_tier": {
+     "high": {
+      "approach preview": 1,
+      "field": 4,
+      "gap": 7,
+      "here-we": 7,
+      "prior work": 2,
+      "problem": 3
+     },
+     "other": {
+      "approach preview": 3,
+      "field": 3,
+      "gap": 5,
+      "here-we": 6,
+      "prior work": 3,
+      "problem": 2,
+      "result preview": 1
+     }
+    },
+    "first": {
+     "field": 7,
+     "gap": 3,
+     "here-we": 3,
+     "problem": 1
+    },
+    "last": {
+     "approach preview": 2,
+     "gap": 1,
+     "here-we": 10,
+     "result preview": 1
+    },
+    "n": 14,
+    "n_by_group": {
+     "essay": 2,
+     "first": 4,
+     "senior": 8
+    },
+    "n_by_tier": {
+     "high": 8,
+     "other": 6
+    }
+   }
+  },
+  "limitations": {
+   "placement": {
+    "all": {
+     "inline in methods": 1,
+     "inline in results": 6,
+     "none": 2,
+     "own paragraph": 3,
+     "own section": 2
+    },
+    "by_group": {
+     "essay": {
+      "none": 2
+     },
+     "first": {
+      "inline in results": 2,
+      "own paragraph": 1,
+      "own section": 1
+     },
+     "senior": {
+      "inline in methods": 1,
+      "inline in results": 4,
+      "own paragraph": 2,
+      "own section": 1
+     }
+    },
+    "by_tier": {
+     "high": {
+      "inline in methods": 1,
+      "inline in results": 4,
+      "own paragraph": 1,
+      "own section": 2
+     },
+     "other": {
+      "inline in results": 2,
+      "none": 2,
+      "own paragraph": 2
+     }
+    },
+    "n": 14,
+    "n_by_group": {
+     "essay": 2,
+     "first": 4,
+     "senior": 8
+    },
+    "n_by_tier": {
+     "high": 8,
+     "other": 6
+    }
+   },
+   "specificity": {
+    "all": {
+     "none": 2,
+     "specific": 5,
+     "specific with a remedy": 7
+    },
+    "by_group": {
+     "essay": {
+      "none": 2
+     },
+     "first": {
+      "specific": 2,
+      "specific with a remedy": 2
+     },
+     "senior": {
+      "specific": 3,
+      "specific with a remedy": 5
+     }
+    },
+    "by_tier": {
+     "high": {
+      "specific": 4,
+      "specific with a remedy": 4
+     },
+     "other": {
+      "none": 2,
+      "specific": 1,
+      "specific with a remedy": 3
+     }
+    },
+    "n": 14,
+    "n_by_group": {
+     "essay": 2,
+     "first": 4,
+     "senior": 8
+    },
+    "n_by_tier": {
+     "high": 8,
+     "other": 6
+    }
+   }
+  },
+  "results_headings": {
+   "value": {
+    "all": {
+     "full-sentence claim": 6,
+     "none": 4,
+     "noun phrase": 2
+    },
+    "by_group": {
+     "first": {
+      "full-sentence claim": 1,
+      "none": 2,
+      "noun phrase": 1
+     },
+     "senior": {
+      "full-sentence claim": 5,
+      "none": 2,
+      "noun phrase": 1
+     }
+    },
+    "by_tier": {
+     "high": {
+      "full-sentence claim": 3,
+      "none": 3,
+      "noun phrase": 2
+     },
+     "other": {
+      "full-sentence claim": 3,
+      "none": 1
+     }
+    },
+    "n": 12,
+    "n_by_group": {
+     "first": 4,
+     "senior": 8
+    },
+    "n_by_tier": {
+     "high": 8,
+     "other": 4
+    }
+   }
+  },
+  "results_openings": {
+   "value": {
+    "all": {
+     "aim": 7,
+     "method first": 10,
+     "question": 1,
+     "result first": 6
+    },
+    "by_group": {
+     "first": {
+      "aim": 1,
+      "method first": 4,
+      "question": 1,
+      "result first": 2
+     },
+     "senior": {
+      "aim": 6,
+      "method first": 6,
+      "result first": 4
+     }
+    },
+    "by_tier": {
+     "high": {
+      "aim": 4,
+      "method first": 8,
+      "question": 1,
+      "result first": 4
+     },
+     "other": {
+      "aim": 3,
+      "method first": 2,
+      "result first": 2
+     }
+    },
+    "first": {
+     "aim": 4,
+     "method first": 6,
+     "question": 1,
+     "result first": 1
+    },
+    "last": {
+     "aim": 3,
+     "method first": 5,
+     "result first": 4
+    },
+    "n": 12,
+    "n_by_group": {
+     "first": 4,
+     "senior": 8
+    },
+    "n_by_tier": {
+     "high": 8,
+     "other": 4
+    }
+   }
+  },
+  "strongest_claim": {
+   "value": {
+    "all": {
+     "hedged": 6,
+     "unhedged": 8
+    },
+    "by_group": {
+     "essay": {
+      "hedged": 2
+     },
+     "first": {
+      "hedged": 2,
+      "unhedged": 2
+     },
+     "senior": {
+      "hedged": 2,
+      "unhedged": 6
+     }
+    },
+    "by_tier": {
+     "high": {
+      "hedged": 3,
+      "unhedged": 5
+     },
+     "other": {
+      "hedged": 3,
+      "unhedged": 3
+     }
+    },
+    "n": 14,
+    "n_by_group": {
+     "essay": 2,
+     "first": 4,
+     "senior": 8
+    },
+    "n_by_tier": {
+     "high": 8,
+     "other": 6
+    }
+   }
+  },
+  "title_form": {
+   "value": {
+    "all": {
+     "claim": 5,
+     "method name": 3,
+     "topic": 6
+    },
+    "by_group": {
+     "essay": {
+      "topic": 2
+     },
+     "first": {
+      "claim": 1,
+      "method name": 1,
+      "topic": 2
+     },
+     "senior": {
+      "claim": 4,
+      "method name": 2,
+      "topic": 2
+     }
+    },
+    "by_tier": {
+     "high": {
+      "claim": 3,
+      "method name": 2,
+      "topic": 3
+     },
+     "other": {
+      "claim": 2,
+      "method name": 1,
+      "topic": 3
+     }
+    },
+    "n": 14,
+    "n_by_group": {
+     "essay": 2,
+     "first": 4,
+     "senior": 8
+    },
+    "n_by_tier": {
+     "high": 8,
+     "other": 6
+    }
+   }
+  }
+ },
+ "left_out": [],
+ "n_fetched": 14,
+ "n_left_out": 0,
+ "n_papers": 14,
+ "name": "Cole Trapnell",
+ "papers_used": [
+  "W1995078504",
+  "W2097065948",
+  "W2141458291",
+  "W2166820820",
+  "W2288153033",
+  "W2582033455",
+  "W2653530754",
+  "W2747877289",
+  "W2831482487",
+  "W2971378659",
+  "W3010569643",
+  "W3045478644",
+  "W4388694332",
+  "W4409172717"
+ ],
+ "person": "trapnell",
+ "quotes": [
+  {
+   "doi": "10.1038/nbt0509-455",
+   "field": "quote",
+   "item": "gap_sentence",
+   "text": "these programs neither scale up to the much greater volumes of data produced by short-read sequencers nor scale down to the short read lengths",
+   "text_version": "accepted",
+   "work_id": "W1995078504"
+  },
+  {
+   "doi": "10.1038/nbt0509-455",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "Such programs as Maq and Bowtie (Table 1) use a computational strategy known as ‘indexing’ to speed up their mapping algorithms.",
+   "text_version": "accepted",
+   "work_id": "W1995078504"
+  },
+  {
+   "doi": "10.1038/nbt0509-455",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "The spliced alignment problem, in which cDNA (from processed mRNA) sequences are aligned back to genomic DNA, requires more specialized algorithms.",
+   "text_version": "accepted",
+   "work_id": "W1995078504"
+  },
+  {
+   "doi": "10.1038/nbt0509-455",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "The current solutions for short-read mapping all have limitations.",
+   "text_version": "accepted",
+   "work_id": "W1995078504"
+  },
+  {
+   "doi": "10.1038/nbt0509-455",
+   "field": "value",
+   "item": "excitement",
+   "text": "Before choosing one, it is essential to understand why the mapping problems are computationally difficult",
+   "text_version": "accepted",
+   "work_id": "W1995078504"
+  },
+  {
+   "doi": "10.1038/nbt0509-455",
+   "field": "value",
+   "item": "excitement",
+   "text": "we and others have created a new generation of alignment programs capable of mapping hundreds of millions of short reads on a single desktop computer",
+   "text_version": "accepted",
+   "work_id": "W1995078504"
+  },
+  {
+   "doi": "10.1038/nbt0509-455",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "most mapping software will find an alignment for 70–75% of the reads",
+   "text_version": "accepted",
+   "work_id": "W1995078504"
+  },
+  {
+   "doi": "10.1038/nbt0509-455",
+   "field": "hedge_quote",
+   "item": "strongest_claim",
+   "text": "Assuming the sequenced DNA does not contain many mismatched nucleotides compared to the reference",
+   "text_version": "accepted",
+   "work_id": "W1995078504"
+  },
+  {
+   "doi": "10.1038/nbt0509-455",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "Mapping programs such as Maq and Bowtie offer very limited support for aligning reads with insertions or deletions (indels).",
+   "text_version": "accepted",
+   "work_id": "W1995078504"
+  },
+  {
+   "doi": "10.1038/nbt0509-455",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "Annotation-based methods are of course only as good as the annotations",
+   "text_version": "accepted",
+   "work_id": "W1995078504"
+  },
+  {
+   "doi": "10.1038/nbt0509-455",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "Like the index at the end of a book, an index of a large DNA sequence allows one to rapidly find shorter sequences",
+   "text_version": "accepted",
+   "work_id": "W1995078504"
+  },
+  {
+   "doi": "10.1038/nbt0509-455",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "it must fall within one of the four seeds, but the other three will still match perfectly",
+   "text_version": "accepted",
+   "work_id": "W1995078504"
+  },
+  {
+   "doi": "10.1038/nbt0509-455",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "the Burrows-Wheeler transform enables Bowtie to conquer the mapping problem by first solving a simple subproblem—align one character",
+   "text_version": "accepted",
+   "work_id": "W1995078504"
+  },
+  {
+   "doi": "10.1038/nbt0509-455",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "so-called",
+   "text_version": "accepted",
+   "work_id": "W1995078504"
+  },
+  {
+   "doi": "10.1038/nbt0509-455",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Fortunately,",
+   "text_version": "accepted",
+   "work_id": "W1995078504"
+  },
+  {
+   "doi": "10.1038/nbt0509-455",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "it is essential to",
+   "text_version": "accepted",
+   "work_id": "W1995078504"
+  },
+  {
+   "doi": "10.1038/nbt0509-455",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Even so,",
+   "text_version": "accepted",
+   "work_id": "W1995078504"
+  },
+  {
+   "doi": "10.1093/bioinformatics/btp120",
+   "field": "quote",
+   "item": "gap_sentence",
+   "text": "failing to look for novel junctions at a genome-wide scale wastes much of the potential of RNA-Seq",
+   "text_version": "published",
+   "work_id": "W2097065948"
+  },
+  {
+   "doi": "10.1093/bioinformatics/btp120",
+   "field": "quote",
+   "item": "here_we",
+   "text": "In this article, we describe TopHat, a software package that identifies splice sites ab initio by large-scale mapping of RNA-Seq reads.",
+   "text_version": "published",
+   "work_id": "W2097065948"
+  },
+  {
+   "doi": "10.1093/bioinformatics/btp120",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "To assess TopHat's ability to identify true junctions without reporting false positives, we simulated the results of Illumina short-read sequencing",
+   "text_version": "published",
+   "work_id": "W2097065948"
+  },
+  {
+   "doi": "10.1093/bioinformatics/btp120",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "The UCSC gene models are relatively conservative, so we searched the GenBank mouse EST database using BLAT (Kent, [CIT]) for the previously unreported junctions.",
+   "text_version": "published",
+   "work_id": "W2097065948"
+  },
+  {
+   "doi": "10.1093/bioinformatics/btp120",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "We examined the previously unreported junctions that lacked high-quality hits to mouse EST by dividing them into three categories",
+   "text_version": "published",
+   "work_id": "W2097065948"
+  },
+  {
+   "doi": "10.1093/bioinformatics/btp120",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "We also compared TopHat to a simple strategy based on de novo assembly of RNA-Seq reads.",
+   "text_version": "published",
+   "work_id": "W2097065948"
+  },
+  {
+   "doi": "10.1093/bioinformatics/btp120",
+   "field": "value",
+   "item": "excitement",
+   "text": "recovered more than 72% of the splice junctions reported by the annotation-based software from that study, along with nearly 20 000 previously unreported junctions",
+   "text_version": "published",
+   "work_id": "W2097065948"
+  },
+  {
+   "doi": "10.1093/bioinformatics/btp120",
+   "field": "value",
+   "item": "excitement",
+   "text": "The TopHat pipeline is much faster than previous systems, mapping nearly 2.2 million reads per CPU hour",
+   "text_version": "published",
+   "work_id": "W2097065948"
+  },
+  {
+   "doi": "10.1093/bioinformatics/btp120",
+   "field": "value",
+   "item": "excitement",
+   "text": "The remaining 19 722 may represent novel junctions.",
+   "text_version": "published",
+   "work_id": "W2097065948"
+  },
+  {
+   "doi": "10.1093/bioinformatics/btp120",
+   "field": "value",
+   "item": "excitement",
+   "text": "More significant is its ability to detect novel splice junctions.",
+   "text_version": "published",
+   "work_id": "W2097065948"
+  },
+  {
+   "doi": "10.1093/bioinformatics/btp120",
+   "field": "value",
+   "item": "excitement",
+   "text": "TopHat thus represents a significant advance over previous RNA-Seq splice detection methods",
+   "text_version": "published",
+   "work_id": "W2097065948"
+  },
+  {
+   "doi": "10.1093/bioinformatics/btp120",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "minor isoforms are expressed at similar frequencies in other mammals",
+   "text_version": "published",
+   "work_id": "W2097065948"
+  },
+  {
+   "doi": "10.1093/bioinformatics/btp120",
+   "field": "hedge_quote",
+   "item": "strongest_claim",
+   "text": "we expect that",
+   "text_version": "published",
+   "work_id": "W2097065948"
+  },
+  {
+   "doi": "10.1093/bioinformatics/btp120",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "The most common reason for missing a junction is that the transcript has very low sequencing coverage",
+   "text_version": "published",
+   "work_id": "W2097065948"
+  },
+  {
+   "doi": "10.1093/bioinformatics/btp120",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "Junctions spanning very long introns or introns with non-canonical donor and acceptor sites",
+   "text_version": "published",
+   "work_id": "W2097065948"
+  },
+  {
+   "doi": "10.1093/bioinformatics/btp120",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "The current pipeline has no means of identifying microexons (shorter than a single read) because they will not be captured by the initial Bowtie mapping.",
+   "text_version": "published",
+   "work_id": "W2097065948"
+  },
+  {
+   "doi": "10.1093/bioinformatics/btp120",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "An additional mapping phase using IUM reads should be able to capture many of these microexons.",
+   "text_version": "published",
+   "work_id": "W2097065948"
+  },
+  {
+   "doi": "10.1093/bioinformatics/btp120",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "In order to",
+   "text_version": "published",
+   "work_id": "W2097065948"
+  },
+  {
+   "doi": "10.1093/bioinformatics/btp120",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "we expect",
+   "text_version": "published",
+   "work_id": "W2097065948"
+  },
+  {
+   "doi": "10.1093/bioinformatics/btp120",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "As expected,",
+   "text_version": "published",
+   "work_id": "W2097065948"
+  },
+  {
+   "doi": "10.1093/bioinformatics/btp120",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "However,",
+   "text_version": "published",
+   "work_id": "W2097065948"
+  },
+  {
+   "doi": "10.1038/nbt.1621",
+   "field": "quote",
+   "item": "gap_sentence",
+   "text": "We did not attempt to allocate reads to specific alternate isoforms",
+   "text_version": "accepted",
+   "work_id": "W2141458291"
+  },
+  {
+   "doi": "10.1038/nbt.1621",
+   "field": "quote",
+   "item": "here_we",
+   "text": "we developed a new algorithm that can identify complete novel transcripts and probabilistically assign reads to isoforms",
+   "text_version": "accepted",
+   "work_id": "W2141458291"
+  },
+  {
+   "doi": "10.1038/nbt.1621",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "To recover the minimal set of transcripts supported by our fragment alignments, we designed a comparative transcriptome assembly algorithm.",
+   "text_version": "accepted",
+   "work_id": "W2141458291"
+  },
+  {
+   "doi": "10.1038/nbt.1621",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "For the purposes of estimating transcript abundances, we first selected a set of 11,079 genes containing 17,416 high-confidence isoforms",
+   "text_version": "accepted",
+   "work_id": "W2141458291"
+  },
+  {
+   "doi": "10.1038/nbt.1621",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "we hypothesized that differential promoter preference and differential splicing were responsible for the divergent patterns",
+   "text_version": "accepted",
+   "work_id": "W2141458291"
+  },
+  {
+   "doi": "10.1038/nbt.1621",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "Focusing on the genes with significant promoter and isoform changes, we noted that in many cases changes in relative abundance reflected switch-like events",
+   "text_version": "accepted",
+   "work_id": "W2141458291"
+  },
+  {
+   "doi": "10.1038/nbt.1621",
+   "field": "value",
+   "item": "excitement",
+   "text": "We detected 13,692 known transcripts and 3,724 previously unannotated ones",
+   "text_version": "accepted",
+   "work_id": "W2141458291"
+  },
+  {
+   "doi": "10.1038/nbt.1621",
+   "field": "value",
+   "item": "excitement",
+   "text": "These dynamics suggest substantial regulatory flexibility and complexity in this well-studied model of muscle development.",
+   "text_version": "accepted",
+   "work_id": "W2141458291"
+  },
+  {
+   "doi": "10.1038/nbt.1621",
+   "field": "value",
+   "item": "excitement",
+   "text": "had a dramatic impact on the estimates of known isoforms in many genes",
+   "text_version": "accepted",
+   "work_id": "W2141458291"
+  },
+  {
+   "doi": "10.1038/nbt.1621",
+   "field": "value",
+   "item": "excitement",
+   "text": "highlighting the importance of coupling transcript discovery together with abundance estimation",
+   "text_version": "accepted",
+   "work_id": "W2141458291"
+  },
+  {
+   "doi": "10.1038/nbt.1621",
+   "field": "value",
+   "item": "excitement",
+   "text": "it is applicable to a broad range of RNA-Seq studies",
+   "text_version": "accepted",
+   "work_id": "W2141458291"
+  },
+  {
+   "doi": "10.1038/nbt.1621",
+   "field": "value",
+   "item": "excitement",
+   "text": "Cufflinks should help unveil the range of mechanisms governing RNA manufacture and processing",
+   "text_version": "accepted",
+   "work_id": "W2141458291"
+  },
+  {
+   "doi": "10.1038/nbt.1621",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "it is applicable to a broad range of RNA-Seq studies",
+   "text_version": "accepted",
+   "work_id": "W2141458291"
+  },
+  {
+   "doi": "10.1038/nbt.1621",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "Because distinguishing a full-length transcript from a partially assembled fragment is difficult, we conservatively excluded novel isoforms that were unique to a single time point",
+   "text_version": "accepted",
+   "work_id": "W2141458291"
+  },
+  {
+   "doi": "10.1038/nbt.1621",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "trajectory classification was not precise enough to prioritize further investigation into individual genes",
+   "text_version": "accepted",
+   "work_id": "W2141458291"
+  },
+  {
+   "doi": "10.1038/nbt.1621",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "Genes with novel isoforms were excluded from the coding sequence analysis, so this fraction likely underestimates the impact of differential regulation on coding potential.",
+   "text_version": "accepted",
+   "work_id": "W2141458291"
+  },
+  {
+   "doi": "10.1038/nbt.1621",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "Because only the ends of each fragment are sequenced, the length of each may be unknown.",
+   "text_version": "accepted",
+   "work_id": "W2141458291"
+  },
+  {
+   "doi": "10.1038/nbt.1621",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "We concluded that",
+   "text_version": "accepted",
+   "work_id": "W2141458291"
+  },
+  {
+   "doi": "10.1038/nbt.1621",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "In total,",
+   "text_version": "accepted",
+   "work_id": "W2141458291"
+  },
+  {
+   "doi": "10.1038/nbt.1621",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "For example,",
+   "text_version": "accepted",
+   "work_id": "W2141458291"
+  },
+  {
+   "doi": "10.1038/nbt.1621",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "In order to",
+   "text_version": "accepted",
+   "work_id": "W2141458291"
+  },
+  {
+   "doi": "10.1038/nbt.2450",
+   "field": "quote",
+   "item": "gap_sentence",
+   "text": "To our knowledge, no algorithm has rigorously addressed both problems simultaneously for genes and transcripts.",
+   "text_version": "accepted",
+   "work_id": "W2166820820"
+  },
+  {
+   "doi": "10.1038/nbt.2450",
+   "field": "quote",
+   "item": "here_we",
+   "text": "Here we introduce Cuffdiff 2, which addresses both problems simultaneously by modeling variability in the number of fragments generated by each transcript across replicates.",
+   "text_version": "accepted",
+   "work_id": "W2166820820"
+  },
+  {
+   "doi": "10.1038/nbt.2450",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "Thus, identifying accurate, statistically significant expression changes at the resolution level of genes requires transcript-level calculations.",
+   "text_version": "accepted",
+   "work_id": "W2166820820"
+  },
+  {
+   "doi": "10.1038/nbt.2450",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "To demonstrate the effectiveness of transcript-resolution RNA-seq analysis, we selected a biological problem arising from an ongoing study",
+   "text_version": "accepted",
+   "work_id": "W2166820820"
+  },
+  {
+   "doi": "10.1038/nbt.2450",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "To establish the accuracy of expression changes reported by Cuffdiff 2, we next analyzed published RNA-seq data with matched quantitative (q)PCR measurements.",
+   "text_version": "accepted",
+   "work_id": "W2166820820"
+  },
+  {
+   "doi": "10.1038/nbt.2450",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "the simulation results predicted that Cuffdiff 2 could recover transcriptome dynamics from the HOXA1 knockdown with far less data than generated by the HiSeq 2000",
+   "text_version": "accepted",
+   "work_id": "W2166820820"
+  },
+  {
+   "doi": "10.1038/nbt.2450",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "To further assess the biological insight gleaned from the transcript level response to loss of HOXA1, we performed Gene Set Enrichment Analysis (GSEA)",
+   "text_version": "accepted",
+   "work_id": "W2166820820"
+  },
+  {
+   "doi": "10.1038/nbt.2450",
+   "field": "value",
+   "item": "excitement",
+   "text": "Cuffdiff 2 robustly identifies differentially expressed transcripts and genes and reveals differential splicing and promoter-preference changes",
+   "text_version": "accepted",
+   "work_id": "W2166820820"
+  },
+  {
+   "doi": "10.1038/nbt.2450",
+   "field": "value",
+   "item": "excitement",
+   "text": "revealing a layer of regulation not readily observable with other high-throughput technologies",
+   "text_version": "accepted",
+   "work_id": "W2166820820"
+  },
+  {
+   "doi": "10.1038/nbt.2450",
+   "field": "value",
+   "item": "excitement",
+   "text": "To our knowledge, no algorithm has rigorously addressed both problems simultaneously for genes and transcripts.",
+   "text_version": "accepted",
+   "work_id": "W2166820820"
+  },
+  {
+   "doi": "10.1038/nbt.2450",
+   "field": "value",
+   "item": "excitement",
+   "text": "Cuffdiff 2 returned far more statistically significant differentially expressed genes than microarray analysis.",
+   "text_version": "accepted",
+   "work_id": "W2166820820"
+  },
+  {
+   "doi": "10.1038/nbt.2450",
+   "field": "value",
+   "item": "excitement",
+   "text": "Cuffdiff 2 performs robust transcript-level differential analysis of even very complex gene annotations",
+   "text_version": "accepted",
+   "work_id": "W2166820820"
+  },
+  {
+   "doi": "10.1038/nbt.2450",
+   "field": "value",
+   "item": "excitement",
+   "text": "This creates opportunities for integrated genomic analysis of unprecedented scope and scale and can uncover biological phenomena not observable with other high-throughput technologies.",
+   "text_version": "accepted",
+   "work_id": "W2166820820"
+  },
+  {
+   "doi": "10.1038/nbt.2450",
+   "field": "value",
+   "item": "excitement",
+   "text": "the power and resolution offered by Cuffdiff 2 will allow biologists to better disentangle complex cellular circuitry and precisely relate genomic sequence to gene regulation",
+   "text_version": "accepted",
+   "work_id": "W2166820820"
+  },
+  {
+   "doi": "10.1038/nbt.2450",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "the power and resolution offered by Cuffdiff 2 will allow biologists to better disentangle complex cellular circuitry and precisely relate genomic sequence to gene regulation",
+   "text_version": "accepted",
+   "work_id": "W2166820820"
+  },
+  {
+   "doi": "10.1038/nbt.2450",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "Recall suffered at lower depths for transcripts in the bottom quartile of expression",
+   "text_version": "accepted",
+   "work_id": "W2166820820"
+  },
+  {
+   "doi": "10.1038/nbt.2450",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "suggesting that deep sequencing is critical for differential analysis of genes present at low abundance",
+   "text_version": "accepted",
+   "work_id": "W2166820820"
+  },
+  {
+   "doi": "10.1038/nbt.2450",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "because these data were obtained with simulated reads that were perfectly mapped to the genome, we caution against designs with short (<75 bp) unpaired reads",
+   "text_version": "accepted",
+   "work_id": "W2166820820"
+  },
+  {
+   "doi": "10.1038/nbt.2450",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "Further experiments will be required to determine the nature and mechanism of the disruption and to identify the direct targets of HOXA1.",
+   "text_version": "accepted",
+   "work_id": "W2166820820"
+  },
+  {
+   "doi": "10.1038/nbt.2450",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "If the chance of seeing a change in this count is small enough under an appropriate statistical model",
+   "text_version": "accepted",
+   "work_id": "W2166820820"
+  },
+  {
+   "doi": "10.1038/nbt.2450",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "In the bottom row, the gene's expression is constant, but the isoforms undergo a complete switch between conditions A and B.",
+   "text_version": "accepted",
+   "work_id": "W2166820820"
+  },
+  {
+   "doi": "10.1038/nbt.2450",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Moreover,",
+   "text_version": "accepted",
+   "work_id": "W2166820820"
+  },
+  {
+   "doi": "10.1038/nbt.2450",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Notably,",
+   "text_version": "accepted",
+   "work_id": "W2166820820"
+  },
+  {
+   "doi": "10.1038/nbt.2450",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Importantly,",
+   "text_version": "accepted",
+   "work_id": "W2166820820"
+  },
+  {
+   "doi": "10.1038/nbt.2450",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "In contrast,",
+   "text_version": "accepted",
+   "work_id": "W2166820820"
+  },
+  {
+   "doi": "10.12688/f1000research.7223.1",
+   "field": "quote",
+   "item": "here_we",
+   "text": "In this review, we will discuss recent advancements and current limitations of scRNA-seq methodologies and highlight major applications of scRNA-seq in biological research.",
+   "text_version": "published",
+   "work_id": "W2288153033"
+  },
+  {
+   "doi": "10.12688/f1000research.7223.1",
+   "field": "value",
+   "item": "excitement",
+   "text": "are now robust and economically practical and are becoming a powerful tool",
+   "text_version": "published",
+   "work_id": "W2288153033"
+  },
+  {
+   "doi": "10.12688/f1000research.7223.1",
+   "field": "value",
+   "item": "excitement",
+   "text": "single-cell RNA-sequencing has already shown great effectiveness in unraveling complex cell populations",
+   "text_version": "published",
+   "work_id": "W2288153033"
+  },
+  {
+   "doi": "10.12688/f1000research.7223.1",
+   "field": "value",
+   "item": "excitement",
+   "text": "all promise to expand the usefulness and potential applications of single-cell transcriptomic profiling",
+   "text_version": "published",
+   "work_id": "W2288153033"
+  },
+  {
+   "doi": "10.12688/f1000research.7223.1",
+   "field": "value",
+   "item": "excitement",
+   "text": "enabled transcriptomic profiling at unprecedented sensitivity and breadth",
+   "text_version": "published",
+   "work_id": "W2288153033"
+  },
+  {
+   "doi": "10.12688/f1000research.7223.1",
+   "field": "value",
+   "item": "excitement",
+   "text": "scRNA-seq also shows great potential for elucidating stochastic transcriptional kinetics and inferring gene regulatory networks",
+   "text_version": "published",
+   "work_id": "W2288153033"
+  },
+  {
+   "doi": "10.12688/f1000research.7223.1",
+   "field": "value",
+   "item": "excitement",
+   "text": "also promises to provide new insights into transcriptional dynamics and the mechanisms underlying gene regulation",
+   "text_version": "published",
+   "work_id": "W2288153033"
+  },
+  {
+   "doi": "10.12688/f1000research.7223.1",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "all promise to expand the usefulness and potential applications of single-cell transcriptomic profiling",
+   "text_version": "published",
+   "work_id": "W2288153033"
+  },
+  {
+   "doi": "10.12688/f1000research.7223.1",
+   "field": "hedge_quote",
+   "item": "strongest_claim",
+   "text": "potential applications",
+   "text_version": "published",
+   "work_id": "W2288153033"
+  },
+  {
+   "doi": "10.12688/f1000research.7223.1",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "Growing evidence suggests that genes are not transcribed continuously but rather undergo short bursts of transcription interspersed with silent intervals",
+   "text_version": "published",
+   "work_id": "W2288153033"
+  },
+  {
+   "doi": "10.12688/f1000research.7223.1",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "the concept of “pseudotime” as a quantitative measure of “progress through a biological process”",
+   "text_version": "published",
+   "work_id": "W2288153033"
+  },
+  {
+   "doi": "10.12688/f1000research.7223.1",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "gene dropout (where gene expression is zero in a given cell)",
+   "text_version": "published",
+   "work_id": "W2288153033"
+  },
+  {
+   "doi": "10.12688/f1000research.7223.1",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "individual transcripts are labeled with fluorescent probes and then detected via high-resolution microscopy",
+   "text_version": "published",
+   "work_id": "W2288153033"
+  },
+  {
+   "doi": "10.12688/f1000research.7223.1",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Whereas",
+   "text_version": "published",
+   "work_id": "W2288153033"
+  },
+  {
+   "doi": "10.12688/f1000research.7223.1",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Although",
+   "text_version": "published",
+   "work_id": "W2288153033"
+  },
+  {
+   "doi": "10.12688/f1000research.7223.1",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "have been developed",
+   "text_version": "published",
+   "work_id": "W2288153033"
+  },
+  {
+   "doi": "10.12688/f1000research.7223.1",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "shows great",
+   "text_version": "published",
+   "work_id": "W2288153033"
+  },
+  {
+   "doi": "10.12688/f1000research.7223.1",
+   "field": "quote",
+   "item": "essay_argument",
+   "text": "inferred network models should thus be critically evaluated and experimentally tested where possible",
+   "text_version": "published",
+   "work_id": "W2288153033"
+  },
+  {
+   "doi": "10.1038/nmeth.4150",
+   "field": "quote",
+   "item": "gap_sentence",
+   "text": "Many published studies have chosen to forgo the use of spike-in controls, restricting subsequent reanalysis.",
+   "text_version": "accepted",
+   "work_id": "W2582033455"
+  },
+  {
+   "doi": "10.1038/nmeth.4150",
+   "field": "quote",
+   "item": "here_we",
+   "text": "Here, we introduce Census, an algorithm that converts conventional measures of relative expression such as transcript per million (TPM) in single cells",
+   "text_version": "accepted",
+   "work_id": "W2582033455"
+  },
+  {
+   "doi": "10.1038/nmeth.4150",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "We next assessed whether using Census counts improved downstream differential analysis.",
+   "text_version": "accepted",
+   "work_id": "W2582033455"
+  },
+  {
+   "doi": "10.1038/nmeth.4150",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "Monocle produces more reliable tests for differential expression along a trajectory when provided with Census counts than with relative expression values (Supplementary Figure 7).",
+   "text_version": "accepted",
+   "work_id": "W2582033455"
+  },
+  {
+   "doi": "10.1038/nmeth.4150",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "Branches could arise not only during development, but also in response to mutations, treatment with drugs, or other cellular perturbations.",
+   "text_version": "accepted",
+   "work_id": "W2582033455"
+  },
+  {
+   "doi": "10.1038/nmeth.4150",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "We used Census to estimate isoform-level transcript counts in differentiating myoblasts, a classic model system for vertebrate splicing.",
+   "text_version": "accepted",
+   "work_id": "W2582033455"
+  },
+  {
+   "doi": "10.1038/nmeth.4150",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "Single-cell analysis could in principle shed light on the degree to which the two alleles of each gene are regulated in a coordinated manner.",
+   "text_version": "accepted",
+   "work_id": "W2582033455"
+  },
+  {
+   "doi": "10.1038/nmeth.4150",
+   "field": "value",
+   "item": "excitement",
+   "text": "analyzing changes in relative transcript counts leads to dramatic improvements in accuracy compared to normalized read counts",
+   "text_version": "accepted",
+   "work_id": "W2582033455"
+  },
+  {
+   "doi": "10.1038/nmeth.4150",
+   "field": "value",
+   "item": "excitement",
+   "text": "Census counts can be analyzed with widely used regression techniques to reveal changes in cell fate-dependent gene expression, splicing patterns, and allelic imbalances",
+   "text_version": "accepted",
+   "work_id": "W2582033455"
+  },
+  {
+   "doi": "10.1038/nmeth.4150",
+   "field": "value",
+   "item": "excitement",
+   "text": "Census produced accurate changes in relative transcript counts for seven additional datasets",
+   "text_version": "accepted",
+   "work_id": "W2582033455"
+  },
+  {
+   "doi": "10.1038/nmeth.4150",
+   "field": "value",
+   "item": "excitement",
+   "text": "DESeq2’s empirical false discovery rate dropped dramatically from 61% to 22% with little to no drop in sensitivity",
+   "text_version": "accepted",
+   "work_id": "W2582033455"
+  },
+  {
+   "doi": "10.1038/nmeth.4150",
+   "field": "value",
+   "item": "excitement",
+   "text": "suggesting that single-cell trajectory analysis can be useful for defining how a signaling pathway regulates a larger process",
+   "text_version": "accepted",
+   "work_id": "W2582033455"
+  },
+  {
+   "doi": "10.1038/nmeth.4150",
+   "field": "value",
+   "item": "excitement",
+   "text": "Surprisingly, branched cell trajectories arise not only in development, but also in response to genetic perturbations",
+   "text_version": "accepted",
+   "work_id": "W2582033455"
+  },
+  {
+   "doi": "10.1038/nmeth.4150",
+   "field": "value",
+   "item": "excitement",
+   "text": "We provide a new algorithm, Census, that makes relative transcript count analysis widely accessible",
+   "text_version": "accepted",
+   "work_id": "W2582033455"
+  },
+  {
+   "doi": "10.1038/nmeth.4150",
+   "field": "value",
+   "item": "excitement",
+   "text": "We expect that such techniques will continue to unveil new mechanisms of gene regulation, including at the allele and isoform level, in development and disease.",
+   "text_version": "accepted",
+   "work_id": "W2582033455"
+  },
+  {
+   "doi": "10.1038/nmeth.4150",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "analyzing changes in relative transcript counts leads to dramatic improvements in accuracy compared to normalized read counts",
+   "text_version": "accepted",
+   "work_id": "W2582033455"
+  },
+  {
+   "doi": "10.1038/nmeth.4150",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "non-linear amplification at any stage of the library construction protocol could distort this relationship",
+   "text_version": "accepted",
+   "work_id": "W2582033455"
+  },
+  {
+   "doi": "10.1038/nmeth.4150",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "Census cannot control for amplification biases, and thus does not produce estimates of lysate mRNA abundances that perfectly match those derived with spike-ins or UMIs.",
+   "text_version": "accepted",
+   "work_id": "W2582033455"
+  },
+  {
+   "doi": "10.1038/nmeth.4150",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "When spike-ins or UMIs are available, transcript counts should be recovered using them rather than Census.",
+   "text_version": "accepted",
+   "work_id": "W2582033455"
+  },
+  {
+   "doi": "10.1038/nmeth.4150",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "Monocle introduced the concept of “pseudotime”, which quantifies each cell’s progress through development.",
+   "text_version": "accepted",
+   "work_id": "W2582033455"
+  },
+  {
+   "doi": "10.1038/nmeth.4150",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "“drop-out”, wherein some cells of a nominally homogeneous population express high levels of a gene and others none at all",
+   "text_version": "accepted",
+   "work_id": "W2582033455"
+  },
+  {
+   "doi": "10.1038/nmeth.4150",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Taken together",
+   "text_version": "accepted",
+   "work_id": "W2582033455"
+  },
+  {
+   "doi": "10.1038/nmeth.4150",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "frustrating efforts",
+   "text_version": "accepted",
+   "work_id": "W2582033455"
+  },
+  {
+   "doi": "10.1038/nmeth.4150",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "grappled with",
+   "text_version": "accepted",
+   "work_id": "W2582033455"
+  },
+  {
+   "doi": "10.1038/nmeth.4150",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "without the need for",
+   "text_version": "accepted",
+   "work_id": "W2582033455"
+  },
+  {
+   "doi": "10.1038/nmeth.4150",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "We attribute the improvements to",
+   "text_version": "accepted",
+   "work_id": "W2582033455"
+  },
+  {
+   "doi": "10.1101/155473",
+   "field": "quote",
+   "item": "gap_sentence",
+   "text": "we lack a quantitative understanding of how changes in chromatin accessibility relate to changes in the expression of nearby genes",
+   "text_version": "preprint",
+   "work_id": "W2653530754"
+  },
+  {
+   "doi": "10.1101/155473",
+   "field": "quote",
+   "item": "here_we",
+   "text": "Here, we describe Cicero, an algorithm that links distal regulatory elements to their target genes based on patterns of co-accessibility",
+   "text_version": "preprint",
+   "work_id": "W2653530754"
+  },
+  {
+   "doi": "10.1101/155473",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "We next sought to characterize changes in chromatin accessibility as myoblasts differentiated, and to relate these accessibility changes to changes in gene expression.",
+   "text_version": "preprint",
+   "work_id": "W2653530754"
+  },
+  {
+   "doi": "10.1101/155473",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "We sought to exploit patterns of co-accessibility between distal regulatory elements and promoters to build a genome-wide cis-regulatory map from sci-ATAC-seq data.",
+   "text_version": "preprint",
+   "work_id": "W2653530754"
+  },
+  {
+   "doi": "10.1101/155473",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "We hypothesized that CCANs linked by Cicero constitute “chromatin hubs”.",
+   "text_version": "preprint",
+   "work_id": "W2653530754"
+  },
+  {
+   "doi": "10.1101/155473",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "We asked whether co-accessible sites are closer together in the nucleus than unlinked sites at similar distances in the linear genome.",
+   "text_version": "preprint",
+   "work_id": "W2653530754"
+  },
+  {
+   "doi": "10.1101/155473",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "prompted us to investigate whether they might also be associated with other DNA binding protein complexes",
+   "text_version": "preprint",
+   "work_id": "W2653530754"
+  },
+  {
+   "doi": "10.1101/155473",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "The physical proximity of co-accessible sites suggested that recruitment of histone-modifying enzymes to one site might nucleate changes in others.",
+   "text_version": "preprint",
+   "work_id": "W2653530754"
+  },
+  {
+   "doi": "10.1101/155473",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "We next asked whether Cicero co-accessibility could be used to predict changes in gene expression.",
+   "text_version": "preprint",
+   "work_id": "W2653530754"
+  },
+  {
+   "doi": "10.1101/155473",
+   "field": "value",
+   "item": "excitement",
+   "text": "The methodological framework described here constitutes a powerful new approach for elucidating the architecture, grammar and mechanisms of cis-regulation on a genome-wide basis.",
+   "text_version": "preprint",
+   "work_id": "W2653530754"
+  },
+  {
+   "doi": "10.1101/155473",
+   "field": "value",
+   "item": "excitement",
+   "text": "potentially serving as the initial sites of recruitment of chromatin remodeling and histone-modifying enzymes",
+   "text_version": "preprint",
+   "work_id": "W2653530754"
+  },
+  {
+   "doi": "10.1101/155473",
+   "field": "value",
+   "item": "excitement",
+   "text": "The algorithm can therefore be applied to any cell type and organism for which a sequenced genome and single cell chromatin accessibility data are available.",
+   "text_version": "preprint",
+   "work_id": "W2653530754"
+  },
+  {
+   "doi": "10.1101/155473",
+   "field": "value",
+   "item": "excitement",
+   "text": "that was strikingly similar to the trajectory constructed from single cell transcriptome data",
+   "text_version": "preprint",
+   "work_id": "W2653530754"
+  },
+  {
+   "doi": "10.1101/155473",
+   "field": "value",
+   "item": "excitement",
+   "text": "we developed a new algorithm, Cicero, that subtracts technical and genomic distance effects",
+   "text_version": "preprint",
+   "work_id": "W2653530754"
+  },
+  {
+   "doi": "10.1101/155473",
+   "field": "value",
+   "item": "excitement",
+   "text": "the assays exhibited concordance even for sites separated by 100 kb or more",
+   "text_version": "preprint",
+   "work_id": "W2653530754"
+  },
+  {
+   "doi": "10.1101/155473",
+   "field": "value",
+   "item": "excitement",
+   "text": "This augmented model markedly improved our ability to predict changes in expression",
+   "text_version": "preprint",
+   "work_id": "W2653530754"
+  },
+  {
+   "doi": "10.1101/155473",
+   "field": "value",
+   "item": "excitement",
+   "text": "Maps obtained through the application of Cicero may advance our quantitative understanding of the logic of gene regulation in eukaryotic genomes",
+   "text_version": "preprint",
+   "work_id": "W2653530754"
+  },
+  {
+   "doi": "10.1101/155473",
+   "field": "value",
+   "item": "excitement",
+   "text": "such regulatory maps will be essential for understanding the epigenetic basis of each cell type’s gene expression program, both in health and disease",
+   "text_version": "preprint",
+   "work_id": "W2653530754"
+  },
+  {
+   "doi": "10.1101/155473",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "such regulatory maps will be essential for understanding the epigenetic basis of each cell type’s gene expression program, both in health and disease",
+   "text_version": "preprint",
+   "work_id": "W2653530754"
+  },
+  {
+   "doi": "10.1101/155473",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "Although these potentially correspond to interstitial fibroblasts that we failed to filter",
+   "text_version": "preprint",
+   "work_id": "W2653530754"
+  },
+  {
+   "doi": "10.1101/155473",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "However, this model explained only 26% of variation in H3K27 acetylation.",
+   "text_version": "preprint",
+   "work_id": "W2653530754"
+  },
+  {
+   "doi": "10.1101/155473",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "The promoter-based model explained only 16% of the variance in expression",
+   "text_version": "preprint",
+   "work_id": "W2653530754"
+  },
+  {
+   "doi": "10.1101/155473",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "more sophisticated machine learning approaches might make better use of Cicero’s regulatory maps",
+   "text_version": "preprint",
+   "work_id": "W2653530754"
+  },
+  {
+   "doi": "10.1101/155473",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "organizes individual cells using machine learning according to their progress through a biological process such as cell differentiation",
+   "text_version": "preprint",
+   "work_id": "W2653530754"
+  },
+  {
+   "doi": "10.1101/155473",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "informally, two variables are partially correlated when they remain correlated even after the effects of all other variables in the matrix are excluded",
+   "text_version": "preprint",
+   "work_id": "W2653530754"
+  },
+  {
+   "doi": "10.1101/155473",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Taken together",
+   "text_version": "preprint",
+   "work_id": "W2653530754"
+  },
+  {
+   "doi": "10.1101/155473",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "strikingly similar",
+   "text_version": "preprint",
+   "work_id": "W2653530754"
+  },
+  {
+   "doi": "10.1101/155473",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "support the view that",
+   "text_version": "preprint",
+   "work_id": "W2653530754"
+  },
+  {
+   "doi": "10.1101/155473",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "We hypothesized that",
+   "text_version": "preprint",
+   "work_id": "W2653530754"
+  },
+  {
+   "doi": "10.1101/155473",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Altogether,",
+   "text_version": "preprint",
+   "work_id": "W2653530754"
+  },
+  {
+   "doi": "10.1038/nmeth.4402",
+   "field": "quote",
+   "item": "gap_sentence",
+   "text": "Most pseudotime methods can only reconstruct linear trajectories",
+   "text_version": "accepted",
+   "work_id": "W2747877289"
+  },
+  {
+   "doi": "10.1038/nmeth.4402",
+   "field": "quote",
+   "item": "here_we",
+   "text": "Here, we describe Monocle 2 (Supplementary Software and https://github.com/cole-trapnell-lab/monocle-release), which applies reversed graph embedding (RGE)",
+   "text_version": "accepted",
+   "work_id": "W2747877289"
+  },
+  {
+   "doi": "10.1038/nmeth.4402",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "We next sought to develop a pseudotime trajectory reconstruction algorithm that does not require the number of cell fates or branches as an input parameter.",
+   "text_version": "accepted",
+   "work_id": "W2747877289"
+  },
+  {
+   "doi": "10.1038/nmeth.4402",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "To assess the Monocle 2’s accuracy, we first applied it to myoblasts, which we previously reported to differentiate along a linear trajectory[CIT] (Figure 1B).",
+   "text_version": "accepted",
+   "work_id": "W2747877289"
+  },
+  {
+   "doi": "10.1038/nmeth.4402",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "We next sought to compare Monocle 2 to state-of-the art algorithms for inferring single-cell trajectories",
+   "text_version": "accepted",
+   "work_id": "W2747877289"
+  },
+  {
+   "doi": "10.1038/nmeth.4402",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "We also assessed Monocle 2’s alternative algorithms for dimensionality reduction and graph learning.",
+   "text_version": "accepted",
+   "work_id": "W2747877289"
+  },
+  {
+   "doi": "10.1038/nmeth.4402",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "Because Monocle 2 can in principle learn complex trajectories with many branches, we reanalyzed the data from Paul et al. in 10 dimensions",
+   "text_version": "accepted",
+   "work_id": "W2747877289"
+  },
+  {
+   "doi": "10.1038/nmeth.4402",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "we sought further experimental means of validating the structure of the algorithm’s trajectories",
+   "text_version": "accepted",
+   "work_id": "W2747877289"
+  },
+  {
+   "doi": "10.1038/nmeth.4402",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "Providing cells from mice lacking Gfi1 or Irf8 to Monocle 2 did not substantially alter the structure of the myeloid differentiation trajectory (Figure 2B).",
+   "text_version": "accepted",
+   "work_id": "W2747877289"
+  },
+  {
+   "doi": "10.1038/nmeth.4402",
+   "field": "value",
+   "item": "excitement",
+   "text": "Monocle 2 outperforms not only its previous version but also more recently developed methods, producing more accurate, robust trajectories.",
+   "text_version": "accepted",
+   "work_id": "W2747877289"
+  },
+  {
+   "doi": "10.1038/nmeth.4402",
+   "field": "value",
+   "item": "excitement",
+   "text": "Surprisingly, Monocle 2 reconstructed a trajectory with a single branch point leading to two outcomes",
+   "text_version": "accepted",
+   "work_id": "W2747877289"
+  },
+  {
+   "doi": "10.1038/nmeth.4402",
+   "field": "value",
+   "item": "excitement",
+   "text": "In contrast to other methods, Monocle 2 also accurately learned a complex tree with five branches in a fully automatic fashion",
+   "text_version": "accepted",
+   "work_id": "W2747877289"
+  },
+  {
+   "doi": "10.1038/nmeth.4402",
+   "field": "value",
+   "item": "excitement",
+   "text": "Thus, Monocle 2 can resolve complex branching processes.",
+   "text_version": "accepted",
+   "work_id": "W2747877289"
+  },
+  {
+   "doi": "10.1038/nmeth.4402",
+   "field": "value",
+   "item": "excitement",
+   "text": "suggesting that diversion of cells from one fate to another may be a consequence of losing a key fate regulator",
+   "text_version": "accepted",
+   "work_id": "W2747877289"
+  },
+  {
+   "doi": "10.1038/nmeth.4402",
+   "field": "value",
+   "item": "excitement",
+   "text": "We also anticipate that Monocle 2 will be useful not just for expression data, but for single-cell chromatin accessibility[CIT] or 3D structure[CIT] analysis as well.",
+   "text_version": "accepted",
+   "work_id": "W2747877289"
+  },
+  {
+   "doi": "10.1038/nmeth.4402",
+   "field": "value",
+   "item": "excitement",
+   "text": "We are confident that Monocle 2 will help reveal how various layers of gene regulation coordinate developmental decision making within individual cells.",
+   "text_version": "accepted",
+   "work_id": "W2747877289"
+  },
+  {
+   "doi": "10.1038/nmeth.4402",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "We are confident that Monocle 2 will help reveal how various layers of gene regulation coordinate developmental decision making within individual cells.",
+   "text_version": "accepted",
+   "work_id": "W2747877289"
+  },
+  {
+   "doi": "10.1038/nmeth.4402",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "though doing so requires some degree of parameter optimization on behalf of the user",
+   "text_version": "accepted",
+   "work_id": "W2747877289"
+  },
+  {
+   "doi": "10.1038/nmeth.4402",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "LLE, a reduction technique known to be highly sensitive to tuning parameters, sometimes led to incorrect reconstructions with SimplePPT.",
+   "text_version": "accepted",
+   "work_id": "W2747877289"
+  },
+  {
+   "doi": "10.1038/nmeth.4402",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "Although a reference ordering based on markers from literature can serve as a reasonable gold-standard, it also introduces bias in a benchmarking analysis.",
+   "text_version": "accepted",
+   "work_id": "W2747877289"
+  },
+  {
+   "doi": "10.1038/nmeth.4402",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "Why some loss of function mutations create branches while others divert cells along existing ones is unclear",
+   "text_version": "accepted",
+   "work_id": "W2747877289"
+  },
+  {
+   "doi": "10.1038/nmeth.4402",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "Informally, a principal graph is like a principal curve[CIT] that passes through the “middle” of a dataset but is allowed to have branches",
+   "text_version": "accepted",
+   "work_id": "W2747877289"
+  },
+  {
+   "doi": "10.1038/nmeth.4402",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "is very challenging because each expressed gene adds an additional dimension to the space",
+   "text_version": "accepted",
+   "work_id": "W2747877289"
+  },
+  {
+   "doi": "10.1038/nmeth.4402",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "We next sought to",
+   "text_version": "accepted",
+   "work_id": "W2747877289"
+  },
+  {
+   "doi": "10.1038/nmeth.4402",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "In contrast to",
+   "text_version": "accepted",
+   "work_id": "W2747877289"
+  },
+  {
+   "doi": "10.1038/nmeth.4402",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "in principle",
+   "text_version": "accepted",
+   "work_id": "W2747877289"
+  },
+  {
+   "doi": "10.1038/nmeth.4402",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Surprisingly,",
+   "text_version": "accepted",
+   "work_id": "W2747877289"
+  },
+  {
+   "doi": "10.1016/j.tig.2018.06.001",
+   "field": "quote",
+   "item": "gap_sentence",
+   "text": "But the question of why a cell adopted one state and not another is difficult to answer with sc-RNA-seq alone.",
+   "text_version": "accepted",
+   "work_id": "W2831482487"
+  },
+  {
+   "doi": "10.1016/j.tig.2018.06.001",
+   "field": "quote",
+   "item": "here_we",
+   "text": "This review will discuss new experimental methods that complement sc-RNA-seq by providing readouts of additional aspects of cellular state beyond the transcriptome",
+   "text_version": "accepted",
+   "work_id": "W2831482487"
+  },
+  {
+   "doi": "10.1016/j.tig.2018.06.001",
+   "field": "value",
+   "item": "excitement",
+   "text": "We will highlight regression models as a simple yet powerful approach to relate gene expression to other aspects of cellular state",
+   "text_version": "accepted",
+   "work_id": "W2831482487"
+  },
+  {
+   "doi": "10.1016/j.tig.2018.06.001",
+   "field": "value",
+   "item": "excitement",
+   "text": "These atlases have given us an unprecedented view into what each cell in a organism is doing at a given time.",
+   "text_version": "accepted",
+   "work_id": "W2831482487"
+  },
+  {
+   "doi": "10.1016/j.tig.2018.06.001",
+   "field": "value",
+   "item": "excitement",
+   "text": "will in the coming years enable the construction of comprehensive models of regulatory interactions between genes, proteins, non-coding DNA elements, and cell communities",
+   "text_version": "accepted",
+   "work_id": "W2831482487"
+  },
+  {
+   "doi": "10.1016/j.tig.2018.06.001",
+   "field": "value",
+   "item": "excitement",
+   "text": "Regression models provide a simple yet powerful tool that can leverage the scale and diverse readouts provided by single cell multi-omic assays",
+   "text_version": "accepted",
+   "work_id": "W2831482487"
+  },
+  {
+   "doi": "10.1016/j.tig.2018.06.001",
+   "field": "value",
+   "item": "excitement",
+   "text": "single-cell analysis at this scale will allow us to model how interactions between genes, proteins, regulatory DNA, and cell communities establish the epigenetic landscape",
+   "text_version": "accepted",
+   "work_id": "W2831482487"
+  },
+  {
+   "doi": "10.1016/j.tig.2018.06.001",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "will in the coming years enable the construction of comprehensive models of regulatory interactions between genes, proteins, non-coding DNA elements, and cell communities",
+   "text_version": "accepted",
+   "work_id": "W2831482487"
+  },
+  {
+   "doi": "10.1016/j.tig.2018.06.001",
+   "field": "hedge_quote",
+   "item": "strongest_claim",
+   "text": "We anticipate that",
+   "text_version": "accepted",
+   "work_id": "W2831482487"
+  },
+  {
+   "doi": "10.1016/j.tig.2018.06.001",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "Branches in pseudotime correspond to “decision points” in which a cell decides to progress towards one or two mutually exclusive fates.",
+   "text_version": "accepted",
+   "work_id": "W2831482487"
+  },
+  {
+   "doi": "10.1016/j.tig.2018.06.001",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "the cell appears to traverse a smooth gradient of gene expression, which has been compared to the “epigenetic gradient” of Waddington’s landscape",
+   "text_version": "accepted",
+   "work_id": "W2831482487"
+  },
+  {
+   "doi": "10.1016/j.tig.2018.06.001",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "The exponential nature of cell growth allows even small changes of cellular fitness to result in significant differences in sgRNA barcode abundances.",
+   "text_version": "accepted",
+   "work_id": "W2831482487"
+  },
+  {
+   "doi": "10.1016/j.tig.2018.06.001",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "population-level dynamics will not reflect the sequence of chromatin state changes that an individual cell goes through",
+   "text_version": "accepted",
+   "work_id": "W2831482487"
+  },
+  {
+   "doi": "10.1016/j.tig.2018.06.001",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "simple yet powerful",
+   "text_version": "accepted",
+   "work_id": "W2831482487"
+  },
+  {
+   "doi": "10.1016/j.tig.2018.06.001",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "We anticipate that",
+   "text_version": "accepted",
+   "work_id": "W2831482487"
+  },
+  {
+   "doi": "10.1016/j.tig.2018.06.001",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "proof-of-concept",
+   "text_version": "accepted",
+   "work_id": "W2831482487"
+  },
+  {
+   "doi": "10.1016/j.tig.2018.06.001",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Ideally,",
+   "text_version": "accepted",
+   "work_id": "W2831482487"
+  },
+  {
+   "doi": "10.1038/s41588-019-0489-5",
+   "field": "quote",
+   "item": "gap_sentence",
+   "text": "it remains unclear whether or not cells exist in functionally discrete states during EMT, and the genetic circuitry that controls the transition remains incompletely defined",
+   "text_version": "accepted",
+   "work_id": "W2971378659"
+  },
+  {
+   "doi": "10.1038/s41588-019-0489-5",
+   "field": "quote",
+   "item": "here_we",
+   "text": "we apply single-cell RNA sequencing (scRNA-seq) coupled with unsupervised machine learning techniques[CIT] to analyze a “pseudospatial”[CIT] model of EMT and identify regulators of its progression",
+   "text_version": "accepted",
+   "work_id": "W2971378659"
+  },
+  {
+   "doi": "10.1038/s41588-019-0489-5",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "we sought to understand how this phenotype changes in response to a strong inducer of EMT",
+   "text_version": "accepted",
+   "work_id": "W2971378659"
+  },
+  {
+   "doi": "10.1038/s41588-019-0489-5",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "We reasoned that certain regulators control passage through parts of the EMT continuum",
+   "text_version": "accepted",
+   "work_id": "W2971378659"
+  },
+  {
+   "doi": "10.1038/s41588-019-0489-5",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "We next sought to organize edited cells into a pseudospatial trajectory.",
+   "text_version": "accepted",
+   "work_id": "W2971378659"
+  },
+  {
+   "doi": "10.1038/s41588-019-0489-5",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "To understand how KRAS signaling drives cells through EMT, we performed our in vitro assay in the presence of small molecules that block RAS signaling.",
+   "text_version": "accepted",
+   "work_id": "W2971378659"
+  },
+  {
+   "doi": "10.1038/s41588-019-0489-5",
+   "field": "value",
+   "item": "excitement",
+   "text": "Integrating single-cell trajectory analysis with pooled genetic screening could reveal the genetic architecture that guides cellular decisions in development and disease.",
+   "text_version": "accepted",
+   "work_id": "W2971378659"
+  },
+  {
+   "doi": "10.1038/s41588-019-0489-5",
+   "field": "value",
+   "item": "excitement",
+   "text": "reveals regulatory “checkpoints” in the EMT continuum that mimic discrete stages and reconciles opposing views of the program that controls EMT",
+   "text_version": "accepted",
+   "work_id": "W2971378659"
+  },
+  {
+   "doi": "10.1038/s41588-019-0489-5",
+   "field": "value",
+   "item": "excitement",
+   "text": "Characterizing the nature of intermediate EMT would have an immediate impact on our understanding of disease.",
+   "text_version": "accepted",
+   "work_id": "W2971378659"
+  },
+  {
+   "doi": "10.1038/s41588-019-0489-5",
+   "field": "value",
+   "item": "excitement",
+   "text": "Interestingly, only MET and ITGAV did so during spontaneous and TGF-β-driven EMT.",
+   "text_version": "accepted",
+   "work_id": "W2971378659"
+  },
+  {
+   "doi": "10.1038/s41588-019-0489-5",
+   "field": "value",
+   "item": "excitement",
+   "text": "Taken together, these analyses suggest that the waves of gene regulation that occur during EMT in vitro occur to varying extents in vivo.",
+   "text_version": "accepted",
+   "work_id": "W2971378659"
+  },
+  {
+   "doi": "10.1038/s41588-019-0489-5",
+   "field": "value",
+   "item": "excitement",
+   "text": "which constitutes a powerful approach for identifying upstream signals of pathways that regulate cellular phenotypes",
+   "text_version": "accepted",
+   "work_id": "W2971378659"
+  },
+  {
+   "doi": "10.1038/s41588-019-0489-5",
+   "field": "value",
+   "item": "excitement",
+   "text": "We expect that this methodology will shed light on the genetic architecture that governs not just EMT but diverse biological processes in development and disease.",
+   "text_version": "accepted",
+   "work_id": "W2971378659"
+  },
+  {
+   "doi": "10.1038/s41588-019-0489-5",
+   "field": "value",
+   "item": "excitement",
+   "text": "will inform ongoing debates surrounding the definitions of cell type and state and the delineation of human cellular ontology",
+   "text_version": "accepted",
+   "work_id": "W2971378659"
+  },
+  {
+   "doi": "10.1038/s41588-019-0489-5",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "Integrating single-cell trajectory analysis with pooled genetic screening could reveal the genetic architecture that guides cellular decisions in development and disease.",
+   "text_version": "accepted",
+   "work_id": "W2971378659"
+  },
+  {
+   "doi": "10.1038/s41588-019-0489-5",
+   "field": "hedge_quote",
+   "item": "strongest_claim",
+   "text": "could reveal",
+   "text_version": "accepted",
+   "work_id": "W2971378659"
+  },
+  {
+   "doi": "10.1038/s41588-019-0489-5",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "raising the possibility that we failed to capture some discrete, physiologically important “stages” of EMT",
+   "text_version": "accepted",
+   "work_id": "W2971378659"
+  },
+  {
+   "doi": "10.1038/s41588-019-0489-5",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "KRAS signaling can be initiated via various upstream signals, making it difficult to pinpoint which drive signaling at each point on the continuum.",
+   "text_version": "accepted",
+   "work_id": "W2971378659"
+  },
+  {
+   "doi": "10.1038/s41588-019-0489-5",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "Differential gene expression analysis of the effect of each individual knockout on gene expression over pseudospace is dependent on the rate of non-functional edits",
+   "text_version": "accepted",
+   "work_id": "W2971378659"
+  },
+  {
+   "doi": "10.1038/s41588-019-0489-5",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "During EMT, cells dissolve strong contacts and leave organized sheets, shifting from apical-basal to front-rear polarity.",
+   "text_version": "accepted",
+   "work_id": "W2971378659"
+  },
+  {
+   "doi": "10.1038/s41588-019-0489-5",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "analogous to how cells proceed asynchronously through temporal processes such as differentiation",
+   "text_version": "accepted",
+   "work_id": "W2971378659"
+  },
+  {
+   "doi": "10.1038/s41588-019-0489-5",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "explaining how cells transiting through a continuous process appear to be in one of several discrete stages in some experimental systems",
+   "text_version": "accepted",
+   "work_id": "W2971378659"
+  },
+  {
+   "doi": "10.1038/s41588-019-0489-5",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Here, we",
+   "text_version": "accepted",
+   "work_id": "W2971378659"
+  },
+  {
+   "doi": "10.1038/s41588-019-0489-5",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "We next sought to",
+   "text_version": "accepted",
+   "work_id": "W2971378659"
+  },
+  {
+   "doi": "10.1038/s41588-019-0489-5",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "creating the impression of",
+   "text_version": "accepted",
+   "work_id": "W2971378659"
+  },
+  {
+   "doi": "10.1038/s41588-019-0489-5",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Taken together",
+   "text_version": "accepted",
+   "work_id": "W2971378659"
+  },
+  {
+   "doi": "10.1038/s41588-019-0489-5",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "suggesting that",
+   "text_version": "accepted",
+   "work_id": "W2971378659"
+  },
+  {
+   "doi": "10.1016/j.cels.2020.02.003",
+   "field": "quote",
+   "item": "gap_sentence",
+   "text": "most methods don’t explicitly leverage time-series data to identify causal interactions, and more importantly, most fail to recover the correct network",
+   "text_version": "accepted",
+   "work_id": "W3010569643"
+  },
+  {
+   "doi": "10.1016/j.cels.2020.02.003",
+   "field": "quote",
+   "item": "here_we",
+   "text": "Here, we introduce Scribe, a scalable toolkit for inferring causal regulatory networks that relies on Restricted Directed Information (RDI) [CIT].",
+   "text_version": "accepted",
+   "work_id": "W3010569643"
+  },
+  {
+   "doi": "10.1016/j.cels.2020.02.003",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "Next, we explored Scribe’s ability to recover causal interactions using single-cell RNA-seq which in contrast to live-imaging measures many genes in each cell.",
+   "text_version": "accepted",
+   "work_id": "W3010569643"
+  },
+  {
+   "doi": "10.1016/j.cels.2020.02.003",
+   "field": "value",
+   "item": "excitement",
+   "text": "show that there is a dramatic drop in performance for “pseudotime” ordered single-cell data compared to true time series data",
+   "text_version": "accepted",
+   "work_id": "W3010569643"
+  },
+  {
+   "doi": "10.1016/j.cels.2020.02.003",
+   "field": "value",
+   "item": "excitement",
+   "text": "We demonstrate that performing causal inference requires temporal coupling between measurements.",
+   "text_version": "accepted",
+   "work_id": "W3010569643"
+  },
+  {
+   "doi": "10.1016/j.cels.2020.02.003",
+   "field": "value",
+   "item": "excitement",
+   "text": "These analyses highlight a shortcoming in experimental and computational methods for analyzing gene regulation at single-cell resolution and suggest ways of overcoming it.",
+   "text_version": "accepted",
+   "work_id": "W3010569643"
+  },
+  {
+   "doi": "10.1016/j.cels.2020.02.003",
+   "field": "value",
+   "item": "excitement",
+   "text": "we demonstrate that Scribe has superior performance compared to existing methods when the observations consist of true time-series data",
+   "text_version": "accepted",
+   "work_id": "W3010569643"
+  },
+  {
+   "doi": "10.1016/j.cels.2020.02.003",
+   "field": "value",
+   "item": "excitement",
+   "text": "Our results suggest that preserving this coupling should be a major objective of the next generation of single-cell measurement technologies.",
+   "text_version": "accepted",
+   "work_id": "W3010569643"
+  },
+  {
+   "doi": "10.1016/j.cels.2020.02.003",
+   "field": "value",
+   "item": "excitement",
+   "text": "Scribe produced highly accurate reconstructions from “real-time” measurements of gene expression",
+   "text_version": "accepted",
+   "work_id": "W3010569643"
+  },
+  {
+   "doi": "10.1016/j.cels.2020.02.003",
+   "field": "value",
+   "item": "excitement",
+   "text": "This may explain poor performance by a broad class of information theoretic or statistical approaches for inferring regulatory networks from single-cell RNA-seq data.",
+   "text_version": "accepted",
+   "work_id": "W3010569643"
+  },
+  {
+   "doi": "10.1016/j.cels.2020.02.003",
+   "field": "value",
+   "item": "excitement",
+   "text": "Concentrating efforts to improve temporal coupling in new experimental methods should, in our view, be a priority for the field.",
+   "text_version": "accepted",
+   "work_id": "W3010569643"
+  },
+  {
+   "doi": "10.1016/j.cels.2020.02.003",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "We demonstrate that performing causal inference requires temporal coupling between measurements.",
+   "text_version": "accepted",
+   "work_id": "W3010569643"
+  },
+  {
+   "doi": "10.1016/j.cels.2020.02.003",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "We assume that there are no unobserved confounders in order to make the problem tractable.",
+   "text_version": "accepted",
+   "work_id": "W3010569643"
+  },
+  {
+   "doi": "10.1016/j.cels.2020.02.003",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "One limitation of response visualization is that it ignores the effects of a gene’s previous state to the current state",
+   "text_version": "accepted",
+   "work_id": "W3010569643"
+  },
+  {
+   "doi": "10.1016/j.cels.2020.02.003",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "Similarly, we also assume the time delays Δt used in RNA-velocity estimations are constant across cells and genes for the sake of simplicity.",
+   "text_version": "accepted",
+   "work_id": "W3010569643"
+  },
+  {
+   "doi": "10.1016/j.cels.2020.02.003",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "awaits integrating Scribe with those technologies as future investigation",
+   "text_version": "accepted",
+   "work_id": "W3010569643"
+  },
+  {
+   "doi": "10.1016/j.cels.2020.02.003",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "Ultimately, because the number of edges explodes as the number of genes grows, so too do the algorithms demand for input data.",
+   "text_version": "accepted",
+   "work_id": "W3010569643"
+  },
+  {
+   "doi": "10.1016/j.cels.2020.02.003",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "in pseudo-temporal datasets, each expression measurement comes from a different cell",
+   "text_version": "accepted",
+   "work_id": "W3010569643"
+  },
+  {
+   "doi": "10.1016/j.cels.2020.02.003",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "These assays report measurements of the current and future transcriptome of individual cells, essentially providing temporal coupling over a short time horizon.",
+   "text_version": "accepted",
+   "work_id": "W3010569643"
+  },
+  {
+   "doi": "10.1016/j.cels.2020.02.003",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "We next explored",
+   "text_version": "accepted",
+   "work_id": "W3010569643"
+  },
+  {
+   "doi": "10.1016/j.cels.2020.02.003",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "We hypothesized that",
+   "text_version": "accepted",
+   "work_id": "W3010569643"
+  },
+  {
+   "doi": "10.1016/j.cels.2020.02.003",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Here, we introduce",
+   "text_version": "accepted",
+   "work_id": "W3010569643"
+  },
+  {
+   "doi": "10.1016/j.cels.2020.02.003",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "dramatic drop in performance",
+   "text_version": "accepted",
+   "work_id": "W3010569643"
+  },
+  {
+   "doi": "10.1038/s41598-020-68766-w",
+   "field": "quote",
+   "item": "gap_sentence",
+   "text": "it remains unclear the extent to which macrophages retain any memory of past phenotypic states",
+   "text_version": "published",
+   "work_id": "W3045478644"
+  },
+  {
+   "doi": "10.1038/s41598-020-68766-w",
+   "field": "quote",
+   "item": "here_we",
+   "text": "Here, we investigate the extent to which macrophages’ previous polarization affects their response to subsequent repolarization.",
+   "text_version": "published",
+   "work_id": "W3045478644"
+  },
+  {
+   "doi": "10.1038/s41598-020-68766-w",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "We then wished to explore whether M1- and M2-polarized macrophages could maintain their polarized phenotypes in the absence of extrinsic cytokines in the media",
+   "text_version": "published",
+   "work_id": "W3045478644"
+  },
+  {
+   "doi": "10.1038/s41598-020-68766-w",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "Given that previously polarized macrophages largely revert to an unpolarized state when external cytokine stimuli are removed",
+   "text_version": "published",
+   "work_id": "W3045478644"
+  },
+  {
+   "doi": "10.1038/s41598-020-68766-w",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "Since our RNA-seq data suggested that macrophage transcriptomes transiently reflect the cells’ current environment",
+   "text_version": "published",
+   "work_id": "W3045478644"
+  },
+  {
+   "doi": "10.1038/s41598-020-68766-w",
+   "field": "value",
+   "item": "excitement",
+   "text": "We observe complete repolarization both from M1 to M2 and vice versa",
+   "text_version": "published",
+   "work_id": "W3045478644"
+  },
+  {
+   "doi": "10.1038/s41598-020-68766-w",
+   "field": "value",
+   "item": "excitement",
+   "text": "macrophage transcriptional phenotypes are defined by the current cell microenvironment, rather than an amalgamation of past and present states",
+   "text_version": "published",
+   "work_id": "W3045478644"
+  },
+  {
+   "doi": "10.1038/s41598-020-68766-w",
+   "field": "value",
+   "item": "excitement",
+   "text": "We find that in vitro mouse macrophages adopt phenotypes directed primarily by their current microenvironment, irrespective of previous polarization state.",
+   "text_version": "published",
+   "work_id": "W3045478644"
+  },
+  {
+   "doi": "10.1038/s41598-020-68766-w",
+   "field": "value",
+   "item": "excitement",
+   "text": "macrophage transcriptomic phenotypes are highly plastic, regulating most genes to reflect their current signaling environment",
+   "text_version": "published",
+   "work_id": "W3045478644"
+  },
+  {
+   "doi": "10.1038/s41598-020-68766-w",
+   "field": "value",
+   "item": "excitement",
+   "text": "they underwent dramatic transcriptional change, traversing a trajectory characterized by the regulation of thousands of genes",
+   "text_version": "published",
+   "work_id": "W3045478644"
+  },
+  {
+   "doi": "10.1038/s41598-020-68766-w",
+   "field": "value",
+   "item": "excitement",
+   "text": "The transience of polarized macrophage phenotypes has implications for potential therapies that rely on reprogramming macrophages.",
+   "text_version": "published",
+   "work_id": "W3045478644"
+  },
+  {
+   "doi": "10.1038/s41598-020-68766-w",
+   "field": "value",
+   "item": "excitement",
+   "text": "future efforts to dissect macrophage signaling pathways with tissue- and context-specific cues could be very fruitful",
+   "text_version": "published",
+   "work_id": "W3045478644"
+  },
+  {
+   "doi": "10.1038/s41598-020-68766-w",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "macrophage transcriptional phenotypes are defined by the current cell microenvironment, rather than an amalgamation of past and present states",
+   "text_version": "published",
+   "work_id": "W3045478644"
+  },
+  {
+   "doi": "10.1038/s41598-020-68766-w",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "The concerted, rapidly transient response we see here may not accurately reflect the responses of macrophages in vivo",
+   "text_version": "published",
+   "work_id": "W3045478644"
+  },
+  {
+   "doi": "10.1038/s41598-020-68766-w",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "Second, these in vitro experiments exclude many co-stimulatory molecules present in the in vivo milieu",
+   "text_version": "published",
+   "work_id": "W3045478644"
+  },
+  {
+   "doi": "10.1038/s41598-020-68766-w",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "longer exposure times or alternate doses of these cytokines might elevate cells above a critical threshold of polarization required for hysteresis",
+   "text_version": "published",
+   "work_id": "W3045478644"
+  },
+  {
+   "doi": "10.1038/s41598-020-68766-w",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "so the results observed in this study may not be applicable to tissue resident macrophages",
+   "text_version": "published",
+   "work_id": "W3045478644"
+  },
+  {
+   "doi": "10.1038/s41598-020-68766-w",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "Cellular plasticity broadly refers to cells’ ability to assume different phenotypic identities.",
+   "text_version": "published",
+   "work_id": "W3045478644"
+  },
+  {
+   "doi": "10.1038/s41598-020-68766-w",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "“pro-inflammatory” activities like fighting off infections and “anti-inflammatory” activities like wound-healing",
+   "text_version": "published",
+   "work_id": "W3045478644"
+  },
+  {
+   "doi": "10.1038/s41598-020-68766-w",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "Alternatively, stimulation to M1- or M2-like states may be transient and entirely dependent on the continuous presence of chemical cues in the microenvironment.",
+   "text_version": "published",
+   "work_id": "W3045478644"
+  },
+  {
+   "doi": "10.1038/s41598-020-68766-w",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "we wished to explore",
+   "text_version": "published",
+   "work_id": "W3045478644"
+  },
+  {
+   "doi": "10.1038/s41598-020-68766-w",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "and vice versa",
+   "text_version": "published",
+   "work_id": "W3045478644"
+  },
+  {
+   "doi": "10.1038/s41598-020-68766-w",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "little to no",
+   "text_version": "published",
+   "work_id": "W3045478644"
+  },
+  {
+   "doi": "10.1038/s41598-020-68766-w",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "suggesting that",
+   "text_version": "published",
+   "work_id": "W3045478644"
+  },
+  {
+   "doi": "10.1038/s41586-023-06720-2",
+   "field": "quote",
+   "item": "gap_sentence",
+   "text": "These challenges have, until now, limited analyses to few genetic perturbations in comparatively less complex animals or at early stages of development.",
+   "text_version": "published",
+   "work_id": "W4388694332"
+  },
+  {
+   "doi": "10.1038/s41586-023-06720-2",
+   "field": "quote",
+   "item": "here_we",
+   "text": "Here, we describe the application of these three technologies to zebrafish",
+   "text_version": "published",
+   "work_id": "W4388694332"
+  },
+  {
+   "doi": "10.1038/s41586-023-06720-2",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "Next, we used sci-Plex to label and measure single-cell profiles across time from developing zebrafish F0 knockouts",
+   "text_version": "published",
+   "work_id": "W4388694332"
+  },
+  {
+   "doi": "10.1038/s41586-023-06720-2",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "To systematically discern and rank all changes in cell type abundances across perturbations, we applied a beta-binomial regression model",
+   "text_version": "published",
+   "work_id": "W4388694332"
+  },
+  {
+   "doi": "10.1038/s41586-023-06720-2",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "To identify the transcriptional responses of each cell type to genetic perturbation, we performed differential gene expression tests to complement the differential abundance analysis.",
+   "text_version": "published",
+   "work_id": "W4388694332"
+  },
+  {
+   "doi": "10.1038/s41586-023-06720-2",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "Disentangling these unique scenarios may not be possible from snapshots of normal development, regardless of the resolution of the data.",
+   "text_version": "published",
+   "work_id": "W4388694332"
+  },
+  {
+   "doi": "10.1038/s41586-023-06720-2",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "we targeted two highly conserved transcription factors essential for its development",
+   "text_version": "published",
+   "work_id": "W4388694332"
+  },
+  {
+   "doi": "10.1038/s41586-023-06720-2",
+   "field": "value",
+   "item": "excitement",
+   "text": "strikingly similar transcriptomes to notochord sheath cells",
+   "text_version": "published",
+   "work_id": "W4388694332"
+  },
+  {
+   "doi": "10.1038/s41586-023-06720-2",
+   "field": "value",
+   "item": "excitement",
+   "text": "Our approach is sensitive to rare cell types",
+   "text_version": "published",
+   "work_id": "W4388694332"
+  },
+  {
+   "doi": "10.1038/s41586-023-06720-2",
+   "field": "value",
+   "item": "excitement",
+   "text": "will enable mapping of the genetic dependencies of zebrafish cell types",
+   "text_version": "published",
+   "work_id": "W4388694332"
+  },
+  {
+   "doi": "10.1038/s41586-023-06720-2",
+   "field": "value",
+   "item": "excitement",
+   "text": "filling a major gap in existing zebrafish atlases",
+   "text_version": "published",
+   "work_id": "W4388694332"
+  },
+  {
+   "doi": "10.1038/s41586-023-06720-2",
+   "field": "value",
+   "item": "excitement",
+   "text": "Together, our scalable approach is flexible, comprehensive, cost-effective and more uniform than conventional phenotyping strategies.",
+   "text_version": "published",
+   "work_id": "W4388694332"
+  },
+  {
+   "doi": "10.1038/s41586-023-06720-2",
+   "field": "value",
+   "item": "excitement",
+   "text": "We anticipate that this new experimental and analytical workflow will enable rapid, high-resolution phenotyping of whole animals",
+   "text_version": "published",
+   "work_id": "W4388694332"
+  },
+  {
+   "doi": "10.1038/s41586-023-06720-2",
+   "field": "value",
+   "item": "excitement",
+   "text": "To investigate these unexpected cells",
+   "text_version": "published",
+   "work_id": "W4388694332"
+  },
+  {
+   "doi": "10.1038/s41586-023-06720-2",
+   "field": "value",
+   "item": "excitement",
+   "text": "establishing a new set of molecular markers for these subpopulations",
+   "text_version": "published",
+   "work_id": "W4388694332"
+  },
+  {
+   "doi": "10.1038/s41586-023-06720-2",
+   "field": "value",
+   "item": "excitement",
+   "text": "More broadly, our whole-embryo, single-cell measurements across time now enable a comprehensive view of candidate targets for these key transcription factors.",
+   "text_version": "published",
+   "work_id": "W4388694332"
+  },
+  {
+   "doi": "10.1038/s41586-023-06720-2",
+   "field": "value",
+   "item": "excitement",
+   "text": "our results demonstrate the potential of applying sci-Plex in conjunction with lineage-tracing tools",
+   "text_version": "published",
+   "work_id": "W4388694332"
+  },
+  {
+   "doi": "10.1038/s41586-023-06720-2",
+   "field": "value",
+   "item": "excitement",
+   "text": "Here we present a new approach (whole-organism labelling) and dataset",
+   "text_version": "published",
+   "work_id": "W4388694332"
+  },
+  {
+   "doi": "10.1038/s41586-023-06720-2",
+   "field": "value",
+   "item": "excitement",
+   "text": "The unprecedented depth of replication in the experiment, with at least 16 embryos per genotype",
+   "text_version": "published",
+   "work_id": "W4388694332"
+  },
+  {
+   "doi": "10.1038/s41586-023-06720-2",
+   "field": "value",
+   "item": "excitement",
+   "text": "a finding that provides new clues about the origins of the vertebrate skull",
+   "text_version": "published",
+   "work_id": "W4388694332"
+  },
+  {
+   "doi": "10.1038/s41586-023-06720-2",
+   "field": "value",
+   "item": "excitement",
+   "text": "we anticipate that using single-cell sequencing to measure the consequences of many embryos perturbed in different ways will open up rich opportunities for developmental genetics",
+   "text_version": "published",
+   "work_id": "W4388694332"
+  },
+  {
+   "doi": "10.1038/s41586-023-06720-2",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "leading to new hypotheses about early origins of the skull",
+   "text_version": "published",
+   "work_id": "W4388694332"
+  },
+  {
+   "doi": "10.1038/s41586-023-06720-2",
+   "field": "hedge_quote",
+   "item": "strongest_claim",
+   "text": "new hypotheses",
+   "text_version": "published",
+   "work_id": "W4388694332"
+  },
+  {
+   "doi": "10.1038/s41586-023-06720-2",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "the statistical power required is still dependent on the magnitude of the effect and the number of replicates profiled",
+   "text_version": "published",
+   "work_id": "W4388694332"
+  },
+  {
+   "doi": "10.1038/s41586-023-06720-2",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "profiling larger organisms that may contain billions to trillions of cells may be infeasible",
+   "text_version": "published",
+   "work_id": "W4388694332"
+  },
+  {
+   "doi": "10.1038/s41586-023-06720-2",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "low levels of mosaicism in F0 crispants are a concern, especially when this approach is used for morphogens or other secreted factors",
+   "text_version": "published",
+   "work_id": "W4388694332"
+  },
+  {
+   "doi": "10.1038/s41586-023-06720-2",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "An ideal assay would capture both the single-cell transcriptome and the perturbed genetic allele",
+   "text_version": "published",
+   "work_id": "W4388694332"
+  },
+  {
+   "doi": "10.1038/s41586-023-06720-2",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "which transmit information from the head, ear, heart and viscera",
+   "text_version": "published",
+   "work_id": "W4388694332"
+  },
+  {
+   "doi": "10.1038/s41586-023-06720-2",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "effectively summarizing the number of each cell type observed within each embryo",
+   "text_version": "published",
+   "work_id": "W4388694332"
+  },
+  {
+   "doi": "10.1038/s41586-023-06720-2",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "profiling cells from many samples is only marginally more expensive than profiling a similar number of cells from few specimens",
+   "text_version": "published",
+   "work_id": "W4388694332"
+  },
+  {
+   "doi": "10.1038/s41586-023-06720-2",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "new hypotheses",
+   "text_version": "published",
+   "work_id": "W4388694332"
+  },
+  {
+   "doi": "10.1038/s41586-023-06720-2",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "We anticipate that",
+   "text_version": "published",
+   "work_id": "W4388694332"
+  },
+  {
+   "doi": "10.1038/s41586-023-06720-2",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "consistent with previous",
+   "text_version": "published",
+   "work_id": "W4388694332"
+  },
+  {
+   "doi": "10.1038/s41586-023-06720-2",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "We next sought to",
+   "text_version": "published",
+   "work_id": "W4388694332"
+  },
+  {
+   "doi": "10.1038/s41586-023-06720-2",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Taken together, our results demonstrate",
+   "text_version": "published",
+   "work_id": "W4388694332"
+  },
+  {
+   "doi": "10.1038/s41586-023-06720-2",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Together, these results show",
+   "text_version": "published",
+   "work_id": "W4388694332"
+  },
+  {
+   "doi": "10.1038/s41586-023-06720-2",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Moreover,",
+   "text_version": "published",
+   "work_id": "W4388694332"
+  },
+  {
+   "doi": "10.1101/2025.04.03.646423",
+   "field": "quote",
+   "item": "gap_sentence",
+   "text": "For all of these reasons, we lack a comprehensive understanding of the role of intercellular signaling in early vertebrate development.",
+   "text_version": "preprint",
+   "work_id": "W4409172717"
+  },
+  {
+   "doi": "10.1101/2025.04.03.646423",
+   "field": "quote",
+   "item": "here_we",
+   "text": "Here, we report CHEMFISH, an atlas of over two million single-cell transcriptomes from more than 500 individual zebrafish embryos",
+   "text_version": "preprint",
+   "work_id": "W4409172717"
+  },
+  {
+   "doi": "10.1101/2025.04.03.646423",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "We next asked how the transcriptome of each cell type was impacted by the chemical perturbations.",
+   "text_version": "preprint",
+   "work_id": "W4409172717"
+  },
+  {
+   "doi": "10.1101/2025.04.03.646423",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "We were struck looking at our data that every signaling pathway had effects on the formation of the pectoral fin.",
+   "text_version": "preprint",
+   "work_id": "W4409172717"
+  },
+  {
+   "doi": "10.1101/2025.04.03.646423",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "This new analysis of the cells deriving from the tbx5a progenitor population lays the groundwork for understanding the role of the different signaling factors",
+   "text_version": "preprint",
+   "work_id": "W4409172717"
+  },
+  {
+   "doi": "10.1101/2025.04.03.646423",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "Having constructed a 3D map of the pectoral fin, we next sought to characterize how the cell types within it communicate through each signaling pathway.",
+   "text_version": "preprint",
+   "work_id": "W4409172717"
+  },
+  {
+   "doi": "10.1101/2025.04.03.646423",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "inhibition of the other four pathways had specific and different effects",
+   "text_version": "preprint",
+   "work_id": "W4409172717"
+  },
+  {
+   "doi": "10.1101/2025.04.03.646423",
+   "field": "value",
+   "item": "excitement",
+   "text": "This approach allowed us to detect signaling pathway regulation even in very rare cell types.",
+   "text_version": "preprint",
+   "work_id": "W4409172717"
+  },
+  {
+   "doi": "10.1101/2025.04.03.646423",
+   "field": "value",
+   "item": "excitement",
+   "text": "we uncovered two new cell types (distal mesenchyme and tenocytes) and multiple novel signaling dependencies during pectoral fin development",
+   "text_version": "preprint",
+   "work_id": "W4409172717"
+  },
+  {
+   "doi": "10.1101/2025.04.03.646423",
+   "field": "value",
+   "item": "excitement",
+   "text": "a valuable tool for investigators seeking to rapidly assess the role of the major signaling pathways during the formation of their tissue of interest",
+   "text_version": "preprint",
+   "work_id": "W4409172717"
+  },
+  {
+   "doi": "10.1101/2025.04.03.646423",
+   "field": "value",
+   "item": "excitement",
+   "text": "a previously uncharacterized role for TGF-β in the differentiation of all the lateral plate mesoderm (LPM)-derived pectoral fin cell types",
+   "text_version": "preprint",
+   "work_id": "W4409172717"
+  },
+  {
+   "doi": "10.1101/2025.04.03.646423",
+   "field": "value",
+   "item": "excitement",
+   "text": "a surprising inhibitory role of Hh in regulating the development of the pectoral fin support bone (cleithrum)",
+   "text_version": "preprint",
+   "work_id": "W4409172717"
+  },
+  {
+   "doi": "10.1101/2025.04.03.646423",
+   "field": "value",
+   "item": "excitement",
+   "text": "Our results demonstrate this new extensive database will be broadly useful for modeling tissue-specific signaling pathway regulation of early vertebrate development at embryo-scale.",
+   "text_version": "preprint",
+   "work_id": "W4409172717"
+  },
+  {
+   "doi": "10.1101/2025.04.03.646423",
+   "field": "value",
+   "item": "excitement",
+   "text": "We were struck looking at our data that every signaling pathway had effects on the formation of the pectoral fin.",
+   "text_version": "preprint",
+   "work_id": "W4409172717"
+  },
+  {
+   "doi": "10.1101/2025.04.03.646423",
+   "field": "value",
+   "item": "excitement",
+   "text": "Strikingly, inhibition of Hh signaling caused an increase in the level of cleithrum cells in the sequencing data",
+   "text_version": "preprint",
+   "work_id": "W4409172717"
+  },
+  {
+   "doi": "10.1101/2025.04.03.646423",
+   "field": "value",
+   "item": "excitement",
+   "text": "These data constitute the first comprehensive, embryo scale, genome wide analysis of signaling requirements of vertebrate embryonic cell types.",
+   "text_version": "preprint",
+   "work_id": "W4409172717"
+  },
+  {
+   "doi": "10.1101/2025.04.03.646423",
+   "field": "value",
+   "item": "excitement",
+   "text": "will serve as a foundation for further experiments to dissect the mechanisms that direct cell fate decisions and tissue morphogenesis",
+   "text_version": "preprint",
+   "work_id": "W4409172717"
+  },
+  {
+   "doi": "10.1101/2025.04.03.646423",
+   "field": "value",
+   "item": "excitement",
+   "text": "is a powerful means of defining how cell types interpret signals in the developmental program",
+   "text_version": "preprint",
+   "work_id": "W4409172717"
+  },
+  {
+   "doi": "10.1101/2025.04.03.646423",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "a valuable tool for investigators seeking to rapidly assess the role of the major signaling pathways during the formation of their tissue of interest",
+   "text_version": "preprint",
+   "work_id": "W4409172717"
+  },
+  {
+   "doi": "10.1101/2025.04.03.646423",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "DEGs were more often found in abundant cell types than rare ones, a detection bias expected for count-based regression methods for differential expression.",
+   "text_version": "preprint",
+   "work_id": "W4409172717"
+  },
+  {
+   "doi": "10.1101/2025.04.03.646423",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "However, not all canonical targets were significantly affected in cell types that express them.",
+   "text_version": "preprint",
+   "work_id": "W4409172717"
+  },
+  {
+   "doi": "10.1101/2025.04.03.646423",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "deciphering the direct targets of each pathway is dependent on sampling depth of the gene, cell, and specimen levels",
+   "text_version": "preprint",
+   "work_id": "W4409172717"
+  },
+  {
+   "doi": "10.1101/2025.04.03.646423",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "the specific components that transduce and potentiate those signals in each cell type are yet to be defined",
+   "text_version": "preprint",
+   "work_id": "W4409172717"
+  },
+  {
+   "doi": "10.1101/2025.04.03.646423",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "Layering chemical perturbations onto mutants and then performing single-cell sequencing could shed light on the kinases and transcription factors",
+   "text_version": "preprint",
+   "work_id": "W4409172717"
+  },
+  {
+   "doi": "10.1101/2025.04.03.646423",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "Disrupting a pathway at the start of development can have very different effects compared to altering it at a later time.",
+   "text_version": "preprint",
+   "work_id": "W4409172717"
+  },
+  {
+   "doi": "10.1101/2025.04.03.646423",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "Mutants for individual ligands or receptors in a particular signaling pathway often have mild phenotypes, typically because of redundant signals",
+   "text_version": "preprint",
+   "work_id": "W4409172717"
+  },
+  {
+   "doi": "10.1101/2025.04.03.646423",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "which is an ossified structure that connects the pectoral fin to the cranium, analogous to the amniote shoulder blade",
+   "text_version": "preprint",
+   "work_id": "W4409172717"
+  },
+  {
+   "doi": "10.1101/2025.04.03.646423",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "the blood vessels no longer receive a clear signal to migrate out to the end of the pectoral fin",
+   "text_version": "preprint",
+   "work_id": "W4409172717"
+  },
+  {
+   "doi": "10.1101/2025.04.03.646423",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "previously uncharacterized",
+   "text_version": "preprint",
+   "work_id": "W4409172717"
+  },
+  {
+   "doi": "10.1101/2025.04.03.646423",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Briefly,",
+   "text_version": "preprint",
+   "work_id": "W4409172717"
+  },
+  {
+   "doi": "10.1101/2025.04.03.646423",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "we propose that",
+   "text_version": "preprint",
+   "work_id": "W4409172717"
+  },
+  {
+   "doi": "10.1101/2025.04.03.646423",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Taken together",
+   "text_version": "preprint",
+   "work_id": "W4409172717"
+  }
+ ],
+ "schema": 1,
+ "stability": {
+  "abstract_moves": {
+   "agreement": 0.898,
+   "pairs": 23,
+   "stable": true
+  },
+  "discussion_moves": {
+   "agreement": 0.747,
+   "pairs": 23,
+   "stable": true
+  },
+  "essay_argument": {
+   "agreement": 1.0,
+   "pairs": 1,
+   "stable": true
+  },
+  "excitement": {
+   "agreement": 0.65,
+   "pairs": 23,
+   "stable": false
+  },
+  "figure_reference": {
+   "agreement": 1.0,
+   "pairs": 23,
+   "stable": true
+  },
+  "gap_sentence": {
+   "agreement": 0.957,
+   "pairs": 23,
+   "stable": true
+  },
+  "here_we": {
+   "agreement": 1.0,
+   "pairs": 23,
+   "stable": true
+  },
+  "intro_roles": {
+   "agreement": 0.887,
+   "pairs": 23,
+   "stable": true
+  },
+  "limitations": {
+   "agreement": 0.783,
+   "pairs": 23,
+   "stable": true
+  },
+  "results_headings": {
+   "agreement": 1.0,
+   "pairs": 21,
+   "stable": true
+  },
+  "results_openings": {
+   "agreement": 0.94,
+   "pairs": 21,
+   "stable": true
+  },
+  "strongest_claim": {
+   "agreement": 0.957,
+   "pairs": 23,
+   "stable": true
+  },
+  "title_form": {
+   "agreement": 0.957,
+   "pairs": 23,
+   "stable": true
+  }
+ },
+ "surface": {
+  "citations_per_sentence": 0.285,
+  "connectives_per_1000": [
+   [
+    "however",
+    1.5
+   ],
+   [
+    "although",
+    0.94
+   ],
+   [
+    "first",
+    0.93
+   ],
+   [
+    "thus",
+    0.79
+   ],
+   [
+    "because",
+    0.72
+   ],
+   [
+    "together",
+    0.58
+   ],
+   [
+    "here",
+    0.54
+   ],
+   [
+    "second",
+    0.45
+   ],
+   [
+    "moreover",
+    0.4
+   ],
+   [
+    "therefore",
+    0.37
+   ],
+   [
+    "finally",
+    0.28
+   ],
+   [
+    "whereas",
+    0.21
+   ],
+   [
+    "furthermore",
+    0.17
+   ],
+   [
+    "nevertheless",
+    0.17
+   ],
+   [
+    "importantly",
+    0.16
+   ],
+   [
+    "instead",
+    0.1
+   ],
+   [
+    "indeed",
+    0.09
+   ],
+   [
+    "notably",
+    0.09
+   ],
+   [
+    "hence",
+    0.07
+   ],
+   [
+    "interestingly",
+    0.07
+   ],
+   [
+    "strikingly",
+    0.07
+   ],
+   [
+    "surprisingly",
+    0.07
+   ],
+   [
+    "consequently",
+    0.03
+   ]
+  ],
+  "figure_refs_per_paragraph": 1.2,
+  "first_person_share": 0.303,
+  "hedge_words": [
+   [
+    "may",
+    71
+   ],
+   [
+    "could",
+    53
+   ],
+   [
+    "consistent",
+    45
+   ],
+   [
+    "might",
+    23
+   ],
+   [
+    "possible",
+    20
+   ],
+   [
+    "likely",
+    16
+   ],
+   [
+    "potentially",
+    16
+   ],
+   [
+    "suggest",
+    15
+   ],
+   [
+    "putative",
+    13
+   ],
+   [
+    "suggested",
+    9
+   ],
+   [
+    "suggests",
+    8
+   ],
+   [
+    "indicates",
+    4
+   ],
+   [
+    "appear",
+    3
+   ],
+   [
+    "appears",
+    3
+   ],
+   [
+    "appeared",
+    2
+   ],
+   [
+    "indicate",
+    2
+   ],
+   [
+    "perhaps",
+    2
+   ],
+   [
+    "possibly",
+    1
+   ],
+   [
+    "presumably",
+    1
+   ],
+   [
+    "seem",
+    1
+   ],
+   [
+    "unlikely",
+    1
+   ]
+  ],
+  "hedges_per_1000": 5.39,
+  "n_paragraphs": 416,
+  "n_sentences": 2145,
+  "n_words": 57281,
+  "numbers_per_sentence": 0.664,
+  "opener_pairs": [
+   [
+    "for example",
+    43
+   ],
+   [
+    "in contrast",
+    27
+   ],
+   [
+    "here we",
+    24
+   ],
+   [
+    "cuffdiff 2",
+    22
+   ],
+   [
+    "in the",
+    19
+   ],
+   [
+    "we then",
+    19
+   ],
+   [
+    "we next",
+    16
+   ],
+   [
+    "of the",
+    15
+   ],
+   [
+    "we also",
+    15
+   ],
+   [
+    "in this",
+    14
+   ]
+  ],
+  "openers": [
+   [
+    "we",
+    237
+   ],
+   [
+    "the",
+    147
+   ],
+   [
+    "in",
+    138
+   ],
+   [
+    "to",
+    84
+   ],
+   [
+    "for",
+    72
+   ],
+   [
+    "this",
+    69
+   ],
+   [
+    "however",
+    64
+   ],
+   [
+    "these",
+    46
+   ],
+   [
+    "a",
+    39
+   ],
+   [
+    "although",
+    32
+   ],
+   [
+    "our",
+    27
+   ],
+   [
+    "thus",
+    26
+   ],
+   [
+    "as",
+    25
+   ],
+   [
+    "here",
+    24
+   ],
+   [
+    "of",
+    24
+   ]
+  ],
+  "paragraph_sentences": {
+   "mean": 5.16,
+   "median": 5.0,
+   "n": 416,
+   "p90": 8.0
+  },
+  "passive_share": 0.261,
+  "questions_per_100": 0.37,
+  "sentence_length": {
+   "mean": 26.7,
+   "median": 26.0,
+   "n": 2145,
+   "p90": 40.0
+  },
+  "sentence_length_by_kind": {
+   "abstract": {
+    "mean": 24.32,
+    "median": 23.0,
+    "n": 79,
+    "p90": 38.0
+   },
+   "discussion": {
+    "mean": 26.74,
+    "median": 27.0,
+    "n": 287,
+    "p90": 37.0
+   },
+   "intro": {
+    "mean": 25.51,
+    "median": 24.0,
+    "n": 294,
+    "p90": 38.0
+   },
+   "other": {
+    "mean": 27.77,
+    "median": 26.0,
+    "n": 618,
+    "p90": 43.0
+   },
+   "results": {
+    "mean": 26.56,
+    "median": 26.0,
+    "n": 867,
+    "p90": 40.0
+   }
+  }
+ },
+ "surface_papers": 14,
+ "text_versions": {
+  "accepted": 8,
+  "preprint": 2,
+  "published": 4
+ },
+ "unverified": {},
+ "years": {
+  "first": 2009,
+  "last": 2025
+ }
+}

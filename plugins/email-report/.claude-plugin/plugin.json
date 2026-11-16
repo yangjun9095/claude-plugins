@@ -1,0 +1,12 @@
+{
+  "name": "email-report",
+  "version": "1.0.0",
+  "description": "Email a threaded status/report from a long-running or unattended session via a local MTA — no OAuth, no API key",
+  "author": {
+    "name": "Yang Joon Kim",
+    "url": "https://github.com/yangjun9095"
+  },
+  "repository": "https://github.com/yangjun9095/claude-plugins",
+  "license": "MIT",
+  "keywords": ["email", "notification", "report", "smtp", "hpc", "slurm", "unattended", "threading"]
+}

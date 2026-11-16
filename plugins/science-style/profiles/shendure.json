@@ -1,0 +1,3441 @@
+{
+ "by_cell": {
+  "essay/high": 2,
+  "essay/other": 1,
+  "first/other": 1,
+  "senior/high": 5,
+  "senior/other": 3
+ },
+ "by_group": {
+  "essay": 3,
+  "first": 1,
+  "senior": 8
+ },
+ "by_tier": {
+  "high": 7,
+  "other": 5
+ },
+ "checklist_version": 2,
+ "distinctive_note": "",
+ "distinctive_pairs": [
+  [
+   "supplementary fig",
+   6.39
+  ],
+  [
+   "the human",
+   5.77
+  ],
+  [
+   "human and",
+   5.01
+  ],
+  [
+   "data fig",
+   4.86
+  ],
+  [
+   "extended data",
+   4.68
+  ],
+  [
+   "human genome",
+   4.67
+  ],
+  [
+   "and mouse",
+   4.62
+  ],
+  [
+   "dna sequencing",
+   3.9
+  ],
+  [
+   "supplementary table",
+   3.83
+  ],
+  [
+   "may be",
+   3.7
+  ],
+  [
+   "for example",
+   3.48
+  ],
+  [
+   "sequencing of",
+   3.39
+  ],
+  [
+   "fig supplementary",
+   3.29
+  ],
+  [
+   "variants of",
+   3.28
+  ],
+  [
+   "assembly of",
+   3.24
+  ],
+  [
+   "closely related",
+   3.1
+  ],
+  [
+   "in human",
+   3.08
+  ],
+  [
+   "relative to",
+   3.08
+  ],
+  [
+   "de novo",
+   3.02
+  ],
+  [
+   "correlated with",
+   3.02
+  ]
+ ],
+ "distinctive_words": [
+  [
+   "enhancers",
+   11.68
+  ],
+  [
+   "human",
+   10.17
+  ],
+  [
+   "mouse",
+   10.01
+  ],
+  [
+   "enhancer",
+   8.51
+  ],
+  [
+   "abundance",
+   8.46
+  ],
+  [
+   "species",
+   7.58
+  ],
+  [
+   "variants",
+   7.38
+  ],
+  [
+   "genomes",
+   6.98
+  ],
+  [
+   "chromatin",
+   6.9
+  ],
+  [
+   "sequencing",
+   6.82
+  ],
+  [
+   "chromosomes",
+   6.51
+  ],
+  [
+   "kb",
+   6.34
+  ],
+  [
+   "genome",
+   6.25
+  ],
+  [
+   "group",
+   5.87
+  ],
+  [
+   "chromosome",
+   5.84
+  ],
+  [
+   "biochemical",
+   5.63
+  ],
+  [
+   "were",
+   5.59
+  ],
+  [
+   "p",
+   5.46
+  ],
+  [
+   "assembly",
+   5.42
+  ],
+  [
+   "activity",
+   5.4
+  ],
+  [
+   "genome-wide",
+   5.36
+  ],
+  [
+   "functional",
+   5.34
+  ],
+  [
+   "supplementary",
+   5.32
+  ],
+  [
+   "windows",
+   5.16
+  ],
+  [
+   "candidate",
+   4.71
+  ],
+  [
+   "genomic",
+   4.7
+  ],
+  [
+   "scores",
+   4.6
+  ],
+  [
+   "phosphorylation",
+   4.54
+  ],
+  [
+   "assemblies",
+   4.45
+  ],
+  [
+   "world",
+   4.33
+  ]
+ ],
+ "items": {
+  "abstract_moves": {
+   "value": {
+    "all": {
+     "approach": 11,
+     "context": 10,
+     "gap": 8,
+     "implication": 7,
+     "other": 1,
+     "result": 7
+    },
+    "by_group": {
+     "essay": {
+      "approach": 2,
+      "context": 3,
+      "gap": 3,
+      "implication": 1
+     },
+     "first": {
+      "approach": 1,
+      "context": 1,
+      "implication": 1,
+      "result": 1
+     },
+     "senior": {
+      "approach": 8,
+      "context": 6,
+      "gap": 5,
+      "implication": 5,
+      "other": 1,
+      "result": 6
+     }
+    },
+    "by_tier": {
+     "high": {
+      "approach": 6,
+      "context": 6,
+      "gap": 5,
+      "implication": 3,
+      "result": 3
+     },
+     "other": {
+      "approach": 5,
+      "context": 4,
+      "gap": 3,
+      "implication": 4,
+      "other": 1,
+      "result": 4
+     }
+    },
+    "first": {
+     "approach": 1,
+     "context": 9,
+     "gap": 2
+    },
+    "last": {
+     "approach": 1,
+     "gap": 1,
+     "implication": 6,
+     "other": 1,
+     "result": 3
+    },
+    "n": 12,
+    "n_by_group": {
+     "essay": 3,
+     "first": 1,
+     "senior": 8
+    },
+    "n_by_tier": {
+     "high": 7,
+     "other": 5
+    }
+   }
+  },
+  "discussion_moves": {
+   "value": {
+    "all": {
+     "comparison with prior work": 3,
+     "future work": 11,
+     "implication": 10,
+     "limitation": 9,
+     "mechanism": 7,
+     "summary": 11
+    },
+    "by_group": {
+     "essay": {
+      "future work": 3,
+      "implication": 2,
+      "limitation": 1,
+      "summary": 3
+     },
+     "first": {
+      "comparison with prior work": 1,
+      "future work": 1,
+      "implication": 1,
+      "limitation": 1,
+      "mechanism": 1,
+      "summary": 1
+     },
+     "senior": {
+      "comparison with prior work": 2,
+      "future work": 7,
+      "implication": 7,
+      "limitation": 7,
+      "mechanism": 6,
+      "summary": 7
+     }
+    },
+    "by_tier": {
+     "high": {
+      "comparison with prior work": 1,
+      "future work": 6,
+      "implication": 5,
+      "limitation": 5,
+      "mechanism": 3,
+      "summary": 6
+     },
+     "other": {
+      "comparison with prior work": 2,
+      "future work": 5,
+      "implication": 5,
+      "limitation": 4,
+      "mechanism": 4,
+      "summary": 5
+     }
+    },
+    "first": {
+     "summary": 11
+    },
+    "last": {
+     "future work": 3,
+     "implication": 6,
+     "limitation": 2
+    },
+    "n": 12,
+    "n_by_group": {
+     "essay": 3,
+     "first": 1,
+     "senior": 8
+    },
+    "n_by_tier": {
+     "high": 7,
+     "other": 5
+    }
+   }
+  },
+  "essay_argument": {
+   "call_to_action": {
+    "all": {
+     "yes": 3
+    },
+    "by_group": {
+     "essay": {
+      "yes": 3
+     }
+    },
+    "by_tier": {
+     "high": {
+      "yes": 2
+     },
+     "other": {
+      "yes": 1
+     }
+    },
+    "n": 3,
+    "n_by_group": {
+     "essay": 3
+    },
+    "n_by_tier": {
+     "high": 2,
+     "other": 1
+    }
+   },
+   "thesis_location": {
+    "all": {
+     "end of introduction": 2,
+     "later": 1
+    },
+    "by_group": {
+     "essay": {
+      "end of introduction": 2,
+      "later": 1
+     }
+    },
+    "by_tier": {
+     "high": {
+      "end of introduction": 1,
+      "later": 1
+     },
+     "other": {
+      "end of introduction": 1
+     }
+    },
+    "n": 3,
+    "n_by_group": {
+     "essay": 3
+    },
+    "n_by_tier": {
+     "high": 2,
+     "other": 1
+    }
+   }
+  },
+  "excitement": {
+   "value.location": {
+    "all": {
+     "abstract": 12,
+     "discussion": 11,
+     "introduction": 8,
+     "results": 8
+    },
+    "by_group": {
+     "essay": {
+      "abstract": 3,
+      "discussion": 3,
+      "introduction": 3,
+      "results": 2
+     },
+     "first": {
+      "abstract": 1,
+      "discussion": 1
+     },
+     "senior": {
+      "abstract": 8,
+      "discussion": 7,
+      "introduction": 5,
+      "results": 6
+     }
+    },
+    "by_tier": {
+     "high": {
+      "abstract": 7,
+      "discussion": 6,
+      "introduction": 5,
+      "results": 4
+     },
+     "other": {
+      "abstract": 5,
+      "discussion": 5,
+      "introduction": 3,
+      "results": 4
+     }
+    },
+    "n": 12,
+    "n_by_group": {
+     "essay": 3,
+     "first": 1,
+     "senior": 8
+    },
+    "n_by_tier": {
+     "high": 7,
+     "other": 5
+    }
+   },
+   "value.marker": {
+    "all": {
+     "evaluative word": 12,
+     "first or novelty claim": 7,
+     "implication sentence": 12,
+     "scope claim": 8
+    },
+    "by_group": {
+     "essay": {
+      "evaluative word": 3,
+      "first or novelty claim": 1,
+      "implication sentence": 3,
+      "scope claim": 2
+     },
+     "first": {
+      "evaluative word": 1,
+      "first or novelty claim": 1,
+      "implication sentence": 1,
+      "scope claim": 1
+     },
+     "senior": {
+      "evaluative word": 8,
+      "first or novelty claim": 5,
+      "implication sentence": 8,
+      "scope claim": 5
+     }
+    },
+    "by_tier": {
+     "high": {
+      "evaluative word": 7,
+      "first or novelty claim": 4,
+      "implication sentence": 7,
+      "scope claim": 3
+     },
+     "other": {
+      "evaluative word": 5,
+      "first or novelty claim": 3,
+      "implication sentence": 5,
+      "scope claim": 5
+     }
+    },
+    "n": 12,
+    "n_by_group": {
+     "essay": 3,
+     "first": 1,
+     "senior": 8
+    },
+    "n_by_tier": {
+     "high": 7,
+     "other": 5
+    }
+   }
+  },
+  "figure_reference": {
+   "value": {
+    "all": {
+     "result then reference": 12
+    },
+    "by_group": {
+     "essay": {
+      "result then reference": 3
+     },
+     "first": {
+      "result then reference": 1
+     },
+     "senior": {
+      "result then reference": 8
+     }
+    },
+    "by_tier": {
+     "high": {
+      "result then reference": 7
+     },
+     "other": {
+      "result then reference": 5
+     }
+    },
+    "n": 12,
+    "n_by_group": {
+     "essay": 3,
+     "first": 1,
+     "senior": 8
+    },
+    "n_by_tier": {
+     "high": 7,
+     "other": 5
+    }
+   }
+  },
+  "gap_sentence": {
+   "value": {
+    "all": {
+     "none": 3,
+     "present": 9
+    },
+    "by_group": {
+     "essay": {
+      "none": 1,
+      "present": 2
+     },
+     "first": {
+      "present": 1
+     },
+     "senior": {
+      "none": 2,
+      "present": 6
+     }
+    },
+    "by_tier": {
+     "high": {
+      "none": 2,
+      "present": 5
+     },
+     "other": {
+      "none": 1,
+      "present": 4
+     }
+    },
+    "n": 12,
+    "n_by_group": {
+     "essay": 3,
+     "first": 1,
+     "senior": 8
+    },
+    "n_by_tier": {
+     "high": 7,
+     "other": 5
+    }
+   }
+  },
+  "here_we": {
+   "value": {
+    "all": {
+     "present": 12
+    },
+    "by_group": {
+     "essay": {
+      "present": 3
+     },
+     "first": {
+      "present": 1
+     },
+     "senior": {
+      "present": 8
+     }
+    },
+    "by_tier": {
+     "high": {
+      "present": 7
+     },
+     "other": {
+      "present": 5
+     }
+    },
+    "n": 12,
+    "n_by_group": {
+     "essay": 3,
+     "first": 1,
+     "senior": 8
+    },
+    "n_by_tier": {
+     "high": 7,
+     "other": 5
+    }
+   }
+  },
+  "intro_roles": {
+   "value": {
+    "all": {
+     "approach preview": 3,
+     "field": 10,
+     "gap": 9,
+     "here-we": 12,
+     "other": 1,
+     "prior work": 4,
+     "problem": 6
+    },
+    "by_group": {
+     "essay": {
+      "approach preview": 1,
+      "field": 3,
+      "gap": 2,
+      "here-we": 3,
+      "problem": 2
+     },
+     "first": {
+      "approach preview": 1,
+      "field": 1,
+      "gap": 1,
+      "here-we": 1
+     },
+     "senior": {
+      "approach preview": 1,
+      "field": 6,
+      "gap": 6,
+      "here-we": 8,
+      "other": 1,
+      "prior work": 4,
+      "problem": 4
+     }
+    },
+    "by_tier": {
+     "high": {
+      "approach preview": 1,
+      "field": 5,
+      "gap": 5,
+      "here-we": 7,
+      "other": 1,
+      "prior work": 3,
+      "problem": 3
+     },
+     "other": {
+      "approach preview": 2,
+      "field": 5,
+      "gap": 4,
+      "here-we": 5,
+      "prior work": 1,
+      "problem": 3
+     }
+    },
+    "first": {
+     "field": 10,
+     "other": 1,
+     "problem": 1
+    },
+    "last": {
+     "approach preview": 1,
+     "field": 1,
+     "here-we": 10
+    },
+    "n": 12,
+    "n_by_group": {
+     "essay": 3,
+     "first": 1,
+     "senior": 8
+    },
+    "n_by_tier": {
+     "high": 7,
+     "other": 5
+    }
+   }
+  },
+  "limitations": {
+   "placement": {
+    "all": {
+     "inline in body": 1,
+     "inline in discussion": 2,
+     "inline in results": 3,
+     "own paragraph": 6
+    },
+    "by_group": {
+     "essay": {
+      "inline in body": 1,
+      "own paragraph": 2
+     },
+     "first": {
+      "inline in discussion": 1
+     },
+     "senior": {
+      "inline in discussion": 1,
+      "inline in results": 3,
+      "own paragraph": 4
+     }
+    },
+    "by_tier": {
+     "high": {
+      "inline in results": 2,
+      "own paragraph": 5
+     },
+     "other": {
+      "inline in body": 1,
+      "inline in discussion": 2,
+      "inline in results": 1,
+      "own paragraph": 1
+     }
+    },
+    "n": 12,
+    "n_by_group": {
+     "essay": 3,
+     "first": 1,
+     "senior": 8
+    },
+    "n_by_tier": {
+     "high": 7,
+     "other": 5
+    }
+   },
+   "specificity": {
+    "all": {
+     "specific": 2,
+     "specific with a remedy": 10
+    },
+    "by_group": {
+     "essay": {
+      "specific": 2,
+      "specific with a remedy": 1
+     },
+     "first": {
+      "specific with a remedy": 1
+     },
+     "senior": {
+      "specific with a remedy": 8
+     }
+    },
+    "by_tier": {
+     "high": {
+      "specific": 1,
+      "specific with a remedy": 6
+     },
+     "other": {
+      "specific": 1,
+      "specific with a remedy": 4
+     }
+    },
+    "n": 12,
+    "n_by_group": {
+     "essay": 3,
+     "first": 1,
+     "senior": 8
+    },
+    "n_by_tier": {
+     "high": 7,
+     "other": 5
+    }
+   }
+  },
+  "results_headings": {
+   "value": {
+    "all": {
+     "full-sentence claim": 2,
+     "none": 4,
+     "noun phrase": 3
+    },
+    "by_group": {
+     "first": {
+      "none": 1
+     },
+     "senior": {
+      "full-sentence claim": 2,
+      "none": 3,
+      "noun phrase": 3
+     }
+    },
+    "by_tier": {
+     "high": {
+      "full-sentence claim": 1,
+      "none": 3,
+      "noun phrase": 1
+     },
+     "other": {
+      "full-sentence claim": 1,
+      "none": 1,
+      "noun phrase": 2
+     }
+    },
+    "n": 9,
+    "n_by_group": {
+     "first": 1,
+     "senior": 8
+    },
+    "n_by_tier": {
+     "high": 5,
+     "other": 4
+    }
+   }
+  },
+  "results_openings": {
+   "value": {
+    "all": {
+     "aim": 5,
+     "method first": 8,
+     "result first": 4
+    },
+    "by_group": {
+     "first": {
+      "method first": 1
+     },
+     "senior": {
+      "aim": 5,
+      "method first": 7,
+      "result first": 4
+     }
+    },
+    "by_tier": {
+     "high": {
+      "aim": 2,
+      "method first": 5,
+      "result first": 1
+     },
+     "other": {
+      "aim": 3,
+      "method first": 3,
+      "result first": 3
+     }
+    },
+    "first": {
+     "aim": 1,
+     "method first": 8
+    },
+    "last": {
+     "aim": 3,
+     "method first": 5,
+     "result first": 1
+    },
+    "n": 9,
+    "n_by_group": {
+     "first": 1,
+     "senior": 8
+    },
+    "n_by_tier": {
+     "high": 5,
+     "other": 4
+    }
+   }
+  },
+  "strongest_claim": {
+   "value": {
+    "all": {
+     "hedged": 11,
+     "unhedged": 1
+    },
+    "by_group": {
+     "essay": {
+      "hedged": 3
+     },
+     "first": {
+      "hedged": 1
+     },
+     "senior": {
+      "hedged": 7,
+      "unhedged": 1
+     }
+    },
+    "by_tier": {
+     "high": {
+      "hedged": 6,
+      "unhedged": 1
+     },
+     "other": {
+      "hedged": 5
+     }
+    },
+    "n": 12,
+    "n_by_group": {
+     "essay": 3,
+     "first": 1,
+     "senior": 8
+    },
+    "n_by_tier": {
+     "high": 7,
+     "other": 5
+    }
+   }
+  },
+  "title_form": {
+   "value": {
+    "all": {
+     "claim": 2,
+     "method name": 3,
+     "topic": 7
+    },
+    "by_group": {
+     "essay": {
+      "topic": 3
+     },
+     "first": {
+      "topic": 1
+     },
+     "senior": {
+      "claim": 2,
+      "method name": 3,
+      "topic": 3
+     }
+    },
+    "by_tier": {
+     "high": {
+      "claim": 1,
+      "method name": 3,
+      "topic": 3
+     },
+     "other": {
+      "claim": 1,
+      "topic": 4
+     }
+    },
+    "n": 12,
+    "n_by_group": {
+     "essay": 3,
+     "first": 1,
+     "senior": 8
+    },
+    "n_by_tier": {
+     "high": 7,
+     "other": 5
+    }
+   }
+  }
+ },
+ "left_out": [],
+ "n_fetched": 12,
+ "n_left_out": 0,
+ "n_papers": 12,
+ "name": "Jay Shendure",
+ "papers_used": [
+  "W1971962952",
+  "W2016966302",
+  "W2108531576",
+  "W2118970626",
+  "W2142445831",
+  "W2257612787",
+  "W2950235380",
+  "W2950629294",
+  "W3000799818",
+  "W3086967467",
+  "W7151234819",
+  "W7155502675"
+ ],
+ "person": "shendure",
+ "quotes": [
+  {
+   "doi": "10.1038/nbt.2421",
+   "field": "quote",
+   "item": "here_we",
+   "text": "In this Review, we consider applications that have been made possible by the recent advances in DNA sequencing technology and provide guidance for experimental design",
+   "text_version": "accepted",
+   "work_id": "W1971962952"
+  },
+  {
+   "doi": "10.1038/nbt.2421",
+   "field": "value",
+   "item": "excitement",
+   "text": "there remain many potentially high-impact applications of next-generation DNA sequencing that are not yet fully realized",
+   "text_version": "accepted",
+   "work_id": "W1971962952"
+  },
+  {
+   "doi": "10.1038/nbt.2421",
+   "field": "value",
+   "item": "excitement",
+   "text": "We predict that much of the agenda of biology in the coming decade will be driven in large part by the scientific opportunities",
+   "text_version": "accepted",
+   "work_id": "W1971962952"
+  },
+  {
+   "doi": "10.1038/nbt.2421",
+   "field": "value",
+   "item": "excitement",
+   "text": "The rapid maturation of massively parallel sequencing technology has been accompanied by a proliferation of exciting applications",
+   "text_version": "accepted",
+   "work_id": "W1971962952"
+  },
+  {
+   "doi": "10.1038/nbt.2421",
+   "field": "value",
+   "item": "excitement",
+   "text": "Sequencing is emerging as a ubiquitous, digital 'readout' for the deep, comprehensive exploration of genetics, molecular biology and cellular biophysics.",
+   "text_version": "accepted",
+   "work_id": "W1971962952"
+  },
+  {
+   "doi": "10.1038/nbt.2421",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "We predict that much of the agenda of biology in the coming decade will be driven in large part by the scientific opportunities",
+   "text_version": "accepted",
+   "work_id": "W1971962952"
+  },
+  {
+   "doi": "10.1038/nbt.2421",
+   "field": "hedge_quote",
+   "item": "strongest_claim",
+   "text": "We predict that",
+   "text_version": "accepted",
+   "work_id": "W1971962952"
+  },
+  {
+   "doi": "10.1038/nbt.2421",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "In this Review, we assume that future DNA sequencing technologies will yield large quantities of accurate DNA sequence at extremely low cost.",
+   "text_version": "accepted",
+   "work_id": "W1971962952"
+  },
+  {
+   "doi": "10.1038/nbt.2421",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "a subway map, in which diverse routes (experiments) travel between stations (core techniques or building blocks) in myriad patterns",
+   "text_version": "accepted",
+   "work_id": "W1971962952"
+  },
+  {
+   "doi": "10.1038/nbt.2421",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "despite a relatively small number of words and combinatorial rules, it is possible to express an infinite range of ideas",
+   "text_version": "accepted",
+   "work_id": "W1971962952"
+  },
+  {
+   "doi": "10.1038/nbt.2421",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "Like the cells that they study, biologists have learned to deploy a finite range of tools to meet an extraordinary array of challenges.",
+   "text_version": "accepted",
+   "work_id": "W1971962952"
+  },
+  {
+   "doi": "10.1038/nbt.2421",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "Repetitive regions are particularly challenging for sequencing because identical reads may be generated from multiple locations in the genome.",
+   "text_version": "accepted",
+   "work_id": "W1971962952"
+  },
+  {
+   "doi": "10.1038/nbt.2421",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "Eventually, all the trains arrive at the hub: DNA sequencing.",
+   "text_version": "accepted",
+   "work_id": "W1971962952"
+  },
+  {
+   "doi": "10.1038/nbt.2421",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "mixing and matching",
+   "text_version": "accepted",
+   "work_id": "W1971962952"
+  },
+  {
+   "doi": "10.1038/nbt.2421",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "may eventually",
+   "text_version": "accepted",
+   "work_id": "W1971962952"
+  },
+  {
+   "doi": "10.1038/nbt.2421",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "challenge for the future",
+   "text_version": "accepted",
+   "work_id": "W1971962952"
+  },
+  {
+   "doi": "10.1038/nbt.2421",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Of note,",
+   "text_version": "accepted",
+   "work_id": "W1971962952"
+  },
+  {
+   "doi": "10.1038/nbt.2421",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "albeit",
+   "text_version": "accepted",
+   "work_id": "W1971962952"
+  },
+  {
+   "doi": "10.1038/nbt.2421",
+   "field": "quote",
+   "item": "essay_argument",
+   "text": "In designing a sequencing experiment, one should carefully consider these differentiating factors",
+   "text_version": "accepted",
+   "work_id": "W1971962952"
+  },
+  {
+   "doi": "10.1038/nmeth.1416",
+   "field": "quote",
+   "item": "gap_sentence",
+   "text": "The cost and throughput advantages of massively parallel sequencing are offset by large tradeoffs with respect to read length and accuracy[CIT].",
+   "text_version": "accepted",
+   "work_id": "W2016966302"
+  },
+  {
+   "doi": "10.1038/nmeth.1416",
+   "field": "quote",
+   "item": "here_we",
+   "text": "We developed a multiplex, in vitro strategy, termed subassembly, that is conceptually analogous to hierarchical shotgun genome assembly (Fig. 1).",
+   "text_version": "accepted",
+   "work_id": "W2016966302"
+  },
+  {
+   "doi": "10.1038/nmeth.1416",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "To rigorously assess performance, we applied subassembly to P. aeruginosa strain PAO1.",
+   "text_version": "accepted",
+   "work_id": "W2016966302"
+  },
+  {
+   "doi": "10.1038/nmeth.1416",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "To explore the utility of subassembly for de novo genome assembly, we assembled all filtered SA reads using CABOG[CIT]",
+   "text_version": "accepted",
+   "work_id": "W2016966302"
+  },
+  {
+   "doi": "10.1038/nmeth.1416",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "To evaluate subassembly on a complex metagenomic sample, we used total DNA isolated from lake sediment and enriched for methylamine-fixing microbes[CIT].",
+   "text_version": "accepted",
+   "work_id": "W2016966302"
+  },
+  {
+   "doi": "10.1038/nmeth.1416",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "Finally, we note that subassembly offers a fundamental advantage in the way that a low error rate is achieved with a second-generation sequencing platform.",
+   "text_version": "accepted",
+   "work_id": "W2016966302"
+  },
+  {
+   "doi": "10.1038/nmeth.1416",
+   "field": "value",
+   "item": "excitement",
+   "text": "We demonstrate subassembly, an in vitro library construction method that extends the utility of short-read sequencing platforms to applications requiring long, accurate reads.",
+   "text_version": "accepted",
+   "work_id": "W2016966302"
+  },
+  {
+   "doi": "10.1038/nmeth.1416",
+   "field": "value",
+   "item": "excitement",
+   "text": "Subassembly may facilitate accurate de novo genome assembly and metagenome sequencing.",
+   "text_version": "accepted",
+   "work_id": "W2016966302"
+  },
+  {
+   "doi": "10.1038/nmeth.1416",
+   "field": "value",
+   "item": "excitement",
+   "text": "Our results, which were generated from a single platform, compare favorably to summary statistics of a published de novo assembly from a related organism",
+   "text_version": "accepted",
+   "work_id": "W2016966302"
+  },
+  {
+   "doi": "10.1038/nmeth.1416",
+   "field": "value",
+   "item": "excitement",
+   "text": "In summary, subassembly produced substantially more sequence at lengths necessary for accurate phylogenetic classification[CIT] and gene discovery[CIT] than direct assembly from shotgun short reads",
+   "text_version": "accepted",
+   "work_id": "W2016966302"
+  },
+  {
+   "doi": "10.1038/nmeth.1416",
+   "field": "value",
+   "item": "excitement",
+   "text": "Finally, we note that subassembly offers a fundamental advantage in the way that a low error rate is achieved with a second-generation sequencing platform.",
+   "text_version": "accepted",
+   "work_id": "W2016966302"
+  },
+  {
+   "doi": "10.1038/nmeth.1416",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "Subassembly may facilitate accurate de novo genome assembly and metagenome sequencing.",
+   "text_version": "accepted",
+   "work_id": "W2016966302"
+  },
+  {
+   "doi": "10.1038/nmeth.1416",
+   "field": "hedge_quote",
+   "item": "strongest_claim",
+   "text": "may facilitate",
+   "text_version": "accepted",
+   "work_id": "W2016966302"
+  },
+  {
+   "doi": "10.1038/nmeth.1416",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "One potential concern about the method as described is that tag sequences from different long DNA fragments can occasionally be identical by chance",
+   "text_version": "accepted",
+   "work_id": "W2016966302"
+  },
+  {
+   "doi": "10.1038/nmeth.1416",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "A simple modification would be to use a tag-adjacent adaptor containing an embedded degenerate sequence",
+   "text_version": "accepted",
+   "work_id": "W2016966302"
+  },
+  {
+   "doi": "10.1038/nmeth.1416",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "which could be mitigated by optimizing PCR conditions",
+   "text_version": "accepted",
+   "work_id": "W2016966302"
+  },
+  {
+   "doi": "10.1038/nmeth.1416",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Notably,",
+   "text_version": "accepted",
+   "work_id": "W2016966302"
+  },
+  {
+   "doi": "10.1038/nmeth.1416",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "considerably",
+   "text_version": "accepted",
+   "work_id": "W2016966302"
+  },
+  {
+   "doi": "10.1038/nmeth.1416",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "likely",
+   "text_version": "accepted",
+   "work_id": "W2016966302"
+  },
+  {
+   "doi": "10.1038/nmeth.1416",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "To evaluate",
+   "text_version": "accepted",
+   "work_id": "W2016966302"
+  },
+  {
+   "doi": "10.1038/ncomms5370",
+   "field": "quote",
+   "item": "here_we",
+   "text": "To further investigate the potential role of PRDM9 in primate evolution, we sequenced the ZF array in a diverse set of primates",
+   "text_version": "accepted",
+   "work_id": "W2108531576"
+  },
+  {
+   "doi": "10.1038/ncomms5370",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "To explore whether positive selection is acting on these residues in other primate lineages, we performed a pairwise codon alignment of ZFs within each genus",
+   "text_version": "accepted",
+   "work_id": "W2108531576"
+  },
+  {
+   "doi": "10.1038/ncomms5370",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "To further investigate the evolutionary dynamics of the PRDM9 ZF domain, we constructed a maximum-likelihood tree",
+   "text_version": "accepted",
+   "work_id": "W2108531576"
+  },
+  {
+   "doi": "10.1038/ncomms5370",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "To explore the diversity of the ZF locus within a single species, we combined the results from two previous chimpanzee-sequencing studies[CIT]",
+   "text_version": "accepted",
+   "work_id": "W2108531576"
+  },
+  {
+   "doi": "10.1038/ncomms5370",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "To explore the more recent evolution of PRDM9, we mapped the raw sequence reads",
+   "text_version": "accepted",
+   "work_id": "W2108531576"
+  },
+  {
+   "doi": "10.1038/ncomms5370",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "To determine if the region of genomic instability is restricted to PRDM9's ZF region or if it extends into surrounding genomic sequence",
+   "text_version": "accepted",
+   "work_id": "W2108531576"
+  },
+  {
+   "doi": "10.1038/ncomms5370",
+   "field": "value",
+   "item": "excitement",
+   "text": "We report ubiquitous positive selection at nucleotide positions corresponding to DNA contact residues and the expansion of ZFs within clades",
+   "text_version": "accepted",
+   "work_id": "W2108531576"
+  },
+  {
+   "doi": "10.1038/ncomms5370",
+   "field": "value",
+   "item": "excitement",
+   "text": "In the context of its role in reproduction, our results are consistent with variation in PRDM9 contributing to speciation events in primates.",
+   "text_version": "accepted",
+   "work_id": "W2108531576"
+  },
+  {
+   "doi": "10.1038/ncomms5370",
+   "field": "value",
+   "item": "excitement",
+   "text": "Rapid evolution of the PRDM9 gene was seen across all primates",
+   "text_version": "accepted",
+   "work_id": "W2108531576"
+  },
+  {
+   "doi": "10.1038/ncomms5370",
+   "field": "value",
+   "item": "excitement",
+   "text": "We found overwhelming evidence for positive selection at positions -1, 3, and 6 across all genera",
+   "text_version": "accepted",
+   "work_id": "W2108531576"
+  },
+  {
+   "doi": "10.1038/ncomms5370",
+   "field": "value",
+   "item": "excitement",
+   "text": "In summary, we report the first large-scale survey of the genetic diversity of PRDM9 across the primate lineage.",
+   "text_version": "accepted",
+   "work_id": "W2108531576"
+  },
+  {
+   "doi": "10.1038/ncomms5370",
+   "field": "value",
+   "item": "excitement",
+   "text": "variation in PRDM9 can lead to differential hotspot usage, which may result in hybrid sterility and contribute to speciation in the primate lineage",
+   "text_version": "accepted",
+   "work_id": "W2108531576"
+  },
+  {
+   "doi": "10.1038/ncomms5370",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "In the context of its role in reproduction, our results are consistent with variation in PRDM9 contributing to speciation events in primates.",
+   "text_version": "accepted",
+   "work_id": "W2108531576"
+  },
+  {
+   "doi": "10.1038/ncomms5370",
+   "field": "hedge_quote",
+   "item": "strongest_claim",
+   "text": "consistent with",
+   "text_version": "accepted",
+   "work_id": "W2108531576"
+  },
+  {
+   "doi": "10.1038/ncomms5370",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "However, it should be emphasized that there is considerable uncertainty in computational motif prediction for large ZF arrays",
+   "text_version": "accepted",
+   "work_id": "W2108531576"
+  },
+  {
+   "doi": "10.1038/ncomms5370",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "performing experimental binding assays may be critical for defining the actual motifs and possible recombination hotspots specified by these alleles",
+   "text_version": "accepted",
+   "work_id": "W2108531576"
+  },
+  {
+   "doi": "10.1038/ncomms5370",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "Statistical support is low for many branches",
+   "text_version": "accepted",
+   "work_id": "W2108531576"
+  },
+  {
+   "doi": "10.1038/ncomms5370",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "We sequenced too few primates to perform comparable analyses in other taxa",
+   "text_version": "accepted",
+   "work_id": "W2108531576"
+  },
+  {
+   "doi": "10.1038/ncomms5370",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "consistent with",
+   "text_version": "accepted",
+   "work_id": "W2108531576"
+  },
+  {
+   "doi": "10.1038/ncomms5370",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "suggesting that",
+   "text_version": "accepted",
+   "work_id": "W2108531576"
+  },
+  {
+   "doi": "10.1038/ncomms5370",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "To explore",
+   "text_version": "accepted",
+   "work_id": "W2108531576"
+  },
+  {
+   "doi": "10.1038/ncomms5370",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "remarkable",
+   "text_version": "accepted",
+   "work_id": "W2108531576"
+  },
+  {
+   "doi": "10.1038/nbt.2727",
+   "field": "quote",
+   "item": "gap_sentence",
+   "text": "the genomics field is in need of scalable, broadly accessible methods enabling chromosome-scale de novo genome assembly",
+   "text_version": "accepted",
+   "work_id": "W2118970626"
+  },
+  {
+   "doi": "10.1038/nbt.2727",
+   "field": "quote",
+   "item": "here_we",
+   "text": "we developed LACHESIS (ligating adjacent chromatin enables scaffolding in situ), a computational method that exploits the signal of genomic proximity in Hi-C datasets",
+   "text_version": "accepted",
+   "work_id": "W2118970626"
+  },
+  {
+   "doi": "10.1038/nbt.2727",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "In a second step, LACHESIS orders contigs linearly within each chromosome group",
+   "text_version": "accepted",
+   "work_id": "W2118970626"
+  },
+  {
+   "doi": "10.1038/nbt.2727",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "In a third step, the ordered contigs are oriented with respect to one another",
+   "text_version": "accepted",
+   "work_id": "W2118970626"
+  },
+  {
+   "doi": "10.1038/nbt.2727",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "We sought to evaluate the effectiveness of this approach for the chromosome-scale de novo assembly of mammalian genomes.",
+   "text_version": "accepted",
+   "work_id": "W2118970626"
+  },
+  {
+   "doi": "10.1038/nbt.2727",
+   "field": "value",
+   "item": "excitement",
+   "text": "genome-wide chromatin interaction datasets, such as those generated by Hi-C, are a rich source of long-range information",
+   "text_version": "accepted",
+   "work_id": "W2118970626"
+  },
+  {
+   "doi": "10.1038/nbt.2727",
+   "field": "value",
+   "item": "excitement",
+   "text": "Hi-C data can also be used to validate chromosomal translocations in cancer genomes.",
+   "text_version": "accepted",
+   "work_id": "W2118970626"
+  },
+  {
+   "doi": "10.1038/nbt.2727",
+   "field": "value",
+   "item": "excitement",
+   "text": "We were further able to order and orient contigs within each chromosome group, including scaffolding across megabase-scale centromere gaps, with surprisingly few errors.",
+   "text_version": "accepted",
+   "work_id": "W2118970626"
+  },
+  {
+   "doi": "10.1038/nbt.2727",
+   "field": "value",
+   "item": "excitement",
+   "text": "our approach may enable a new generation of de novo genome assemblies that do not sacrifice the high standards for contiguity set by the HGP",
+   "text_version": "accepted",
+   "work_id": "W2118970626"
+  },
+  {
+   "doi": "10.1038/nbt.2727",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "our approach may enable a new generation of de novo genome assemblies that do not sacrifice the high standards for contiguity set by the HGP",
+   "text_version": "accepted",
+   "work_id": "W2118970626"
+  },
+  {
+   "doi": "10.1038/nbt.2727",
+   "field": "hedge_quote",
+   "item": "strongest_claim",
+   "text": "may enable",
+   "text_version": "accepted",
+   "work_id": "W2118970626"
+  },
+  {
+   "doi": "10.1038/nbt.2727",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "Computationally, a substantial limitation of our current algorithm is that the clustering step requires the number of chromosomal groups to be specified a priori.",
+   "text_version": "accepted",
+   "work_id": "W2118970626"
+  },
+  {
+   "doi": "10.1038/nbt.2727",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "Alternatively, statistical methods for predicting the optimal number of clusters may prove useful[CIT].",
+   "text_version": "accepted",
+   "work_id": "W2118970626"
+  },
+  {
+   "doi": "10.1038/nbt.2727",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "the contiguity required for the initial de novo assembly (~50 Kb) may be challenging to achieve for many organisms",
+   "text_version": "accepted",
+   "work_id": "W2118970626"
+  },
+  {
+   "doi": "10.1038/nbt.2727",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "As such,",
+   "text_version": "accepted",
+   "work_id": "W2118970626"
+  },
+  {
+   "doi": "10.1038/nbt.2727",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Nonetheless,",
+   "text_version": "accepted",
+   "work_id": "W2118970626"
+  },
+  {
+   "doi": "10.1038/nbt.2727",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "we sought to",
+   "text_version": "accepted",
+   "work_id": "W2118970626"
+  },
+  {
+   "doi": "10.1038/nbt.2727",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "we note that",
+   "text_version": "accepted",
+   "work_id": "W2118970626"
+  },
+  {
+   "doi": "10.1038/nbt.2727",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "reasonably",
+   "text_version": "accepted",
+   "work_id": "W2118970626"
+  },
+  {
+   "doi": "10.1186/gb-2002-3-9-research0044",
+   "field": "quote",
+   "item": "gap_sentence",
+   "text": "each case has proved unique, so that it is difficult to make generalizations about mechanism or function",
+   "text_version": "published",
+   "work_id": "W2142445831"
+  },
+  {
+   "doi": "10.1186/gb-2002-3-9-research0044",
+   "field": "quote",
+   "item": "here_we",
+   "text": "We postulated that additional examples of this phenomenon might be obtainable by mining public human and mouse expressed sequence tag (EST) databases.",
+   "text_version": "published",
+   "work_id": "W2142445831"
+  },
+  {
+   "doi": "10.1186/gb-2002-3-9-research0044",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "Binomial statistics were applied to identify UniGene clusters that contained a statistically significant overrepresentation of incorrectly oriented ESTs.",
+   "text_version": "published",
+   "work_id": "W2142445831"
+  },
+  {
+   "doi": "10.1186/gb-2002-3-9-research0044",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "We next sought to address the possibility that a significant number of our candidates could represent systematic errors",
+   "text_version": "published",
+   "work_id": "W2142445831"
+  },
+  {
+   "doi": "10.1186/gb-2002-3-9-research0044",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "To further validate our methodology, we sought to confirm a subset of our predictions experimentally.",
+   "text_version": "published",
+   "work_id": "W2142445831"
+  },
+  {
+   "doi": "10.1186/gb-2002-3-9-research0044",
+   "field": "value",
+   "item": "excitement",
+   "text": "Our bioinformatics approach identified over 217 candidate overlapping transcriptional units, almost all of which are novel.",
+   "text_version": "published",
+   "work_id": "W2142445831"
+  },
+  {
+   "doi": "10.1186/gb-2002-3-9-research0044",
+   "field": "value",
+   "item": "excitement",
+   "text": "bring the total number of predicted and validated examples of overlapping but oppositely oriented transcripts to over 300",
+   "text_version": "published",
+   "work_id": "W2142445831"
+  },
+  {
+   "doi": "10.1186/gb-2002-3-9-research0044",
+   "field": "value",
+   "item": "excitement",
+   "text": "the result immediately suggests the interesting hypothesis that upregulation of the antisense RNA species in cancer tissues has functional relevance",
+   "text_version": "published",
+   "work_id": "W2142445831"
+  },
+  {
+   "doi": "10.1186/gb-2002-3-9-research0044",
+   "field": "value",
+   "item": "excitement",
+   "text": "We observed surprisingly little redundancy (10 out of 217 of our candidates) between our results and the literature (Table 5).",
+   "text_version": "published",
+   "work_id": "W2142445831"
+  },
+  {
+   "doi": "10.1186/gb-2002-3-9-research0044",
+   "field": "value",
+   "item": "excitement",
+   "text": "stages of our methodology may also be useful for determining the correct transcriptional orientation of UniGene clusters that contain no annotated mRNA sequences",
+   "text_version": "published",
+   "work_id": "W2142445831"
+  },
+  {
+   "doi": "10.1186/gb-2002-3-9-research0044",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "substantial mouse-human conservation in the 5' and 3' UTRs of transcripts might be explained in part by functionality of an overlapping transcriptional unit",
+   "text_version": "published",
+   "work_id": "W2142445831"
+  },
+  {
+   "doi": "10.1186/gb-2002-3-9-research0044",
+   "field": "hedge_quote",
+   "item": "strongest_claim",
+   "text": "might be explained in part",
+   "text_version": "published",
+   "work_id": "W2142445831"
+  },
+  {
+   "doi": "10.1186/gb-2002-3-9-research0044",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "as ESTs represent fragments of the full transcripts, we cannot be certain about this until the full-length RNA species are cloned",
+   "text_version": "published",
+   "work_id": "W2142445831"
+  },
+  {
+   "doi": "10.1186/gb-2002-3-9-research0044",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "The misinterpretation of genomic contaminants as putative antisense candidates is a clear concern.",
+   "text_version": "published",
+   "work_id": "W2142445831"
+  },
+  {
+   "doi": "10.1186/gb-2002-3-9-research0044",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "A second possibility is that our method has a high frequency of false-negatives.",
+   "text_version": "published",
+   "work_id": "W2142445831"
+  },
+  {
+   "doi": "10.1186/gb-2002-3-9-research0044",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "We are carrying out experiments to test mouse-human conservation of predicted overlaps more directly by focused and sensitive experimental assays",
+   "text_version": "published",
+   "work_id": "W2142445831"
+  },
+  {
+   "doi": "10.1186/gb-2002-3-9-research0044",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "It is worth noting that",
+   "text_version": "published",
+   "work_id": "W2142445831"
+  },
+  {
+   "doi": "10.1186/gb-2002-3-9-research0044",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "We postulated that",
+   "text_version": "published",
+   "work_id": "W2142445831"
+  },
+  {
+   "doi": "10.1186/gb-2002-3-9-research0044",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "sought to",
+   "text_version": "published",
+   "work_id": "W2142445831"
+  },
+  {
+   "doi": "10.1186/gb-2002-3-9-research0044",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "interesting",
+   "text_version": "published",
+   "work_id": "W2142445831"
+  },
+  {
+   "doi": "10.1016/j.gpb.2016.01.002",
+   "field": "quote",
+   "item": "gap_sentence",
+   "text": "are still required to elucidate whether these observed structural features play some general causal roles, or are simply a correlative of the cellular functions.",
+   "text_version": "published",
+   "work_id": "W2257612787"
+  },
+  {
+   "doi": "10.1016/j.gpb.2016.01.002",
+   "field": "quote",
+   "item": "here_we",
+   "text": "Here, we first review well-established and emerging technologies that are revolutionizing our understanding of higher-order genome architecture.",
+   "text_version": "published",
+   "work_id": "W2257612787"
+  },
+  {
+   "doi": "10.1016/j.gpb.2016.01.002",
+   "field": "value",
+   "item": "excitement",
+   "text": "we have witnessed rapid advances in both microscopic and nucleic acid-based approaches to map genome architecture",
+   "text_version": "published",
+   "work_id": "W2257612787"
+  },
+  {
+   "doi": "10.1016/j.gpb.2016.01.002",
+   "field": "value",
+   "item": "excitement",
+   "text": "Here, we first review well-established and emerging technologies that are revolutionizing our understanding of higher-order genome architecture.",
+   "text_version": "published",
+   "work_id": "W2257612787"
+  },
+  {
+   "doi": "10.1016/j.gpb.2016.01.002",
+   "field": "value",
+   "item": "excitement",
+   "text": "which have been identified in the genomes of a wide range of species from bacteria to human [CIT]",
+   "text_version": "published",
+   "work_id": "W2257612787"
+  },
+  {
+   "doi": "10.1016/j.gpb.2016.01.002",
+   "field": "value",
+   "item": "excitement",
+   "text": "has led to an explosion in our knowledge of the physical organization of eukaryotic genomes",
+   "text_version": "published",
+   "work_id": "W2257612787"
+  },
+  {
+   "doi": "10.1016/j.gpb.2016.01.002",
+   "field": "value",
+   "item": "excitement",
+   "text": "has opened up considerable avenues to testing the functional significance of genomic elements",
+   "text_version": "published",
+   "work_id": "W2257612787"
+  },
+  {
+   "doi": "10.1016/j.gpb.2016.01.002",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "it is tempting to speculate that the modulation of chromatin organization itself is a basic mechanism by which cellular functions are enacted",
+   "text_version": "published",
+   "work_id": "W2257612787"
+  },
+  {
+   "doi": "10.1016/j.gpb.2016.01.002",
+   "field": "hedge_quote",
+   "item": "strongest_claim",
+   "text": "it is tempting to speculate",
+   "text_version": "published",
+   "work_id": "W2257612787"
+  },
+  {
+   "doi": "10.1016/j.gpb.2016.01.002",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "Due to limited space, this review will not cover these tools and their applications, which have been reviewed elsewhere [CIT].",
+   "text_version": "published",
+   "work_id": "W2257612787"
+  },
+  {
+   "doi": "10.1016/j.gpb.2016.01.002",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "this review will not further address this large and still growing body of work",
+   "text_version": "published",
+   "work_id": "W2257612787"
+  },
+  {
+   "doi": "10.1016/j.gpb.2016.01.002",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "Metazoan cells package genomic DNA up to 2 m long into a tiny nuclear space",
+   "text_version": "published",
+   "work_id": "W2257612787"
+  },
+  {
+   "doi": "10.1016/j.gpb.2016.01.002",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "One commonly-cited limitation of light microscopic techniques, despite their versatility, is the resolution limit owing to the wavelength of light.",
+   "text_version": "published",
+   "work_id": "W2257612787"
+  },
+  {
+   "doi": "10.1016/j.gpb.2016.01.002",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "hotly debated",
+   "text_version": "published",
+   "work_id": "W2257612787"
+  },
+  {
+   "doi": "10.1016/j.gpb.2016.01.002",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "remain poorly understood",
+   "text_version": "published",
+   "work_id": "W2257612787"
+  },
+  {
+   "doi": "10.1016/j.gpb.2016.01.002",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "so-called",
+   "text_version": "published",
+   "work_id": "W2257612787"
+  },
+  {
+   "doi": "10.1016/j.gpb.2016.01.002",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Already,",
+   "text_version": "published",
+   "work_id": "W2257612787"
+  },
+  {
+   "doi": "10.1016/j.gpb.2016.01.002",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Crucially,",
+   "text_version": "published",
+   "work_id": "W2257612787"
+  },
+  {
+   "doi": "10.1016/j.gpb.2016.01.002",
+   "field": "quote",
+   "item": "essay_argument",
+   "text": "Obtaining the knowledge necessary to answer these questions requires a multi-pronged approach employing creative microscopic, biochemical, and computational tools.",
+   "text_version": "published",
+   "work_id": "W2257612787"
+  },
+  {
+   "doi": "10.1186/s13059-018-1473-6",
+   "field": "quote",
+   "item": "gap_sentence",
+   "text": "Low-resolution studies have the advantage of characterizing thousands of enhancers at a time, but fail to pinpoint functional variation.",
+   "text_version": "published",
+   "work_id": "W2950235380"
+  },
+  {
+   "doi": "10.1186/s13059-018-1473-6",
+   "field": "quote",
+   "item": "here_we",
+   "text": "Here we set out to concurrently study the evolutionary-functional trajectories of hundreds of enhancers with MPRAs.",
+   "text_version": "published",
+   "work_id": "W2950235380"
+  },
+  {
+   "doi": "10.1186/s13059-018-1473-6",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "A goal of this study was to characterize how the number and spectrum of mutations relate to the functional divergence of enhancer activity in primates.",
+   "text_version": "published",
+   "work_id": "W2950235380"
+  },
+  {
+   "doi": "10.1186/s13059-018-1473-6",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "We were surprised that less than a third of our computational predictions were concordant with ChIP-seq predictions.",
+   "text_version": "published",
+   "work_id": "W2950235380"
+  },
+  {
+   "doi": "10.1186/s13059-018-1473-6",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "we synthesized and functionally tested all 20 versions of each of the 348 active tiles with the STARR-seq vector in HepG2 cells",
+   "text_version": "published",
+   "work_id": "W2950235380"
+  },
+  {
+   "doi": "10.1186/s13059-018-1473-6",
+   "field": "value",
+   "item": "excitement",
+   "text": "We characterized the evolutionary-functional trajectories of hundreds of liver enhancers throughout the primate phylogeny.",
+   "text_version": "published",
+   "work_id": "W2950235380"
+  },
+  {
+   "doi": "10.1186/s13059-018-1473-6",
+   "field": "value",
+   "item": "excitement",
+   "text": "to identify CpG deamination as a potentially important force in driving changes in enhancer activity during primate evolution",
+   "text_version": "published",
+   "work_id": "W2950235380"
+  },
+  {
+   "doi": "10.1186/s13059-018-1473-6",
+   "field": "value",
+   "item": "excitement",
+   "text": "We were surprised that less than a third of our computational predictions were concordant with ChIP-seq predictions.",
+   "text_version": "published",
+   "work_id": "W2950235380"
+  },
+  {
+   "doi": "10.1186/s13059-018-1473-6",
+   "field": "value",
+   "item": "excitement",
+   "text": "This group of tiles is particularly interesting as a subset of recently evolving primate enhancers, with increased activity unique to hominoids.",
+   "text_version": "published",
+   "work_id": "W2950235380"
+  },
+  {
+   "doi": "10.1186/s13059-018-1473-6",
+   "field": "value",
+   "item": "excitement",
+   "text": "Especially within closely related species, CpG deamination is a promising source of evolutionary novelty.",
+   "text_version": "published",
+   "work_id": "W2950235380"
+  },
+  {
+   "doi": "10.1186/s13059-018-1473-6",
+   "field": "value",
+   "item": "excitement",
+   "text": "We propose that CpG deamination may have acted as an important force driving enhancer modulation during primate evolution.",
+   "text_version": "published",
+   "work_id": "W2950235380"
+  },
+  {
+   "doi": "10.1186/s13059-018-1473-6",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "to identify CpG deamination as a potentially important force in driving changes in enhancer activity during primate evolution",
+   "text_version": "published",
+   "work_id": "W2950235380"
+  },
+  {
+   "doi": "10.1186/s13059-018-1473-6",
+   "field": "hedge_quote",
+   "item": "strongest_claim",
+   "text": "potentially important",
+   "text_version": "published",
+   "work_id": "W2950235380"
+  },
+  {
+   "doi": "10.1186/s13059-018-1473-6",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "However, this experimental approach assumes conserved trans-environments throughout the primate lineage.",
+   "text_version": "published",
+   "work_id": "W2950235380"
+  },
+  {
+   "doi": "10.1186/s13059-018-1473-6",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "we cannot say with certainty that prioritized mutations are causal",
+   "text_version": "published",
+   "work_id": "W2950235380"
+  },
+  {
+   "doi": "10.1186/s13059-018-1473-6",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "Additional studies in which each change is evaluated in the context of a common background may be necessary",
+   "text_version": "published",
+   "work_id": "W2950235380"
+  },
+  {
+   "doi": "10.1186/s13059-018-1473-6",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "meaning that more closely related orthologs exhibited consistent changes in activity in relation to one another",
+   "text_version": "published",
+   "work_id": "W2950235380"
+  },
+  {
+   "doi": "10.1186/s13059-018-1473-6",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "We do note",
+   "text_version": "published",
+   "work_id": "W2950235380"
+  },
+  {
+   "doi": "10.1186/s13059-018-1473-6",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Of note,",
+   "text_version": "published",
+   "work_id": "W2950235380"
+  },
+  {
+   "doi": "10.1186/s13059-018-1473-6",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "We also note",
+   "text_version": "published",
+   "work_id": "W2950235380"
+  },
+  {
+   "doi": "10.1186/s13059-018-1473-6",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "particularly interesting",
+   "text_version": "published",
+   "work_id": "W2950235380"
+  },
+  {
+   "doi": "10.1038/s41588-018-0122-z",
+   "field": "quote",
+   "item": "gap_sentence",
+   "text": "However, developing specific assays for each of the thousands of disease-related proteins is impractical.",
+   "text_version": "accepted",
+   "work_id": "W2950629294"
+  },
+  {
+   "doi": "10.1038/s41588-018-0122-z",
+   "field": "quote",
+   "item": "here_we",
+   "text": "Here, we describe Variant Abundance by Massively Parallel Sequencing (VAMP-seq), which measures the steady-state abundance of protein variants in cultured human cells.",
+   "text_version": "accepted",
+   "work_id": "W2950629294"
+  },
+  {
+   "doi": "10.1038/s41588-018-0122-z",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "Therefore, we searched for signatures of these properties in our abundance data.",
+   "text_version": "accepted",
+   "work_id": "W2950629294"
+  },
+  {
+   "doi": "10.1038/s41588-018-0122-z",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "VAMP-seq scores can also be used to identify potentially pathogenic variants.",
+   "text_version": "accepted",
+   "work_id": "W2950629294"
+  },
+  {
+   "doi": "10.1038/s41588-018-0122-z",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "We asked whether VAMP-seq derived abundance data could reveal the contribution of previously reported somatic PTEN variants to tumorigenesis.",
+   "text_version": "accepted",
+   "work_id": "W2950629294"
+  },
+  {
+   "doi": "10.1038/s41588-018-0122-z",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "Since our abundance scores identified known decreased-function alleles, we analyzed the abundance of rare TPMT variants of unknown function.",
+   "text_version": "accepted",
+   "work_id": "W2950629294"
+  },
+  {
+   "doi": "10.1038/s41588-018-0122-z",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "To demonstrate that VAMP-seq is applicable to diverse proteins, we evaluated wild type and known or predicted low-abundance variants for seven additional pharmacogenes",
+   "text_version": "accepted",
+   "work_id": "W2950629294"
+  },
+  {
+   "doi": "10.1038/s41588-018-0122-z",
+   "field": "value",
+   "item": "excitement",
+   "text": "Finally, we demonstrate that VAMP-seq is applicable to other genes, highlighting its generalizability.",
+   "text_version": "accepted",
+   "work_id": "W2950629294"
+  },
+  {
+   "doi": "10.1038/s41588-018-0122-z",
+   "field": "value",
+   "item": "excitement",
+   "text": "1,138 previously uncharacterized, low-abundance single amino acid variants of PTEN that are likely to be pathogenic",
+   "text_version": "accepted",
+   "work_id": "W2950629294"
+  },
+  {
+   "doi": "10.1038/s41588-018-0122-z",
+   "field": "value",
+   "item": "excitement",
+   "text": "We observed significantly more low-abundance PTEN variants than expected for every cancer type analyzed",
+   "text_version": "accepted",
+   "work_id": "W2950629294"
+  },
+  {
+   "doi": "10.1038/s41588-018-0122-z",
+   "field": "value",
+   "item": "excitement",
+   "text": "our results show that low abundance PTEN variants are important cancer drivers",
+   "text_version": "accepted",
+   "work_id": "W2950629294"
+  },
+  {
+   "doi": "10.1038/s41588-018-0122-z",
+   "field": "value",
+   "item": "excitement",
+   "text": "VAMP-seq could provide evidence of pathogenicity for greater than half of the pathogenic missense variants we will eventually find",
+   "text_version": "accepted",
+   "work_id": "W2950629294"
+  },
+  {
+   "doi": "10.1038/s41588-018-0122-z",
+   "field": "value",
+   "item": "excitement",
+   "text": "VAMP-seq greatly expands our ability to measure the impact of missense variants on abundance",
+   "text_version": "accepted",
+   "work_id": "W2950629294"
+  },
+  {
+   "doi": "10.1038/s41588-018-0122-z",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "VAMP-seq could provide evidence of pathogenicity for greater than half of the pathogenic missense variants we will eventually find as more human genomes are sequenced",
+   "text_version": "accepted",
+   "work_id": "W2950629294"
+  },
+  {
+   "doi": "10.1038/s41588-018-0122-z",
+   "field": "hedge_quote",
+   "item": "strongest_claim",
+   "text": "If other proteins yielded similar results",
+   "text_version": "accepted",
+   "work_id": "W2950629294"
+  },
+  {
+   "doi": "10.1038/s41588-018-0122-z",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "Despite its utility, VAMP-seq has limitations.",
+   "text_version": "accepted",
+   "work_id": "W2950629294"
+  },
+  {
+   "doi": "10.1038/s41588-018-0122-z",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "In the future, early library validation using deep sequencing along with other well-validated library generation methods[CIT] could improve coverage.",
+   "text_version": "accepted",
+   "work_id": "W2950629294"
+  },
+  {
+   "doi": "10.1038/s41588-018-0122-z",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "Furthermore, VAMP-seq cannot yield insight into variants that are pathogenic because of reduced enzymatic activity, altered localization, or effects on splicing.",
+   "text_version": "accepted",
+   "work_id": "W2950629294"
+  },
+  {
+   "doi": "10.1038/s41588-018-0122-z",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "The stability of the variant dictates the abundance of the EGFP fusion and, accordingly, the green fluorescence signal of the cell.",
+   "text_version": "accepted",
+   "work_id": "W2950629294"
+  },
+  {
+   "doi": "10.1038/s41588-018-0122-z",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "We based our assay on the fact that most proteins, despite their diversity, must be abundant enough to perform their molecular function.",
+   "text_version": "accepted",
+   "work_id": "W2950629294"
+  },
+  {
+   "doi": "10.1038/s41588-018-0122-z",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "Abundance scores ranged from about zero, indicating total loss of abundance, to about one, indicating WT-like abundance",
+   "text_version": "accepted",
+   "work_id": "W2950629294"
+  },
+  {
+   "doi": "10.1038/s41588-018-0122-z",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Thus,",
+   "text_version": "accepted",
+   "work_id": "W2950629294"
+  },
+  {
+   "doi": "10.1038/s41588-018-0122-z",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Furthermore,",
+   "text_version": "accepted",
+   "work_id": "W2950629294"
+  },
+  {
+   "doi": "10.1038/s41588-018-0122-z",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "strongly suggesting that",
+   "text_version": "accepted",
+   "work_id": "W2950629294"
+  },
+  {
+   "doi": "10.1038/s41588-018-0122-z",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Indeed, we found",
+   "text_version": "accepted",
+   "work_id": "W2950629294"
+  },
+  {
+   "doi": "10.1038/s41576-019-0209-0",
+   "field": "quote",
+   "item": "gap_sentence",
+   "text": "the field lacks a clear framework for identifying enhancers, with different subfields (e.g. biochemistry, genomics, etc.) using different definitions and criteria",
+   "text_version": "accepted",
+   "work_id": "W3000799818"
+  },
+  {
+   "doi": "10.1038/s41576-019-0209-0",
+   "field": "quote",
+   "item": "here_we",
+   "text": "Here we present a survey of emerging technologies for discovering, characterizing, and validating enhancers at scale.",
+   "text_version": "accepted",
+   "work_id": "W3000799818"
+  },
+  {
+   "doi": "10.1038/s41576-019-0209-0",
+   "field": "value",
+   "item": "excitement",
+   "text": "We furthermore propose a new framework for operationally defining enhancers",
+   "text_version": "accepted",
+   "work_id": "W3000799818"
+  },
+  {
+   "doi": "10.1038/s41576-019-0209-0",
+   "field": "value",
+   "item": "excitement",
+   "text": "represent an excellent opportunity to gain further insight into the nature of enhancers",
+   "text_version": "accepted",
+   "work_id": "W3000799818"
+  },
+  {
+   "doi": "10.1038/s41576-019-0209-0",
+   "field": "value",
+   "item": "excitement",
+   "text": "An exciting recent development in this space has been the emergence of pooled CRISPR",
+   "text_version": "accepted",
+   "work_id": "W3000799818"
+  },
+  {
+   "doi": "10.1038/s41576-019-0209-0",
+   "field": "value",
+   "item": "excitement",
+   "text": "one of the larger surprises of these studies",
+   "text_version": "accepted",
+   "work_id": "W3000799818"
+  },
+  {
+   "doi": "10.1038/s41576-019-0209-0",
+   "field": "value",
+   "item": "excitement",
+   "text": "Such a catalogue could prove to be a critical resource for furthering our understanding of the human genome and its role in disease.",
+   "text_version": "accepted",
+   "work_id": "W3000799818"
+  },
+  {
+   "doi": "10.1038/s41576-019-0209-0",
+   "field": "value",
+   "item": "excitement",
+   "text": "are paving the way to a comprehensive catalogue of human enhancers",
+   "text_version": "accepted",
+   "work_id": "W3000799818"
+  },
+  {
+   "doi": "10.1038/s41576-019-0209-0",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "Such a catalogue could prove to be a critical resource for furthering our understanding of the human genome and its role in disease.",
+   "text_version": "accepted",
+   "work_id": "W3000799818"
+  },
+  {
+   "doi": "10.1038/s41576-019-0209-0",
+   "field": "hedge_quote",
+   "item": "strongest_claim",
+   "text": "could prove to be",
+   "text_version": "accepted",
+   "work_id": "W3000799818"
+  },
+  {
+   "doi": "10.1038/s41576-019-0209-0",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "We recognize that this scheme may be light in detail relative to the practical realities",
+   "text_version": "accepted",
+   "work_id": "W3000799818"
+  },
+  {
+   "doi": "10.1038/s41576-019-0209-0",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "standards will be needed for how to threshold the datasets underlying each form of support, specific biochemical marks will need to be defined as enhancer-associated",
+   "text_version": "accepted",
+   "work_id": "W3000799818"
+  },
+  {
+   "doi": "10.1038/s41576-019-0209-0",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "we also note that our definition may not be easily adaptable to candidate enhancers that overlap promoters or protein-coding regions",
+   "text_version": "accepted",
+   "work_id": "W3000799818"
+  },
+  {
+   "doi": "10.1038/s41576-019-0209-0",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "For this Review, we focus on enhancers, and mammalian enhancers in particular",
+   "text_version": "accepted",
+   "work_id": "W3000799818"
+  },
+  {
+   "doi": "10.1038/s41576-019-0209-0",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "Much like blind men inspecting an elephant[CIT], operational definitions are a means to characterize a phenomenon, but fall short of the phenomenon itself.",
+   "text_version": "accepted",
+   "work_id": "W3000799818"
+  },
+  {
+   "doi": "10.1038/s41576-019-0209-0",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "it is the elephant (i.e. the biological enhancer) that must remain the primary focus",
+   "text_version": "accepted",
+   "work_id": "W3000799818"
+  },
+  {
+   "doi": "10.1038/s41576-019-0209-0",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "In our view",
+   "text_version": "accepted",
+   "work_id": "W3000799818"
+  },
+  {
+   "doi": "10.1038/s41576-019-0209-0",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "As touched on above",
+   "text_version": "accepted",
+   "work_id": "W3000799818"
+  },
+  {
+   "doi": "10.1038/s41576-019-0209-0",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "On the other hand",
+   "text_version": "accepted",
+   "work_id": "W3000799818"
+  },
+  {
+   "doi": "10.1038/s41576-019-0209-0",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "seems key",
+   "text_version": "accepted",
+   "work_id": "W3000799818"
+  },
+  {
+   "doi": "10.1038/s41576-019-0209-0",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Of note,",
+   "text_version": "accepted",
+   "work_id": "W3000799818"
+  },
+  {
+   "doi": "10.1038/s41576-019-0209-0",
+   "field": "quote",
+   "item": "essay_argument",
+   "text": "it seems key that future efforts should prioritize the linking of enhancers to their target genes",
+   "text_version": "accepted",
+   "work_id": "W3000799818"
+  },
+  {
+   "doi": "10.1101/2020.04.02.20051417",
+   "field": "quote",
+   "item": "here_we",
+   "text": "Here we report on the putative history of community transmission in Washington State as revealed by genomic epidemiology.",
+   "text_version": "preprint",
+   "work_id": "W3086967467"
+  },
+  {
+   "doi": "10.1101/2020.04.02.20051417",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "We sought to test these two hypotheses",
+   "text_version": "preprint",
+   "work_id": "W3086967467"
+  },
+  {
+   "doi": "10.1101/2020.04.02.20051417",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "We additionally analyzed 293 Washington State viruses from the outbreak clade (excluding WA1) in a coalescent analysis to estimate temporal patterns.",
+   "text_version": "preprint",
+   "work_id": "W3086967467"
+  },
+  {
+   "doi": "10.1101/2020.04.02.20051417",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "In addition, we observed 53 SARS-CoV-2 genomes from Washington State that fall outside this primary outbreak clade and into multiple separate clusters (Fig. 2).",
+   "text_version": "preprint",
+   "work_id": "W3086967467"
+  },
+  {
+   "doi": "10.1101/2020.04.02.20051417",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "we simulated forward in a stochastic epidemiological transmission model to investigate the expected size of outbreak given this date of introduction",
+   "text_version": "preprint",
+   "work_id": "W3086967467"
+  },
+  {
+   "doi": "10.1101/2020.04.02.20051417",
+   "field": "value",
+   "item": "excitement",
+   "text": "the large majority of SARS-CoV-2 infections sampled during this time frame appeared to have derived from a single introduction event",
+   "text_version": "preprint",
+   "work_id": "W3086967467"
+  },
+  {
+   "doi": "10.1101/2020.04.02.20051417",
+   "field": "value",
+   "item": "excitement",
+   "text": "These results highlight the need for large-scale community surveillance for SARS-CoV-2 and the power of pathogen genomics to inform epidemiological understanding.",
+   "text_version": "preprint",
+   "work_id": "W3086967467"
+  },
+  {
+   "doi": "10.1101/2020.04.02.20051417",
+   "field": "value",
+   "item": "excitement",
+   "text": "we underscore the following recommendations in settings where large-scale community transmission is not yet recognized",
+   "text_version": "preprint",
+   "work_id": "W3086967467"
+  },
+  {
+   "doi": "10.1101/2020.04.02.20051417",
+   "field": "value",
+   "item": "excitement",
+   "text": "the critical need for widespread surveillance for community transmission of SARS-CoV-2 throughout the United States and the rest of the world",
+   "text_version": "preprint",
+   "work_id": "W3086967467"
+  },
+  {
+   "doi": "10.1101/2020.04.02.20051417",
+   "field": "value",
+   "item": "excitement",
+   "text": "We see the combination of community surveillance, genomic analysis and public real-time sharing of results as empowering new systems for infectious disease surveillance.",
+   "text_version": "preprint",
+   "work_id": "W3086967467"
+  },
+  {
+   "doi": "10.1101/2020.04.02.20051417",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "These results highlight the need for large-scale community surveillance for SARS-CoV-2 and the power of pathogen genomics to inform epidemiological understanding.",
+   "text_version": "preprint",
+   "work_id": "W3086967467"
+  },
+  {
+   "doi": "10.1101/2020.04.02.20051417",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "The fact that only a small proportion of infections in China have been sequenced makes it difficult to test these two hypotheses.",
+   "text_version": "preprint",
+   "work_id": "W3086967467"
+  },
+  {
+   "doi": "10.1101/2020.04.02.20051417",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "it is impossible to confidently determine whether the common ancestor of the outbreak clade is in Washington State",
+   "text_version": "preprint",
+   "work_id": "W3086967467"
+  },
+  {
+   "doi": "10.1101/2020.04.02.20051417",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "This model assumes a constant transmission rate; mitigation measures enacted during early March may have decreased transmission rate.",
+   "text_version": "preprint",
+   "work_id": "W3086967467"
+  },
+  {
+   "doi": "10.1101/2020.04.02.20051417",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "Refining the time and geographic origin of the introduction into Washington State will require a combination of earlier samples and samples from other geographic locations",
+   "text_version": "preprint",
+   "work_id": "W3086967467"
+  },
+  {
+   "doi": "10.1101/2020.04.02.20051417",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "Genome sequencing of SARS-CoV-2 strains allows for the reconstruction of transmission history connecting these infections.",
+   "text_version": "preprint",
+   "work_id": "W3086967467"
+  },
+  {
+   "doi": "10.1101/2020.04.02.20051417",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "SARS-CoV-2 was circulating cryptically, ie undetected by the surveillance apparatus",
+   "text_version": "preprint",
+   "work_id": "W3086967467"
+  },
+  {
+   "doi": "10.1101/2020.04.02.20051417",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "uses the degree and pattern of genetic diversity of sampled genomes to estimate the date of a common ancestor",
+   "text_version": "preprint",
+   "work_id": "W3086967467"
+  },
+  {
+   "doi": "10.1101/2020.04.02.20051417",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "is consistent with",
+   "text_version": "preprint",
+   "work_id": "W3086967467"
+  },
+  {
+   "doi": "10.1101/2020.04.02.20051417",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "We additionally",
+   "text_version": "preprint",
+   "work_id": "W3086967467"
+  },
+  {
+   "doi": "10.1101/2020.04.02.20051417",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "putative",
+   "text_version": "preprint",
+   "work_id": "W3086967467"
+  },
+  {
+   "doi": "10.1101/2020.04.02.20051417",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "an extremely rough probability calculation",
+   "text_version": "preprint",
+   "work_id": "W3086967467"
+  },
+  {
+   "doi": "10.64898/2026.04.07.717039",
+   "field": "quote",
+   "item": "gap_sentence",
+   "text": "Despite a decade of deep learning in this field[CIT], nearly all major efforts lack an evolutionary dimension (with some important exceptions[CIT]).",
+   "text_version": "preprint",
+   "work_id": "W7151234819"
+  },
+  {
+   "doi": "10.64898/2026.04.07.717039",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "However, whether such models can be meaningfully applied beyond these curated regions has received comparatively little attention.",
+   "text_version": "preprint",
+   "work_id": "W7151234819"
+  },
+  {
+   "doi": "10.64898/2026.04.07.717039",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "To summarize, the evolution-aware model substantially mitigates the failure modes of its predecessors.",
+   "text_version": "preprint",
+   "work_id": "W7151234819"
+  },
+  {
+   "doi": "10.64898/2026.04.07.717039",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "Regardless of the cause(s) (e.g. subtle differences in genome composition; genuine evolutionary divergence), this miscalibration challenges our goal of cross-species inference.",
+   "text_version": "preprint",
+   "work_id": "W7151234819"
+  },
+  {
+   "doi": "10.64898/2026.04.07.717039",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "To overcome this, we sought to leverage the functional coherence of syntenic enhancers in a deeper way.",
+   "text_version": "preprint",
+   "work_id": "W7151234819"
+  },
+  {
+   "doi": "10.64898/2026.04.07.717039",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "Next, we sought to extract cis-regulatory sequence-to-function rules with a recently developed computational package, TF-MINDI[CIT].",
+   "text_version": "preprint",
+   "work_id": "W7151234819"
+  },
+  {
+   "doi": "10.64898/2026.04.07.717039",
+   "field": "value",
+   "item": "excitement",
+   "text": "This increased the effective data scale by as much as 195-fold, markedly improving generalization across mammals despite greater label noise.",
+   "text_version": "preprint",
+   "work_id": "W7151234819"
+  },
+  {
+   "doi": "10.64898/2026.04.07.717039",
+   "field": "value",
+   "item": "excitement",
+   "text": "Surprisingly, no analogous principle has risen to the forefront of regulatory genomics.",
+   "text_version": "preprint",
+   "work_id": "W7151234819"
+  },
+  {
+   "doi": "10.64898/2026.04.07.717039",
+   "field": "value",
+   "item": "excitement",
+   "text": "The results were striking.",
+   "text_version": "preprint",
+   "work_id": "W7151234819"
+  },
+  {
+   "doi": "10.64898/2026.04.07.717039",
+   "field": "value",
+   "item": "excitement",
+   "text": "Importantly, the substantial improvements in the consistency of cross-species inference with STEAM-v1 are not limited to the Afp locus",
+   "text_version": "preprint",
+   "work_id": "W7151234819"
+  },
+  {
+   "doi": "10.64898/2026.04.07.717039",
+   "field": "value",
+   "item": "excitement",
+   "text": "Beyond variant interpretation, the BabaGanoush catalog itself constitutes a model-driven resource of unprecedented scale",
+   "text_version": "preprint",
+   "work_id": "W7151234819"
+  },
+  {
+   "doi": "10.64898/2026.04.07.717039",
+   "field": "value",
+   "item": "excitement",
+   "text": "Our results suggest a renewed and modernized framing of the role of model organisms in the study of human biology.",
+   "text_version": "preprint",
+   "work_id": "W7151234819"
+  },
+  {
+   "doi": "10.64898/2026.04.07.717039",
+   "field": "hedge_quote",
+   "item": "strongest_claim",
+   "text": "supports the view that",
+   "text_version": "preprint",
+   "work_id": "W7151234819"
+  },
+  {
+   "doi": "10.64898/2026.04.07.717039",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "First, the evolutionary coherence filter used to curate training data relies on predictions from the evolution-naive model itself, raising the risk of circularity.",
+   "text_version": "preprint",
+   "work_id": "W7151234819"
+  },
+  {
+   "doi": "10.64898/2026.04.07.717039",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "However, a more rigorous evaluation would involve cross-validation across both chromosomes and clades.",
+   "text_version": "preprint",
+   "work_id": "W7151234819"
+  },
+  {
+   "doi": "10.64898/2026.04.07.717039",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "Matched atlases in a handful of phylogenetically strategic additional species would likely yield substantial improvements.",
+   "text_version": "preprint",
+   "work_id": "W7151234819"
+  },
+  {
+   "doi": "10.64898/2026.04.07.717039",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "a model trained to identify bicycles based on 20,000 low-resolution images taken will outperform a model trained on 100 high-resolution images",
+   "text_version": "preprint",
+   "work_id": "W7151234819"
+  },
+  {
+   "doi": "10.64898/2026.04.07.717039",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Of note,",
+   "text_version": "preprint",
+   "work_id": "W7151234819"
+  },
+  {
+   "doi": "10.64898/2026.04.07.717039",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Reassuringly,",
+   "text_version": "preprint",
+   "work_id": "W7151234819"
+  },
+  {
+   "doi": "10.64898/2026.04.07.717039",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "To summarize,",
+   "text_version": "preprint",
+   "work_id": "W7151234819"
+  },
+  {
+   "doi": "10.64898/2026.04.07.717039",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "We emphasize that",
+   "text_version": "preprint",
+   "work_id": "W7151234819"
+  },
+  {
+   "doi": "10.64898/2026.04.07.717039",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "analogous to",
+   "text_version": "preprint",
+   "work_id": "W7151234819"
+  },
+  {
+   "doi": "10.1038/s41556-026-01937-5",
+   "field": "quote",
+   "item": "gap_sentence",
+   "text": "Yet, few studies have characterized the proteome in early mammalian developmental contexts, and, to our knowledge, none in human post-implantation embryos or gastruloids[CIT].",
+   "text_version": "published",
+   "work_id": "W7155502675"
+  },
+  {
+   "doi": "10.1038/s41556-026-01937-5",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "To identify proteins with similar temporal dynamics, we merged the human and mouse proteomic datasets by orthology and subjected them to hierarchical clustering (Fig. 2a).",
+   "text_version": "published",
+   "work_id": "W7155502675"
+  },
+  {
+   "doi": "10.1038/s41556-026-01937-5",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "With experimentally matched bulk RNA-seq data, we assessed the extent to which transcript abundances were predictive of protein levels in developing gastruloids.",
+   "text_version": "published",
+   "work_id": "W7155502675"
+  },
+  {
+   "doi": "10.1038/s41556-026-01937-5",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "Developmental programs are largely driven by signalling pathways that are regulated via phosphorylation[CIT].",
+   "text_version": "published",
+   "work_id": "W7155502675"
+  },
+  {
+   "doi": "10.1038/s41556-026-01937-5",
+   "field": "value",
+   "item": "excitement",
+   "text": "Altogether, our work showcases the potential of applying proteomics to embryo models to advance our understanding of mammalian development in ways challenging through transcriptomics alone.",
+   "text_version": "published",
+   "work_id": "W7155502675"
+  },
+  {
+   "doi": "10.1038/s41556-026-01937-5",
+   "field": "value",
+   "item": "excitement",
+   "text": "Yet, few studies have characterized the proteome in early mammalian developmental contexts, and, to our knowledge, none in human post-implantation embryos or gastruloids[CIT].",
+   "text_version": "published",
+   "work_id": "W7155502675"
+  },
+  {
+   "doi": "10.1038/s41556-026-01937-5",
+   "field": "value",
+   "item": "excitement",
+   "text": "Altogether, our work lays the groundwork for bridging transcriptomic and proteomic views of early mammalian development.",
+   "text_version": "published",
+   "work_id": "W7155502675"
+  },
+  {
+   "doi": "10.1038/s41556-026-01937-5",
+   "field": "value",
+   "item": "excitement",
+   "text": "Intriguingly, we observed highly consistent levels of downregulation of mitochondrial proteins",
+   "text_version": "published",
+   "work_id": "W7155502675"
+  },
+  {
+   "doi": "10.1038/s41556-026-01937-5",
+   "field": "value",
+   "item": "excitement",
+   "text": "Using phosphoproteomics, we have identified MAPKAPK2 as a regulator of human gastruloid development, a role not previously characterized outside of cancer and stress response contexts.",
+   "text_version": "published",
+   "work_id": "W7155502675"
+  },
+  {
+   "doi": "10.1038/s41556-026-01937-5",
+   "field": "value",
+   "item": "excitement",
+   "text": "More broadly, this study offers scalable, protein-focused approaches extending beyond nucleic acid-centric assays to phenotype gastruloids and other embryo models[CIT].",
+   "text_version": "published",
+   "work_id": "W7155502675"
+  },
+  {
+   "doi": "10.1038/s41556-026-01937-5",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "Altogether, our work showcases the potential of applying proteomics to embryo models to advance our understanding of mammalian development in ways challenging through transcriptomics alone.",
+   "text_version": "published",
+   "work_id": "W7155502675"
+  },
+  {
+   "doi": "10.1038/s41556-026-01937-5",
+   "field": "hedge_quote",
+   "item": "strongest_claim",
+   "text": "showcases the potential",
+   "text_version": "published",
+   "work_id": "W7155502675"
+  },
+  {
+   "doi": "10.1038/s41556-026-01937-5",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "First, finer temporal sampling would enhance the resolution of the developmental dynamics.",
+   "text_version": "published",
+   "work_id": "W7155502675"
+  },
+  {
+   "doi": "10.1038/s41556-026-01937-5",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "Third, bulk measurements lack cell-type resolution, which might benefit from characterization with fluorescence activated cell sorting[CIT] or single-cell proteomics.",
+   "text_version": "published",
+   "work_id": "W7155502675"
+  },
+  {
+   "doi": "10.1038/s41556-026-01937-5",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "Fourth, although co-regulatory protein networks provide strong starting points for inferring gene function in development, they are correlative.",
+   "text_version": "published",
+   "work_id": "W7155502675"
+  },
+  {
+   "doi": "10.1038/s41556-026-01937-5",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "However, RNA is only the messenger.",
+   "text_version": "published",
+   "work_id": "W7155502675"
+  },
+  {
+   "doi": "10.1038/s41556-026-01937-5",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "It is proteins that are the workhorses of the cell",
+   "text_version": "published",
+   "work_id": "W7155502675"
+  },
+  {
+   "doi": "10.1038/s41556-026-01937-5",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Anecdotally,",
+   "text_version": "published",
+   "work_id": "W7155502675"
+  },
+  {
+   "doi": "10.1038/s41556-026-01937-5",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "We reasoned that",
+   "text_version": "published",
+   "work_id": "W7155502675"
+  },
+  {
+   "doi": "10.1038/s41556-026-01937-5",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "tended to",
+   "text_version": "published",
+   "work_id": "W7155502675"
+  },
+  {
+   "doi": "10.1038/s41556-026-01937-5",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Notably,",
+   "text_version": "published",
+   "work_id": "W7155502675"
+  },
+  {
+   "doi": "10.1038/s41556-026-01937-5",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Altogether,",
+   "text_version": "published",
+   "work_id": "W7155502675"
+  }
+ ],
+ "schema": 1,
+ "stability": {
+  "abstract_moves": {
+   "agreement": 0.898,
+   "pairs": 23,
+   "stable": true
+  },
+  "discussion_moves": {
+   "agreement": 0.747,
+   "pairs": 23,
+   "stable": true
+  },
+  "essay_argument": {
+   "agreement": 1.0,
+   "pairs": 1,
+   "stable": true
+  },
+  "excitement": {
+   "agreement": 0.65,
+   "pairs": 23,
+   "stable": false
+  },
+  "figure_reference": {
+   "agreement": 1.0,
+   "pairs": 23,
+   "stable": true
+  },
+  "gap_sentence": {
+   "agreement": 0.957,
+   "pairs": 23,
+   "stable": true
+  },
+  "here_we": {
+   "agreement": 1.0,
+   "pairs": 23,
+   "stable": true
+  },
+  "intro_roles": {
+   "agreement": 0.887,
+   "pairs": 23,
+   "stable": true
+  },
+  "limitations": {
+   "agreement": 0.783,
+   "pairs": 23,
+   "stable": true
+  },
+  "results_headings": {
+   "agreement": 1.0,
+   "pairs": 21,
+   "stable": true
+  },
+  "results_openings": {
+   "agreement": 0.94,
+   "pairs": 21,
+   "stable": true
+  },
+  "strongest_claim": {
+   "agreement": 0.957,
+   "pairs": 23,
+   "stable": true
+  },
+  "title_form": {
+   "agreement": 0.957,
+   "pairs": 23,
+   "stable": true
+  }
+ },
+ "surface": {
+  "citations_per_sentence": 0.38,
+  "connectives_per_1000": [
+   [
+    "although",
+    1.23
+   ],
+   [
+    "however",
+    1.17
+   ],
+   [
+    "first",
+    1.12
+   ],
+   [
+    "here",
+    0.65
+   ],
+   [
+    "second",
+    0.65
+   ],
+   [
+    "thus",
+    0.52
+   ],
+   [
+    "finally",
+    0.49
+   ],
+   [
+    "because",
+    0.47
+   ],
+   [
+    "furthermore",
+    0.41
+   ],
+   [
+    "whereas",
+    0.34
+   ],
+   [
+    "together",
+    0.31
+   ],
+   [
+    "therefore",
+    0.29
+   ],
+   [
+    "indeed",
+    0.22
+   ],
+   [
+    "moreover",
+    0.18
+   ],
+   [
+    "notably",
+    0.16
+   ],
+   [
+    "instead",
+    0.11
+   ],
+   [
+    "interestingly",
+    0.07
+   ],
+   [
+    "surprisingly",
+    0.07
+   ],
+   [
+    "consequently",
+    0.05
+   ],
+   [
+    "remarkably",
+    0.05
+   ],
+   [
+    "importantly",
+    0.02
+   ],
+   [
+    "nevertheless",
+    0.02
+   ]
+  ],
+  "figure_refs_per_paragraph": 1.298,
+  "first_person_share": 0.324,
+  "hedge_words": [
+   [
+    "may",
+    129
+   ],
+   [
+    "likely",
+    54
+   ],
+   [
+    "consistent",
+    46
+   ],
+   [
+    "could",
+    44
+   ],
+   [
+    "might",
+    32
+   ],
+   [
+    "possible",
+    30
+   ],
+   [
+    "potentially",
+    18
+   ],
+   [
+    "suggests",
+    18
+   ],
+   [
+    "possibly",
+    15
+   ],
+   [
+    "putative",
+    14
+   ],
+   [
+    "appear",
+    13
+   ],
+   [
+    "suggest",
+    12
+   ],
+   [
+    "suggested",
+    10
+   ],
+   [
+    "appears",
+    9
+   ],
+   [
+    "seems",
+    6
+   ],
+   [
+    "unlikely",
+    5
+   ],
+   [
+    "perhaps",
+    4
+   ],
+   [
+    "probably",
+    4
+   ],
+   [
+    "appeared",
+    3
+   ],
+   [
+    "indicate",
+    3
+   ],
+   [
+    "presumably",
+    3
+   ],
+   [
+    "seem",
+    1
+   ]
+  ],
+  "hedges_per_1000": 8.52,
+  "n_paragraphs": 403,
+  "n_sentences": 2067,
+  "n_words": 55484,
+  "numbers_per_sentence": 0.958,
+  "opener_pairs": [
+   [
+    "for example",
+    42
+   ],
+   [
+    "here we",
+    18
+   ],
+   [
+    "finally we",
+    15
+   ],
+   [
+    "it is",
+    15
+   ],
+   [
+    "we then",
+    14
+   ],
+   [
+    "in the",
+    13
+   ],
+   [
+    "we also",
+    13
+   ],
+   [
+    "although the",
+    12
+   ],
+   [
+    "this is",
+    12
+   ],
+   [
+    "in a",
+    11
+   ]
+  ],
+  "openers": [
+   [
+    "we",
+    221
+   ],
+   [
+    "the",
+    160
+   ],
+   [
+    "in",
+    119
+   ],
+   [
+    "for",
+    95
+   ],
+   [
+    "this",
+    69
+   ],
+   [
+    "to",
+    65
+   ],
+   [
+    "however",
+    56
+   ],
+   [
+    "a",
+    54
+   ],
+   [
+    "as",
+    47
+   ],
+   [
+    "although",
+    40
+   ],
+   [
+    "these",
+    40
+   ],
+   [
+    "finally",
+    25
+   ],
+   [
+    "our",
+    24
+   ],
+   [
+    "of",
+    23
+   ],
+   [
+    "furthermore",
+    21
+   ]
+  ],
+  "paragraph_sentences": {
+   "mean": 5.13,
+   "median": 5.0,
+   "n": 403,
+   "p90": 8.0
+  },
+  "passive_share": 0.282,
+  "questions_per_100": 1.02,
+  "sentence_length": {
+   "mean": 26.84,
+   "median": 25.0,
+   "n": 2067,
+   "p90": 41.0
+  },
+  "sentence_length_by_kind": {
+   "abstract": {
+    "mean": 23.25,
+    "median": 23.0,
+    "n": 84,
+    "p90": 33.0
+   },
+   "discussion": {
+    "mean": 25.49,
+    "median": 24.0,
+    "n": 285,
+    "p90": 39.0
+   },
+   "intro": {
+    "mean": 27.34,
+    "median": 26.0,
+    "n": 337,
+    "p90": 42.0
+   },
+   "other": {
+    "mean": 27.12,
+    "median": 25.0,
+    "n": 642,
+    "p90": 42.0
+   },
+   "results": {
+    "mean": 27.32,
+    "median": 26.0,
+    "n": 719,
+    "p90": 42.0
+   }
+  }
+ },
+ "surface_papers": 12,
+ "text_versions": {
+  "accepted": 6,
+  "preprint": 2,
+  "published": 4
+ },
+ "unverified": {},
+ "years": {
+  "first": 2002,
+  "last": 2026
+ }
+}

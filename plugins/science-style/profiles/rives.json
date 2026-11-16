@@ -1,0 +1,3302 @@
+{
+ "by_cell": {
+  "first/other": 1,
+  "senior/high": 2,
+  "senior/other": 9
+ },
+ "by_group": {
+  "first": 1,
+  "senior": 11
+ },
+ "by_tier": {
+  "high": 2,
+  "other": 10
+ },
+ "checklist_version": 2,
+ "distinctive_note": "",
+ "distinctive_pairs": [
+  [
+   "language models",
+   11.11
+  ],
+  [
+   "the model",
+   8.55
+  ],
+  [
+   "of proteins",
+   7.32
+  ],
+  [
+   "the language",
+   7.2
+  ],
+  [
+   "of protein",
+   7.2
+  ],
+  [
+   "structure and",
+   6.69
+  ],
+  [
+   "secondary structure",
+   6.38
+  ],
+  [
+   "protein structure",
+   6.09
+  ],
+  [
+   "of sequences",
+   5.87
+  ],
+  [
+   "trained on",
+   5.73
+  ],
+  [
+   "a protein",
+   5.65
+  ],
+  [
+   "amino acid",
+   5.63
+  ],
+  [
+   "test set",
+   5.55
+  ],
+  [
+   "the structure",
+   5.21
+  ],
+  [
+   "the protein",
+   5.17
+  ],
+  [
+   "the sequence",
+   5.07
+  ],
+  [
+   "model to",
+   5.04
+  ],
+  [
+   "protein sequence",
+   5.04
+  ],
+  [
+   "information about",
+   4.71
+  ],
+  [
+   "is trained",
+   4.68
+  ]
+ ],
+ "distinctive_words": [
+  [
+   "language",
+   17.18
+  ],
+  [
+   "structure",
+   17.13
+  ],
+  [
+   "protein",
+   15.48
+  ],
+  [
+   "sequences",
+   13.41
+  ],
+  [
+   "models",
+   13.05
+  ],
+  [
+   "proteins",
+   13.01
+  ],
+  [
+   "structures",
+   11.99
+  ],
+  [
+   "sequence",
+   11.89
+  ],
+  [
+   "model",
+   11.12
+  ],
+  [
+   "transformer",
+   11.11
+  ],
+  [
+   "prediction",
+   10.52
+  ],
+  [
+   "design",
+   9.57
+  ],
+  [
+   "contact",
+   8.94
+  ],
+  [
+   "representations",
+   8.88
+  ],
+  [
+   "unsupervised",
+   8.69
+  ],
+  [
+   "amino",
+   8.68
+  ],
+  [
+   "contacts",
+   8.25
+  ],
+  [
+   "natural",
+   8.01
+  ],
+  [
+   "trained",
+   7.95
+  ],
+  [
+   "designs",
+   7.93
+  ],
+  [
+   "training",
+   7.78
+  ],
+  [
+   "attention",
+   7.3
+  ],
+  [
+   "state-of-the-art",
+   7.25
+  ],
+  [
+   "features",
+   7.25
+  ],
+  [
+   "generative",
+   7.25
+  ],
+  [
+   "modeling",
+   7.05
+  ],
+  [
+   "structural",
+   6.97
+  ],
+  [
+   "folding",
+   6.88
+  ],
+  [
+   "families",
+   6.83
+  ],
+  [
+   "appendix",
+   6.5
+  ]
+ ],
+ "items": {
+  "abstract_moves": {
+   "value": {
+    "all": {
+     "approach": 10,
+     "context": 11,
+     "gap": 8,
+     "implication": 4,
+     "result": 12
+    },
+    "by_group": {
+     "first": {
+      "approach": 1,
+      "context": 1,
+      "result": 1
+     },
+     "senior": {
+      "approach": 9,
+      "context": 10,
+      "gap": 8,
+      "implication": 4,
+      "result": 11
+     }
+    },
+    "by_tier": {
+     "high": {
+      "approach": 2,
+      "context": 2,
+      "gap": 1,
+      "implication": 1,
+      "result": 2
+     },
+     "other": {
+      "approach": 8,
+      "context": 9,
+      "gap": 7,
+      "implication": 3,
+      "result": 10
+     }
+    },
+    "first": {
+     "approach": 2,
+     "context": 10
+    },
+    "last": {
+     "implication": 4,
+     "result": 8
+    },
+    "n": 12,
+    "n_by_group": {
+     "first": 1,
+     "senior": 11
+    },
+    "n_by_tier": {
+     "high": 2,
+     "other": 10
+    }
+   }
+  },
+  "discussion_moves": {
+   "value": {
+    "all": {
+     "comparison with prior work": 4,
+     "future work": 7,
+     "implication": 12,
+     "limitation": 3,
+     "mechanism": 5,
+     "summary": 12
+    },
+    "by_group": {
+     "first": {
+      "future work": 1,
+      "implication": 1,
+      "limitation": 1,
+      "summary": 1
+     },
+     "senior": {
+      "comparison with prior work": 4,
+      "future work": 6,
+      "implication": 11,
+      "limitation": 2,
+      "mechanism": 5,
+      "summary": 11
+     }
+    },
+    "by_tier": {
+     "high": {
+      "future work": 1,
+      "implication": 2,
+      "mechanism": 2,
+      "summary": 2
+     },
+     "other": {
+      "comparison with prior work": 4,
+      "future work": 6,
+      "implication": 10,
+      "limitation": 3,
+      "mechanism": 3,
+      "summary": 10
+     }
+    },
+    "first": {
+     "comparison with prior work": 1,
+     "implication": 3,
+     "summary": 8
+    },
+    "last": {
+     "future work": 2,
+     "implication": 10
+    },
+    "n": 12,
+    "n_by_group": {
+     "first": 1,
+     "senior": 11
+    },
+    "n_by_tier": {
+     "high": 2,
+     "other": 10
+    }
+   }
+  },
+  "essay_argument": {
+   "call_to_action": {
+    "all": {},
+    "by_group": {},
+    "by_tier": {},
+    "n": 0,
+    "n_by_group": {},
+    "n_by_tier": {}
+   },
+   "thesis_location": {
+    "all": {},
+    "by_group": {},
+    "by_tier": {},
+    "n": 0,
+    "n_by_group": {},
+    "n_by_tier": {}
+   }
+  },
+  "excitement": {
+   "value.location": {
+    "all": {
+     "abstract": 12,
+     "discussion": 12,
+     "introduction": 7,
+     "results": 12
+    },
+    "by_group": {
+     "first": {
+      "abstract": 1,
+      "discussion": 1,
+      "results": 1
+     },
+     "senior": {
+      "abstract": 11,
+      "discussion": 11,
+      "introduction": 7,
+      "results": 11
+     }
+    },
+    "by_tier": {
+     "high": {
+      "abstract": 2,
+      "discussion": 2,
+      "introduction": 2,
+      "results": 2
+     },
+     "other": {
+      "abstract": 10,
+      "discussion": 10,
+      "introduction": 5,
+      "results": 10
+     }
+    },
+    "n": 12,
+    "n_by_group": {
+     "first": 1,
+     "senior": 11
+    },
+    "n_by_tier": {
+     "high": 2,
+     "other": 10
+    }
+   },
+   "value.marker": {
+    "all": {
+     "evaluative word": 10,
+     "first or novelty claim": 8,
+     "implication sentence": 12,
+     "scope claim": 10
+    },
+    "by_group": {
+     "first": {
+      "evaluative word": 1,
+      "implication sentence": 1,
+      "scope claim": 1
+     },
+     "senior": {
+      "evaluative word": 9,
+      "first or novelty claim": 8,
+      "implication sentence": 11,
+      "scope claim": 9
+     }
+    },
+    "by_tier": {
+     "high": {
+      "evaluative word": 2,
+      "first or novelty claim": 2,
+      "implication sentence": 2,
+      "scope claim": 2
+     },
+     "other": {
+      "evaluative word": 8,
+      "first or novelty claim": 6,
+      "implication sentence": 10,
+      "scope claim": 8
+     }
+    },
+    "n": 12,
+    "n_by_group": {
+     "first": 1,
+     "senior": 11
+    },
+    "n_by_tier": {
+     "high": 2,
+     "other": 10
+    }
+   }
+  },
+  "figure_reference": {
+   "value": {
+    "all": {
+     "mixed": 1,
+     "reference then result": 5,
+     "result then reference": 6
+    },
+    "by_group": {
+     "first": {
+      "reference then result": 1
+     },
+     "senior": {
+      "mixed": 1,
+      "reference then result": 4,
+      "result then reference": 6
+     }
+    },
+    "by_tier": {
+     "high": {
+      "result then reference": 2
+     },
+     "other": {
+      "mixed": 1,
+      "reference then result": 5,
+      "result then reference": 4
+     }
+    },
+    "n": 12,
+    "n_by_group": {
+     "first": 1,
+     "senior": 11
+    },
+    "n_by_tier": {
+     "high": 2,
+     "other": 10
+    }
+   }
+  },
+  "gap_sentence": {
+   "value": {
+    "all": {
+     "none": 1,
+     "present": 11
+    },
+    "by_group": {
+     "first": {
+      "present": 1
+     },
+     "senior": {
+      "none": 1,
+      "present": 10
+     }
+    },
+    "by_tier": {
+     "high": {
+      "present": 2
+     },
+     "other": {
+      "none": 1,
+      "present": 9
+     }
+    },
+    "n": 12,
+    "n_by_group": {
+     "first": 1,
+     "senior": 11
+    },
+    "n_by_tier": {
+     "high": 2,
+     "other": 10
+    }
+   }
+  },
+  "here_we": {
+   "value": {
+    "all": {
+     "present": 12
+    },
+    "by_group": {
+     "first": {
+      "present": 1
+     },
+     "senior": {
+      "present": 11
+     }
+    },
+    "by_tier": {
+     "high": {
+      "present": 2
+     },
+     "other": {
+      "present": 10
+     }
+    },
+    "n": 12,
+    "n_by_group": {
+     "first": 1,
+     "senior": 11
+    },
+    "n_by_tier": {
+     "high": 2,
+     "other": 10
+    }
+   }
+  },
+  "intro_roles": {
+   "value": {
+    "all": {
+     "approach preview": 7,
+     "field": 10,
+     "gap": 10,
+     "here-we": 12,
+     "other": 5,
+     "prior work": 11,
+     "problem": 7,
+     "result preview": 9
+    },
+    "by_group": {
+     "first": {
+      "approach preview": 1,
+      "field": 1,
+      "here-we": 1,
+      "prior work": 1,
+      "problem": 1
+     },
+     "senior": {
+      "approach preview": 6,
+      "field": 9,
+      "gap": 10,
+      "here-we": 11,
+      "other": 5,
+      "prior work": 10,
+      "problem": 6,
+      "result preview": 9
+     }
+    },
+    "by_tier": {
+     "high": {
+      "field": 2,
+      "gap": 2,
+      "here-we": 2,
+      "other": 1,
+      "prior work": 2,
+      "problem": 1,
+      "result preview": 2
+     },
+     "other": {
+      "approach preview": 7,
+      "field": 8,
+      "gap": 8,
+      "here-we": 10,
+      "other": 4,
+      "prior work": 9,
+      "problem": 6,
+      "result preview": 7
+     }
+    },
+    "first": {
+     "field": 9,
+     "gap": 2,
+     "prior work": 1
+    },
+    "last": {
+     "approach preview": 3,
+     "here-we": 1,
+     "other": 2,
+     "prior work": 2,
+     "problem": 1,
+     "result preview": 3
+    },
+    "n": 12,
+    "n_by_group": {
+     "first": 1,
+     "senior": 11
+    },
+    "n_by_tier": {
+     "high": 2,
+     "other": 10
+    }
+   }
+  },
+  "limitations": {
+   "placement": {
+    "all": {
+     "inline in discussion": 2,
+     "inline in methods": 1,
+     "inline in results": 9
+    },
+    "by_group": {
+     "first": {
+      "inline in results": 1
+     },
+     "senior": {
+      "inline in discussion": 2,
+      "inline in methods": 1,
+      "inline in results": 8
+     }
+    },
+    "by_tier": {
+     "high": {
+      "inline in results": 2
+     },
+     "other": {
+      "inline in discussion": 2,
+      "inline in methods": 1,
+      "inline in results": 7
+     }
+    },
+    "n": 12,
+    "n_by_group": {
+     "first": 1,
+     "senior": 11
+    },
+    "n_by_tier": {
+     "high": 2,
+     "other": 10
+    }
+   },
+   "specificity": {
+    "all": {
+     "specific": 7,
+     "specific with a remedy": 5
+    },
+    "by_group": {
+     "first": {
+      "specific with a remedy": 1
+     },
+     "senior": {
+      "specific": 7,
+      "specific with a remedy": 4
+     }
+    },
+    "by_tier": {
+     "high": {
+      "specific": 2
+     },
+     "other": {
+      "specific": 5,
+      "specific with a remedy": 5
+     }
+    },
+    "n": 12,
+    "n_by_group": {
+     "first": 1,
+     "senior": 11
+    },
+    "n_by_tier": {
+     "high": 2,
+     "other": 10
+    }
+   }
+  },
+  "results_headings": {
+   "value": {
+    "all": {
+     "full-sentence claim": 1,
+     "noun phrase": 11
+    },
+    "by_group": {
+     "first": {
+      "noun phrase": 1
+     },
+     "senior": {
+      "full-sentence claim": 1,
+      "noun phrase": 10
+     }
+    },
+    "by_tier": {
+     "high": {
+      "noun phrase": 2
+     },
+     "other": {
+      "full-sentence claim": 1,
+      "noun phrase": 9
+     }
+    },
+    "n": 12,
+    "n_by_group": {
+     "first": 1,
+     "senior": 11
+    },
+    "n_by_tier": {
+     "high": 2,
+     "other": 10
+    }
+   }
+  },
+  "results_openings": {
+   "value": {
+    "all": {
+     "aim": 11,
+     "method first": 7,
+     "result first": 8
+    },
+    "by_group": {
+     "first": {
+      "aim": 1,
+      "method first": 1,
+      "result first": 1
+     },
+     "senior": {
+      "aim": 10,
+      "method first": 6,
+      "result first": 7
+     }
+    },
+    "by_tier": {
+     "high": {
+      "aim": 2,
+      "method first": 1,
+      "result first": 1
+     },
+     "other": {
+      "aim": 9,
+      "method first": 6,
+      "result first": 7
+     }
+    },
+    "first": {
+     "aim": 4,
+     "method first": 7,
+     "result first": 1
+    },
+    "last": {
+     "aim": 5,
+     "method first": 2,
+     "result first": 5
+    },
+    "n": 12,
+    "n_by_group": {
+     "first": 1,
+     "senior": 11
+    },
+    "n_by_tier": {
+     "high": 2,
+     "other": 10
+    }
+   }
+  },
+  "strongest_claim": {
+   "value": {
+    "all": {
+     "hedged": 9,
+     "unhedged": 3
+    },
+    "by_group": {
+     "first": {
+      "hedged": 1
+     },
+     "senior": {
+      "hedged": 8,
+      "unhedged": 3
+     }
+    },
+    "by_tier": {
+     "high": {
+      "hedged": 1,
+      "unhedged": 1
+     },
+     "other": {
+      "hedged": 8,
+      "unhedged": 2
+     }
+    },
+    "n": 12,
+    "n_by_group": {
+     "first": 1,
+     "senior": 11
+    },
+    "n_by_tier": {
+     "high": 2,
+     "other": 10
+    }
+   }
+  },
+  "title_form": {
+   "value": {
+    "all": {
+     "claim": 6,
+     "method name": 3,
+     "topic": 3
+    },
+    "by_group": {
+     "first": {
+      "claim": 1
+     },
+     "senior": {
+      "claim": 5,
+      "method name": 3,
+      "topic": 3
+     }
+    },
+    "by_tier": {
+     "high": {
+      "claim": 1,
+      "topic": 1
+     },
+     "other": {
+      "claim": 5,
+      "method name": 3,
+      "topic": 2
+     }
+    },
+    "n": 12,
+    "n_by_group": {
+     "first": 1,
+     "senior": 11
+    },
+    "n_by_tier": {
+     "high": 2,
+     "other": 10
+    }
+   }
+  }
+ },
+ "left_out": [],
+ "n_fetched": 12,
+ "n_left_out": 0,
+ "n_papers": 12,
+ "name": "Alexander Rives",
+ "papers_used": [
+  "W2994961465",
+  "W3111174583",
+  "W3127980148",
+  "W3133458480",
+  "W3146944767",
+  "W3179485843",
+  "W4223581484",
+  "W4312197262",
+  "W4312198087",
+  "W4327550249",
+  "W4406440058",
+  "W7163532908"
+ ],
+ "person": "rives",
+ "quotes": [
+  {
+   "doi": "10.48550/arxiv.2004.13167",
+   "field": "quote",
+   "item": "gap_sentence",
+   "text": "To date, energy functions for protein design have incorporated extensive feature engineering, encoding knowledge of physical and biochemical principles [CIT].",
+   "text_version": "arxiv",
+   "work_id": "W2994961465"
+  },
+  {
+   "doi": "10.48550/arxiv.2004.13167",
+   "field": "quote",
+   "item": "here_we",
+   "text": "In this work, we investigate learning an energy function for protein conformations directly from protein crystal structure data.",
+   "text_version": "arxiv",
+   "work_id": "W2994961465"
+  },
+  {
+   "doi": "10.48550/arxiv.2004.13167",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "Results are also compared to Rosetta.",
+   "text_version": "arxiv",
+   "work_id": "W2994961465"
+  },
+  {
+   "doi": "10.48550/arxiv.2004.13167",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "Table 2 evaluates the performance of the energy function under alternative sampling strategies with the goal of optimizing recovery rates.",
+   "text_version": "arxiv",
+   "work_id": "W2994961465"
+  },
+  {
+   "doi": "10.48550/arxiv.2004.13167",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "In this section, we visualize and understand how the Atom Transformer models the energy of rotamers in their native contexts.",
+   "text_version": "arxiv",
+   "work_id": "W2994961465"
+  },
+  {
+   "doi": "10.48550/arxiv.2004.13167",
+   "field": "value",
+   "item": "excitement",
+   "text": "The model achieves performance close to that of the Rosetta energy function, a state-of-the-art method widely used in protein structure prediction and design.",
+   "text_version": "arxiv",
+   "work_id": "W2994961465"
+  },
+  {
+   "doi": "10.48550/arxiv.2004.13167",
+   "field": "value",
+   "item": "excitement",
+   "text": "This work takes an initial step toward fully learning an atomic-resolution energy function from data.",
+   "text_version": "arxiv",
+   "work_id": "W2994961465"
+  },
+  {
+   "doi": "10.48550/arxiv.2004.13167",
+   "field": "value",
+   "item": "excitement",
+   "text": "shows a clear clustering between representations of core residues and surface residues",
+   "text_version": "arxiv",
+   "work_id": "W2994961465"
+  },
+  {
+   "doi": "10.48550/arxiv.2004.13167",
+   "field": "value",
+   "item": "excitement",
+   "text": "The methods explored here have the potential for extension into these settings.",
+   "text_version": "arxiv",
+   "work_id": "W2994961465"
+  },
+  {
+   "doi": "10.48550/arxiv.2004.13167",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "is a possible direction for realizing this goal to enable design in the space of sequences not visited by evolution",
+   "text_version": "arxiv",
+   "work_id": "W2994961465"
+  },
+  {
+   "doi": "10.48550/arxiv.2004.13167",
+   "field": "hedge_quote",
+   "item": "strongest_claim",
+   "text": "is a possible direction",
+   "text_version": "arxiv",
+   "work_id": "W2994961465"
+  },
+  {
+   "doi": "10.48550/arxiv.2004.13167",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "a learned energy function nears the performance in this restricted domain",
+   "text_version": "arxiv",
+   "work_id": "W2994961465"
+  },
+  {
+   "doi": "10.48550/arxiv.2004.13167",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "combinatorial side chain optimization [CIT], and inverse-folding [CIT], is a direction for future work",
+   "text_version": "arxiv",
+   "work_id": "W2994961465"
+  },
+  {
+   "doi": "10.48550/arxiv.2004.13167",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "Buried residues are more constrained in their configurations by tight packing of the side chains within the core of the protein.",
+   "text_version": "arxiv",
+   "work_id": "W2994961465"
+  },
+  {
+   "doi": "10.48550/arxiv.2004.13167",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "We find that",
+   "text_version": "arxiv",
+   "work_id": "W2994961465"
+  },
+  {
+   "doi": "10.48550/arxiv.2004.13167",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "In this work",
+   "text_version": "arxiv",
+   "work_id": "W2994961465"
+  },
+  {
+   "doi": "10.48550/arxiv.2004.13167",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "In comparison",
+   "text_version": "arxiv",
+   "work_id": "W2994961465"
+  },
+  {
+   "doi": "10.1101/2020.12.15.422761",
+   "field": "quote",
+   "item": "gap_sentence",
+   "text": "Prior work benchmarking contact prediction with protein language models has focused on the supervised problem.",
+   "text_version": "preprint",
+   "work_id": "W3111174583"
+  },
+  {
+   "doi": "10.1101/2020.12.15.422761",
+   "field": "quote",
+   "item": "here_we",
+   "text": "We demonstrate that Transformer protein language models learn contacts in the self-attention maps with state-of-the-art performance.",
+   "text_version": "preprint",
+   "work_id": "W3111174583"
+  },
+  {
+   "doi": "10.1101/2020.12.15.422761",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "Transformer models are fundamentally single-sequence models, but we can further boost performance by ensembling predictions from multiple sequences in the alignment.",
+   "text_version": "preprint",
+   "work_id": "W3111174583"
+  },
+  {
+   "doi": "10.1101/2020.12.15.422761",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "In Section 5.1 we show that selecting only a sparse subset of the attention heads can yield good results for contact prediction.",
+   "text_version": "preprint",
+   "work_id": "W3111174583"
+  },
+  {
+   "doi": "10.1101/2020.12.15.422761",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "We investigate this possibility from several perspectives.",
+   "text_version": "preprint",
+   "work_id": "W3111174583"
+  },
+  {
+   "doi": "10.1101/2020.12.15.422761",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "Here, we consider whether generations from ESM-1b preserve contact information for a given protein.",
+   "text_version": "preprint",
+   "work_id": "W3111174583"
+  },
+  {
+   "doi": "10.1101/2020.12.15.422761",
+   "field": "value",
+   "item": "excitement",
+   "text": "suggesting these pipelines can be replaced with a single forward pass of an end-to-end model",
+   "text_version": "preprint",
+   "work_id": "W3111174583"
+  },
+  {
+   "doi": "10.1101/2020.12.15.422761",
+   "field": "value",
+   "item": "excitement",
+   "text": "This provides clear evidence that both model scale and hyperparameters play a significant role",
+   "text_version": "preprint",
+   "work_id": "W3111174583"
+  },
+  {
+   "doi": "10.1101/2020.12.15.422761",
+   "field": "value",
+   "item": "excitement",
+   "text": "These results have implications for protein structure determination and design.",
+   "text_version": "preprint",
+   "work_id": "W3111174583"
+  },
+  {
+   "doi": "10.1101/2020.12.15.422761",
+   "field": "value",
+   "item": "excitement",
+   "text": "For the first time, we show that protein language models can outperform state-of-the-art unsupervised structure learning methods",
+   "text_version": "preprint",
+   "work_id": "W3111174583"
+  },
+  {
+   "doi": "10.1101/2020.12.15.422761",
+   "field": "value",
+   "item": "excitement",
+   "text": "Evidence of scaling laws for protein language modeling support future promise as models and data continue to grow.",
+   "text_version": "preprint",
+   "work_id": "W3111174583"
+  },
+  {
+   "doi": "10.1101/2020.12.15.422761",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "these pipelines can be replaced with a single forward pass of an end-to-end model",
+   "text_version": "preprint",
+   "work_id": "W3111174583"
+  },
+  {
+   "doi": "10.1101/2020.12.15.422761",
+   "field": "hedge_quote",
+   "item": "strongest_claim",
+   "text": "suggesting",
+   "text_version": "preprint",
+   "work_id": "W3111174583"
+  },
+  {
+   "doi": "10.1101/2020.12.15.422761",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "the performance distribution over all sequences in the dataset is still mixed",
+   "text_version": "preprint",
+   "work_id": "W3111174583"
+  },
+  {
+   "doi": "10.1101/2020.12.15.422761",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "but only slightly outperforms Gremlin on long range contacts when Gremlin has access to Uniref100 and metagenomic sequences",
+   "text_version": "preprint",
+   "work_id": "W3111174583"
+  },
+  {
+   "doi": "10.1101/2020.12.15.422761",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "We find that with 1 protein, performance can vary significantly",
+   "text_version": "preprint",
+   "work_id": "W3111174583"
+  },
+  {
+   "doi": "10.1101/2020.12.15.422761",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "We find that",
+   "text_version": "preprint",
+   "work_id": "W3111174583"
+  },
+  {
+   "doi": "10.1101/2020.12.15.422761",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "suggesting that",
+   "text_version": "preprint",
+   "work_id": "W3111174583"
+  },
+  {
+   "doi": "10.1101/2020.12.15.422761",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "We also",
+   "text_version": "preprint",
+   "work_id": "W3111174583"
+  },
+  {
+   "doi": "10.1101/2021.04.08.439084",
+   "field": "quote",
+   "item": "gap_sentence",
+   "text": "Contact prediction performance depends on the depth of the MSA and is reduced when few related sequences are available to fit the model.",
+   "text_version": "preprint",
+   "work_id": "W3127980148"
+  },
+  {
+   "doi": "10.1101/2021.04.08.439084",
+   "field": "quote",
+   "item": "here_we",
+   "text": "In this work we consider fitting many models across many families simultaneously with parameter sharing across all the families.",
+   "text_version": "preprint",
+   "work_id": "W3127980148"
+  },
+  {
+   "doi": "10.1101/2021.04.08.439084",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "In Section 4.1 we present results on a small set of related protein domain families from Pfam",
+   "text_version": "preprint",
+   "work_id": "W3127980148"
+  },
+  {
+   "doi": "10.1101/2021.04.08.439084",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "We now perform an evaluation in the more realistic setting of the UniRef50 dataset [CIT].",
+   "text_version": "preprint",
+   "work_id": "W3127980148"
+  },
+  {
+   "doi": "10.1101/2021.04.08.439084",
+   "field": "value",
+   "item": "excitement",
+   "text": "confirmed on a database with broad coverage of protein sequences",
+   "text_version": "preprint",
+   "work_id": "W3127980148"
+  },
+  {
+   "doi": "10.1101/2021.04.08.439084",
+   "field": "value",
+   "item": "excitement",
+   "text": "In combination these results indicate a non-trivial generalization happens when NPM is trained on UniRef50.",
+   "text_version": "preprint",
+   "work_id": "W3127980148"
+  },
+  {
+   "doi": "10.1101/2021.04.08.439084",
+   "field": "value",
+   "item": "excitement",
+   "text": "The main contribution of this work is to directly incorporate information from a set of sequences related to the input in the learning objective.",
+   "text_version": "preprint",
+   "work_id": "W3127980148"
+  },
+  {
+   "doi": "10.1101/2021.04.08.439084",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "finds a gain from amortization for low-depth multiple sequence alignments",
+   "text_version": "preprint",
+   "work_id": "W3127980148"
+  },
+  {
+   "doi": "10.1101/2021.04.08.439084",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "Furthermore we see expected overfitting for smaller MSA depth: better training loss but worse contact precision.",
+   "text_version": "preprint",
+   "work_id": "W3127980148"
+  },
+  {
+   "doi": "10.1101/2021.04.08.439084",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "outperforming independent Potts models up to MSA depth 1000",
+   "text_version": "preprint",
+   "work_id": "W3127980148"
+  },
+  {
+   "doi": "10.1101/2021.04.08.439084",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "This means that the positions co-evolve: when the amino acid at one position varies, the assignment at the contacting site may vary with it.",
+   "text_version": "preprint",
+   "work_id": "W3127980148"
+  },
+  {
+   "doi": "10.1101/2021.04.08.439084",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "A multiple sequence alignment (MSA) summarizes evolutionary variation by collecting a group of diverse but evolutionarily related sequences.",
+   "text_version": "preprint",
+   "work_id": "W3127980148"
+  },
+  {
+   "doi": "10.1101/2021.04.08.439084",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "In this work we consider",
+   "text_version": "preprint",
+   "work_id": "W3127980148"
+  },
+  {
+   "doi": "10.1101/2021.04.08.439084",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Additionally,",
+   "text_version": "preprint",
+   "work_id": "W3127980148"
+  },
+  {
+   "doi": "10.1101/2021.04.08.439084",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Intuitively this is possible",
+   "text_version": "preprint",
+   "work_id": "W3127980148"
+  },
+  {
+   "doi": "10.1101/2021.02.12.430858",
+   "field": "quote",
+   "item": "gap_sentence",
+   "text": "Current protein language models take a single sequence as input for inference.",
+   "text_version": "preprint",
+   "work_id": "W3133458480"
+  },
+  {
+   "doi": "10.1101/2021.02.12.430858",
+   "field": "quote",
+   "item": "here_we",
+   "text": "In this work, we unify the two paradigms within a protein language model that takes sets of aligned sequences as input",
+   "text_version": "preprint",
+   "work_id": "W3133458480"
+  },
+  {
+   "doi": "10.1101/2021.02.12.430858",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "We evaluate the MSA Transformer as a component of a supervised structure prediction pipeline.",
+   "text_version": "preprint",
+   "work_id": "W3133458480"
+  },
+  {
+   "doi": "10.1101/2021.02.12.430858",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "To further evaluate the quality of representations generated by the MSA Transformer, we train a state-of-the-art down-stream head based on the Netsurf architecture [CIT].",
+   "text_version": "preprint",
+   "work_id": "W3133458480"
+  },
+  {
+   "doi": "10.1101/2021.02.12.430858",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "We perform an ablation study over seven model hyperparameters, using unsupervised contact prediction on the validation set for evaluation.",
+   "text_version": "preprint",
+   "work_id": "W3133458480"
+  },
+  {
+   "doi": "10.1101/2021.02.12.430858",
+   "field": "value",
+   "item": "excitement",
+   "text": "surpasses current state-of-the-art unsupervised structure learning methods by a wide margin",
+   "text_version": "preprint",
+   "work_id": "W3133458480"
+  },
+  {
+   "doi": "10.1101/2021.02.12.430858",
+   "field": "value",
+   "item": "excitement",
+   "text": "The model improves over state-of-the-art unsupervised contact prediction methods across all multiple sequence alignment depths, with an especially significant advantage for MSAs with lower depth.",
+   "text_version": "preprint",
+   "work_id": "W3133458480"
+  },
+  {
+   "doi": "10.1101/2021.02.12.430858",
+   "field": "value",
+   "item": "excitement",
+   "text": "The MSA Transformer significantly outperforms all baselines, increasing top-L long-range contact precision by a full 15 points over the previous state-of-the-art.",
+   "text_version": "preprint",
+   "work_id": "W3133458480"
+  },
+  {
+   "doi": "10.1101/2021.02.12.430858",
+   "field": "value",
+   "item": "excitement",
+   "text": "The model outperforms ESM-1b and Potts models across all MSA depths and has a significant advantage for lower depth MSAs.",
+   "text_version": "preprint",
+   "work_id": "W3133458480"
+  },
+  {
+   "doi": "10.1101/2021.02.12.430858",
+   "field": "value",
+   "item": "excitement",
+   "text": "The MSA Transformer produces a substantial improvement over co-evolutionary features for supervised contact prediction.",
+   "text_version": "preprint",
+   "work_id": "W3133458480"
+  },
+  {
+   "doi": "10.1101/2021.02.12.430858",
+   "field": "value",
+   "item": "excitement",
+   "text": "The improvements we observe for structure learning suggest the unsupervised language modeling approach here could also apply to these problems.",
+   "text_version": "preprint",
+   "work_id": "W3133458480"
+  },
+  {
+   "doi": "10.1101/2021.02.12.430858",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "The improvements we observe for structure learning suggest the unsupervised language modeling approach here could also apply to these problems.",
+   "text_version": "preprint",
+   "work_id": "W3133458480"
+  },
+  {
+   "doi": "10.1101/2021.02.12.430858",
+   "field": "hedge_quote",
+   "item": "strongest_claim",
+   "text": "could also apply to these problems",
+   "text_version": "preprint",
+   "work_id": "W3133458480"
+  },
+  {
+   "doi": "10.1101/2021.02.12.430858",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "large MSAs still do not easily fit in memory at training time",
+   "text_version": "preprint",
+   "work_id": "W3133458480"
+  },
+  {
+   "doi": "10.1101/2021.02.12.430858",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "the model’s performance can decrease when the input is much larger than that used during training",
+   "text_version": "preprint",
+   "work_id": "W3133458480"
+  },
+  {
+   "doi": "10.1101/2021.02.12.430858",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "limit the maximum sequence length to 1024",
+   "text_version": "preprint",
+   "work_id": "W3133458480"
+  },
+  {
+   "doi": "10.1101/2021.02.12.430858",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "evolution is not free to choose the identity of amino acids independently at sites that are in contact in the folded three-dimensional structure",
+   "text_version": "preprint",
+   "work_id": "W3133458480"
+  },
+  {
+   "doi": "10.1101/2021.02.12.430858",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "Per column entropy gives a measure of how variable a position is in the MSA.",
+   "text_version": "preprint",
+   "work_id": "W3133458480"
+  },
+  {
+   "doi": "10.1101/2021.02.12.430858",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "state-of-the-art",
+   "text_version": "preprint",
+   "work_id": "W3133458480"
+  },
+  {
+   "doi": "10.1101/2021.02.12.430858",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "by a wide margin",
+   "text_version": "preprint",
+   "work_id": "W3133458480"
+  },
+  {
+   "doi": "10.1101/2021.02.12.430858",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "We find",
+   "text_version": "preprint",
+   "work_id": "W3133458480"
+  },
+  {
+   "doi": "10.1101/2021.02.12.430858",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "fall short of",
+   "text_version": "preprint",
+   "work_id": "W3133458480"
+  },
+  {
+   "doi": "10.1101/2021.02.12.430858",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "significantly outperforms",
+   "text_version": "preprint",
+   "work_id": "W3133458480"
+  },
+  {
+   "doi": "10.1073/pnas.2016239118",
+   "field": "quote",
+   "item": "gap_sentence",
+   "text": "It is uncertain whether the models and objective functions effective for natural language transfer across differences between the domains.",
+   "text_version": "published",
+   "work_id": "W3146944767"
+  },
+  {
+   "doi": "10.1073/pnas.2016239118",
+   "field": "quote",
+   "item": "here_we",
+   "text": "We explore this question by training high-capacity Transformer language models on evolutionary data.",
+   "text_version": "published",
+   "work_id": "W3146944767"
+  },
+  {
+   "doi": "10.1073/pnas.2016239118",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "We use these models throughout to investigate properties of the representations and the information learned during pretraining.",
+   "text_version": "published",
+   "work_id": "W3146944767"
+  },
+  {
+   "doi": "10.1073/pnas.2016239118",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "We investigate the representation space of the network at multiple scales from biochemical to evolutionary homology to look for signatures of biological organization.",
+   "text_version": "published",
+   "work_id": "W3146944767"
+  },
+  {
+   "doi": "10.1073/pnas.2016239118",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "We begin by identifying information about protein structure that is linearly encoded within the representations.",
+   "text_version": "published",
+   "work_id": "W3146944767"
+  },
+  {
+   "doi": "10.1073/pnas.2016239118",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "Features discovered by unsupervised protein language modeling can be combined with state-of-the-art features to improve them further.",
+   "text_version": "published",
+   "work_id": "W3146944767"
+  },
+  {
+   "doi": "10.1073/pnas.2016239118",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "We adapt the Transformer protein language model to predict the quantitative effect of mutations.",
+   "text_version": "published",
+   "work_id": "W3146944767"
+  },
+  {
+   "doi": "10.1073/pnas.2016239118",
+   "field": "value",
+   "item": "excitement",
+   "text": "unprecedented data on natural sequence diversity",
+   "text_version": "published",
+   "work_id": "W3146944767"
+  },
+  {
+   "doi": "10.1073/pnas.2016239118",
+   "field": "value",
+   "item": "excitement",
+   "text": "generalize across a range of applications",
+   "text_version": "published",
+   "work_id": "W3146944767"
+  },
+  {
+   "doi": "10.1073/pnas.2016239118",
+   "field": "value",
+   "item": "excitement",
+   "text": "a marked shift between the distributions of aligned and unaligned pairs",
+   "text_version": "published",
+   "work_id": "W3146944767"
+  },
+  {
+   "doi": "10.1073/pnas.2016239118",
+   "field": "value",
+   "item": "excitement",
+   "text": "generalizes across families, superfamilies, and folds",
+   "text_version": "published",
+   "work_id": "W3146944767"
+  },
+  {
+   "doi": "10.1073/pnas.2016239118",
+   "field": "value",
+   "item": "excitement",
+   "text": "Combining high-capacity generative models with gene synthesis and high throughput characterization can enable generative biology.",
+   "text_version": "published",
+   "work_id": "W3146944767"
+  },
+  {
+   "doi": "10.1073/pnas.2016239118",
+   "field": "value",
+   "item": "excitement",
+   "text": "These findings imply potential for further model scale and data diversity, incorporating sequences from metagenomics.",
+   "text_version": "published",
+   "work_id": "W3146944767"
+  },
+  {
+   "doi": "10.1073/pnas.2016239118",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "a general purpose generative model that can condense the totality of sequence statistics",
+   "text_version": "published",
+   "work_id": "W3146944767"
+  },
+  {
+   "doi": "10.1073/pnas.2016239118",
+   "field": "hedge_quote",
+   "item": "strongest_claim",
+   "text": "point toward the possibility of",
+   "text_version": "published",
+   "work_id": "W3146944767"
+  },
+  {
+   "doi": "10.1073/pnas.2016239118",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "Underfitting is observed even for the largest models trained on 100% of UR50/S, suggesting potential for additional improvements with higher capacity models.",
+   "text_version": "published",
+   "work_id": "W3146944767"
+  },
+  {
+   "doi": "10.1073/pnas.2016239118",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "the best features from representation learning do not achieve comparable performance to the state-of-the-art RaptorX features",
+   "text_version": "published",
+   "work_id": "W3146944767"
+  },
+  {
+   "doi": "10.1073/pnas.2016239118",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "ECE describes the mean uncertainty of the model among its set of options for every prediction",
+   "text_version": "published",
+   "work_id": "W3146944767"
+  },
+  {
+   "doi": "10.1073/pnas.2016239118",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "Unlike supervised learning, which requires manual annotation of each datapoint, self-supervised methods use unlabeled datasets and therefore can exploit far larger amounts of data.",
+   "text_version": "published",
+   "work_id": "W3146944767"
+  },
+  {
+   "doi": "10.1073/pnas.2016239118",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "Each sequence is represented as a single point, and sequences assigned to similar representations by the network are mapped to nearby points.",
+   "text_version": "published",
+   "work_id": "W3146944767"
+  },
+  {
+   "doi": "10.1073/pnas.2016239118",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "meaning that intuitively, the model is choosing among ∼8.46 amino acids for each prediction",
+   "text_version": "published",
+   "work_id": "W3146944767"
+  },
+  {
+   "doi": "10.1073/pnas.2016239118",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "We find",
+   "text_version": "published",
+   "work_id": "W3146944767"
+  },
+  {
+   "doi": "10.1073/pnas.2016239118",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "We investigate whether",
+   "text_version": "published",
+   "work_id": "W3146944767"
+  },
+  {
+   "doi": "10.1073/pnas.2016239118",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "This suggests that",
+   "text_version": "published",
+   "work_id": "W3146944767"
+  },
+  {
+   "doi": "10.1101/2021.07.09.450648",
+   "field": "quote",
+   "item": "gap_sentence",
+   "text": "Work to date has mainly focused on transfer in the classical representation learning setting, using pre-trained features with supervision on the downstream task.",
+   "text_version": "preprint",
+   "work_id": "W3179485843"
+  },
+  {
+   "doi": "10.1101/2021.07.09.450648",
+   "field": "quote",
+   "item": "here_we",
+   "text": "In this work we show that language models trained on large and diverse protein sequence databases can predict experimental measurements of protein function",
+   "text_version": "preprint",
+   "work_id": "W3179485843"
+  },
+  {
+   "doi": "10.1101/2021.07.09.450648",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "ESM-1v and MSA Transformer models make state-of-the-art predictions.",
+   "text_version": "preprint",
+   "work_id": "W3179485843"
+  },
+  {
+   "doi": "10.1101/2021.07.09.450648",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "We examine how the sequences provided to MSA Transformer affect few-shot transfer.",
+   "text_version": "preprint",
+   "work_id": "W3179485843"
+  },
+  {
+   "doi": "10.1101/2021.07.09.450648",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "While ESM-1v performs well when evaluated in the zero-shot setting, we explore whether results can be improved by fine-tuning on the MSA.",
+   "text_version": "preprint",
+   "work_id": "W3179485843"
+  },
+  {
+   "doi": "10.1101/2021.07.09.450648",
+   "field": "value",
+   "item": "excitement",
+   "text": "performing at state-of-the-art",
+   "text_version": "preprint",
+   "work_id": "W3179485843"
+  },
+  {
+   "doi": "10.1101/2021.07.09.450648",
+   "field": "value",
+   "item": "excitement",
+   "text": "We introduce a new protein language model, ESM-1v",
+   "text_version": "preprint",
+   "work_id": "W3179485843"
+  },
+  {
+   "doi": "10.1101/2021.07.09.450648",
+   "field": "value",
+   "item": "excitement",
+   "text": "Language models perform zero-shot and few-shot prediction of mutational effects across a variety of proteins with widely differing functions.",
+   "text_version": "preprint",
+   "work_id": "W3179485843"
+  },
+  {
+   "doi": "10.1101/2021.07.09.450648",
+   "field": "value",
+   "item": "excitement",
+   "text": "These results establish a link between model performance and the data distribution, highlighting the importance of training data in the design of protein language models.",
+   "text_version": "preprint",
+   "work_id": "W3179485843"
+  },
+  {
+   "doi": "10.1101/2021.07.09.450648",
+   "field": "value",
+   "item": "excitement",
+   "text": "represents a major point of departure from the unsupervised learning methods",
+   "text_version": "preprint",
+   "work_id": "W3179485843"
+  },
+  {
+   "doi": "10.1101/2021.07.09.450648",
+   "field": "value",
+   "item": "excitement",
+   "text": "Generalization in the zero-shot setting suggests the potential for large language models to capture knowledge that can be transferred to generating new functional proteins.",
+   "text_version": "preprint",
+   "work_id": "W3179485843"
+  },
+  {
+   "doi": "10.1101/2021.07.09.450648",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "Generalization in the zero-shot setting suggests the potential for large language models to capture knowledge that can be transferred to generating new functional proteins.",
+   "text_version": "preprint",
+   "work_id": "W3179485843"
+  },
+  {
+   "doi": "10.1101/2021.07.09.450648",
+   "field": "hedge_quote",
+   "item": "strongest_claim",
+   "text": "suggests the potential for",
+   "text_version": "preprint",
+   "work_id": "W3179485843"
+  },
+  {
+   "doi": "10.1101/2021.07.09.450648",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "ESM-1v always predicts Methionine as the first position in the sequence since full protein sequences always start with it",
+   "text_version": "preprint",
+   "work_id": "W3179485843"
+  },
+  {
+   "doi": "10.1101/2021.07.09.450648",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "The two methods are not statistically distinguishable via a paired t-test.",
+   "text_version": "preprint",
+   "work_id": "W3179485843"
+  },
+  {
+   "doi": "10.1101/2021.07.09.450648",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "Similar to Brown et al. [CIT], the claim is not one of out-of-distribution generalization.",
+   "text_version": "preprint",
+   "work_id": "W3179485843"
+  },
+  {
+   "doi": "10.1101/2021.07.09.450648",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "Alterations at some sites in a protein sequence cannot be tolerated because they are essential to the protein’s function.",
+   "text_version": "preprint",
+   "work_id": "W3179485843"
+  },
+  {
+   "doi": "10.1101/2021.07.09.450648",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "This is because the properties of a protein act as constraints on the selection of sequences through evolution [CIT].",
+   "text_version": "preprint",
+   "work_id": "W3179485843"
+  },
+  {
+   "doi": "10.1101/2021.07.09.450648",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "Due to the cost and difficulty of implementing such experiments, compilations of deep mutational scanning data include experiments on a few dozens of proteins",
+   "text_version": "preprint",
+   "work_id": "W3179485843"
+  },
+  {
+   "doi": "10.1101/2021.07.09.450648",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "In this work we",
+   "text_version": "preprint",
+   "work_id": "W3179485843"
+  },
+  {
+   "doi": "10.1101/2021.07.09.450648",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "We examine",
+   "text_version": "preprint",
+   "work_id": "W3179485843"
+  },
+  {
+   "doi": "10.1101/2021.07.09.450648",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "to date",
+   "text_version": "preprint",
+   "work_id": "W3179485843"
+  },
+  {
+   "doi": "10.1101/2022.04.10.487779",
+   "field": "quote",
+   "item": "gap_sentence",
+   "text": "However, the relatively small number of experimentally determined protein structures places a limit on deep learning approaches.",
+   "text_version": "preprint",
+   "work_id": "W4223581484"
+  },
+  {
+   "doi": "10.1101/2022.04.10.487779",
+   "field": "quote",
+   "item": "here_we",
+   "text": "Here we explore whether predicted structures can be used to overcome the limitation of experimental data.",
+   "text_version": "preprint",
+   "work_id": "W4223581484"
+  },
+  {
+   "doi": "10.1101/2022.04.10.487779",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "We next show that inverse folding models are effective zero-shot predictors of mutational effects",
+   "text_version": "preprint",
+   "work_id": "W4223581484"
+  },
+  {
+   "doi": "10.1101/2022.04.10.487779",
+   "field": "value",
+   "item": "excitement",
+   "text": "The model generalizes to a variety of more complex tasks including design of protein complexes, partially masked structures, binding interfaces, and multiple states.",
+   "text_version": "preprint",
+   "work_id": "W4223581484"
+  },
+  {
+   "doi": "10.1101/2022.04.10.487779",
+   "field": "value",
+   "item": "excitement",
+   "text": "Although the training data only consists of single chains, we find that models generalize to multi-chain protein complexes.",
+   "text_version": "preprint",
+   "work_id": "W4223581484"
+  },
+  {
+   "doi": "10.1101/2022.04.10.487779",
+   "field": "value",
+   "item": "excitement",
+   "text": "there is a substantial improvement in perplexity of both models when given the full complex coordinates as input",
+   "text_version": "preprint",
+   "work_id": "W4223581484"
+  },
+  {
+   "doi": "10.1101/2022.04.10.487779",
+   "field": "value",
+   "item": "excitement",
+   "text": "finding ways to leverage more sources of training data is an equally important path to improved modeling capabilities",
+   "text_version": "preprint",
+   "work_id": "W4223581484"
+  },
+  {
+   "doi": "10.1101/2022.04.10.487779",
+   "field": "value",
+   "item": "excitement",
+   "text": "it may be possible to create models that learn to design proteins from an expanded universe of the billions of natural sequences",
+   "text_version": "preprint",
+   "work_id": "W4223581484"
+  },
+  {
+   "doi": "10.1101/2022.04.10.487779",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "it may be possible to create models that learn to design proteins from an expanded universe of the billions of natural sequences",
+   "text_version": "preprint",
+   "work_id": "W4223581484"
+  },
+  {
+   "doi": "10.1101/2022.04.10.487779",
+   "field": "hedge_quote",
+   "item": "strongest_claim",
+   "text": "If ways can be found to continue to leverage predicted structures for generative models of proteins",
+   "text_version": "preprint",
+   "work_id": "W4223581484"
+  },
+  {
+   "doi": "10.1101/2022.04.10.487779",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "low perplexity and high sequence recovery do not necessarily guarantee structural similarity",
+   "text_version": "preprint",
+   "work_id": "W4223581484"
+  },
+  {
+   "doi": "10.1101/2022.04.10.487779",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "It would be interesting to further identify more failure modes by studying the experimental or predicted structures of sampled sequences.",
+   "text_version": "preprint",
+   "work_id": "W4223581484"
+  },
+  {
+   "doi": "10.1101/2022.04.10.487779",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "indicating potential limitations of evaluating models only on single-point mutations",
+   "text_version": "preprint",
+   "work_id": "W4223581484"
+  },
+  {
+   "doi": "10.1101/2022.04.10.487779",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "This approach parallels back-translation [CIT] in machine translation, where predicted translations in one direction are used to improve a model in the opposite direction.",
+   "text_version": "preprint",
+   "work_id": "W4223581484"
+  },
+  {
+   "doi": "10.1101/2022.04.10.487779",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "many sequences that can fold to approximately the same structure, even an ideal protein design model will not have 100% native sequence recovery",
+   "text_version": "preprint",
+   "work_id": "W4223581484"
+  },
+  {
+   "doi": "10.1101/2022.04.10.487779",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "We observe that",
+   "text_version": "preprint",
+   "work_id": "W4223581484"
+  },
+  {
+   "doi": "10.1101/2022.04.10.487779",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "we find that",
+   "text_version": "preprint",
+   "work_id": "W4223581484"
+  },
+  {
+   "doi": "10.1101/2022.04.10.487779",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "indicating that",
+   "text_version": "preprint",
+   "work_id": "W4223581484"
+  },
+  {
+   "doi": "10.1101/2022.12.21.521521",
+   "field": "quote",
+   "item": "gap_sentence",
+   "text": "In biology, it is unknown whether language models can be used to explore a design space beyond that of natural proteins.",
+   "text_version": "preprint",
+   "work_id": "W4312197262"
+  },
+  {
+   "doi": "10.1101/2022.12.21.521521",
+   "field": "quote",
+   "item": "here_we",
+   "text": "Here we demonstrate that language models generalize beyond natural proteins to generate de novo proteins, different in sequence and structure from natural proteins.",
+   "text_version": "preprint",
+   "work_id": "W4312197262"
+  },
+  {
+   "doi": "10.1101/2022.12.21.521521",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "We perform extensive experimental testing of a total of 228 designs from the language model.",
+   "text_version": "preprint",
+   "work_id": "W4312197262"
+  },
+  {
+   "doi": "10.1101/2022.12.21.521521",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "Generated proteins show evidence of using deep patterns of the design of protein structure.",
+   "text_version": "preprint",
+   "work_id": "W4312197262"
+  },
+  {
+   "doi": "10.1101/2022.12.21.521521",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "Language models generate new protein sequences that differ significantly from natural sequences.",
+   "text_version": "preprint",
+   "work_id": "W4312197262"
+  },
+  {
+   "doi": "10.1101/2022.12.21.521521",
+   "field": "value",
+   "item": "excitement",
+   "text": "Remarkably although the models are trained only on sequences, we find that they are capable of designing structure.",
+   "text_version": "preprint",
+   "work_id": "W4312197262"
+  },
+  {
+   "doi": "10.1101/2022.12.21.521521",
+   "field": "value",
+   "item": "excitement",
+   "text": "For fixed backbone design, the language model generates successful designs for each of eight experimentally evaluated artificially created fixed backbone targets.",
+   "text_version": "preprint",
+   "work_id": "W4312197262"
+  },
+  {
+   "doi": "10.1101/2022.12.21.521521",
+   "field": "value",
+   "item": "excitement",
+   "text": "language models, though only trained on sequences, learn a deep grammar that enables the design of protein structure",
+   "text_version": "preprint",
+   "work_id": "W4312197262"
+  },
+  {
+   "doi": "10.1101/2022.12.21.521521",
+   "field": "value",
+   "item": "excitement",
+   "text": "Use of these motifs in fixed backbone designs is a remarkable form of generalization",
+   "text_version": "preprint",
+   "work_id": "W4312197262"
+  },
+  {
+   "doi": "10.1101/2022.12.21.521521",
+   "field": "value",
+   "item": "excitement",
+   "text": "Our results are the first time purely sequence based approaches have been shown to generalize beyond natural proteins",
+   "text_version": "preprint",
+   "work_id": "W4312197262"
+  },
+  {
+   "doi": "10.1101/2022.12.21.521521",
+   "field": "value",
+   "item": "excitement",
+   "text": "If scaling laws continue to hold for protein language models we can expect their generative ability will continue to improve.",
+   "text_version": "preprint",
+   "work_id": "W4312197262"
+  },
+  {
+   "doi": "10.1101/2022.12.21.521521",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "in the limit of infinite sequence data, these patterns might approximate the physical energy",
+   "text_version": "preprint",
+   "work_id": "W4312197262"
+  },
+  {
+   "doi": "10.1101/2022.12.21.521521",
+   "field": "hedge_quote",
+   "item": "strongest_claim",
+   "text": "speculatively",
+   "text_version": "preprint",
+   "work_id": "W4312197262"
+  },
+  {
+   "doi": "10.1101/2022.12.21.521521",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "While these hydrogen bonding networks can only be fully confirmed by high-resolution structural studies",
+   "text_version": "preprint",
+   "work_id": "W4312197262"
+  },
+  {
+   "doi": "10.1101/2022.12.21.521521",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "Target 6D0T has no monomeric designs from the language model, though the ground truth de novo sequence was also found to not be monomeric",
+   "text_version": "preprint",
+   "work_id": "W4312197262"
+  },
+  {
+   "doi": "10.1101/2022.12.21.521521",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "The generalization beyond natural proteins does not necessarily indicate that language models are learning a physical energy.",
+   "text_version": "preprint",
+   "work_id": "W4312197262"
+  },
+  {
+   "doi": "10.1101/2022.12.21.521521",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "Since amino acid sequences are the fundamental codes of proteins, learning to read and write these codes with a language model may have promise.",
+   "text_version": "preprint",
+   "work_id": "W4312197262"
+  },
+  {
+   "doi": "10.1101/2022.12.21.521521",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "These two amino acids add flexibility to and bend protein backbones, respectively.",
+   "text_version": "preprint",
+   "work_id": "W4312197262"
+  },
+  {
+   "doi": "10.1101/2022.12.21.521521",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "This suggests that",
+   "text_version": "preprint",
+   "work_id": "W4312197262"
+  },
+  {
+   "doi": "10.1101/2022.12.21.521521",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "further evidence that",
+   "text_version": "preprint",
+   "work_id": "W4312197262"
+  },
+  {
+   "doi": "10.1101/2022.12.21.521521",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Notably,",
+   "text_version": "preprint",
+   "work_id": "W4312197262"
+  },
+  {
+   "doi": "10.1101/2022.12.21.521526",
+   "field": "quote",
+   "item": "gap_sentence",
+   "text": "However, existing approaches have not been able to achieve the high combinatorial complexity that is necessary for true programmability.",
+   "text_version": "preprint",
+   "work_id": "W4312198087"
+  },
+  {
+   "doi": "10.1101/2022.12.21.521526",
+   "field": "quote",
+   "item": "here_we",
+   "text": "We show modern generative models realize these classical goals of modularity and programmability at a new level of combinatorial complexity.",
+   "text_version": "preprint",
+   "work_id": "W4312198087"
+  },
+  {
+   "doi": "10.1101/2022.12.21.521526",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "We next sought to increase the complexity of our designable space by varying the constraints enforced on different parts of a protein.",
+   "text_version": "preprint",
+   "work_id": "W4312198087"
+  },
+  {
+   "doi": "10.1101/2022.12.21.521526",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "Beyond proteins containing partial constraints, we next increase the complexity of our protein designs by generating structures that contain constraints over multiple subunits.",
+   "text_version": "preprint",
+   "work_id": "W4312198087"
+  },
+  {
+   "doi": "10.1101/2022.12.21.521526",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "Formalizing our constraints into a syntax tree naturally enables the specification of hierarchical constraints, which enables more complex protein designs.",
+   "text_version": "preprint",
+   "work_id": "W4312198087"
+  },
+  {
+   "doi": "10.1101/2022.12.21.521526",
+   "field": "value",
+   "item": "excitement",
+   "text": "We demonstrate how the modularity and programmability long sought for protein design can be realized through generative artificial intelligence.",
+   "text_version": "preprint",
+   "work_id": "W4312198087"
+  },
+  {
+   "doi": "10.1101/2022.12.21.521526",
+   "field": "value",
+   "item": "excitement",
+   "text": "Enumerating constraints at increasing levels of hierarchical complexity shows that the approach can access a combinatorially large design space.",
+   "text_version": "preprint",
+   "work_id": "W4312198087"
+  },
+  {
+   "doi": "10.1101/2022.12.21.521526",
+   "field": "value",
+   "item": "excitement",
+   "text": "We show modern generative models realize these classical goals of modularity and programmability at a new level of combinatorial complexity.",
+   "text_version": "preprint",
+   "work_id": "W4312198087"
+  },
+  {
+   "doi": "10.1101/2022.12.21.521526",
+   "field": "value",
+   "item": "excitement",
+   "text": "The ability to move natural functional sites onto designed backbones has many practical applications",
+   "text_version": "preprint",
+   "work_id": "W4312198087"
+  },
+  {
+   "doi": "10.1101/2022.12.21.521526",
+   "field": "value",
+   "item": "excitement",
+   "text": "the formalization offered by a high-level programming language enables logical design principles to be applied to protein design",
+   "text_version": "preprint",
+   "work_id": "W4312198087"
+  },
+  {
+   "doi": "10.1101/2022.12.21.521526",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "As protein design moves toward the engineering of more complex functions, we anticipate that such a system will become increasingly useful.",
+   "text_version": "preprint",
+   "work_id": "W4312198087"
+  },
+  {
+   "doi": "10.1101/2022.12.21.521526",
+   "field": "hedge_quote",
+   "item": "strongest_claim",
+   "text": "we anticipate",
+   "text_version": "preprint",
+   "work_id": "W4312198087"
+  },
+  {
+   "doi": "10.1101/2022.12.21.521526",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "Our computational results using two independent inverse folding methods suggest that the generated structures are designable",
+   "text_version": "preprint",
+   "work_id": "W4312198087"
+  },
+  {
+   "doi": "10.1101/2022.12.21.521526",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "We are also obtaining data to experimentally validate the designs.",
+   "text_version": "preprint",
+   "work_id": "W4312198087"
+  },
+  {
+   "doi": "10.1101/2022.12.21.521526",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "proteins cannot be decomposed into easily recombinable parts because the local structure of the sequence is entangled in its global context",
+   "text_version": "preprint",
+   "work_id": "W4312198087"
+  },
+  {
+   "doi": "10.1101/2022.12.21.521526",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "In this setting, the protein designer needs only to recombine high-level directives",
+   "text_version": "preprint",
+   "work_id": "W4312198087"
+  },
+  {
+   "doi": "10.1101/2022.12.21.521526",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "highly idealized, analogous to the regularity of artificially created machines and systems",
+   "text_version": "preprint",
+   "work_id": "W4312198087"
+  },
+  {
+   "doi": "10.1101/2022.12.21.521526",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "To increase our confidence that",
+   "text_version": "preprint",
+   "work_id": "W4312198087"
+  },
+  {
+   "doi": "10.1101/2022.12.21.521526",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "increase the complexity of our",
+   "text_version": "preprint",
+   "work_id": "W4312198087"
+  },
+  {
+   "doi": "10.1101/2022.12.21.521526",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "at a new level of combinatorial complexity",
+   "text_version": "preprint",
+   "work_id": "W4312198087"
+  },
+  {
+   "doi": "10.1101/2022.07.20.500902",
+   "field": "quote",
+   "item": "gap_sentence",
+   "text": "the vast scale of metagenomic proteins represents a far greater challenge for structural characterization",
+   "text_version": "preprint",
+   "work_id": "W4327550249"
+  },
+  {
+   "doi": "10.1101/2022.07.20.500902",
+   "field": "quote",
+   "item": "here_we",
+   "text": "We show that language models enable fast end-to-end atomic resolution structure prediction directly from sequence.",
+   "text_version": "preprint",
+   "work_id": "W4327550249"
+  },
+  {
+   "doi": "10.1101/2022.07.20.500902",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "These findings connect improvements in language modeling with the increases in low resolution (contact map) and high resolution (atomic level) structural information.",
+   "text_version": "preprint",
+   "work_id": "W4327550249"
+  },
+  {
+   "doi": "10.1101/2022.07.20.500902",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "Language models greatly accelerate state-of-the-art high resolution structure prediction.",
+   "text_version": "preprint",
+   "work_id": "W4327550249"
+  },
+  {
+   "doi": "10.1101/2022.07.20.500902",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "This fast and high resolution structure prediction capability enables the first full-scale structural characterization of a large metagenomic sequence resource.",
+   "text_version": "preprint",
+   "work_id": "W4327550249"
+  },
+  {
+   "doi": "10.1101/2022.07.20.500902",
+   "field": "value",
+   "item": "excitement",
+   "text": "This is the first large-scale structural characterization of metagenomic proteins, with more than 617 million structures.",
+   "text_version": "preprint",
+   "work_id": "W4327550249"
+  },
+  {
+   "doi": "10.1101/2022.07.20.500902",
+   "field": "value",
+   "item": "excitement",
+   "text": "giving an unprecedented view into the vast breadth and diversity of the structures of some of the least understood proteins on earth",
+   "text_version": "preprint",
+   "work_id": "W4327550249"
+  },
+  {
+   "doi": "10.1101/2022.07.20.500902",
+   "field": "value",
+   "item": "excitement",
+   "text": "We discover that atomic resolution structure prediction emerges and continues to improve in language models over the four orders of magnitude in parameter scale.",
+   "text_version": "preprint",
+   "work_id": "W4327550249"
+  },
+  {
+   "doi": "10.1101/2022.07.20.500902",
+   "field": "value",
+   "item": "excitement",
+   "text": "Language models greatly accelerate state-of-the-art high resolution structure prediction.",
+   "text_version": "preprint",
+   "work_id": "W4327550249"
+  },
+  {
+   "doi": "10.1101/2022.07.20.500902",
+   "field": "value",
+   "item": "excitement",
+   "text": "The ability to detect remote similarities in structure enables insight into function that cannot be obtained from the sequence.",
+   "text_version": "preprint",
+   "work_id": "W4327550249"
+  },
+  {
+   "doi": "10.1101/2022.07.20.500902",
+   "field": "value",
+   "item": "excitement",
+   "text": "is the first time a language model has been shown to capture a high resolution picture of structure",
+   "text_version": "preprint",
+   "work_id": "W4327550249"
+  },
+  {
+   "doi": "10.1101/2022.07.20.500902",
+   "field": "value",
+   "item": "excitement",
+   "text": "Obtaining hundreds of millions of predicted structures within practical timescales can help to reveal new insights into the breadth and diversity of natural proteins",
+   "text_version": "preprint",
+   "work_id": "W4327550249"
+  },
+  {
+   "doi": "10.1101/2022.07.20.500902",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "an era where it is possible to understand the structure of all proteins discovered in gene sequencing experiments",
+   "text_version": "preprint",
+   "work_id": "W4327550249"
+  },
+  {
+   "doi": "10.1101/2022.07.20.500902",
+   "field": "hedge_quote",
+   "item": "strongest_claim",
+   "text": "has the potential to accelerate progress",
+   "text_version": "preprint",
+   "work_id": "W4327550249"
+  },
+  {
+   "doi": "10.1101/2022.07.20.500902",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "Note that this is an artificial setting as AlphaFold2 has not been explicitly trained for single sequences",
+   "text_version": "preprint",
+   "work_id": "W4327550249"
+  },
+  {
+   "doi": "10.1101/2022.07.20.500902",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "The accuracy of the predicted contacts varies as a function of the number of evolutionarily related sequences in the training set.",
+   "text_version": "preprint",
+   "work_id": "W4327550249"
+  },
+  {
+   "doi": "10.1101/2022.07.20.500902",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "Intuitively, the perplexity describes the number of amino acids the model is choosing between for each prediction.",
+   "text_version": "preprint",
+   "work_id": "W4327550249"
+  },
+  {
+   "doi": "10.1101/2022.07.20.500902",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "This fidelity can be measured using perplexity, which ranges from 1 for a perfect model to 20 for a model that makes predictions at random.",
+   "text_version": "preprint",
+   "work_id": "W4327550249"
+  },
+  {
+   "doi": "10.1101/2022.07.20.500902",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "the biological properties of a protein act as constraints on the mutations to its sequence that are selected through evolution",
+   "text_version": "preprint",
+   "work_id": "W4327550249"
+  },
+  {
+   "doi": "10.1101/2022.07.20.500902",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "the confidence can be used to predict how likely it is that a given structure prediction will match the true structure",
+   "text_version": "preprint",
+   "work_id": "W4327550249"
+  },
+  {
+   "doi": "10.1101/2022.07.20.500902",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "We discover that",
+   "text_version": "preprint",
+   "work_id": "W4327550249"
+  },
+  {
+   "doi": "10.1101/2022.07.20.500902",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "indicating that",
+   "text_version": "preprint",
+   "work_id": "W4327550249"
+  },
+  {
+   "doi": "10.1101/2022.07.20.500902",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "This means",
+   "text_version": "preprint",
+   "work_id": "W4327550249"
+  },
+  {
+   "doi": "10.1101/2024.07.01.600583",
+   "field": "quote",
+   "item": "gap_sentence",
+   "text": "as far as we are aware, new GFPs this distant have only been found through their discovery in nature.",
+   "text_version": "preprint",
+   "work_id": "W4406440058"
+  },
+  {
+   "doi": "10.1101/2024.07.01.600583",
+   "field": "quote",
+   "item": "here_we",
+   "text": "We present ESM3, a frontier multimodal generative model that reasons over the sequences, structures, and functions of proteins.",
+   "text_version": "preprint",
+   "work_id": "W4406440058"
+  },
+  {
+   "doi": "10.1101/2024.07.01.600583",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "In the following sections we show that this approach achieves high fidelity for the controllable generation of proteins.",
+   "text_version": "preprint",
+   "work_id": "W4406440058"
+  },
+  {
+   "doi": "10.1101/2024.07.01.600583",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "We study how the base models can be aligned [CIT] to generate proteins that satisfy challenging prompts.",
+   "text_version": "preprint",
+   "work_id": "W4406440058"
+  },
+  {
+   "doi": "10.1101/2024.07.01.600583",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "We sought to understand if the base pretrained ESM3 model has sufficient biological fidelity to generate functional proteins.",
+   "text_version": "preprint",
+   "work_id": "W4406440058"
+  },
+  {
+   "doi": "10.1101/2024.07.01.600583",
+   "field": "value",
+   "item": "excitement",
+   "text": "can act as evolutionary simulators to generate functional proteins that are far away from known proteins",
+   "text_version": "preprint",
+   "work_id": "W4406440058"
+  },
+  {
+   "doi": "10.1101/2024.07.01.600583",
+   "field": "value",
+   "item": "excitement",
+   "text": "ESM3 can follow complex prompts combining its modalities and is highly responsive to biological alignment.",
+   "text_version": "preprint",
+   "work_id": "W4406440058"
+  },
+  {
+   "doi": "10.1101/2024.07.01.600583",
+   "field": "value",
+   "item": "excitement",
+   "text": "Similarly distant natural fluorescent proteins are separated by over five hundred million years of evolution.",
+   "text_version": "preprint",
+   "work_id": "W4406440058"
+  },
+  {
+   "doi": "10.1101/2024.07.01.600583",
+   "field": "value",
+   "item": "excitement",
+   "text": "finds creative solutions to complex combinations of prompts, including solutions for which we can find no matching structure in nature",
+   "text_version": "preprint",
+   "work_id": "W4406440058"
+  },
+  {
+   "doi": "10.1101/2024.07.01.600583",
+   "field": "value",
+   "item": "excitement",
+   "text": "as far as we are aware, new GFPs this distant have only been found through their discovery in nature.",
+   "text_version": "preprint",
+   "work_id": "W4406440058"
+  },
+  {
+   "doi": "10.1101/2024.07.01.600583",
+   "field": "value",
+   "item": "excitement",
+   "text": "the generation of a new fluorescent protein at this distance from existing proteins appears to be equivalent to simulating over 500 million years of evolution",
+   "text_version": "preprint",
+   "work_id": "W4406440058"
+  },
+  {
+   "doi": "10.1101/2024.07.01.600583",
+   "field": "value",
+   "item": "excitement",
+   "text": "This capability enables a rational approach to protein design",
+   "text_version": "preprint",
+   "work_id": "W4406440058"
+  },
+  {
+   "doi": "10.1101/2024.07.01.600583",
+   "field": "value",
+   "item": "excitement",
+   "text": "These results represent state-of-the-art motif scaffolding performance",
+   "text_version": "preprint",
+   "work_id": "W4406440058"
+  },
+  {
+   "doi": "10.1101/2024.07.01.600583",
+   "field": "value",
+   "item": "excitement",
+   "text": "a signal of function in a new portion of sequence space that to our knowledge has not been found in nature or through protein engineering",
+   "text_version": "preprint",
+   "work_id": "W4406440058"
+  },
+  {
+   "doi": "10.1101/2024.07.01.600583",
+   "field": "value",
+   "item": "excitement",
+   "text": "We have found that language models can reach a design space of proteins that is distant from the space explored by natural evolution",
+   "text_version": "preprint",
+   "work_id": "W4406440058"
+  },
+  {
+   "doi": "10.1101/2024.07.01.600583",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "language models trained on tokens generated by evolution can act as evolutionary simulators to generate functional proteins that are far away from known proteins",
+   "text_version": "preprint",
+   "work_id": "W4406440058"
+  },
+  {
+   "doi": "10.1101/2024.07.01.600583",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "Some mode switching is observed, including under keyword prompting, where a fraction of the generations have confidently predicted structures that do not recover the keywords.",
+   "text_version": "preprint",
+   "work_id": "W4406440058"
+  },
+  {
+   "doi": "10.1101/2024.07.01.600583",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "This design was 50x less bright than natural GFPs and its chromophore matured over the course of a week, instead of in under a day",
+   "text_version": "preprint",
+   "work_id": "W4406440058"
+  },
+  {
+   "doi": "10.1101/2024.07.01.600583",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "esmGFP takes longer to mature than the known GFPs that we measured, but achieves a comparable brightness after two days.",
+   "text_version": "preprint",
+   "work_id": "W4406440058"
+  },
+  {
+   "doi": "10.1101/2024.07.01.600583",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "nature creates random mutations and applies selection, filtering proteins by their myriad sequences, structures, and functions",
+   "text_version": "preprint",
+   "work_id": "W4406440058"
+  },
+  {
+   "doi": "10.1101/2024.07.01.600583",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "Simulations are computational representations of reality.",
+   "text_version": "preprint",
+   "work_id": "W4406440058"
+  },
+  {
+   "doi": "10.1101/2024.07.01.600583",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "This property allows the GFP sequence to be inserted into the genomes of other organisms to visibly label molecules, cellular structures, or processes",
+   "text_version": "preprint",
+   "work_id": "W4406440058"
+  },
+  {
+   "doi": "10.1101/2024.07.01.600583",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "Proteins can be seen as existing within an organized space where each protein is neighbored by every other that is one mutational event away [CIT].",
+   "text_version": "preprint",
+   "work_id": "W4406440058"
+  },
+  {
+   "doi": "10.1101/2024.07.01.600583",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "creative solutions to",
+   "text_version": "preprint",
+   "work_id": "W4406440058"
+  },
+  {
+   "doi": "10.1101/2024.07.01.600583",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "is highly responsive to",
+   "text_version": "preprint",
+   "work_id": "W4406440058"
+  },
+  {
+   "doi": "10.1101/2024.07.01.600583",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "We find that",
+   "text_version": "preprint",
+   "work_id": "W4406440058"
+  },
+  {
+   "doi": "10.1101/2024.07.01.600583",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "We observe that",
+   "text_version": "preprint",
+   "work_id": "W4406440058"
+  },
+  {
+   "doi": "10.1101/2024.07.01.600583",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "to our knowledge",
+   "text_version": "preprint",
+   "work_id": "W4406440058"
+  },
+  {
+   "doi": "10.64898/2026.06.03.729735",
+   "field": "quote",
+   "item": "here_we",
+   "text": "Here, building on unsupervised language modeling as a substrate for representing protein biology, we present a system for modeling protein sequence, structure, and function.",
+   "text_version": "preprint",
+   "work_id": "W7163532908"
+  },
+  {
+   "doi": "10.64898/2026.06.03.729735",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "These representations improve predictably with scale and form a basis that can be used to understand protein biology and design novel proteins.",
+   "text_version": "preprint",
+   "work_id": "W7163532908"
+  },
+  {
+   "doi": "10.64898/2026.06.03.729735",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "Using the representations of ESMC, we develop a model that obtains state-of-the-art predictions of the structures of individual protein chains and biomolecular complexes.",
+   "text_version": "preprint",
+   "work_id": "W7163532908"
+  },
+  {
+   "doi": "10.64898/2026.06.03.729735",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "Together, the language model and structure predictor specify a general model of protein interactions.",
+   "text_version": "preprint",
+   "work_id": "W7163532908"
+  },
+  {
+   "doi": "10.64898/2026.06.03.729735",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "we find evidence within the latent representation space for a reduction of protein biology into more fundamental principles across levels of biological complexity",
+   "text_version": "preprint",
+   "work_id": "W7163532908"
+  },
+  {
+   "doi": "10.64898/2026.06.03.729735",
+   "field": "quotes",
+   "item": "storyline",
+   "text": "Using ESMC we construct an atlas mapping the structure and function of 6.8 billion unique protein sequences",
+   "text_version": "preprint",
+   "work_id": "W7163532908"
+  },
+  {
+   "doi": "10.64898/2026.06.03.729735",
+   "field": "value",
+   "item": "excitement",
+   "text": "As a whole, this shows language modeling as a powerful substrate for representing the biology of proteins",
+   "text_version": "preprint",
+   "work_id": "W7163532908"
+  },
+  {
+   "doi": "10.64898/2026.06.03.729735",
+   "field": "value",
+   "item": "excitement",
+   "text": "we generate a comprehensive map of protein biology encompassing over 6.8 billion sequences and 1.1 billion predicted structures",
+   "text_version": "preprint",
+   "work_id": "W7163532908"
+  },
+  {
+   "doi": "10.64898/2026.06.03.729735",
+   "field": "value",
+   "item": "excitement",
+   "text": "the representation space recovers an organization that is intrinsic to the fundamental biology of proteins",
+   "text_version": "preprint",
+   "work_id": "W7163532908"
+  },
+  {
+   "doi": "10.64898/2026.06.03.729735",
+   "field": "value",
+   "item": "excitement",
+   "text": "ESMFold2 has learned a powerful and efficient model of protein structure and interactions.",
+   "text_version": "preprint",
+   "work_id": "W7163532908"
+  },
+  {
+   "doi": "10.64898/2026.06.03.729735",
+   "field": "value",
+   "item": "excitement",
+   "text": "This is achieved across targets and modalities using only the target sequence as input and without task-specific retraining",
+   "text_version": "preprint",
+   "work_id": "W7163532908"
+  },
+  {
+   "doi": "10.64898/2026.06.03.729735",
+   "field": "value",
+   "item": "excitement",
+   "text": "language modeling materializes a world model of protein biology within the model’s representation space",
+   "text_version": "preprint",
+   "work_id": "W7163532908"
+  },
+  {
+   "doi": "10.64898/2026.06.03.729735",
+   "field": "value",
+   "item": "excitement",
+   "text": "Accurate representations of proteins open up scientific questions to investigation at scales far beyond the physical limitations of laboratory science.",
+   "text_version": "preprint",
+   "work_id": "W7163532908"
+  },
+  {
+   "doi": "10.64898/2026.06.03.729735",
+   "field": "quote",
+   "item": "strongest_claim",
+   "text": "this shows language modeling as a powerful substrate for representing the biology of proteins",
+   "text_version": "preprint",
+   "work_id": "W7163532908"
+  },
+  {
+   "doi": "10.64898/2026.06.03.729735",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "others are clustered together for reasons that remain to be explored",
+   "text_version": "preprint",
+   "work_id": "W7163532908"
+  },
+  {
+   "doi": "10.64898/2026.06.03.729735",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "A large fraction of clusters in the atlas are not well understood",
+   "text_version": "preprint",
+   "work_id": "W7163532908"
+  },
+  {
+   "doi": "10.64898/2026.06.03.729735",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "within the experimental uncertainty of the 3.8 Å reconstruction",
+   "text_version": "preprint",
+   "work_id": "W7163532908"
+  },
+  {
+   "doi": "10.64898/2026.06.03.729735",
+   "field": "quotes",
+   "item": "limitations",
+   "text": "These features are among the most difficult to characterize based on database annotations",
+   "text_version": "preprint",
+   "work_id": "W7163532908"
+  },
+  {
+   "doi": "10.64898/2026.06.03.729735",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "given a protein sequence, predict the amino acids that have been masked from it",
+   "text_version": "preprint",
+   "work_id": "W7163532908"
+  },
+  {
+   "doi": "10.64898/2026.06.03.729735",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "The latent representations are formed by the activations of each of the neurons in each of the layers of the network",
+   "text_version": "preprint",
+   "work_id": "W7163532908"
+  },
+  {
+   "doi": "10.64898/2026.06.03.729735",
+   "field": "quotes",
+   "item": "explanations",
+   "text": "The amino acid that evolution selects at each position in a protein is shaped and constrained by the many and varied roles",
+   "text_version": "preprint",
+   "work_id": "W7163532908"
+  },
+  {
+   "doi": "10.64898/2026.06.03.729735",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "As a whole",
+   "text_version": "preprint",
+   "work_id": "W7163532908"
+  },
+  {
+   "doi": "10.64898/2026.06.03.729735",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "These results demonstrate that",
+   "text_version": "preprint",
+   "work_id": "W7163532908"
+  },
+  {
+   "doi": "10.64898/2026.06.03.729735",
+   "field": "quotes",
+   "item": "signature_phrases",
+   "text": "Together,",
+   "text_version": "preprint",
+   "work_id": "W7163532908"
+  }
+ ],
+ "schema": 1,
+ "stability": {
+  "abstract_moves": {
+   "agreement": 0.898,
+   "pairs": 23,
+   "stable": true
+  },
+  "discussion_moves": {
+   "agreement": 0.747,
+   "pairs": 23,
+   "stable": true
+  },
+  "essay_argument": {
+   "agreement": 1.0,
+   "pairs": 1,
+   "stable": true
+  },
+  "excitement": {
+   "agreement": 0.65,
+   "pairs": 23,
+   "stable": false
+  },
+  "figure_reference": {
+   "agreement": 1.0,
+   "pairs": 23,
+   "stable": true
+  },
+  "gap_sentence": {
+   "agreement": 0.957,
+   "pairs": 23,
+   "stable": true
+  },
+  "here_we": {
+   "agreement": 1.0,
+   "pairs": 23,
+   "stable": true
+  },
+  "intro_roles": {
+   "agreement": 0.887,
+   "pairs": 23,
+   "stable": true
+  },
+  "limitations": {
+   "agreement": 0.783,
+   "pairs": 23,
+   "stable": true
+  },
+  "results_headings": {
+   "agreement": 1.0,
+   "pairs": 21,
+   "stable": true
+  },
+  "results_openings": {
+   "agreement": 0.94,
+   "pairs": 21,
+   "stable": true
+  },
+  "strongest_claim": {
+   "agreement": 0.957,
+   "pairs": 23,
+   "stable": true
+  },
+  "title_form": {
+   "agreement": 0.957,
+   "pairs": 23,
+   "stable": true
+  }
+ },
+ "surface": {
+  "citations_per_sentence": 0.264,
+  "connectives_per_1000": [
+   [
+    "first",
+    0.81
+   ],
+   [
+    "here",
+    0.36
+   ],
+   [
+    "because",
+    0.27
+   ],
+   [
+    "second",
+    0.25
+   ],
+   [
+    "together",
+    0.25
+   ],
+   [
+    "however",
+    0.23
+   ],
+   [
+    "instead",
+    0.23
+   ],
+   [
+    "although",
+    0.22
+   ],
+   [
+    "finally",
+    0.11
+   ],
+   [
+    "thus",
+    0.09
+   ],
+   [
+    "furthermore",
+    0.07
+   ],
+   [
+    "notably",
+    0.07
+   ],
+   [
+    "therefore",
+    0.05
+   ],
+   [
+    "whereas",
+    0.05
+   ],
+   [
+    "importantly",
+    0.04
+   ],
+   [
+    "indeed",
+    0.04
+   ],
+   [
+    "moreover",
+    0.04
+   ],
+   [
+    "hence",
+    0.02
+   ],
+   [
+    "remarkably",
+    0.02
+   ]
+  ],
+  "figure_refs_per_paragraph": 0.587,
+  "first_person_share": 0.283,
+  "hedge_words": [
+   [
+    "could",
+    30
+   ],
+   [
+    "possible",
+    29
+   ],
+   [
+    "may",
+    23
+   ],
+   [
+    "consistent",
+    18
+   ],
+   [
+    "suggests",
+    17
+   ],
+   [
+    "likely",
+    14
+   ],
+   [
+    "indicates",
+    12
+   ],
+   [
+    "indicate",
+    11
+   ],
+   [
+    "suggest",
+    9
+   ],
+   [
+    "appears",
+    8
+   ],
+   [
+    "potentially",
+    5
+   ],
+   [
+    "appear",
+    4
+   ],
+   [
+    "might",
+    4
+   ],
+   [
+    "appeared",
+    1
+   ],
+   [
+    "possibly",
+    1
+   ],
+   [
+    "seem",
+    1
+   ]
+  ],
+  "hedges_per_1000": 3.36,
+  "n_paragraphs": 562,
+  "n_sentences": 2420,
+  "n_words": 55626,
+  "numbers_per_sentence": 0.61,
+  "opener_pairs": [
+   [
+    "we find",
+    34
+   ],
+   [
+    "we also",
+    29
+   ],
+   [
+    "in this",
+    28
+   ],
+   [
+    "the model",
+    24
+   ],
+   [
+    "in the",
+    21
+   ],
+   [
+    "this is",
+    20
+   ],
+   [
+    "we evaluate",
+    20
+   ],
+   [
+    "we use",
+    19
+   ],
+   [
+    "for each",
+    14
+   ],
+   [
+    "we train",
+    14
+   ]
+  ],
+  "openers": [
+   [
+    "we",
+    351
+   ],
+   [
+    "the",
+    323
+   ],
+   [
+    "in",
+    129
+   ],
+   [
+    "this",
+    128
+   ],
+   [
+    "for",
+    89
+   ],
+   [
+    "to",
+    71
+   ],
+   [
+    "a",
+    64
+   ],
+   [
+    "these",
+    50
+   ],
+   [
+    "as",
+    30
+   ],
+   [
+    "since",
+    28
+   ],
+   [
+    "fig",
+    27
+   ],
+   [
+    "while",
+    27
+   ],
+   [
+    "our",
+    26
+   ],
+   [
+    "table",
+    24
+   ],
+   [
+    "at",
+    19
+   ]
+  ],
+  "paragraph_sentences": {
+   "mean": 4.31,
+   "median": 4.0,
+   "n": 562,
+   "p90": 7.0
+  },
+  "passive_share": 0.261,
+  "questions_per_100": 0.0,
+  "sentence_length": {
+   "mean": 22.99,
+   "median": 21.0,
+   "n": 2420,
+   "p90": 37.0
+  },
+  "sentence_length_by_kind": {
+   "abstract": {
+    "mean": 21.83,
+    "median": 20.0,
+    "n": 89,
+    "p90": 30.0
+   },
+   "discussion": {
+    "mean": 25.93,
+    "median": 24.5,
+    "n": 148,
+    "p90": 41.0
+   },
+   "intro": {
+    "mean": 23.57,
+    "median": 22.0,
+    "n": 1254,
+    "p90": 38.0
+   },
+   "other": {
+    "mean": 19.59,
+    "median": 19.0,
+    "n": 186,
+    "p90": 29.0
+   },
+   "results": {
+    "mean": 22.4,
+    "median": 20.0,
+    "n": 743,
+    "p90": 37.0
+   }
+  }
+ },
+ "surface_papers": 12,
+ "text_versions": {
+  "arxiv": 1,
+  "preprint": 10,
+  "published": 1
+ },
+ "unverified": {},
+ "years": {
+  "first": 2020,
+  "last": 2026
+ }
+}

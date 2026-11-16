@@ -1,0 +1,39 @@
+{
+  "name": "yangjun9095-plugins",
+  "owner": {
+    "name": "Yang Joon Kim",
+    "github": "yangjun9095"
+  },
+  "plugins": [
+    {
+      "name": "scientific-figure",
+      "source": "./plugins/scientific-figure",
+      "description": "Build or rebuild a publication figure from a draft, a description, or a results section — claim-first design, build-time data assertions, and an independent second-model review",
+      "version": "1.1.1"
+    },
+    {
+      "name": "figure-style",
+      "source": "./plugins/figure-style",
+      "description": "Enforce publication-quality figure styling with automated verification — font sizes, colors, labels, layout, and export settings",
+      "version": "1.0.0"
+    },
+    {
+      "name": "generate-slides",
+      "source": "./plugins/generate-slides",
+      "description": "Generate PPTX slide decks from session artifacts with interactive outline brainstorming, then programmatic generation via python-pptx",
+      "version": "1.0.0"
+    },
+    {
+      "name": "science-style",
+      "source": "./plugins/science-style",
+      "description": "Learn how chosen scientists write from their open-access papers, and publish one checked profile per person for a writing skill.",
+      "version": "0.1.0"
+    },
+    {
+      "name": "email-report",
+      "source": "./plugins/email-report",
+      "description": "Email a threaded status/report from a long-running or unattended session via a local MTA — no OAuth, no API key",
+      "version": "1.0.0"
+    }
+  ]
+}
