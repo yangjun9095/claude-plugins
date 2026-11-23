@@ -261,7 +261,7 @@ for p in [Path("slide-style.yaml"), Path("docs/slide-style.yaml"), Path(".claude
 - **Content slides**: White background, black text, action title at top
 - **No bold anywhere**: Hierarchy is conveyed through font size and spacing only. Never set `bold=True`.
 - **Font**: Avenir Light (`FONT_NAME`) for all text, PT Mono (`CODE_FONT`) for code blocks
-- **Font sizes**: 40pt titles, 28pt subtitles, 22pt body, 16pt tables, 14pt footnotes, 12pt code
+- **Font sizes**: 28pt titles, 22pt subtitles, 22pt body, 16pt tables, 14pt footnotes, 12pt code
 - **Title position**: Top-aligned (~0.15" from top) to maximize content area
 - **Colors**: Use color very sparingly. Black text (#000000), single blue accent (#036DEA). No colored text boxes.
 - **Bullet emphasis**: Use blue accent color on key-term prefixes instead of bold (tuples render the first element in blue)

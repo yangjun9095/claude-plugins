@@ -9,7 +9,7 @@ Default style profile: Y.J. Kim's exemplar decks (2024-2025):
 - Colors: Black text, single blue (#036DEA) accent, no colored boxes
 - Bold: Never — hierarchy through font size and spacing only
 - Title position: top-aligned (~0.15")
-- Font sizes: title 40pt, subtitle 28pt, body 22pt, footnote 14pt
+- Font sizes: title 28pt, subtitle 22pt, body 22pt, footnote 14pt
 
 Override the default by calling ``load_style("path/to/slide-style.yaml")``.
 Partial YAML files are supported — only specified keys override the defaults.
@@ -122,8 +122,8 @@ FONT_NAME = "Avenir Light"
 CODE_FONT = "PT Mono"
 
 # Font sizes (scaled for 13.333" wide canvas)
-TITLE_SIZE = 40
-SUBTITLE_SIZE = 28
+TITLE_SIZE = 28
+SUBTITLE_SIZE = 22
 BODY_SIZE = 22
 FOOTNOTE_SIZE = 14
 TABLE_SIZE = 16
