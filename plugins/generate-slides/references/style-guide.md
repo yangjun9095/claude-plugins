@@ -26,8 +26,8 @@ colors:
 typography:
   body_font: "Avenir Light"    # Main font for all text
   code_font: "PT Mono"         # Monospace font for code boxes
-  title_size: 40               # Title font size (pt)
-  subtitle_size: 28            # Subtitle font size (pt)
+  title_size: 28               # Title font size (pt)
+  subtitle_size: 22            # Subtitle font size (pt)
   body_size: 22                # Body text font size (pt)
   footnote_size: 14            # Footnote font size (pt)
   table_size: 16               # Table cell font size (pt)
@@ -91,7 +91,7 @@ The reusable helper library is at `scripts/pptx_helpers.py`.
 `SLIDE_W`, `SLIDE_H`, `LEFT_MARGIN` (0.8"), `TOP_MARGIN` (1.2"), `CONTENT_W` (11.7")
 
 ### Typography constants:
-`FONT_NAME` ("Avenir Light"), `CODE_FONT` ("PT Mono"), `TITLE_SIZE` (40), `SUBTITLE_SIZE` (28), `BODY_SIZE` (22), `FOOTNOTE_SIZE` (14), `TABLE_SIZE` (16), `CODE_SIZE` (12)
+`FONT_NAME` ("Avenir Light"), `CODE_FONT` ("PT Mono"), `TITLE_SIZE` (28), `SUBTITLE_SIZE` (22), `BODY_SIZE` (22), `FOOTNOTE_SIZE` (14), `TABLE_SIZE` (16), `CODE_SIZE` (12)
 
 ### Style flags (set by `load_style()`):
 `USE_BOLD` (false), `TITLE_SLIDE_BG` ("white"/"dark"), `BULLET_EMPHASIS` ("accent"/"bold"), `CALLOUT_BG` ("white"/"accent")
